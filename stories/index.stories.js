@@ -20,7 +20,7 @@ const buttonColors = ['primary', 'secondary'];
 
 storiesOf('Button', module)
   .addDecorator(withKnobs)
-  .addDecorator(withInfo)
+  .addDecorator(withInfo({inline: true}))
   .add('De button', () => (<Button disabled={boolean('Disabled', false)} color={select('Kleur', buttonColors, 'primary')} label='klik me' />))
   // .add('with text', () => <Button onClick={action('clicked')}>Hello Button</Button>)
   // .add('with some emoji', () => (
