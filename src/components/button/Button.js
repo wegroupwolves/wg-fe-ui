@@ -1,5 +1,6 @@
 import React from 'react';
 import {bool, string} from 'prop-types';
+import styled from 'styled-components';
 
 const Button = ({color, disabled, label}) => {
  let colorKey;
@@ -16,9 +17,17 @@ const Button = ({color, disabled, label}) => {
    break;
  }
  return (
-   <button disabled={disabled} style={{backgroundColor: colorKey, color: 'white', border: 0, padding: '0.5rem 2rem', borderRadius: '0.6rem', fontSize: '1.2rem', fontWeight: '900'}} >{label}</button>
+   <StyledButton disabled={disabled} >{label}</StyledButton>
  )
 }
+
+const StyledButton = styled.button`
+  background-color: green;
+  font-weight: 900;
+  font-size: 1.5rem;
+  border-radius: 0.5rem;
+  border: 0;
+`;
 
 Button.defaultProps = {
  disabled: false,
