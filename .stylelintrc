@@ -1,0 +1,36 @@
+{
+  "processors": [
+    "stylelint-processor-styled-components"
+  ],
+  "extends": [
+    "stylelint-config-standard", 
+    "stylelint-config-styled-components",
+    "stylelint-config-prettier"
+  ],
+  "rules": {
+    "selector-list-comma-newline-after": null,
+    "block-closing-brace-empty-line-before": null,
+    "declaration-empty-line-before": null,
+    "font-family-name-quotes": "always-where-recommended",
+    "color-named": "always-where-possible",
+    "comment-empty-line-before": null,
+    "comment-whitespace-inside": null,
+    "function-url-quotes": "never",
+    "string-quotes": "single",
+    "declaration-no-important": true,
+    "no-duplicate-selectors": true,
+    "selector-max-id": 0,
+    "number-max-precision": 2,
+    "shorthand-property-no-redundant-values": true,
+    "selector-no-qualifying-type": [true, {"ignore": ["attribute"]}],
+    "selector-max-universal": 0,
+    "selector-no-vendor-prefix": null,
+    "property-no-vendor-prefix": null,
+    "media-feature-name-case": "lower",
+    "value-keyword-case": "lower",
+    "no-extra-semicolons": true,
+    "declaration-block-no-shorthand-property-overrides": true,
+    "declaration-block-no-redundant-longhand-properties": [true, {"ignoreShorthands": ["grid-template"]}],
+    "declaration-block-trailing-semicolon": null,
+  }
+}
