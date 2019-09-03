@@ -1,5 +1,5 @@
 {
-  "name": "wegroup-storybook",
+  "name": "wg-storybook",
   "version": "0.1.0",
   "private": true,
   "main": "build/index.js",
