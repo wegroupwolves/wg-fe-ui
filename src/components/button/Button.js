@@ -17,7 +17,7 @@ const Button = ({color, disabled, label}) => {
  }
  return (
    <button disabled={disabled} style={{backgroundColor: colorKey, color: 'white', border: 0, padding: '0.5rem 2rem', borderRadius: '0.6rem', fontSize: '1.2rem', fontWeight: '900'}} >{label}</button>
- );
+ )
 }
 
 Button.defaultProps = {
