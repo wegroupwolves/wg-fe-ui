@@ -1,16 +1,22 @@
 import React from 'react';
-import {bool, string, node, func} from 'prop-types';
+import {bool, node, func, string, object} from 'prop-types';
 import styled from 'styled-components';
 import { key } from 'styled-theme';
 
 import Checkmark from '../../assets/checkmark.jsx';
 import Theme from '../../../.storybook/theme';
 
-const Checkbox = ({className, checked, disabled , onChange, otherProps, children}) => {
+const Checkbox = ({className, checked, disabled , onChange, otherProps, children, name}) => {
+
+const handleChange = (e) => {
+  if (!disabled) {
+    onChange(e);
+  }
+};
 
  return (
-   <StyledLabel disabled={disabled} className={className} {...otherProps}>
-    <input disabled={disabled} checked={checked} type="checkbox"  onChange={(e) => onChange(e)}/>
+   <StyledLabel htmlFor={name} disabled={disabled} className={className} {...otherProps}>
+    <input name={name} id={name} disabled={disabled} checked={checked} type="checkbox"  onChange={(e) => handleChange(e)}/>
     <StyledBox disabled={disabled} checked={checked}>
      {checked && disabled ? <StyledCheckmark color={Theme().colors.disabled} /> : (checked && !disabled ? <StyledCheckmark color={'white'} /> : null)}
     </StyledBox>
@@ -74,7 +80,8 @@ Checkbox.propTypes = {
   /** Triggered when button is clicked */
   onChange: func.isRequired,
   /** Adds extra props to the element */
-  otherProps: node
+  otherProps: object,
+  name: string.isRequired
 }
 
 export default Checkbox

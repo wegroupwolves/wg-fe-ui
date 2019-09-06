@@ -1,13 +1,20 @@
 import React from 'react';
-import {bool, string, node, func} from 'prop-types';
+import {bool, string, node, func, object} from 'prop-types';
 import styled from 'styled-components';
 import { key } from 'styled-theme';
 
 const ActionButton = ({level, disabled, children, fullwidth, onClick, icon, otherProps, className}) => {
+
+  const handleClick = () => {
+    if (!disabled) {
+      onClick();
+    }
+  };
+
  return (
    <StyledButton
     level={level}
-    onClick={() => onClick()}
+    onClick={() => handleClick()}
     fullwidth={fullwidth}
     disabled={disabled}
     className={className}
@@ -22,7 +29,7 @@ const ActionButton = ({level, disabled, children, fullwidth, onClick, icon, othe
 
 const StyledButton = styled.button`
   font-family: ${key('fonts.primary')};
-  background-color: ${props => props.level === 'primary' ? key('colors.action') : key('colors.interactive')};
+  background-color: ${props => props.disabled ? key('colors.disabled') : (props.level === 'primary' ? key('colors.action') : key('colors.interactive'))};
   font-weight: 900;
   font-size: 1.5rem;
   border-radius: 0.5rem;
@@ -42,10 +49,6 @@ const StyledButton = styled.button`
 
   :hover {
     /* background-color: #FFBF80; */
-  }
-
-  :disabled {
-    background-color: ${key('colors.disabled')};
   }
 `;
 
@@ -76,7 +79,7 @@ ActionButton.propTypes = {
   /** Adds icon to button */
   icon: node,
   /** Adds extra props to the element */
-  otherProps: node,
+  otherProps: object,
 }
 
 export default ActionButton

@@ -13,6 +13,6 @@ storiesOf('Low level blocks/Checkboxes', module)
   .addDecorator(withKnobs)
   .addDecorator(withInfo({inline: true}))
   .add('Checkbox', () => (
-  <Checkbox disabled={boolean('disabled', false)} checked={boolean('checked', false)} onChange={(e) => console.log("Checkbox checked:" , e.currentTarget.checked)}>Item</Checkbox>
+  <Checkbox name='checktest' disabled={boolean('disabled', false)} checked={boolean('checked', false)} onChange={(e) => console.log("Checkbox checked:" , e.currentTarget.checked)}>Item</Checkbox>
     ))
 ;
