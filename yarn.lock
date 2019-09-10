@@ -3622,7 +3622,7 @@ concat-stream@^1.5.0:
     readable-stream "^2.2.2"
     typedarray "^0.0.6"
 
-confusing-browser-globals@^1.0.8:
+confusing-browser-globals@^1.0.7, confusing-browser-globals@^1.0.8:
   version "1.0.8"
   resolved "https://registry.yarnpkg.com/confusing-browser-globals/-/confusing-browser-globals-1.0.8.tgz#93ffec1f82a6e2bf2bc36769cc3a92fa20e502f3"
 
@@ -4668,6 +4668,28 @@ escodegen@^1.11.0, escodegen@^1.9.1:
   optionalDependencies:
     source-map "~0.6.1"
 
+eslint-config-airbnb-base@^14.0.0:
+  version "14.0.0"
+  resolved "https://registry.yarnpkg.com/eslint-config-airbnb-base/-/eslint-config-airbnb-base-14.0.0.tgz#8a7bcb9643d13c55df4dd7444f138bf4efa61e17"
+  dependencies:
+    confusing-browser-globals "^1.0.7"
+    object.assign "^4.1.0"
+    object.entries "^1.1.0"
+
+eslint-config-airbnb@^18.0.1:
+  version "18.0.1"
+  resolved "https://registry.yarnpkg.com/eslint-config-airbnb/-/eslint-config-airbnb-18.0.1.tgz#a3a74cc29b46413b6096965025381df8fb908559"
+  dependencies:
+    eslint-config-airbnb-base "^14.0.0"
+    object.assign "^4.1.0"
+    object.entries "^1.1.0"
+
+eslint-config-prettier@^6.2.0:
+  version "6.2.0"
+  resolved "https://registry.yarnpkg.com/eslint-config-prettier/-/eslint-config-prettier-6.2.0.tgz#80e0b8714e3f6868c4ac2a25fbf39c02e73527a7"
+  dependencies:
+    get-stdin "^6.0.0"
+
 eslint-config-react-app@^5.0.1:
   version "5.0.1"
   resolved "https://registry.yarnpkg.com/eslint-config-react-app/-/eslint-config-react-app-5.0.1.tgz#5f3d666ba3ee3cb384eb943e260e868f6c72251b"
@@ -4690,6 +4712,15 @@ eslint-loader@2.2.1:
     object-assign "^4.0.1"
     object-hash "^1.1.4"
     rimraf "^2.6.1"
+
+eslint-loader@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/eslint-loader/-/eslint-loader-3.0.0.tgz#fb70bc2d552a674f43f07f5e6575083e565e790d"
+  dependencies:
+    loader-fs-cache "^1.0.2"
+    loader-utils "^1.2.3"
+    object-hash "^1.3.1"
+    schema-utils "^2.1.0"
 
 eslint-module-utils@^2.4.0:
   version "2.4.1"
@@ -4720,7 +4751,7 @@ eslint-plugin-import@2.18.2:
     read-pkg-up "^2.0.0"
     resolve "^1.11.0"
 
-eslint-plugin-jsx-a11y@6.2.3:
+eslint-plugin-jsx-a11y@6.2.3, eslint-plugin-jsx-a11y@^6.2.3:
   version "6.2.3"
   resolved "https://registry.yarnpkg.com/eslint-plugin-jsx-a11y/-/eslint-plugin-jsx-a11y-6.2.3.tgz#b872a09d5de51af70a97db1eea7dc933043708aa"
   dependencies:
@@ -4734,11 +4765,21 @@ eslint-plugin-jsx-a11y@6.2.3:
     has "^1.0.3"
     jsx-ast-utils "^2.2.1"
 
+eslint-plugin-prettier@^3.1.0:
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-prettier/-/eslint-plugin-prettier-3.1.0.tgz#8695188f95daa93b0dc54b249347ca3b79c4686d"
+  dependencies:
+    prettier-linter-helpers "^1.0.0"
+
 eslint-plugin-react-hooks@^1.6.1:
   version "1.7.0"
   resolved "https://registry.yarnpkg.com/eslint-plugin-react-hooks/-/eslint-plugin-react-hooks-1.7.0.tgz#6210b6d5a37205f0b92858f895a4e827020a7d04"
 
-eslint-plugin-react@7.14.3:
+eslint-plugin-react-hooks@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-react-hooks/-/eslint-plugin-react-hooks-2.0.1.tgz#e898ec26a0a335af6f7b0ad1f0bedda7143ed756"
+
+eslint-plugin-react@7.14.3, eslint-plugin-react@^7.14.3:
   version "7.14.3"
   resolved "https://registry.yarnpkg.com/eslint-plugin-react/-/eslint-plugin-react-7.14.3.tgz#911030dd7e98ba49e1b2208599571846a66bdf13"
   dependencies:
@@ -5037,6 +5078,10 @@ extsprintf@^1.2.0:
 fast-deep-equal@^2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/fast-deep-equal/-/fast-deep-equal-2.0.1.tgz#7b05218ddf9667bf7f370bf7fdb2cb15fdd0aa49"
+
+fast-diff@^1.1.2:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/fast-diff/-/fast-diff-1.2.0.tgz#73ee11982d86caaf7959828d519cfe927fac5f03"
 
 fast-glob@^2.0.2, fast-glob@^2.2.6:
   version "2.2.7"
@@ -5446,6 +5491,10 @@ get-caller-file@^2.0.1:
 get-own-enumerable-property-symbols@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/get-own-enumerable-property-symbols/-/get-own-enumerable-property-symbols-3.0.0.tgz#b877b49a5c16aefac3655f2ed2ea5b684df8d203"
+
+get-stdin@^6.0.0:
+  version "6.0.0"
+  resolved "https://registry.yarnpkg.com/get-stdin/-/get-stdin-6.0.0.tgz#9e09bf712b360ab9225e812048f71fde9c89657b"
 
 get-stdin@^7.0.0:
   version "7.0.0"
@@ -7176,7 +7225,7 @@ load-json-file@^4.0.0:
     pify "^3.0.0"
     strip-bom "^3.0.0"
 
-loader-fs-cache@^1.0.0:
+loader-fs-cache@^1.0.0, loader-fs-cache@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/loader-fs-cache/-/loader-fs-cache-1.0.2.tgz#54cedf6b727e1779fd8f01205f05f6e88706f086"
   dependencies:
@@ -7999,7 +8048,7 @@ object-copy@^0.1.0:
     define-property "^0.2.5"
     kind-of "^3.0.3"
 
-object-hash@^1.1.4:
+object-hash@^1.1.4, object-hash@^1.3.1:
   version "1.3.1"
   resolved "https://registry.yarnpkg.com/object-hash/-/object-hash-1.3.1.tgz#fde452098a951cb145f039bb7d455449ddc126df"
 
@@ -9142,6 +9191,12 @@ prelude-ls@~1.1.2:
 prepend-http@^1.0.0:
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/prepend-http/-/prepend-http-1.0.4.tgz#d4f4562b0ce3696e41ac52d0e002e57a635dc6dc"
+
+prettier-linter-helpers@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/prettier-linter-helpers/-/prettier-linter-helpers-1.0.0.tgz#d23d41fe1375646de2d0104d3454a3008802cf7b"
+  dependencies:
+    fast-diff "^1.1.2"
 
 prettier@^1.18.2:
   version "1.18.2"
@@ -10337,7 +10392,7 @@ schema-utils@^1.0.0:
     ajv-errors "^1.0.0"
     ajv-keywords "^3.1.0"
 
-schema-utils@^2.0.0, schema-utils@^2.0.1:
+schema-utils@^2.0.0, schema-utils@^2.0.1, schema-utils@^2.1.0:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/schema-utils/-/schema-utils-2.2.0.tgz#48a065ce219e0cacf4631473159037b2c1ae82da"
   dependencies:

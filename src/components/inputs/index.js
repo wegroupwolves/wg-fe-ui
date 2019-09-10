@@ -1,6 +1,3 @@
 import TextInput from './TextInput';
 
-export {
- TextInput,
-}
-
+export { TextInput };

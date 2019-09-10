@@ -1,40 +1,53 @@
 import React from 'react';
-import {bool, string, node, func, object} from 'prop-types';
+import { bool, string, node, func, object } from 'prop-types';
 import styled from 'styled-components';
 import { key } from 'styled-theme';
 
-const ActionButton = ({level, disabled, children, fullwidth, onClick, icon, otherProps, className}) => {
-
+const ActionButton = ({
+  level,
+  disabled,
+  children,
+  fullwidth,
+  onClick,
+  icon,
+  otherProps,
+  className,
+}) => {
   const handleClick = () => {
     if (!disabled) {
       onClick();
     }
   };
 
- return (
-   <StyledButton
-    level={level}
-    onClick={() => handleClick()}
-    fullwidth={fullwidth}
-    disabled={disabled}
-    className={className}
-    {...otherProps}
+  return (
+    <StyledButton
+      level={level}
+      onClick={() => handleClick()}
+      fullwidth={fullwidth}
+      disabled={disabled}
+      className={className}
+      {...otherProps}
     >
-    {icon ? <Image src={icon} /> : null}
-    
-    {children}
-   </StyledButton>
- )
-}
+      {icon ? <Image src={icon} /> : null}
+
+      {children}
+    </StyledButton>
+  );
+};
 
 const StyledButton = styled.button`
   font-family: ${key('fonts.primary')};
-  background-color: ${props => props.disabled ? key('colors.disabled') : (props.level === 'primary' ? key('colors.action') : key('colors.interactive'))};
+  background-color: ${props =>
+    props.disabled
+      ? key('colors.disabled')
+      : props.level === 'primary'
+      ? key('colors.action')
+      : key('colors.interactive')};
   font-weight: 900;
   font-size: 1.5rem;
   border-radius: 0.5rem;
   min-width: 12rem;
-  width: ${props => props.fullwidth ? '100%' : ''};
+  width: ${props => (props.fullwidth ? '100%' : '')};
   height: 4rem;
   color: white;
   border: 0;
@@ -43,7 +56,7 @@ const StyledButton = styled.button`
   justify-content: center;
   align-items: center;
 
-  :focus{
+  :focus {
     outline: none;
   }
 
@@ -66,6 +79,8 @@ ActionButton.defaultProps = {
 };
 
 ActionButton.propTypes = {
+  /** Beeing able to use it in Styled Components */
+  className: string,
   /** If true button is disabled */
   disabled: bool,
   /** The color theme */
@@ -80,6 +95,6 @@ ActionButton.propTypes = {
   icon: node,
   /** Adds extra props to the element */
   otherProps: object,
-}
+};
 
-export default ActionButton
+export default ActionButton;

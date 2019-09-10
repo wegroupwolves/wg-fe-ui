@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {bool, node, func, string, object} from 'prop-types';
+import { bool, node, func, string, object } from 'prop-types';
 import styled from 'styled-components';
 import { key } from 'styled-theme';
 import { detect } from 'detect-browser';
@@ -7,7 +7,18 @@ import { detect } from 'detect-browser';
 import Checkmark from '../../assets/checkmark.jsx';
 import Errormark from '../../assets/errormark.jsx';
 
-const TextInput = ({ className, children, name, type, disabled, placeholder, setFieldValue, setFieldTouched, errors, touched}) => {
+const TextInput = ({
+  className,
+  children,
+  name,
+  type,
+  disabled,
+  placeholder,
+  setFieldValue,
+  setFieldTouched,
+  errors,
+  touched,
+}) => {
   const [value, setValue] = useState('');
   const [focus, setFocus] = useState();
   const [iconRight, setIconRight] = useState('1rem');
@@ -15,7 +26,7 @@ const TextInput = ({ className, children, name, type, disabled, placeholder, set
 
   const handleFocus = () => {
     setFocus(true);
-    if(browser){
+    if (browser) {
       switch (browser.name) {
         case 'safari':
           setIconRight('3.5rem');
@@ -30,56 +41,55 @@ const TextInput = ({ className, children, name, type, disabled, placeholder, set
     }
   };
 
- return (
-   <Container className={className}>
-     <StyledLabel disabled={disabled} className={className} htmlFor={name}>
-      {children}
-     </StyledLabel>
-    <InputContainer>
-      <StyledInput
-      id={name}
-      name={name}
-      type={type}
-      disabled={disabled}
-      placeholder={placeholder ? placeholder : null}
-      errors={errors[name] ? true : false}
-      touched={touched[name] ? true : false}
-      value={value}
-      onChange={(e) => {
-        setFieldValue(name, e.target.value) 
-        setValue(e.target.value);
-      }}
-      onBlur={() => {
-        setFieldTouched(name, true)
-        setFocus(false);
-      }}
-      onFocus={() => handleFocus()}
-      />
-      {errors[name] && touched[name] ? (
+  return (
+    <Container className={className}>
+      <StyledLabel disabled={disabled} className={className} htmlFor={name}>
+        {children}
+      </StyledLabel>
+      <InputContainer>
+        <StyledInput
+          id={name}
+          name={name}
+          type={type}
+          disabled={disabled}
+          placeholder={placeholder ? placeholder : null}
+          errors={errors[name] ? true : false}
+          touched={touched[name] ? true : false}
+          value={value}
+          onChange={e => {
+            setFieldValue(name, e.target.value);
+            setValue(e.target.value);
+          }}
+          onBlur={() => {
+            setFieldTouched(name, true);
+            setFocus(false);
+          }}
+          onFocus={() => handleFocus()}
+        />
+        {errors[name] && touched[name] ? (
           <StyledErrormark
-            color='#F74040'
+            color="#F74040"
             focus={focus}
             right={iconRight}
             browser={browser ? browser.name : null}
           />
         ) : touched[name] ? (
           <StyledCheckmark
-            color='#00CD39'
+            color="#00CD39"
             focus={focus}
             right={iconRight}
             browser={browser ? browser.name : null}
           />
         ) : null}
-    </InputContainer>
-     {errors[name] && touched[name] ?
-     <ErrorContainer>
-       <p>{errors[name]}</p>
-     </ErrorContainer>
-    : null }
-   </Container>
-  
- )
-}
+      </InputContainer>
+      {errors[name] && touched[name] ? (
+        <ErrorContainer>
+          <p>{errors[name]}</p>
+        </ErrorContainer>
+      ) : null}
+    </Container>
+  );
+};
 
 const Container = styled.div`
   width: 100%;
@@ -94,19 +104,26 @@ const StyledLabel = styled.label`
   margin-bottom: 0.5rem;
   font-size: 1.2rem;
   margin-bottom: 0.7rem;
-  color: ${props => props.disabled ? key('colors.disabled') : key('colors.sub-title')}
+  color: ${props =>
+    props.disabled ? key('colors.disabled') : key('colors.sub-title')};
 `;
 
 const InputContainer = styled.div`
-  display:flex;
+  display: flex;
   position: relative;
 `;
 
 const StyledInput = styled.input`
-  background-color: ${props => props.disabled ? key('colors.bg-disabled') : 'white'};
+  background-color: ${props =>
+    props.disabled ? key('colors.bg-disabled') : 'white'};
   width: 100%;
   border: 0.1rem solid;
-  border-color: ${props => props.errors & props.touched ? key('colors.bad') : props.touched & !props.errors ? key('colors.good') : key('colors.outline')};
+  border-color: ${props =>
+    props.errors & props.touched
+      ? key('colors.bad')
+      : props.touched & !props.errors
+      ? key('colors.good')
+      : key('colors.outline')};
   border-radius: 0.3rem;
   height: 3.5rem;
   font-size: 1.6rem;
@@ -114,11 +131,11 @@ const StyledInput = styled.input`
 
   &:focus {
     outline: none;
-    border-color: ${key('colors.action')}
+    border-color: ${key('colors.action')};
   }
 
   &::placeholder {
-    color: ${key('colors.interactive')}
+    color: ${key('colors.interactive')};
   }
 `;
 
@@ -128,7 +145,7 @@ const ErrorContainer = styled.div`
   justify-content: flex-end;
   margin-top: 0.5rem;
   font-size: 1rem;
-  color: ${key('colors.bad')}
+  color: ${key('colors.bad')};
 `;
 
 const StyledCheckmark = styled(Checkmark)`
@@ -154,31 +171,31 @@ TextInput.defaultProps = {
   placeholder: null,
   errors: {},
   touched: {},
-  setFieldTouched: (name, value) => {},
-  setFieldValue: (name, value) => {},
+  setFieldTouched: () => {},
+  setFieldValue: () => {},
 };
 
 TextInput.propTypes = {
- /** label above the input */
- children: node.isRequired,
- /** name of input and label */
- name: string.isRequired,
- /** type of input: email, text, ... */
- type: string.isRequired,
- /** if true input is disabled */
- disabled: bool,
- /** example value in the input */
- placeholder: string,
- /** object with inputname and errormessage */
- errors: object,
- /** object with inputname and boolean to check if touched */
- touched: object,
- /** returns name and touched boolean */
- setFieldTouched: func,
- /** returns name and inputvalue */
- setFieldValue: func,
-}
+  /** Beeing able to use it in Styled Components */
+  className: string,
+  /** label above the input */
+  children: node.isRequired,
+  /** name of input and label */
+  name: string.isRequired,
+  /** type of input: email, text, ... */
+  type: string.isRequired,
+  /** if true input is disabled */
+  disabled: bool,
+  /** example value in the input */
+  placeholder: string,
+  /** object with inputname and errormessage */
+  errors: object,
+  /** object with inputname and boolean to check if touched */
+  touched: object,
+  /** returns name and touched boolean */
+  setFieldTouched: func,
+  /** returns name and inputvalue */
+  setFieldValue: func,
+};
 
-
-
-export default TextInput
+export default TextInput;
