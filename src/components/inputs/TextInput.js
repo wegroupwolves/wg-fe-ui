@@ -8,23 +8,25 @@ import Checkmark from '../../assets/checkmark.jsx';
 import Errormark from '../../assets/errormark.jsx';
 
 const TextInput = ({ className, children, name, type, disabled, placeholder, setFieldValue, setFieldTouched, errors, touched}) => {
-  const [value, setValue] = useState();
+  const [value, setValue] = useState('');
   const [focus, setFocus] = useState();
   const [iconRight, setIconRight] = useState('1rem');
   const browser = detect();
 
   const handleFocus = () => {
     setFocus(true);
-    switch (browser.name) {
-      case 'safari':
-        setIconRight('3.5rem');
-        break;
-      case '':
-        setIconRight('3.5rem');
-        break;
-      default:
-        setIconRight('1rem');
-        break;
+    if(browser){
+      switch (browser.name) {
+        case 'safari':
+          setIconRight('3.5rem');
+          break;
+        case '':
+          setIconRight('3.5rem');
+          break;
+        default:
+          setIconRight('1rem');
+          break;
+      }
     }
   };
 
@@ -45,7 +47,7 @@ const TextInput = ({ className, children, name, type, disabled, placeholder, set
       value={value}
       onChange={(e) => {
         setFieldValue(name, e.target.value) 
-        setValue(value);
+        setValue(e.target.value);
       }}
       onBlur={() => {
         setFieldTouched(name, true)
@@ -58,14 +60,14 @@ const TextInput = ({ className, children, name, type, disabled, placeholder, set
             color='#F74040'
             focus={focus}
             right={iconRight}
-            browser={browser.name}
+            browser={browser ? browser.name : null}
           />
         ) : touched[name] ? (
           <StyledCheckmark
             color='#00CD39'
             focus={focus}
             right={iconRight}
-            browser={browser.name}
+            browser={browser ? browser.name : null}
           />
         ) : null}
     </InputContainer>
