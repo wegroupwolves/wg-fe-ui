@@ -18,6 +18,7 @@ const TextInput = ({
   setFieldTouched,
   errors,
   touched,
+  otherProps,
 }) => {
   const [value, setValue] = useState('');
   const [focus, setFocus] = useState();
@@ -48,6 +49,7 @@ const TextInput = ({
       </StyledLabel>
       <InputContainer>
         <StyledInput
+          {...otherProps}
           id={name}
           name={name}
           type={type}
@@ -196,6 +198,8 @@ TextInput.propTypes = {
   setFieldTouched: func,
   /** returns name and inputvalue */
   setFieldValue: func,
+  /** Adds extra props to the element */
+  otherProps: object,
 };
 
 export default TextInput;

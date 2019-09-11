@@ -146,4 +146,13 @@ describe('TextInput', () => {
     expect(wrapper.exists('Checkmark')).toEqual(true);
     expect(wrapper.exists('Errormark')).toEqual(false);
   });
+  it('otherProps adds props to input', () => {
+    const wrapper = mount(
+      <TextInput otherProps={{ max: '12' }} name="test" type="text">
+        Test
+      </TextInput>,
+    );
+
+    expect(wrapper.find('input').props().max).toEqual('12');
+  });
 });
