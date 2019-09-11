@@ -1,5 +1,5 @@
-import ActionButton from './ActionButton';
-import ToggleActionButton from './ToggleActionButton';
+import ActionButton from './ActionButton.jsx';
+import ToggleActionButton from './ToggleActionButton.jsx';
 
 export { ActionButton, ToggleActionButton };
 
