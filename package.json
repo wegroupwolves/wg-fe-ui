@@ -10,6 +10,7 @@
     "react-dom": "^16.9.0",
     "react-drag-drawer": "^3.3.1",
     "react-scripts": "3.1.1",
+    "react-select": "^3.0.4",
     "styled-components": "^4.3.2",
     "styled-theme": "^0.3.3",
     "yup": "^0.27.0"
