@@ -1,32 +1,52 @@
 import React from 'react';
-import {bool, string, node, func} from 'prop-types';
+import { bool, string, node, func, object } from 'prop-types';
 import styled from 'styled-components';
 import { key } from 'styled-theme';
 
-const ToggleActionButton = ({level, disabled, children, fullwidth, onClick, icon, otherProps, className}) => {
- return (
-   <StyledButton
-    level={level}
-    onClick={() => onClick()}
-    fullwidth={fullwidth}
-    disabled={disabled}
-    className={className}
-    {...otherProps}
+const ToggleActionButton = ({
+  level,
+  disabled,
+  children,
+  fullwidth,
+  onClick,
+  icon,
+  otherProps,
+  className,
+}) => {
+  const handleClick = () => {
+    if (!disabled) {
+      onClick();
+    }
+  };
+
+  return (
+    <StyledButton
+      level={level}
+      onClick={() => handleClick()}
+      fullwidth={fullwidth}
+      disabled={disabled}
+      className={className}
+      {...otherProps}
     >
-    {icon ? <Image src={icon} /> : null}
-    {children}
-   </StyledButton>
- )
-}
+      {icon ? <Image src={icon} /> : null}
+      {children}
+    </StyledButton>
+  );
+};
 
 const StyledButton = styled.button`
   font-family: ${key('fonts.primary')};
-  background-color: ${props => props.level === 'active' ? key('colors.toggle') : key('colors.interactive')};
+  background-color: ${props =>
+    props.disabled
+      ? key('colors.disabled')
+      : props.level === 'active'
+      ? key('colors.toggle')
+      : key('colors.interactive')};
   font-weight: 900;
   font-size: 1.5rem;
   border-radius: 2.5rem;
   min-width: 12rem;
-  width: ${props => props.fullwidth ? '100%' : ''};
+  width: ${props => (props.fullwidth ? '100%' : '')};
   height: 3.5rem;
   color: white;
   border: 0;
@@ -35,16 +55,13 @@ const StyledButton = styled.button`
   justify-content: center;
   align-items: center;
 
-  :focus{
+  :focus {
     outline: none;
   }
 
   :hover {
-    background-color: ${props => props.level === 'active' ? '' : key('colors.hover')};
-  }
-
-  :disabled {
-    background-color: ${key('colors.disabled')};
+    background-color: ${props =>
+      props.level === 'active' ? '' : key('colors.hover')};
   }
 `;
 
@@ -62,6 +79,8 @@ ToggleActionButton.defaultProps = {
 };
 
 ToggleActionButton.propTypes = {
+  /** Beeing able to use it in Styled Components */
+  className: string,
   /** If true button is disabled */
   disabled: bool,
   /** The level of the button */
@@ -75,7 +94,7 @@ ToggleActionButton.propTypes = {
   /** Adds icon to button */
   icon: node,
   /** Adds extra props to the element */
-  otherProps: node
-}
+  otherProps: object,
+};
 
-export default ToggleActionButton
+export default ToggleActionButton;
