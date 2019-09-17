@@ -1,0 +1,13 @@
+---
+kind: pipeline
+name: default
+
+steps:
+  - name: build
+    image: node:11
+    commands:
+      - yarn install --frozen-lockfile
+      - yarn lint
+      - yarn test
+    when:
+      event: push
