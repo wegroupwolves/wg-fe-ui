@@ -93,7 +93,7 @@ const Input = styled(Select)`
 
     &__value-container {
       padding: 0 0.5em;
-      font-size: 1.5rem;
+      font-size: ${key('fonts.normal-size')};
     }
 
     &__single-value {
