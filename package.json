@@ -37,6 +37,7 @@
   "eslintConfig": {
     "extends": "react-app"
   },
+  "files": ["build/*"],
   "browserslist": {
     "production": [
       ">0.2%",
