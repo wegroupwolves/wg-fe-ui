@@ -59,6 +59,10 @@ const StyledButton = styled.button`
     outline: none;
   }
 
+  :active {
+    transform: scale(0.95);
+  }
+
   :hover {
     background-color: ${props =>
       props.level === 'active' ? '' : key('colors.hover')};

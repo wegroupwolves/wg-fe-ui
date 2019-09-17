@@ -56,6 +56,10 @@ const StyledButton = styled.button`
   justify-content: center;
   align-items: center;
 
+  :active {
+    transform: scale(0.95);
+  }
+
   :focus {
     outline: none;
   }
