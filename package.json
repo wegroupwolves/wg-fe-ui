@@ -2,8 +2,9 @@
   "name": "wg-storybook",
   "version": "0.1.0",
   "private": true,
-  "main": "build/index.js",
+  "main": "index.js",
   "dependencies": {
+    "@babel/cli": "^7.6.0",
     "detect-browser": "^4.6.0",
     "formik": "^1.5.8",
     "react": "^16.9.0",
@@ -19,7 +20,7 @@
     "start": "react-scripts start",
     "start-webpack": "webpack --watch",
     "build-react": "react-scripts build",
-    "build": "webpack",
+    "build": "babel src -d dist",
     "test": "jest",
     "test:watch": "jest --watch",
     "eject": "react-scripts eject",
@@ -37,7 +38,10 @@
   "eslintConfig": {
     "extends": "react-app"
   },
-  "files": ["build/*"],
+  "files": [
+    "dist",
+    "index.js"
+  ],
   "browserslist": {
     "production": [
       ">0.2%",
