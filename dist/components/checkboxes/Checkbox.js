@@ -13,7 +13,7 @@ var _styledComponents = _interopRequireDefault(require("styled-components"));
 
 var _styledTheme = require("styled-theme");
 
-var _checkmark = _interopRequireDefault(require("../../assets/checkmark.jsx"));
+var _checkmark = _interopRequireDefault(require("../../assets/checkmark.js"));
 
 var _theme = _interopRequireDefault(require("../../../.storybook/theme"));
 

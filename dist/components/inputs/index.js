@@ -16,8 +16,8 @@ Object.defineProperty(exports, "SelectInput", {
   }
 });
 
-var _TextInput = _interopRequireDefault(require("./TextInput.jsx"));
+var _TextInput = _interopRequireDefault(require("./TextInput.js"));
 
-var _SelectInput = _interopRequireDefault(require("./SelectInput.jsx"));
+var _SelectInput = _interopRequireDefault(require("./SelectInput.js"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }

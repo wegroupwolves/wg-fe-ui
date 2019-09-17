@@ -16,8 +16,8 @@ Object.defineProperty(exports, "Table", {
   }
 });
 
-var _QuestionBox = _interopRequireDefault(require("./QuestionBox.jsx"));
+var _QuestionBox = _interopRequireDefault(require("./QuestionBox.js"));
 
-var _Table = _interopRequireDefault(require("./Table.jsx"));
+var _Table = _interopRequireDefault(require("./Table.js"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }

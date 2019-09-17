@@ -11,11 +11,11 @@ var _styledComponents = _interopRequireDefault(require("styled-components"));
 
 var _propTypes = require("prop-types");
 
-var _Value = _interopRequireDefault(require("./Value.jsx"));
+var _Value = _interopRequireDefault(require("./Value.js"));
 
-var _Row = _interopRequireDefault(require("./Row.jsx"));
+var _Row = _interopRequireDefault(require("./Row.js"));
 
-var _Key = _interopRequireDefault(require("./Key.jsx"));
+var _Key = _interopRequireDefault(require("./Key.js"));
 
 var _dist = require("styled-theme/dist");
 

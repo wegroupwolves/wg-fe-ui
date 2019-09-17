@@ -10,6 +10,6 @@ Object.defineProperty(exports, "Checkbox", {
   }
 });
 
-var _Checkbox = _interopRequireDefault(require("./Checkbox.jsx"));
+var _Checkbox = _interopRequireDefault(require("./Checkbox.js"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }

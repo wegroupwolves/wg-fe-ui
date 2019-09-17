@@ -1,4 +1,4 @@
-import QuestionBox from './QuestionBox.jsx';
-import Table from './Table.jsx';
+import QuestionBox from './QuestionBox.js';
+import Table from './Table.js';
 
 export { QuestionBox, Table };

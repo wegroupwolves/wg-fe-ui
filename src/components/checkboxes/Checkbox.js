@@ -3,7 +3,7 @@ import { bool, node, func, string, object } from 'prop-types';
 import styled from 'styled-components';
 import { key } from 'styled-theme';
 
-import Checkmark from '../../assets/checkmark.jsx';
+import Checkmark from '../../assets/checkmark.js';
 import Theme from '../../../.storybook/theme';
 
 const Checkbox = ({

@@ -15,9 +15,9 @@ var _styledTheme = require("styled-theme");
 
 var _detectBrowser = require("detect-browser");
 
-var _checkmark = _interopRequireDefault(require("../../assets/checkmark.jsx"));
+var _checkmark = _interopRequireDefault(require("../../assets/checkmark.js"));
 
-var _errormark = _interopRequireDefault(require("../../assets/errormark.jsx"));
+var _errormark = _interopRequireDefault(require("../../assets/errormark.js"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 

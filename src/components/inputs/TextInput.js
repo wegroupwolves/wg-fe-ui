@@ -4,8 +4,8 @@ import styled from 'styled-components';
 import { key } from 'styled-theme';
 import { detect } from 'detect-browser';
 
-import Checkmark from '../../assets/checkmark.jsx';
-import Errormark from '../../assets/errormark.jsx';
+import Checkmark from '../../assets/checkmark.js';
+import Errormark from '../../assets/errormark.js';
 
 const TextInput = ({
   className,

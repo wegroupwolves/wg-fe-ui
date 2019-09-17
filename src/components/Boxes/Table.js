@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 import { node, string, func, bool, object } from 'prop-types';
-import Value from './Value.jsx';
-import Row from './Row.jsx';
-import Key from './Key.jsx';
+import Value from './Value.js';
+import Row from './Row.js';
+import Key from './Key.js';
 import { key } from 'styled-theme/dist';
 
 const Table = ({ className, otherProps, children }) => {

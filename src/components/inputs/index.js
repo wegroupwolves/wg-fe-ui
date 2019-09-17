@@ -1,4 +1,4 @@
-import TextInput from './TextInput.jsx';
-import SelectInput from './SelectInput.jsx';
+import TextInput from './TextInput.js';
+import SelectInput from './SelectInput.js';
 
 export { TextInput, SelectInput };

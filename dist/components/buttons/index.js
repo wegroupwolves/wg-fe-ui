@@ -16,8 +16,8 @@ Object.defineProperty(exports, "ToggleActionButton", {
   }
 });
 
-var _ActionButton = _interopRequireDefault(require("./ActionButton.jsx"));
+var _ActionButton = _interopRequireDefault(require("./ActionButton.js"));
 
-var _ToggleActionButton = _interopRequireDefault(require("./ToggleActionButton.jsx"));
+var _ToggleActionButton = _interopRequireDefault(require("./ToggleActionButton.js"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
