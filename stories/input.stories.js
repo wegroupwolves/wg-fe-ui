@@ -66,3 +66,6 @@ const StyledTextInput = styled(TextInput)`
 const StyledSelectInput = styled(SelectInput)`
   width: 27rem;
 `;
+
+StyledTextInput.displayName = 'TextInput';
+StyledSelectInput.displayName = 'SelectInput';

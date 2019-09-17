@@ -44,7 +44,7 @@ const StyledButton = styled.button`
       ? key('colors.action')
       : key('colors.interactive')};
   font-weight: 900;
-  font-size: 1.5rem;
+  font-size: ${key('fonts.normal-size')};
   border-radius: 0.5rem;
   min-width: 12rem;
   width: ${props => (props.fullwidth ? '100%' : '')};
