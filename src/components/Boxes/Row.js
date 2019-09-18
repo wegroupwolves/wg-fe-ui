@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { node, string, func, bool, object } from 'prop-types';
+import { node, string, object } from 'prop-types';
 import { key } from 'styled-theme/dist';
 
 const Row = ({ className, otherProps, children }) => {
@@ -35,6 +35,7 @@ Row.propTypes = {
   className: string,
   /** Adds extra props to the element */
   otherProps: object,
+  children: node,
 };
 
 export default Row;

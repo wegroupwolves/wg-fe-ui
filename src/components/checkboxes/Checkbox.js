@@ -1,10 +1,9 @@
 import React from 'react';
 import { bool, node, func, string, object } from 'prop-types';
-import styled from 'styled-components';
+import styled, { withTheme } from 'styled-components';
 import { key } from 'styled-theme';
 
 import Checkmark from '../../assets/checkmark.js';
-import Theme from '../../../.storybook/theme';
 
 const Checkbox = ({
   className,
@@ -14,13 +13,13 @@ const Checkbox = ({
   otherProps,
   children,
   name,
+  theme,
 }) => {
   const handleChange = e => {
     if (!disabled) {
       onChange(e);
     }
   };
-
   return (
     <StyledLabel
       htmlFor={name}
@@ -38,7 +37,7 @@ const Checkbox = ({
       />
       <StyledBox disabled={disabled} checked={checked}>
         {checked && disabled ? (
-          <StyledCheckmark color={Theme().colors.disabled} />
+          <StyledCheckmark color={theme.colors.disabled} />
         ) : checked && !disabled ? (
           <StyledCheckmark color={'white'} />
         ) : null}
@@ -109,6 +108,7 @@ Checkbox.propTypes = {
   /** Adds extra props to the element */
   otherProps: object,
   name: string.isRequired,
+  theme: node,
 };
 
-export default Checkbox;
+export default withTheme(Checkbox);

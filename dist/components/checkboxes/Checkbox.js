@@ -9,13 +9,15 @@ var _react = _interopRequireDefault(require("react"));
 
 var _propTypes = require("prop-types");
 
-var _styledComponents = _interopRequireDefault(require("styled-components"));
+var _styledComponents = _interopRequireWildcard(require("styled-components"));
 
 var _styledTheme = require("styled-theme");
 
 var _checkmark = _interopRequireDefault(require("../../assets/checkmark.js"));
 
-var _theme = _interopRequireDefault(require("../../../.storybook/theme"));
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function _getRequireWildcardCache() { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; if (obj != null) { var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -60,7 +62,8 @@ var Checkbox = function Checkbox(_ref) {
       onChange = _ref.onChange,
       otherProps = _ref.otherProps,
       children = _ref.children,
-      name = _ref.name;
+      name = _ref.name,
+      theme = _ref.theme;
 
   var handleChange = function handleChange(e) {
     if (!disabled) {
@@ -85,7 +88,7 @@ var Checkbox = function Checkbox(_ref) {
     disabled: disabled,
     checked: checked
   }, checked && disabled ? _react.default.createElement(StyledCheckmark, {
-    color: (0, _theme.default)().colors.disabled
+    color: theme.colors.disabled
   }) : checked && !disabled ? _react.default.createElement(StyledCheckmark, {
     color: 'white'
   }) : null), children);
@@ -126,7 +129,10 @@ Checkbox.propTypes = {
 
   /** Adds extra props to the element */
   otherProps: _propTypes.object,
-  name: _propTypes.string.isRequired
+  name: _propTypes.string.isRequired,
+  theme: _propTypes.node
 };
-var _default = Checkbox;
+
+var _default = (0, _styledComponents.withTheme)(Checkbox);
+
 exports.default = _default;

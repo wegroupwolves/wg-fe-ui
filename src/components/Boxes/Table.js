@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { node, string, func, bool, object } from 'prop-types';
+import { string, object, node } from 'prop-types';
 import Value from './Value.js';
 import Row from './Row.js';
 import Key from './Key.js';
@@ -33,6 +33,7 @@ Table.propTypes = {
   className: string,
   /** Adds extra props to the element */
   otherProps: object,
+  children: node,
 };
 
 Table.Value = Value;

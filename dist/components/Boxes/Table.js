@@ -66,7 +66,8 @@ Table.propTypes = {
   className: _propTypes.string,
 
   /** Adds extra props to the element */
-  otherProps: _propTypes.object
+  otherProps: _propTypes.object,
+  children: _propTypes.node
 };
 Table.Value = _Value.default;
 Table.Value.displayName = 'Table.Value';

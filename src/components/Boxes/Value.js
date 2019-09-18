@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { node, string, func, bool, object } from 'prop-types';
+import { node, string, func, object } from 'prop-types';
 import { key } from 'styled-theme/dist';
 
 const Value = ({ className, otherProps, children, highlight, toggled }) => {

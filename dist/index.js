@@ -51,6 +51,12 @@ Object.defineProperty(exports, "ThemeProvider", {
     return _styledComponents.ThemeProvider;
   }
 });
+Object.defineProperty(exports, "Theme", {
+  enumerable: true,
+  get: function get() {
+    return _theme.default;
+  }
+});
 
 var _buttons = require("./components/buttons");
 
@@ -61,3 +67,7 @@ var _inputs = require("./components/inputs");
 var _Boxes = require("./components/Boxes");
 
 var _styledComponents = require("styled-components");
+
+var _theme = _interopRequireDefault(require("./constants/theme"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
