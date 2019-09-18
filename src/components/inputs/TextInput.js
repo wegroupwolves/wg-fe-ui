@@ -146,7 +146,7 @@ const ErrorContainer = styled.div`
   justify-content: flex-end;
   margin-top: 0.5rem;
   font-size: 1rem;
-  color: ${key('colors.bad')}
+  color: ${key('colors.bad')};
   position: absolute;
 `;
 
