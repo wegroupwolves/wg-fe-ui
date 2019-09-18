@@ -11,13 +11,13 @@ describe('Checkbox', () => {
     const wrapper = shallow(
       <Checkbox
         name="test"
-        otherProps={{ id: '31' }}
+        otherProps={{ id: 31 }}
         onChange={() => console.log('testen')}
       >
         Testje
       </Checkbox>,
     );
-    expect(wrapper.props().id).toEqual('31');
+    expect(wrapper.props().children().props.otherProps).toEqual({ id: 31 });
   });
 
   it('changes style when disabled', () => {

@@ -19,13 +19,15 @@ describe('Checkbox', function () {
     var wrapper = (0, _enzyme.shallow)(_react.default.createElement(_.Checkbox, {
       name: "test",
       otherProps: {
-        id: '31'
+        id: 31
       },
       onChange: function onChange() {
         return console.log('testen');
       }
     }, "Testje"));
-    expect(wrapper.props().id).toEqual('31');
+    expect(wrapper.props().children().props.otherProps).toEqual({
+      id: 31
+    });
   });
   it('changes style when disabled', function () {
     var wrapper = (0, _enzyme.mount)(_react.default.createElement(_styledComponents.ThemeProvider, {

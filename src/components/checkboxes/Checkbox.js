@@ -108,7 +108,7 @@ Checkbox.propTypes = {
   /** Adds extra props to the element */
   otherProps: object,
   name: string.isRequired,
-  theme: node,
+  theme: object,
 };
 
 export default withTheme(Checkbox);

@@ -15,9 +15,9 @@ var _styledTheme = require("styled-theme");
 
 var _detectBrowser = require("detect-browser");
 
-var _checkmark = _interopRequireDefault(require("../../assets/checkmark.js"));
+var _checkmark = _interopRequireDefault(require("../../assets/checkmark"));
 
-var _errormark = _interopRequireDefault(require("../../assets/errormark.js"));
+var _errormark = _interopRequireDefault(require("../../assets/errormark"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -26,7 +26,7 @@ function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; if (obj != null) { var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
 function _templateObject7() {
-  var data = _taggedTemplateLiteral(["\n  position: absolute;\n  right: ", ";\n  bottom: 1rem;\n  max-width: 2rem;\n  transition: 0.2s;\n  object-fit: contain;\n"]);
+  var data = _taggedTemplateLiteral(["\n  position: absolute;\n  right: ", ";\n  bottom: 1.2rem;\n  max-width: 2rem;\n  transition: 0.2s;\n  object-fit: contain;\n"]);
 
   _templateObject7 = function _templateObject7() {
     return data;
@@ -36,7 +36,7 @@ function _templateObject7() {
 }
 
 function _templateObject6() {
-  var data = _taggedTemplateLiteral(["\n  position: absolute;\n  right: ", ";\n  bottom: 1.2rem;\n  max-width: 2rem;\n  transition: 0.2s;\n  object-fit: contain;\n"]);
+  var data = _taggedTemplateLiteral(["\n  position: absolute;\n  right: ", ";\n  bottom: 1.3rem;\n  max-width: 2rem;\n  transition: 0.2s;\n  object-fit: contain;\n"]);
 
   _templateObject6 = function _templateObject6() {
     return data;
@@ -46,7 +46,7 @@ function _templateObject6() {
 }
 
 function _templateObject5() {
-  var data = _taggedTemplateLiteral(["\n  width: 100%;\n  display: flex;\n  justify-content: flex-end;\n  margin-top: 0.5rem;\n  font-size: 1rem;\n  color: ", ";\n"]);
+  var data = _taggedTemplateLiteral(["\n  width: 100%;\n  display: flex;\n  justify-content: flex-end;\n  margin-top: 0.5rem;\n  font-size: 1rem;\n  color: ", "\n  position: absolute;\n"]);
 
   _templateObject5 = function _templateObject5() {
     return data;
@@ -56,7 +56,7 @@ function _templateObject5() {
 }
 
 function _templateObject4() {
-  var data = _taggedTemplateLiteral(["\n  background-color: ", ";\n  width: 100%;\n  border: 0.1rem solid;\n  border-color: ", ";\n  border-radius: 0.3rem;\n  height: 3.5rem;\n  font-size: 1.6rem;\n  padding-left: 0.7rem;\n\n  &:focus {\n    outline: none;\n    border-color: ", ";\n  }\n\n  &::placeholder {\n    color: ", ";\n  }\n"]);
+  var data = _taggedTemplateLiteral(["\n  background-color: ", ";\n  width: 100%;\n  border: 0.1rem solid;\n  border-color: ", ";\n  border-radius: 0.3rem;\n  height: 4rem;\n  font-size: 1.6rem;\n  padding-left: 0.7rem;\n\n  &:focus {\n    outline: none;\n    border-color: ", ";\n  }\n\n  &::placeholder {\n    color: ", ";\n  }\n"]);
 
   _templateObject4 = function _templateObject4() {
     return data;
@@ -76,7 +76,7 @@ function _templateObject3() {
 }
 
 function _templateObject2() {
-  var data = _taggedTemplateLiteral(["\n  display: flex;\n  flex-direction: column;\n  position: relative;\n  width: 100%;\n  margin-bottom: 0.5rem;\n  font-size: 1.2rem;\n  margin-bottom: 0.7rem;\n  color: ", ";\n"]);
+  var data = _taggedTemplateLiteral(["\n  display: flex;\n  flex-direction: column;\n  position: relative;\n  width: 100%;\n  font-size: 1.4rem;\n  margin-bottom: 0.7rem;\n  color: ", ";\n"]);
 
   _templateObject2 = function _templateObject2() {
     return data;
@@ -86,7 +86,7 @@ function _templateObject2() {
 }
 
 function _templateObject() {
-  var data = _taggedTemplateLiteral(["\n  width: 100%;\n  font-family: ", ";\n"]);
+  var data = _taggedTemplateLiteral(["\n  width: 100%;\n  font-family: ", ";\n  position: relative;\n"]);
 
   _templateObject = function _templateObject() {
     return data;
@@ -118,12 +118,13 @@ var TextInput = function TextInput(_ref) {
       setFieldTouched = _ref.setFieldTouched,
       errors = _ref.errors,
       touched = _ref.touched,
-      otherProps = _ref.otherProps;
+      otherProps = _ref.otherProps,
+      value = _ref.value;
 
-  var _useState = (0, _react.useState)(''),
+  var _useState = (0, _react.useState)(value ? value : ''),
       _useState2 = _slicedToArray(_useState, 2),
-      value = _useState2[0],
-      setValue = _useState2[1];
+      inputValue = _useState2[0],
+      setInputValue = _useState2[1];
 
   var _useState3 = (0, _react.useState)(),
       _useState4 = _slicedToArray(_useState3, 2),
@@ -161,7 +162,6 @@ var TextInput = function TextInput(_ref) {
     className: className
   }, _react.default.createElement(StyledLabel, {
     disabled: disabled,
-    className: className,
     htmlFor: name
   }, children), _react.default.createElement(InputContainer, null, _react.default.createElement(StyledInput, _extends({}, otherProps, {
     id: name,
@@ -171,10 +171,10 @@ var TextInput = function TextInput(_ref) {
     placeholder: placeholder ? placeholder : null,
     errors: errors[name] ? true : false,
     touched: touched[name] ? true : false,
-    value: value,
+    value: inputValue,
     onChange: function onChange(e) {
       setFieldValue(name, e.target.value);
-      setValue(e.target.value);
+      setInputValue(e.target.value);
     },
     onBlur: function onBlur() {
       setFieldTouched(name, true);
@@ -199,16 +199,16 @@ var TextInput = function TextInput(_ref) {
 var Container = _styledComponents.default.div(_templateObject(), (0, _styledTheme.key)('fonts.primary'));
 
 var StyledLabel = _styledComponents.default.label(_templateObject2(), function (props) {
-  return props.disabled ? (0, _styledTheme.key)('colors.disabled') : (0, _styledTheme.key)('colors.sub-title');
+  return props.disabled ? '#AEAEAE' : '#5B5550';
 });
 
 var InputContainer = _styledComponents.default.div(_templateObject3());
 
 var StyledInput = _styledComponents.default.input(_templateObject4(), function (props) {
-  return props.disabled ? (0, _styledTheme.key)('colors.bg-disabled') : 'white';
+  return props.disabled ? '#F0F1F3' : 'white';
 }, function (props) {
   return props.errors & props.touched ? (0, _styledTheme.key)('colors.bad') : props.touched & !props.errors ? (0, _styledTheme.key)('colors.good') : (0, _styledTheme.key)('colors.outline');
-}, (0, _styledTheme.key)('colors.action'), (0, _styledTheme.key)('colors.interactive'));
+}, (0, _styledTheme.key)('colors.primary-regular'), (0, _styledTheme.key)('colors.button-toggle'));
 
 var ErrorContainer = _styledComponents.default.div(_templateObject5(), (0, _styledTheme.key)('colors.bad'));
 
@@ -258,7 +258,8 @@ TextInput.propTypes = {
   setFieldValue: _propTypes.func,
 
   /** Adds extra props to the element */
-  otherProps: _propTypes.object
+  otherProps: _propTypes.object,
+  value: _propTypes.node
 };
 var _default = TextInput;
 exports.default = _default;

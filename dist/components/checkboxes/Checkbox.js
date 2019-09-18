@@ -130,7 +130,7 @@ Checkbox.propTypes = {
   /** Adds extra props to the element */
   otherProps: _propTypes.object,
   name: _propTypes.string.isRequired,
-  theme: _propTypes.node
+  theme: _propTypes.object
 };
 
 var _default = (0, _styledComponents.withTheme)(Checkbox);

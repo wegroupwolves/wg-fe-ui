@@ -4,8 +4,8 @@ import styled from 'styled-components';
 import { key } from 'styled-theme';
 import { detect } from 'detect-browser';
 
-import Checkmark from '../../assets/checkmark.js';
-import Errormark from '../../assets/errormark.js';
+import Checkmark from '../../assets/checkmark';
+import Errormark from '../../assets/errormark';
 
 const TextInput = ({
   className,
@@ -19,8 +19,9 @@ const TextInput = ({
   errors,
   touched,
   otherProps,
+  value,
 }) => {
-  const [value, setValue] = useState('');
+  const [inputValue, setInputValue] = useState(value ? value : '');
   const [focus, setFocus] = useState();
   const [iconRight, setIconRight] = useState('1rem');
   const browser = detect();
@@ -44,7 +45,7 @@ const TextInput = ({
 
   return (
     <Container className={className}>
-      <StyledLabel disabled={disabled} className={className} htmlFor={name}>
+      <StyledLabel disabled={disabled} htmlFor={name}>
         {children}
       </StyledLabel>
       <InputContainer>
@@ -57,10 +58,10 @@ const TextInput = ({
           placeholder={placeholder ? placeholder : null}
           errors={errors[name] ? true : false}
           touched={touched[name] ? true : false}
-          value={value}
+          value={inputValue}
           onChange={e => {
             setFieldValue(name, e.target.value);
-            setValue(e.target.value);
+            setInputValue(e.target.value);
           }}
           onBlur={() => {
             setFieldTouched(name, true);
@@ -96,6 +97,7 @@ const TextInput = ({
 const Container = styled.div`
   width: 100%;
   font-family: ${key('fonts.primary')};
+  position: relative;
 `;
 
 const StyledLabel = styled.label`
@@ -103,11 +105,9 @@ const StyledLabel = styled.label`
   flex-direction: column;
   position: relative;
   width: 100%;
-  margin-bottom: 0.5rem;
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   margin-bottom: 0.7rem;
-  color: ${props =>
-    props.disabled ? key('colors.disabled') : key('colors.sub-title')};
+  color: ${props => (props.disabled ? '#AEAEAE' : '#5B5550')};
 `;
 
 const InputContainer = styled.div`
@@ -116,8 +116,7 @@ const InputContainer = styled.div`
 `;
 
 const StyledInput = styled.input`
-  background-color: ${props =>
-    props.disabled ? key('colors.bg-disabled') : 'white'};
+  background-color: ${props => (props.disabled ? '#F0F1F3' : 'white')};
   width: 100%;
   border: 0.1rem solid;
   border-color: ${props =>
@@ -127,17 +126,17 @@ const StyledInput = styled.input`
       ? key('colors.good')
       : key('colors.outline')};
   border-radius: 0.3rem;
-  height: 3.5rem;
+  height: 4rem;
   font-size: 1.6rem;
   padding-left: 0.7rem;
 
   &:focus {
     outline: none;
-    border-color: ${key('colors.action')};
+    border-color: ${key('colors.primary-regular')};
   }
 
   &::placeholder {
-    color: ${key('colors.interactive')};
+    color: ${key('colors.button-toggle')};
   }
 `;
 
@@ -147,13 +146,14 @@ const ErrorContainer = styled.div`
   justify-content: flex-end;
   margin-top: 0.5rem;
   font-size: 1rem;
-  color: ${key('colors.bad')};
+  color: ${key('colors.bad')}
+  position: absolute;
 `;
 
 const StyledCheckmark = styled(Checkmark)`
   position: absolute;
   right: ${props => (props.focus ? props.right : '1rem')};
-  bottom: 1.2rem;
+  bottom: 1.3rem;
   max-width: 2rem;
   transition: 0.2s;
   object-fit: contain;
@@ -162,7 +162,7 @@ const StyledCheckmark = styled(Checkmark)`
 const StyledErrormark = styled(Errormark)`
   position: absolute;
   right: ${props => (props.focus ? props.right : '1rem')};
-  bottom: 1rem;
+  bottom: 1.2rem;
   max-width: 2rem;
   transition: 0.2s;
   object-fit: contain;
@@ -200,6 +200,7 @@ TextInput.propTypes = {
   setFieldValue: func,
   /** Adds extra props to the element */
   otherProps: object,
+  value: node,
 };
 
 export default TextInput;
