@@ -6,7 +6,7 @@ import { withKnobs, boolean, text, select } from '@storybook/addon-knobs';
 import { withInfo } from '@storybook/addon-info';
 import styled from 'styled-components';
 
-import { TextInput, SelectInput } from '../src';
+import { TextInput, SearchSelectInput } from '../src';
 
 storiesOf('Low level blocks/Inputs', module)
   .addDecorator(withKnobs)
@@ -28,9 +28,9 @@ storiesOf('Low level blocks/Inputs', module)
       </StyledTextInput>
     );
   })
-  .add('SelectInput', () => {
+  .add('SearchSelectInput', () => {
     return (
-      <StyledSelectInput
+      <StyledSearchSelectInput
         disabled={boolean('Disabled', false)}
         options={select(
           'options',
@@ -55,7 +55,7 @@ storiesOf('Low level blocks/Inputs', module)
         })}
       >
         Selection
-      </StyledSelectInput>
+      </StyledSearchSelectInput>
     );
   });
 
@@ -63,9 +63,9 @@ const StyledTextInput = styled(TextInput)`
   width: 27rem;
 `;
 
-const StyledSelectInput = styled(SelectInput)`
+const StyledSearchSelectInput = styled(SearchSelectInput)`
   width: 27rem;
 `;
 
 StyledTextInput.displayName = 'TextInput';
-StyledSelectInput.displayName = 'SelectInput';
+StyledSearchSelectInput.displayName = 'SearchSelectInput';

@@ -6,15 +6,15 @@ import Row from './Row.js';
 import Key from './Key.js';
 import { key } from 'styled-theme/dist';
 
-const Table = ({ className, otherProps, children }) => {
+const DisplayTable = ({ className, otherProps, children }) => {
   return (
-    <StyledTable {...otherProps} className={className}>
+    <StyledDisplayTable {...otherProps} className={className}>
       <StyledBody>{children}</StyledBody>
-    </StyledTable>
+    </StyledDisplayTable>
   );
 };
 
-const StyledTable = styled.table`
+const StyledDisplayTable = styled.table`
   width: 100%;
   font-family: ${key('fonts.primary')};
   font-size: ${key('fonts.normal-size')};
@@ -24,11 +24,11 @@ const StyledBody = styled.tbody`
   background-color: white;
 `;
 
-Table.defaultProps = {
+DisplayTable.defaultProps = {
   className: null,
 };
 
-Table.propTypes = {
+DisplayTable.propTypes = {
   /** Beeing able to use it in Styled Components */
   className: string,
   /** Adds extra props to the element */
@@ -36,11 +36,11 @@ Table.propTypes = {
   children: node,
 };
 
-Table.Value = Value;
-Table.Value.displayName = 'Table.Value';
-Table.Row = Row;
-Table.Row.displayName = 'Table.Row';
-Table.Key = Key;
-Table.Key.displayName = 'Table.Key';
+DisplayTable.Value = Value;
+DisplayTable.Value.displayName = 'DisplayTable.Value';
+DisplayTable.Row = Row;
+DisplayTable.Row.displayName = 'DisplayTable.Row';
+DisplayTable.Key = Key;
+DisplayTable.Key.displayName = 'DisplayTable.Key';
 
-export default Table;
+export default DisplayTable;

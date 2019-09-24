@@ -9,15 +9,15 @@ Object.defineProperty(exports, "TextInput", {
     return _TextInput.default;
   }
 });
-Object.defineProperty(exports, "SelectInput", {
+Object.defineProperty(exports, "SearchSelectInput", {
   enumerable: true,
   get: function get() {
-    return _SelectInput.default;
+    return _SearchSelectInput.default;
   }
 });
 
 var _TextInput = _interopRequireDefault(require("./TextInput.js"));
 
-var _SelectInput = _interopRequireDefault(require("./SelectInput.js"));
+var _SearchSelectInput = _interopRequireDefault(require("./SearchSelectInput.js"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }

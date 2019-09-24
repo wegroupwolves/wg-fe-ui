@@ -46,7 +46,7 @@ function _templateObject6() {
 }
 
 function _templateObject5() {
-  var data = _taggedTemplateLiteral(["\n  width: 100%;\n  display: flex;\n  justify-content: flex-end;\n  margin-top: 0.5rem;\n  font-size: 1rem;\n  color: ", "\n  position: absolute;\n"]);
+  var data = _taggedTemplateLiteral(["\n  width: 100%;\n  display: flex;\n  justify-content: flex-end;\n  margin-top: 0.5rem;\n  font-size: 1rem;\n  color: ", ";\n  position: absolute;\n"]);
 
   _templateObject5 = function _templateObject5() {
     return data;

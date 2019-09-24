@@ -1,15 +1,15 @@
-import { SelectInput } from '.';
+import { SearchSelectInput } from '.';
 import { mount } from 'enzyme';
 import React from 'react';
 import 'jest-styled-components';
 import { ThemeProvider } from '../..';
 import Theme from '../../../.storybook/theme';
 
-describe('SelectInput', () => {
+describe('SearchSelectInput', () => {
   it('returns value and name of selected option', () => {
     let testValue = { name: null, value: null };
     const wrapper = mount(
-      <SelectInput
+      <SearchSelectInput
         name="test"
         selected={(name, value) => {
           (testValue.name = name), (testValue.value = value);
@@ -20,7 +20,7 @@ describe('SelectInput', () => {
         ]}
       >
         Test
-      </SelectInput>,
+      </SearchSelectInput>,
     );
 
     // simulate selecting the first option
@@ -39,7 +39,7 @@ describe('SelectInput', () => {
   });
   it('placeholder should be loading when enabled', () => {
     const wrapper = mount(
-      <SelectInput
+      <SearchSelectInput
         name="test"
         loading={true}
         selected={(name, value) => console.log(name, value)}
@@ -49,7 +49,7 @@ describe('SelectInput', () => {
         ]}
       >
         Test
-      </SelectInput>,
+      </SearchSelectInput>,
     );
 
     // see if text is changed to loading
@@ -62,13 +62,13 @@ describe('SelectInput', () => {
   });
   it('when no options available, show message', () => {
     const wrapper = mount(
-      <SelectInput
+      <SearchSelectInput
         name="test"
         selected={(name, value) => console.log(name, value)}
         options={[]}
       >
         Test
-      </SelectInput>,
+      </SearchSelectInput>,
     );
 
     // simulate arrowdown to open option container
@@ -87,13 +87,13 @@ describe('SelectInput', () => {
   it('when disabled style changes and input is disabled', () => {
     const wrapper = mount(
       <ThemeProvider theme={Theme}>
-        <SelectInput
+        <SearchSelectInput
           name="test"
           selected={(name, value) => console.log(name, value)}
           options={[]}
         >
           Test
-        </SelectInput>
+        </SearchSelectInput>
       </ThemeProvider>,
     );
 
@@ -109,14 +109,14 @@ describe('SelectInput', () => {
     // set props to disabled
     wrapper.setProps({
       children: (
-        <SelectInput
+        <SearchSelectInput
           name="test"
           selected={(name, value) => console.log(name, value)}
           options={[]}
           disabled
         >
           Test
-        </SelectInput>
+        </SearchSelectInput>
       ),
     });
 
@@ -131,14 +131,14 @@ describe('SelectInput', () => {
   });
   it('otherProps adds props to input', () => {
     const wrapper = mount(
-      <SelectInput
+      <SearchSelectInput
         name="test"
         selected={(name, value) => console.log(name, value)}
         options={[]}
         otherProps={{ id: 12 }}
       >
         Test
-      </SelectInput>,
+      </SearchSelectInput>,
     );
 
     expect(wrapper.find('Select').props().id).toEqual(12);

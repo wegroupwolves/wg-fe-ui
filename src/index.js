@@ -1,7 +1,8 @@
-import { ActionButton, ToggleActionButton } from './components/buttons';
-import { Checkbox } from './components/checkboxes';
-import { TextInput, SelectInput } from './components/inputs';
-import { QuestionBox, Table } from './components/Boxes';
+import { ActionButton, ToggleActionButton } from './components/Buttons';
+import { Checkbox } from './components/Checkboxes';
+import { TextInput, SearchSelectInput } from './components/Inputs';
+import { QuestionBox } from './components/Boxes';
+import { DisplayTable } from './components/Tables/DisplayTable';
 import { ThemeProvider } from 'styled-components';
 import Theme from './constants/theme';
 
@@ -11,9 +12,9 @@ export {
   ThemeProvider,
   Checkbox,
   TextInput,
-  SelectInput,
+  SearchSelectInput,
   QuestionBox,
-  Table,
+  DisplayTable,
   Theme,
 };
 

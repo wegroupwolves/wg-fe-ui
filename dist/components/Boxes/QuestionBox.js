@@ -46,7 +46,7 @@ function _templateObject2() {
 }
 
 function _templateObject() {
-  var data = _taggedTemplateLiteral(["\n  display: flex;\n  font-family: ", ";\n  flex-direction: column;\n  align-items: center;\n  width: 100%;\n  box-shadow: 0 0.2rem 0.7rem rgba(0, 0, 0, 0.1);\n  border-radius: 0\n  border-radius: 0 1.6rem 1.6rem;\n  z-index: 10;\n  position: relative;\n  align-self: flex-end;\n  margin: auto;\n  margin-top: 0;\n  margin-bottom: 3rem;\n  flex-shrink: 0;\n  background-color: white;\n  padding-bottom: 4.5rem;\n"]);
+  var data = _taggedTemplateLiteral(["\n  display: flex;\n  font-family: ", ";\n  flex-direction: column;\n  align-items: center;\n  width: 100%;\n  box-shadow: 0 0.2rem 0.7rem rgba(0, 0, 0, 0.1);\n  border-radius: 0;\n  border-radius: 0 1.6rem 1.6rem;\n  z-index: 10;\n  position: relative;\n  align-self: flex-end;\n  margin: auto;\n  margin-top: 0;\n  margin-bottom: 3rem;\n  flex-shrink: 0;\n  background-color: white;\n  padding-bottom: 4.5rem;\n"]);
 
   _templateObject = function _templateObject() {
     return data;

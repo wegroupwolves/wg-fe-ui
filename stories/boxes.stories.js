@@ -1,11 +1,11 @@
 import React from 'react';
 
 import { storiesOf } from '@storybook/react';
-import { withKnobs, text, boolean } from '@storybook/addon-knobs';
+import { withKnobs, boolean } from '@storybook/addon-knobs';
 import { withInfo } from '@storybook/addon-info';
 import styled from 'styled-components';
 
-import { QuestionBox, Table } from '../src';
+import { QuestionBox } from '../src';
 
 storiesOf('Mid level blocks/Boxes', module)
   .addDecorator(withKnobs)
@@ -19,33 +19,33 @@ storiesOf('Mid level blocks/Boxes', module)
     >
       Is this a Question?
     </StyledQuestionBox>
-  ))
-  .add('Table', () => (
-    <StyledTable>
-      <Table.Row>
-        <Table.Key>Merk</Table.Key>
-        <Table.Value>BMW</Table.Value>
-      </Table.Row>
-      <Table.Row>
-        <Table.Key>Brandstof</Table.Key>
-        <Table.Value>Diesel</Table.Value>
-      </Table.Row>
-      <Table.Row>
-        <Table.Key>Catalogus waarde</Table.Key>
-        <Table.Value highlight={text('highlight', 'Excl btw')}>
-          28 797,54 €
-        </Table.Value>
-      </Table.Row>
-    </StyledTable>
   ));
+// .add('Table', () => (
+//   <StyledTable>
+//     <Table.Row>
+//       <Table.Key>Merk</Table.Key>
+//       <Table.Value>BMW</Table.Value>
+//     </Table.Row>
+//     <Table.Row>
+//       <Table.Key>Brandstof</Table.Key>
+//       <Table.Value>Diesel</Table.Value>
+//     </Table.Row>
+//     <Table.Row>
+//       <Table.Key>Catalogus waarde</Table.Key>
+//       <Table.Value highlight={text('highlight', 'Excl btw')}>
+//         28 797,54 €
+//       </Table.Value>
+//     </Table.Row>
+//   </StyledTable>
+// ));
 
 const StyledQuestionBox = styled(QuestionBox)`
   width: 85%;
 `;
 
-const StyledTable = styled(Table)`
-  width: 46rem;
-`;
+// const StyledTable = styled(Table)`
+//   width: 46rem;
+// `;
 
-StyledTable.displayName = 'Table';
+// StyledTable.displayName = 'Table';
 StyledQuestionBox.displayName = 'QuestionBox';

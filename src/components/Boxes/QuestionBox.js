@@ -53,7 +53,7 @@ const Container = styled.div`
   align-items: center;
   width: 100%;
   box-shadow: 0 0.2rem 0.7rem rgba(0, 0, 0, 0.1);
-  border-radius: 0
+  border-radius: 0;
   border-radius: 0 1.6rem 1.6rem;
   z-index: 10;
   position: relative;

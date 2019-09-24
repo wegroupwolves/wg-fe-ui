@@ -6,31 +6,31 @@ Object.defineProperty(exports, "__esModule", {
 Object.defineProperty(exports, "ActionButton", {
   enumerable: true,
   get: function get() {
-    return _buttons.ActionButton;
+    return _Buttons.ActionButton;
   }
 });
 Object.defineProperty(exports, "ToggleActionButton", {
   enumerable: true,
   get: function get() {
-    return _buttons.ToggleActionButton;
+    return _Buttons.ToggleActionButton;
   }
 });
 Object.defineProperty(exports, "Checkbox", {
   enumerable: true,
   get: function get() {
-    return _checkboxes.Checkbox;
+    return _Checkboxes.Checkbox;
   }
 });
 Object.defineProperty(exports, "TextInput", {
   enumerable: true,
   get: function get() {
-    return _inputs.TextInput;
+    return _Inputs.TextInput;
   }
 });
-Object.defineProperty(exports, "SelectInput", {
+Object.defineProperty(exports, "SearchSelectInput", {
   enumerable: true,
   get: function get() {
-    return _inputs.SelectInput;
+    return _Inputs.SearchSelectInput;
   }
 });
 Object.defineProperty(exports, "QuestionBox", {
@@ -39,10 +39,10 @@ Object.defineProperty(exports, "QuestionBox", {
     return _Boxes.QuestionBox;
   }
 });
-Object.defineProperty(exports, "Table", {
+Object.defineProperty(exports, "DisplayTable", {
   enumerable: true,
   get: function get() {
-    return _Boxes.Table;
+    return _DisplayTable.DisplayTable;
   }
 });
 Object.defineProperty(exports, "ThemeProvider", {
@@ -58,13 +58,15 @@ Object.defineProperty(exports, "Theme", {
   }
 });
 
-var _buttons = require("./components/buttons");
+var _Buttons = require("./components/Buttons");
 
-var _checkboxes = require("./components/checkboxes");
+var _Checkboxes = require("./components/Checkboxes");
 
-var _inputs = require("./components/inputs");
+var _Inputs = require("./components/Inputs");
 
 var _Boxes = require("./components/Boxes");
+
+var _DisplayTable = require("./components/Tables/DisplayTable");
 
 var _styledComponents = require("styled-components");
 

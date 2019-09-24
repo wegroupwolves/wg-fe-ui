@@ -3,13 +3,13 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-Object.defineProperty(exports, "QuestionBox", {
+Object.defineProperty(exports, "DisplayTable", {
   enumerable: true,
   get: function get() {
-    return _QuestionBox.default;
+    return _DisplayTable.default;
   }
 });
 
-var _QuestionBox = _interopRequireDefault(require("./QuestionBox.js"));
+var _DisplayTable = _interopRequireDefault(require("./DisplayTable"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }

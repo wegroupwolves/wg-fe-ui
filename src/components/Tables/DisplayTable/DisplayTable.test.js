@@ -1,4 +1,4 @@
-import { Table } from '.';
+import { DisplayTable } from '.';
 import { mount } from 'enzyme';
 import React from 'react';
 import 'jest-styled-components';
@@ -7,13 +7,13 @@ describe('Checkbox', () => {
   it('can add clickable highlight to value', () => {
     let value = 0;
     const wrapper = mount(
-      <Table>
-        <Table.Row>
-          <Table.Value toggled={() => value++} highlight="highlight">
+      <DisplayTable>
+        <DisplayTable.Row>
+          <DisplayTable.Value toggled={() => value++} highlight="highlight">
             Value
-          </Table.Value>
-        </Table.Row>
-      </Table>,
+          </DisplayTable.Value>
+        </DisplayTable.Row>
+      </DisplayTable>,
     );
 
     // Check if highlight displays text
@@ -24,14 +24,14 @@ describe('Checkbox', () => {
     expect(value).toEqual(1);
   });
 
-  it('contains necesarry table components', () => {
+  it('contains necesarry DisplayTable components', () => {
     const wrapper = mount(
-      <Table>
-        <Table.Row>
-          <Table.Key>Key</Table.Key>
-          <Table.Value>Value</Table.Value>
-        </Table.Row>
-      </Table>,
+      <DisplayTable>
+        <DisplayTable.Row>
+          <DisplayTable.Key>Key</DisplayTable.Key>
+          <DisplayTable.Value>Value</DisplayTable.Value>
+        </DisplayTable.Row>
+      </DisplayTable>,
     );
 
     expect(wrapper.find('tbody').exists()).toEqual(true);

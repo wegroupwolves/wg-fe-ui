@@ -4,7 +4,7 @@ import Select from 'react-select';
 import { func, string, bool, array, object } from 'prop-types';
 import { key } from 'styled-theme';
 
-const SelectInput = ({
+const SearchSelectInput = ({
   className,
   selected,
   loading,
@@ -147,7 +147,7 @@ const Label = styled.p`
   width: 80%;
 `;
 
-SelectInput.defaultProps = {
+SearchSelectInput.defaultProps = {
   disabled: false,
   loading: false,
   noOptionMessage: 'No options',
@@ -156,7 +156,7 @@ SelectInput.defaultProps = {
   initial: null,
 };
 
-SelectInput.propTypes = {
+SearchSelectInput.propTypes = {
   /** Beeing able to use it in Styled Components */
   className: string,
   /** Returns name and value of selected */
@@ -183,4 +183,4 @@ SelectInput.propTypes = {
   otherProps: object,
 };
 
-export default SelectInput;
+export default SearchSelectInput;
