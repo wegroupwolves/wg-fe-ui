@@ -1,6 +1,6 @@
 import React from 'react';
 import { string, object, node, func, element, bool } from 'prop-types';
-import { key } from 'styled-theme/dist';
+import { key } from 'styled-theme';
 import styled from 'styled-components';
 
 const Item = ({ className, otherProps, icon, onClick, children, isActive }) => {
@@ -11,16 +11,16 @@ const Item = ({ className, otherProps, icon, onClick, children, isActive }) => {
       isActive={isActive}
       onClick={onClick}
     >
-      <SvgIcon>
-        <icon isActive={isActive} />
-      </SvgIcon>
+      <SvgIcon>{icon}</SvgIcon>
       <span>{children}</span>
     </Container>
   );
 };
 
 const SvgIcon = styled.div`
-  width: 9rem;
+  max-height: 4.5rem;
+  width: 6rem;
+  text-align: left;
 `;
 
 const Container = styled.div`
@@ -29,13 +29,16 @@ const Container = styled.div`
   text-decoration: none;
   color: #525252;
   font-size: 1.4rem;
-  height: 4.5rem;
-  font-weight: 400;
+  height: 5.5rem;
+  padding-left: 3.5rem;
+  font-weight: ${props => (props.isActive ? '700' : '400')};
   width: 100%;
-  margin: 0.35rem 0;
-  border-left: 0.4rem #fbfbfb solid;
-  padding-right: 2rem;
+  padding-right: 1rem;
   text-align: center;
+  background-color: ${props => (props.isActive ? '#f7f7f7' : 'none')};
+  border-right: ${props => (props.isActive ? '0.1rem solid' : 'none')};
+  border-color: ${props => (props.isActive ? key('colors.action') : 'none')};
+  cursor: pointer;
 
   & span {
     text-align: left;
@@ -44,13 +47,11 @@ const Container = styled.div`
 
   &:hover {
     background-color: #f7f7f7;
-    border-left: 0.4rem #f7f7f7 solid;
   }
 
   &.active {
     font-weight: 700;
     background-color: #f7f7f7;
-    border-left: 0.4rem ${key('colors.primary-regular')} solid;
   }
 `;
 
