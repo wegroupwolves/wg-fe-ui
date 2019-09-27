@@ -4,8 +4,6 @@
 
 ## Table of Contents
 
-<!-- vim-markdown-toc GFM -->
-
 - [About](#about)
 - [Development](#development)
   - [Adding a dependency](#adding-a-dependency)
@@ -15,8 +13,6 @@
 - [Built Using](#built-using)
 - [Authors](#authors)
 - [Acknowledgements](#acknowledgements)
-
-<!-- vim-markdown-toc -->
 
 ## About
 
@@ -37,6 +33,12 @@ $ npm i
 ```sh
 $ npm run storybook
 ```
+
+## contributing
+
+### pull-request
+
+The project uses 2 main braches, master and dev. To contribute please open an pull-request from you current branch **feature/** or **bug/** to dev.
 
 ### Adding a dependency
 
