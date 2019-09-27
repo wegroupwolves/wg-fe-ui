@@ -19,8 +19,18 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _templateObject5() {
+function _templateObject6() {
   var data = _taggedTemplateLiteral(["\n  height: 100%;\n"]);
+
+  _templateObject6 = function _templateObject6() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject5() {
+  var data = _taggedTemplateLiteral(["\n  height: 60%;\n"]);
 
   _templateObject5 = function _templateObject5() {
     return data;
@@ -30,7 +40,7 @@ function _templateObject5() {
 }
 
 function _templateObject4() {
-  var data = _taggedTemplateLiteral(["\n  height: 100%;\n  padding-bottom: 1.8rem;\n  padding-top: 2rem;\n"]);
+  var data = _taggedTemplateLiteral(["\n  display: flex;\n  padding-top: 2rem;\n  position: absolute;\n  left: 50%;\n  transform: translateX(-50%);\n"]);
 
   _templateObject4 = function _templateObject4() {
     return data;
@@ -40,7 +50,7 @@ function _templateObject4() {
 }
 
 function _templateObject3() {
-  var data = _taggedTemplateLiteral(["\n  display: flex;\n  padding-top: 2rem;\n"]);
+  var data = _taggedTemplateLiteral(["\n  cursor: pointer;\n  margin: 0 3rem;\n  font-size: 1.6rem;\n  padding: 2.5rem 2rem 2rem;\n  font-family: ", ";\n  border-bottom: ", ";\n  border-color: ", ";\n  font-weight: ", ";\n  color: ", ";\n"]);
 
   _templateObject3 = function _templateObject3() {
     return data;
@@ -50,7 +60,7 @@ function _templateObject3() {
 }
 
 function _templateObject2() {
-  var data = _taggedTemplateLiteral(["\n  cursor: pointer;\n  margin: 0 3rem;\n  font-size: 1.6rem;\n  padding: 2.5rem 2rem 2rem;\n  font-family: ", ";\n  border-bottom: ", ";\n  border-color: ", ";\n  font-weight: ", ";\n  color: ", ";\n"]);
+  var data = _taggedTemplateLiteral(["\n  height: 8rem;\n  width: 100%;\n  position: fixed;\n  top: 0;\n  background: #fbfbfb;\n  border-bottom: 0.2px solid #e2e2e2;\n  box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.1);\n  z-index: 11;\n  padding: 0 7rem 0 3.4rem;\n"]);
 
   _templateObject2 = function _templateObject2() {
     return data;
@@ -60,7 +70,7 @@ function _templateObject2() {
 }
 
 function _templateObject() {
-  var data = _taggedTemplateLiteral(["\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  height: 8rem;\n  width: 100%;\n  position: fixed;\n  top: 0;\n  background: #fbfbfb;\n  border-bottom: 0.2px solid #e2e2e2;\n  box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.1);\n  z-index: 11;\n  padding: 0 7rem 0 3.4rem;\n"]);
+  var data = _taggedTemplateLiteral(["\n  position: relative;\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  width: 100%;\n  height: 100%;\n"]);
 
   _templateObject = function _templateObject() {
     return data;
@@ -79,7 +89,7 @@ var HeaderNav = function HeaderNav(_ref) {
       _onClick = _ref.onClick;
   return _react.default.createElement(Container, {
     className: className
-  }, _react.default.createElement(LogoContainer, null, _react.default.createElement(Logo, {
+  }, _react.default.createElement(Wrapper, null, _react.default.createElement(LogoContainer, null, _react.default.createElement(Logo, {
     src: theme.data.logo,
     alt: "WeGroup"
   })), _react.default.createElement(Navigation, null, navTabs.map(function (tab) {
@@ -92,12 +102,14 @@ var HeaderNav = function HeaderNav(_ref) {
       active: to === currentLocation,
       "data-test-id": tab.title
     }, tab.title);
-  })));
+  }))));
 };
 
-var Container = _styledComponents.default.div(_templateObject());
+var Wrapper = _styledComponents.default.div(_templateObject());
 
-var NavItem = _styledComponents.default.li(_templateObject2(), (0, _styledTheme.key)('fonts.primary'), function (props) {
+var Container = _styledComponents.default.div(_templateObject2());
+
+var NavItem = _styledComponents.default.li(_templateObject3(), (0, _styledTheme.key)('fonts.primary'), function (props) {
   return props.active === true ? "3px solid" : 'none';
 }, function (props) {
   return props.active === true ? (0, _styledTheme.key)('colors.action') : 'none';
@@ -105,11 +117,11 @@ var NavItem = _styledComponents.default.li(_templateObject2(), (0, _styledTheme.
   return props.active === true ? "bold" : 'none';
 }, (0, _styledTheme.key)(["colors", "dark-grey-font"]));
 
-var Navigation = _styledComponents.default.ul(_templateObject3());
+var Navigation = _styledComponents.default.ul(_templateObject4());
 
-var LogoContainer = _styledComponents.default.div(_templateObject4());
+var LogoContainer = _styledComponents.default.div(_templateObject5());
 
-var Logo = _styledComponents.default.img(_templateObject5());
+var Logo = _styledComponents.default.img(_templateObject6());
 
 HeaderNav.defaultProps = {
   navTabs: [],
