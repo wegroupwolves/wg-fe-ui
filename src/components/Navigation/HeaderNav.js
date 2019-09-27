@@ -9,33 +9,41 @@ import { key } from 'styled-theme';
 const HeaderNav = ({ navTabs, theme, className, currentLocation, onClick }) => {
   return (
     <Container className={className}>
-      <LogoContainer>
-        <Logo src={theme.data.logo} alt="WeGroup" />
-      </LogoContainer>
-      <Navigation>
-        {navTabs.map(tab => {
-          const { to } = tab;
-          return (
-            <NavItem
-              onClick={() => onClick(to)}
-              key={tab.title}
-              active={to === currentLocation}
-              data-test-id={tab.title}
-            >
-              {tab.title}
-            </NavItem>
-          );
-        })}
-      </Navigation>
-      {/* <LanguageSelector /> */}
+      <Wrapper>
+        <LogoContainer>
+          <Logo src={theme.data.logo} alt="WeGroup" />
+        </LogoContainer>
+        <Navigation>
+          {navTabs.map(tab => {
+            const { to } = tab;
+            return (
+              <NavItem
+                onClick={() => onClick(to)}
+                key={tab.title}
+                active={to === currentLocation}
+                data-test-id={tab.title}
+              >
+                {tab.title}
+              </NavItem>
+            );
+          })}
+        </Navigation>
+        {/* <LanguageSelector /> */}
+      </Wrapper>
     </Container>
   );
 };
 
-const Container = styled.div`
+const Wrapper = styled.div`
+  position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  width: 100%;
+  height: 100%;
+`;
+
+const Container = styled.div`
   height: 8rem;
   width: 100%;
   position: fixed;
@@ -63,12 +71,13 @@ const NavItem = styled.li`
 const Navigation = styled.ul`
   display: flex;
   padding-top: 2rem;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
 `;
 
 const LogoContainer = styled.div`
-  height: 100%;
-  padding-bottom: 1.8rem;
-  padding-top: 2rem;
+  height: 60%;
 `;
 
 const Logo = styled.img`
