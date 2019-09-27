@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { storiesOf } from '@storybook/react';
 import { withKnobs } from '@storybook/addon-knobs';
@@ -34,31 +34,19 @@ storiesOf('Mid level blocks/Navigation', module)
     );
   })
   .add('HeaderNavigation', () => {
-    // Mock history from react router
-    const getHistory = () => {
-      const push = string => {
-        return console.log(string);
-      };
-      const history = () => {
-        return console.log('history');
-      };
-
-      history.push = push;
-
-      return history;
-    };
-
     // Mock navTabs
     const navTabs = [
       { title: 'tab1', to: '/tab1' },
       { title: 'tab2', to: '/tab2' },
     ];
+    const [tab, setTab] = useState('/tab1');
+
     return (
       <Container>
         <HeaderNav
-          currentLocation="/tab1"
+          currentLocation={tab}
           navTabs={navTabs}
-          history={getHistory()}
+          onClick={val => setTab(val)}
         />
       </Container>
     );

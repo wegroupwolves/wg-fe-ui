@@ -111,4 +111,6 @@ Checkbox.propTypes = {
   theme: object,
 };
 
-export default withTheme(Checkbox);
+const exportComponent = withTheme(Checkbox);
+exportComponent.displayName = 'Checkbox';
+export default exportComponent;

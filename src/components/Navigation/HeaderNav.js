@@ -3,28 +3,29 @@ import styled, { withTheme } from 'styled-components';
 
 import LanguageSelector from './LanguageSelector';
 
-import { array, node, shape, string } from 'prop-types';
+import { array, node, string, func } from 'prop-types';
 import { key } from 'styled-theme';
 
-const HeaderNav = ({ navTabs, theme, history, className, currentLocation }) => {
+const HeaderNav = ({ navTabs, theme, className, currentLocation, onClick }) => {
   return (
     <Container className={className}>
       <LogoContainer>
         <Logo src={theme.data.logo} alt="WeGroup" />
       </LogoContainer>
       <Navigation>
-        {history
-          ? navTabs.map(tab => (
-              <NavItem
-                onClick={() => history.push(tab.to)}
-                key={tab.title}
-                active={tab.to === currentLocation}
-                data-test-id={tab.title}
-              >
-                {tab.title}
-              </NavItem>
-            ))
-          : null}
+        {navTabs.map(tab => {
+          const { to } = tab;
+          return (
+            <NavItem
+              onClick={() => onClick(to)}
+              key={tab.title}
+              active={to === currentLocation}
+              data-test-id={tab.title}
+            >
+              {tab.title}
+            </NavItem>
+          );
+        })}
       </Navigation>
       <LanguageSelector />
     </Container>
@@ -76,15 +77,18 @@ const Logo = styled.img`
 
 HeaderNav.defaultProps = {
   navTabs: [],
+  onClick: () => {},
 };
 
 HeaderNav.propTypes = {
   navTabs: array,
   theme: node,
-  history: shape(),
   className: string,
-  //** testje */
+  onClick: func,
+  /** testje */
   currentLocation: string,
 };
 
-export default withTheme(HeaderNav);
+const exportComponent = withTheme(HeaderNav);
+exportComponent.displayName = 'HeaderNav';
+export default exportComponent;
