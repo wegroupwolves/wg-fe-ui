@@ -19,10 +19,6 @@ const StyledKey = styled.th`
   justify-content: space-between;
 `;
 
-Key.defaultProps = {
-  className: null,
-};
-
 Key.propTypes = {
   /** Beeing able to use it in Styled Components */
   className: string,

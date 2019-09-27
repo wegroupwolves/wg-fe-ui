@@ -119,7 +119,6 @@ QuestionBox.defaultProps = {
   disabled: false,
   option1: null,
   option2: null,
-  className: null,
   response: () => {},
 };
 

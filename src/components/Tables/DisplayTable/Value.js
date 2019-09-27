@@ -33,11 +33,6 @@ const StyledValue = styled.td`
     font-size: ${key('fonts.small-size')};
   }
 `;
-
-Value.defaultProps = {
-  className: null,
-};
-
 Value.propTypes = {
   /** Beeing able to use it in Styled Components */
   className: string,

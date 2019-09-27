@@ -56,7 +56,6 @@ const Container = styled.div`
 `;
 
 Item.defaultProps = {
-  className: null,
   isActive: false,
   onClick: () => {},
 };

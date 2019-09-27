@@ -46,9 +46,6 @@ var Value = function Value(_ref) {
 
 var StyledValue = _styledComponents.default.td(_templateObject(), (0, _dist.key)('colors.highlight'), (0, _dist.key)('colors.toggle'), (0, _dist.key)('fonts.small-size'));
 
-Value.defaultProps = {
-  className: null
-};
 Value.propTypes = {
   /** Beeing able to use it in Styled Components */
   className: _propTypes.string,

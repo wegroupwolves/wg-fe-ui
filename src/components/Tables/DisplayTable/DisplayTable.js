@@ -24,10 +24,6 @@ const StyledBody = styled.tbody`
   background-color: white;
 `;
 
-DisplayTable.defaultProps = {
-  className: null,
-};
-
 DisplayTable.propTypes = {
   /** Beeing able to use it in Styled Components */
   className: string,

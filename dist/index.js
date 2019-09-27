@@ -42,7 +42,13 @@ Object.defineProperty(exports, "QuestionBox", {
 Object.defineProperty(exports, "DisplayTable", {
   enumerable: true,
   get: function get() {
-    return _DisplayTable.DisplayTable;
+    return _Tables.DisplayTable;
+  }
+});
+Object.defineProperty(exports, "OverviewTable", {
+  enumerable: true,
+  get: function get() {
+    return _Tables.OverviewTable;
   }
 });
 Object.defineProperty(exports, "HeaderNav", {
@@ -84,7 +90,7 @@ var _Inputs = require("./components/Inputs");
 
 var _Boxes = require("./components/Boxes");
 
-var _DisplayTable = require("./components/Tables/DisplayTable");
+var _Tables = require("./components/Tables");
 
 var _Navigation = require("./components/Navigation");
 

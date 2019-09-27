@@ -66,7 +66,6 @@ var Container = _styledComponents.default.div(_templateObject2(), function (prop
 });
 
 Item.defaultProps = {
-  className: null,
   isActive: false,
   onClick: function onClick() {}
 };

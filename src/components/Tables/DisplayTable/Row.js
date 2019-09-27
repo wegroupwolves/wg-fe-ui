@@ -26,10 +26,6 @@ const StyledRow = styled.tr`
   }
 `;
 
-Row.defaultProps = {
-  className: null,
-};
-
 Row.propTypes = {
   /** Beeing able to use it in Styled Components */
   className: string,

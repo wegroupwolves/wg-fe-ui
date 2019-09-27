@@ -40,9 +40,6 @@ var Row = function Row(_ref) {
 
 var StyledRow = _styledComponents.default.tr(_templateObject(), (0, _dist.key)('colors.outline'));
 
-Row.defaultProps = {
-  className: null
-};
 Row.propTypes = {
   /** Beeing able to use it in Styled Components */
   className: _propTypes.string,
