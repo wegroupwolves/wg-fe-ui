@@ -5,7 +5,7 @@ import { withKnobs, text } from '@storybook/addon-knobs';
 import { withInfo } from '@storybook/addon-info';
 import styled from 'styled-components';
 
-import { DisplayTable } from '../src';
+import { DisplayTable, OverviewTable } from '../src';
 
 storiesOf('Mid level blocks/Tables', module)
   .addDecorator(withKnobs)
@@ -27,10 +27,44 @@ storiesOf('Mid level blocks/Tables', module)
         </DisplayTable.Value>
       </DisplayTable.Row>
     </StyledDisplayTable>
+  ))
+  .add('OverviewTable', () => (
+    <StyledOverviewTable>
+      <OverviewTable.Head>
+        <OverviewTable.HeaderCell title width="20%">
+          Name
+        </OverviewTable.HeaderCell>
+        <OverviewTable.HeaderCell width="15%">Date</OverviewTable.HeaderCell>
+        <OverviewTable.HeaderCell width="20%">Insurer</OverviewTable.HeaderCell>
+        <OverviewTable.HeaderCell width="20%">Claim</OverviewTable.HeaderCell>
+        <OverviewTable.HeaderCell>Status</OverviewTable.HeaderCell>
+      </OverviewTable.Head>
+      <OverviewTable.Body>
+        <OverviewTable.Row>
+          <OverviewTable.BodyCell>Laura Cox</OverviewTable.BodyCell>
+          <OverviewTable.BodyCell>18 June </OverviewTable.BodyCell>
+          <OverviewTable.BodyCell>AG Insurance</OverviewTable.BodyCell>
+          <OverviewTable.BodyCell>Bagage claim</OverviewTable.BodyCell>
+          <OverviewTable.BodyCell>Claim Opened</OverviewTable.BodyCell>
+        </OverviewTable.Row>
+        <OverviewTable.Row>
+          <OverviewTable.BodyCell>Laura Cox</OverviewTable.BodyCell>
+          <OverviewTable.BodyCell>18 June </OverviewTable.BodyCell>
+          <OverviewTable.BodyCell>AG Insurance</OverviewTable.BodyCell>
+          <OverviewTable.BodyCell>Bagage claim</OverviewTable.BodyCell>
+          <OverviewTable.BodyCell>Claim Opened</OverviewTable.BodyCell>
+        </OverviewTable.Row>
+      </OverviewTable.Body>
+    </StyledOverviewTable>
   ));
 
 const StyledDisplayTable = styled(DisplayTable)`
   width: 46rem;
 `;
 
+const StyledOverviewTable = styled(OverviewTable)`
+  width: 80%;
+`;
+
 StyledDisplayTable.displayName = 'DisplayTable';
+StyledOverviewTable.displayName = 'OverviewTable';

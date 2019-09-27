@@ -58,9 +58,6 @@ var StyledDisplayTable = _styledComponents.default.table(_templateObject(), (0, 
 
 var StyledBody = _styledComponents.default.tbody(_templateObject2());
 
-DisplayTable.defaultProps = {
-  className: null
-};
 DisplayTable.propTypes = {
   /** Beeing able to use it in Styled Components */
   className: _propTypes.string,

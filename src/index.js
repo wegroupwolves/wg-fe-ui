@@ -2,7 +2,7 @@ import { ActionButton, ToggleActionButton } from './components/Buttons';
 import { Checkbox } from './components/Checkboxes';
 import { TextInput, SearchSelectInput } from './components/Inputs';
 import { QuestionBox } from './components/Boxes';
-import { DisplayTable } from './components/Tables/DisplayTable';
+import { DisplayTable, OverviewTable } from './components/Tables';
 import { HeaderNav, MainNavigation } from './components/Navigation';
 import { Section } from './components/Section';
 import { ThemeProvider } from 'styled-components';
@@ -21,6 +21,7 @@ export {
   HeaderNav,
   MainNavigation,
   Section,
+  OverviewTable,
 };
 
 // Export all components
