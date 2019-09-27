@@ -132,7 +132,7 @@ Checkbox.propTypes = {
   name: _propTypes.string.isRequired,
   theme: _propTypes.object
 };
-
-var _default = (0, _styledComponents.withTheme)(Checkbox);
-
+var exportComponent = (0, _styledComponents.withTheme)(Checkbox);
+exportComponent.displayName = 'Checkbox';
+var _default = exportComponent;
 exports.default = _default;

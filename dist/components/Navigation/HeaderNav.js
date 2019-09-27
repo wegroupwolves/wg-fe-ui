@@ -76,24 +76,25 @@ function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(
 var HeaderNav = function HeaderNav(_ref) {
   var navTabs = _ref.navTabs,
       theme = _ref.theme,
-      history = _ref.history,
       className = _ref.className,
-      currentLocation = _ref.currentLocation;
+      currentLocation = _ref.currentLocation,
+      _onClick = _ref.onClick;
   return _react.default.createElement(Container, {
     className: className
   }, _react.default.createElement(LogoContainer, null, _react.default.createElement(Logo, {
     src: theme.data.logo,
     alt: "WeGroup"
-  })), _react.default.createElement(Navigation, null, history ? navTabs.map(function (tab) {
+  })), _react.default.createElement(Navigation, null, navTabs.map(function (tab) {
+    var to = tab.to;
     return _react.default.createElement(NavItem, {
       onClick: function onClick() {
-        return history.push(tab.to);
+        return _onClick(to);
       },
       key: tab.title,
-      active: tab.to === currentLocation,
+      active: to === currentLocation,
       "data-test-id": tab.title
     }, tab.title);
-  }) : null), _react.default.createElement(_LanguageSelector.default, null));
+  })), _react.default.createElement(_LanguageSelector.default, null));
 };
 
 var Container = _styledComponents.default.div(_templateObject());
@@ -113,17 +114,19 @@ var LogoContainer = _styledComponents.default.div(_templateObject4());
 var Logo = _styledComponents.default.img(_templateObject5());
 
 HeaderNav.defaultProps = {
-  navTabs: []
+  navTabs: [],
+  onClick: function onClick() {}
 };
 HeaderNav.propTypes = {
   navTabs: _propTypes.array,
   theme: _propTypes.node,
-  history: (0, _propTypes.shape)(),
   className: _propTypes.string,
-  //** testje */
+  onClick: _propTypes.func,
+
+  /** testje */
   currentLocation: _propTypes.string
 };
-
-var _default = (0, _styledComponents.withTheme)(HeaderNav);
-
+var exportComponent = (0, _styledComponents.withTheme)(HeaderNav);
+exportComponent.displayName = 'HeaderNav';
+var _default = exportComponent;
 exports.default = _default;
