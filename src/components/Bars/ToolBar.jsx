@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { key } from 'styled-theme';
 import { ActionButton } from './../Buttons'
-import { array, string, object, node } from 'prop-types';
+import { array, string, node } from 'prop-types';
 
 
 const Box = styled.div`
@@ -36,7 +36,7 @@ const ToolBar = ({ btnName, className, children, otherProps }) => {
         <InnerBox>
             { children }
         </InnerBox>
-        <ActionButton level="primary">
+        <ActionButton level="primary" >
             { btnName }
         </ActionButton>
     </Box>
@@ -56,5 +56,6 @@ ToolBar.propTypes = {
   children: node,
 };
 
+ToolBar.displayName = 'ToolBar'
 
 export default ToolBar;

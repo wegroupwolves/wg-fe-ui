@@ -38,7 +38,7 @@ const StyledTrackingBar = styled(TrackingBar)`
 StyledTrackingBar.displayName = 'TrackingBar'
 
 TrackingBar.defaultProps = {
-  active: 'uploading_documents',
+  active: 'data_analysis',
   stages: [
     { 
       key: 'filing', 

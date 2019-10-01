@@ -80,6 +80,7 @@ ActionButton.defaultProps = {
   level: 'primary',
   fullwidth: false,
   icon: null,
+  onClick: Function.prototype,
   otherProps: null,
 };
 

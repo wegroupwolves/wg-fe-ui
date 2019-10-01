@@ -1,4 +1,5 @@
 import ReactDOM from 'react-dom'
+import styled from 'styled-components'
 import React from 'react'
 import { ProgressBar, ToolBar, TrackingBar } from './../src/components/Bars'
 import { ActionButton, ToggleActionButton } from './components/Buttons';
@@ -31,9 +32,32 @@ export {
   TrackingBar
 };
 
+const Wrapper = styled.div`
+  margin: 0 auto;
+`
+
+
+const Display = (Component, props, children = []) => {
+  return (
+    <Wrapper>
+      <h2 style={{ textAlign: 'center' }}>{Component.displayName}</h2>
+      <Component {...props}>
+        { children.map((child,i) => {
+          if(typeof child !== 'object') return child;
+          const properties = {...child, comp: null}
+          return (
+          <child.comp key={i} {...properties} />
+          )
+        })}
+      </Component>
+    </Wrapper>
+  )
+}
+
+
 // Export all components
 
 ReactDOM.render(
-  <TrackingBar />,
+  Display(ToolBar, {}, [{ comp:  SearchInput, text: ''}]),
   document.getElementById('root')
 )
