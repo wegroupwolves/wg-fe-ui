@@ -1,4 +1,5 @@
 import TextInput from './TextInput.js';
+import SearchInput from './SearchInput'
 import SearchSelectInput from './SearchSelectInput.js';
 
-export { TextInput, SearchSelectInput };
+export { TextInput, SearchInput, SearchSelectInput };
