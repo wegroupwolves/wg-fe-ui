@@ -10,7 +10,7 @@ const ProgressTrack = styled.div`
   position: absolute;
   width: 100%;
   min-width: 574px;
-  height: 5px;
+  height: ${({ height }) => height || '5px'};
   background-color: #C4C4C4;
   @media (max-width: 1200px) {
     display: none;
@@ -20,16 +20,16 @@ const ProgressTrack = styled.div`
     position: absolute;
     left: 0;
     display: block;
-    height: 5px;
+    height: ${({ height }) => height || '5px'};
     background-color: #FF8000;
     width: ${({ activeId, stages }) => (stages ? `${activeId * (100/stages.length)}%` : '0')};
   }
 `;
 
-const LoadingBar = ({ active, stages }) => {
+const LoadingBar = ({ active, stages, height }) => {
     const activeId = getActiveId(active, stages) + 1;
   return (
-      <ProgressTrack activeId={activeId} stages={stages} />
+      <ProgressTrack activeId={activeId} stages={stages} height={height} />
   );
 };
 

@@ -46,10 +46,10 @@ const ClaimStatus = ({ active, className, counter, stage, stages }) => (
   </Status>
 );
 
-const ProgressBar = ({ active, className, stages }) => {
+const ProgressBar = ({ active, className, height, stages }) => {
   return (
     <div className={className}>
-      <LoadingBar stages={stages} active={active} />
+      <LoadingBar stages={stages} active={active} height='7px' />
       {stages.map((stage,i) => (
         <ClaimStatus key={stage.id} stage={stage} stages={stages} counter={i+1} active={active} />
       ))}
