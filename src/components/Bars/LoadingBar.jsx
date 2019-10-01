@@ -22,14 +22,15 @@ const ProgressTrack = styled.div`
     display: block;
     height: ${({ height }) => height || '5px'};
     background-color: #FF8000;
-    width: ${({ activeId, stages }) => (stages ? `${activeId * (100/stages.length)}%` : '0')};
+    width: ${({ step }) => `${step}vw` || 0};
   }
 `;
 
-const LoadingBar = ({ active, stages, height }) => {
+const LoadingBar = ({ active, disableFill, stages, height }) => {
     const activeId = getActiveId(active, stages) + 1;
+    const step = disableFill ? 0 : activeId * (100/stages.length);
   return (
-      <ProgressTrack activeId={activeId} stages={stages} height={height} />
+      <ProgressTrack height={height} step={step} />
   );
 };
 

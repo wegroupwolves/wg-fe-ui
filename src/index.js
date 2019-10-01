@@ -1,6 +1,6 @@
 import ReactDOM from 'react-dom'
 import React from 'react'
-import { ProgressBar, ToolBar } from './../src/components/Bars'
+import { ProgressBar, ToolBar, TrackingBar } from './../src/components/Bars'
 import { ActionButton, ToggleActionButton } from './components/Buttons';
 import { Checkbox } from './components/Checkboxes';
 import { TextInput, SearchInput, SearchSelectInput } from './components/Inputs';
@@ -27,12 +27,13 @@ export {
   Section,
   OverviewTable,
   ProgressBar,
-  ToolBar
+  ToolBar,
+  TrackingBar
 };
 
 // Export all components
 
 ReactDOM.render(
-  <ProgressBar />,
+  <TrackingBar />,
   document.getElementById('root')
 )

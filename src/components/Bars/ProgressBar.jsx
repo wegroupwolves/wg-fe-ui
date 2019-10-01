@@ -2,15 +2,15 @@ import React from 'react';
 import styled from 'styled-components';
 import { key } from 'styled-theme/dist';
 import LoadingBar from './LoadingBar'
-
+import { arrayOf, number, string } from 'prop-types';
 
 /**
  * Checks actual stage status
  * @param {string} stage
  */
 
-const checkStatus = (active, stage, stages = null) => {
-  if (!stages) return;
+const getStatus = (active, stage, stages = []) => {
+  if (!stages.length) return;
   const activeIndex = stages.findIndex(item => item.key === active);
   const stageIndex = stages.findIndex(item => item.key === stage.key);
   if (stageIndex === activeIndex) {
@@ -25,8 +25,8 @@ const checkStatus = (active, stage, stages = null) => {
 const Status = styled.span`
     font-family: Lato;
     font-size: 14px;
-    font-weight: ${({ active, stage, stages }) => 
-      checkStatus(active, stage, stages) === 'active'
+    font-weight: ${({ status }) => 
+      status === 'active'
       ? 'bold' : 'initial' };
     line-height: 24px;
     text-align: center;
@@ -40,18 +40,21 @@ const Status = styled.span`
     }
 `;
 
-const ClaimStatus = ({ active, className, counter, stage, stages }) => (
-  <Status className={className} active={active} stage={stage} stages={stages}>
-    {counter}. {stage.name}
-  </Status>
-);
+const ClaimStatus = ({ className, active, counter, stage, stages }) => {
+  const status = getStatus(active, stage, stages);
+  return (
+    <Status className={className} status={status}>
+      {counter}. {stage.name}
+    </Status>
+  )
+};
 
-const ProgressBar = ({ active, className, height, stages }) => {
+const ProgressBar = ({ active, className, stages }) => {
   return (
     <div className={className}>
       <LoadingBar stages={stages} active={active} height='7px' />
       {stages.map((stage,i) => (
-        <ClaimStatus key={stage.id} stage={stage} stages={stages} counter={i+1} active={active} />
+        <ClaimStatus key={stage.id} stage={stage} stages={stages} active={active} counter={i+1} />
       ))}
     </div>
   );
@@ -60,15 +63,12 @@ const ProgressBar = ({ active, className, height, stages }) => {
 const StyledProgressBar = styled(ProgressBar)`
   display: flex;
   justify-content: space-around;
-  grid-area: Bottom;
   margin: 4vh auto .55vh;
   position: relative;
   @media (max-width: 1200px) {
     margin: 0;
   }
 `;
-
-StyledProgressBar.displayName = 'ProgressBar'
 
 ProgressBar.defaultProps = {
   active: 'middle',
@@ -89,6 +89,15 @@ ProgressBar.defaultProps = {
       id: 3
     }
   ]
+}
+
+ProgressBar.propTypes = {
+  active: string,
+  stages: arrayOf({
+    key: string,
+    name: string,
+    id: number
+  })
 }
 
 export default StyledProgressBar;
