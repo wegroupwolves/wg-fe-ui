@@ -2,26 +2,21 @@ import React from 'react';
 import styled from 'styled-components';
 import { key } from 'styled-theme/dist';
 import ApprovedIcon from './../Icons/Approved'
-import ExpertIcon from './../Icons/Expert'
-import FilingIcon from './../Icons/Filing'
 import OpenedIcon from './../Icons/Opened'
-import ProcessingIcon from './../Icons/Processing'
-import RepairIcon from './../Icons/Repair'
+import FilingIcon from './../Icons/Filing'
+import LoupeIcon from './../Icons/Loupe'
+import PlaneIcon from './../Icons/Plane'
+import PayIcon from './../Icons/Pay'
 import UploadingIcon from './../Icons/Uploading'
 import LoadingBar from './LoadingBar'
 import TrackingStep from './TrackingStep'
 import { arrayOf, node, number, string } from 'prop-types';
 
-/**
- * Checks actual stage status
- * @param {string} stage
- */
-
 
 const TrackingBar = ({ active, className, height, stages }) => {
   return (
     <div className={className}>
-      <LoadingBar stages={stages} active={active} height='2px' disableFill={true} />
+      <LoadingBar stages={stages} active={active} height='2px' offset={2.08} stepWidth={14.2857} />
       {stages.map(stage => (
         <TrackingStep key={stage.id} stages={stages} stage={stage} active={active} />
       ))}
@@ -60,7 +55,7 @@ TrackingBar.defaultProps = {
     {
       key: 'data_analysis',
       name: 'data analysis',
-      icon: <OpenedIcon />,
+      icon: <LoupeIcon />,
       id: 3
     },
     {
@@ -72,7 +67,7 @@ TrackingBar.defaultProps = {
     {
       key: 'air_carrier_processing',
       name: 'air carrier processing',
-      icon: <ExpertIcon />,
+      icon: <PlaneIcon />,
       id: 5
     },
     {
@@ -84,7 +79,7 @@ TrackingBar.defaultProps = {
     {
       key: 'payout',
       name: 'payout',
-      icon: <RepairIcon />,
+      icon: <PayIcon />,
       id: 7
     }
   ]

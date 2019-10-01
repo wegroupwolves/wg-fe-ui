@@ -32,7 +32,7 @@ const Status = styled.span`
     text-align: center;
     text-transform: capitalize;
     color: #646464;
-    margin-top: 1.8vh;
+    margin-top: 1.76vh;
     @media (max-width: 1200px) {
       margin-top: 0;
       margin-left: 2vw;

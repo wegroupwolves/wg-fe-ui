@@ -52,7 +52,7 @@ const Status = styled.div`
     content: '${({ name }) => name || ''}';
     display: block;
     position: absolute;
-    top: 15vh;
+    top: 5.76vh;
     font-size: calc(9px + 0.26vw);
     line-height: 18px;
     text-align: center;
@@ -78,19 +78,7 @@ const StyledIcon = styled.div`
   justify-content: center;
   align-items: center;
   box-sizing: border-box;
-  position: relative;
 
-  &::before {
-    content: '';
-    display: block;
-    position: absolute;
-    left: 0;
-    box-sizing: border-box;
-    width: calc(14.7vw - 40px);
-    height: 2.26px;
-    background-color: ${({ status }) => status === 'done'
-    ? '#FF8000' : '#D3D4D8'};
-  }
   @media (min-width: 1200px) {
     background-color: ${({ status }) =>
       backgroundColor[status] || '#FFFFFF' };

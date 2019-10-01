@@ -26,9 +26,16 @@ const ProgressTrack = styled.div`
   }
 `;
 
-const LoadingBar = ({ active, disableFill, stages, height }) => {
-    const activeId = getActiveId(active, stages) + 1;
-    const step = disableFill ? 0 : activeId * (100/stages.length);
+const LoadingBar = ({ active, height, offset, stages, stepWidth }) => {
+    const activeId = getActiveId(active, stages);
+    let step = stepWidth;
+    if(stepWidth) {
+      if(activeId === 0) step = offset;
+      else step= activeId * (stepWidth + offset);
+    } else {
+      step = (activeId + 1) * (100/stages.length);
+    } 
+    console.log('step: ', step);
   return (
       <ProgressTrack height={height} step={step} />
   );
