@@ -9,20 +9,22 @@ const Theme = () => {
   };
 
   Orange.colors = {
-    'sub-txt': `#A29C95`,
-    highlight: `#505050`,
-    disabled: `#AEAEAE`,
-
-    good: `#00CD39`,
+    'sub-txt': '#A29C95',
+    highlight: '#505050',
+    disabled: '#AEAEAE',
+    disabledGray: '#D3D4D8',
+    gray: `#C4C4C4`,
+    good: '#00CD39',
     bad: '#F74040',
 
-    interactive: `#C1C1C1`,
+    interactive: '#C1C1C1',
+    primary: '#FF8000',
 
-    title: `#000000`,
-    'sub-title': `#5B5550`,
+    title: '#000000',
+    'sub-title': '#5B5550',
 
     // Buttons
-    action: `#FF8000`,
+    action: '#FF8000',
     toggle: '#FF9B21',
     hover: '#FFBF80',
 
