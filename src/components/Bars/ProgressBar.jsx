@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { key } from 'styled-theme/dist';
+import { array, string, object, node, arrayOf } from 'prop-types';
 import LoadingBar from './LoadingBar'
 
 
@@ -89,6 +90,15 @@ ProgressBar.defaultProps = {
       id: 3
     }
   ]
+}
+
+ProgressBar.propTypes = {
+  active: string,
+  stages: arrayOf({
+    key: string,
+    name: string,
+    id: number
+  })
 }
 
 export default StyledProgressBar;

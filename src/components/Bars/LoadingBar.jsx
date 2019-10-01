@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { key } from 'styled-theme/dist';
+import { string, arrayOf, number } from 'prop-types';
 
 const getActiveId = (active, stages) => {
     return stages ? stages.findIndex(item => item.key === active) : null;
@@ -52,6 +53,15 @@ LoadingBar.defaultProps = {
       id: 3
     }
   ]
+}
+
+LoadingBar.propTypes = {
+  active: string,
+  stages: arrayOf({
+    key: string,
+    name: string,
+    id: number
+  })
 }
 
 export default LoadingBar;
