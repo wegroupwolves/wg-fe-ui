@@ -22,6 +22,7 @@ const Title = styled.h1`
   text-transform: uppercase;
   font-size: 1.4rem;
   margin-left: 3.5rem;
+  ${() => console.log(key('colors.disabled'))};
   color: ${key('colors.disabled')};
   margin-bottom: 1.5rem;
 

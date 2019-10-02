@@ -63,6 +63,12 @@ Object.defineProperty(exports, "MainNavigation", {
     return _Navigation.MainNavigation;
   }
 });
+Object.defineProperty(exports, "SubNavigation", {
+  enumerable: true,
+  get: function get() {
+    return _Navigation.SubNavigation;
+  }
+});
 Object.defineProperty(exports, "Section", {
   enumerable: true,
   get: function get() {
