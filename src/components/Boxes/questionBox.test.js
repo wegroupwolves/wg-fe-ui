@@ -6,7 +6,7 @@ import 'jest-styled-components';
 
 import { ThemeProvider } from 'styled-components';
 
-describe('Checkbox', () => {
+describe('QuestionBox', () => {
   it('can pass extra props', () => {
     const wrapper = shallow(
       <QuestionBox lol={'test'} >Testje</QuestionBox>,
