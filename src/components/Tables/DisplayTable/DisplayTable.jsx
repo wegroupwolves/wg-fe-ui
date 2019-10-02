@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 import { arrayOf, string, object, node } from 'prop-types';
-import Value from './Value.jsx';
-import Row from './Row.jsx';
-import Key from './Key.jsx';
+import Value from './Value';
+import Row from './Row';
+import Key from './Key';
 import { key } from 'styled-theme/dist';
 
 const DisplayTable = ({ className, children, ...otherProps }) => {

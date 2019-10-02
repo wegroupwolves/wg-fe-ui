@@ -4,8 +4,8 @@ import { storiesOf } from '@storybook/react';
 import { withKnobs } from '@storybook/addon-knobs';
 import { withInfo } from '@storybook/addon-info';
 
-import HouseIcon from './assets/HouseIcon.jsx';
-import { HeaderNav, MainNavigation } from '../src/index.js';
+import HouseIcon from './assets/HouseIcon';
+import { HeaderNav, MainNavigation } from '../src';
 
 storiesOf('Mid level blocks/Navigation', module)
   .addDecorator(withKnobs)
