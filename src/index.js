@@ -37,19 +37,13 @@ const Wrapper = styled.div`
 `
 
 
-const Display = (Component, props, children = []) => {
+const Container = ({ children }) => {
+
+  console.log('children: ', children);
   return (
     <Wrapper>
-      <h2 style={{ textAlign: 'center' }}>{Component.displayName}</h2>
-      <Component {...props}>
-        { children.map((child,i) => {
-          if(typeof child !== 'object') return child;
-          const properties = {...child, comp: null}
-          return (
-          <child.comp key={i} {...properties} />
-          )
-        })}
-      </Component>
+      <h2 style={{ textAlign: 'center' }}>{children.type.displayName}</h2>
+      {children}
     </Wrapper>
   )
 }
@@ -58,6 +52,8 @@ const Display = (Component, props, children = []) => {
 // Export all components
 
 ReactDOM.render(
-  Display(ToolBar, {}, [{ comp:  SearchInput, text: ''}]),
+  <Container>
+    <ProgressBar />
+  </Container>,
   document.getElementById('root')
 )
