@@ -1,5 +1,5 @@
 import React from 'react';
-import { bool, string, node, func, object } from 'prop-types';
+import { arrayOf, object, bool, string, node, func } from 'prop-types';
 import styled from 'styled-components';
 import { key } from 'styled-theme';
 
@@ -10,8 +10,8 @@ const ActionButton = ({
   fullwidth,
   onClick,
   icon,
-  otherProps,
   className,
+  ...otherProps
 }) => {
   const handleClick = () => {
     if (!disabled) {
@@ -43,15 +43,13 @@ const StyledButton = styled.button`
       : props.level === 'primary'
       ? key('colors.action')
       : key('colors.interactive')};
-  font-weight: 900;
   font-size: ${key('fonts.normal-size')};
   border-radius: 0.5rem;
   min-width: 12rem;
   width: ${props => (props.fullwidth ? '100%' : '')};
-  height: 4rem;
   color: white;
   border: 0;
-  padding: 0 1.5rem;
+  padding: 0.5rem 1.5rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -80,7 +78,8 @@ ActionButton.defaultProps = {
   level: 'primary',
   fullwidth: false,
   icon: null,
-  otherProps: null,
+  onClick: () => { console.log('clicked button') },
+  otherProps: [],
 };
 
 ActionButton.propTypes = {
@@ -99,7 +98,7 @@ ActionButton.propTypes = {
   /** Adds icon to button */
   icon: node,
   /** Adds extra props to the element */
-  otherProps: object,
+  otherProps: arrayOf(object).isRequired,
 };
 
 export default ActionButton;

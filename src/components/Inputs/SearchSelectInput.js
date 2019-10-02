@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import Select from 'react-select';
-import { func, string, bool, array, object } from 'prop-types';
+import { arrayOf, func, string, bool, array, object } from 'prop-types';
 import { key } from 'styled-theme';
 
 const SearchSelectInput = ({
@@ -16,7 +16,7 @@ const SearchSelectInput = ({
   noOptionMessage,
   loadingMessage,
   placeholder,
-  otherProps,
+  ...otherProps,
 }) => {
   const [isSelected, setSelected] = useState();
 
@@ -154,6 +154,7 @@ SearchSelectInput.defaultProps = {
   loadingMessage: 'Loading...',
   placeholder: 'Choose your option',
   initial: null,
+  otherProps: []
 };
 
 SearchSelectInput.propTypes = {
@@ -180,7 +181,7 @@ SearchSelectInput.propTypes = {
   /** Message to show on load when no initial */
   placeholder: string,
   /** Adds extra props to the element */
-  otherProps: object,
+  otherProps: arrayOf(object).isRequired,
 };
 
 export default SearchSelectInput;

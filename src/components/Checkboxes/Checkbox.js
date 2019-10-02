@@ -1,5 +1,5 @@
 import React from 'react';
-import { bool, node, func, string, object } from 'prop-types';
+import { arrayOf, bool, node, func, string, object } from 'prop-types';
 import styled, { withTheme } from 'styled-components';
 import { key } from 'styled-theme';
 
@@ -10,10 +10,10 @@ const Checkbox = ({
   checked,
   disabled,
   onChange,
-  otherProps,
   children,
   name,
   theme,
+  ...otherProps
 }) => {
   const handleChange = e => {
     if (!disabled) {
@@ -92,6 +92,7 @@ const StyledCheckmark = styled(Checkmark)`
 Checkbox.defaultProps = {
   checked: false,
   disabled: false,
+  otherProps: []
 };
 
 Checkbox.propTypes = {
@@ -106,7 +107,7 @@ Checkbox.propTypes = {
   /** Triggered when button is clicked */
   onChange: func.isRequired,
   /** Adds extra props to the element */
-  otherProps: object,
+  otherProps: arrayOf(object).isRequired,
   name: string.isRequired,
   theme: object,
 };

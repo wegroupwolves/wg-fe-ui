@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
-import { node, string, object } from 'prop-types';
+import { arrayOf, node, string, object } from 'prop-types';
 import { key } from 'styled-theme/dist';
 
-const Row = ({ className, otherProps, children }) => {
+const Row = ({ className, children, ...otherProps }) => {
   return (
     <StyledRow {...otherProps} className={className}>
       {children}
@@ -26,11 +26,15 @@ const StyledRow = styled.tr`
   }
 `;
 
+Row.defaultProps = {
+  otherProps: []
+}
+
 Row.propTypes = {
   /** Beeing able to use it in Styled Components */
   className: string,
   /** Adds extra props to the element */
-  otherProps: object,
+  otherProps: arrayOf(object).isRequired,
   children: node,
 };
 

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { bool, node, func, string, object } from 'prop-types';
+import { arrayOf, bool, node, func, string, object } from 'prop-types';
 import styled from 'styled-components';
 import { key } from 'styled-theme';
 import { detect } from 'detect-browser';
@@ -18,8 +18,8 @@ const TextInput = ({
   setFieldTouched,
   errors,
   touched,
-  otherProps,
   value,
+  ...otherProps
 }) => {
   const [inputValue, setInputValue] = useState(value ? value : '');
   const [focus, setFocus] = useState();
@@ -175,6 +175,7 @@ TextInput.defaultProps = {
   touched: {},
   setFieldTouched: () => {},
   setFieldValue: () => {},
+  otherProps: []
 };
 
 TextInput.propTypes = {
@@ -199,7 +200,7 @@ TextInput.propTypes = {
   /** returns name and inputvalue */
   setFieldValue: func,
   /** Adds extra props to the element */
-  otherProps: object,
+  otherProps: arrayOf(object).isRequired,
   value: node,
 };
 

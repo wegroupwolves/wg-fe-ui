@@ -6,6 +6,7 @@ import NL from '../../assets/flags/NL.svg';
 import EN from '../../assets/flags/EN.svg';
 import FR from '../../assets/flags/FR.svg';
 
+
 const LanguageSelector = () => {
   const [langIcon, setLangIcon] = useState(EN);
   const setLanguage = lang => {

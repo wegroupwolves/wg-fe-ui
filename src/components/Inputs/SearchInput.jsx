@@ -1,28 +1,31 @@
 import React from 'react'
-import { func, string } from 'prop-types';
+import { arrayOf, object, func, string } from 'prop-types';
 
 
-const SearchInput = ({ onChange, placeholder, text }) => {
+const SearchInput = ({ className, onChange, placeholder, text, ...otherProps }) => {
 
     const handleChange = val => {
         onChange(val);
     }
 
     return (
-        <input type="text" name="search" placeholder={placeholder} value={text} onChange={handleChange} />
+        <input className={className} type="text" name="search" placeholder={placeholder} value={text} onChange={handleChange} {...otherProps} />
     )
 }
 
 SearchInput.defaultProps = {
     onChange: Function.prototype,
     placeholder: 'Search for name, status, ...',
-    text: ''
+    text: '',
+    otherProps: []
 }
 
 SearchInput.propTypes = {
+    className: string,
     onChange: func,
     placeholder: string,
-    text: string
+    text: string,
+    otherProps: arrayOf(object).isRequired
 }
 
 export default SearchInput

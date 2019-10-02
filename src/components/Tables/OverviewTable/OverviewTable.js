@@ -2,14 +2,14 @@ import React from 'react';
 import styled from 'styled-components';
 import { key } from 'styled-theme';
 
-import { string, object, node } from 'prop-types';
+import { arrayOf, string, object, node } from 'prop-types';
 import Head from './Head';
 import HeaderCell from './HeaderCell';
 import Body from './Body';
 import Row from './Row';
 import BodyCell from './BodyCell';
 
-const OverviewTable = ({ className, otherProps, children }) => {
+const OverviewTable = ({ className, children, ...otherProps }) => {
   return (
     <Table className={className} {...otherProps}>
       {children}
@@ -25,11 +25,15 @@ const Table = styled.table`
   margin-bottom: 4rem;
 `;
 
+OverviewTable.defaultProps = {
+  otherProps: []
+}
+
 OverviewTable.propTypes = {
   /** Beeing able to use it in Styled Components */
   className: string,
   /** Adds extra props to the element */
-  otherProps: object,
+  otherProps: arrayOf(object).isRequired,
   children: node,
 };
 

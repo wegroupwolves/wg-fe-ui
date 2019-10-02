@@ -1,9 +1,9 @@
 import React from 'react';
-import { string, object, node, func, element, bool } from 'prop-types';
+import { arrayOf, string, object, node, func, element, bool } from 'prop-types';
 import { key } from 'styled-theme';
 import styled from 'styled-components';
 
-const Item = ({ className, otherProps, icon, onClick, children, isActive }) => {
+const Item = ({ className, icon, onClick, children, isActive, ...otherProps }) => {
   return (
     <Container
       {...otherProps}
@@ -64,8 +64,7 @@ Item.propTypes = {
   /** Beeing able to use it in Styled Components */
   className: string,
   /** Adds extra props to the element */
-  otherProps: object,
-
+  otherProps: arrayOf(object).isRequired,
   isActive: bool,
   icon: element,
   onClick: func,

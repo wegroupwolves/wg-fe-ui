@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { node, string, func, bool, object } from 'prop-types';
+import { arrayOf, object, node, string, func, bool } from 'prop-types';
 import { key } from 'styled-theme/dist';
 
 const QuestionBox = ({
@@ -10,7 +10,7 @@ const QuestionBox = ({
   className,
   disabled,
   response,
-  otherProps,
+  ...otherProps,
 }) => {
   const handleClick = e => {
     response(e.currentTarget.innerHTML);
@@ -119,7 +119,8 @@ QuestionBox.defaultProps = {
   disabled: false,
   option1: null,
   option2: null,
-  response: () => {},
+  response: Function.prototype,
+  otherProps: []
 };
 
 QuestionBox.propTypes = {
@@ -136,7 +137,7 @@ QuestionBox.propTypes = {
   /** if true option1 is disabled */
   disabled: bool,
   /** Adds extra props to the element */
-  otherProps: object,
+  otherProps: arrayOf(object).isRequired,
 };
 
 export default QuestionBox;

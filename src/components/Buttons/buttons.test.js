@@ -1,4 +1,4 @@
-import { ActionButton, ToggleActionButton } from '.';
+import { ActionButton, BackButton, ToggleActionButton } from '.';
 import { shallow, mount } from 'enzyme';
 import React from 'react';
 import Theme from '../../../.storybook/theme';
@@ -130,6 +130,21 @@ describe('ActionButton', () => {
     wrapper.setProps({ icon: '' });
     expect(wrapper.exists('img')).toEqual(false);
   });
+});
+
+describe('BackButton', () => {
+  it('When clicked, button should invoke onClick function', () => {
+    let value = 1;
+
+    const wrapper = shallow(
+      <BackButton name="Back" onClick={() =>  value--}></BackButton>
+    );
+    wrapper.simulate('click');
+    expect(value).toEqual(0);
+  });
+
+  
+
 });
 
 describe('ToggleActionButton', () => {

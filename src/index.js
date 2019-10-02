@@ -1,7 +1,7 @@
 import ReactDOM from 'react-dom'
 import React from 'react'
 import { ToolBar } from './../src/components/Bars'
-import { ActionButton, ToggleActionButton } from './components/Buttons';
+import { ActionButton, BackButton, ToggleActionButton } from './components/Buttons';
 import { Checkbox } from './components/Checkboxes';
 import { TextInput, SearchInput, SearchSelectInput } from './components/Inputs';
 import { QuestionBox } from './components/Boxes';
@@ -11,8 +11,10 @@ import { Section } from './components/Section';
 import { ThemeProvider } from 'styled-components';
 import Theme from './constants/theme';
 
+
 export {
   ActionButton,
+  BackButton,
   ToggleActionButton,
   ThemeProvider,
   Checkbox,
@@ -32,6 +34,10 @@ export {
 // Export all components
 
 ReactDOM.render(
-  <ToolBar><SearchInput  placeholder="search for text..." /></ToolBar>,
+  <ThemeProvider theme={Theme}>
+    <ToolBar>
+      <BackButton name="Overview" />
+    </ToolBar>
+  </ThemeProvider>,
   document.getElementById('root')
 )

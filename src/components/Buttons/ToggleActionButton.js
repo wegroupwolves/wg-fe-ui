@@ -1,5 +1,5 @@
 import React from 'react';
-import { bool, string, node, func, object } from 'prop-types';
+import { arrayOf, bool, string, node, func, object } from 'prop-types';
 import styled from 'styled-components';
 import { key } from 'styled-theme';
 
@@ -10,8 +10,8 @@ const ToggleActionButton = ({
   fullwidth,
   onClick,
   icon,
-  otherProps,
   className,
+  ...otherProps
 }) => {
   const handleClick = () => {
     if (!disabled) {
@@ -80,7 +80,7 @@ ToggleActionButton.defaultProps = {
   level: 'primary',
   fullwidth: false,
   icon: null,
-  otherProps: null,
+  otherProps: [],
 };
 
 ToggleActionButton.propTypes = {
@@ -99,7 +99,7 @@ ToggleActionButton.propTypes = {
   /** Adds icon to button */
   icon: node,
   /** Adds extra props to the element */
-  otherProps: object,
+  otherProps: arrayOf(object).isRequired,
 };
 
 export default ToggleActionButton;
