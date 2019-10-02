@@ -155,7 +155,9 @@ describe('ToggleActionButton', function () {
   });
   it('can pass extra props', function () {
     var wrapper = (0, _enzyme.shallow)(_react.default.createElement(_.ToggleActionButton, {
-      id: '31',
+      otherProps: {
+        id: '31'
+      },
       onClick: function onClick() {
         return console.log('testen');
       }

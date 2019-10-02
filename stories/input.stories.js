@@ -3,10 +3,11 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 // import { linkTo } from '@storybook/addon-links';
 import { withKnobs, boolean, text, select } from '@storybook/addon-knobs';
+import { action } from '@storybook/addon-actions';
 import { withInfo } from '@storybook/addon-info';
 import styled from 'styled-components';
 
-import { TextInput, SearchSelectInput } from '../src';
+import { TextInput, SearchInput, SearchSelectInput } from '../src';
 
 storiesOf('Low level blocks/Inputs', module)
   .addDecorator(withKnobs)
@@ -28,6 +29,13 @@ storiesOf('Low level blocks/Inputs', module)
       </StyledTextInput>
     );
   })
+  .add('SearchInput', () => (
+    <SearchInput
+      text="test"
+      placeholder="Search for..."
+      onChange={action('change')}
+    />
+  ))
   .add('SearchSelectInput', () => {
     return (
       <StyledSearchSelectInput
