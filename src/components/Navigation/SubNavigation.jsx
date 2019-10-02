@@ -35,9 +35,9 @@ const StyledSubNavigation = styled.ul`
   }
 `;
 
-const SubNavigation = ({ className, children, rest }) => {
+const SubNavigation = ({ className, children, ...otherProps }) => {
   return (
-    <StyledSubNavigation className={className} {...rest}>
+    <StyledSubNavigation className={className} {...otherProps}>
       {children}
     </StyledSubNavigation>
   );
@@ -52,7 +52,7 @@ SubNavigation.SectionContainer.displayName = 'SubNavigation.SectionContainer';
 
 SubNavigation.propTypes = {
   className: PropTypes.string,
-  rest: PropTypes.object,
+  otherProps: PropTypes.arrayOf(PropTypes.object),
   children: PropTypes.node,
 };
 
