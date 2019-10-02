@@ -11,7 +11,7 @@ const BackArrow = ({ className, width = 13, height = 22 }) => {
         xmlns="http://www.w3.org/2000/svg"
         className={className}    
     >
-        <path d="M12 1L2 11L12 21" stroke="#505050" stroke-width="2"/>
+        <path d="M12 1L2 11L12 21" stroke="#505050" strokeWidth="2"/>
     </svg>
 
   );

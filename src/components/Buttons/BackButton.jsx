@@ -20,7 +20,7 @@ const BackButton = ({
       background={background}
       {...otherProps}
     >
-      {icon}
+      { icon }
       { name }
     </StyledButton>
   );

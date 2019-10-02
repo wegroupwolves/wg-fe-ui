@@ -1,5 +1,5 @@
-import Checkbox from './Checkbox.js';
+import CheckBox from './CheckBox.js';
 
-export { Checkbox };
+export { CheckBox };
 
 // export all checkboxes

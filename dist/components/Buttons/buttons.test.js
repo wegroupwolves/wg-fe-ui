@@ -47,14 +47,12 @@ describe('ActionButton', function () {
   });
   it('can pass extra props', function () {
     var wrapper = (0, _enzyme.shallow)(_react.default.createElement(_.ActionButton, {
-      otherProps: {
-        id: '31'
-      },
+      id: 31,
       onClick: function onClick() {
         return console.log('testen');
       }
     }, "Testje"));
-    expect(wrapper.props().id).toEqual('31');
+    expect(wrapper.props().id).toEqual(31);
   });
   it('style changes when level changes', function () {
     var wrapper = (0, _enzyme.mount)(_react.default.createElement(_styledComponents.ThemeProvider, {
@@ -155,9 +153,7 @@ describe('ToggleActionButton', function () {
   });
   it('can pass extra props', function () {
     var wrapper = (0, _enzyme.shallow)(_react.default.createElement(_.ToggleActionButton, {
-      otherProps: {
-        id: '31'
-      },
+      id: '31',
       onClick: function onClick() {
         return console.log('testen');
       }

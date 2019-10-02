@@ -16,13 +16,13 @@ const Box = styled.div`
     box-sizing: border-box;
 `
 
-const InnerBox = styled.div`
+export const InnerBox = styled.div`
     position: relative;
     display: flex;
     align-items: center;
     width: 70%;
     height: 100%;
-    border-right: 1px solid #CCCCCC;
+    border-right: 1px solid ${key('colors.outline')};
     margin-right: 2.4vw;
 
     input {
