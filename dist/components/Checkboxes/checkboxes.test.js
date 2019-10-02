@@ -18,12 +18,14 @@ describe('Checkbox', function () {
   it('can pass extra props', function () {
     var wrapper = (0, _enzyme.shallow)(_react.default.createElement(_.Checkbox, {
       name: "test",
-      id: 31,
+      otherProps: {
+        id: 31
+      },
       onChange: function onChange() {
         return console.log('testen');
       }
     }, "Testje"));
-    expect(wrapper.props().children().props()).toEqual({
+    expect(wrapper.props().children().props.otherProps).toEqual({
       id: 31
     });
   });

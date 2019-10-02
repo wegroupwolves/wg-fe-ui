@@ -17,7 +17,9 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 describe('Checkbox', function () {
   it('can pass extra props', function () {
     var wrapper = (0, _enzyme.shallow)(_react.default.createElement(_.QuestionBox, {
-    lol: 'test'
+      otherProps: {
+        lol: 'test'
+      }
     }, "Testje"));
     expect(wrapper.props().lol).toEqual('test');
   });
