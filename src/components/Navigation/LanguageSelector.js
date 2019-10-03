@@ -2,55 +2,59 @@ import React, { useState, useEffect } from 'react';
 import i18next from 'i18next';
 import styled from 'styled-components';
 import { key } from 'styled-theme';
-import NL from '../../assets/flags/NL.svg';
-import EN from '../../assets/flags/EN.svg';
-import FR from '../../assets/flags/FR.svg';
+import NL from '../../assets/flags/NL.jsx';
+import EN from '../../assets/flags/EN.jsx';
+import FR from '../../assets/flags/FR.jsx';
 
 const LanguageSelector = () => {
-  const [langIcon, setLangIcon] = useState(EN);
+  const [langIcon, setLangIcon] = useState(<EN />);
   const setLanguage = lang => {
     i18next.changeLanguage(lang);
 
     if (i18next.language === 'nl') {
-      setLangIcon(NL);
+      setLangIcon(<NL />);
     }
     if (i18next.language === 'en') {
-      setLangIcon(EN);
+      setLangIcon(<EN />);
     }
     if (i18next.language === 'fr') {
-      setLangIcon(FR);
+      setLangIcon(<FR />);
     }
   };
-
   useEffect(() => {
     if (i18next.language === 'nl') {
-      setLangIcon(NL);
+      setLangIcon(<NL />);
     }
     if (i18next.language === 'en') {
-      setLangIcon(EN);
+      setLangIcon(<EN />);
     }
     if (i18next.language === 'fr') {
-      setLangIcon(FR);
+      setLangIcon(<FR />);
     }
   });
   return (
     <LangSelector>
-      <FlagIcon
-        src={langIcon}
-        alt={i18next.language}
-        width="30"
-        height="30"
-        button={true}
-      />
+      <FlagIcon src={langIcon} button={true}>
+        {langIcon}
+      </FlagIcon>
       <DropDownContainer>
         <button type="button" onClick={() => setLanguage('nl')}>
-          <FlagIcon src={NL} alt="Nederlands" width="30" height="30" /> NL
+          <FlagIcon>
+            <NL />
+          </FlagIcon>
+          NL
         </button>
         <button type="button" onClick={() => setLanguage('en')}>
-          <FlagIcon src={EN} alt="English" width="30" height="30" /> EN
+          <FlagIcon>
+            <EN />
+          </FlagIcon>
+          EN
         </button>
         <button type="button" onClick={() => setLanguage('fr')}>
-          <FlagIcon src={FR} alt="Français" width="30" height="30" /> FR
+          <FlagIcon>
+            <FR />
+          </FlagIcon>
+          FR
         </button>
       </DropDownContainer>
     </LangSelector>
@@ -101,10 +105,11 @@ const DropDownContainer = styled.div`
   }
 `;
 
-const FlagIcon = styled.img`
+const FlagIcon = styled.div`
   width: 3rem;
   height: 3rem;
   margin-left: 1.5rem;
+  margin-right: 1rem;
 `;
 
 const LangSelector = styled.div`
