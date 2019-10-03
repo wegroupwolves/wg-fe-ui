@@ -9,6 +9,8 @@ var _react = _interopRequireDefault(require("react"));
 
 var _styledComponents = _interopRequireWildcard(require("styled-components"));
 
+var _LanguageSelector = _interopRequireDefault(require("./LanguageSelector"));
+
 var _propTypes = require("prop-types");
 
 var _styledTheme = require("styled-theme");
@@ -102,7 +104,7 @@ var HeaderNav = function HeaderNav(_ref) {
       active: to === currentLocation,
       "data-test-id": tab.title
     }, tab.title);
-  }))));
+  })), _react.default.createElement(_LanguageSelector.default, null)));
 };
 
 var Wrapper = _styledComponents.default.div(_templateObject());
