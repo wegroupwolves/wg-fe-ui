@@ -22,7 +22,7 @@ const ActionButton = ({
   return (
     <StyledButton
       level={level}
-      onClick={() => handleClick()}
+      onClick={handleClick}
       fullwidth={fullwidth}
       disabled={disabled}
       className={className}
