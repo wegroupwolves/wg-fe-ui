@@ -52,7 +52,7 @@ SubNavigation.SectionContainer.displayName = 'SubNavigation.SectionContainer';
 
 SubNavigation.propTypes = {
   className: PropTypes.string,
-  otherProps: PropTypes.PropTypes.object,
+  otherProps: PropTypes.object,
   children: PropTypes.node,
 };
 
