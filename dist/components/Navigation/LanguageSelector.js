@@ -13,11 +13,11 @@ var _styledComponents = _interopRequireDefault(require("styled-components"));
 
 var _styledTheme = require("styled-theme");
 
-var _NL = _interopRequireDefault(require("../../assets/flags/NL.svg"));
+var _NL = _interopRequireDefault(require("../../assets/flags/NL.jsx"));
 
-var _EN = _interopRequireDefault(require("../../assets/flags/EN.svg"));
+var _EN = _interopRequireDefault(require("../../assets/flags/EN.jsx"));
 
-var _FR = _interopRequireDefault(require("../../assets/flags/FR.svg"));
+var _FR = _interopRequireDefault(require("../../assets/flags/FR.jsx"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -36,7 +36,7 @@ function _templateObject3() {
 }
 
 function _templateObject2() {
-  var data = _taggedTemplateLiteral(["\n  width: 3rem;\n  height: 3rem;\n  margin-left: 1.5rem;\n"]);
+  var data = _taggedTemplateLiteral(["\n  width: 3rem;\n  height: 3rem;\n  margin-left: 1.5rem;\n  margin-right: 1rem;\n"]);
 
   _templateObject2 = function _templateObject2() {
     return data;
@@ -66,7 +66,7 @@ function _iterableToArrayLimit(arr, i) { if (!(Symbol.iterator in Object(arr) ||
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 var LanguageSelector = function LanguageSelector() {
-  var _useState = (0, _react.useState)(_EN.default),
+  var _useState = (0, _react.useState)(_react.default.createElement(_EN.default, null)),
       _useState2 = _slicedToArray(_useState, 2),
       langIcon = _useState2[0],
       setLangIcon = _useState2[1];
@@ -75,73 +75,55 @@ var LanguageSelector = function LanguageSelector() {
     _i18next.default.changeLanguage(lang);
 
     if (_i18next.default.language === 'nl') {
-      setLangIcon(_NL.default);
+      setLangIcon(_react.default.createElement(_NL.default, null));
     }
 
     if (_i18next.default.language === 'en') {
-      setLangIcon(_EN.default);
+      setLangIcon(_react.default.createElement(_EN.default, null));
     }
 
     if (_i18next.default.language === 'fr') {
-      setLangIcon(_FR.default);
+      setLangIcon(_react.default.createElement(_FR.default, null));
     }
   };
 
   (0, _react.useEffect)(function () {
     if (_i18next.default.language === 'nl') {
-      setLangIcon(_NL.default);
+      setLangIcon(_react.default.createElement(_NL.default, null));
     }
 
     if (_i18next.default.language === 'en') {
-      setLangIcon(_EN.default);
+      setLangIcon(_react.default.createElement(_EN.default, null));
     }
 
     if (_i18next.default.language === 'fr') {
-      setLangIcon(_FR.default);
+      setLangIcon(_react.default.createElement(_FR.default, null));
     }
   });
   return _react.default.createElement(LangSelector, null, _react.default.createElement(FlagIcon, {
     src: langIcon,
-    alt: _i18next.default.language,
-    width: "30",
-    height: "30",
     button: true
-  }), _react.default.createElement(DropDownContainer, null, _react.default.createElement("button", {
+  }, langIcon), _react.default.createElement(DropDownContainer, null, _react.default.createElement("button", {
     type: "button",
     onClick: function onClick() {
       return setLanguage('nl');
     }
-  }, _react.default.createElement(FlagIcon, {
-    src: _NL.default,
-    alt: "Nederlands",
-    width: "30",
-    height: "30"
-  }), " NL"), _react.default.createElement("button", {
+  }, _react.default.createElement(FlagIcon, null, _react.default.createElement(_NL.default, null)), "NL"), _react.default.createElement("button", {
     type: "button",
     onClick: function onClick() {
       return setLanguage('en');
     }
-  }, _react.default.createElement(FlagIcon, {
-    src: _EN.default,
-    alt: "English",
-    width: "30",
-    height: "30"
-  }), " EN"), _react.default.createElement("button", {
+  }, _react.default.createElement(FlagIcon, null, _react.default.createElement(_EN.default, null)), "EN"), _react.default.createElement("button", {
     type: "button",
     onClick: function onClick() {
       return setLanguage('fr');
     }
-  }, _react.default.createElement(FlagIcon, {
-    src: _FR.default,
-    alt: "Français",
-    width: "30",
-    height: "30"
-  }), " FR")));
+  }, _react.default.createElement(FlagIcon, null, _react.default.createElement(_FR.default, null)), "FR")));
 };
 
 var DropDownContainer = _styledComponents.default.div(_templateObject(), (0, _styledTheme.key)(['fonts.normal-size']), (0, _styledTheme.key)('colors.primary-regular'));
 
-var FlagIcon = _styledComponents.default.img(_templateObject2());
+var FlagIcon = _styledComponents.default.div(_templateObject2());
 
 var LangSelector = _styledComponents.default.div(_templateObject3(), DropDownContainer);
 

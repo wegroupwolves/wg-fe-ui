@@ -1,7 +1,7 @@
 import React from 'react';
 import styled, { withTheme } from 'styled-components';
 
-// import LanguageSelector from './LanguageSelector';
+import LanguageSelector from './LanguageSelector';
 
 import { array, node, string, func, object } from 'prop-types';
 import { key } from 'styled-theme';
@@ -28,7 +28,7 @@ const HeaderNav = ({ navTabs, theme, className, currentLocation, onClick, ...oth
             );
           })}
         </Navigation>
-        {/* <LanguageSelector /> */}
+        <LanguageSelector />
       </Wrapper>
     </Container>
   );
