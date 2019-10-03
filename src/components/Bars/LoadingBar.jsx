@@ -2,9 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 import { key } from 'styled-theme/dist';
 
-const getActiveId = (active, stages) => {
-    return stages ? stages.findIndex(item => item.key === active) : null;
-}
 
 const ProgressTrack = styled.div`
   position: absolute;
@@ -26,14 +23,14 @@ const ProgressTrack = styled.div`
   }
 `;
 
-const LoadingBar = ({ active, height, offset, stages, stepWidth }) => {
-    const activeId = getActiveId(active, stages);
+const LoadingBar = ({ activeId, height, offset, stages, stepWidth }) => {
     let step = stepWidth;
+    console.log('activeId: ', activeId);
     if(stepWidth) {
-      if(activeId === 0) step = offset;
-      else step= activeId * (stepWidth + offset);
+      if(activeId === 1) step = offset;
+      else step= (activeId -1) * (stepWidth + offset);
     } else {
-      step = (activeId + 1) * (100/stages.length);
+      step = activeId * (100/stages.length);
     } 
     console.log('step: ', step);
   return (

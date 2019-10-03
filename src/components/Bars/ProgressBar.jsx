@@ -4,29 +4,13 @@ import { key } from 'styled-theme/dist';
 import LoadingBar from './LoadingBar'
 import { arrayOf, number, string } from 'prop-types';
 
-/**
- * Checks actual stage status
- * @param {string} stage
- */
-
-const getStatus = (active, stage, stages = []) => {
-  if (!stages.length) return;
-  const activeIndex = stages.findIndex(item => item.key === active);
-  const stageIndex = stages.findIndex(item => item.key === stage.key);
-  if (stageIndex === activeIndex) {
-    return 'active';
-  } else if (stageIndex < activeIndex) {
-    return 'done';
-  } else {
-    return 'disabled';
-  }
-};
 
 const Status = styled.span`
+    display: ${({ active }) => active ? 'inline' : 'none'};
     font-family: Lato;
     font-size: 14px;
-    font-weight: ${({ status }) => 
-      status === 'active'
+    font-weight: ${({ active }) => 
+      active
       ? 'bold' : 'initial' };
     line-height: 24px;
     text-align: center;
@@ -40,21 +24,20 @@ const Status = styled.span`
     }
 `;
 
-const ClaimStatus = ({ className, active, counter, stage, stages }) => {
-  const status = getStatus(active, stage, stages);
+const ClaimStatus = ({ className, active, counter, stage }) => {
   return (
-    <Status className={className} status={status}>
+    <Status className={className} active={active}>
       {counter}. {stage.name}
     </Status>
   )
 };
 
-const ProgressBar = ({ active, className, stages }) => {
+const ProgressBar = ({ activeId, className, stages }) => {
   return (
     <div className={className}>
-      <LoadingBar stages={stages} active={active} height='7px' />
+      <LoadingBar stages={stages} activeId={activeId} height='7px' />
       {stages.map((stage,i) => (
-        <ClaimStatus key={stage.id} stage={stage} stages={stages} active={active} counter={i+1} />
+        <ClaimStatus key={stage.id} stage={stage} stages={stages} active={activeId === stage.id} counter={i+1} />
       ))}
     </div>
   );
@@ -71,7 +54,7 @@ const StyledProgressBar = styled(ProgressBar)`
 `;
 
 ProgressBar.defaultProps = {
-  active: 'middle',
+  activeId: 1,
   stages: [
     { 
       key: 'start', 
@@ -92,7 +75,7 @@ ProgressBar.defaultProps = {
 }
 
 ProgressBar.propTypes = {
-  active: string,
+  activeId: number,
   stages: arrayOf({
     key: string,
     name: string,

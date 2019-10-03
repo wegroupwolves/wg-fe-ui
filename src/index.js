@@ -1,7 +1,4 @@
-import ReactDOM from 'react-dom'
-import styled from 'styled-components'
-import React from 'react'
-import { ProgressBar, ToolBar, TrackingBar } from './../src/components/Bars'
+import { LoadingBar, ProgressBar, ToolBar, TrackingBar } from './../src/components/Bars'
 import { ActionButton, ToggleActionButton } from './components/Buttons';
 import { Checkbox } from './components/Checkboxes';
 import { TextInput, SearchInput, SearchSelectInput } from './components/Inputs';
@@ -27,33 +24,11 @@ export {
   MainNavigation,
   Section,
   OverviewTable,
+  LoadingBar,
   ProgressBar,
   ToolBar,
   TrackingBar
 };
 
-const Wrapper = styled.div`
-  margin: 0 auto;
-`
-
-
-const Container = ({ children }) => {
-
-  console.log('children: ', children);
-  return (
-    <Wrapper>
-      <h2 style={{ textAlign: 'center' }}>{children.type.displayName}</h2>
-      {children}
-    </Wrapper>
-  )
-}
-
 
 // Export all components
-
-ReactDOM.render(
-  <Container>
-    <ProgressBar />
-  </Container>,
-  document.getElementById('root')
-)

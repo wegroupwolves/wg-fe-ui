@@ -12,13 +12,17 @@ import LoadingBar from './LoadingBar'
 import TrackingStep from './TrackingStep'
 import { arrayOf, node, number, string } from 'prop-types';
 
+const getActiveId = (active, stages) => {
+  return stages ? stages.findIndex(item => item.key === active) + 1 : 0;
+}
 
 const TrackingBar = ({ active, className, height, stages }) => {
+  const activeId = getActiveId(active, stages);
   return (
     <div className={className}>
-      <LoadingBar stages={stages} active={active} height='2px' offset={2.08} stepWidth={14.2857} />
+      <LoadingBar stages={stages.length} activeId={activeId} height={height} offset={2.08} stepWidth={14.2857} />
       {stages.map(stage => (
-        <TrackingStep key={stage.id} stages={stages} stage={stage} active={active} />
+        <TrackingStep key={stage.id} stage={stage} activeId={activeId} />
       ))}
     </div>
   );
@@ -39,6 +43,7 @@ StyledTrackingBar.displayName = 'TrackingBar'
 
 TrackingBar.defaultProps = {
   active: 'data_analysis',
+  height: '2px',
   stages: [
     { 
       key: 'filing', 

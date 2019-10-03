@@ -18,7 +18,6 @@ const Theme = () => {
     bad: '#F74040',
 
     interactive: '#C1C1C1',
-    primary: '#FF8000',
 
     title: '#000000',
     'sub-title': '#5B5550',

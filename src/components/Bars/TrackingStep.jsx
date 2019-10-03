@@ -5,18 +5,18 @@ import FilingIcon from './../Icons/Filing'
 import { node, number, string, objectOf } from 'prop-types';
 
 const backgroundColor = {
-    done: '#FF8000',
+    done: key('colors.action'),
 }
 
 const borderColor = {
-    active: '#FF8000',
-    disabled: '#D3D4D8'
+    active: key('colors.action'),
+    disabled: key('colors.disabledGray')
 }
 
 const iconColor = {
     done: '#FFFFFF',
-    active: '#FF8000',
-    disabled: '#D3D4D8'
+    active: key('colors.action'),
+    disabled: key('colors.disabledGray')
 }
 
 /**
@@ -24,13 +24,10 @@ const iconColor = {
  * @param {string} stage
  */
 
-const getStatus = (active, stage, stages = null) => {
-  if (!stages) return;
-  const activeIndex = stages.findIndex(item => item.key === active);
-  const stageIndex = stages.findIndex(item => item.key === stage.key);
-  if (stageIndex === activeIndex) {
+const getStatus = (activeId, stage) => {
+  if (activeId === stage.id) {
     return 'active';
-  } else if (stageIndex < activeIndex) {
+  } else if (stage.id < activeId) {
     return 'done';
   } else {
     return 'disabled';
@@ -45,6 +42,8 @@ const Status = styled.div`
   @media (max-width: 1200px) {
     display: ${({ status }) =>
       status !== 'active' ? 'none' : 'flex'};
+    justify-content: center;
+    align-items: center;
     width: auto;
     flex-direction: row;
   }
@@ -60,7 +59,7 @@ const Status = styled.div`
     margin-top: 1.8vh;
     color: #A29C95;
     @media (max-width: 1200px) {
-    margin-top: 0;
+    margin-top: 5vh;
     margin-left: 2vw;
     text-align: justify;
     }
@@ -68,8 +67,8 @@ const Status = styled.div`
   }
 `;
 
-const StyledIcon = styled.div`
-  background-color: ${({ status}) => backgroundColor[status] || '#FFFFFF'};
+export const StyledIcon = styled.div`
+  background-color: ${({ status }) => backgroundColor[status] || '#FFFFFF'};
   display: flex;
   border-radius: 50%;
   width: 40px;
@@ -78,31 +77,25 @@ const StyledIcon = styled.div`
   justify-content: center;
   align-items: center;
   box-sizing: border-box;
-
-  @media (min-width: 1200px) {
-    background-color: ${({ status }) =>
-      backgroundColor[status] || '#FFFFFF' };
-    border: ${({ status }) =>
-      `2.26px solid ${borderColor[status]}` || 'none'};
-  }
+  border: ${({ status }) => status !== 'done' ?
+      '2.26px solid' : 'none'};
+    border-color: ${({ status }) => borderColor[status] || 'transparent'};
   path {
-    fill: #D3D4D8;
-    stroke: #D3D4D8;
-    @media (min-width: 1200px) {
-      fill: ${({ status }) =>
-        iconColor[status] || '#FFFFFF' };
-      fill: ${({ status }) =>
-        iconColor[status] || '#FFFFFF' }; 
-      stroke: ${({ status }) =>
-        iconColor[status] || '#FFFFFF' };
-    }
+    fill: ${key('colors.disabledGray')};
+    stroke: ${key('colors.disabledGray')};
+    fill: ${({ status }) =>
+      iconColor[status] || '#FFFFFF' };
+    fill: ${({ status }) =>
+      iconColor[status] || '#FFFFFF' }; 
+    stroke: ${({ status }) =>
+      iconColor[status] || '#FFFFFF' };
   }
 `;
 
 
-const TrackingStep = ({ active, stage, stages }) => {
-    const status = getStatus(active, stage, stages);
-    console.log('status: ', status);
+const TrackingStep = ({ activeId, stage}) => {
+    const status = getStatus(activeId, stage);
+    console.log('status: ',status);
     return (
     <Status status={status} name={stage.name}>
         <StyledIcon status={status}>
@@ -125,13 +118,13 @@ const StyledTrackingStep = styled(TrackingStep)`
 StyledTrackingStep.displayName = 'TrackingStep'
 
 TrackingStep.defaultProps = {
-  active: 'filling',
+  activeId: 1,
   stage: { key: 'filing', name: 'filing', icon: <FilingIcon />, id: 1 },
     
 }
 
 TrackingStep.propTypes = {
-  active: string,
+  activeId: number,
   stage: objectOf({
     key: string,
     name: string,
