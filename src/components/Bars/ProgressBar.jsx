@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { key } from 'styled-theme/dist';
-import { array, string, object, node, arrayOf } from 'prop-types';
+import { string, number, object, arrayOf } from 'prop-types';
 import LoadingBar from './LoadingBar'
 
 
@@ -41,16 +41,16 @@ const Status = styled.span`
     }
 `;
 
-const ClaimStatus = ({ active, className, counter, stage, stages }) => (
+export const ClaimStatus = ({ active, className, counter, stage, stages }) => (
   <Status className={className} active={active} stage={stage} stages={stages}>
     {counter}. {stage.name}
   </Status>
 );
 
-const ProgressBar = ({ active, className, height, stages }) => {
+const ProgressBar = ({ active, background, className, height, stages, ...otherProps }) => {
   return (
-    <div className={className}>
-      <LoadingBar stages={stages} active={active} height='7px' />
+    <div className={className} {...otherProps}>
+      <LoadingBar stages={stages} active={active} background={background} height={height} />
       {stages.map((stage,i) => (
         <ClaimStatus key={stage.id} stage={stage} stages={stages} counter={i+1} active={active} />
       ))}
@@ -73,6 +73,8 @@ StyledProgressBar.displayName = 'ProgressBar'
 
 ProgressBar.defaultProps = {
   active: 'middle',
+  height: '7px',
+  otherProps: {},
   stages: [
     { 
       key: 'start', 
@@ -94,6 +96,8 @@ ProgressBar.defaultProps = {
 
 ProgressBar.propTypes = {
   active: string,
+  height: string,
+  otherProps: object,
   stages: arrayOf({
     key: string,
     name: string,

@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { key } from 'styled-theme/dist';
-import { string, arrayOf, number } from 'prop-types';
+import { string, arrayOf, object, number } from 'prop-types';
 
 const getActiveId = (active, stages) => {
     return stages ? stages.findIndex(item => item.key === active) : null;
@@ -12,30 +12,34 @@ const ProgressTrack = styled.div`
   width: 100%;
   min-width: 574px;
   height: ${({ height }) => height || '5px'};
-  background-color: #C4C4C4;
-  @media (max-width: 1200px) {
+  background-color: ${({ background }) =>  background || key('colors.gray')};
+  /* @media (max-width: 1200px) {
     display: none;
-  }
+  } */
   &::after {
     content: '';
     position: absolute;
     left: 0;
     display: block;
     height: ${({ height }) => height || '5px'};
-    background-color: #FF8000;
+    background-color: ${key('colors.action')};
     width: ${({ activeId, stages }) => (stages ? `${activeId * (100/stages.length)}%` : '0')};
   }
 `;
 
-const LoadingBar = ({ active, stages, height }) => {
+const LoadingBar = ({ active, background, stages, height, ...otherProps }) => {
     const activeId = getActiveId(active, stages) + 1;
+    console.log('background: ', background);
   return (
-      <ProgressTrack activeId={activeId} stages={stages} height={height} />
+      <ProgressTrack activeId={activeId} background={background} stages={stages} height={height} {...otherProps} />
   );
 };
 
 LoadingBar.defaultProps = {
   activeId: 1,
+  background: '',
+  height: '7px',
+  otherProps: {},
   stages: [
     { 
       key: 'start', 
@@ -57,6 +61,8 @@ LoadingBar.defaultProps = {
 
 LoadingBar.propTypes = {
   active: string,
+  background: string,
+  otherProps: object,
   stages: arrayOf({
     key: string,
     name: string,
