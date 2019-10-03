@@ -1,5 +1,5 @@
 import React from 'react';
-import { arrayOf, string, elementType, func, object } from 'prop-types';
+import { string, node, func, object } from 'prop-types';
 import BackArrow from './../Icons/BackArrow'
 import styled from 'styled-components';
 import { key } from 'styled-theme';
@@ -63,7 +63,7 @@ BackButton.defaultProps = {
   icon: <BackArrow />,
   name: 'Back',
   onClick: () => { console.log ('back button clicked')},
-  otherProps: [],
+  otherProps: {},
 };
 
 BackButton.propTypes = {
@@ -74,9 +74,9 @@ BackButton.propTypes = {
   /** Triggered when button is clicked */
   onClick: func.isRequired,
   /** Adds icon to button */
-  icon: elementType,
+  icon: node,
   /** Adds extra props to the element */
-  otherProps: arrayOf(object).isRequired,
+  otherProps: object,
 };
 
 export default BackButton;

@@ -3,7 +3,7 @@ import styled, { withTheme } from 'styled-components';
 
 // import LanguageSelector from './LanguageSelector';
 
-import { array, node, string, func, arrayOf, object } from 'prop-types';
+import { array, node, string, func, object } from 'prop-types';
 import { key } from 'styled-theme';
 
 const HeaderNav = ({ navTabs, theme, className, currentLocation, onClick, ...otherProps }) => {
@@ -87,7 +87,7 @@ const Logo = styled.img`
 HeaderNav.defaultProps = {
   navTabs: [],
   onClick: () => {},
-  otherProps: []
+  otherProps: {}
 };
 
 HeaderNav.propTypes = {
@@ -97,7 +97,7 @@ HeaderNav.propTypes = {
   onClick: func,
   /** testje */
   currentLocation: string,
-  otherProps: arrayOf(object)
+  otherProps: object
 };
 
 const exportComponent = withTheme(HeaderNav);

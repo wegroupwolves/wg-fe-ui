@@ -1,5 +1,5 @@
 import React from 'react';
-import { arrayOf, string, object, node } from 'prop-types';
+import { string, object, node } from 'prop-types';
 
 const Head = ({ className, children, ...otherProps }) => {
   return (
@@ -10,14 +10,14 @@ const Head = ({ className, children, ...otherProps }) => {
 };
 
 Head.defaultProps = {
-  otherProps: []
+  otherProps: {}
 }
 
 Head.propTypes = {
   /** Beeing able to use it in Styled Components */
   className: string,
   /** Adds extra props to the element */
-  otherProps: arrayOf(object),
+  otherProps: object,
   children: node,
 };
 

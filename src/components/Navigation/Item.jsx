@@ -1,5 +1,5 @@
 import React from 'react';
-import { arrayOf, string, object, node, func, element, bool } from 'prop-types';
+import { string, object, node, func, element, bool } from 'prop-types';
 import { key } from 'styled-theme';
 import styled from 'styled-components';
 
@@ -58,13 +58,14 @@ const Container = styled.div`
 Item.defaultProps = {
   isActive: false,
   onClick: () => {},
+  otherProps: {}
 };
 
 Item.propTypes = {
   /** Beeing able to use it in Styled Components */
   className: string,
   /** Adds extra props to the element */
-  otherProps: arrayOf(object).isRequired,
+  otherProps: object,
   isActive: bool,
   icon: element,
   onClick: func,

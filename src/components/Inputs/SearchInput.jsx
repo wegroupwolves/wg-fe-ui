@@ -1,5 +1,5 @@
 import React from 'react'
-import { arrayOf, object, func, string } from 'prop-types';
+import { object, func, string } from 'prop-types';
 
 
 const SearchInput = ({ className, onChange, placeholder, text, ...otherProps }) => {
@@ -17,7 +17,7 @@ SearchInput.defaultProps = {
     onChange: Function.prototype,
     placeholder: 'Search for name, status, ...',
     text: '',
-    otherProps: []
+    otherProps: {}
 }
 
 SearchInput.propTypes = {
@@ -25,7 +25,7 @@ SearchInput.propTypes = {
     onChange: func,
     placeholder: string,
     text: string,
-    otherProps: arrayOf(object).isRequired
+    otherProps: object
 }
 
 export default SearchInput

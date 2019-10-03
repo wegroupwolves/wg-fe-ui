@@ -1,5 +1,5 @@
 import React from 'react';
-import { arrayOf, object, bool, string, node, func } from 'prop-types';
+import { object, bool, string, node, func } from 'prop-types';
 import styled from 'styled-components';
 import { key } from 'styled-theme';
 
@@ -79,7 +79,7 @@ ActionButton.defaultProps = {
   fullwidth: false,
   icon: null,
   onClick: () => { console.log('clicked button') },
-  otherProps: [],
+  otherProps: {},
 };
 
 ActionButton.propTypes = {
@@ -98,7 +98,7 @@ ActionButton.propTypes = {
   /** Adds icon to button */
   icon: node,
   /** Adds extra props to the element */
-  otherProps: arrayOf(object).isRequired,
+  otherProps: object,
 };
 
 export default ActionButton;

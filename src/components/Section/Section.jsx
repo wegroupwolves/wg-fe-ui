@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { arrayOf, object, node, string } from 'prop-types';
+import { object, node, string } from 'prop-types';
 import { key } from 'styled-theme';
 
 const Section = ({ children, className, ...otherProps }) => {
@@ -40,13 +40,13 @@ const Content = styled.div`
 `;
 
 Section.defaultProps = {
-  otherProps: []
+  otherProps: {}
 }
 
 Section.propTypes = {
   children: node,
   className: string,
-  otherProps: arrayOf(object).isRequired
+  otherProps: object
 };
 
 Section.Title = Title;

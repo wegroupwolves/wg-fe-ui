@@ -1,5 +1,5 @@
 import React from 'react';
-import { arrayOf, string, object, node, bool } from 'prop-types';
+import { string, object, node, bool } from 'prop-types';
 import styled from 'styled-components';
 
 const HeaderCell = ({ width, className, children, title, ...otherProps }) => {
@@ -19,7 +19,7 @@ const Th = styled.th`
 `;
 
 HeaderCell.defaultProps = {
-  otherProps: [],
+  otherProps: {},
   title: false,
   width: 'unset',
 };
@@ -29,7 +29,7 @@ HeaderCell.propTypes = {
   /** Beeing able to use it in Styled Components */
   className: string,
   /** Adds extra props to the element */
-  otherProps: arrayOf(object).isRequired,
+  otherProps: object,
   children: node,
   /** The width of the tableCell element */
   width: string,

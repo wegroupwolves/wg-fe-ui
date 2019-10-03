@@ -1,5 +1,5 @@
 import React from 'react';
-import { string, object, node, arrayOf } from 'prop-types';
+import { string, object, node } from 'prop-types';
 import styled from 'styled-components';
 
 const BodyCell = ({ className, children, ...otherProps }) => {
@@ -28,14 +28,14 @@ const Td = styled.td`
 `;
 
 BodyCell.defaultProps = {
-  otherProps: []
+  otherProps: {}
 }
 
 BodyCell.propTypes = {
   /** Beeing able to use it in Styled Components */
   className: string,
   /** Adds extra props to the element */
-  otherProps: arrayOf(object).isRequired,
+  otherProps: object,
   children: node,
 };
 

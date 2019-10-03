@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { arrayOf, string, object, node } from 'prop-types';
+import { string, object, node } from 'prop-types';
 import { key } from 'styled-theme';
 import Item from './Item';
 
@@ -50,14 +50,14 @@ MainNavigation.Item = Item;
 MainNavigation.Item.displayName = 'MainNavigation.Item';
 
 MainNavigation.defaultProps = {
-  otherProps: []
+  otherProps: {}
 }
 
 MainNavigation.propTypes = {
   /** Beeing able to use it in Styled Components */
   className: string,
   /** Adds extra props to the element */
-  otherProps: arrayOf(object).isRequired,
+  otherProps: object,
   children: node,
 };
 

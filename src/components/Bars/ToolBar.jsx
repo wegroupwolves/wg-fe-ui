@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { key } from 'styled-theme';
 import { ActionButton } from './../Buttons'
-import { arrayOf, string, object, node, func } from 'prop-types';
+import { string, object, node, func } from 'prop-types';
 
 
 const Box = styled.div`
@@ -47,7 +47,7 @@ const ToolBar = ({ btnName, className, children, onClick, ...otherProps,  }) => 
 ToolBar.defaultProps = {
     btnName: 'New claim',
     onClick: Function.prototype,
-    otherProps: []
+    otherProps: {}
 }
 
 ToolBar.propTypes = {
@@ -56,7 +56,7 @@ ToolBar.propTypes = {
   className: string,
   onClick: func,
   /** Adds extra props to the element */
-  otherProps: arrayOf(object).isRequired,
+  otherProps: object,
   children: node,
 };
 

@@ -7,7 +7,7 @@ import { action } from '@storybook/addon-actions';
 import { withInfo } from '@storybook/addon-info';
 
 import buttonIcon from './assets/buttonIcon.svg';
-import backArrow from './assets/back-arrow.svg'
+import { ReactComponent as BackArrow } from './assets/back-arrow.svg'
 import { ActionButton, BackButton, ToggleActionButton } from '../src/';
 
 addParameters({
@@ -21,7 +21,7 @@ addParameters({
 const buttonLevels = ['primary', 'secondary'];
 const ToggleActionButtonLevels = ['active', 'non-active'];
 const iconObject = { none: null, House: buttonIcon };
-const svg = { House: <img src={buttonIcon} />, BackArrow: <img src={backArrow} /> }
+const svg = { none: null, back_arrow: <BackArrow /> }
 const propsObject = [{ none: null, id: { id: 'add' } }];
 
 storiesOf('Low level blocks/Buttons', module)
@@ -39,14 +39,17 @@ storiesOf('Low level blocks/Buttons', module)
       {text('Label', 'Pay')}
     </ActionButton>
   ))
-  .add('BackButton', () => (
-    <BackButton
+  .add('BackButton', () => {
+    const iconName = select('Icon', Object.keys(svg), 'back_arrow')
+    return (
+      <BackButton
       onClick={action('button clicked')}
       name="Overview"
-      icon={select('Icon', svg)}
+      icon={svg[iconName]}
       otherProps={select('otherProps', ...propsObject)}
     />
-  ))
+    )
+  })
   .add('ToggleButton', () => (
     <ToggleActionButton
       onClick={action('button clicked')}

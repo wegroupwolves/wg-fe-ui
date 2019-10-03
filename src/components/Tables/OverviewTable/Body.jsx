@@ -1,5 +1,5 @@
 import React from 'react';
-import { arrayOf, string, object, node } from 'prop-types';
+import { string, object, node } from 'prop-types';
 import styled from 'styled-components';
 
 const Body = ({ className, children, ...otherProps }) => {
@@ -15,14 +15,14 @@ const Tbody = styled.tbody`
 `;
 
 Body.defaultProps = {
-  otherProps: []
+  otherProps: {}
 }
 
 Body.propTypes = {
   /** Beeing able to use it in Styled Components */
   className: string,
   /** Adds extra props to the element */
-  otherProps: arrayOf(object).isRequired,
+  otherProps: object,
   children: node,
 };
 

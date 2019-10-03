@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { arrayOf, node, string, func, object } from 'prop-types';
+import { node, string, func, object } from 'prop-types';
 import { key } from 'styled-theme/dist';
 
 const Value = ({ className, children, highlight, toggled, ...otherProps }) => {
@@ -35,14 +35,14 @@ const StyledValue = styled.td`
 `;
 
 Value.defaultProps = {
-  otherProps: []
+  otherProps: {}
 }
 
 Value.propTypes = {
   /** Beeing able to use it in Styled Components */
   className: string,
   /** Adds extra props to the element */
-  otherProps: arrayOf(object).isRequired,
+  otherProps: object,
   /** triggers when highlight is clicked */
   toggled: func,
   /** clickable highlight */

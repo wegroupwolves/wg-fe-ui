@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { arrayOf, string, object, node } from 'prop-types';
+import { string, object, node } from 'prop-types';
 import Value from './Value';
 import Row from './Row';
 import Key from './Key';
@@ -25,14 +25,14 @@ const StyledBody = styled.tbody`
 `;
 
 DisplayTable.defaultProps = {
-  otherProps: []
+  otherProps: {}
 }
 
 DisplayTable.propTypes = {
   /** Beeing able to use it in Styled Components */
   className: string,
   /** Adds extra props to the element */
-  otherProps: arrayOf(object).isRequired,
+  otherProps: object,
   children: node,
 };
 

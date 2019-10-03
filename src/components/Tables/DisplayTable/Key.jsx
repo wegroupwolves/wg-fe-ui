@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { arrayOf, node, string, object } from 'prop-types';
+import { node, string, object } from 'prop-types';
 import { key } from 'styled-theme/dist';
 
 const Key = ({ className, children, ...otherProps }) => {
@@ -20,14 +20,14 @@ const StyledKey = styled.th`
 `;
 
 Key.defaultProps = {
-  otherProps: []
+  otherProps: {}
 }
 
 Key.propTypes = {
   /** Beeing able to use it in Styled Components */
   className: string,
   /** Adds extra props to the element */
-  otherProps: arrayOf(object).isRequired,
+  otherProps: object,
   /** Key text */
   children: node.isRequired,
 };

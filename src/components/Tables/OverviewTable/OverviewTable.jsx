@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { key } from 'styled-theme';
 
-import { arrayOf, string, object, node } from 'prop-types';
+import { string, object, node } from 'prop-types';
 import Head from './Head';
 import HeaderCell from './HeaderCell';
 import Body from './Body';
@@ -26,14 +26,14 @@ const Table = styled.table`
 `;
 
 OverviewTable.defaultProps = {
-  otherProps: []
+  otherProps: {}
 }
 
 OverviewTable.propTypes = {
   /** Beeing able to use it in Styled Components */
   className: string,
   /** Adds extra props to the element */
-  otherProps: arrayOf(object).isRequired,
+  otherProps: object,
   children: node,
 };
 
