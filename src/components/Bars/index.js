@@ -1,4 +1,5 @@
-import ProgressBar from './ProgressBar'
-import ToolBar from './ToolBar'
+import ProgressBar from './ProgressBar';
+import ToolBar from './ToolBar';
+import OverviewClaimStatus from './OverviewClaimStatus'
 
-export { ProgressBar, ToolBar }
+export { ProgressBar, ToolBar, OverviewClaimStatus };

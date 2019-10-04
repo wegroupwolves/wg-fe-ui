@@ -1,4 +1,8 @@
-import { ProgressBar, ToolBar } from './../src/components/Bars'
+import {
+  ProgressBar,
+  ToolBar,
+  OverviewClaimStatus,
+} from './../src/components/Bars';
 import { ActionButton, BackButton, ToggleButton } from './components/Buttons';
 import { CheckBox } from './components/Checkboxes';
 import { TextInput, SearchInput, SearchSelectInput } from './components/Inputs';
@@ -12,7 +16,6 @@ import {
 import { Section } from './components/Section';
 import { ThemeProvider } from 'styled-components';
 import Theme from './constants/theme';
-
 
 export {
   ActionButton,
@@ -32,7 +35,8 @@ export {
   Section,
   OverviewTable,
   ProgressBar,
-  ToolBar
+  ToolBar,
+  OverviewClaimStatus,
 };
 
 // Export all components

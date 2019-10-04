@@ -10,7 +10,7 @@ describe('OverviewClaimStatus', () => {
     const statuses = ['first', 'second', 'third'];
     const wrapper = mount(
       <ThemeProvider theme={theme}>
-        <OverviewClaimStatus statuses={statuses} currentStatus={'second'} />
+        <OverviewClaimStatus statuses={statuses} currentStatus={statuses[1]} />
       </ThemeProvider>,
     );
 
