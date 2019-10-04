@@ -58,9 +58,6 @@ const Status = styled.div`
     text-transform: capitalize;
     margin-top: 1.8vh;
     color: #A29C95;
-    @media (max-width: 768px) {
-      margin-top: 5vh;
-    }
     width: 5vw;
   }
 `;

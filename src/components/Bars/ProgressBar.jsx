@@ -6,7 +6,6 @@ import LoadingBar from './LoadingBar'
 
 
 const Status = styled.span`
-    display: ${({ active }) => active ? 'inline' : 'none'};
     font-family: Lato;
     font-size: 14px;
     font-weight: ${({ active }) => 
@@ -18,6 +17,7 @@ const Status = styled.span`
     color: #646464;
     margin-top: 1.8vh;
     @media (max-width: 768px) {
+      display: ${({ active }) => active ? 'inline' : 'none'};
       margin-top: 0;
       margin-left: 2vw;
       text-align: justify;
@@ -34,22 +34,24 @@ const ClaimStatus = ({ className, active, counter, stage }) => {
 
 const ProgressBar = ({ activeId, background, className, height, stages, ...otherProps }) => {
   return (
-    <div className={className} {...otherProps}>
+    <StyledProgressBar {...otherProps}>
       <LoadingBar stages={stages} activeId={activeId} background={background} height={height} />
       {stages.map((stage,i) => (
         <ClaimStatus key={stage.id} stage={stage} stages={stages} active={activeId === stage.id} counter={i+1} />
       ))}
-    </div>
+    </StyledProgressBar>
   );
 };
 
-const StyledProgressBar = styled(ProgressBar)`
+const StyledProgressBar = styled.div`
   display: flex;
   justify-content: space-around;
   margin: 4vh auto .55vh;
   position: relative;
-  @media (max-width: 1200px) {
+  width: 100%;
+  @media (max-width: 768px) {
     margin: 0;
+    width: initial;
   }
 `;
 
@@ -87,4 +89,4 @@ ProgressBar.propTypes = {
   })
 }
 
-export default StyledProgressBar;
+export default ProgressBar;

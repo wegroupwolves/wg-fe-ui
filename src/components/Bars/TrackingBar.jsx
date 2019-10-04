@@ -16,19 +16,19 @@ const getActiveId = (active, stages) => {
   return stages ? stages.findIndex(item => item.key === active) + 1 : 0;
 }
 
-const TrackingBar = ({ active, background, className, height, stages }) => {
+const TrackingBar = ({ active, background, height, stages }) => {
   const activeId = getActiveId(active, stages);
   return (
-    <div className={className}>
+    <StyledTrackingBar>
       <LoadingBar stages={stages.length} activeId={activeId} background={background} height={height} offset={2.08} stepWidth={14.2857} />
       {stages.map(stage => (
         <TrackingStep key={stage.id} stage={stage} activeId={activeId} />
       ))}
-    </div>
+    </StyledTrackingBar>
   );
 };
 
-const StyledTrackingBar = styled(TrackingBar)`
+const StyledTrackingBar = styled.div`
   display: flex;
   justify-content: space-between;
   width: 100%;
@@ -40,8 +40,6 @@ const StyledTrackingBar = styled(TrackingBar)`
     width: initial;
   }
 `;
-
-StyledTrackingBar.displayName = 'TrackingBar'
 
 TrackingBar.defaultProps = {
   active: 'data_analysis',
@@ -104,4 +102,4 @@ TrackingBar.propTypes = {
   })
 }
 
-export default StyledTrackingBar;
+export default TrackingBar;
