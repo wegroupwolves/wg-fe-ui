@@ -1,28 +1,9 @@
 {
   "name": "wg-fe-ui",
-  "version": "0.3.0",
+  "version": "0.3.4",
   "private": true,
   "main": "index.js",
-  "dependencies": {
-    "@babel/cli": "^7.6.0",
-    "detect-browser": "^4.6.0",
-    "formik": "^1.5.8",
-    "i18next": "^17.0.16",
-    "react": "^16.9.0",
-    "react-dom": "^16.9.0",
-    "react-drag-drawer": "^3.3.1",
-    "react-router": "^5.1.0",
-    "react-scripts": "3.1.1",
-    "react-select": "^3.0.4",
-    "rimraf": "^3.0.0",
-    "styled-components": "^4.3.2",
-    "styled-theme": "^0.3.3",
-    "yup": "^0.27.0"
-  },
   "scripts": {
-    "start": "react-scripts start",
-    "start-webpack": "webpack --watch",
-    "build-react": "react-scripts build",
     "build": "rimraf dist/* && babel src -d dist",
     "test": "jest",
     "test:watch": "jest --watch",
@@ -59,6 +40,22 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "dependencies": {
+    "@babel/cli": "^7.6.0",
+    "detect-browser": "^4.6.0",
+    "formik": "^1.5.8",
+    "i18next": "^17.0.16",
+    "react": "^16.9.0",
+    "react-dom": "^16.9.0",
+    "react-drag-drawer": "^3.3.1",
+    "react-router": "^5.1.0",
+    "react-scripts": "3.1.1",
+    "react-select": "^3.0.4",
+    "rimraf": "^3.0.0",
+    "styled-components": "^4.3.2",
+    "styled-theme": "^0.3.3",
+    "yup": "^0.27.0"
   },
   "devDependencies": {
     "@babel/core": "^7.5.5",
