@@ -1,5 +1,5 @@
 import React from 'react';
-import ToolBar, {  InnerBox } from './ToolBar';
+import ToolBar from './ToolBar';
 import { SearchInput } from './../Inputs'
 import { shallow, mount } from 'enzyme';
 import Theme from '../../../.storybook/theme';
@@ -18,7 +18,7 @@ describe('ToolBar', () => {
         </ThemeProvider>
         );
 
-        expect(wrapper.find(InnerBox)).toHaveStyleRule(
+        expect(wrapper.find('InnerBox')).toHaveStyleRule(
             'border-right', `1px solid ${Theme().colors.outline}`);
 
     });

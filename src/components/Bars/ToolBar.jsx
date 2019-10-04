@@ -16,7 +16,7 @@ const Box = styled.div`
     box-sizing: border-box;
 `
 
-export const InnerBox = styled.div`
+const InnerBox = styled.div`
     position: relative;
     display: flex;
     align-items: center;
@@ -30,6 +30,8 @@ export const InnerBox = styled.div`
         background-color: inherit;
     }
 `
+
+InnerBox.displayName = 'InnerBox';
 
 const ToolBar = ({ btnName, className, children, onClick, ...otherProps,  }) => {
   return (

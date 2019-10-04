@@ -13,9 +13,9 @@ const ProgressTrack = styled.div`
   min-width: 574px;
   height: ${({ height }) => height || '5px'};
   background-color: ${({ background }) => background || key('colors.gray')};
-  /* @media (max-width: 1200px) {
+  @media (max-width: 768px) {
     display: none;
-  } */
+  }
   &::after {
     content: '';
     position: absolute;
@@ -25,12 +25,12 @@ const ProgressTrack = styled.div`
     background-color: ${key('colors.action')};
     width: ${({ activeId, stages }) =>
       stages ? `${activeId * (100 / stages.length)}%` : '0'};
+    transition: width 1s ease-in-out;
   }
 `;
 
 const LoadingBar = ({ active, background, stages, height, ...otherProps }) => {
   const activeId = getActiveId(active, stages) + 1;
-  console.log('background: ', background);
   return (
     <ProgressTrack
       activeId={activeId}
