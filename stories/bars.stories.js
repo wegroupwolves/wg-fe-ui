@@ -3,7 +3,7 @@ import { storiesOf } from '@storybook/react'
 import { withKnobs, select } from '@storybook/addon-knobs'
 import { action } from '@storybook/addon-actions';
 import { withInfo } from '@storybook/addon-info'
-import { BackButton, SearchInput, ProgressBar, ToolBar } from './../src'
+import { BackButton, SearchInput, ProgressBar, ToolBar, TrackingBar } from './../src'
 
 const COMPONENT_CHOICES = {
     none: null,

@@ -1,6 +1,6 @@
 import React from 'react'
 import 'jest-styled-components';
-import TrackingStep, { StyledIcon } from './TrackingStep';
+import TrackingStep from './TrackingStep';
 import FilingIcon from './../Icons/Filing'
 import LoupeIcon from './../Icons/Loupe'
 import { mount } from 'enzyme';
@@ -18,8 +18,8 @@ describe('TrackingStep', () => {
         )
 
         // console.log('Theme: ', wrapper.find(StyledIcon).childAt(0).debug());
-        expect(wrapper.find(StyledIcon)).toHaveStyleRule('background-color', '#FFFFFF');
-        expect(wrapper.find(StyledIcon)).toHaveStyleRule('border-color', Theme().colors.action);
+        expect(wrapper.find('StyledIcon')).toHaveStyleRule('background-color', '#FFFFFF');
+        expect(wrapper.find('StyledIcon')).toHaveStyleRule('border-color', Theme().colors.action);
     });
 
     it('when step having status "done", should get action color', () => {
@@ -30,8 +30,8 @@ describe('TrackingStep', () => {
             </ThemeProvider>
         )
 
-        expect(wrapper.find(StyledIcon)).toHaveStyleRule('background-color', Theme().colors.action);
-        expect(wrapper.find(StyledIcon)).toHaveStyleRule('border-color', 'transparent');
+        expect(wrapper.find('StyledIcon')).toHaveStyleRule('background-color', Theme().colors.action);
+        expect(wrapper.find('StyledIcon')).toHaveStyleRule('border-color', 'transparent');
     });
 
     it('when step having status "awaiting", should get white background', () => {
@@ -41,8 +41,8 @@ describe('TrackingStep', () => {
             </ThemeProvider>
         )
 
-        expect(wrapper.find(StyledIcon)).toHaveStyleRule('background-color', '#FFFFFF');
-        expect(wrapper.find(StyledIcon)).toHaveStyleRule('border-color', Theme().colors.disabledGray);
+        expect(wrapper.find('StyledIcon')).toHaveStyleRule('background-color', '#FFFFFF');
+        expect(wrapper.find('StyledIcon')).toHaveStyleRule('border-color', Theme().colors.disabledGray);
     });
 
 });

@@ -65,7 +65,7 @@ const Status = styled.div`
   }
 `;
 
-export const StyledIcon = styled.div`
+const StyledIcon = styled.div`
   background-color: ${({ status }) => backgroundColor[status] || '#FFFFFF'};
   display: flex;
   border-radius: 50%;
@@ -79,16 +79,14 @@ export const StyledIcon = styled.div`
       '2.26px solid' : 'none'};
     border-color: ${({ status }) => borderColor[status] || 'transparent'};
   path {
-    fill: ${key('colors.disabledGray')};
-    stroke: ${key('colors.disabledGray')};
-    fill: ${({ status }) =>
-      iconColor[status] || '#FFFFFF' };
     fill: ${({ status }) =>
       iconColor[status] || '#FFFFFF' }; 
     stroke: ${({ status }) =>
       iconColor[status] || '#FFFFFF' };
   }
 `;
+
+StyledIcon.displayName = "StyledIcon"
 
 
 const TrackingStep = ({ activeId, stage}) => {
