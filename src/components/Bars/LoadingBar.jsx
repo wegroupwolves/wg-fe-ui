@@ -25,7 +25,7 @@ const ProgressTrack = styled.div`
   }
 `;
 
-const LoadingBar = ({ activeId, height, offset, stages, stepWidth, ...otherProps }) => {
+const LoadingBar = ({ activeId, background, height, offset, stages, stepWidth, ...otherProps }) => {
     let step = stepWidth;
     if(stepWidth) {
       if(activeId === 1) step = offset;
@@ -34,7 +34,7 @@ const LoadingBar = ({ activeId, height, offset, stages, stepWidth, ...otherProps
       step = activeId * (100/stages.length);
     } 
   return (
-      <ProgressTrack height={height} background={background} step={step} />
+      <ProgressTrack height={height} background={background} step={step} {...otherProps} />
   );
 };
 

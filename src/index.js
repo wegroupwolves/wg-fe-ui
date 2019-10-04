@@ -31,7 +31,6 @@ export {
   SubNavigation,
   Section,
   OverviewTable,
-  LoadingBar,
   ProgressBar,
   ToolBar,
   TrackingBar

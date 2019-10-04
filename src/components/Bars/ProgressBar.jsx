@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import { key } from 'styled-theme/dist';
 import { string, number, object, arrayOf } from 'prop-types';
 import LoadingBar from './LoadingBar'
-import { arrayOf, number, string } from 'prop-types';
 
 
 const Status = styled.span`
