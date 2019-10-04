@@ -1,4 +1,4 @@
-import { DisplayTable } from '.';
+import DisplayTable from './DisplayTable';
 import { mount } from 'enzyme';
 import React from 'react';
 import 'jest-styled-components';
