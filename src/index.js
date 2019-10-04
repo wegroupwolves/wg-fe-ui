@@ -1,19 +1,25 @@
-import { LoadingBar, ProgressBar, ToolBar, TrackingBar } from './../src/components/Bars'
-import { ActionButton, ToggleActionButton } from './components/Buttons';
-import { Checkbox } from './components/Checkboxes';
+import { ProgressBar, ToolBar, TrackingBar } from './../src/components/Bars'
+import { ActionButton, BackButton, ToggleButton } from './components/Buttons';
+import { CheckBox } from './components/Checkboxes';
 import { TextInput, SearchInput, SearchSelectInput } from './components/Inputs';
 import { QuestionBox } from './components/Boxes';
 import { DisplayTable, OverviewTable } from './components/Tables';
-import { HeaderNav, MainNavigation } from './components/Navigation';
+import {
+  HeaderNav,
+  MainNavigation,
+  SubNavigation,
+} from './components/Navigation';
 import { Section } from './components/Section';
 import { ThemeProvider } from 'styled-components';
 import Theme from './constants/theme';
 
+
 export {
   ActionButton,
-  ToggleActionButton,
+  BackButton,
+  ToggleButton,
   ThemeProvider,
-  Checkbox,
+  CheckBox,
   TextInput,
   SearchInput,
   SearchSelectInput,
@@ -22,6 +28,7 @@ export {
   Theme,
   HeaderNav,
   MainNavigation,
+  SubNavigation,
   Section,
   OverviewTable,
   LoadingBar,
@@ -29,6 +36,5 @@ export {
   ToolBar,
   TrackingBar
 };
-
 
 // Export all components

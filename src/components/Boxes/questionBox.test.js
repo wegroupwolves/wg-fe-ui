@@ -6,10 +6,10 @@ import 'jest-styled-components';
 
 import { ThemeProvider } from 'styled-components';
 
-describe('Checkbox', () => {
+describe('QuestionBox', () => {
   it('can pass extra props', () => {
     const wrapper = shallow(
-      <QuestionBox otherProps={{ lol: 'test' }}>Testje</QuestionBox>,
+      <QuestionBox lol={'test'} >Testje</QuestionBox>,
     );
     expect(wrapper.props().lol).toEqual('test');
   });

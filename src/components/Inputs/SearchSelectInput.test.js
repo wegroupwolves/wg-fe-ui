@@ -135,7 +135,7 @@ describe('SearchSelectInput', () => {
         name="test"
         selected={(name, value) => console.log(name, value)}
         options={[]}
-        otherProps={{ id: 12 }}
+        id={12}
       >
         Test
       </SearchSelectInput>,

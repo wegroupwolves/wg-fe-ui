@@ -148,11 +148,11 @@ describe('TextInput', () => {
   });
   it('otherProps adds props to input', () => {
     const wrapper = mount(
-      <TextInput otherProps={{ max: '12' }} name="test" type="text">
+      <TextInput max={12} name="test" type="text">
         Test
       </TextInput>,
     );
 
-    expect(wrapper.find('input').props().max).toEqual('12');
+    expect(wrapper.find('input').props().max).toEqual(12);
   });
 });

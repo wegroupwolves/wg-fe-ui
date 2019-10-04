@@ -1,3 +1,3 @@
-import QuestionBox from './QuestionBox.js';
+import QuestionBox from './QuestionBox';
 
 export { QuestionBox };

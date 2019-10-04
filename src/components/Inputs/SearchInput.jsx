@@ -1,14 +1,15 @@
 import React from 'react'
-import { string, func } from 'prop-types';
+import { object, func, string } from 'prop-types';
 
-const SearchInput = ({ className, onChange, placeholder, value }) => {
+
+const SearchInput = ({ className, onChange, placeholder, text, ...otherProps }) => {
 
     const handleChange = val => {
         onChange(val);
     }
 
     return (
-        <input className={className} type="text" name="search" placeholder={placeholder} value={value} onChange={handleChange} />
+        <input className={className} type="text" name="search" placeholder={placeholder} value={text} onChange={handleChange} {...otherProps} />
     )
 }
 
@@ -16,14 +17,16 @@ SearchInput.defaultProps = {
     className: '',
     onChange: Function.prototype,
     placeholder: 'Search for name, status, ...',
-    value: ''
+    text: '',
+    otherProps: {}
 }
 
 SearchInput.propTypes = {
     className: string,
     onChange: func,
     placeholder: string,
-    value: string
+    text: string,
+    otherProps: object
 }
 
 export default SearchInput

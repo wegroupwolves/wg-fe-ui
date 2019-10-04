@@ -13,7 +13,7 @@ const Theme = () => {
     highlight: '#505050',
     disabled: '#AEAEAE',
     disabledGray: '#D3D4D8',
-    gray: `#C4C4C4`,
+    gray: '#C4C4C4',
     good: '#00CD39',
     bad: '#F74040',
 
