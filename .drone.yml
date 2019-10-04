@@ -6,7 +6,7 @@ steps:
   - name: build
     image: node:11
     commands:
-      - npm install
-      - npm run test
+      - npm install --silent
+      - npm run test --coverage
     when:
       event: push
