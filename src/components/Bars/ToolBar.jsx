@@ -37,7 +37,7 @@ const ToolBar = ({ btnName, className, children, onClick, ...otherProps,  }) => 
         <InnerBox>
             { children }
         </InnerBox>
-        <ActionButton onClick={onClick}>
+        <ActionButton onClick={onClick} padding="0.5rem 1.5rem">
             { btnName }
         </ActionButton>
     </Box>

@@ -1,3 +1,5 @@
+import LoadingBar from './LoadingBar'
+import ProgressBar from './ProgressBar'
 import ToolBar from './ToolBar'
 
-export { ToolBar }
+export { LoadingBar, ProgressBar, ToolBar }

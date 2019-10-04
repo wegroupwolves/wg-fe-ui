@@ -1,9 +1,9 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
-import { withKnobs, select } from '@storybook/addon-knobs';
+import { withKnobs, select } from '@storybook/addon-knobs'
 import { action } from '@storybook/addon-actions';
-import { withInfo } from '@storybook/addon-info';
-import { BackButton, SearchInput, ToolBar } from './../src'
+import { withInfo } from '@storybook/addon-info'
+import { BackButton, SearchInput, LoadingBar, ProgressBar } from './../src'
 
 const COMPONENT_CHOICES = {
     none: null,
@@ -11,14 +11,28 @@ const COMPONENT_CHOICES = {
     search_input: <SearchInput />
   };
 
-storiesOf('Mid level blocks/Bars', module)
+storiesOf('Low Level blocks/Bars', module)
     .addDecorator(withKnobs())
     .addDecorator(withInfo({ inline: true }))
+    .add('LoadingBar', () => {
+        return (
+            <LoadingBar background="#AEAEAE" />
+        )
+    })
+
+
+storiesOf('Mid Level blocks/Bars', module)
+    .addDecorator(withKnobs())
+    .addDecorator(withInfo({ inline: true }))
+    .add('ProgressBar', () => {
+        return (
+            <ProgressBar background="#AEAEAE" />
+        )
+    })
     .add('ToolBar', () => {
         const componentName = select('Child component', Object.keys(COMPONENT_CHOICES),'search_input');
         return (
-        <ToolBar onClick={action('clicked it')}>
-            {COMPONENT_CHOICES[componentName]}
-        </ToolBar>
-        )
-    })
+            <ToolBar onClick={action('clicked it')}>
+                {COMPONENT_CHOICES[componentName]}
+            </ToolBar>
+    )});

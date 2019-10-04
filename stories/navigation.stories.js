@@ -4,8 +4,8 @@ import { storiesOf } from '@storybook/react';
 import { withKnobs } from '@storybook/addon-knobs';
 import { withInfo } from '@storybook/addon-info';
 
-import HouseIcon from './assets/HouseIcon';
-import { HeaderNav, MainNavigation } from '../src';
+import HouseIcon from './assets/HouseIcon.jsx';
+import { HeaderNav, MainNavigation, SubNavigation } from '../src/index.js';
 
 storiesOf('Mid level blocks/Navigation', module)
   .addDecorator(withKnobs)
@@ -50,10 +50,81 @@ storiesOf('Mid level blocks/Navigation', module)
         />
       </Container>
     );
+  })
+  .add('SubNavigation', () => {
+    // mocked sections
+    const sections = [
+      {
+        id: 1,
+        label: '2019',
+        subsections: [
+          {
+            id: 1,
+            label: 'September',
+          },
+          {
+            id: 2,
+            label: 'August',
+          },
+        ],
+      },
+      {
+        id: 2,
+        label: '2018',
+        subsections: [
+          {
+            id: 1,
+            label: 'November',
+          },
+        ],
+      },
+    ];
+    const [currentSection, setCurrentSection] = useState({
+      section: 1,
+      subsection: 1,
+    });
+    return (
+      <Container autoWidth={true}>
+        <SubNavigation>
+          {sections.map(section => (
+            <React.Fragment key={section.id}>
+              <SubNavigation.Section
+                onClick={() =>
+                  setCurrentSection({ section: section.id, subsection: 1 })
+                }
+              >
+                {section.label}
+              </SubNavigation.Section>
+              <SubNavigation.SectionContainer
+                active={section.id === currentSection.section}
+              >
+                {section.subsections.map(subsection => (
+                  <SubNavigation.SubSection
+                    key={subsection.id}
+                    onClick={() =>
+                      setCurrentSection({
+                        section: section.id,
+                        subsection: subsection.id,
+                      })
+                    }
+                    active={
+                      currentSection.section === section.id &&
+                      currentSection.subsection === subsection.id
+                    }
+                  >
+                    {subsection.label}
+                  </SubNavigation.SubSection>
+                ))}
+              </SubNavigation.SectionContainer>
+            </React.Fragment>
+          ))}
+        </SubNavigation>
+      </Container>
+    );
   });
 
 const Container = styled.div`
-  width: 100%;
+  width: ${({ autoWidth }) => (autoWidth ? 'auto' : '100%')};
   height: 35rem;
   margin-top: 2.5rem;
   margin-bottom: 2.5rem;

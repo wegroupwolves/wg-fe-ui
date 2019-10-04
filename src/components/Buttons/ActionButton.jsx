@@ -11,6 +11,7 @@ const ActionButton = ({
   onClick,
   icon,
   className,
+  padding,
   ...otherProps
 }) => {
   const handleClick = () => {
@@ -25,6 +26,7 @@ const ActionButton = ({
       onClick={handleClick}
       fullwidth={fullwidth}
       disabled={disabled}
+      padding={padding}
       className={className}
       {...otherProps}
     >
@@ -49,7 +51,7 @@ const StyledButton = styled.button`
   width: ${props => (props.fullwidth ? '100%' : '')};
   color: white;
   border: 0;
-  padding: 0.5rem 1.5rem;
+  padding: ${({ padding }) => padding || '0.4rem'};
   display: flex;
   justify-content: center;
   align-items: center;
@@ -95,6 +97,7 @@ ActionButton.propTypes = {
   fullwidth: bool,
   /** Triggered when button is clicked */
   onClick: func.isRequired,
+  padding: string,
   /** Adds icon to button */
   icon: node,
   /** Adds extra props to the element */
