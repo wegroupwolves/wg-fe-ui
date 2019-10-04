@@ -1,7 +1,6 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import styled from 'styled-components';
 import { key } from 'styled-theme';
-
 import { string, object, node } from 'prop-types';
 import Head from './Head';
 import HeaderCell from './HeaderCell';
@@ -9,13 +8,13 @@ import Body from './Body';
 import Row from './Row';
 import BodyCell from './BodyCell';
 
-const OverviewTable = ({ className, children, ...otherProps }) => {
-  return (
-    <Table className={className} {...otherProps}>
+const OverviewTable = forwardRef(
+  ({ className, children, ...otherProps }, ref) => (
+    <Table className={className} ref={ref} {...otherProps}>
       {children}
     </Table>
-  );
-};
+  ),
+);
 
 const Table = styled.table`
   font-family: ${key('fonts.primary')};
@@ -27,7 +26,7 @@ const Table = styled.table`
 
 OverviewTable.defaultProps = {
   otherProps: {}
-}
+};
 
 OverviewTable.propTypes = {
   /** Beeing able to use it in Styled Components */
@@ -37,6 +36,7 @@ OverviewTable.propTypes = {
   children: node,
 };
 
+OverviewTable.displayName = 'OverviewTable';
 OverviewTable.Head = Head;
 OverviewTable.Head.displayName = 'OverviewTable.Head';
 OverviewTable.HeaderCell = HeaderCell;
