@@ -1,4 +1,4 @@
-import { ProgressBar, ToolBar } from './../src/components/Bars'
+import { ProgressBar, ToolBar, TrackingBar } from './../src/components/Bars'
 import { ActionButton, BackButton, ToggleButton } from './components/Buttons';
 import { CheckBox } from './components/Checkboxes';
 import { TextInput, SearchInput, SearchSelectInput } from './components/Inputs';
@@ -32,7 +32,8 @@ export {
   Section,
   OverviewTable,
   ProgressBar,
-  ToolBar
+  ToolBar,
+  TrackingBar
 };
 
 // Export all components

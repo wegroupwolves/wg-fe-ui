@@ -14,6 +14,7 @@ const SearchInput = ({ className, onChange, placeholder, text, ...otherProps }) 
 }
 
 SearchInput.defaultProps = {
+    className: '',
     onChange: Function.prototype,
     placeholder: 'Search for name, status, ...',
     text: '',
