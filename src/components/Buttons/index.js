@@ -1,4 +1,4 @@
-import ActionButton from './ActionButton.js';
+import ActionButton from './ActionButton';
 import ToggleActionButton from './ToggleActionButton.js';
 
 export { ActionButton, ToggleActionButton };
