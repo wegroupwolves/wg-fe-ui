@@ -20,7 +20,7 @@ const TrackingBar = ({ active, className, height, stages }) => {
   const activeId = getActiveId(active, stages);
   return (
     <div className={className}>
-      <LoadingBar stages={stages.length} activeId={activeId} height={height} offset={2.08} stepWidth={14.2857} />
+      <LoadingBar stages={stages.length} activeId={activeId} background={key('colors.disabledGray')} height={height} offset={2.08} stepWidth={14.2857} />
       {stages.map(stage => (
         <TrackingStep key={stage.id} stage={stage} activeId={activeId} />
       ))}
@@ -31,11 +31,13 @@ const TrackingBar = ({ active, className, height, stages }) => {
 const StyledTrackingBar = styled(TrackingBar)`
   display: flex;
   justify-content: space-between;
+  width: 100%;
   align-items: center;
   margin: 4vh auto .55vh;
   position: relative;
-  @media (max-width: 1200px) {
+  @media (max-width: 768px) {
     margin: 0;
+    width: initial;
   }
 `;
 

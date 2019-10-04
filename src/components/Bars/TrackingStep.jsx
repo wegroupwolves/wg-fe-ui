@@ -36,21 +36,21 @@ const getStatus = (activeId, stage) => {
 
 const Status = styled.div`
   display: flex;
-  flex-direction: column;
   align-items: center;
   position: relative;
-  @media (max-width: 1200px) {
+  @media (max-width: 768px) {
     display: ${({ status }) =>
       status !== 'active' ? 'none' : 'flex'};
     justify-content: center;
-    align-items: center;
     width: auto;
-    flex-direction: row;
   }
   &::after {
     content: '${({ name }) => name || ''}';
     display: block;
     position: absolute;
+    text-align: center;
+    left: 50%;
+    transform: translateX(-50%);
     top: 5.76vh;
     font-size: calc(9px + 0.26vw);
     line-height: 18px;
@@ -58,10 +58,8 @@ const Status = styled.div`
     text-transform: capitalize;
     margin-top: 1.8vh;
     color: #A29C95;
-    @media (max-width: 1200px) {
-    margin-top: 5vh;
-    margin-left: 2vw;
-    text-align: justify;
+    @media (max-width: 768px) {
+      margin-top: 5vh;
     }
     width: 5vw;
   }
