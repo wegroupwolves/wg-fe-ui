@@ -4,10 +4,12 @@ import PropTypes from 'prop-types';
 import { key } from 'styled-theme/dist';
 
 const StatusRectangle = styled.div`
-  width: 20px;
-  height: 3.81px;
+  min-width: 14px;
+  min-height: 3px;
+  width: 1vw;
+  height: 0.35vh;
   background-color: ${({ color }) => (color ? color : null)};
-  margin-right: 5px;
+  margin-right: 0.5rem;
 `;
 
 StatusRectangle.displayName = 'StatusRectangle';
@@ -20,8 +22,8 @@ const Container = styled.div`
   font-family: ${key('fonts.primary')};
   span {
     font-size: 1.2rem;
-    margin-bottom: 5.33px;
-    line-height: 16px;
+    margin-bottom: 0.53rem;
+    line-height: 1.6rem;
   }
 `;
 
