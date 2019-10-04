@@ -3,22 +3,13 @@ import { storiesOf } from '@storybook/react'
 import { withKnobs, select } from '@storybook/addon-knobs'
 import { action } from '@storybook/addon-actions';
 import { withInfo } from '@storybook/addon-info'
-import { BackButton, SearchInput, LoadingBar, ProgressBar } from './../src'
+import { BackButton, SearchInput, ProgressBar, ToolBar } from './../src'
 
 const COMPONENT_CHOICES = {
     none: null,
     back_button: <BackButton />,
-    search_input: <SearchInput />
+    search_input: <SearchInput onChange={action('onChange')} />
   };
-
-storiesOf('Low Level blocks/Bars', module)
-    .addDecorator(withKnobs())
-    .addDecorator(withInfo({ inline: true }))
-    .add('LoadingBar', () => {
-        return (
-            <LoadingBar background="#AEAEAE" />
-        )
-    })
 
 
 storiesOf('Mid Level blocks/Bars', module)

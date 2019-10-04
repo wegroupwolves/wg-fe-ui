@@ -1,5 +1,5 @@
-import { LoadingBar, ProgressBar, ToolBar } from './../src/components/Bars'
-import { ActionButton, BackButton, ToggleActionButton } from './components/Buttons';
+import { ProgressBar, ToolBar } from './../src/components/Bars'
+import { ActionButton, BackButton, ToggleButton } from './components/Buttons';
 import { CheckBox } from './components/Checkboxes';
 import { TextInput, SearchInput, SearchSelectInput } from './components/Inputs';
 import { QuestionBox } from './components/Boxes';
@@ -17,7 +17,7 @@ import Theme from './constants/theme';
 export {
   ActionButton,
   BackButton,
-  ToggleActionButton,
+  ToggleButton,
   ThemeProvider,
   CheckBox,
   TextInput,
@@ -31,7 +31,6 @@ export {
   SubNavigation,
   Section,
   OverviewTable,
-  LoadingBar,
   ProgressBar,
   ToolBar
 };

@@ -3,7 +3,7 @@ import { bool, string, node, func, object } from 'prop-types';
 import styled from 'styled-components';
 import { key } from 'styled-theme';
 
-const ToggleActionButton = ({
+const ToggleButton = ({
   level,
   disabled,
   children,
@@ -75,7 +75,7 @@ const Image = styled.img`
   height: 1.8rem;
 `;
 
-ToggleActionButton.defaultProps = {
+ToggleButton.defaultProps = {
   disabled: false,
   level: 'primary',
   fullwidth: false,
@@ -83,7 +83,7 @@ ToggleActionButton.defaultProps = {
   otherProps: {},
 };
 
-ToggleActionButton.propTypes = {
+ToggleButton.propTypes = {
   /** Beeing able to use it in Styled Components */
   className: string,
   /** If true button is disabled */
@@ -102,4 +102,4 @@ ToggleActionButton.propTypes = {
   otherProps: object
 };
 
-export default ToggleActionButton;
+export default ToggleButton;

@@ -8,7 +8,7 @@ import { withInfo } from '@storybook/addon-info';
 
 import buttonIcon from './assets/buttonIcon.svg';
 import { ReactComponent as BackArrow } from './assets/back-arrow.svg'
-import { ActionButton, BackButton, ToggleActionButton } from '../src/';
+import { ActionButton, BackButton, ToggleButton } from '../src/';
 
 addParameters({
   options: {
@@ -19,7 +19,7 @@ addParameters({
 // storiesOf('Welcome', module).add('to Storybook', () => <Welcome showApp={linkTo('Button')} />);
 
 const buttonLevels = ['primary', 'secondary'];
-const ToggleActionButtonLevels = ['active', 'non-active'];
+const ToggleButtonLevels = ['active', 'non-active'];
 const iconObject = { none: null, House: buttonIcon };
 const svg = { none: null, back_arrow: <BackArrow /> }
 const propsObject = [{ none: null, id: { id: 'add' } }];
@@ -51,14 +51,14 @@ storiesOf('Low level blocks/Buttons', module)
     )
   })
   .add('ToggleButton', () => (
-    <ToggleActionButton
+    <ToggleButton
       onClick={action('button clicked')}
       fullwidth={boolean('Fullwidth', false)}
       disabled={boolean('Disabled', false)}
       icon={select('Icon', iconObject)}
-      level={select('Level', ToggleActionButtonLevels, 'active')}
+      level={select('Level', ToggleButtonLevels, 'active')}
       otherProps={select('otherProps', ...propsObject)}
     >
       {text('Label', 'Add')}
-    </ToggleActionButton>
+    </ToggleButton>
   ));
