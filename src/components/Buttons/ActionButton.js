@@ -30,7 +30,6 @@ const ActionButton = ({
     >
       {icon ? <Image src={icon} /> : null}
       {children}
-      testje
     </StyledButton>
   );
 };
