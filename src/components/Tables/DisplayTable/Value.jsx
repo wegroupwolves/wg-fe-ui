@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { node, string, func, object } from 'prop-types';
 import { key } from 'styled-theme/dist';
 
-const Value = ({ className, otherProps, children, highlight, toggled }) => {
+const Value = ({ className, children, highlight, toggled, ...otherProps }) => {
   return (
     <StyledValue {...otherProps} className={className}>
       {children}
@@ -33,6 +33,11 @@ const StyledValue = styled.td`
     font-size: ${key('fonts.small-size')};
   }
 `;
+
+Value.defaultProps = {
+  otherProps: {}
+}
+
 Value.propTypes = {
   /** Beeing able to use it in Styled Components */
   className: string,

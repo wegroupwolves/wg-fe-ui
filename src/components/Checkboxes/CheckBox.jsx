@@ -10,10 +10,10 @@ const Checkbox = ({
   checked,
   disabled,
   onChange,
-  otherProps,
   children,
   name,
   theme,
+  ...otherProps
 }) => {
   const handleChange = e => {
     if (!disabled) {
@@ -92,6 +92,7 @@ const StyledCheckmark = styled(Checkmark)`
 Checkbox.defaultProps = {
   checked: false,
   disabled: false,
+  otherProps: {}
 };
 
 Checkbox.propTypes = {

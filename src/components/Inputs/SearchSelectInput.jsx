@@ -16,7 +16,7 @@ const SearchSelectInput = ({
   noOptionMessage,
   loadingMessage,
   placeholder,
-  otherProps,
+  ...otherProps,
 }) => {
   const [isSelected, setSelected] = useState();
 
@@ -154,6 +154,7 @@ SearchSelectInput.defaultProps = {
   loadingMessage: 'Loading...',
   placeholder: 'Choose your option',
   initial: null,
+  otherProps: {}
 };
 
 SearchSelectInput.propTypes = {

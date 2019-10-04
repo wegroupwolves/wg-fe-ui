@@ -10,8 +10,8 @@ const ToggleActionButton = ({
   fullwidth,
   onClick,
   icon,
-  otherProps,
   className,
+  ...otherProps
 }) => {
   const handleClick = () => {
     if (!disabled) {
@@ -80,7 +80,7 @@ ToggleActionButton.defaultProps = {
   level: 'primary',
   fullwidth: false,
   icon: null,
-  otherProps: null,
+  otherProps: {},
 };
 
 ToggleActionButton.propTypes = {
@@ -99,7 +99,7 @@ ToggleActionButton.propTypes = {
   /** Adds icon to button */
   icon: node,
   /** Adds extra props to the element */
-  otherProps: object,
+  otherProps: object
 };
 
 export default ToggleActionButton;

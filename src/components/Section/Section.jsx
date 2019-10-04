@@ -1,10 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
-import { node, string } from 'prop-types';
+import { object, node, string } from 'prop-types';
 import { key } from 'styled-theme';
 
-const Section = ({ children, className }) => {
-  return <StyledSection className={className}>{children}</StyledSection>;
+const Section = ({ children, className, ...otherProps }) => {
+  return (
+  <StyledSection {...otherProps} className={className}>
+    {children}
+  </StyledSection>
+  )
 };
 
 const StyledSection = styled.section`
@@ -35,9 +39,14 @@ const Content = styled.div`
   margin-top: 2rem;
 `;
 
+Section.defaultProps = {
+  otherProps: {}
+}
+
 Section.propTypes = {
   children: node,
   className: string,
+  otherProps: object
 };
 
 Section.Title = Title;

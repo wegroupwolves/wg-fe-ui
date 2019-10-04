@@ -3,7 +3,7 @@ import { string, object, node, func, element, bool } from 'prop-types';
 import { key } from 'styled-theme';
 import styled from 'styled-components';
 
-const Item = ({ className, otherProps, icon, onClick, children, isActive }) => {
+const Item = ({ className, icon, onClick, children, isActive, ...otherProps }) => {
   return (
     <Container
       {...otherProps}
@@ -58,6 +58,7 @@ const Container = styled.div`
 Item.defaultProps = {
   isActive: false,
   onClick: () => {},
+  otherProps: {}
 };
 
 Item.propTypes = {
@@ -65,7 +66,6 @@ Item.propTypes = {
   className: string,
   /** Adds extra props to the element */
   otherProps: object,
-
   isActive: bool,
   icon: element,
   onClick: func,

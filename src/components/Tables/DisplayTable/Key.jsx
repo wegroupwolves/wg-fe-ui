@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { node, string, object } from 'prop-types';
 import { key } from 'styled-theme/dist';
 
-const Key = ({ className, otherProps, children }) => {
+const Key = ({ className, children, ...otherProps }) => {
   return (
     <StyledKey {...otherProps} className={className}>
       {children}
@@ -18,6 +18,10 @@ const StyledKey = styled.th`
   width: 100%;
   justify-content: space-between;
 `;
+
+Key.defaultProps = {
+  otherProps: {}
+}
 
 Key.propTypes = {
   /** Beeing able to use it in Styled Components */

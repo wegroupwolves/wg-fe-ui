@@ -3,7 +3,7 @@ import { mount } from 'enzyme';
 import React from 'react';
 import 'jest-styled-components';
 
-describe('Checkbox', () => {
+describe('DisplayTable', () => {
   it('can add clickable highlight to value', () => {
     let value = 0;
     const wrapper = mount(
@@ -24,7 +24,7 @@ describe('Checkbox', () => {
     expect(value).toEqual(1);
   });
 
-  it('contains necesarry DisplayTable components', () => {
+  it('contains necesarry children components', () => {
     const wrapper = mount(
       <DisplayTable>
         <DisplayTable.Row>

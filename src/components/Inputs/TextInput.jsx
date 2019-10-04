@@ -18,8 +18,8 @@ const TextInput = ({
   setFieldTouched,
   errors,
   touched,
-  otherProps,
   value,
+  ...otherProps
 }) => {
   const [inputValue, setInputValue] = useState(value ? value : '');
   const [focus, setFocus] = useState();
@@ -175,6 +175,7 @@ TextInput.defaultProps = {
   touched: {},
   setFieldTouched: () => {},
   setFieldValue: () => {},
+  otherProps: {}
 };
 
 TextInput.propTypes = {

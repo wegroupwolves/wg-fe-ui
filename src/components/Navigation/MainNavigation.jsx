@@ -4,7 +4,7 @@ import { string, object, node } from 'prop-types';
 import { key } from 'styled-theme';
 import Item from './Item';
 
-const MainNavigation = ({ className, otherProps, children }) => {
+const MainNavigation = ({ className, children, ...otherProps }) => {
   return (
     <NavigationBar {...otherProps} className={className}>
       {children}
@@ -48,6 +48,10 @@ MainNavigation.Line = Line;
 MainNavigation.Line.displayName = 'MainNavigation.Line';
 MainNavigation.Item = Item;
 MainNavigation.Item.displayName = 'MainNavigation.Item';
+
+MainNavigation.defaultProps = {
+  otherProps: {}
+}
 
 MainNavigation.propTypes = {
   /** Beeing able to use it in Styled Components */

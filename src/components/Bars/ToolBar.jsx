@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { key } from 'styled-theme';
 import { ActionButton } from './../Buttons'
-import { array, string, object, node } from 'prop-types';
+import { string, object, node, func } from 'prop-types';
 
 
 const Box = styled.div`
@@ -16,12 +16,13 @@ const Box = styled.div`
     box-sizing: border-box;
 `
 
-const InnerBox = styled.div`
+export const InnerBox = styled.div`
     position: relative;
     display: flex;
+    align-items: center;
     width: 70%;
     height: 100%;
-    border-right: 1px solid #CCCCCC;
+    border-right: 1px solid ${key('colors.outline')};
     margin-right: 2.4vw;
 
     input {
@@ -30,13 +31,13 @@ const InnerBox = styled.div`
     }
 `
 
-const ToolBar = ({ btnName, className, children, otherProps }) => {
+const ToolBar = ({ btnName, className, children, onClick, ...otherProps,  }) => {
   return (
     <Box className={className} {...otherProps}> 
         <InnerBox>
             { children }
         </InnerBox>
-        <ActionButton level="primary">
+        <ActionButton onClick={onClick} padding="0.5rem 1.5rem">
             { btnName }
         </ActionButton>
     </Box>
@@ -45,14 +46,17 @@ const ToolBar = ({ btnName, className, children, otherProps }) => {
 
 ToolBar.defaultProps = {
     btnName: 'New claim',
+    onClick: Function.prototype,
+    otherProps: {}
 }
 
 ToolBar.propTypes = {
   btnName: string,
   /** Beeing able to use it in Styled Components */
   className: string,
+  onClick: func,
   /** Adds extra props to the element */
-  otherProps: array,
+  otherProps: object,
   children: node,
 };
 

@@ -2,7 +2,7 @@ import React from 'react';
 import { string, object, node } from 'prop-types';
 import styled from 'styled-components';
 
-const Row = ({ className, otherProps, children }) => {
+const Row = ({ className, children, ...otherProps }) => {
   return (
     <Tr className={className} {...otherProps}>
       {children}
@@ -18,6 +18,10 @@ const Tr = styled.tr`
     background-color: #ffefdc;
   }
 `;
+
+Row.defaultProps = {
+  otherProps: {}
+}
 
 Row.propTypes = {
   /** Beeing able to use it in Styled Components */

@@ -9,7 +9,7 @@ import Body from './Body';
 import Row from './Row';
 import BodyCell from './BodyCell';
 
-const OverviewTable = ({ className, otherProps, children }) => {
+const OverviewTable = ({ className, children, ...otherProps }) => {
   return (
     <Table className={className} {...otherProps}>
       {children}
@@ -24,6 +24,10 @@ const Table = styled.table`
   margin-top: 2.5rem;
   margin-bottom: 4rem;
 `;
+
+OverviewTable.defaultProps = {
+  otherProps: {}
+}
 
 OverviewTable.propTypes = {
   /** Beeing able to use it in Styled Components */

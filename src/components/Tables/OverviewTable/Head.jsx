@@ -1,13 +1,17 @@
 import React from 'react';
 import { string, object, node } from 'prop-types';
 
-const Head = ({ className, otherProps, children }) => {
+const Head = ({ className, children, ...otherProps }) => {
   return (
     <thead className={className} {...otherProps}>
       <tr>{children}</tr>
     </thead>
   );
 };
+
+Head.defaultProps = {
+  otherProps: {}
+}
 
 Head.propTypes = {
   /** Beeing able to use it in Styled Components */

@@ -2,7 +2,7 @@ import React from 'react';
 import { string, object, node } from 'prop-types';
 import styled from 'styled-components';
 
-const BodyCell = ({ className, otherProps, children }) => {
+const BodyCell = ({ className, children, ...otherProps }) => {
   return (
     <Td className={className} {...otherProps}>
       {children}
@@ -26,6 +26,10 @@ const Td = styled.td`
     width: 5rem;
   }
 `;
+
+BodyCell.defaultProps = {
+  otherProps: {}
+}
 
 BodyCell.propTypes = {
   /** Beeing able to use it in Styled Components */

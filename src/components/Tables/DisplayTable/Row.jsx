@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { node, string, object } from 'prop-types';
 import { key } from 'styled-theme/dist';
 
-const Row = ({ className, otherProps, children }) => {
+const Row = ({ className, children, ...otherProps }) => {
   return (
     <StyledRow {...otherProps} className={className}>
       {children}
@@ -25,6 +25,10 @@ const StyledRow = styled.tr`
     background-color: rgba(0, 0, 0, 0.02);
   }
 `;
+
+Row.defaultProps = {
+  otherProps: {}
+}
 
 Row.propTypes = {
   /** Beeing able to use it in Styled Components */

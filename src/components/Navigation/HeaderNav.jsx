@@ -3,12 +3,12 @@ import styled, { withTheme } from 'styled-components';
 
 import LanguageSelector from './LanguageSelector';
 
-import { array, node, string, func } from 'prop-types';
+import { array, node, string, func, object } from 'prop-types';
 import { key } from 'styled-theme';
 
-const HeaderNav = ({ navTabs, theme, className, currentLocation, onClick }) => {
+const HeaderNav = ({ navTabs, theme, className, currentLocation, onClick, ...otherProps }) => {
   return (
-    <Container className={className}>
+    <Container className={className} {...otherProps}>
       <Wrapper>
         <LogoContainer>
           <Logo src={theme.data.logo} alt="WeGroup" />
@@ -87,6 +87,7 @@ const Logo = styled.img`
 HeaderNav.defaultProps = {
   navTabs: [],
   onClick: () => {},
+  otherProps: {}
 };
 
 HeaderNav.propTypes = {
@@ -96,6 +97,7 @@ HeaderNav.propTypes = {
   onClick: func,
   /** testje */
   currentLocation: string,
+  otherProps: object
 };
 
 const exportComponent = withTheme(HeaderNav);

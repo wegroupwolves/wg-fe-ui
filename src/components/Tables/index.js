@@ -1,4 +1,4 @@
-import DisplayTable from './DisplayTable/DisplayTable.js';
-import OverviewTable from './OverviewTable/OverviewTable.js';
+import DisplayTable from './DisplayTable/DisplayTable';
+import OverviewTable from './OverviewTable/OverviewTable';
 
 export { DisplayTable, OverviewTable };
