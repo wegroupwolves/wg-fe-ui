@@ -6,4 +6,5 @@ WORKDIR /srv/design_system
 
 ADD . /srv/design_system
 
+RUN npm build
 RUN npm install -g .

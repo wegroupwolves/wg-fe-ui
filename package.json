@@ -28,7 +28,8 @@
     "test:watch": "jest --watch",
     "eject": "react-scripts eject",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "prepare": "npm run build"
   },
   "jest": {
     "setupFiles": [
