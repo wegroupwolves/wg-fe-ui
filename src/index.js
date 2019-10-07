@@ -1,6 +1,6 @@
 import { ProgressBar, ToolBar, TrackingBar } from './../src/components/Bars'
 import { ActionButton, BackButton, ToggleButton } from './components/Buttons';
-import { CheckBox } from './components/Checkboxes';
+import { CheckBox, ImageSelectBar } from './components/Checkboxes';
 import { TextInput, SearchInput, SearchSelectInput } from './components/Inputs';
 import { QuestionBox } from './components/Boxes';
 import { DisplayTable, OverviewTable } from './components/Tables';
@@ -20,6 +20,7 @@ export {
   ToggleButton,
   ThemeProvider,
   CheckBox,
+  ImageSelectBar,
   TextInput,
   SearchInput,
   SearchSelectInput,
@@ -33,7 +34,7 @@ export {
   OverviewTable,
   ProgressBar,
   ToolBar,
-  TrackingBar
+  TrackingBar,
 };
 
 // Export all components
