@@ -1,6 +1,7 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 import { key } from 'styled-theme';
+import PropTypes from 'prop-types';
 
 const StyledCheck = styled.span`
   width: ${({ type }) => (type === 'radio' ? '16px' : '19px')};
@@ -63,7 +64,7 @@ const StyledContainer = styled.label`
           }
           svg > rect,
           path {
-            fill: ${key('colors.toggle')}
+            fill: ${key('colors.toggle')};
           }
         `
       : null};
@@ -103,5 +104,19 @@ const ImageSelectBar = ({
 };
 
 ImageSelectBar.displayName = 'ImageSelectBar';
+
+ImageSelectBar.propTypes = {
+  checked: PropTypes.bool.isRequired,
+  disabled: PropTypes.bool,
+  handleChange: PropTypes.func,
+  handleClick: PropTypes.func,
+  type: PropTypes.string,
+  icon: PropTypes.elementType,
+  children: PropTypes.node,
+};
+
+ImageSelectBar.defaultProps = {
+  checked: false,
+};
 
 export default ImageSelectBar;
