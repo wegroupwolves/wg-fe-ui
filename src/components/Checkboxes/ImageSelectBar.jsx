@@ -5,20 +5,16 @@ import { key } from 'styled-theme';
 const StyledCheck = styled.span`
   width: ${({ type }) => (type === 'radio' ? '16px' : '19px')};
   height: ${({ type }) => (type === 'radio' ? '16px' : '19px')};
+  border-radius: ${({ type }) => (type === 'radio' ? ' 10px' : '3px')};
   margin-right: 1.6vw;
-  border: 1.2px solid #cccccc;
-  box-sizing: border-box;
-
+  border: ${({ type, checked }) =>
+    checked && type === 'radio' ? '5px solid' : '1.2px solid'};
+  border-color: ${({ type, checked }) =>
+    checked && type === 'radio' ? key('colors.toggle') : key('colors.outline')};
   ${({ checked, type }) =>
-    checked
-      ? type === 'radio'
-        ? `
-              border: 5px solid #ff9b21;
-              border-radius: 10px;
-  `
-        : `
-        border-radius: 3px;
-        background: #FF9B21;
+    checked && type === 'checkbox'
+      ? `
+        background-color: ${key('colors.toggle')};
         text-align: center;
         &:before {
             content: "✔";
@@ -33,7 +29,7 @@ const Text = styled.span`
   font-size: 1.4rem;
   line-height: 2rem;
   letter-spacing: 0.1rem;
-  color: #505050;
+  color: ${key('colors.highlight')};
 `;
 const StyledInput = styled.input`
   position: absolute;
@@ -54,26 +50,29 @@ const StyledContainer = styled.label`
   border: 1px solid #cccccc;
   border-radius: 2px;
   font-family: Lato;
+  font-size: 1.6rem;
 
   ${({ checked }) =>
     checked
       ? css`
           background: #ffefdc;
-          border: 1px solid #ff9b21;
+          border: 1px solid;
+          border-color: ${key('colors.toggle')};
           ${Text} {
-            color: #ff9b21;
+            color: ${key('colors.toggle')};
           }
-          svg {
-            fill: #ff9b21;
+          svg > rect,
+          path {
+            fill: ${key('colors.toggle')}
           }
         `
       : null};
   ${Text} {
-    ${({ disabled }) => (disabled ? 'color: #CCCCCC' : null)};
+    color: ${({ disabled }) => (disabled ? key('colors.outline') : null)};
   }
   svg {
     margin-left: 1.6vw;
-    fill: #c1c1c1;
+    fill: key('colors.interactive');
   }
 `;
 
@@ -81,6 +80,7 @@ const ImageSelectBar = ({
   checked,
   disabled,
   handleChange,
+  handleClick,
   type,
   icon,
   children,
@@ -91,6 +91,7 @@ const ImageSelectBar = ({
       <StyledInput
         type={type}
         onChange={handleChange}
+        onClick={handleClick}
         checked={checked}
         disabled={disabled}
       />
