@@ -19,7 +19,6 @@ const Theme = () => {
 
     interactive: '#C1C1C1',
 
-
     title: '#000000',
     'sub-title': '#5B5550',
 

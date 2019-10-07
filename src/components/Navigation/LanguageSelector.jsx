@@ -6,9 +6,9 @@ import NL from '../../assets/flags/NL.jsx';
 import EN from '../../assets/flags/EN.jsx';
 import FR from '../../assets/flags/FR.jsx';
 
-
 const LanguageSelector = () => {
   const [langIcon, setLangIcon] = useState(<EN />);
+
   const setLanguage = lang => {
     i18next.changeLanguage(lang);
 
@@ -22,6 +22,7 @@ const LanguageSelector = () => {
       setLangIcon(<FR />);
     }
   };
+
   useEffect(() => {
     if (i18next.language === 'nl') {
       setLangIcon(<NL />);
@@ -32,7 +33,8 @@ const LanguageSelector = () => {
     if (i18next.language === 'fr') {
       setLangIcon(<FR />);
     }
-  });
+  }, []);
+
   return (
     <LangSelector>
       <FlagIcon src={langIcon} button={true}>

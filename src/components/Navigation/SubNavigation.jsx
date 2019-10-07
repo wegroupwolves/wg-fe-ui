@@ -5,10 +5,12 @@ import { key } from 'styled-theme';
 
 const Section = styled.li`
   font-weight: 900;
+  font-family: 'Lato';
 `;
 
 const SubSection = styled.li`
   border-right: 1px solid;
+  font-family: 'Lato';
   border-color: ${({ active }) =>
     active ? key('colors.action') : 'transparent'};
 `;
