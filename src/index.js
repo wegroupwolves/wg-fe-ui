@@ -12,7 +12,7 @@ import {
 } from './components/Buttons';
 import { CheckBox, RadioOption, CheckOption } from './components/Checkboxes';
 import {
-  ImageSelectGroup,
+  ImageSelectBox,
   TextInput,
   SearchInput,
   SearchSelectInput,
@@ -36,7 +36,7 @@ export {
   ToggleButton,
   ThemeProvider,
   CheckBox,
-  ImageSelectGroup,
+  ImageSelectBox,
   RadioOption,
   CheckOption,
   TextInput,
