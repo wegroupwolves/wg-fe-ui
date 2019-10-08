@@ -29,5 +29,9 @@ describe('ImageSelectBar', () => {
       </ThemeProvider>,
     );
     expect(wrapper).toHaveStyleRule('border-color', Theme().colors.toggle);
+    expect(wrapper.find('span').at(1)).toHaveStyleRule(
+      'border-color',
+      Theme().colors.toggle,
+    );
   });
 });

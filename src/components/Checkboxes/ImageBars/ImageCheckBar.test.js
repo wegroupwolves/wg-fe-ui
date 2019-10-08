@@ -30,5 +30,9 @@ describe('ImageCheckBar', () => {
       </ThemeProvider>,
     );
     expect(wrapper).toHaveStyleRule('border-color', Theme().colors.toggle);
+    expect(wrapper.find('span').at(1)).toHaveStyleRule(
+      'background-color',
+      Theme().colors.toggle,
+    );
   });
 });
