@@ -1,4 +1,4 @@
-import ImageCheckBar from './ImageCheckBar';
+import CheckOption from './CheckOption';
 import { shallow, mount } from 'enzyme';
 import React from 'react';
 import Theme from '../../../constants/theme';
@@ -6,12 +6,12 @@ import 'jest-styled-components';
 
 import { ThemeProvider } from 'styled-components';
 
-describe('ImageCheckBar', () => {
+describe('CheckOption', () => {
   it('can pass extra props', () => {
     const wrapper = shallow(
-      <ImageCheckBar id={31} onChange={() => console.log('testen')}>
+      <CheckOption id={31} onChange={() => console.log('testen')}>
         Test
-      </ImageCheckBar>,
+      </CheckOption>,
     );
     expect(wrapper.props().id).toEqual(31);
   });
@@ -19,14 +19,14 @@ describe('ImageCheckBar', () => {
   it('when checked, style changes', () => {
     const wrapper = mount(
       <ThemeProvider theme={Theme}>
-        <ImageCheckBar
+        <CheckOption
           checked
           name="check"
           handleClick={() => console.log('test')}
           handleChange={() => console.log('test')}
         >
           Test
-        </ImageCheckBar>
+        </CheckOption>
       </ThemeProvider>,
     );
     expect(wrapper).toHaveStyleRule('border-color', Theme().colors.toggle);

@@ -1,22 +1,33 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { key } from 'styled-theme';
 import PropTypes from 'prop-types';
 import { StyledContainer, StyledInput, Text } from './ImageBarTemplate';
 
 const StyledCheck = styled.span`
-  height: 16px;
-  min-width: 16px;
-  border-radius: 10px;
+  height: 19px;
+  min-width: 19px;
+  border-radius: 3px;
   margin: auto 1.6vw;
-  border: ${({ checked }) => (checked ? '5px solid' : '1.2px solid')};
-  border-color: ${({ checked }) =>
-    checked ? key('colors.toggle') : key('colors.outline')};
+  border: 1.2px solid;
+  border-color: ${key('colors.outline')};
+  ${({ checked }) =>
+    checked
+      ? css`
+          background-color: ${key('colors.toggle')};
+          text-align: center;
+          &:before {
+            content: '✔';
+            color: #ffffff;
+          }
+        `
+      : null};
 `;
 
-const ImageSelectBar = ({
+const CheckOption = ({
   checked,
   disabled,
+  handleClick,
   handleChange,
   icon,
   children,
@@ -25,7 +36,8 @@ const ImageSelectBar = ({
   return (
     <StyledContainer checked={checked} disabled={disabled} {...otherProps}>
       <StyledInput
-        type="radio"
+        type="checkbox"
+        onClick={handleClick}
         onChange={handleChange}
         checked={checked}
         disabled={disabled}
@@ -37,18 +49,19 @@ const ImageSelectBar = ({
   );
 };
 
-ImageSelectBar.displayName = 'ImageSelectBar';
+CheckOption.displayName = 'CheckOption';
 
-ImageSelectBar.propTypes = {
+CheckOption.propTypes = {
   checked: PropTypes.bool.isRequired,
   disabled: PropTypes.bool,
+  handleClick: PropTypes.func,
   handleChange: PropTypes.func,
   icon: PropTypes.elementType,
   children: PropTypes.node,
 };
 
-ImageSelectBar.defaultProps = {
+CheckOption.defaultProps = {
   checked: false,
 };
 
-export default ImageSelectBar;
+export default CheckOption;
