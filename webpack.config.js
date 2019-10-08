@@ -20,6 +20,11 @@ module.exports = {
           },
         },
       },
+      {
+        test: /stories\.(js|jsx)?$/,
+        loaders: [require.resolve('@storybook/addon-storysource/loader')],
+        enforce: 'pre',
+      },
     ],
   },
   externals: {
