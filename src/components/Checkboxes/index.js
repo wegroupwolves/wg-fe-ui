@@ -1,6 +1,7 @@
 import CheckBox from './CheckBox';
-import ImageSelectBar from './ImageSelectBar';
+import RadioOption from './ImageBars/RadioOption';
+import CheckOption from './ImageBars/CheckOption';
 
-export { CheckBox, ImageSelectBar };
+export { CheckBox, RadioOption, CheckOption };
 
 // export all checkboxes

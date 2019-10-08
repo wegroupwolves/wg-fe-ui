@@ -22,14 +22,16 @@ const iconColor = {
 };
 
 const RadioButton = styled.label`
+  font-family: ${key('fonts.primary')};
+  font-size: ${key('fonts.normal-size')};
   position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   width: 7.3vw;
+  height: 7.3vw;
   padding: 43px auto auto 27px;
-  height: 13vh;
   cursor: pointer;
   margin: 0 25px;
 
@@ -40,10 +42,6 @@ const RadioButton = styled.label`
   box-sizing: border-box;
   border-radius: 5px;
   color: ${({ mode }) => iconColor[mode]};
-
-  /* @media (max-width: 1200px) {
-    display: ${({ mode }) => (mode === 'selected' ? 'flex' : 'none')};
-  } */
 
   &::after {
     content: '${({ value }) => value}';
@@ -56,6 +54,8 @@ const RadioButton = styled.label`
 
   svg {
     width: 5vw;
+    height: 5vh;
+    margin-bottom: 10px;
 
     path {
       fill: ${({ mode }) => iconColor[mode]};

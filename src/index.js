@@ -4,10 +4,16 @@ import {
   TrackingBar,
   OverviewClaimStatus,
 } from './../src/components/Bars';
-import { ActionButton, BackButton, DropUploadButton, ToggleButton } from './components/Buttons';
-import { CheckBox, ImageSelectBar } from './components/Checkboxes';
 import {
-  ImageSelectGroup,
+  ActionButton,
+  AddEntityButton,
+  BackButton,
+  DropUploadButton,
+  ToggleButton,
+} from './components/Buttons';
+import { CheckBox, RadioOption, CheckOption } from './components/Checkboxes';
+import {
+  ImageSelectBox,
   TextInput,
   SearchInput,
   SearchSelectInput,
@@ -26,13 +32,15 @@ import Theme from './constants/theme';
 
 export {
   ActionButton,
+  AddEntityButton,
   BackButton,
   DropUploadButton,
   ToggleButton,
   ThemeProvider,
   CheckBox,
-  ImageSelectGroup,
-  ImageSelectBar,
+  ImageSelectBox,
+  RadioOption,
+  CheckOption,
   TextInput,
   DateInput,
   SearchInput,

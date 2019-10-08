@@ -10,6 +10,7 @@ import buttonIcon from './assets/buttonIcon.svg';
 import { ReactComponent as BackArrow } from './assets/back-arrow.svg';
 import {
   ActionButton,
+  AddEntityButton,
   BackButton,
   DropUploadButton,
   ToggleButton,
@@ -44,6 +45,12 @@ storiesOf('Low level blocks/Buttons', module)
       {text('Label', 'Pay')}
     </ActionButton>
   ))
+  .add('AddEntityButton', () => {
+    const onClick = () => console.log('resource: ');
+    const onChange = value => console.log('value: ', value);
+
+    return <AddEntityButton onChange={onChange} onClick={onClick} />;
+  })
   .add('BackButton', () => {
     const iconName = select('Icon', Object.keys(svg), 'back_arrow');
     return (
