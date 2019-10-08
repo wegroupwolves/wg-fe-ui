@@ -9,6 +9,7 @@ import {
   ProgressBar,
   ToolBar,
   OverviewClaimStatus,
+  TrackingBar,
 } from './../src';
 
 const COMPONENT_CHOICES = {
@@ -41,4 +42,7 @@ storiesOf('Mid Level blocks/Bars', module)
     return (
       <OverviewClaimStatus statuses={statuses} currentStatus={statuses[1]} />
     );
+  })
+  .add('TrackingBar', () => {
+    return <TrackingBar background="#D3D4D8" />;
   });

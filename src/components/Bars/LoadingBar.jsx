@@ -3,9 +3,6 @@ import styled from 'styled-components';
 import { key } from 'styled-theme/dist';
 import { string, arrayOf, object, number } from 'prop-types';
 
-const getActiveId = (active, stages) => {
-  return stages ? stages.findIndex(item => item.key === active) : null;
-};
 
 const ProgressTrack = styled.div`
   position: absolute;
@@ -23,22 +20,21 @@ const ProgressTrack = styled.div`
     display: block;
     height: ${({ height }) => height || '5px'};
     background-color: ${key('colors.action')};
-    width: ${({ activeId, stages }) =>
-      stages ? `${activeId * (100 / stages.length)}%` : '0'};
+    width: ${({ step }) => `${step}vw` || 0};
     transition: width 1s ease-in-out;
   }
 `;
 
-const LoadingBar = ({ active, background, stages, height, ...otherProps }) => {
-  const activeId = getActiveId(active, stages) + 1;
+const LoadingBar = ({ activeId, background, height, offset, stages, stepWidth, ...otherProps }) => {
+    let step = stepWidth;
+    if(stepWidth) {
+      if(activeId === 1) step = offset;
+      else step= (activeId -1) * (stepWidth + offset);
+    } else {
+      step = activeId * (100/stages.length);
+    } 
   return (
-    <ProgressTrack
-      activeId={activeId}
-      background={background}
-      stages={stages}
-      height={height}
-      {...otherProps}
-    />
+      <ProgressTrack height={height} background={background} step={step} {...otherProps} />
   );
 };
 

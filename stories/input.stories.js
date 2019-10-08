@@ -2,12 +2,18 @@ import React from 'react';
 
 import { storiesOf } from '@storybook/react';
 // import { linkTo } from '@storybook/addon-links';
-import { withKnobs, boolean, text, select } from '@storybook/addon-knobs';
+import {
+  withKnobs,
+  boolean,
+  text,
+  select,
+  object,
+} from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 import { withInfo } from '@storybook/addon-info';
 import styled from 'styled-components';
 
-import { TextInput, SearchInput, SearchSelectInput } from '../src';
+import { TextInput, SearchInput, SearchSelectInput, DateInput } from '../src';
 
 storiesOf('Low level blocks/Inputs', module)
   .addDecorator(withKnobs)
@@ -27,6 +33,24 @@ storiesOf('Low level blocks/Inputs', module)
       >
         Email
       </StyledTextInput>
+    );
+  })
+  .add('DateInput', () => {
+    let errors = { date: text('Error', '') };
+    let touched = { date: boolean('Touched', false) };
+    let disabled = boolean('Disable', false);
+
+    return (
+      <StyledDateInput
+        touched={touched}
+        errors={errors}
+        name="date"
+        value={object('Value', { day: '' })}
+        disabled={disabled}
+        onChange={action('change')}
+      >
+        Date
+      </StyledDateInput>
     );
   })
   .add('SearchInput', () => (
@@ -75,5 +99,10 @@ const StyledSearchSelectInput = styled(SearchSelectInput)`
   width: 27rem;
 `;
 
+const StyledDateInput = styled(DateInput)`
+  width: 27rem;
+`;
+
 StyledTextInput.displayName = 'TextInput';
 StyledSearchSelectInput.displayName = 'SearchSelectInput';
+StyledDateInput.displayName = 'DateInput';
