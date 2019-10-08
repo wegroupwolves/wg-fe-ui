@@ -14,14 +14,14 @@ const StyledCheck = styled.span`
     checked && type === 'radio' ? key('colors.toggle') : key('colors.outline')};
   ${({ checked, type }) =>
     checked && type === 'checkbox'
-      ? `
-        background-color: ${key('colors.toggle')};
-        text-align: center;
-        &:before {
-            content: "✔";
-            color: #FFFFFF;
+      ? css`
+          background-color: ${key('colors.toggle')};
+          text-align: center;
+          &:before {
+            content: '✔';
+            color: #ffffff;
           }
-  `
+        `
       : null};
 `;
 
@@ -48,7 +48,8 @@ const StyledContainer = styled.label`
   cursor: pointer;
 
   background: #ffffff;
-  border: 1px solid #cccccc;
+  border: 1px solid;
+  border-color: ${key('colors.outline')};
   border-radius: 2px;
   font-family: Lato;
   font-size: 1.6rem;
@@ -110,13 +111,14 @@ ImageSelectBar.propTypes = {
   disabled: PropTypes.bool,
   handleChange: PropTypes.func,
   handleClick: PropTypes.func,
-  type: PropTypes.string,
+  type: PropTypes.string.isRequired,
   icon: PropTypes.elementType,
   children: PropTypes.node,
 };
 
 ImageSelectBar.defaultProps = {
   checked: false,
+  type: 'radio',
 };
 
 export default ImageSelectBar;
