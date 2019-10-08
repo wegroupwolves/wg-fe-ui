@@ -1,6 +1,10 @@
 import { ProgressBar, ToolBar, TrackingBar } from './../src/components/Bars';
 import { ActionButton, BackButton, ToggleButton } from './components/Buttons';
-import { CheckBox, ImageSelectBar } from './components/Checkboxes';
+import {
+  CheckBox,
+  ImageSelectBar,
+  ImageCheckBar,
+} from './components/Checkboxes';
 import {
   TextInput,
   SearchInput,
@@ -25,6 +29,7 @@ export {
   ThemeProvider,
   CheckBox,
   ImageSelectBar,
+  ImageCheckBar,
   TextInput,
   DateInput,
   SearchInput,

@@ -4,7 +4,7 @@ import { storiesOf } from '@storybook/react';
 import { withKnobs, boolean } from '@storybook/addon-knobs';
 import { withInfo } from '@storybook/addon-info';
 
-import { CheckBox, ImageSelectBar } from '../src';
+import { CheckBox, ImageSelectBar, ImageCheckBar } from '../src';
 
 import HouseIcon from './assets/HouseIcon.jsx';
 
@@ -51,7 +51,7 @@ storiesOf('Low level blocks/Checkboxes', module)
         >
           I encountered issues with my lugage
         </ImageSelectBar>
-        <ImageSelectBar
+        <ImageCheckBar
           icon={<HouseIcon />}
           handleClick={() => handleChangeCheckbox(1)}
           checked={checkedBox[1]}
@@ -59,15 +59,15 @@ storiesOf('Low level blocks/Checkboxes', module)
           type={'checkbox'}
         >
           I encountered issues with my lugage
-        </ImageSelectBar>
-        <ImageSelectBar
+        </ImageCheckBar>
+        <ImageCheckBar
           icon={<HouseIcon />}
           handleClick={() => handleChangeCheckbox(2)}
           checked={checkedBox[2]}
           type={'checkbox'}
         >
           I encountered issues with my lugage
-        </ImageSelectBar>
+        </ImageCheckBar>
       </>
     );
   });
