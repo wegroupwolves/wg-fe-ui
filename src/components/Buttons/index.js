@@ -1,7 +1,8 @@
 import ActionButton from './ActionButton';
-import BackButton from './BackButton'
+import AddEntityButton from './AddEntityButton';
+import BackButton from './BackButton';
 import ToggleButton from './ToggleButton';
 
-export { ActionButton, BackButton, ToggleButton };
+export { ActionButton, AddEntityButton, BackButton, ToggleButton };
 
 // export all buttons

@@ -4,7 +4,12 @@ import {
   TrackingBar,
   OverviewClaimStatus,
 } from './../src/components/Bars';
-import { ActionButton, BackButton, ToggleButton } from './components/Buttons';
+import {
+  ActionButton,
+  AddEntityButton,
+  BackButton,
+  ToggleButton,
+} from './components/Buttons';
 import { CheckBox, RadioOption, CheckOption } from './components/Checkboxes';
 import {
   ImageSelectGroup,
@@ -26,6 +31,7 @@ import Theme from './constants/theme';
 
 export {
   ActionButton,
+  AddEntityButton,
   BackButton,
   ToggleButton,
   ThemeProvider,
