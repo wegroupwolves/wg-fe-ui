@@ -10,7 +10,7 @@ import {
   BackButton,
   ToggleButton,
 } from './components/Buttons';
-import { CheckBox, ImageSelectBar } from './components/Checkboxes';
+import { CheckBox, RadioOption, CheckOption } from './components/Checkboxes';
 import {
   ImageSelectGroup,
   TextInput,
@@ -37,7 +37,8 @@ export {
   ThemeProvider,
   CheckBox,
   ImageSelectGroup,
-  ImageSelectBar,
+  RadioOption,
+  CheckOption,
   TextInput,
   DateInput,
   SearchInput,
