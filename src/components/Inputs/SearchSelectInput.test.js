@@ -3,7 +3,7 @@ import { mount } from 'enzyme';
 import React from 'react';
 import 'jest-styled-components';
 import { ThemeProvider } from '../..';
-import Theme from '../../../.storybook/theme';
+import Theme from '../../constants/theme';
 
 describe('SearchSelectInput', () => {
   it('returns value and name of selected option', () => {
@@ -135,7 +135,7 @@ describe('SearchSelectInput', () => {
         name="test"
         selected={(name, value) => console.log(name, value)}
         options={[]}
-        otherProps={{ id: 12 }}
+        id={12}
       >
         Test
       </SearchSelectInput>,

@@ -1,5 +1,5 @@
 import React from 'react';
-import { bool, string, node, func, object } from 'prop-types';
+import { object, bool, string, node, func } from 'prop-types';
 import styled from 'styled-components';
 import { key } from 'styled-theme';
 
@@ -10,8 +10,9 @@ const ActionButton = ({
   fullwidth,
   onClick,
   icon,
-  otherProps,
   className,
+  padding,
+  ...otherProps
 }) => {
   const handleClick = () => {
     if (!disabled) {
@@ -22,13 +23,15 @@ const ActionButton = ({
   return (
     <StyledButton
       level={level}
-      onClick={() => handleClick()}
+      onClick={handleClick}
       fullwidth={fullwidth}
       disabled={disabled}
+      padding={padding}
       className={className}
       {...otherProps}
     >
       {icon ? <Image src={icon} /> : null}
+
       {children}
     </StyledButton>
   );
@@ -42,15 +45,13 @@ const StyledButton = styled.button`
       : props.level === 'primary'
       ? key('colors.action')
       : key('colors.interactive')};
-  font-weight: 900;
   font-size: ${key('fonts.normal-size')};
   border-radius: 0.5rem;
-  min-width: 12rem;
+  min-width: 14rem;
   width: ${props => (props.fullwidth ? '100%' : '')};
-  height: 4rem;
   color: white;
   border: 0;
-  padding: 0 1.5rem;
+  padding: ${({ padding }) => padding || '1rem 0.4rem'};
   display: flex;
   justify-content: center;
   align-items: center;
@@ -79,7 +80,10 @@ ActionButton.defaultProps = {
   level: 'primary',
   fullwidth: false,
   icon: null,
-  otherProps: null,
+  onClick: () => {
+    console.log('clicked button');
+  },
+  otherProps: {},
 };
 
 ActionButton.propTypes = {
@@ -95,6 +99,7 @@ ActionButton.propTypes = {
   fullwidth: bool,
   /** Triggered when button is clicked */
   onClick: func.isRequired,
+  padding: string,
   /** Adds icon to button */
   icon: node,
   /** Adds extra props to the element */

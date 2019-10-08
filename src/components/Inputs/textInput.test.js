@@ -1,7 +1,7 @@
 import { TextInput } from '.';
 import { mount } from 'enzyme';
 import React from 'react';
-import Theme from '../../../.storybook/theme';
+import Theme from '../../constants/theme';
 import 'jest-styled-components';
 import { ThemeProvider } from 'styled-components';
 
@@ -148,11 +148,11 @@ describe('TextInput', () => {
   });
   it('otherProps adds props to input', () => {
     const wrapper = mount(
-      <TextInput otherProps={{ max: '12' }} name="test" type="text">
+      <TextInput max={12} name="test" type="text">
         Test
       </TextInput>,
     );
 
-    expect(wrapper.find('input').props().max).toEqual('12');
+    expect(wrapper.find('input').props().max).toEqual(12);
   });
 });

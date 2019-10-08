@@ -1,5 +1,7 @@
-import Checkbox from './Checkbox.js';
+import CheckBox from './CheckBox';
+import RadioOption from './ImageBars/RadioOption';
+import CheckOption from './ImageBars/CheckOption';
 
-export { Checkbox };
+export { CheckBox, RadioOption, CheckOption };
 
 // export all checkboxes

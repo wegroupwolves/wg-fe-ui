@@ -7,7 +7,13 @@ import { action } from '@storybook/addon-actions';
 import { withInfo } from '@storybook/addon-info';
 
 import buttonIcon from './assets/buttonIcon.svg';
-import { ActionButton, ToggleActionButton } from '../src/';
+import { ReactComponent as BackArrow } from './assets/back-arrow.svg';
+import {
+  ActionButton,
+  AddEntityButton,
+  BackButton,
+  ToggleButton,
+} from '../src/';
 
 addParameters({
   options: {
@@ -18,9 +24,10 @@ addParameters({
 // storiesOf('Welcome', module).add('to Storybook', () => <Welcome showApp={linkTo('Button')} />);
 
 const buttonLevels = ['primary', 'secondary'];
-const ToggleActionButtonLevels = ['active', 'non-active'];
+const ToggleButtonLevels = ['active', 'non-active'];
 const iconObject = { none: null, House: buttonIcon };
-const propsObject = { none: null, id: { id: 'add' } };
+const svg = { none: null, back_arrow: <BackArrow /> };
+const propsObject = [{ none: null, id: { id: 'add' } }];
 
 storiesOf('Low level blocks/Buttons', module)
   .addDecorator(withKnobs)
@@ -32,20 +39,37 @@ storiesOf('Low level blocks/Buttons', module)
       disabled={boolean('Disabled', false)}
       icon={select('Icon', iconObject)}
       level={select('Level', buttonLevels, 'primary')}
-      otherProps={select('otherProps', propsObject)}
+      otherProps={select('otherProps', ...propsObject)}
     >
       {text('Label', 'Pay')}
     </ActionButton>
   ))
+  .add('AddEntityButton', () => {
+    const onClick = () => console.log('resource: ');
+    const onChange = value => console.log('value: ', value);
+
+    return <AddEntityButton onChange={onChange} onClick={onClick} />;
+  })
+  .add('BackButton', () => {
+    const iconName = select('Icon', Object.keys(svg), 'back_arrow');
+    return (
+      <BackButton
+        onClick={action('button clicked')}
+        name="Overview"
+        icon={svg[iconName]}
+        otherProps={select('otherProps', ...propsObject)}
+      />
+    );
+  })
   .add('ToggleButton', () => (
-    <ToggleActionButton
+    <ToggleButton
       onClick={action('button clicked')}
       fullwidth={boolean('Fullwidth', false)}
       disabled={boolean('Disabled', false)}
       icon={select('Icon', iconObject)}
-      level={select('Level', ToggleActionButtonLevels, 'active')}
-      otherProps={select('otherProps', propsObject)}
+      level={select('Level', ToggleButtonLevels, 'active')}
+      otherProps={select('otherProps', ...propsObject)}
     >
       {text('Label', 'Add')}
-    </ToggleActionButton>
+    </ToggleButton>
   ));

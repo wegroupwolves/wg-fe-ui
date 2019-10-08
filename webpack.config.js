@@ -1,4 +1,5 @@
 var path = require('path');
+
 module.exports = {
   entry: './src/index.js',
   output: {
@@ -18,6 +19,11 @@ module.exports = {
             presets: ['@babel/preset-env'],
           },
         },
+      },
+      {
+        test: /stories\.(js|jsx)?$/,
+        loaders: [require.resolve('@storybook/addon-storysource/loader')],
+        enforce: 'pre',
       },
     ],
   },

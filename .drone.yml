@@ -6,8 +6,7 @@ steps:
   - name: build
     image: node:11
     commands:
-      - yarn install --frozen-lockfile
-      - yarn lint
-      - yarn test
+      - npm install --silent
+      - npm run test -- --coverage --ci
     when:
       event: push
