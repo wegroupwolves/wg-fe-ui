@@ -502,7 +502,7 @@ DateInput.defaultProps = {
   errors: {},
   touched: {},
   otherProps: {},
-  value: '',
+  value: {},
   onBlur: () => {},
   onChange: () => {},
   onFocus: () => {},

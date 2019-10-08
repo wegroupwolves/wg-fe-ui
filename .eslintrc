@@ -23,6 +23,7 @@
     "it": true,
     "gapi": true,
     "cy": true,
-    "jest": true
+    "jest": true,
+    "act": true
   }
 }

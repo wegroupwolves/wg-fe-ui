@@ -1,26 +1,39 @@
 import { DateInput } from '.';
-import { mount, shallow } from 'enzyme';
+import { mount } from 'enzyme';
 import React from 'react';
 import Theme from '../../constants/theme';
+import { act } from 'react-dom/test-utils';
 import 'jest-styled-components';
 import { ThemeProvider } from 'styled-components';
 
 describe('DateInput', () => {
   it('returns value when input changes', () => {
     const onChange = jest.fn();
-    const wrapper = shallow(
-      <DateInput onChange={onChange} name="date">
+
+    const wrapper = mount(
+      <DateInput onChange={onChange} name="date" touched={{ date: true }}>
         test
       </DateInput>,
     );
 
-    const input = wrapper.find('[data-test-id="day"]');
+    const day = wrapper.find('[data-test-id="day"]').at(1);
+    const month = wrapper.find('[data-test-id="month"]').at(1);
+    const year = wrapper.find('[data-test-id="year"]').at(1);
 
-    console.log(input.debug());
+    expect(onChange.mock.calls.length).toBe(0);
 
-    input.props().onChange({ target: '2' });
+    act(() => {
+      day.props().onChange({ target: { value: '8', id: 'day' } });
+      month.props().onChange({ target: { value: '3', id: 'month' } });
+      year.props().onChange({ target: { value: '1996', id: 'year' } });
+    });
 
-    expect(onChange).toBeCalledWith('2');
+    const calledOnChange = onChange.mock.calls[0];
+
+    expect(calledOnChange[0]).toBe(`date`);
+    expect(calledOnChange[1]).toHaveProperty('day', '08');
+    expect(calledOnChange[1]).toHaveProperty('month', '03');
+    expect(calledOnChange[1]).toHaveProperty('year', '1996');
   });
 
   it('has different border color on validation', () => {
@@ -90,7 +103,7 @@ describe('DateInput', () => {
 
   it('otherProps adds props to input', () => {
     const wrapper = mount(
-      <DateInput max={12} name="date" type="text">
+      <DateInput max={12} name="date">
         Test
       </DateInput>,
     );
