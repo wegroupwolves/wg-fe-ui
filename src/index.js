@@ -1,7 +1,12 @@
-import { ProgressBar, ToolBar, TrackingBar } from './../src/components/Bars'
+import { ProgressBar, ToolBar, TrackingBar } from './../src/components/Bars';
 import { ActionButton, BackButton, ToggleButton } from './components/Buttons';
 import { CheckBox, ImageSelectBar } from './components/Checkboxes';
-import { TextInput, SearchInput, SearchSelectInput } from './components/Inputs';
+import {
+  TextInput,
+  SearchInput,
+  SearchSelectInput,
+  DateInput,
+} from './components/Inputs';
 import { QuestionBox } from './components/Boxes';
 import { DisplayTable, OverviewTable } from './components/Tables';
 import {
@@ -13,7 +18,6 @@ import { Section } from './components/Section';
 import { ThemeProvider } from 'styled-components';
 import Theme from './constants/theme';
 
-
 export {
   ActionButton,
   BackButton,
@@ -22,6 +26,7 @@ export {
   CheckBox,
   ImageSelectBar,
   TextInput,
+  DateInput,
   SearchInput,
   SearchSelectInput,
   QuestionBox,

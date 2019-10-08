@@ -175,7 +175,7 @@ TextInput.defaultProps = {
   touched: {},
   setFieldTouched: () => {},
   setFieldValue: () => {},
-  otherProps: {}
+  otherProps: {},
 };
 
 TextInput.propTypes = {

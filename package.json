@@ -49,6 +49,7 @@
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
     "react-drag-drawer": "^3.3.1",
+    "react-input-mask": "^2.0.4",
     "react-router": "^5.1.2",
     "react-scripts": "^3.1.2",
     "react-select": "^3.0.8",
