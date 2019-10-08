@@ -5,17 +5,16 @@ import { key } from 'styled-theme';
 
 const Section = styled.li`
   font-weight: 900;
-  font-family: 'Lato';
 `;
 
 const SubSection = styled.li`
   border-right: 1px solid;
-  font-family: 'Lato';
   border-color: ${({ active }) =>
     active ? key('colors.action') : 'transparent'};
 `;
 
 const SectionContainer = styled.div`
+  font-family: ${key('fonts.primary')};
   overflow: ${({ active }) => (active ? 'auto' : 'hidden')};
   opacity: ${({ active }) => (active ? '1' : '0')};
   max-height: ${({ active }) => (active ? '100vh' : '0')};

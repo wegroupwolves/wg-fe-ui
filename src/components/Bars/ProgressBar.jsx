@@ -2,26 +2,23 @@ import React from 'react';
 import styled from 'styled-components';
 import { key } from 'styled-theme/dist';
 import { string, number, object, arrayOf } from 'prop-types';
-import LoadingBar from './LoadingBar'
-
+import LoadingBar from './LoadingBar';
 
 const Status = styled.span`
-    font-family: Lato;
-    font-size: 14px;
-    font-weight: ${({ active }) => 
-      active
-      ? 'bold' : 'initial' };
-    line-height: 24px;
-    text-align: center;
-    text-transform: capitalize;
-    color: #646464;
-    margin-top: 1.8vh;
-    @media (max-width: 768px) {
-      display: ${({ active }) => active ? 'inline' : 'none'};
-      margin-top: 0;
-      margin-left: 2vw;
-      text-align: justify;
-    }
+  font-family: ${key('fonts.primary')};
+  font-size: 14px;
+  font-weight: ${({ active }) => (active ? 'bold' : 'initial')};
+  line-height: 24px;
+  text-align: center;
+  text-transform: capitalize;
+  color: #646464;
+  margin-top: 1.8vh;
+  @media (max-width: 768px) {
+    display: ${({ active }) => (active ? 'inline' : 'none')};
+    margin-top: 0;
+    margin-left: 2vw;
+    text-align: justify;
+  }
 `;
 
 const ClaimStatus = ({ className, active, counter, stage }) => {
@@ -29,15 +26,33 @@ const ClaimStatus = ({ className, active, counter, stage }) => {
     <Status className={className} active={active}>
       {counter}. {stage.name}
     </Status>
-  )
+  );
 };
 
-const ProgressBar = ({ activeId, background, className, height, stages, ...otherProps }) => {
+const ProgressBar = ({
+  activeId,
+  background,
+  className,
+  height,
+  stages,
+  ...otherProps
+}) => {
   return (
-    <StyledProgressBar {...otherProps}>
-      <LoadingBar stages={stages} activeId={activeId} background={background} height={height} />
-      {stages.map((stage,i) => (
-        <ClaimStatus key={stage.id} stage={stage} stages={stages} active={activeId === stage.id} counter={i+1} />
+    <StyledProgressBar {...otherProps} className={className}>
+      <LoadingBar
+        stages={stages}
+        activeId={activeId}
+        background={background}
+        height={height}
+      />
+      {stages.map((stage, i) => (
+        <ClaimStatus
+          key={stage.id}
+          stage={stage}
+          stages={stages}
+          active={activeId === stage.id}
+          counter={i + 1}
+        />
       ))}
     </StyledProgressBar>
   );
@@ -46,7 +61,7 @@ const ProgressBar = ({ activeId, background, className, height, stages, ...other
 const StyledProgressBar = styled.div`
   display: flex;
   justify-content: space-around;
-  margin: 4vh auto .55vh;
+  margin: 4vh auto 0.55vh;
   position: relative;
   width: 100%;
   @media (max-width: 768px) {
@@ -60,23 +75,23 @@ ProgressBar.defaultProps = {
   height: '7px',
   otherProps: {},
   stages: [
-    { 
-      key: 'start', 
-      name: 'start', 
-      id: 1 
+    {
+      key: 'start',
+      name: 'start',
+      id: 1,
     },
     {
       key: 'middle',
       name: 'middle',
-      id: 2
+      id: 2,
     },
     {
       key: 'end',
       name: 'end',
-      id: 3
-    }
-  ]
-}
+      id: 3,
+    },
+  ],
+};
 
 ProgressBar.propTypes = {
   activeId: number,
@@ -85,8 +100,8 @@ ProgressBar.propTypes = {
   stages: arrayOf({
     key: string,
     name: string,
-    id: number
-  })
-}
+    id: number,
+  }),
+};
 
 export default ProgressBar;
