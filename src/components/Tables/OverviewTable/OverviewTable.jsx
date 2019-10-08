@@ -24,10 +24,6 @@ const Table = styled.table`
   margin-bottom: 4rem;
 `;
 
-OverviewTable.defaultProps = {
-  otherProps: {}
-};
-
 OverviewTable.propTypes = {
   /** Beeing able to use it in Styled Components */
   className: string,

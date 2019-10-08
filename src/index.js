@@ -1,4 +1,4 @@
-import { ProgressBar, ToolBar, TrackingBar } from './../src/components/Bars';
+import { ProgressBar, ToolBar, TrackingBar, OverviewClaimStatus } from './../src/components/Bars';
 import { ActionButton, BackButton, ToggleButton } from './components/Buttons';
 import { CheckBox, ImageSelectBar } from './components/Checkboxes';
 import {
@@ -41,6 +41,7 @@ export {
   OverviewTable,
   ProgressBar,
   ToolBar,
+  OverviewClaimStatus,
   TrackingBar,
 };
 
