@@ -4,10 +4,10 @@ import { key } from 'styled-theme';
 import PropTypes from 'prop-types';
 
 const StyledCheck = styled.span`
-  width: ${({ type }) => (type === 'radio' ? '16px' : '19px')};
   height: ${({ type }) => (type === 'radio' ? '16px' : '19px')};
+  min-width: ${({ type }) => (type === 'radio' ? '16px' : '19px')};
   border-radius: ${({ type }) => (type === 'radio' ? ' 10px' : '3px')};
-  margin-right: 1.6vw;
+  margin: auto 1.6vw;
   border: ${({ type, checked }) =>
     checked && type === 'radio' ? '5px solid' : '1.2px solid'};
   border-color: ${({ type, checked }) =>
@@ -44,7 +44,8 @@ const StyledContainer = styled.label`
   align-items: center;
   justify-content: flex-end;
   width: 25.4vw;
-  height: 6.9vh;
+  height: 75px;
+  min-width: 300px;
   cursor: pointer;
 
   background: #ffffff;
@@ -58,7 +59,6 @@ const StyledContainer = styled.label`
     checked
       ? css`
           background: #ffefdc;
-          border: 1px solid;
           border-color: ${key('colors.toggle')};
           ${Text} {
             color: ${key('colors.toggle')};
@@ -73,7 +73,7 @@ const StyledContainer = styled.label`
     color: ${({ disabled }) => (disabled ? key('colors.outline') : null)};
   }
   svg {
-    margin-left: 1.6vw;
+    margin: auto 1.6vw;
     fill: key('colors.interactive');
   }
 `;
