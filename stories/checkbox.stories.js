@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import { storiesOf } from '@storybook/react';
 import { withKnobs, boolean } from '@storybook/addon-knobs';
 import { withInfo } from '@storybook/addon-info';
 
-import { CheckBox } from '../src';
+import { CheckBox, ImageSelectBar } from '../src';
+
+import HouseIcon from './assets/HouseIcon.jsx';
 
 storiesOf('Low level blocks/Checkboxes', module)
   .addDecorator(withKnobs)
@@ -18,4 +20,54 @@ storiesOf('Low level blocks/Checkboxes', module)
     >
       Item
     </CheckBox>
-  ));
+  ))
+  .add('ImageSelectBar', () => {
+    const [checkedRadio, setCheckedRadio] = useState(0);
+    const [checkedBox, setCheckedBox] = useState({ 1: false, 2: false });
+
+    const handleChangeRadio = id => {
+      setCheckedRadio(id);
+    };
+
+    const handleChangeCheckbox = id => {
+      setCheckedBox({ ...checkedBox, [id]: !checkedBox[id] });
+    };
+    return (
+      <>
+        <ImageSelectBar
+          icon={<HouseIcon />}
+          handleChange={() => handleChangeRadio(1)}
+          checked={checkedRadio === 1}
+          disabled={true}
+          type={'radio'}
+        >
+          I encountered issues with my lugage
+        </ImageSelectBar>
+        <ImageSelectBar
+          icon={<HouseIcon />}
+          handleChange={() => handleChangeRadio(2)}
+          checked={checkedRadio === 2}
+          type={'radio'}
+        >
+          I encountered issues with my lugage
+        </ImageSelectBar>
+        <ImageSelectBar
+          icon={<HouseIcon />}
+          handleClick={() => handleChangeCheckbox(1)}
+          checked={checkedBox[1]}
+          disabled={true}
+          type={'checkbox'}
+        >
+          I encountered issues with my lugage
+        </ImageSelectBar>
+        <ImageSelectBar
+          icon={<HouseIcon />}
+          handleClick={() => handleChangeCheckbox(2)}
+          checked={checkedBox[2]}
+          type={'checkbox'}
+        >
+          I encountered issues with my lugage
+        </ImageSelectBar>
+      </>
+    );
+  });
