@@ -1,5 +1,5 @@
 import React from 'react';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import { key } from 'styled-theme';
 import PropTypes from 'prop-types';
 import { StyledContainer, StyledInput, Text } from './ImageBarTemplate';
