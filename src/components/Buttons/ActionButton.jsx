@@ -51,7 +51,7 @@ const StyledButton = styled.button`
   width: ${props => (props.fullwidth ? '100%' : '')};
   color: white;
   border: 0;
-  padding: ${({ padding }) => padding || '0.4rem'};
+  padding: ${({ padding }) => padding || '1rem 0.4rem'};
   display: flex;
   justify-content: center;
   align-items: center;
@@ -80,7 +80,9 @@ ActionButton.defaultProps = {
   level: 'primary',
   fullwidth: false,
   icon: null,
-  onClick: () => { console.log('clicked button') },
+  onClick: () => {
+    console.log('clicked button');
+  },
   otherProps: {},
 };
 
