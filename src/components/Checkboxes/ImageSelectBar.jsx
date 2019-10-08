@@ -51,7 +51,7 @@ const StyledContainer = styled.label`
   border: 1px solid;
   border-color: ${key('colors.outline')};
   border-radius: 2px;
-  font-family: Lato;
+  font-family: ${key('fonts.primary')};
   font-size: 1.6rem;
 
   ${({ checked }) =>
