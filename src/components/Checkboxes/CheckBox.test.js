@@ -1,7 +1,7 @@
 import CheckBox from './CheckBox';
 import { shallow, mount } from 'enzyme';
 import React from 'react';
-import Theme from '../../../.storybook/theme';
+import Theme from '../../constants/theme';
 import 'jest-styled-components';
 
 import { ThemeProvider } from 'styled-components';
@@ -9,11 +9,7 @@ import { ThemeProvider } from 'styled-components';
 describe('CheckBox', () => {
   it('can pass extra props', () => {
     const wrapper = shallow(
-      <CheckBox
-        name="test"
-        id={31}
-        onChange={() => console.log('testen')}
-      >
+      <CheckBox name="test" id={31} onChange={() => console.log('testen')}>
         Testje
       </CheckBox>,
     );

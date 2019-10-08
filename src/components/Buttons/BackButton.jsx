@@ -1,6 +1,6 @@
 import React from 'react';
 import { string, node, func, object } from 'prop-types';
-import BackArrow from './../Icons/BackArrow'
+import BackArrow from './../Icons/BackArrow';
 import styled from 'styled-components';
 import { key } from 'styled-theme';
 
@@ -12,7 +12,6 @@ const BackButton = ({
   className,
   ...otherProps
 }) => {
-
   return (
     <StyledButton
       onClick={onClick}
@@ -20,8 +19,8 @@ const BackButton = ({
       background={background}
       {...otherProps}
     >
-      { icon }
-      { name }
+      {icon}
+      {name}
     </StyledButton>
   );
 };
@@ -29,13 +28,13 @@ const BackButton = ({
 const StyledButton = styled.button`
   font-family: ${key('fonts.primary')};
   background-color: ${({ background }) =>
-    background
-      ? background : 'initial'};
+    background ? background : 'initial'};
   font-size: ${key('fonts.normal-size')};
   border-radius: 0.5rem;
   min-width: 12rem;
   height: 4rem;
-  color: ${({ background }) => background ? '#FFFFFF' : key('colors.highlight')};
+  color: ${({ background }) =>
+    background ? '#FFFFFF' : key('colors.highlight')};
   font-size: 16px;
   line-height: 20px;
   border: 0;
@@ -56,13 +55,14 @@ const StyledButton = styled.button`
   svg {
     margin-right: 1.15vw;
   }
-
 `;
 
 BackButton.defaultProps = {
   icon: <BackArrow />,
   name: 'Back',
-  onClick: () => { console.log ('back button clicked')},
+  onClick: () => {
+    console.log('back button clicked');
+  },
   otherProps: {},
 };
 

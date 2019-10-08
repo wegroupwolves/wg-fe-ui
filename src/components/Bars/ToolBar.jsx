@@ -1,57 +1,61 @@
 import React from 'react';
 import styled from 'styled-components';
 import { key } from 'styled-theme';
-import { ActionButton } from './../Buttons'
+import { ActionButton } from './../Buttons';
 import { string, object, node, func } from 'prop-types';
 
-
 const Box = styled.div`
-    display: flex;
-    background-color: #F7F7F7;
-    width: 100%;
-    height: 70px;
-    justify-content: space-between;
-    align-items: center;
-    padding: 13px 9.21vw 12px 15.73vw;
-    box-sizing: border-box;
-`
+  display: flex;
+  background-color: #f7f7f7;
+  width: 100%;
+  height: 70px;
+  justify-content: space-between;
+  align-items: center;
+  padding: 13px 9.21vw 12px 15.73vw;
+  box-sizing: border-box;
+`;
 
 const InnerBox = styled.div`
-    position: relative;
-    display: flex;
-    align-items: center;
-    width: 70%;
-    height: 100%;
-    border-right: 1px solid ${key('colors.outline')};
-    margin-right: 2.4vw;
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 70%;
+  height: 100%;
+  border-right: 1px solid ${key('colors.outline')};
+  margin-right: 2.4vw;
 
-    input {
-        border: none;
-        background-color: inherit;
-    }
-`
+  input {
+    border: none;
+    background-color: inherit;
+  }
+`;
 
 InnerBox.displayName = 'InnerBox';
 
-const ToolBar = ({ btnName, className, children, level, onClick, ...otherProps,  }) => {
+const ToolBar = ({
+  btnName,
+  className,
+  children,
+  level,
+  onClick,
+  ...otherProps
+}) => {
   return (
-    <Box className={className} {...otherProps}> 
-        <InnerBox>
-            { children }
-        </InnerBox>
-        <ActionButton level={level} onClick={onClick} padding="0.5rem 1.5rem">
-            { btnName }
-        </ActionButton>
+    <Box className={className} {...otherProps}>
+      <InnerBox>{children}</InnerBox>
+      <ActionButton level={level} onClick={onClick} padding="0.5rem 1.5rem">
+        {btnName}
+      </ActionButton>
     </Box>
   );
 };
 
 ToolBar.defaultProps = {
-    btnName: 'New claim',
-    level: "primary",
-    onClick: Function.prototype,
-    otherProps: {}
-}
+  btnName: 'New claim',
+  level: 'primary',
+  onClick: Function.prototype,
+  otherProps: {},
+};
 
 ToolBar.propTypes = {
   btnName: string,
@@ -64,6 +68,6 @@ ToolBar.propTypes = {
   children: node,
 };
 
-ToolBar.displayName = 'ToolBar'
+ToolBar.displayName = 'ToolBar';
 
 export default ToolBar;

@@ -1,5 +1,4 @@
-import React from 'react';
-
+import React, { useState } from 'react';
 import { storiesOf } from '@storybook/react';
 // import { linkTo } from '@storybook/addon-links';
 import {
@@ -12,12 +11,40 @@ import {
 import { action } from '@storybook/addon-actions';
 import { withInfo } from '@storybook/addon-info';
 import styled from 'styled-components';
+import Plane from './../src/components/Icons/Plane';
+import Property from './../src/components/Icons/Property';
+import Liability from './../src/components/Icons/Liability';
+import Car from './../src/components/Icons/Car';
 
-import { TextInput, SearchInput, SearchSelectInput, DateInput } from '../src';
+import {
+  ImageSelectGroup,
+  TextInput,
+  SearchInput,
+  SearchSelectInput,
+  DateInput,
+} from '../src';
 
 storiesOf('Low level blocks/Inputs', module)
   .addDecorator(withKnobs)
   .addDecorator(withInfo({ inline: true }))
+  .add('ImageSelectGroup', () => {
+    const [selected, setSelected] = useState('');
+    const boxes = [
+      { id: 1, val: 'plane', icon: <Plane width={96} height={34} /> },
+      { id: 2, val: 'property', icon: <Property /> },
+      { id: 3, val: 'liability', icon: <Liability /> },
+      { id: 4, val: 'car', icon: <Car /> },
+    ];
+
+    return (
+      <ImageSelectGroup
+        label="means"
+        boxes={boxes}
+        selected={selected}
+        setSelected={setSelected}
+      />
+    );
+  })
   .add('TextInput', () => {
     let errors = { emailadres: text('Error', '') };
     let touched = { emailadres: boolean('Touched', false) };
