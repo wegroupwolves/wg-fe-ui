@@ -17,7 +17,7 @@ import Liability from './../src/components/Icons/Liability';
 import Car from './../src/components/Icons/Car';
 
 import {
-  ImageSelectGroup,
+  ImageSelectBox,
   TextInput,
   SearchInput,
   SearchSelectInput,
@@ -27,22 +27,42 @@ import {
 storiesOf('Low level blocks/Inputs', module)
   .addDecorator(withKnobs)
   .addDecorator(withInfo({ inline: true }))
-  .add('ImageSelectGroup', () => {
+  .add('ImageSelectBox', () => {
     const [selected, setSelected] = useState('');
-    const boxes = [
-      { id: 1, val: 'plane', icon: <Plane width={96} height={34} /> },
-      { id: 2, val: 'property', icon: <Property /> },
-      { id: 3, val: 'liability', icon: <Liability /> },
-      { id: 4, val: 'car', icon: <Car /> },
-    ];
+
+    const handleChange = ({ target: { value } }) => setSelected(value);
 
     return (
-      <ImageSelectGroup
-        label="means"
-        boxes={boxes}
-        selected={selected}
-        setSelected={setSelected}
-      />
+      <>
+        <ImageSelectBox
+          label="means"
+          selected={selected}
+          value="plane"
+          icon={<Plane width={96} height={34} />}
+          onChange={handleChange}
+        />
+        <ImageSelectBox
+          label="means"
+          selected={selected}
+          value="property"
+          icon={<Property />}
+          onChange={handleChange}
+        />
+        <ImageSelectBox
+          label="means"
+          selected={selected}
+          value="liability"
+          icon={<Liability />}
+          onChange={handleChange}
+        />
+        <ImageSelectBox
+          label="means"
+          selected={selected}
+          value="car"
+          icon={<Car />}
+          onChange={handleChange}
+        />
+      </>
     );
   })
   .add('TextInput', () => {
