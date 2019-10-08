@@ -38,7 +38,7 @@ const ProgressBar = ({
   ...otherProps
 }) => {
   return (
-    <StyledProgressBar {...otherProps}>
+    <StyledProgressBar {...otherProps} className={className}>
       <LoadingBar
         stages={stages}
         activeId={activeId}
