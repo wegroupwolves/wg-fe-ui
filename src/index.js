@@ -1,5 +1,10 @@
-import { ProgressBar, ToolBar, TrackingBar, OverviewClaimStatus } from './../src/components/Bars';
-import { ActionButton, BackButton, ToggleButton } from './components/Buttons';
+import {
+  ProgressBar,
+  ToolBar,
+  TrackingBar,
+  OverviewClaimStatus,
+} from './../src/components/Bars';
+import { ActionButton, BackButton, DropUploadButton, ToggleButton } from './components/Buttons';
 import { CheckBox, ImageSelectBar } from './components/Checkboxes';
 import {
   ImageSelectGroup,
@@ -22,6 +27,7 @@ import Theme from './constants/theme';
 export {
   ActionButton,
   BackButton,
+  DropUploadButton,
   ToggleButton,
   ThemeProvider,
   CheckBox,
