@@ -1,10 +1,9 @@
 import { ToggleButton } from '.';
 import { shallow, mount } from 'enzyme';
 import React from 'react';
-import Theme from '../../../.storybook/theme';
+import Theme from '../../constants/theme';
 import 'jest-styled-components';
 import { ThemeProvider } from 'styled-components';
-
 
 describe('ToggleButton', () => {
   it('When disabled, button is unclickable & color changed', () => {
@@ -42,10 +41,7 @@ describe('ToggleButton', () => {
 
   it('can pass extra props', () => {
     const wrapper = shallow(
-      <ToggleButton
-        id={'31'}
-        onClick={() => console.log('testen')}
-      >
+      <ToggleButton id={'31'} onClick={() => console.log('testen')}>
         Testje
       </ToggleButton>,
     );
@@ -55,9 +51,7 @@ describe('ToggleButton', () => {
   it('style changes when level changes', () => {
     const wrapper = mount(
       <ThemeProvider theme={Theme}>
-        <ToggleButton onClick={() => console.log('test')}>
-          Testje2
-        </ToggleButton>
+        <ToggleButton onClick={() => console.log('test')}>Testje2</ToggleButton>
       </ThemeProvider>,
     );
 
@@ -83,10 +77,7 @@ describe('ToggleButton', () => {
     // test secondary level
     wrapper.setProps({
       children: (
-        <ToggleButton
-          level="non-active"
-          onClick={() => console.log('test')}
-        >
+        <ToggleButton level="non-active" onClick={() => console.log('test')}>
           Testje2
         </ToggleButton>
       ),
@@ -99,10 +90,7 @@ describe('ToggleButton', () => {
     // test random level
     wrapper.setProps({
       children: (
-        <ToggleButton
-          level="randomword"
-          onClick={() => console.log('test')}
-        >
+        <ToggleButton level="randomword" onClick={() => console.log('test')}>
           Testje2
         </ToggleButton>
       ),

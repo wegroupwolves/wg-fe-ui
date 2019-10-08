@@ -7,11 +7,26 @@ import { action } from '@storybook/addon-actions';
 import { withInfo } from '@storybook/addon-info';
 import styled from 'styled-components';
 
-import { TextInput, SearchInput, SearchSelectInput } from '../src';
+import {
+  ImageSelectGroup,
+  TextInput,
+  SearchInput,
+  SearchSelectInput,
+} from '../src';
 
 storiesOf('Low level blocks/Inputs', module)
   .addDecorator(withKnobs)
   .addDecorator(withInfo({ inline: true }))
+  .add('ImageSelectGroup', () => {
+    const boxes = [
+      { id: 1, val: 'plane', image: null },
+      { id: 2, val: 'property', image: null },
+      { id: 3, val: 'liability', image: null },
+      { id: 4, val: 'car', image: null },
+    ];
+
+    return <ImageSelectGroup label="means" boxes={boxes} />;
+  })
   .add('TextInput', () => {
     let errors = { emailadres: text('Error', '') };
     let touched = { emailadres: boolean('Touched', false) };

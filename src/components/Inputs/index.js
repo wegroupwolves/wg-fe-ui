@@ -1,5 +1,6 @@
+import ImageSelectGroup from './ImageSelectGroup';
 import TextInput from './TextInput';
 import SearchInput from './SearchInput'
 import SearchSelectInput from './SearchSelectInput';
 
-export { TextInput, SearchInput, SearchSelectInput };
+export { ImageSelectGroup, TextInput, SearchInput, SearchSelectInput };
