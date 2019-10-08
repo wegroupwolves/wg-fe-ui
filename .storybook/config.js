@@ -1,5 +1,5 @@
 import { configure, addDecorator} from '@storybook/react';
-import Theme from './theme.js';
+import Theme from './../src/constants/theme';
 import { ThemeProvider } from 'styled-components';
 import React from 'react';
 

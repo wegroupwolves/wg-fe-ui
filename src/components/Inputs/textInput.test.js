@@ -1,7 +1,7 @@
 import { TextInput } from '.';
 import { mount } from 'enzyme';
 import React from 'react';
-import Theme from '../../../.storybook/theme';
+import Theme from '../../constants/theme';
 import 'jest-styled-components';
 import { ThemeProvider } from 'styled-components';
 

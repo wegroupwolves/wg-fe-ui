@@ -17,6 +17,10 @@ const Theme = () => {
     good: '#00CD39',
     bad: '#F74040',
 
+    inactive: '#FBFBFB',
+    normal: '#FFFFFF',
+    selected: '#FFEFDC',
+
     interactive: '#C1C1C1',
 
     title: '#000000',
