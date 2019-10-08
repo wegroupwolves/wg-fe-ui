@@ -33,13 +33,13 @@ const InnerBox = styled.div`
 
 InnerBox.displayName = 'InnerBox';
 
-const ToolBar = ({ btnName, className, children, onClick, ...otherProps,  }) => {
+const ToolBar = ({ btnName, className, children, level, onClick, ...otherProps,  }) => {
   return (
     <Box className={className} {...otherProps}> 
         <InnerBox>
             { children }
         </InnerBox>
-        <ActionButton onClick={onClick} padding="0.5rem 1.5rem">
+        <ActionButton level={level} onClick={onClick} padding="0.5rem 1.5rem">
             { btnName }
         </ActionButton>
     </Box>
@@ -48,6 +48,7 @@ const ToolBar = ({ btnName, className, children, onClick, ...otherProps,  }) => 
 
 ToolBar.defaultProps = {
     btnName: 'New claim',
+    level: "primary",
     onClick: Function.prototype,
     otherProps: {}
 }
@@ -56,11 +57,13 @@ ToolBar.propTypes = {
   btnName: string,
   /** Beeing able to use it in Styled Components */
   className: string,
+  level: string,
   onClick: func,
   /** Adds extra props to the element */
   otherProps: object,
   children: node,
 };
 
+ToolBar.displayName = 'ToolBar'
 
 export default ToolBar;

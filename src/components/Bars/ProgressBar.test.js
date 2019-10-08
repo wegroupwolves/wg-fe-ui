@@ -1,5 +1,5 @@
 import React from 'react'
-import ProgressBar, { ClaimStatus } from './ProgressBar'
+import ProgressBar from './ProgressBar'
 import LoadingBar from './LoadingBar'
 import 'jest-styled-components'
 import { mount, shallow } from 'enzyme'
@@ -15,7 +15,7 @@ describe('ProgressBar', () => {
         );
 
         expect(wrapper.find(LoadingBar).exists()).toEqual(true);
-        expect(wrapper.find(ClaimStatus).exists()).toEqual(true)
+        expect(wrapper.find('ClaimStatus').exists()).toEqual(true)
     });
 
     it('when correct stages passed, should their length equal to number of ClaimStatus components', () => {
@@ -39,7 +39,7 @@ describe('ProgressBar', () => {
 
         const wrapper = mount(<ProgressBar stages={stages} />);
 
-        expect(wrapper.find(ClaimStatus).length).toEqual(stages.length)
+        expect(wrapper.find('ClaimStatus').length).toEqual(stages.length)
     });
 
 });
