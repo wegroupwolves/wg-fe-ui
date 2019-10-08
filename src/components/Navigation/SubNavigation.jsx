@@ -26,6 +26,7 @@ SubSection.propTypes = {
 };
 
 const StyledSubNavigation = styled.ul`
+  font-family: ${key('fonts.primary')};
   li {
     color: ${key('colors.highlight')};
     line-height: 2rem;

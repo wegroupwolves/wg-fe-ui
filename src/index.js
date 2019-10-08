@@ -1,4 +1,9 @@
-import { ProgressBar, ToolBar, TrackingBar } from './../src/components/Bars';
+import {
+  ProgressBar,
+  ToolBar,
+  TrackingBar,
+  OverviewClaimStatus,
+} from './../src/components/Bars';
 import {
   ActionButton,
   AddEntityButton,
@@ -7,6 +12,7 @@ import {
 } from './components/Buttons';
 import { CheckBox, ImageSelectBar } from './components/Checkboxes';
 import {
+  ImageSelectGroup,
   TextInput,
   SearchInput,
   SearchSelectInput,
@@ -30,6 +36,7 @@ export {
   ToggleButton,
   ThemeProvider,
   CheckBox,
+  ImageSelectGroup,
   ImageSelectBar,
   TextInput,
   DateInput,
@@ -45,6 +52,7 @@ export {
   OverviewTable,
   ProgressBar,
   ToolBar,
+  OverviewClaimStatus,
   TrackingBar,
 };
 

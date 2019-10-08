@@ -9,6 +9,7 @@ import {
   SearchInput,
   ProgressBar,
   ToolBar,
+  OverviewClaimStatus,
   TrackingBar,
 } from './../src';
 import ApprovedIcon from './assets/Icons/Approved';
@@ -92,6 +93,13 @@ storiesOf('Mid Level blocks/Bars', module)
         ]}
         background="#D3D4D8"
       />
+    );
+  })
+  .add('OverviewClaimStatus', () => {
+    const statuses = ['first', 'second', 'third'];
+
+    return (
+      <OverviewClaimStatus statuses={statuses} currentStatus={statuses[1]} />
     );
   });
 

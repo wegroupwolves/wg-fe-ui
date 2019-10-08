@@ -1,4 +1,5 @@
 import React from 'react';
+import { key } from 'styled-theme/dist';
 import { string, object, node } from 'prop-types';
 import styled from 'styled-components';
 
@@ -11,11 +12,11 @@ const Row = ({ className, children, ...otherProps }) => {
 };
 
 const Tr = styled.tr`
-  background-color: white;
+  background-color: ${key('colors.normal')};
   font-size: 1.6rem;
 
   :hover {
-    background-color: #ffefdc;
+    background-color: ${key('colors.selected')};
   }
 `;
 
