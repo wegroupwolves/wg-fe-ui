@@ -12,7 +12,7 @@ import {
   ActionButton,
   AddEntityButton,
   BackButton,
-  DropUploadButton,
+  UploadField,
   ToggleButton,
 } from '../src/';
 
@@ -62,9 +62,9 @@ storiesOf('Low level blocks/Buttons', module)
       />
     );
   })
-  .add('DropUploadButton', () => {
+  .add('UploadField', () => {
     const onClick = value => console.log('value: ', value);
-    return <DropUploadButton onClick={onClick} />;
+    return <UploadField onClick={onClick} />;
   })
   .add('ToggleButton', () => (
     <ToggleButton

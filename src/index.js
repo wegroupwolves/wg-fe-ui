@@ -8,7 +8,7 @@ import {
   ActionButton,
   AddEntityButton,
   BackButton,
-  DropUploadButton,
+  UploadField,
   ToggleButton,
 } from './components/Buttons';
 import { CheckBox, RadioOption, CheckOption } from './components/Checkboxes';
@@ -34,7 +34,7 @@ export {
   ActionButton,
   AddEntityButton,
   BackButton,
-  DropUploadButton,
+  UploadField,
   ToggleButton,
   ThemeProvider,
   CheckBox,

@@ -2,7 +2,7 @@ import React, { useRef, useState } from 'react';
 import { object, bool, string, element, func } from 'prop-types';
 import styled from 'styled-components';
 import { key } from 'styled-theme';
-import UploadIcon from './../Icons/Upload';
+import UploadIcon from '../Icons/Upload';
 
 function dragEnter(e, setFile) {
   e.preventDefault();
@@ -36,7 +36,7 @@ function dropFile(e, setFile, onClick) {
   setFile(false);
 }
 
-const DropUploadButton = ({
+const UploadField = ({
   icon,
   name,
   multiple,
@@ -111,7 +111,7 @@ const StyledButton = styled.label`
 
 StyledButton.displayName = 'StyledButton';
 
-DropUploadButton.defaultProps = {
+UploadField.defaultProps = {
   multiple: false,
   icon: <UploadIcon />,
   name: 'label',
@@ -120,7 +120,7 @@ DropUploadButton.defaultProps = {
   fullwidth: false,
 };
 
-DropUploadButton.propTypes = {
+UploadField.propTypes = {
   fullwidth: bool,
   icon: element,
   name: string.isRequired,
@@ -131,4 +131,4 @@ DropUploadButton.propTypes = {
   otherProps: object,
 };
 
-export default DropUploadButton;
+export default UploadField;
