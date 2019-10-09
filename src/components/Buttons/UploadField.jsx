@@ -4,19 +4,20 @@ import styled from 'styled-components';
 import { key } from 'styled-theme';
 import UploadIcon from '../Icons/Upload';
 
-function dragEnter(e, setFile) {
+function dragEnter(e, file, setFile) {
   e.preventDefault();
-  setFile(true);
+  !file && setFile(true);
 }
 
-function dragLeave(e, setFile) {
+function dragLeave(e, file, setFile) {
   e.preventDefault();
-  setFile(false);
+  file && setFile(false);
 }
 
-function dragOver(e) {
+function dragOver(e, file, setFile) {
   e.preventDefault();
   e.dataTransfer.dropEffect = 'move';
+  !file && setFile(true);
 }
 
 function dropFile(e, setFile, onClick) {
@@ -55,9 +56,9 @@ const UploadField = ({
       ref={ref}
       withFile={withFile}
       onClick={onClick}
-      onDragEnter={e => dragEnter(e, setWithFile)}
-      onDragExit={e => dragLeave(e, setWithFile)}
-      onDragOver={e => dragOver(e, setWithFile)}
+      onDragEnter={e => dragEnter(e, withFile, setWithFile)}
+      onDragLeave={e => dragLeave(e, withFile, setWithFile)}
+      onDragOver={e => dragOver(e, withFile, setWithFile)}
       onDrop={e => dropFile(e, setWithFile, onClick)}
       {...otherProps}
     >
