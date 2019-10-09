@@ -1,8 +1,25 @@
-import React, { useRef, useState } from 'react';
+import React, { useCallback, useRef, useState } from 'react';
 import { object, bool, string, element, func } from 'prop-types';
 import styled from 'styled-components';
 import { key } from 'styled-theme';
 import UploadIcon from '../Icons/Upload';
+
+// as long as it continues to be invoked, raise on every interval
+function throttle(func, interval) {
+  var timeout;
+  return function() {
+    var context = this,
+      args = [...arguments].slice(2);
+    var later = function() {
+      timeout = false;
+    };
+    if (!timeout) {
+      func.apply(context, args);
+      timeout = true;
+      setTimeout(later, interval);
+    }
+  };
+}
 
 function dragEnter(e) {
   e.preventDefault();
@@ -13,25 +30,15 @@ function dragLeave(e, file, setFile) {
   file && setFile(false);
 }
 
-function dragOver(e, file, setFile) {
+function dragOver(e, setFile) {
   e.preventDefault();
   e.dataTransfer.dropEffect = 'move';
-  !file && setFile(true);
+  setFile();
 }
 
 function dropFile(e, setFile, onClick) {
   e.preventDefault();
   e.stopPropagation();
-  // let reader = new FileReader();
-
-  // reader.readAsText(file);
-  // reader.onload = function() {
-  //   console.log(reader, ref);
-  //   ref.current.files[0] = reader.result;
-  // };
-  // reader.onerror = function() {
-  //   console.log(reader.error);
-  // };
 
   onClick(e.dataTransfer.files[0]);
   setFile(false);
@@ -48,6 +55,12 @@ const UploadField = ({
 }) => {
   const ref = useRef();
   const [withFile, setWithFile] = useState(false);
+  const setFile = useCallback(
+    throttle(() => {
+      setWithFile(true);
+    }, 300),
+    [withFile],
+  );
   const handleChange = ({ target: { value } }) => onChange(value);
 
   return (
@@ -57,7 +70,7 @@ const UploadField = ({
       onClick={onClick}
       onDragEnter={e => dragEnter(e)}
       onDragLeave={e => dragLeave(e, withFile, setWithFile)}
-      onDragOver={e => dragOver(e, withFile, setWithFile)}
+      onDragOver={e => dragOver(e, setFile)}
       onDrop={e => dropFile(e, setWithFile, onClick)}
       {...otherProps}
     >
