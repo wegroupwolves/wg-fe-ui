@@ -3,6 +3,7 @@ import {
   ToolBar,
   TrackingBar,
   OverviewClaimStatus,
+  FlightSelectBar,
 } from './../src/components/Bars';
 import {
   ActionButton,
@@ -55,6 +56,7 @@ export {
   ToolBar,
   OverviewClaimStatus,
   TrackingBar,
+  FlightSelectBar,
 };
 
 // Export all components

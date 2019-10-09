@@ -15,7 +15,7 @@ const StyledInput = styled.input`
   height: 0;
 `;
 
-const StyledContainer = styled.label`
+const Container = styled.label`
   display: flex;
   align-items: center;
   justify-content: flex-end;
@@ -54,4 +54,4 @@ const StyledContainer = styled.label`
   }
 `;
 
-export { StyledContainer, StyledInput, Text };
+export { Container, StyledInput, Text };
