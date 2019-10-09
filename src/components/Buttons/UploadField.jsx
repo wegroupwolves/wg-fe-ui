@@ -21,6 +21,7 @@ function dragOver(e) {
 
 function dropFile(e, setFile, onClick) {
   e.preventDefault();
+  e.stopPropagation();
   // let reader = new FileReader();
 
   // reader.readAsText(file);
@@ -82,24 +83,26 @@ const StyledButton = styled.label`
   padding: 2vh 0;
   border: 0.5px solid;
   border-color: ${({ withFile }) =>
-    withFile ? '#FF9B21' : key('colors.big-disabled')};
+    withFile ? key('colors.toggle') : key('colors.big-disabled')};
   box-sizing: border-box;
   border-radius: 5px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  color: ${({ withFile }) => (withFile ? '#FF9B21' : '#505050')};
+  color: ${({ withFile }) =>
+    withFile ? key('colors.toggle') : key('colors.highlight')};
   cursor: pointer;
   background-color: ${({ withFile }) =>
-    withFile ? '#FFEFDC' : key('colors.big-disabled')};
+    withFile ? key('colors.selected') : key('colors.big-disabled')};
   position: relative;
 
   svg {
     margin-bottom: 12px;
 
     path {
-      fill: ${({ withFile }) => (withFile ? '#FF9B21' : '#C1C1C1')};
+      fill: ${({ withFile }) =>
+        withFile ? key('colors.toggle') : key('colors.interactive')};
     }
   }
 
