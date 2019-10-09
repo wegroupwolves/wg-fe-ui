@@ -87,6 +87,7 @@ StyledFlightData.propTypes = {
   border: PropTypes.bool,
   label: PropTypes.string,
   data: PropTypes.string,
+  children: PropTypes.node,
 };
 
 StyledFlightData.defaultProps = {
