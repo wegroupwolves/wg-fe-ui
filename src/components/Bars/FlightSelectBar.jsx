@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { key } from 'styled-theme/dist';
 import PropTypes from 'prop-types';
 import {
@@ -36,6 +36,41 @@ const FlightData = styled.div`
   }
 `;
 
+const StyledContainer = styled(Container)`
+  width: 52vw;
+  justify-content: space-around;
+  padding: 0 2vw;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.05);
+  svg {
+    margin: 0;
+  }
+
+  ${({ checked }) =>
+    checked
+      ? css`
+          background: #ffefdc;
+          border-color: ${key('colors.toggle')};
+          ${FlightData} {
+            border-right-color: ${key('colors.toggle')};
+            .label {
+              color: ${key('colors.toggle')};
+            }
+            .data {
+              color: ${key('colors.action')};
+            }
+          }
+          svg > rect,
+          path {
+            fill: ${key('colors.toggle')};
+            stroke: ${key('colors.toggle')};
+          }
+        `
+      : null};
+  ${FlightData} > span {
+    color: ${({ disabled }) => (disabled ? key('colors.outline') : null)};
+  }
+`;
+
 const StyledFlightData = ({ border, label, data, children }) => (
   <FlightData border={border}>
     {label && data && (
@@ -57,15 +92,6 @@ StyledFlightData.propTypes = {
 StyledFlightData.defaultProps = {
   border: false,
 };
-
-const StyledContainer = styled(Container)`
-  width: 52vw;
-  justify-content: space-around;
-  padding: 0 2vw;
-  svg {
-    margin: 0;
-  }
-`;
 
 const FlightSelectBar = ({
   checked,
