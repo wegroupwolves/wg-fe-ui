@@ -34,7 +34,7 @@ const Container = styled.label`
   ${({ checked }) =>
     checked
       ? css`
-          background: #ffefdc;
+          background-color: ${key('colors.selected')};
           border-color: ${key('colors.toggle')};
           ${Text} {
             color: ${key('colors.toggle')};

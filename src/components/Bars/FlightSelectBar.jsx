@@ -19,7 +19,8 @@ const StyledCheck = styled.span`
 const FlightData = styled.div`
   display: flex;
   flex-direction: column;
-  border-right: ${({ border }) => (border ? '1px solid #cccccc' : null)};
+  border-right: ${({ border }) =>
+    border ? css`1px solid ${key('colors.outline')}` : null};
   padding-right: ${({ border }) => (border ? '1.7vw' : null)};
   margin-right: 7%;
   .label {
@@ -48,7 +49,7 @@ const StyledContainer = styled(Container)`
   ${({ checked }) =>
     checked
       ? css`
-          background: #ffefdc;
+          background-color: ${key('colors.selected')};
           border-color: ${key('colors.toggle')};
           ${FlightData} {
             border-right-color: ${key('colors.toggle')};
