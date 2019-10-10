@@ -1,43 +1,26 @@
-import React, { useCallback, useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { object, bool, string, element, func } from 'prop-types';
 import styled from 'styled-components';
 import { key } from 'styled-theme';
 import UploadIcon from '../Icons/Upload';
 
-// as long as it continues to be invoked, raise on every interval
-function throttle(func, interval) {
-  var timeout;
-  return function() {
-    var context = this,
-      args = [...arguments].slice(2);
-    var later = function() {
-      timeout = false;
-    };
-    if (!timeout) {
-      func.apply(context, args);
-      timeout = true;
-      setTimeout(later, interval);
-    }
-  };
-}
-
 let counter = 0;
 
-function dragEnter(e) {
-  e.preventDefault();
+function dragEnter(e, setFile) {
   counter++;
-}
-
-function dragLeave(e, file, setFile) {
+  setFile(true);
   e.preventDefault();
-  counter--;
-  counter === 0 && file && setFile(false);
 }
 
-function dragOver(e, setFile) {
+function dragLeave(e, setFile) {
+  counter--;
+  counter === 0 && setFile(false);
+  e.preventDefault();
+}
+
+function dragOver(e) {
   e.preventDefault();
   e.dataTransfer.dropEffect = 'move';
-  setFile();
 }
 
 function dropFile(e, setFile, onClick) {
@@ -60,12 +43,6 @@ const UploadField = ({
 }) => {
   const ref = useRef();
   const [withFile, setWithFile] = useState(false);
-  const setFile = useCallback(
-    throttle(() => {
-      setWithFile(true);
-    }, 300),
-    [withFile],
-  );
   const handleChange = ({ target: { value } }) => onChange(value);
 
   return (
@@ -73,9 +50,9 @@ const UploadField = ({
       ref={ref}
       withFile={withFile}
       onClick={onClick}
-      onDragEnter={e => dragEnter(e)}
-      onDragLeave={e => dragLeave(e, withFile, setWithFile)}
-      onDragOver={e => dragOver(e, setFile)}
+      onDragEnter={e => dragEnter(e, setWithFile)}
+      onDragLeave={e => dragLeave(e, setWithFile)}
+      onDragOver={dragOver}
       onDrop={e => dropFile(e, setWithFile, onClick)}
       {...otherProps}
     >
