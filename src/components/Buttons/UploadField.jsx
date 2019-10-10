@@ -6,15 +6,16 @@ import UploadIcon from '../Icons/Upload';
 
 let counter = 0;
 
-function dragEnter(e) {
+function dragEnter(e, setFile) {
+  counter += 1;
+  setFile(true);
   e.preventDefault();
-  counter++;
 }
 
-function dragLeave(e, file, setFile) {
+function dragLeave(e, setFile) {
+  counter -= 1;
+  counter === 0 && setFile(false);
   e.preventDefault();
-  counter--;
-  counter === 0 && file && setFile(false);
 }
 
 function dragOver(e) {
@@ -49,8 +50,8 @@ const UploadField = ({
       ref={ref}
       withFile={withFile}
       onClick={onClick}
-      onDragEnter={e => dragEnter(e)}
-      onDragLeave={e => dragLeave(e, withFile, setWithFile)}
+      onDragEnter={e => dragEnter(e, setWithFile)}
+      onDragLeave={e => dragLeave(e, setWithFile)}
       onDragOver={e => dragOver(e, setWithFile)}
       onDrop={e => dropFile(e, setWithFile, onClick)}
       {...otherProps}
