@@ -4,13 +4,17 @@ import styled from 'styled-components';
 import { key } from 'styled-theme';
 import UploadIcon from '../Icons/Upload';
 
+let counter = 0;
+
 function dragEnter(e) {
   e.preventDefault();
+  counter++;
 }
 
 function dragLeave(e, file, setFile) {
   e.preventDefault();
-  file && setFile(false);
+  counter--;
+  counter === 0 && file && setFile(false);
 }
 
 function dragOver(e) {
@@ -24,6 +28,7 @@ function dropFile(e, setFile, onClick) {
 
   onClick(e.dataTransfer.files[0]);
   setFile(false);
+  counter = 0;
 }
 
 const UploadField = ({
