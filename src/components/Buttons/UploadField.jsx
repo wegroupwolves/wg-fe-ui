@@ -1,25 +1,8 @@
-import React, { useCallback, useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { object, bool, string, element, func } from 'prop-types';
 import styled from 'styled-components';
 import { key } from 'styled-theme';
 import UploadIcon from '../Icons/Upload';
-
-// as long as it continues to be invoked, raise on every interval
-function throttle(func, interval) {
-  var timeout;
-  return function() {
-    var context = this,
-      args = [...arguments].slice(2);
-    var later = function() {
-      timeout = false;
-    };
-    if (!timeout) {
-      func.apply(context, args);
-      timeout = true;
-      setTimeout(later, interval);
-    }
-  };
-}
 
 function dragEnter(e) {
   e.preventDefault();
@@ -30,10 +13,9 @@ function dragLeave(e, file, setFile) {
   file && setFile(false);
 }
 
-function dragOver(e, setFile) {
+function dragOver(e) {
   e.preventDefault();
   e.dataTransfer.dropEffect = 'move';
-  setFile();
 }
 
 function dropFile(e, setFile, onClick) {
@@ -55,12 +37,6 @@ const UploadField = ({
 }) => {
   const ref = useRef();
   const [withFile, setWithFile] = useState(false);
-  const setFile = useCallback(
-    throttle(() => {
-      setWithFile(true);
-    }, 300),
-    [withFile],
-  );
   const handleChange = ({ target: { value } }) => onChange(value);
 
   return (
@@ -70,7 +46,7 @@ const UploadField = ({
       onClick={onClick}
       onDragEnter={e => dragEnter(e)}
       onDragLeave={e => dragLeave(e, withFile, setWithFile)}
-      onDragOver={e => dragOver(e, setFile)}
+      onDragOver={e => dragOver(e, setWithFile)}
       onDrop={e => dropFile(e, setWithFile, onClick)}
       {...otherProps}
     >
