@@ -2,7 +2,7 @@ import React from 'react';
 import styled, { css } from 'styled-components';
 import { key } from 'styled-theme';
 import PropTypes from 'prop-types';
-import { StyledContainer, StyledInput, Text } from './ImageBarTemplate';
+import { Container, StyledInput, Text } from './ImageBarTemplate';
 
 const StyledCheck = styled.span`
   height: 19px;
@@ -34,7 +34,7 @@ const CheckOption = ({
   ...otherProps
 }) => {
   return (
-    <StyledContainer checked={checked} disabled={disabled} {...otherProps}>
+    <Container checked={checked} disabled={disabled} {...otherProps}>
       <StyledInput
         type="checkbox"
         onClick={handleClick}
@@ -45,7 +45,7 @@ const CheckOption = ({
       {icon}
       <Text>{children}</Text>
       <StyledCheck checked={checked} />
-    </StyledContainer>
+    </Container>
   );
 };
 

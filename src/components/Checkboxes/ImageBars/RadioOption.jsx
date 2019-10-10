@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { key } from 'styled-theme';
 import PropTypes from 'prop-types';
-import { StyledContainer, StyledInput, Text } from './ImageBarTemplate';
+import { Container, StyledInput, Text } from './ImageBarTemplate';
 
 const StyledCheck = styled.span`
   height: 16px;
@@ -23,7 +23,7 @@ const RadioOption = ({
   ...otherProps
 }) => {
   return (
-    <StyledContainer checked={checked} disabled={disabled} {...otherProps}>
+    <Container checked={checked} disabled={disabled} {...otherProps}>
       <StyledInput
         type="radio"
         onChange={handleChange}
@@ -33,7 +33,7 @@ const RadioOption = ({
       {icon}
       <Text>{children}</Text>
       <StyledCheck checked={checked} />
-    </StyledContainer>
+    </Container>
   );
 };
 
