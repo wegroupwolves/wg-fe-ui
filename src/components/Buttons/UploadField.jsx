@@ -7,13 +7,13 @@ import UploadIcon from '../Icons/Upload';
 let counter = 0;
 
 function dragEnter(e, setFile) {
-  counter += 1;
+  counter++;
   setFile(true);
   e.preventDefault();
 }
 
 function dragLeave(e, setFile) {
-  counter -= 1;
+  counter--;
   counter === 0 && setFile(false);
   e.preventDefault();
 }
