@@ -4,11 +4,12 @@ import {
   TrackingBar,
   OverviewClaimStatus,
   FlightSelectBar,
-} from './../src/components/Bars';
+} from './components/Bars';
 import {
   ActionButton,
   AddEntityButton,
   BackButton,
+  UploadField,
   ToggleButton,
 } from './components/Buttons';
 import { CheckBox, RadioOption, CheckOption } from './components/Checkboxes';
@@ -34,6 +35,7 @@ export {
   ActionButton,
   AddEntityButton,
   BackButton,
+  UploadField,
   ToggleButton,
   ThemeProvider,
   CheckBox,
