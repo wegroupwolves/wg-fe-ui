@@ -21,13 +21,17 @@ function throttle(func, interval) {
   };
 }
 
+let counter = 0;
+
 function dragEnter(e) {
   e.preventDefault();
+  counter++;
 }
 
 function dragLeave(e, file, setFile) {
   e.preventDefault();
-  file && setFile(false);
+  counter--;
+  counter === 0 && file && setFile(false);
 }
 
 function dragOver(e, setFile) {
@@ -42,6 +46,7 @@ function dropFile(e, setFile, onClick) {
 
   onClick(e.dataTransfer.files[0]);
   setFile(false);
+  counter = 0;
 }
 
 const UploadField = ({
