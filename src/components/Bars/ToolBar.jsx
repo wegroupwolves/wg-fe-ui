@@ -53,7 +53,7 @@ const ToolBar = ({
       <Wrapper>
 		<InnerBox>{children}</InnerBox>
 		<ActionButton level={level} onClick={onClick} padding="0.5rem 1.5rem">
-		{btnName}
+		  {btnName}
 		</ActionButton>
 	  </Wrapper>
     </Box>

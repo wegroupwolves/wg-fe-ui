@@ -1,7 +1,25 @@
-import { ProgressBar, ToolBar } from './../src/components/Bars'
-import { ActionButton, BackButton, ToggleButton } from './components/Buttons';
-import { CheckBox } from './components/Checkboxes';
-import { TextInput, SearchInput, SearchSelectInput } from './components/Inputs';
+import {
+  ProgressBar,
+  ToolBar,
+  TrackingBar,
+  OverviewClaimStatus,
+  FlightSelectBar,
+} from './components/Bars';
+import {
+  ActionButton,
+  AddEntityButton,
+  BackButton,
+  UploadField,
+  ToggleButton,
+} from './components/Buttons';
+import { CheckBox, RadioOption, CheckOption } from './components/Checkboxes';
+import {
+  ImageSelectBox,
+  TextInput,
+  SearchInput,
+  SearchSelectInput,
+  DateInput,
+} from './components/Inputs';
 import { QuestionBox } from './components/Boxes';
 import { DisplayTable, OverviewTable } from './components/Tables';
 import {
@@ -13,14 +31,19 @@ import { Section } from './components/Section';
 import { ThemeProvider } from 'styled-components';
 import Theme from './constants/theme';
 
-
 export {
   ActionButton,
+  AddEntityButton,
   BackButton,
+  UploadField,
   ToggleButton,
   ThemeProvider,
   CheckBox,
+  ImageSelectBox,
+  RadioOption,
+  CheckOption,
   TextInput,
+  DateInput,
   SearchInput,
   SearchSelectInput,
   QuestionBox,
@@ -32,7 +55,10 @@ export {
   Section,
   OverviewTable,
   ProgressBar,
-  ToolBar
+  ToolBar,
+  OverviewClaimStatus,
+  TrackingBar,
+  FlightSelectBar,
 };
 
 // Export all components

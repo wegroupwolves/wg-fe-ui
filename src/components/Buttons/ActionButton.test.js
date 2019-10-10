@@ -1,10 +1,9 @@
 import { ActionButton } from '.';
 import { shallow, mount } from 'enzyme';
 import React from 'react';
-import Theme from '../../../.storybook/theme';
+import Theme from '../../constants/theme';
 import 'jest-styled-components';
 import { ThemeProvider } from 'styled-components';
-
 
 describe('ActionButton', () => {
   it('When disabled, button is unclickable & color changed', () => {
@@ -42,10 +41,7 @@ describe('ActionButton', () => {
 
   it('can pass extra props', () => {
     const wrapper = shallow(
-      <ActionButton
-        id={31}
-        onClick={() => console.log('testen')}
-      >
+      <ActionButton id={31} onClick={() => console.log('testen')}>
         Testje
       </ActionButton>,
     );

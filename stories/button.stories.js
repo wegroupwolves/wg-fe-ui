@@ -7,8 +7,14 @@ import { action } from '@storybook/addon-actions';
 import { withInfo } from '@storybook/addon-info';
 
 import buttonIcon from './assets/buttonIcon.svg';
-import { ReactComponent as BackArrow } from './assets/back-arrow.svg'
-import { ActionButton, BackButton, ToggleButton } from '../src/';
+import { ReactComponent as BackArrow } from './assets/back-arrow.svg';
+import {
+  ActionButton,
+  AddEntityButton,
+  BackButton,
+  UploadField,
+  ToggleButton,
+} from '../src/';
 
 addParameters({
   options: {
@@ -21,7 +27,7 @@ addParameters({
 const buttonLevels = ['primary', 'secondary'];
 const ToggleButtonLevels = ['active', 'non-active'];
 const iconObject = { none: null, House: buttonIcon };
-const svg = { none: null, back_arrow: <BackArrow /> }
+const svg = { none: null, back_arrow: <BackArrow /> };
 const propsObject = [{ none: null, id: { id: 'add' } }];
 
 storiesOf('Low level blocks/Buttons', module)
@@ -39,16 +45,26 @@ storiesOf('Low level blocks/Buttons', module)
       {text('Label', 'Pay')}
     </ActionButton>
   ))
+  .add('AddEntityButton', () => {
+    const onClick = () => console.log('resource: ');
+    const onChange = value => console.log('value: ', value);
+
+    return <AddEntityButton onChange={onChange} onClick={onClick} />;
+  })
   .add('BackButton', () => {
-    const iconName = select('Icon', Object.keys(svg), 'back_arrow')
+    const iconName = select('Icon', Object.keys(svg), 'back_arrow');
     return (
       <BackButton
-      onClick={action('button clicked')}
-      name="Overview"
-      icon={svg[iconName]}
-      otherProps={select('otherProps', ...propsObject)}
-    />
-    )
+        onClick={action('button clicked')}
+        name="Overview"
+        icon={svg[iconName]}
+        otherProps={select('otherProps', ...propsObject)}
+      />
+    );
+  })
+  .add('UploadField', () => {
+    const onClick = value => console.log('value: ', value);
+    return <UploadField onClick={onClick} />;
   })
   .add('ToggleButton', () => (
     <ToggleButton

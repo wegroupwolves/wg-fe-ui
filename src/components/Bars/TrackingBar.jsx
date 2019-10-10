@@ -1,0 +1,66 @@
+import React from 'react';
+import styled from 'styled-components';
+import { key } from 'styled-theme/dist';
+import LoadingBar from './LoadingBar';
+import TrackingStep from './TrackingStep';
+import { arrayOf, node, number, string } from 'prop-types';
+
+const getActiveId = (active, stages) => {
+  return stages ? stages.findIndex(item => item.key === active) + 1 : 0;
+};
+
+const TrackingBar = ({ active, background, height, stages, className }) => {
+  const activeId = getActiveId(active, stages);
+
+  return (
+    <StyledTrackingBar className={className}>
+      <LoadingBar
+        stages={stages.length}
+        activeId={activeId}
+        background={background}
+        height={height}
+        offset={2.08}
+        stepWidth={14.2857}
+      />
+      {stages.map(stage => (
+        <TrackingStep key={stage.id} stage={stage} activeId={activeId} />
+      ))}
+    </StyledTrackingBar>
+  );
+};
+
+const StyledTrackingBar = styled.div`
+  display: flex;
+  font-family: ${key('fonts.primary')};
+  justify-content: space-between;
+  width: 100%;
+  align-items: center;
+  margin: 4vh auto 0.55vh;
+  position: relative;
+  @media (max-width: 768px) {
+    margin: 0;
+    width: initial;
+  }
+`;
+
+TrackingBar.defaultProps = {
+  active: 'data_analysis',
+  background: key('colors.disabledGray'),
+  height: '2px',
+  stages: [],
+};
+
+TrackingBar.propTypes = {
+  active: string,
+  background: string,
+  stages: arrayOf({
+    key: string,
+    name: string,
+    icon: node,
+    id: number,
+  }),
+  height: string,
+  className: string,
+};
+
+export default TrackingBar;

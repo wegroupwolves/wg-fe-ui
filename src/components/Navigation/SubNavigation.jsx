@@ -14,6 +14,7 @@ const SubSection = styled.li`
 `;
 
 const SectionContainer = styled.div`
+  font-family: ${key('fonts.primary')};
   overflow: ${({ active }) => (active ? 'auto' : 'hidden')};
   opacity: ${({ active }) => (active ? '1' : '0')};
   max-height: ${({ active }) => (active ? '100vh' : '0')};
@@ -25,6 +26,7 @@ SubSection.propTypes = {
 };
 
 const StyledSubNavigation = styled.ul`
+  font-family: ${key('fonts.primary')};
   li {
     color: ${key('colors.highlight')};
     line-height: 2rem;
