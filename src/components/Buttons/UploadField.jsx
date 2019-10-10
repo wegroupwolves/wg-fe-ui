@@ -52,7 +52,7 @@ const UploadField = ({
       onClick={onClick}
       onDragEnter={e => dragEnter(e, setWithFile)}
       onDragLeave={e => dragLeave(e, setWithFile)}
-      onDragOver={e => dragOver(e, setWithFile)}
+      onDragOver={dragOver}
       onDrop={e => dropFile(e, setWithFile, onClick)}
       {...otherProps}
     >
