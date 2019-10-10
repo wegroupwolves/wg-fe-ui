@@ -59,6 +59,7 @@ describe('UploadField', () => {
     const e = {
       dataTransfer: { files: [{}] },
       preventDefault: Function.prototype,
+      stopPropagation: Function.prototype,
     };
     const onClick = jest.fn();
     const wrapper = mount(

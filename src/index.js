@@ -3,7 +3,7 @@ import {
   ToolBar,
   TrackingBar,
   OverviewClaimStatus,
-} from './../src/components/Bars';
+} from './components/Bars';
 import {
   ActionButton,
   AddEntityButton,
