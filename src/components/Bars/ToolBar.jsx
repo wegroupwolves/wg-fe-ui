@@ -16,12 +16,12 @@ const Box = styled.div`
 `;
 
 const Wrapper = styled.div`
-	width: 75vw;
-    height: 100%;
-    box-sizing: border-box;
-    display: flex;
-    justify-content: space-between;
-`
+  width: 75vw;
+  height: 100%;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+`;
 
 const InnerBox = styled.div`
   position: relative;
@@ -51,11 +51,11 @@ const ToolBar = ({
   return (
     <Box className={className} {...otherProps}>
       <Wrapper>
-		<InnerBox>{children}</InnerBox>
-		<ActionButton level={level} onClick={onClick} padding="0.5rem 1.5rem">
-		  {btnName}
-		</ActionButton>
-	  </Wrapper>
+        <InnerBox>{children}</InnerBox>
+        <ActionButton level={level} onClick={onClick} padding="0.5rem 1.5rem">
+          {btnName}
+        </ActionButton>
+      </Wrapper>
     </Box>
   );
 };

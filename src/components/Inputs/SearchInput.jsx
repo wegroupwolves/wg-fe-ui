@@ -36,6 +36,7 @@ const SearchInput = ({
 
 const StyledBox = styled.div`
   position: relative;
+  width: 100%;
 
   svg {
     position: absolute;
@@ -56,6 +57,8 @@ const Input = styled.input`
     border ? `1px solid ${key('colors.disabled')}` : 'none'};
   line-height: 20px;
   padding: 3px 3px 3px 5.7vw;
+  width: 100%;
+  box-sizing: border-box;
 `;
 
 Input.displayName = 'Input';
