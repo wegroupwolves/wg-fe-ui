@@ -95,27 +95,29 @@ storiesOf('Mid level blocks/Navigation', module)
               >
                 {section.label}
               </SubNavigation.Section>
-              <SubNavigation.SectionContainer
-                active={section.id === currentSection.section}
-              >
-                {section.subsections.map(subsection => (
-                  <SubNavigation.SubSection
-                    key={subsection.id}
-                    onClick={() =>
-                      setCurrentSection({
-                        section: section.id,
-                        subsection: subsection.id,
-                      })
-                    }
-                    active={
-                      currentSection.section === section.id &&
-                      currentSection.subsection === subsection.id
-                    }
-                  >
-                    {subsection.label}
-                  </SubNavigation.SubSection>
-                ))}
-              </SubNavigation.SectionContainer>
+              <SubNavigation.Item>
+                <SubNavigation.SectionContainer
+                  active={section.id === currentSection.section}
+                >
+                  {section.subsections.map(subsection => (
+                    <SubNavigation.SubSection
+                      key={subsection.id}
+                      onClick={() =>
+                        setCurrentSection({
+                          section: section.id,
+                          subsection: subsection.id,
+                        })
+                      }
+                      active={
+                        currentSection.section === section.id &&
+                        currentSection.subsection === subsection.id
+                      }
+                    >
+                      {subsection.label}
+                    </SubNavigation.SubSection>
+                  ))}
+                </SubNavigation.SectionContainer>
+              </SubNavigation.Item>
             </React.Fragment>
           ))}
         </SubNavigation>
