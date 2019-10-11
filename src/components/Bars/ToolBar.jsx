@@ -15,11 +15,19 @@ const Box = styled.div`
   box-sizing: border-box;
 `;
 
+const Wrapper = styled.div`
+  width: 75vw;
+  height: 100%;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+`;
+
 const InnerBox = styled.div`
   position: relative;
   display: flex;
   align-items: center;
-  width: 70%;
+  width: 85%;
   height: 100%;
   border-right: 1px solid ${key('colors.outline')};
   margin-right: 2.4vw;
@@ -42,10 +50,12 @@ const ToolBar = ({
 }) => {
   return (
     <Box className={className} {...otherProps}>
-      <InnerBox>{children}</InnerBox>
-      <ActionButton level={level} onClick={onClick} padding="0.5rem 1.5rem">
-        {btnName}
-      </ActionButton>
+      <Wrapper>
+        <InnerBox>{children}</InnerBox>
+        <ActionButton level={level} onClick={onClick} padding="0.5rem 1.5rem">
+          {btnName}
+        </ActionButton>
+      </Wrapper>
     </Box>
   );
 };
