@@ -51,12 +51,12 @@ const StyledBox = styled.div`
 
 const Input = styled.input`
   font-family: ${key('fonts.primary')};
-  font-size: 14px;
+  font-size: 1.4rem;
   color: ${key('colors.sub-txt')};
   border: ${({ border }) =>
     border ? `1px solid ${key('colors.disabled')}` : 'none'};
-  line-height: 20px;
-  padding: 3px 3px 3px 5.7vw;
+  line-height: 2rem;
+  padding: 3px 0.2vw 3px 5.7vw;
   width: 100%;
   box-sizing: border-box;
 `;
