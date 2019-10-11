@@ -17,6 +17,7 @@ const SubSection = styled.li`
 const Item = styled.li`
   position: relative;
   padding-right: 0 !important;
+  margin-bottom: 0 !important;
 `;
 
 const SectionContainer = styled.ul`
