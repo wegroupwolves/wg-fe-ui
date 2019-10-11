@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { storiesOf } from '@storybook/react';
 import { withKnobs, select } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
@@ -11,6 +11,7 @@ import {
   ToolBar,
   OverviewClaimStatus,
   TrackingBar,
+  FlightSelectBar,
 } from './../src';
 import ApprovedIcon from './assets/Icons/Approved';
 import OpenedIcon from './assets/Icons/Opened';
@@ -100,6 +101,32 @@ storiesOf('Mid Level blocks/Bars', module)
 
     return (
       <OverviewClaimStatus statuses={statuses} currentStatus={statuses[1]} />
+    );
+  })
+  .add('FlightSelectBar', () => {
+    const [checkedRadio, setCheckedRadio] = useState(0);
+
+    const handleChangeRadio = id => {
+      setCheckedRadio(id);
+    };
+    return (
+      <FlightSelectBar
+        handleChange={() => handleChangeRadio(2)}
+        checked={checkedRadio === 2}
+      >
+        <FlightSelectBar.FlightData
+          border={true}
+          label="Ryanair"
+          data="FR2985"
+        />
+        <FlightSelectBar.FlightData label="Brussels" data="BRU" />
+        <FlightSelectBar.FlightData label="Departure" data="17:55" />
+        <FlightSelectBar.FlightData>
+          <ApprovedIcon />
+        </FlightSelectBar.FlightData>
+        <FlightSelectBar.FlightData label="Chanty-Mansiejsk" data="HMA" />
+        <FlightSelectBar.FlightData label="Arrival" data="20:10" />
+      </FlightSelectBar>
     );
   });
 

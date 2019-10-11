@@ -101,13 +101,12 @@ storiesOf('Low level blocks/Inputs', module)
       </StyledDateInput>
     );
   })
-  .add('SearchInput', () => (
-    <SearchInput
-      text="test"
-      placeholder="Search for..."
-      onChange={action('change')}
-    />
-  ))
+  .add('SearchInput', () => {
+    const [val, setVal] = useState('');
+    return (
+      <SearchInput text={val} placeholder="Search for..." onChange={setVal} />
+    );
+  })
   .add('SearchSelectInput', () => {
     return (
       <StyledSearchSelectInput
