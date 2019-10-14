@@ -28,8 +28,10 @@ import {
   SubNavigation,
 } from './components/Navigation';
 import { Section } from './components/Section';
+import { Title, SubTitle, Text, TextBold, Label, SubLabel } from './components/Typography';
 import { ThemeProvider } from 'styled-components';
 import Theme from './constants/theme';
+
 
 export {
   ActionButton,
@@ -59,6 +61,12 @@ export {
   OverviewClaimStatus,
   TrackingBar,
   FlightSelectBar,
+  Title,
+  SubTitle, 
+  Text, 
+  TextBold,
+  Label, 
+  SubLabel
 };
 
 // Export all components
