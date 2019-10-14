@@ -66,8 +66,8 @@ storiesOf('Low level blocks/Inputs', module)
     );
   })
   .add('TextInput', () => {
-    let errors = { emailadres: text('Error', '') };
-    let touched = { emailadres: boolean('Touched', false) };
+    let error = text('Error', '');
+    let touched = boolean('Touched', false);
 
     return (
       <StyledTextInput
@@ -75,8 +75,9 @@ storiesOf('Low level blocks/Inputs', module)
         name="emailadres"
         type="email"
         placeholder="example@wegroup.be"
-        errors={errors}
+        error={error}
         touched={touched}
+        value={text('DefaultValue', '')}
       >
         Email
       </StyledTextInput>
