@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { bool, node, func, string, object } from 'prop-types';
 import styled from 'styled-components';
 import { key } from 'styled-theme';
@@ -14,9 +14,9 @@ const TextInput = ({
   type,
   disabled,
   placeholder,
-  setFieldValue,
+  onChange,
   setFieldTouched,
-  errors,
+  error,
   touched,
   value,
   ...otherProps
@@ -43,6 +43,12 @@ const TextInput = ({
     }
   };
 
+  useEffect(() => {
+    if (inputValue != value) {
+      setInputValue(value);
+    }
+  }, [value]);
+
   return (
     <Container className={className}>
       <StyledLabel disabled={disabled} htmlFor={name}>
@@ -56,11 +62,11 @@ const TextInput = ({
           type={type}
           disabled={disabled}
           placeholder={placeholder ? placeholder : null}
-          errors={errors[name] ? true : false}
-          touched={touched[name] ? true : false}
+          error={error ? true : false}
+          touched={touched ? true : false}
           value={inputValue}
           onChange={e => {
-            setFieldValue(name, e.target.value);
+            onChange(e);
             setInputValue(e.target.value);
           }}
           onBlur={() => {
@@ -69,14 +75,14 @@ const TextInput = ({
           }}
           onFocus={() => handleFocus()}
         />
-        {errors[name] && touched[name] ? (
+        {error && touched ? (
           <StyledErrormark
             color="#F74040"
             focus={focus}
             right={iconRight}
             browser={browser ? browser.name : null}
           />
-        ) : touched[name] ? (
+        ) : touched ? (
           <StyledCheckmark
             color="#00CD39"
             focus={focus}
@@ -85,9 +91,9 @@ const TextInput = ({
           />
         ) : null}
       </InputContainer>
-      {errors[name] && touched[name] ? (
+      {error && touched ? (
         <ErrorContainer>
-          <p>{errors[name]}</p>
+          <p>{error}</p>
         </ErrorContainer>
       ) : null}
     </Container>
@@ -120,9 +126,9 @@ const StyledInput = styled.input`
   width: 100%;
   border: 0.1rem solid;
   border-color: ${props =>
-    props.errors & props.touched
+    props.error & props.touched
       ? key('colors.bad')
-      : props.touched & !props.errors
+      : props.touched & !props.error
       ? key('colors.good')
       : key('colors.outline')};
   border-radius: 0.3rem;
@@ -171,10 +177,10 @@ const StyledErrormark = styled(Errormark)`
 TextInput.defaultProps = {
   disabled: false,
   placeholder: null,
-  errors: {},
+  error: {},
   touched: {},
   setFieldTouched: () => {},
-  setFieldValue: () => {},
+  onChange: () => {},
   otherProps: {},
 };
 
@@ -191,16 +197,17 @@ TextInput.propTypes = {
   disabled: bool,
   /** example value in the input */
   placeholder: string,
-  /** object with inputname and errormessage */
-  errors: object,
-  /** object with inputname and boolean to check if touched */
-  touched: object,
+  /** string with errormessage */
+  error: string,
+  /** boolean to check if inputfield is touched */
+  touched: bool,
   /** returns name and touched boolean */
   setFieldTouched: func,
-  /** returns name and inputvalue */
-  setFieldValue: func,
+  /** returns onChange event */
+  onChange: func,
   /** Adds extra props to the element */
   otherProps: object,
+  /** sets initial value */
   value: node,
 };
 
