@@ -24,10 +24,10 @@ const SubLabel = ({
 
 const P = styled.p`
   font-family: ${key('fonts.primary')};
-  font-size: ${key('fonts.small--size')};
+  font-size: ${key('fonts.small-size')};
   font-weight: normal;
   line-height: 130%;
-  color: ${props =>  props.color ? props.color : `${key(`colors.font`)}` };
+  color: ${props =>  props.color ? props.color : key(`colors.font`) };
 `;
 
 

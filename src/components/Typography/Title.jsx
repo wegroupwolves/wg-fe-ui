@@ -24,10 +24,10 @@ const Title = ({
 
 const H1 = styled.h1`
   font-family: ${key('fonts.primary')};
-  font-size: ${key('fonts.big--size')};
+  font-size: ${key('fonts.big-size')};
   font-weight: 900;
   line-height: 130%;
-  color: ${props =>  props.color ? props.color : `${key(`colors.font`)}` };
+  color: ${props =>  props.color ? props.color : key(`colors.font`) };
 `;
 
 

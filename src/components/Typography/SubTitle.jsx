@@ -24,10 +24,10 @@ const SubTitle = ({
 
 const H2 = styled.h2`
   font-family: ${key('fonts.primary')};
-  font-size: ${key('fonts.normal--size')};
+  font-size: ${key('fonts.normal-size')};
   font-weight: 900;
   line-height: 130%;
-  color: ${props =>  props.color ? props.color : `${key(`colors.font`)}` };
+  color: ${props =>  props.color ? props.color : key(`colors.font`) };
 `;
 
 
