@@ -16,7 +16,7 @@ const SearchSelectInput = ({
   noOptionMessage,
   loadingMessage,
   placeholder,
-  ...otherProps,
+  ...otherProps
 }) => {
   const [isSelected, setSelected] = useState();
 
