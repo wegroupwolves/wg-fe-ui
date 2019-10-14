@@ -33,8 +33,7 @@ const RadioButton = styled.label`
   height: 7.3vw;
   padding: 43px auto auto 27px;
   cursor: pointer;
-  margin: 0 25px;
-
+  margin-right: 1.3vw;
   background-color: ${({ mode }) => backgroundColor[mode]};
 
   border: 1px solid;
@@ -44,7 +43,7 @@ const RadioButton = styled.label`
   color: ${({ mode }) => iconColor[mode]};
 
   &::after {
-    content: '${({ value }) => value}';
+    content: '${({ label }) => label}';
     display: block;
     position: absolute;
     bottom: 10px;
@@ -90,7 +89,7 @@ const ImageSelectBox = ({
   if (selected === value) mode = 'selected';
   else if (selected) mode = 'inactive';
   return (
-    <RadioButton {...otherProps} mode={mode} value={value}>
+    <RadioButton {...otherProps} mode={mode} label={label}>
       {icon}
       <input
         type="radio"

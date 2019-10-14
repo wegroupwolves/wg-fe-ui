@@ -35,28 +35,28 @@ storiesOf('Low level blocks/Inputs', module)
     return (
       <>
         <ImageSelectBox
-          label="means"
+          label="Plane"
           selected={selected}
           value="plane"
           icon={<Plane width={96} height={34} />}
           onChange={handleChange}
         />
         <ImageSelectBox
-          label="means"
+          label="Property"
           selected={selected}
           value="property"
           icon={<Property />}
           onChange={handleChange}
         />
         <ImageSelectBox
-          label="means"
+          label="Liability"
           selected={selected}
           value="liability"
           icon={<Liability />}
           onChange={handleChange}
         />
         <ImageSelectBox
-          label="means"
+          label="Car"
           selected={selected}
           value="car"
           icon={<Car />}
