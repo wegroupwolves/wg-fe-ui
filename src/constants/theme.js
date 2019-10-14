@@ -9,7 +9,7 @@ const Theme = () => {
   };
 
   Orange.colors = {
-    'sub-txt': '#A29C95',
+   'sub-txt': '#A29C95',
     highlight: '#505050',
     disabled: '#AEAEAE',
     disabledGray: '#D3D4D8',

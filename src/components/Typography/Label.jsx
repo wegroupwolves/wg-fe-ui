@@ -24,10 +24,10 @@ const Label = ({
 
 const P = styled.p`
   font-family: ${key('fonts.primary')};
-  font-size: ${key('fonts.regular--size')};
+  font-size: ${key('fonts.regular-size')};
   font-weight: normal;
   line-height: 130%;
-  color: ${props =>  props.color ? props.color : `${key(`colors.sub-txt`)}` };
+  color: ${props =>  props.color ? props.color : key('colors.sub-txt') };
 `;
 
 

@@ -24,10 +24,10 @@ const Text = ({
 
 const P = styled.p`
   font-family: ${key('fonts.primary')};
-  font-size: ${key('fonts.normal--size')};
+  font-size: ${key('fonts.normal-size')};
   font-weight: normal;
   line-height: 130%;
-  color: ${props =>  props.color ? props.color : `${key(`colors.font`)}` };
+  color: ${props =>  props.color ? props.color : key(`colors.font`) };
 `;
 
 
