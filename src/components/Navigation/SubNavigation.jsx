@@ -5,8 +5,6 @@ import { key } from 'styled-theme';
 
 const Section = styled.li`
   font-weight: 900;
-  font-size: 1.6rem;
-  line-height: 2rem;
 `;
 
 const SubSection = styled.li`
@@ -24,8 +22,6 @@ const Item = styled.li`
 
 const SectionContainer = styled.ul`
   padding-left: 0.78vw;
-  font-size: 1.6rem;
-  line-height: 2rem;
   font-family: ${key('fonts.primary')};
   overflow: ${({ active }) => (active ? 'auto' : 'hidden')};
   opacity: ${({ active }) => (active ? '1' : '0')};
@@ -38,6 +34,8 @@ SubSection.propTypes = {
 };
 
 const StyledSubNavigation = styled.ul`
+  font-size: 1.6rem;
+  line-height: 2rem;
   font-family: ${key('fonts.primary')};
   li {
     color: ${key('colors.highlight')};
