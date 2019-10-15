@@ -40,6 +40,7 @@ storiesOf('Low level blocks/Inputs', module)
           value="plane"
           icon={<Plane width={96} height={34} />}
           onChange={handleChange}
+          name="inputs"
         />
         <ImageSelectBox
           label="Property"
@@ -47,6 +48,7 @@ storiesOf('Low level blocks/Inputs', module)
           value="property"
           icon={<Property />}
           onChange={handleChange}
+          name="inputs"
         />
         <ImageSelectBox
           label="Liability"
@@ -54,6 +56,7 @@ storiesOf('Low level blocks/Inputs', module)
           value="liability"
           icon={<Liability />}
           onChange={handleChange}
+          name="inputs"
         />
         <ImageSelectBox
           label="Car"
@@ -61,6 +64,7 @@ storiesOf('Low level blocks/Inputs', module)
           value="car"
           icon={<Car />}
           onChange={handleChange}
+          name="inputs"
         />
       </>
     );

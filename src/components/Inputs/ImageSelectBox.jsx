@@ -83,6 +83,7 @@ const ImageSelectBox = ({
   value,
   icon,
   onChange,
+  name,
   ...otherProps
 }) => {
   let mode = 'normal';
@@ -93,10 +94,10 @@ const ImageSelectBox = ({
       {icon}
       <input
         type="radio"
-        name={label}
         checked={selected === value}
         value={value}
         onChange={onChange}
+        name={name}
       />
     </RadioButton>
   );
@@ -105,6 +106,7 @@ const ImageSelectBox = ({
 ImageSelectBox.defaultProps = {
   label: 'means',
   onChange: () => {},
+  name: 'radios',
   mode: 'normal',
   otherProps: {},
   selected: '',
@@ -117,6 +119,7 @@ ImageSelectBox.propTypes = {
   icon: node,
   onChange: func,
   mode: string,
+  name: string,
   otherProps: object,
 };
 
