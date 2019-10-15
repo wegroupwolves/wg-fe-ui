@@ -99,6 +99,7 @@ const FlightSelectBar = ({
   checked,
   disabled,
   handleChange,
+  value,
   children,
   ...otherProps
 }) => {
@@ -106,9 +107,10 @@ const FlightSelectBar = ({
     <StyledContainer checked={checked} disabled={disabled} {...otherProps}>
       <StyledInput
         type="radio"
-        onChange={handleChange}
+        onChange={({ target: { value } }) => handleChange(value)}
         checked={checked}
         disabled={disabled}
+        value={value}
       />
       {children}
       <StyledCheck checked={checked} />
@@ -124,12 +126,14 @@ FlightSelectBar.propTypes = {
   checked: PropTypes.bool.isRequired,
   disabled: PropTypes.bool,
   handleChange: PropTypes.func,
+  value: PropTypes.string,
   icon: PropTypes.elementType,
   children: PropTypes.node,
 };
 
 FlightSelectBar.defaultProps = {
   checked: false,
+  value: '',
 };
 
 export default FlightSelectBar;
