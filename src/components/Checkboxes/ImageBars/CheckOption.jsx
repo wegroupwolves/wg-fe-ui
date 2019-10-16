@@ -27,6 +27,7 @@ const StyledCheck = styled.span`
 const CheckOption = ({
   checked,
   disabled,
+  name,
   handleClick,
   handleChange,
   icon,
@@ -34,13 +35,15 @@ const CheckOption = ({
   ...otherProps
 }) => {
   return (
-    <Container checked={checked} disabled={disabled} {...otherProps}>
+    <Container checked={checked} disabled={disabled}>
       <StyledInput
         type="checkbox"
-        onClick={handleClick}
+        onClick={({ target: { value } }) => handleClick(value)}
         onChange={handleChange}
         checked={checked}
         disabled={disabled}
+        name={name}
+        {...otherProps}
       />
       {icon}
       <Text>{children}</Text>
@@ -54,6 +57,7 @@ CheckOption.displayName = 'CheckOption';
 CheckOption.propTypes = {
   checked: PropTypes.bool.isRequired,
   disabled: PropTypes.bool,
+  name: PropTypes.string,
   handleClick: PropTypes.func,
   handleChange: PropTypes.func,
   icon: PropTypes.elementType,

@@ -17,18 +17,21 @@ const StyledCheck = styled.span`
 const RadioOption = ({
   checked,
   disabled,
+  name,
   handleChange,
   icon,
   children,
   ...otherProps
 }) => {
   return (
-    <Container checked={checked} disabled={disabled} {...otherProps}>
+    <Container checked={checked} disabled={disabled}>
       <StyledInput
         type="radio"
-        onChange={handleChange}
+        onChange={({ target: { value } }) => handleChange(value)}
         checked={checked}
         disabled={disabled}
+        name={name}
+        {...otherProps}
       />
       {icon}
       <Text>{children}</Text>
@@ -42,6 +45,7 @@ RadioOption.displayName = 'RadioOption';
 RadioOption.propTypes = {
   checked: PropTypes.bool.isRequired,
   disabled: PropTypes.bool,
+  name: PropTypes.string,
   handleChange: PropTypes.func,
   icon: PropTypes.elementType,
   children: PropTypes.node,
