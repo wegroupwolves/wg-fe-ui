@@ -17,7 +17,7 @@ import Liability from './../src/components/Icons/Liability';
 import Car from './../src/components/Icons/Car';
 
 import {
-  ImageSelectGroup,
+  ImageSelectBox,
   TextInput,
   SearchInput,
   SearchSelectInput,
@@ -27,27 +27,51 @@ import {
 storiesOf('Low level blocks/Inputs', module)
   .addDecorator(withKnobs)
   .addDecorator(withInfo({ inline: true }))
-  .add('ImageSelectGroup', () => {
+  .add('ImageSelectBox', () => {
     const [selected, setSelected] = useState('');
-    const boxes = [
-      { id: 1, val: 'plane', icon: <Plane width={96} height={34} /> },
-      { id: 2, val: 'property', icon: <Property /> },
-      { id: 3, val: 'liability', icon: <Liability /> },
-      { id: 4, val: 'car', icon: <Car /> },
-    ];
+
+    const handleChange = ({ target: { value } }) => setSelected(value);
 
     return (
-      <ImageSelectGroup
-        label="means"
-        boxes={boxes}
-        selected={selected}
-        setSelected={setSelected}
-      />
+      <>
+        <ImageSelectBox
+          label="Plane"
+          selected={selected}
+          value="plane"
+          icon={<Plane width={96} height={34} />}
+          onChange={handleChange}
+          name="inputs"
+        />
+        <ImageSelectBox
+          label="Property"
+          selected={selected}
+          value="property"
+          icon={<Property />}
+          onChange={handleChange}
+          name="inputs"
+        />
+        <ImageSelectBox
+          label="Liability"
+          selected={selected}
+          value="liability"
+          icon={<Liability />}
+          onChange={handleChange}
+          name="inputs"
+        />
+        <ImageSelectBox
+          label="Car"
+          selected={selected}
+          value="car"
+          icon={<Car />}
+          onChange={handleChange}
+          name="inputs"
+        />
+      </>
     );
   })
   .add('TextInput', () => {
-    let errors = { emailadres: text('Error', '') };
-    let touched = { emailadres: boolean('Touched', false) };
+    let error = text('Error', '');
+    let touched = boolean('Touched', false);
 
     return (
       <StyledTextInput
@@ -55,8 +79,9 @@ storiesOf('Low level blocks/Inputs', module)
         name="emailadres"
         type="email"
         placeholder="example@wegroup.be"
-        errors={errors}
+        error={error}
         touched={touched}
+        value={text('DefaultValue', '')}
       >
         Email
       </StyledTextInput>
@@ -80,13 +105,12 @@ storiesOf('Low level blocks/Inputs', module)
       </StyledDateInput>
     );
   })
-  .add('SearchInput', () => (
-    <SearchInput
-      text="test"
-      placeholder="Search for..."
-      onChange={action('change')}
-    />
-  ))
+  .add('SearchInput', () => {
+    const [val, setVal] = useState('');
+    return (
+      <SearchInput text={val} placeholder="Search for..." onChange={setVal} />
+    );
+  })
   .add('SearchSelectInput', () => {
     return (
       <StyledSearchSelectInput

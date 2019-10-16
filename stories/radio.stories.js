@@ -23,7 +23,6 @@ storiesOf('Low level blocks/Radios', module)
           handleChange={() => handleChangeRadio(1)}
           checked={checkedRadio === 1}
           disabled={true}
-          type={'radio'}
         >
           I encountered issues with my lugage
         </RadioOption>
@@ -31,7 +30,6 @@ storiesOf('Low level blocks/Radios', module)
           icon={<HouseIcon />}
           handleChange={() => handleChangeRadio(2)}
           checked={checkedRadio === 2}
-          type={'radio'}
         >
           I encountered issues with my lugage
         </RadioOption>

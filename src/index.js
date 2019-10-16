@@ -3,16 +3,18 @@ import {
   ToolBar,
   TrackingBar,
   OverviewClaimStatus,
-} from './../src/components/Bars';
+  FlightSelectBar,
+} from './components/Bars';
 import {
   ActionButton,
   AddEntityButton,
   BackButton,
+  UploadField,
   ToggleButton,
 } from './components/Buttons';
 import { CheckBox, RadioOption, CheckOption } from './components/Checkboxes';
 import {
-  ImageSelectGroup,
+  ImageSelectBox,
   TextInput,
   SearchInput,
   SearchSelectInput,
@@ -26,17 +28,20 @@ import {
   SubNavigation,
 } from './components/Navigation';
 import { Section } from './components/Section';
+import { Title, SubTitle, Text, TextBold, Label, SubLabel } from './components/Typography';
 import { ThemeProvider } from 'styled-components';
 import Theme from './constants/theme';
+
 
 export {
   ActionButton,
   AddEntityButton,
   BackButton,
+  UploadField,
   ToggleButton,
   ThemeProvider,
   CheckBox,
-  ImageSelectGroup,
+  ImageSelectBox,
   RadioOption,
   CheckOption,
   TextInput,
@@ -55,6 +60,13 @@ export {
   ToolBar,
   OverviewClaimStatus,
   TrackingBar,
+  FlightSelectBar,
+  Title,
+  SubTitle, 
+  Text, 
+  TextBold,
+  Label, 
+  SubLabel
 };
 
 // Export all components

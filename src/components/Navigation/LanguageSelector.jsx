@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react';
 import i18next from 'i18next';
 import styled from 'styled-components';
 import { key } from 'styled-theme';
-import NL from '../../assets/flags/NL.jsx';
-import EN from '../../assets/flags/EN.jsx';
-import FR from '../../assets/flags/FR.jsx';
+import NL from '../../assets/flags/NL';
+import EN from '../../assets/flags/EN';
+import FR from '../../assets/flags/FR';
 
 const LanguageSelector = () => {
   const [langIcon, setLangIcon] = useState(<EN />);
