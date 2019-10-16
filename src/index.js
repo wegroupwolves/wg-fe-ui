@@ -20,7 +20,7 @@ import {
   SearchSelectInput,
   DateInput,
 } from './components/Inputs';
-import { QuestionBox } from './components/Boxes';
+import { QuestionBox, Uploader } from './components/Boxes';
 import { DisplayTable, OverviewTable } from './components/Tables';
 import {
   HeaderNav,
@@ -28,10 +28,16 @@ import {
   SubNavigation,
 } from './components/Navigation';
 import { Section } from './components/Section';
-import { Title, SubTitle, Text, TextBold, Label, SubLabel } from './components/Typography';
+import {
+  Title,
+  SubTitle,
+  Text,
+  TextBold,
+  Label,
+  SubLabel,
+} from './components/Typography';
 import { ThemeProvider } from 'styled-components';
 import Theme from './constants/theme';
-
 
 export {
   ActionButton,
@@ -49,6 +55,7 @@ export {
   SearchInput,
   SearchSelectInput,
   QuestionBox,
+  Uploader,
   DisplayTable,
   Theme,
   HeaderNav,
@@ -62,11 +69,11 @@ export {
   TrackingBar,
   FlightSelectBar,
   Title,
-  SubTitle, 
-  Text, 
+  SubTitle,
+  Text,
   TextBold,
-  Label, 
-  SubLabel
+  Label,
+  SubLabel,
 };
 
 // Export all components

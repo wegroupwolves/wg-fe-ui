@@ -25,7 +25,7 @@ describe('TextInput', () => {
     });
     expect(wrapper.find('input')).toHaveStyleRule(
       'background-color',
-      Theme().colors['bg-disabled'],
+      Theme().colors.backDrop,
     );
   });
 

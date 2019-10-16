@@ -27,7 +27,7 @@ function dropFile(e, setFile, onClick) {
   e.preventDefault();
   e.stopPropagation();
 
-  onClick(e.dataTransfer.files[0]);
+  onClick(e.dataTransfer);
   setFile(false);
   counter = 0;
 }
@@ -36,14 +36,13 @@ const UploadField = ({
   icon,
   name,
   multiple,
-  onChange,
   onClick,
   text,
   ...otherProps
 }) => {
   const ref = useRef();
   const [withFile, setWithFile] = useState(false);
-  const handleChange = ({ target: { value } }) => onChange(value);
+  const handleChange = ({ target }) => onClick(target);
 
   return (
     <StyledButton
@@ -123,7 +122,6 @@ UploadField.propTypes = {
   icon: element,
   name: string.isRequired,
   multiple: bool,
-  onChange: func.isRequired,
   onClick: func.isRequired,
   text: string,
   otherProps: object,

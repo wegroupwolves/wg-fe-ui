@@ -1,11 +1,10 @@
-import React from 'react';
-
+import React, { useState } from 'react';
 import { storiesOf } from '@storybook/react';
 import { withKnobs, boolean } from '@storybook/addon-knobs';
 import { withInfo } from '@storybook/addon-info';
 import styled from 'styled-components';
 
-import { QuestionBox } from '../src';
+import { QuestionBox, Uploader } from '../src';
 
 storiesOf('Mid level blocks/Boxes', module)
   .addDecorator(withKnobs)
@@ -19,7 +18,11 @@ storiesOf('Mid level blocks/Boxes', module)
     >
       Is this a Question?
     </StyledQuestionBox>
-  ));
+  ))
+  .add('Uploader', () => {
+    // const [images, setImages] = useState([]);
+    return <Uploader multiple={true} />;
+  });
 
 const StyledQuestionBox = styled(QuestionBox)`
   width: 85%;
