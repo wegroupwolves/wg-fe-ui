@@ -30,7 +30,10 @@ const Container = styled.label`
   border-radius: 2px;
   font-family: ${key('fonts.primary')};
   font-size: 1.6rem;
-
+  svg > rect,
+  path {
+    fill: ${key('colors.outline')};
+  }
   ${({ checked }) =>
     checked
       ? css`
