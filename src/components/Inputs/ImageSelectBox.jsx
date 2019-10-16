@@ -29,8 +29,8 @@ const RadioButton = styled.label`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 7.3vw;
-  height: 7.3vw;
+  width: 140px;
+  height: 140px;
   padding: 43px auto auto 27px;
   cursor: pointer;
   margin-right: 1.3vw;
@@ -52,8 +52,8 @@ const RadioButton = styled.label`
   }
 
   svg {
-    width: 5vw;
-    height: 5vh;
+    width: 96px;
+    height: 54px;
     margin-bottom: 10px;
 
     path {
