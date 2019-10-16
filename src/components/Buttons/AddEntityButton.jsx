@@ -4,38 +4,22 @@ import styled from 'styled-components';
 import { key } from 'styled-theme';
 import PlusIcon from './../Icons/Plus';
 
-const AddEntityButton = ({
-  icon,
-  name,
-  multiple,
-  onChange,
-  onClick,
-  text,
-  ...otherProps
-}) => {
-  const handleChange = ({ target: { value } }) => onChange(value);
-
+const AddEntityButton = ({ icon, onClick, name, ...otherProps }) => {
   return (
     <StyledButton onClick={onClick} {...otherProps}>
       {icon}
-      {text}
-      <input
-        type="file"
-        name={name}
-        multiple={multiple}
-        onChange={handleChange}
-      />
+      {name}
     </StyledButton>
   );
 };
 
-const StyledButton = styled.label`
+const StyledButton = styled.button`
   font-family: ${key('fonts.primary')};
   font-size: ${key('fonts.normal-size')};
   line-height: 130%;
   border-radius: 0.5rem;
   min-width: 14rem;
-  width: ${({ fullwidth }) => (fullwidth ? '100%' : '52vw')};
+  min-width: 250px;
   padding: 2vh 0;
   border: 0.5px solid;
   border-color: ${key('colors.outline')};
@@ -69,32 +53,20 @@ const StyledButton = styled.label`
       stroke: ${key('colors.interactive')};
     }
   }
-
-  input {
-    position: absolute;
-    opacity: 0;
-  }
 `;
 
 StyledButton.displayName = 'StyledButton';
 
 AddEntityButton.defaultProps = {
-  multiple: false,
   icon: <PlusIcon />,
-  name: 'label',
-  text: 'Label',
   otherProps: {},
   fullwidth: false,
 };
 
 AddEntityButton.propTypes = {
-  fullwidth: bool,
   icon: element,
   name: string.isRequired,
-  multiple: bool,
-  onChange: func.isRequired,
   onClick: func.isRequired,
-  text: string,
   otherProps: object,
 };
 
