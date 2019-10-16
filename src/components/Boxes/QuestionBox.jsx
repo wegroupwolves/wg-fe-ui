@@ -10,7 +10,7 @@ const QuestionBox = ({
   className,
   disabled,
   response,
-  ...otherProps,
+  ...otherProps
 }) => {
   const handleClick = e => {
     response(e.currentTarget.innerHTML);

@@ -9,7 +9,7 @@ const Theme = () => {
   };
 
   Orange.colors = {
-    'sub-txt': '#A29C95',
+   'sub-txt': '#A29C95',
     highlight: '#505050',
     disabled: '#AEAEAE',
     disabledGray: '#D3D4D8',
@@ -24,6 +24,7 @@ const Theme = () => {
     interactive: '#C1C1C1',
 
     title: '#000000',
+    font: '#050505',
     'sub-title': '#5B5550',
 
     // Buttons
@@ -33,12 +34,14 @@ const Theme = () => {
 
     outline: '#CCCCCC',
     'bg-disabled': '#F0F1F3',
+
   };
 
   Orange.fonts = {
     primary: `Lato, Helvetica, Myriad, Sans-Serif`,
-    'normal-size': `1.5rem`,
-    'big-size': `2rem`,
+    'normal-size': `1.6rem`,
+    'regular-size': `1.4rem`,
+    'big-size': `2.1rem`,
     'small-size': `1.2rem`,
   };
 
