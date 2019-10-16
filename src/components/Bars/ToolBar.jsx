@@ -7,7 +7,6 @@ import { string, object, node, func } from 'prop-types';
 const Box = styled.div`
   display: flex;
   background-color: #f7f7f7;
-  width: 100%;
   height: 70px;
   justify-content: space-between;
   align-items: center;
@@ -16,7 +15,7 @@ const Box = styled.div`
 `;
 
 const Wrapper = styled.div`
-  width: 75vw;
+  width: 100%;
   height: 100%;
   box-sizing: border-box;
   display: flex;
