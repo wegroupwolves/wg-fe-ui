@@ -20,7 +20,7 @@ storiesOf('Mid level blocks/Boxes', module)
     </StyledQuestionBox>
   ))
   .add('Uploader', () => {
-    // const [images, setImages] = useState([]);
+    // const [files, setFiles] = useState([]);
     return <Uploader multiple={true} />;
   });
 

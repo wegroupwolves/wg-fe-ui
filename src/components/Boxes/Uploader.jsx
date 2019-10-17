@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useState } from 'react';
 import { string, array, func, bool } from 'prop-types';
 import styled from 'styled-components';
 import CloseIcon from './../Icons/Close';
@@ -35,16 +35,20 @@ const LoadingBar = styled.div`
 const Box = styled.div`
   display: flex;
   align-items: center;
-  justify-content: space-between;
   padding: 19px 20px 15px 22px;
   border: 1px solid #cccccc;
   box-sizing: border-box;
-  width: 33%;
+  width: 30%;
+  margin-right: 3%;
   margin-top: 45px;
   /* Backdrop */
 
   box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.05);
   border-radius: 5px;
+
+  &:last-child {
+    margin-right: 0;
+  }
 
   img {
     max-width: 50px;
@@ -56,75 +60,82 @@ const File = styled.div`
   flex-direction: column;
 `;
 
+const Container = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+`;
+
 const Uploader = ({ className, multiple, onClick, onClose }) => {
   const [loaded, setLoaded] = useState([]);
   const [files, setFiles] = useState([]);
-  const [images, setImages] = useState([]);
 
-  const readFile = async file => {
+  const readFile = async (file, index) => {
     let reader = new FileReader();
     setLoaded([...loaded, 0]);
     reader.addEventListener('progress', e => {
-      if (e.type === 'progress') {
-        const percentage = (file.size / e.loaded) * 100;
-        setLoaded([...loaded, percentage]);
-      }
+      const percentage = (file.size / e.loaded) * 100;
+      setLoaded([...loaded, percentage]);
     });
 
     reader.addEventListener('loadend', e => {
-      if (e.type === 'loadend' && file.type.match('image.*')) {
-        setImages([...images, e.target.result]);
-      }
+      setFiles(f => [
+        ...f,
+        {
+          name: shortifyText(file.name),
+          size: bytesToMega(file.size),
+          img: file.type.match('image.*') ? e.target.result : '',
+        },
+      ]);
+      const newLoaded = loaded.slice();
+      newLoaded[index] = 0;
+      setLoaded(newLoaded);
     });
 
-    if (!file) return false;
-    setFiles([
-      ...files,
-      {
-        name: shortifyText(file.name),
-        size: bytesToMega(file.size),
-      },
-    ]);
     await reader.readAsDataURL(file);
   };
 
   const handleClick = async target => {
     if (!target.files) return false;
-    await target.files.forEach(async file => {
-      await readFile(file);
-    });
+    [...target.files].reduce(async (promise, file, i) => {
+      await promise;
+      await readFile(file, i);
+    }, Promise.resolve());
     onClick(target.files);
   };
 
-  const callBack = useCallback(handleClick, [images]);
-
   const handleClose = i => {
     const newFiles = files.slice();
-    newFiles[i] = { name: '', size: '' };
-    setFiles(newFiles);
+    newFiles[i] = { name: '', size: '', img: '' };
+    setFiles(f => {
+      f[i] = { name: '', size: '', img: '' };
+      return [...f];
+    });
+    const newLoaded = loaded.map(l => l * 0);
+    setLoaded(newLoaded);
     onClose();
   };
 
-  console.log('files: ', files.length, images.length);
+  console.log('files: ', files.length, loaded);
   return (
     <StyledUploader className={className}>
-      <UploadField multiple={multiple} onClick={callBack} />
-      {loaded[0]
-        ? files.map((file, i) => (
-            <Box key={i}>
-              <File>
-                <img src={images[i]} />
-                <span className="fileName">{file.name}</span>
-                {file.size ? (
-                  <span className="fileSize">{file.size} mb</span>
-                ) : (
-                  <LoadingBar loaded={loaded[i]} />
-                )}
-              </File>
-              {file.size ? <CloseIcon onClick={() => handleClose(i)} /> : null}
-            </Box>
-          ))
-        : null}
+      <UploadField multiple={multiple} onClick={handleClick} />
+      <Container>
+        {files.map((file, i) => (
+          <Box key={i}>
+            <File>
+              <img src={files[i].img} />
+              <span className="fileName">{file.name}</span>
+              {file.size ? (
+                <span className="fileSize">{file.size} mb</span>
+              ) : (
+                <LoadingBar loaded={loaded[i]} />
+              )}
+            </File>
+            {file.size ? <CloseIcon onClick={() => handleClose(i)} /> : null}
+          </Box>
+        ))}
+      </Container>
     </StyledUploader>
   );
 };
