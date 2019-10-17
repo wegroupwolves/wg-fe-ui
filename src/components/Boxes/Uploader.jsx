@@ -6,8 +6,12 @@ import UploadField from './../Buttons/UploadField';
 import { key } from 'styled-theme';
 
 const bytesToMega = value => {
-  const val = (value / 1000000).toFixed(2);
-  return val > 0 ? val : 0;
+  console.log(value);
+  const val =
+    value > 10000
+      ? `${(value / 1000000).toFixed(2)} mb`
+      : `${(value / 1000).toFixed(2)} kb`;
+  return val;
 };
 
 // Make text shorter if it's longer than 20 chars.
@@ -17,7 +21,7 @@ const shortifyText = text => {
 };
 
 const LoadingBar = styled.div`
-  width: 22vw;
+  width: ${({ loaded }) => (loaded !== null ? '22vw' : 0)};
   height: 5px;
   background-color: ${key('colors.backDrop')};
   margin-top: 11px;
@@ -33,7 +37,7 @@ const LoadingBar = styled.div`
 `;
 
 const Box = styled.div`
-  display: flex;
+  display: ${({ show }) => (show ? 'flex' : 'none')};
   align-items: center;
   padding: 19px 20px 15px 22px;
   border: 1px solid #cccccc;
@@ -41,6 +45,7 @@ const Box = styled.div`
   width: 30%;
   margin-right: 3%;
   margin-top: 45px;
+  justify-content: space-between;
   /* Backdrop */
 
   box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.05);
@@ -52,6 +57,10 @@ const Box = styled.div`
 
   img {
     max-width: 50px;
+  }
+
+  svg {
+    cursor: pointer;
   }
 `;
 
@@ -66,16 +75,20 @@ const Container = styled.div`
   justify-content: space-between;
 `;
 
-const Uploader = ({ className, multiple, onClick, onClose }) => {
+const Uploader = ({ supported, className, multiple, onClick, onClose }) => {
   const [loaded, setLoaded] = useState([]);
   const [files, setFiles] = useState([]);
+  const [value, setValue] = useState();
 
   const readFile = async (file, index) => {
     let reader = new FileReader();
-    setLoaded([...loaded, 0]);
+    setLoaded(l => [...l, 0]);
     reader.addEventListener('progress', e => {
       const percentage = (file.size / e.loaded) * 100;
-      setLoaded([...loaded, percentage]);
+      setLoaded(l => {
+        l[index] = percentage;
+        return [...l];
+      });
     });
 
     reader.addEventListener('loadend', e => {
@@ -87,52 +100,66 @@ const Uploader = ({ className, multiple, onClick, onClose }) => {
           img: file.type.match('image.*') ? e.target.result : '',
         },
       ]);
-      const newLoaded = loaded.slice();
-      newLoaded[index] = 0;
-      setLoaded(newLoaded);
+
+      setLoaded(l => {
+        l[index] = null;
+        return [...l];
+      });
     });
 
     await reader.readAsDataURL(file);
   };
 
-  const handleClick = async target => {
+  const handleClick = target => {
     if (!target.files) return false;
-    [...target.files].reduce(async (promise, file, i) => {
-      await promise;
-      await readFile(file, i);
-    }, Promise.resolve());
+    // [...target.files].reduce(async (promise, file, i) => {
+    //   await promise;
+    //   await readFile(file, i);
+    // }, Promise.resolve());
+    setValue(target.files);
+    target.files.forEach((t, i) => {
+      readFile(t, i);
+    });
     onClick(target.files);
   };
 
-  const handleClose = i => {
-    const newFiles = files.slice();
-    newFiles[i] = { name: '', size: '', img: '' };
+  const handleClose = file => {
+    let id;
     setFiles(f => {
-      f[i] = { name: '', size: '', img: '' };
+      id = f.findIndex(fi => fi.name === file.name);
+      f[id] = { name: '', size: '', img: '' };
       return [...f];
     });
-    const newLoaded = loaded.map(l => l * 0);
-    setLoaded(newLoaded);
+    setValue(v => {
+      const dt = new DataTransfer();
+      for (let i = 0; i < v.length; i++) if (i !== id) dt.items.add(v[i]);
+
+      return dt.files;
+    });
     onClose();
   };
 
-  console.log('files: ', files.length, loaded);
   return (
     <StyledUploader className={className}>
-      <UploadField multiple={multiple} onClick={handleClick} />
+      <UploadField
+        supported={supported}
+        value={value}
+        multiple={multiple}
+        onClick={handleClick}
+      />
       <Container>
         {files.map((file, i) => (
-          <Box key={i}>
+          <Box key={i} show={file.size}>
             <File>
               <img src={files[i].img} />
               <span className="fileName">{file.name}</span>
               {file.size ? (
-                <span className="fileSize">{file.size} mb</span>
+                <span className="fileSize">{file.size}</span>
               ) : (
                 <LoadingBar loaded={loaded[i]} />
               )}
             </File>
-            {file.size ? <CloseIcon onClick={() => handleClose(i)} /> : null}
+            {file.size ? <CloseIcon onClick={() => handleClose(file)} /> : null}
           </Box>
         ))}
       </Container>
