@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { string, array, func, bool } from 'prop-types';
+import { string, arrayOf, func, bool } from 'prop-types';
 import styled from 'styled-components';
-import CloseIcon from './../Icons/Close';
 import UploadField from './../Buttons/UploadField';
-import { key } from 'styled-theme';
+import FileBox from './FileBox';
+
 
 const bytesToMega = value => {
   console.log(value);
@@ -20,54 +20,6 @@ const shortifyText = text => {
   else return `${text.substring(0, 17)}...`;
 };
 
-const LoadingBar = styled.div`
-  width: ${({ loaded }) => (loaded !== null ? '22vw' : 0)};
-  height: 5px;
-  background-color: ${key('colors.backDrop')};
-  margin-top: 11px;
-
-  &:before {
-    content: '';
-    width: ${({ loaded }) => `calc(${loaded} / 100 * 22vw);`};
-    transition: ${({ loaded }) => (loaded === 0 ? null : 'width 1s')};
-    height: 5px;
-    position: absolute;
-    background-color: ${key('colors.action')};
-  }
-`;
-
-const Box = styled.div`
-  display: ${({ show }) => (show ? 'flex' : 'none')};
-  align-items: center;
-  padding: 19px 20px 15px 22px;
-  border: 1px solid #cccccc;
-  box-sizing: border-box;
-  width: 30%;
-  margin-right: 3%;
-  margin-top: 45px;
-  justify-content: space-between;
-  /* Backdrop */
-
-  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.05);
-  border-radius: 5px;
-
-  &:last-child {
-    margin-right: 0;
-  }
-
-  img {
-    max-width: 50px;
-  }
-
-  svg {
-    cursor: pointer;
-  }
-`;
-
-const File = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
 
 const Container = styled.div`
   display: flex;
@@ -149,18 +101,9 @@ const Uploader = ({ supported, className, multiple, onClick, onClose }) => {
       />
       <Container>
         {files.map((file, i) => (
-          <Box key={i} show={file.size}>
-            <File>
-              <img src={files[i].img} />
-              <span className="fileName">{file.name}</span>
-              {file.size ? (
-                <span className="fileSize">{file.size}</span>
-              ) : (
-                <LoadingBar loaded={loaded[i]} />
-              )}
-            </File>
-            {file.size ? <CloseIcon onClick={() => handleClose(file)} /> : null}
-          </Box>
+          <FileBox key={i} loaded={loaded} file={file} onClose={handleClose} >
+
+          </FileBox>
         ))}
       </Container>
     </StyledUploader>
@@ -187,17 +130,20 @@ const StyledUploader = styled.div`
 Uploader.defaultProps = {
   onClick: Function.prototype,
   onClose: Function.prototype,
-  //   images: array,
   multiple: false,
 };
 
 Uploader.propTypes = {
   className: string,
-  //   images: [],
   multiple: bool,
   onClick: func,
   onClose: func,
-  //   setImages: func.isRequired,
+  supported: arrayOf(
+    {
+      type: string,
+      extension: string,
+    }
+  ),
 };
 
 export default Uploader;
