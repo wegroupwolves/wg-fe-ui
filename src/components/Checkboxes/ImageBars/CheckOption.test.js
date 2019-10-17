@@ -13,7 +13,7 @@ describe('CheckOption', () => {
         Test
       </CheckOption>,
     );
-    expect(wrapper.props().id).toEqual(31);
+    expect(wrapper.find('StyledInput').props().id).toEqual(31);
   });
 
   it('when checked, style changes', () => {
