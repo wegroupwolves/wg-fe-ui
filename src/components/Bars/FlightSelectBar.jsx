@@ -12,6 +12,7 @@ const StyledCheck = styled.span`
   min-width: 16px;
   border-radius: 10px;
   border: ${({ checked }) => (checked ? '5px solid' : '1.2px solid')};
+  box-sizing: border-box;
   border-color: ${({ checked }) =>
     checked ? key('colors.toggle') : key('colors.outline')};
 `;

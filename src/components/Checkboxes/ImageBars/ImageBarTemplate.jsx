@@ -30,7 +30,6 @@ const Container = styled.label`
   border-radius: 2px;
   font-family: ${key('fonts.primary')};
   font-size: 1.6rem;
-
   ${({ checked }) =>
     checked
       ? css`
@@ -51,6 +50,10 @@ const Container = styled.label`
   svg {
     margin: auto 1.6vw;
     fill: key('colors.interactive');
+  }
+  svg > rect,
+  path {
+    fill: ${key('colors.outline')};
   }
 `;
 
