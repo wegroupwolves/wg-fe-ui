@@ -9,7 +9,7 @@ const Box = styled.div`
   display: ${({ show }) => (show ? 'flex' : 'none')};
   align-items: center;
   padding: 19px 20px 15px 22px;
-  border: 1px solid #cccccc;
+  border: 1px solid ${key('colors.outline')};
   box-sizing: border-box;
   width: 30%;
   margin-right: 3%;
@@ -45,6 +45,8 @@ const Box = styled.div`
     color: #76726e;
   }
 `;
+
+Box.displayName = 'Box';
 
 const File = styled.div`
   display: flex;

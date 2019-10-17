@@ -1,4 +1,5 @@
+import FileBox from './FileBox'
 import QuestionBox from './QuestionBox';
 import Uploader from './Uploader';
 
-export { QuestionBox, Uploader };
+export { FileBox, QuestionBox, Uploader };
