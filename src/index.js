@@ -20,7 +20,7 @@ import {
   SearchSelectInput,
   DateInput,
 } from './components/Inputs';
-import { QuestionBox, Uploader } from './components/Boxes';
+import { FileBox, QuestionBox, Uploader } from './components/Boxes';
 import { DisplayTable, OverviewTable } from './components/Tables';
 import {
   HeaderNav,
@@ -54,6 +54,7 @@ export {
   DateInput,
   SearchInput,
   SearchSelectInput,
+  FileBox,
   QuestionBox,
   Uploader,
   DisplayTable,
