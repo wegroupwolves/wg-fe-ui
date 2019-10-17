@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import CloseIcon from './../Icons/Close';
 import { key } from 'styled-theme';
 
+
 const Box = styled.div`
   display: ${({ show }) => (show ? 'flex' : 'none')};
   align-items: center;
@@ -66,21 +67,23 @@ const LoadingBar = styled.div`
   }
 `;
 
-const FileBox = ({ file, loaded, onClose, children }) => {
+const FileBox = ({ name, size, source, loaded, onClose, children }) => {
   return (
-    <Box key={file.name} show={file.size}>
+    <Box show={size}>
       <File>
-        <img src={file.img} />
-        <span className="fileName">{file.name}</span>
-        {file.size ? (
-          <span className="fileSize">{file.size}</span>
+        <img src={source} />
+        <span className="fileName">{name}</span>
+        {size ? (
+          <span className="fileSize">{size}</span>
         ) : (
           <LoadingBar loaded={loaded} />
         )}
       </File>
       <div>
         {children}
-        {file.size ? <CloseIcon onClick={() => onClose(file)} /> : null}
+        {size ? (
+          <CloseIcon onClick={() => onClose({ name, size, img: source })} />
+        ) : null}
       </div>
     </Box>
   );
@@ -92,7 +95,9 @@ FileBox.defaultProps = {
 
 FileBox.propTypes = {
   className: string,
-  file: object,
+  name: string,
+  size: number,
+  source: string,
   loaded: number,
   onClose: func,
 };

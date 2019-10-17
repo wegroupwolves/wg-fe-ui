@@ -4,9 +4,7 @@ import styled from 'styled-components';
 import UploadField from './../Buttons/UploadField';
 import FileBox from './FileBox';
 
-
 const bytesToMega = value => {
-  console.log(value);
   const val =
     value > 10000
       ? `${(value / 1000000).toFixed(2)} mb`
@@ -19,7 +17,6 @@ const shortifyText = text => {
   if (text.length < 20) return text;
   else return `${text.substring(0, 17)}...`;
 };
-
 
 const Container = styled.div`
   display: flex;
@@ -101,9 +98,14 @@ const Uploader = ({ supported, className, multiple, onClick, onClose }) => {
       />
       <Container>
         {files.map((file, i) => (
-          <FileBox key={i} loaded={loaded} file={file} onClose={handleClose} >
-
-          </FileBox>
+          <FileBox
+            key={i}
+            loaded={loaded}
+            name={file.name}
+            size={file.size}
+            source={file.img}
+            onClose={handleClose}
+          ></FileBox>
         ))}
       </Container>
     </StyledUploader>
@@ -138,12 +140,10 @@ Uploader.propTypes = {
   multiple: bool,
   onClick: func,
   onClose: func,
-  supported: arrayOf(
-    {
-      type: string,
-      extension: string,
-    }
-  ),
+  supported: arrayOf({
+    type: string,
+    extension: string,
+  }),
 };
 
 export default Uploader;
