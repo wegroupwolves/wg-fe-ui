@@ -30,7 +30,7 @@ storiesOf('Mid level blocks/Boxes', module)
           files.map((file, i) => (
             <StyledFile
               key={i}
-              loaded={loaded}
+              loaded={loaded[i]}
               name={file.name}
               size={file.size}
               source={file.img}
