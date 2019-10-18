@@ -24,6 +24,12 @@ const Container = styled.div`
   justify-content: space-between;
 `;
 
+const StyledFile = styled(FileBox)`
+  width: 30%;
+  margin-right: 3%;
+  margin-top: 45px;
+`;
+
 const Uploader = ({ supported, className, multiple, onClick, onClose }) => {
   const [loaded, setLoaded] = useState([]);
   const [files, setFiles] = useState([]);
@@ -98,14 +104,14 @@ const Uploader = ({ supported, className, multiple, onClick, onClose }) => {
       />
       <Container>
         {files.map((file, i) => (
-          <FileBox
+          <StyledFile
             key={i}
             loaded={loaded}
             name={file.name}
             size={file.size}
             source={file.img}
             onClose={handleClose}
-          ></FileBox>
+          ></StyledFile>
         ))}
       </Container>
     </StyledUploader>

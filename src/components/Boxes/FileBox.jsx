@@ -1,5 +1,5 @@
 import React from 'react';
-import { string, number, object, func } from 'prop-types';
+import { string, number, func } from 'prop-types';
 import styled from 'styled-components';
 import CloseIcon from './../Icons/Close';
 import { key } from 'styled-theme';
@@ -11,9 +11,6 @@ const Box = styled.div`
   padding: 19px 20px 15px 22px;
   border: 1px solid ${key('colors.outline')};
   box-sizing: border-box;
-  width: 30%;
-  margin-right: 3%;
-  margin-top: 45px;
   justify-content: space-between;
   /* Backdrop */
 
