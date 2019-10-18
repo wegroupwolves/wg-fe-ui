@@ -39,7 +39,7 @@ const CheckOption = ({
       <StyledInput
         type="checkbox"
         onClick={({ target: { value } }) => handleClick(value)}
-        onChange={handleChange}
+        onChange={({ target: { value } }) => handleChange(value)}
         checked={checked}
         disabled={disabled}
         name={name}
