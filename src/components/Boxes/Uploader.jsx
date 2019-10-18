@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { string, arrayOf, func, bool } from 'prop-types';
+import { node, string, arrayOf, func, bool } from 'prop-types';
 import styled from 'styled-components';
 import UploadField from './../Buttons/UploadField';
 import FileBox from './FileBox';
@@ -24,13 +24,14 @@ const Container = styled.div`
   justify-content: space-between;
 `;
 
-const StyledFile = styled(FileBox)`
-  width: 30%;
-  margin-right: 3%;
-  margin-top: 45px;
-`;
-
-const Uploader = ({ supported, className, multiple, onClick, onClose }) => {
+const Uploader = ({
+  supported,
+  className,
+  multiple,
+  onClick,
+  onClose,
+  children,
+}) => {
   const [loaded, setLoaded] = useState([]);
   const [files, setFiles] = useState([]);
   const [value, setValue] = useState();
@@ -72,7 +73,7 @@ const Uploader = ({ supported, className, multiple, onClick, onClose }) => {
     //   await readFile(file, i);
     // }, Promise.resolve());
     setValue(target.files);
-    target.files.forEach((t, i) => {
+    Array.from(target.files).forEach((t, i) => {
       readFile(t, i);
     });
     onClick(target.files);
@@ -88,7 +89,6 @@ const Uploader = ({ supported, className, multiple, onClick, onClose }) => {
     setValue(v => {
       const dt = new DataTransfer();
       for (let i = 0; i < v.length; i++) if (i !== id) dt.items.add(v[i]);
-
       return dt.files;
     });
     onClose();
@@ -103,16 +103,7 @@ const Uploader = ({ supported, className, multiple, onClick, onClose }) => {
         onClick={handleClick}
       />
       <Container>
-        {files.map((file, i) => (
-          <StyledFile
-            key={i}
-            loaded={loaded}
-            name={file.name}
-            size={file.size}
-            source={file.img}
-            onClose={handleClose}
-          ></StyledFile>
-        ))}
+        {files.length ? children({ files, loaded, handleClose }) : null}
       </Container>
     </StyledUploader>
   );
@@ -142,6 +133,7 @@ Uploader.defaultProps = {
 };
 
 Uploader.propTypes = {
+  children: node,
   className: string,
   multiple: bool,
   onClick: func,
@@ -151,5 +143,7 @@ Uploader.propTypes = {
     extension: string,
   }),
 };
+
+Uploader.FileBox = FileBox;
 
 export default Uploader;

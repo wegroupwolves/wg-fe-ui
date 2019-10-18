@@ -105,7 +105,13 @@ const StyledButton = styled.label`
   align-items: center;
   color: ${({ withFile }) =>
     withFile ? key('colors.toggle') : key('colors.highlight')};
-  cursor: pointer;
+  &:hover {
+    cursor: pointer;
+    input,
+    svg {
+      cursor: pointer;
+    }
+  }
   background-color: ${({ withFile }) =>
     withFile ? key('colors.selected') : key('colors.big-disabled')};
   position: relative;
