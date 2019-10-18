@@ -1,8 +1,21 @@
 import React, { useRef, useState } from 'react';
-import { object, bool, string, element, func } from 'prop-types';
+import { array, object, bool, string, element, func } from 'prop-types';
 import styled from 'styled-components';
 import { key } from 'styled-theme';
 import UploadIcon from '../Icons/Upload';
+
+const getAccepted = accepted => {
+  const len = accepted.length;
+  const accept = accepted
+    .map((a, i) => {
+      let type = a.type ? a.type : '';
+      type += a.extension ? `/${a.extension}` : '/*';
+      type += i !== len - 1 ? ', ' : '';
+      return type;
+    })
+    .join(' ');
+  return accept;
+};
 
 let counter = 0;
 
@@ -27,7 +40,7 @@ function dropFile(e, setFile, onClick) {
   e.preventDefault();
   e.stopPropagation();
 
-  onClick(e.dataTransfer.files[0]);
+  onClick(e.dataTransfer);
   setFile(false);
   counter = 0;
 }
@@ -37,15 +50,15 @@ const UploadField = ({
   name,
   value,
   multiple,
-  onChange,
   onClick,
+  supported,
   text,
   ...otherProps
 }) => {
   const ref = useRef();
   const inputRef = useRef();
   const [withFile, setWithFile] = useState(false);
-  const handleChange = ({ target: { value } }) => onChange(value);
+  const handleChange = ({ target }) => onClick(target);
 
   if (inputRef.current && multiple) inputRef.current.files = value;
   return (
@@ -62,6 +75,7 @@ const UploadField = ({
       {icon}
       {withFile ? 'Drop file to upload' : text}
       <input
+        accept={supported.length ? getAccepted(supported) : '*'}
         ref={inputRef}
         type="file"
         name={name}
@@ -118,7 +132,9 @@ UploadField.defaultProps = {
   icon: <UploadIcon />,
   name: 'label',
   text: 'Click here or drag file to upload',
+  value: [],
   otherProps: {},
+  supported: [],
   fullwidth: false,
 };
 
@@ -127,8 +143,9 @@ UploadField.propTypes = {
   icon: element,
   name: string.isRequired,
   multiple: bool,
-  onChange: func.isRequired,
   onClick: func.isRequired,
+  value: array,
+  supported: array,
   text: string,
   otherProps: object,
 };
