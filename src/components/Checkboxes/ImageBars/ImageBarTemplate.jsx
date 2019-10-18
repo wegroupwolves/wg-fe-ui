@@ -15,6 +15,8 @@ const StyledInput = styled.input`
   height: 0;
 `;
 
+StyledInput.displayName = 'StyledInput';
+
 const Container = styled.label`
   display: flex;
   align-items: center;

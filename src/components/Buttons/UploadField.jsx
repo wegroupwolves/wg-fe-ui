@@ -35,6 +35,7 @@ function dropFile(e, setFile, onClick) {
 const UploadField = ({
   icon,
   name,
+  value,
   multiple,
   onChange,
   onClick,
@@ -42,9 +43,11 @@ const UploadField = ({
   ...otherProps
 }) => {
   const ref = useRef();
+  const inputRef = useRef();
   const [withFile, setWithFile] = useState(false);
   const handleChange = ({ target: { value } }) => onChange(value);
 
+  if (inputRef.current && multiple) inputRef.current.files = value;
   return (
     <StyledButton
       ref={ref}
@@ -59,6 +62,7 @@ const UploadField = ({
       {icon}
       {withFile ? 'Drop file to upload' : text}
       <input
+        ref={inputRef}
         type="file"
         name={name}
         multiple={multiple}
