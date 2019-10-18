@@ -48,10 +48,10 @@ function dropFile(e, setFile, onClick) {
 const UploadField = ({
   icon,
   name,
+  value,
   multiple,
   onClick,
   supported,
-  value,
   text,
   ...otherProps
 }) => {
@@ -60,8 +60,7 @@ const UploadField = ({
   const [withFile, setWithFile] = useState(false);
   const handleChange = ({ target }) => onClick(target);
 
-  if (inputRef.current) inputRef.current.files = value;
-  console.log('supported: ', getAccepted(supported));
+  if (inputRef.current && multiple) inputRef.current.files = value;
   return (
     <StyledButton
       ref={ref}
