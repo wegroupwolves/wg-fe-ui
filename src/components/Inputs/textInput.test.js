@@ -4,21 +4,20 @@ import React from 'react';
 import Theme from '../../constants/theme';
 import 'jest-styled-components';
 import { ThemeProvider } from 'styled-components';
+import { act } from 'react-dom/test-utils';
 
 describe('TextInput', () => {
   it('style changes when disabled', () => {
     const wrapper = mount(
       <ThemeProvider theme={Theme}>
-        <TextInput type="text" name="firstname">
-          Name
-        </TextInput>
+        <TextInput name="firstname">Name</TextInput>
       </ThemeProvider>,
     );
-    expect(wrapper.find('input')).toHaveStyleRule('background-color', 'white');
+    expect(wrapper.find('StyledInput')).toHaveStyleRule('background-color', 'white');
 
     wrapper.setProps({
       children: (
-        <TextInput disabled type="text" name="firstname">
+        <TextInput disabled name="firstname">
           name
         </TextInput>
       ),
@@ -40,7 +39,6 @@ describe('TextInput', () => {
           ctrlValue = value;
         }}
         name="test"
-        type="text"
       >
         test
       </TextInput>,
@@ -49,16 +47,21 @@ describe('TextInput', () => {
     expect(ctrlValue).toEqual('Ruben');
     expect(ctrlName).toEqual('fakeName');
 
-    wrapper.find('input').simulate('change', { target: { value: 'WeGroup' } });
-    expect(ctrlValue).toEqual('WeGroup');
-    expect(ctrlName).toEqual('test');
+    const input = wrapper.find('input');
+
+    act(() => {
+      input.props().onChange({ target: { value: 'WeGroup' } });
+    });
+    setTimeout(() => {
+      expect(input.props().value).toEqual('WeGroup');
+      expect(input.props().name).toEqual('test');
+    });
   });
   it('returns touched value when input is touched', () => {
     let ctrlName = 'noTest';
     let ctrlTouched = false;
     const wrapper = mount(
       <TextInput
-        type="Text"
         name="test"
         setFieldTouched={(name, value) => {
           ctrlTouched = value;
@@ -78,9 +81,7 @@ describe('TextInput', () => {
   it('has different border color on validation', () => {
     const wrapper = mount(
       <ThemeProvider theme={Theme}>
-        <TextInput name="test" type="text">
-          Test
-        </TextInput>
+        <TextInput name="test">Test</TextInput>
       </ThemeProvider>,
     );
 
@@ -93,12 +94,7 @@ describe('TextInput', () => {
     // Check if border is red when errors and touched
     wrapper.setProps({
       children: (
-        <TextInput
-          errors={{ test: 'incorrect' }}
-          touched={{ test: true }}
-          name="test"
-          type="text"
-        >
+        <TextInput error="incorrect" touched={true} name="test">
           Test
         </TextInput>
       ),
@@ -111,7 +107,7 @@ describe('TextInput', () => {
     // Check if border is green when no errors but touched
     wrapper.setProps({
       children: (
-        <TextInput touched={{ test: true }} name="test" type="text">
+        <TextInput touched={true} name="test">
           Test
         </TextInput>
       ),
@@ -123,11 +119,7 @@ describe('TextInput', () => {
   });
 
   it('Good or bad icons show at right time', () => {
-    const wrapper = mount(
-      <TextInput name="test" type="text">
-        Test
-      </TextInput>,
-    );
+    const wrapper = mount(<TextInput name="test">Test</TextInput>);
 
     // check if icons don't exist
     expect(wrapper.exists('Errormark')).toEqual(false);
@@ -135,20 +127,20 @@ describe('TextInput', () => {
 
     // check if errormark shows when errors
     wrapper.setProps({
-      errors: { test: 'incorrect' },
-      touched: { test: true },
+      error: 'incorrect',
+      touched: true,
     });
     expect(wrapper.exists('Errormark')).toEqual(true);
     expect(wrapper.exists('Checkmark')).toEqual(false);
 
     // check if checkmark shows when no errors but touched
-    wrapper.setProps({ errors: {}, touched: { test: true } });
+    wrapper.setProps({ error: '', touched: true });
     expect(wrapper.exists('Checkmark')).toEqual(true);
     expect(wrapper.exists('Errormark')).toEqual(false);
   });
   it('otherProps adds props to input', () => {
     const wrapper = mount(
-      <TextInput max={12} name="test" type="text">
+      <TextInput max={12} name="test">
         Test
       </TextInput>,
     );
