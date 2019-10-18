@@ -416,7 +416,7 @@ const StyledLabel = styled.label`
   position: relative;
   width: 100%;
   font-size: 1.4rem;
-  margin-bottom: 0.7rem;
+  margin-bottom: 1rem;
   color: ${props => (props.disabled ? '#AEAEAE' : '#5B5550')};
 `;
 
@@ -425,7 +425,6 @@ const Input = styled.label`
   position: relative;
   width: 100%;
   align-items: center;
-  margin-top: 1.4rem;
   overflow: hidden;
   justify-content: flex-start;
   background-color: white;

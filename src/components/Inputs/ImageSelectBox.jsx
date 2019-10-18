@@ -49,6 +49,7 @@ const RadioButton = styled.label`
     bottom: 10px;
     left: 50%;
     transform: translateX(-50%);
+    white-space: nowrap;
   }
 
   svg {
