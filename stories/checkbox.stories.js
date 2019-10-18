@@ -44,7 +44,6 @@ storiesOf('Low level blocks/Checkboxes', module)
           handleClick={() => handleChangeCheckbox(1)}
           checked={checkedBox[1]}
           disabled={true}
-          type={'checkbox'}
         >
           I encountered issues with my lugage
         </CheckOption>
@@ -52,7 +51,6 @@ storiesOf('Low level blocks/Checkboxes', module)
           icon={<HouseIcon />}
           handleClick={() => handleChangeCheckbox(2)}
           checked={checkedBox[2]}
-          type={'checkbox'}
         >
           I encountered issues with my lugage
         </CheckOption>
