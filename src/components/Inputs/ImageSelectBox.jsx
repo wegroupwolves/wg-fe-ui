@@ -49,6 +49,7 @@ const RadioButton = styled.label`
     bottom: 10px;
     left: 50%;
     transform: translateX(-50%);
+    white-space: nowrap;
   }
 
   svg {
@@ -72,6 +73,7 @@ const RadioButton = styled.label`
     width: 100%;
     height: 100%;
     opacity: 0;
+    cursor: pointer;
   }
 `;
 
