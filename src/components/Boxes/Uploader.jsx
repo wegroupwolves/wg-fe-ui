@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { node, string, arrayOf, func, bool } from 'prop-types';
+import { element, node, string, arrayOf, func, bool } from 'prop-types';
 import styled from 'styled-components';
 import UploadField from './../Buttons/UploadField';
 import FileBox from './FileBox';
@@ -22,11 +22,16 @@ const Container = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+
+  @media (max-width: 780px) {
+    flex-direction: column;
+  }
 `;
 
 const Uploader = ({
   supported,
   className,
+  icon,
   multiple,
   onClick,
   onClose,
@@ -99,6 +104,7 @@ const Uploader = ({
       <UploadField
         supported={supported}
         value={value}
+        icon={icon}
         multiple={multiple}
         onClick={handleClick}
       />
@@ -129,12 +135,12 @@ const StyledUploader = styled.div`
 Uploader.defaultProps = {
   onClick: Function.prototype,
   onClose: Function.prototype,
-  multiple: false,
 };
 
 Uploader.propTypes = {
   children: node,
   className: string,
+  icon: element,
   multiple: bool,
   onClick: func,
   onClose: func,
