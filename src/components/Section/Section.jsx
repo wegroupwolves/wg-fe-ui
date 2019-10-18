@@ -2,13 +2,14 @@ import React from 'react';
 import styled from 'styled-components';
 import { object, node, string } from 'prop-types';
 import { key } from 'styled-theme';
+import { SubTitle } from '../Typography';
 
 const Section = ({ children, className, ...otherProps }) => {
   return (
-  <StyledSection {...otherProps} className={className}>
-    {children}
-  </StyledSection>
-  )
+    <StyledSection {...otherProps} className={className}>
+      {children}
+    </StyledSection>
+  );
 };
 
 const StyledSection = styled.section`
@@ -18,14 +19,10 @@ const StyledSection = styled.section`
   margin-bottom: 4.5rem;
 `;
 
-const Title = styled.h1`
-  font-size: ${key('fonts.big-size')};
-  font-weight: bold;
-`;
-
 const Subtitle = styled.h2`
   font-size: ${key('fonts.normal-size')};
 `;
+
 const Content = styled.div`
   background-color: ${props => (props.background ? 'white' : 'none')};
   position: relative;
@@ -40,16 +37,16 @@ const Content = styled.div`
 `;
 
 Section.defaultProps = {
-  otherProps: {}
-}
+  otherProps: {},
+};
 
 Section.propTypes = {
   children: node,
   className: string,
-  otherProps: object
+  otherProps: object,
 };
 
-Section.Title = Title;
+Section.Title = SubTitle;
 Section.Title.displayName = 'Section.Title';
 Section.Subtitle = Subtitle;
 Section.Subtitle.displayName = 'Section.Subtitle';
