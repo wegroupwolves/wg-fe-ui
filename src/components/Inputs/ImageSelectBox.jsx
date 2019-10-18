@@ -29,12 +29,11 @@ const RadioButton = styled.label`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 7.3vw;
-  height: 7.3vw;
+  width: 140px;
+  height: 140px;
   padding: 43px auto auto 27px;
   cursor: pointer;
-  margin: 0 25px;
-
+  margin-right: 1.3vw;
   background-color: ${({ mode }) => backgroundColor[mode]};
 
   border: 1px solid;
@@ -44,17 +43,18 @@ const RadioButton = styled.label`
   color: ${({ mode }) => iconColor[mode]};
 
   &::after {
-    content: '${({ value }) => value}';
+    content: '${({ label }) => label}';
     display: block;
     position: absolute;
     bottom: 10px;
     left: 50%;
     transform: translateX(-50%);
+    white-space: nowrap;
   }
 
   svg {
-    width: 5vw;
-    height: 5vh;
+    width: 96px;
+    height: 54px;
     margin-bottom: 10px;
 
     path {
@@ -73,6 +73,7 @@ const RadioButton = styled.label`
     width: 100%;
     height: 100%;
     opacity: 0;
+    cursor: pointer;
   }
 `;
 
@@ -84,20 +85,21 @@ const ImageSelectBox = ({
   value,
   icon,
   onChange,
+  name,
   ...otherProps
 }) => {
   let mode = 'normal';
   if (selected === value) mode = 'selected';
   else if (selected) mode = 'inactive';
   return (
-    <RadioButton {...otherProps} mode={mode} value={value}>
+    <RadioButton {...otherProps} mode={mode} label={label}>
       {icon}
       <input
         type="radio"
-        name={label}
         checked={selected === value}
         value={value}
         onChange={onChange}
+        name={name}
       />
     </RadioButton>
   );
@@ -106,6 +108,7 @@ const ImageSelectBox = ({
 ImageSelectBox.defaultProps = {
   label: 'means',
   onChange: () => {},
+  name: 'radios',
   mode: 'normal',
   otherProps: {},
   selected: '',
@@ -118,6 +121,7 @@ ImageSelectBox.propTypes = {
   icon: node,
   onChange: func,
   mode: string,
+  name: string,
   otherProps: object,
 };
 

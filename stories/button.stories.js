@@ -47,9 +47,8 @@ storiesOf('Low level blocks/Buttons', module)
   ))
   .add('AddEntityButton', () => {
     const onClick = () => console.log('resource: ');
-    const onChange = value => console.log('value: ', value);
 
-    return <AddEntityButton onChange={onChange} onClick={onClick} />;
+    return <AddEntityButton onClick={onClick} name="Add Entity" />;
   })
   .add('BackButton', () => {
     const iconName = select('Icon', Object.keys(svg), 'back_arrow');

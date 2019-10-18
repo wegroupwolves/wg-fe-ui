@@ -20,7 +20,7 @@ import {
   SearchSelectInput,
   DateInput,
 } from './components/Inputs';
-import { QuestionBox } from './components/Boxes';
+import { FileBox, QuestionBox, Uploader } from './components/Boxes';
 import { DisplayTable, OverviewTable } from './components/Tables';
 import {
   HeaderNav,
@@ -28,6 +28,14 @@ import {
   SubNavigation,
 } from './components/Navigation';
 import { Section } from './components/Section';
+import {
+  Title,
+  SubTitle,
+  Text,
+  TextBold,
+  Label,
+  SubLabel,
+} from './components/Typography';
 import { ThemeProvider } from 'styled-components';
 import Theme from './constants/theme';
 
@@ -46,7 +54,9 @@ export {
   DateInput,
   SearchInput,
   SearchSelectInput,
+  FileBox,
   QuestionBox,
+  Uploader,
   DisplayTable,
   Theme,
   HeaderNav,
@@ -59,6 +69,12 @@ export {
   OverviewClaimStatus,
   TrackingBar,
   FlightSelectBar,
+  Title,
+  SubTitle,
+  Text,
+  TextBold,
+  Label,
+  SubLabel,
 };
 
 // Export all components

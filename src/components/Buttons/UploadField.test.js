@@ -10,7 +10,7 @@ describe('UploadField', () => {
   it('When rendered should have default value of 52vw of width', () => {
     const wrapper = mount(
       <ThemeProvider theme={Theme}>
-        <UploadField onChange={() => {}} onClick={() => {}} />
+        <UploadField onClick={() => {}} />
       </ThemeProvider>,
     );
     expect(wrapper.find('StyledButton')).toHaveStyleRule('width', '52vw');
@@ -19,7 +19,7 @@ describe('UploadField', () => {
   it('When dragged element enter, property withFile equals to true', () => {
     const wrapper = mount(
       <ThemeProvider theme={Theme}>
-        <UploadField onChange={() => {}} onClick={() => {}} />
+        <UploadField onClick={() => {}} />
       </ThemeProvider>,
     );
     const e = {
@@ -40,7 +40,7 @@ describe('UploadField', () => {
   it('When dragged element leave, property withFile equals to false', () => {
     const wrapper = mount(
       <ThemeProvider theme={Theme}>
-        <UploadField onChange={() => {}} onClick={() => {}} />
+        <UploadField onClick={() => {}} />
       </ThemeProvider>,
     );
     const e = {
@@ -64,7 +64,7 @@ describe('UploadField', () => {
     const onClick = jest.fn();
     const wrapper = mount(
       <ThemeProvider theme={Theme}>
-        <UploadField onChange={() => {}} onClick={onClick} />
+        <UploadField onClick={onClick} />
       </ThemeProvider>,
     );
     act(() => {
@@ -76,7 +76,7 @@ describe('UploadField', () => {
 
     setTimeout(() => {
       expect(wrapper.find('StyledButton').props().withFile).toEqual(false);
-      expect(onClick).toHaveBeenCalledWith(e.dataTransfer.files[0]);
+      expect(onClick).toHaveBeenCalledWith(e.dataTransfer);
     });
   });
 });

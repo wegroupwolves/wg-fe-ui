@@ -146,6 +146,8 @@ const StyledInput = styled.input`
   }
 `;
 
+StyledInput.displayName = 'StyledInput';
+
 const ErrorContainer = styled.div`
   width: 100%;
   display: flex;
@@ -177,8 +179,9 @@ const StyledErrormark = styled(Errormark)`
 TextInput.defaultProps = {
   disabled: false,
   placeholder: null,
-  error: {},
-  touched: {},
+  error: '',
+  touched: false,
+  type: 'text',
   setFieldTouched: () => {},
   onChange: () => {},
   otherProps: {},
@@ -192,7 +195,7 @@ TextInput.propTypes = {
   /** name of input and label */
   name: string.isRequired,
   /** type of input: email, text, ... */
-  type: string.isRequired,
+  type: string,
   /** if true input is disabled */
   disabled: bool,
   /** example value in the input */
