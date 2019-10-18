@@ -73,6 +73,7 @@ const RadioButton = styled.label`
     width: 100%;
     height: 100%;
     opacity: 0;
+    cursor: pointer;
   }
 `;
 
