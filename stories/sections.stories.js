@@ -22,7 +22,7 @@ storiesOf('Mid level blocks/Sections', module)
   .addDecorator(withKnobs)
   .addDecorator(withInfo({ inline: true }))
   .addDecorator(greyBackground)
-  .add('MainNavigation', () => {
+  .add('Section', () => {
     return (
       <Section>
         <Section.Title>Title</Section.Title>
