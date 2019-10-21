@@ -106,8 +106,9 @@ const Uploader = ({
     let id;
     setFiles(f => {
       id = f.findIndex(fi => fi.name === file.name);
-      const newFiles = [...f];
-      newFiles.splice(id);
+      const newFiles = f
+        .filter(file => file.name !== f[id].name)
+        .map(file => ({ ...file }));
       setId(id);
       return [...newFiles];
     });
