@@ -1,10 +1,12 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import { withKnobs, boolean } from '@storybook/addon-knobs';
+import { withKnobs, boolean, text, select } from '@storybook/addon-knobs';
 import { withInfo } from '@storybook/addon-info';
 import styled from 'styled-components';
 
-import { QuestionBox, Uploader } from '../src';
+import { QuestionBox, Uploader, DownloadBox } from '../src';
+
+const propsObject = [{ none: null, id: { id: 'add' } }];
 
 storiesOf('Mid level blocks/Boxes', module)
   .addDecorator(withKnobs)
@@ -25,7 +27,10 @@ storiesOf('Mid level blocks/Boxes', module)
       { type: 'image', extension: 'png' },
     ];
     return <Uploader supported={supported} multiple={true} />;
-  });
+  })
+  .add('DownloadBox', () => (
+     <DownloadBox otherProps={select('otherProps', ...propsObject)} href={text('href', 'href')} thumbnail={text('thumbnail', '')}> {text('fileName', 'fileName')} </DownloadBox>
+  ));
 
 const StyledQuestionBox = styled(QuestionBox)`
   width: 85%;
