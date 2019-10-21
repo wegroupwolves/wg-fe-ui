@@ -8,16 +8,12 @@ import { ThemeProvider } from 'styled-components';
 
 describe('FileBox', () => {
   it('when file wasnt passed or equal to 0, should display be none', () => {
-    const file = { name: '', size: 0, source: '' };
     const wrapper = mount(
       <ThemeProvider theme={Theme}>
-        <Uploader.FileBox {...file} loaded={0}>
-          Testje
-        </Uploader.FileBox>
+        <Uploader.FileBox loaded={0}>Testje</Uploader.FileBox>
       </ThemeProvider>,
     );
-
-    expect(wrapper.find('Box')).toHaveStyleRule('display', 'none');
+    expect(wrapper.exists('Box')).toEqual(false);
   });
 
   it('when file was passed, should display be flex ', () => {
@@ -30,7 +26,7 @@ describe('FileBox', () => {
       </ThemeProvider>,
     );
 
-    expect(wrapper.find('Box')).toHaveStyleRule('display', 'flex');
+    expect(wrapper.exists('Box')).toEqual(true);
   });
 
   it('when function passed to onClose property, should be called ', () => {
