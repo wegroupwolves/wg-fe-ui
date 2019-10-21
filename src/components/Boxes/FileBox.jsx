@@ -75,7 +75,7 @@ const LoadingBar = styled.div`
 `;
 
 const FileBox = ({ className, name, size, source, loaded, onClose, children }) => {
-  return (
+  return size ? (
     <Box className={className}>
       <Left>
         <img src={source} />
@@ -93,7 +93,7 @@ const FileBox = ({ className, name, size, source, loaded, onClose, children }) =
         ) : null}
       </Right>
     </Box>
-  );
+  ) : null;
 };
 
 FileBox.defaultProps = {
