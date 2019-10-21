@@ -1,8 +1,16 @@
-import React, { useState } from 'react';
-import { string, arrayOf, func, bool } from 'prop-types';
+import React, { useEffect, useRef, useState } from 'react';
+import { element, node, string, arrayOf, func, bool } from 'prop-types';
 import styled from 'styled-components';
 import UploadField from './../Buttons/UploadField';
 import FileBox from './FileBox';
+
+const removeFile = (dt, id) => dt.items.remove(id);
+
+const updateFiles = (dt, id, fileList, isRemoving = false) => {
+  isRemoving && removeFile(dt, id);
+  for (let j = 0; j < fileList.length; j++) dt.items.add(fileList[j]);
+  return dt;
+};
 
 const bytesToMega = value => {
   const val =
@@ -22,18 +30,30 @@ const Container = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+
+  @media (max-width: 780px) {
+    flex-direction: column;
+  }
 `;
 
-const StyledFile = styled(FileBox)`
-  width: 30%;
-  margin-right: 3%;
-  margin-top: 45px;
-`;
-
-const Uploader = ({ supported, className, multiple, onClick, onClose }) => {
+const Uploader = ({
+  supported,
+  className,
+  icon,
+  multiple,
+  onClick,
+  onClose,
+  children,
+}) => {
+  const ref = useRef();
+  const [id, setId] = useState(-1);
   const [loaded, setLoaded] = useState([]);
   const [files, setFiles] = useState([]);
-  const [value, setValue] = useState();
+  const [dt, setDT] = useState(new DataTransfer());
+
+  useEffect(() => {
+    setDT(v => updateFiles(v, id, [], true));
+  }, [id]);
 
   const readFile = async (file, index) => {
     let reader = new FileReader();
@@ -71,8 +91,12 @@ const Uploader = ({ supported, className, multiple, onClick, onClose }) => {
     //   await promise;
     //   await readFile(file, i);
     // }, Promise.resolve());
-    setValue(target.files);
-    target.files.forEach((t, i) => {
+    if (!multiple) setFiles([]);
+    setDT(dataTransfer => {
+      const vdata = multiple ? dataTransfer : new DataTransfer();
+      return updateFiles(vdata, -1, target.files);
+    });
+    Array.from(target.files).forEach((t, i) => {
       readFile(t, i);
     });
     onClick(target.files);
@@ -82,37 +106,27 @@ const Uploader = ({ supported, className, multiple, onClick, onClose }) => {
     let id;
     setFiles(f => {
       id = f.findIndex(fi => fi.name === file.name);
-      f[id] = { name: '', size: '', img: '' };
-      return [...f];
-    });
-    setValue(v => {
-      const dt = new DataTransfer();
-      for (let i = 0; i < v.length; i++) if (i !== id) dt.items.add(v[i]);
-
-      return dt.files;
+      const newFiles = f
+        .filter(file => file.name !== f[id].name)
+        .map(file => ({ ...file }));
+      setId(id);
+      return [...newFiles];
     });
     onClose();
   };
 
+  if (ref.current && dt.files) ref.current.files = dt.files;
   return (
     <StyledUploader className={className}>
       <UploadField
+        ref={ref}
         supported={supported}
-        value={value}
+        icon={icon}
         multiple={multiple}
         onClick={handleClick}
       />
       <Container>
-        {files.map((file, i) => (
-          <StyledFile
-            key={i}
-            loaded={loaded}
-            name={file.name}
-            size={file.size}
-            source={file.img}
-            onClose={handleClose}
-          ></StyledFile>
-        ))}
+        {files.length ? children({ files, loaded, handleClose }) : null}
       </Container>
     </StyledUploader>
   );
@@ -138,11 +152,12 @@ const StyledUploader = styled.div`
 Uploader.defaultProps = {
   onClick: Function.prototype,
   onClose: Function.prototype,
-  multiple: false,
 };
 
 Uploader.propTypes = {
+  children: node,
   className: string,
+  icon: element,
   multiple: bool,
   onClick: func,
   onClose: func,
@@ -151,5 +166,7 @@ Uploader.propTypes = {
     extension: string,
   }),
 };
+
+Uploader.FileBox = FileBox;
 
 export default Uploader;

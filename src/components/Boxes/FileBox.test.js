@@ -1,4 +1,4 @@
-import { FileBox } from '.';
+import Uploader from './Uploader';
 import { shallow, mount } from 'enzyme';
 import React from 'react';
 import Theme from '../../constants/theme';
@@ -11,9 +11,9 @@ describe('FileBox', () => {
     const file = { name: '', size: 0, source: '' };
     const wrapper = mount(
       <ThemeProvider theme={Theme}>
-        <FileBox {...file} loaded={0}>
+        <Uploader.FileBox {...file} loaded={0}>
           Testje
-        </FileBox>
+        </Uploader.FileBox>
       </ThemeProvider>,
     );
 
@@ -24,9 +24,9 @@ describe('FileBox', () => {
     const file = { name: '', size: 100, source: '' };
     const wrapper = mount(
       <ThemeProvider theme={Theme}>
-        <FileBox {...file} loaded={0}>
+        <Uploader.FileBox {...file} loaded={0}>
           Testje
-        </FileBox>
+        </Uploader.FileBox>
       </ThemeProvider>,
     );
 
@@ -38,14 +38,14 @@ describe('FileBox', () => {
     const onClose = jest.fn();
     const wrapper = mount(
       <ThemeProvider theme={Theme}>
-        <FileBox {...file} loaded={0} onClose={onClose}>
+        <Uploader.FileBox {...file} loaded={0} onClose={onClose}>
           Testje
-        </FileBox>
+        </Uploader.FileBox>
       </ThemeProvider>,
     );
 
     wrapper
-      .find(FileBox)
+      .find(Uploader.FileBox)
       .props()
       .onClose();
 

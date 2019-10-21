@@ -1,9 +1,8 @@
 import React from 'react';
-import { string, number, func } from 'prop-types';
+import { node, string, number, func } from 'prop-types';
 import styled from 'styled-components';
 import CloseIcon from './../Icons/Close';
 import { key } from 'styled-theme';
-
 
 const Box = styled.div`
   display: ${({ show }) => (show ? 'flex' : 'none')};
@@ -45,9 +44,18 @@ const Box = styled.div`
 
 Box.displayName = 'Box';
 
-const File = styled.div`
+const Left = styled.div`
   display: flex;
   flex-direction: column;
+`;
+
+const Right = styled.div`
+  display: flex;
+  align-items: center;
+
+  @media (max-width: 900px) {
+    flex-direction: row;
+  }
 `;
 
 const LoadingBar = styled.div`
@@ -69,7 +77,7 @@ const LoadingBar = styled.div`
 const FileBox = ({ name, size, source, loaded, onClose, children }) => {
   return (
     <Box show={size}>
-      <File>
+      <Left>
         <img src={source} />
         <span className="fileName">{name}</span>
         {size ? (
@@ -77,13 +85,13 @@ const FileBox = ({ name, size, source, loaded, onClose, children }) => {
         ) : (
           <LoadingBar loaded={loaded} />
         )}
-      </File>
-      <div>
+      </Left>
+      <Right>
         {children}
         {size ? (
           <CloseIcon onClick={() => onClose({ name, size, img: source })} />
         ) : null}
-      </div>
+      </Right>
     </Box>
   );
 };
@@ -93,9 +101,10 @@ FileBox.defaultProps = {
 };
 
 FileBox.propTypes = {
+  children: node,
   className: string,
   name: string,
-  size: number,
+  size: string,
   source: string,
   loaded: number,
   onClose: func,
