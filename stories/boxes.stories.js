@@ -25,7 +25,7 @@ storiesOf('Mid level blocks/Boxes', module)
       { type: 'image', extension: 'png' },
     ];
     return (
-      <Uploader supported={supported}>
+      <Uploader supported={supported} >
         {({ files, loaded, handleClose }) =>
           files.map((file, i) => (
             <StyledFile

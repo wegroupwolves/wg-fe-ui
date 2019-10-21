@@ -1,5 +1,5 @@
 import React from 'react';
-import { array, node, string, number, func } from 'prop-types';
+import { node, string, number, func } from 'prop-types';
 import styled from 'styled-components';
 import CloseIcon from './../Icons/Close';
 import { key } from 'styled-theme';
@@ -104,9 +104,9 @@ FileBox.propTypes = {
   children: node,
   className: string,
   name: string,
-  size: number,
+  size: string,
   source: string,
-  loaded: array,
+  loaded: number,
   onClose: func,
 };
 

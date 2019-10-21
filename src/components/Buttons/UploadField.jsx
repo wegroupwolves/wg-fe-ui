@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { forwardRef, useState } from 'react';
 import { array, object, bool, string, element, func } from 'prop-types';
 import styled from 'styled-components';
 import { key } from 'styled-theme';
@@ -45,46 +45,34 @@ function dropFile(e, setFile, onClick) {
   counter = 0;
 }
 
-const UploadField = ({
-  icon,
-  name,
-  value,
-  multiple,
-  onClick,
-  supported,
-  text,
-  ...otherProps
-}) => {
-  const ref = useRef();
-  const inputRef = useRef();
-  const [withFile, setWithFile] = useState(false);
-  const handleChange = ({ target }) => onClick(target);
-
-  if (inputRef.current && multiple) inputRef.current.files = value;
-  return (
-    <StyledButton
-      ref={ref}
-      withFile={withFile}
-      onClick={onClick}
-      onDragEnter={e => dragEnter(e, setWithFile)}
-      onDragLeave={e => dragLeave(e, setWithFile)}
-      onDragOver={dragOver}
-      onDrop={e => dropFile(e, setWithFile, onClick)}
-      {...otherProps}
-    >
-      {icon}
-      {withFile ? 'Drop file to upload' : text}
-      <input
-        accept={supported.length ? getAccepted(supported) : '*'}
-        ref={inputRef}
-        type="file"
-        name={name}
-        multiple={multiple}
-        onChange={handleChange}
-      />
-    </StyledButton>
-  );
-};
+const UploadField = forwardRef(
+  ({ icon, name, multiple, onClick, supported, text, ...otherProps }, ref) => {
+    const [withFile, setWithFile] = useState(false);
+    const handleChange = ({ target }) => onClick(target);
+    return (
+      <StyledButton
+        withFile={withFile}
+        onClick={onClick}
+        onDragEnter={e => dragEnter(e, setWithFile)}
+        onDragLeave={e => dragLeave(e, setWithFile)}
+        onDragOver={dragOver}
+        onDrop={e => dropFile(e, setWithFile, onClick)}
+        {...otherProps}
+      >
+        {icon}
+        {withFile ? 'Drop file to upload' : text}
+        <input
+          accept={supported.length ? getAccepted(supported) : '*'}
+          ref={ref}
+          type="file"
+          name={name}
+          multiple={multiple}
+          onChange={handleChange}
+        />
+      </StyledButton>
+    );
+  },
+);
 
 const StyledButton = styled.label`
   font-family: ${key('fonts.primary')};
@@ -132,13 +120,13 @@ const StyledButton = styled.label`
 `;
 
 StyledButton.displayName = 'StyledButton';
+UploadField.displayName = 'UploadField';
 
 UploadField.defaultProps = {
   multiple: false,
   icon: <UploadIcon />,
   name: 'label',
   text: 'Click here or drag file to upload',
-  value: [],
   otherProps: {},
   supported: [],
   fullwidth: false,
@@ -150,7 +138,6 @@ UploadField.propTypes = {
   name: string.isRequired,
   multiple: bool,
   onClick: func.isRequired,
-  value: array,
   supported: array,
   text: string,
   otherProps: object,
