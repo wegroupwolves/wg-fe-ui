@@ -47,7 +47,7 @@ const StyledQuestionBox = styled(QuestionBox)`
 `;
 
 const StyledFile = styled(Uploader.FileBox)`
-  width: 100%;
+  width: 30%;
   margin-right: 3%;
   margin-top: 45px;
 `;

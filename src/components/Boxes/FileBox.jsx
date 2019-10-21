@@ -5,7 +5,7 @@ import CloseIcon from './../Icons/Close';
 import { key } from 'styled-theme';
 
 const Box = styled.div`
-  display: ${({ show }) => (show ? 'flex' : 'none')};
+  display: flex;
   align-items: center;
   padding: 19px 20px 15px 22px;
   border: 1px solid ${key('colors.outline')};
@@ -74,9 +74,9 @@ const LoadingBar = styled.div`
   }
 `;
 
-const FileBox = ({ name, size, source, loaded, onClose, children }) => {
+const FileBox = ({ className, name, size, source, loaded, onClose, children }) => {
   return (
-    <Box show={size}>
+    <Box className={className}>
       <Left>
         <img src={source} />
         <span className="fileName">{name}</span>
