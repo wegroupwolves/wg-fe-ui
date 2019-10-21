@@ -25,7 +25,7 @@ storiesOf('Mid level blocks/Boxes', module)
       { type: 'image', extension: 'png' },
     ];
     return (
-      <Uploader supported={supported} >
+      <Uploader supported={supported} multiple={boolean('multiple', true)}>
         {({ files, loaded, handleClose }) =>
           files.map((file, i) => (
             <StyledFile
@@ -47,7 +47,7 @@ const StyledQuestionBox = styled(QuestionBox)`
 `;
 
 const StyledFile = styled(Uploader.FileBox)`
-  width: 30%;
+  width: 100%;
   margin-right: 3%;
   margin-top: 45px;
 `;
