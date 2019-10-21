@@ -92,8 +92,8 @@ const Uploader = ({
     //   await readFile(file, i);
     // }, Promise.resolve());
     if (!multiple) setFiles([]);
-    setDT(v => {
-      const vdata = multiple ? v : new DataTransfer();
+    setDT(dataTransfer => {
+      const vdata = multiple ? dataTransfer : new DataTransfer();
       return updateFiles(vdata, -1, target.files);
     });
     Array.from(target.files).forEach((t, i) => {
@@ -106,9 +106,10 @@ const Uploader = ({
     let id;
     setFiles(f => {
       id = f.findIndex(fi => fi.name === file.name);
-      f.splice(id, 1);
+      const newFiles = [...f];
+      newFiles.splice(id);
       setId(id);
-      return [...f];
+      return [...newFiles];
     });
     onClose();
   };
