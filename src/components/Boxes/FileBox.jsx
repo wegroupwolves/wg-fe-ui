@@ -74,7 +74,15 @@ const LoadingBar = styled.div`
   }
 `;
 
-const FileBox = ({ className, name, size, source, loaded, onClose, children }) => {
+const FileBox = ({
+  className,
+  name,
+  size,
+  source,
+  loaded,
+  onClose,
+  children,
+}) => {
   return size ? (
     <Box className={className}>
       <Left>
@@ -88,9 +96,7 @@ const FileBox = ({ className, name, size, source, loaded, onClose, children }) =
       </Left>
       <Right>
         {children}
-        {size ? (
-          <CloseIcon onClick={() => onClose({ name, size, img: source })} />
-        ) : null}
+        <CloseIcon onClick={() => onClose({ name, size, img: source })} />
       </Right>
     </Box>
   ) : null;

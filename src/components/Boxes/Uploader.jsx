@@ -40,6 +40,7 @@ const Uploader = ({
   supported,
   className,
   icon,
+  text,
   multiple,
   onClick,
   onClose,
@@ -85,8 +86,8 @@ const Uploader = ({
     await reader.readAsDataURL(file);
   };
 
-  const handleClick = target => {
-    if (!target.files) return false;
+  const handleClick = uploaded => {
+    if (!uploaded) return false;
     // [...target.files].reduce(async (promise, file, i) => {
     //   await promise;
     //   await readFile(file, i);
@@ -94,12 +95,12 @@ const Uploader = ({
     if (!multiple) setFiles([]);
     setDT(dataTransfer => {
       const vdata = multiple ? dataTransfer : new DataTransfer();
-      return updateFiles(vdata, -1, target.files);
+      return updateFiles(vdata, -1, uploaded);
     });
-    Array.from(target.files).forEach((t, i) => {
+    Array.from(uploaded).forEach((t, i) => {
       readFile(t, i);
     });
-    onClick(target.files);
+    onClick(uploaded);
   };
 
   const handleClose = file => {
@@ -124,6 +125,7 @@ const Uploader = ({
         icon={icon}
         multiple={multiple}
         onClick={handleClick}
+        text={text}
       />
       <Container>
         {files.length ? children({ files, loaded, handleClose }) : null}
@@ -165,6 +167,7 @@ Uploader.propTypes = {
     type: string,
     extension: string,
   }),
+  text: string,
 };
 
 Uploader.FileBox = FileBox;

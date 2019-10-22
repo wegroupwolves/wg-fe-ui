@@ -1,23 +1,23 @@
 import React from 'react';
 import styled from 'styled-components';
 import { key } from 'styled-theme/dist';
-import FilingIcon from './../Icons/Filing'
+import FilingIcon from './../Icons/Filing';
 import { node, number, string, objectOf } from 'prop-types';
 
 const backgroundColor = {
-    done: key('colors.action'),
-}
+  done: key('colors.action'),
+};
 
 const borderColor = {
-    active: key('colors.action'),
-    disabled: key('colors.disabledGray')
-}
+  active: key('colors.action'),
+  disabled: key('colors.disabledGray'),
+};
 
 const iconColor = {
-    done: '#FFFFFF',
-    active: key('colors.action'),
-    disabled: key('colors.disabledGray')
-}
+  done: '#FFFFFF',
+  active: key('colors.action'),
+  disabled: key('colors.disabledGray'),
+};
 
 /**
  * Checks actual stage status
@@ -39,8 +39,7 @@ const Status = styled.div`
   align-items: center;
   position: relative;
   @media (max-width: 768px) {
-    display: ${({ status }) =>
-      status !== 'active' ? 'none' : 'flex'};
+    display: ${({ status }) => (status !== 'active' ? 'none' : 'flex')};
     justify-content: center;
     width: auto;
   }
@@ -72,28 +71,21 @@ const StyledIcon = styled.div`
   justify-content: center;
   align-items: center;
   box-sizing: border-box;
-  border: ${({ status }) => status !== 'done' ?
-      '2.26px solid' : 'none'};
-    border-color: ${({ status }) => borderColor[status] || 'transparent'};
+  border: ${({ status }) => (status !== 'done' ? '2.26px solid' : 'none')};
+  border-color: ${({ status }) => borderColor[status] || 'transparent'};
   path {
-    fill: ${({ status }) =>
-      iconColor[status] || '#FFFFFF' }; 
-    stroke: ${({ status }) =>
-      iconColor[status] || '#FFFFFF' };
+    fill: ${({ status }) => iconColor[status] || '#FFFFFF'};
+    stroke: ${({ status }) => iconColor[status] || '#FFFFFF'};
   }
 `;
 
-StyledIcon.displayName = "StyledIcon"
+StyledIcon.displayName = 'StyledIcon';
 
-
-const TrackingStep = ({ activeId, stage}) => {
-    const status = getStatus(activeId, stage);
-    console.log('status: ',status);
-    return (
+const TrackingStep = ({ activeId, stage }) => {
+  const status = getStatus(activeId, stage);
+  return (
     <Status status={status} name={stage.name}>
-        <StyledIcon status={status}>
-            {stage.icon}
-        </StyledIcon>
+      <StyledIcon status={status}>{stage.icon}</StyledIcon>
     </Status>
   );
 };
@@ -101,20 +93,19 @@ const TrackingStep = ({ activeId, stage}) => {
 const StyledTrackingStep = styled(TrackingStep)`
   display: flex;
   justify-content: space-around;
-  margin: 4vh auto .55vh;
+  margin: 4vh auto 0.55vh;
   position: relative;
   @media (max-width: 1200px) {
     margin: 0;
   }
 `;
 
-StyledTrackingStep.displayName = 'TrackingStep'
+StyledTrackingStep.displayName = 'TrackingStep';
 
 TrackingStep.defaultProps = {
   activeId: 1,
   stage: { key: 'filing', name: 'filing', icon: <FilingIcon />, id: 1 },
-    
-}
+};
 
 TrackingStep.propTypes = {
   activeId: number,
@@ -122,8 +113,8 @@ TrackingStep.propTypes = {
     key: string,
     name: string,
     icon: node,
-    id: number
-  })
-}
+    id: number,
+  }),
+};
 
 export default StyledTrackingStep;

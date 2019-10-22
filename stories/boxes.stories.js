@@ -1,8 +1,10 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import { withKnobs, boolean } from '@storybook/addon-knobs';
+import { withKnobs, boolean, select } from '@storybook/addon-knobs';
 import { withInfo } from '@storybook/addon-info';
 import styled from 'styled-components';
+import UploadIcon from './../src/components/Icons/Upload';
+import PlusIcon from './../src/components/Icons/Plus';
 
 import { QuestionBox, Uploader } from '../src';
 
@@ -20,12 +22,30 @@ storiesOf('Mid level blocks/Boxes', module)
     </StyledQuestionBox>
   ))
   .add('Uploader', () => {
-    const supported = [
-      { type: 'image', extension: 'jpeg' },
-      { type: 'image', extension: 'png' },
-    ];
+    const supported = {
+      images: [
+        { type: 'image', extension: 'jpeg' },
+        { type: 'image', extension: 'png' },
+      ],
+      all: [],
+      documents: [
+        { type: 'application', extension: 'msword' },
+        { type: 'application', extension: 'pdf' },
+      ],
+    };
+    const ICONS = {
+      upload: <UploadIcon />,
+      plus: <PlusIcon />,
+    };
+    const labels = ['', 'upload or drop file here', 'upload file', 'drop file'];
+    const componentName = select('icon', Object.keys(ICONS), 'upload');
     return (
-      <Uploader supported={supported} multiple={boolean('multiple', true)}>
+      <Uploader
+        supported={select('supported files', supported, supported['images'])}
+        multiple={boolean('multiple', true)}
+        icon={ICONS[componentName]}
+        text={select('label', labels)}
+      >
         {({ files, loaded, handleClose }) =>
           files.map((file, i) => (
             <StyledFile
