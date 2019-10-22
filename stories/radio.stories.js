@@ -5,7 +5,7 @@ import { storiesOf } from '@storybook/react';
 import { withKnobs } from '@storybook/addon-knobs';
 import { withInfo } from '@storybook/addon-info';
 
-import HouseIcon from './assets/HouseIcon.jsx';
+import Property from '../src/components/Icons/Property';
 
 storiesOf('Low level blocks/Radios', module)
   .addDecorator(withKnobs)
@@ -19,7 +19,7 @@ storiesOf('Low level blocks/Radios', module)
     return (
       <>
         <RadioOption
-          icon={<HouseIcon />}
+          icon={<Property />}
           handleChange={() => handleChangeRadio(1)}
           checked={checkedRadio === 1}
           disabled={true}
@@ -27,7 +27,7 @@ storiesOf('Low level blocks/Radios', module)
           I encountered issues with my lugage
         </RadioOption>
         <RadioOption
-          icon={<HouseIcon />}
+          icon={<Property />}
           handleChange={() => handleChangeRadio(2)}
           checked={checkedRadio === 2}
         >
