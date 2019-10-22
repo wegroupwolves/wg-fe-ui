@@ -1,56 +1,62 @@
-import React, { useState, useEffect } from 'react';
+import React, { forwardRef, useState, useEffect } from 'react';
 import styled from 'styled-components';
 import Select from 'react-select';
 import { func, string, bool, array, object } from 'prop-types';
 import { key } from 'styled-theme';
 
-const SearchSelectInput = ({
-  className,
-  selected,
-  loading,
-  options,
-  name,
-  disabled,
-  children,
-  initial,
-  noOptionMessage,
-  loadingMessage,
-  placeholder,
-  ...otherProps
-}) => {
-  const [isSelected, setSelected] = useState();
+const SearchSelectInput = forwardRef(
+  (
+    {
+      className,
+      selected,
+      loading,
+      options,
+      name,
+      disabled,
+      children,
+      initial,
+      noOptionMessage,
+      loadingMessage,
+      placeholder,
+      ...otherProps
+    },
+    ref,
+  ) => {
+    const [isSelected, setSelected] = useState();
 
-  const handleChange = e => {
-    selected(name, e.value);
-    setSelected(e);
-  };
+    const handleChange = e => {
+      selected(name, e.value);
+      setSelected(e);
+    };
 
-  useEffect(() => {
-    if (loading || !options.length || options === []) {
-      setSelected('');
-    }
+    useEffect(() => {
+      if (loading || !options.length || options === []) {
+        setSelected('');
+      }
 
-    if (initial) {
-      setSelected(initial);
-    }
-  }, [options]);
+      if (initial) {
+        setSelected(initial);
+      }
+    }, [options]);
 
-  return (
-    <Container className={className}>
-      <Label disabled={disabled}>{children}</Label>
-      <Input
-        isDisabled={disabled}
-        onChange={e => handleChange(e)}
-        options={options}
-        value={isSelected}
-        noOptionsMessage={() => noOptionMessage}
-        placeholder={loading ? loadingMessage : placeholder}
-        classNamePrefix="Select"
-        {...otherProps}
-      />
-    </Container>
-  );
-};
+    return (
+      <Container className={className}>
+        <Label disabled={disabled}>{children}</Label>
+        <Input
+          ref={ref}
+          isDisabled={disabled}
+          onChange={e => handleChange(e)}
+          options={options}
+          value={isSelected}
+          noOptionsMessage={() => noOptionMessage}
+          placeholder={loading ? loadingMessage : placeholder}
+          classNamePrefix="Select"
+          {...otherProps}
+        />
+      </Container>
+    );
+  },
+);
 
 const Container = styled.div`
   display: flex;
@@ -147,6 +153,8 @@ const Label = styled.p`
   width: 80%;
 `;
 
+SearchSelectInput.displayName = 'SearchSelectInput';
+
 SearchSelectInput.defaultProps = {
   disabled: false,
   loading: false,
@@ -154,7 +162,7 @@ SearchSelectInput.defaultProps = {
   loadingMessage: 'Loading...',
   placeholder: 'Choose your option',
   initial: null,
-  otherProps: {}
+  otherProps: {},
 };
 
 SearchSelectInput.propTypes = {

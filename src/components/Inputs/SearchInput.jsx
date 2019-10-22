@@ -1,38 +1,36 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import { object, func, string, bool, node } from 'prop-types';
-import LoupeIcon from './../Icons/Loupe'
+import LoupeIcon from './../Icons/Loupe';
 import styled from 'styled-components';
 import { key } from 'styled-theme';
 
-const SearchInput = ({
-  className,
-  border,
-  icon,
-  onChange,
-  placeholder,
-  text,
-  ...otherProps
-}) => {
-  const handleChange = ({ target: { value } }) => {
-    onChange(value);
-  };
+const SearchInput = forwardRef(
+  (
+    { className, border, icon, onChange, placeholder, text, ...otherProps },
+    ref,
+  ) => {
+    const handleChange = ({ target: { value } }) => {
+      onChange(value);
+    };
 
-  return (
-    <StyledBox>
-      {icon}
-      <Input
-        className={className}
-        type="text"
-        name="search"
-        placeholder={placeholder}
-        value={text}
-        border={border}
-        onChange={handleChange}
-        {...otherProps}
-      />
-    </StyledBox>
-  );
-};
+    return (
+      <StyledBox>
+        {icon}
+        <Input
+          ref={ref}
+          className={className}
+          type="text"
+          name="search"
+          placeholder={placeholder}
+          value={text}
+          border={border}
+          onChange={handleChange}
+          {...otherProps}
+        />
+      </StyledBox>
+    );
+  },
+);
 
 const StyledBox = styled.div`
   position: relative;
@@ -62,6 +60,8 @@ const Input = styled.input`
 `;
 
 Input.displayName = 'Input';
+
+SearchInput.displayName = 'SearchInput';
 
 SearchInput.defaultProps = {
   className: '',

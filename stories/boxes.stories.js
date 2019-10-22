@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { storiesOf } from '@storybook/react';
 import { withKnobs, boolean, select } from '@storybook/addon-knobs';
 import { withInfo } from '@storybook/addon-info';
@@ -39,8 +39,10 @@ storiesOf('Mid level blocks/Boxes', module)
     };
     const labels = ['', 'upload or drop file here', 'upload file', 'drop file'];
     const componentName = select('icon', Object.keys(ICONS), 'upload');
+    const ref = useRef();
     return (
       <Uploader
+        ref={ref}
         supported={select('supported files', supported, supported['images'])}
         multiple={boolean('multiple', true)}
         icon={ICONS[componentName]}

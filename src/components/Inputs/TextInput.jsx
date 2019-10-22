@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { forwardRef, useState, useEffect } from 'react';
 import { bool, node, func, string, object } from 'prop-types';
 import styled from 'styled-components';
 import { key } from 'styled-theme';
@@ -7,98 +7,104 @@ import { detect } from 'detect-browser';
 import Checkmark from '../../assets/checkmark';
 import Errormark from '../../assets/errormark';
 
-const TextInput = ({
-  className,
-  children,
-  name,
-  type,
-  disabled,
-  placeholder,
-  onChange,
-  setFieldTouched,
-  error,
-  touched,
-  value,
-  ...otherProps
-}) => {
-  const [inputValue, setInputValue] = useState(value ? value : '');
-  const [focus, setFocus] = useState();
-  const [iconRight, setIconRight] = useState('1rem');
-  const browser = detect();
+const TextInput = forwardRef(
+  (
+    {
+      className,
+      children,
+      name,
+      type,
+      disabled,
+      placeholder,
+      onChange,
+      setFieldTouched,
+      error,
+      touched,
+      value,
+      ...otherProps
+    },
+    ref,
+  ) => {
+    const [inputValue, setInputValue] = useState(value ? value : '');
+    const [focus, setFocus] = useState();
+    const [iconRight, setIconRight] = useState('1rem');
+    const browser = detect();
 
-  const handleFocus = () => {
-    setFocus(true);
-    if (browser) {
-      switch (browser.name) {
-        case 'safari':
-          setIconRight('3.5rem');
-          break;
-        case '':
-          setIconRight('3.5rem');
-          break;
-        default:
-          setIconRight('1rem');
-          break;
+    const handleFocus = () => {
+      setFocus(true);
+      if (browser) {
+        switch (browser.name) {
+          case 'safari':
+            setIconRight('3.5rem');
+            break;
+          case '':
+            setIconRight('3.5rem');
+            break;
+          default:
+            setIconRight('1rem');
+            break;
+        }
       }
-    }
-  };
+    };
 
-  useEffect(() => {
-    if (inputValue != value) {
-      setInputValue(value);
-    }
-  }, [value]);
+    useEffect(() => {
+      if (inputValue != value) {
+        setInputValue(value);
+      }
+    }, [value]);
 
-  return (
-    <Container className={className}>
-      <StyledLabel disabled={disabled} htmlFor={name}>
-        {children}
-      </StyledLabel>
-      <InputContainer>
-        <StyledInput
-          {...otherProps}
-          id={name}
-          name={name}
-          type={type}
-          disabled={disabled}
-          placeholder={placeholder ? placeholder : null}
-          error={error ? true : false}
-          touched={touched ? true : false}
-          value={inputValue}
-          onChange={e => {
-            onChange(e);
-            setInputValue(e.target.value);
-          }}
-          onBlur={() => {
-            setFieldTouched(name, true);
-            setFocus(false);
-          }}
-          onFocus={() => handleFocus()}
-        />
+    return (
+      <Container className={className}>
+        <StyledLabel disabled={disabled} htmlFor={name}>
+          {children}
+        </StyledLabel>
+        <InputContainer>
+          <StyledInput
+            ref={ref}
+            id={name}
+            name={name}
+            type={type}
+            disabled={disabled}
+            placeholder={placeholder ? placeholder : null}
+            error={error ? true : false}
+            touched={touched ? true : false}
+            value={inputValue}
+            onChange={e => {
+              onChange(e);
+              setInputValue(e.target.value);
+            }}
+            onBlur={() => {
+              setFieldTouched(name, true);
+              setFocus(false);
+            }}
+            onFocus={() => handleFocus()}
+            {...otherProps}
+          />
+          {error && touched ? (
+            <StyledErrormark
+              color="#F74040"
+              focus={focus}
+              right={iconRight}
+              browser={browser ? browser.name : null}
+            />
+          ) : touched ? (
+            <StyledCheckmark
+              color="#00CD39"
+              focus={focus}
+              right={iconRight}
+              browser={browser ? browser.name : null}
+            />
+          ) : null}
+        </InputContainer>
         {error && touched ? (
-          <StyledErrormark
-            color="#F74040"
-            focus={focus}
-            right={iconRight}
-            browser={browser ? browser.name : null}
-          />
-        ) : touched ? (
-          <StyledCheckmark
-            color="#00CD39"
-            focus={focus}
-            right={iconRight}
-            browser={browser ? browser.name : null}
-          />
+          <ErrorContainer>
+            <p>{error}</p>
+          </ErrorContainer>
         ) : null}
-      </InputContainer>
-      {error && touched ? (
-        <ErrorContainer>
-          <p>{error}</p>
-        </ErrorContainer>
-      ) : null}
-    </Container>
-  );
-};
+      </Container>
+    );
+  },
+);
 
 const Container = styled.div`
   width: 100%;
@@ -175,6 +181,8 @@ const StyledErrormark = styled(Errormark)`
   transition: 0.2s;
   object-fit: contain;
 `;
+
+TextInput.displayName = 'TextInput';
 
 TextInput.defaultProps = {
   disabled: false,

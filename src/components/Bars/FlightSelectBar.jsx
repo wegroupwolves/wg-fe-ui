@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import styled, { css } from 'styled-components';
 import { key } from 'styled-theme/dist';
 import PropTypes from 'prop-types';
@@ -95,28 +95,27 @@ StyledFlightData.defaultProps = {
   border: false,
 };
 
-const FlightSelectBar = ({
-  checked,
-  disabled,
-  handleChange,
-  value,
-  children,
-  ...otherProps
-}) => {
-  return (
-    <StyledContainer checked={checked} disabled={disabled} {...otherProps}>
-      <StyledInput
-        type="radio"
-        onChange={({ target: { value } }) => handleChange(value)}
-        checked={checked}
-        disabled={disabled}
-        value={value}
-      />
-      {children}
-      <StyledCheck checked={checked} />
-    </StyledContainer>
-  );
-};
+const FlightSelectBar = forwardRef(
+  (
+    { checked, disabled, handleChange, value, children, ...otherProps },
+    ref,
+  ) => {
+    return (
+      <StyledContainer checked={checked} disabled={disabled} {...otherProps}>
+        <StyledInput
+          ref={ref}
+          type="radio"
+          onChange={({ target: { value } }) => handleChange(value)}
+          checked={checked}
+          disabled={disabled}
+          value={value}
+        />
+        {children}
+        <StyledCheck checked={checked} />
+      </StyledContainer>
+    );
+  },
+);
 
 FlightSelectBar.displayName = 'RadioOption';
 FlightSelectBar.FlightData = StyledFlightData;
