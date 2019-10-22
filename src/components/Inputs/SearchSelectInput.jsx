@@ -78,6 +78,7 @@ const Input = styled(Select)`
       border-radius: 0.3rem;
       border: 0.1rem solid ${key('colors.outline')};
       box-shadow: none;
+      height: 4.5rem;
 
       &:hover {
         border-color: ${key('colors.interactive')};

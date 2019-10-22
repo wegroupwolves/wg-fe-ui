@@ -152,8 +152,6 @@ const StyledInput = styled.input`
   }
 `;
 
-StyledInput.displayName = 'StyledInput';
-
 const ErrorContainer = styled.div`
   width: 100%;
   display: flex;
@@ -221,5 +219,8 @@ TextInput.propTypes = {
   /** sets initial value */
   value: node,
 };
+
+StyledInput.displayName = 'StyledInput';
+TextInput.displayName = 'TextInput';
 
 export default TextInput;
