@@ -94,16 +94,19 @@ const Thumbnail = styled.img`
 
 DownloadBox.defaultProps = {
   thumbnail: '',
-  filename: '',
-  href:''
 };
 
 DownloadBox.propTypes = {
-  className: string,
-  href: string, 
-  thumbnail: string,
-  otherProps: object,
-  filename: string
+    /** Beeing able to use it in Styled Components */
+    className: string,
+    /** base64 string to download file and get the filesize */
+    href: string, 
+    /** string with the name of the file */
+    filename: string,
+    /** option to show a thumbnail image of the file*/
+    thumbnail: string,
+    /** Adds extra props to the element */
+    otherProps: object,
 };
 
 export default DownloadBox;
