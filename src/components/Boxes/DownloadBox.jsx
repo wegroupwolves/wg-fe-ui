@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import download from '../../assets/download.svg';
 import { key } from 'styled-theme';
 
-const DownloadBox = ({ href, className, thumbnail, fileSize, filename, ...otherProps }) => {
+const DownloadBox = ({ href, className, thumbnail, filename, ...otherProps }) => {
 
   const bytesToMega = value => {
     const val =
@@ -28,9 +28,16 @@ const DownloadBox = ({ href, className, thumbnail, fileSize, filename, ...otherP
 
   return (
     <Download className={className}  {...otherProps}>
-       <a href={href} target="_blank" thumbnail={thumbnail}>{thumbnail ? <Thumbnail src={thumbnail} alt="download"/> : null }
-        
-        <Row thumbnail={thumbnail}><FileName>{filename} </FileName><FileSize>{calculateImageSize(fileSize)}</FileSize></Row><DownloadIcon src={download} alt="download"/></a>
+       <a href={href} target="_blank" thumbnail={thumbnail}>
+          {thumbnail ? 
+            <Thumbnail src={thumbnail} alt="download"/> 
+          : null }
+         <Container thumbnail={thumbnail}>
+            <FileName>{filename} </FileName>
+            <FileSize>{calculateImageSize(href)}</FileSize>
+        </Container>
+        <DownloadIcon src={download} alt="download"/>
+      </a>
     </Download>
   );
 };
@@ -66,7 +73,7 @@ const FileSize = styled.span`
   color: ${key(`colors.sub-txt`)};
 `;
 
-const Row = styled.span`
+const Container = styled.span`
  display:flex;
   ${props => props.thumbnail ? 
     'flex-direction:column;'
@@ -90,7 +97,6 @@ DownloadBox.propTypes = {
   href: string, 
   thumbnail: string,
   otherProps: object,
-  fileSize: string,
   filename: string
 };
 
