@@ -92,6 +92,12 @@ const Thumbnail = styled.img`
  margin-right: 1.5rem;
 `;
 
+DownloadBox.defaultProps = {
+  thumbnail: '',
+  filename: '',
+  href:''
+};
+
 DownloadBox.propTypes = {
   className: string,
   href: string, 
