@@ -61,8 +61,7 @@ const StyledContainer = styled(Container)`
               color: ${key('colors.action')};
             }
           }
-          svg > rect,
-          path {
+          svg {
             fill: ${key('colors.toggle')};
             stroke: ${key('colors.toggle')};
           }
