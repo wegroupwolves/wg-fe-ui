@@ -40,6 +40,7 @@ const Uploader = ({
   supported,
   className,
   icon,
+  text,
   multiple,
   onClick,
   onClose,
@@ -124,6 +125,7 @@ const Uploader = ({
         icon={icon}
         multiple={multiple}
         onClick={handleClick}
+        text={text}
       />
       <Container>
         {files.length ? children({ files, loaded, handleClose }) : null}
@@ -165,6 +167,7 @@ Uploader.propTypes = {
     type: string,
     extension: string,
   }),
+  text: string,
 };
 
 Uploader.FileBox = FileBox;
