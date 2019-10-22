@@ -15,7 +15,7 @@ const MainNavigation = ({ className, children, ...otherProps }) => {
 const Line = styled.div`
   height: 0.1rem;
   width: 100%;
-  background-color: ${key('colors.bg-disabled')};
+  background-color: ${key('colors.backDrop')};
 `;
 
 const Title = styled.h1`
@@ -39,7 +39,7 @@ const NavigationBar = styled.nav`
   display: flex;
   flex-direction: column;
   position: fixed;
-  border-right: 1px solid ${key('colors.bg-disabled')};
+  border-right: 1px solid ${key('colors.backDrop')};
 `;
 
 MainNavigation.Title = Title;

@@ -33,8 +33,7 @@ const Theme = () => {
     hover: '#FFBF80',
 
     outline: '#CCCCCC',
-    'bg-disabled': '#F0F1F3',
-
+    backDrop: '#F0F1F3',
   };
 
   Orange.fonts = {

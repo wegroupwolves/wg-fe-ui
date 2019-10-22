@@ -1,3 +1,4 @@
 import QuestionBox from './QuestionBox';
+import Uploader from './Uploader';
 
-export { QuestionBox };
+export { QuestionBox, Uploader };
