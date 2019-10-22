@@ -36,11 +36,13 @@ function dragOver(e) {
   e.dataTransfer.dropEffect = 'move';
 }
 
-function dropFile(e, setFile, onClick) {
+function dropFile(e, setFile, onClick, multiple) {
   e.preventDefault();
   e.stopPropagation();
 
-  onClick(e.dataTransfer);
+  const files = multiple ? e.dataTransfer.files : [e.dataTransfer.files[0]];
+
+  onClick(files);
   setFile(false);
   counter = 0;
 }
@@ -48,7 +50,7 @@ function dropFile(e, setFile, onClick) {
 const UploadField = forwardRef(
   ({ icon, name, multiple, onClick, supported, text, ...otherProps }, ref) => {
     const [withFile, setWithFile] = useState(false);
-    const handleChange = ({ target }) => onClick(target);
+    const handleChange = ({ target }) => onClick(target.files);
     return (
       <StyledButton
         withFile={withFile}
@@ -56,7 +58,7 @@ const UploadField = forwardRef(
         onDragEnter={e => dragEnter(e, setWithFile)}
         onDragLeave={e => dragLeave(e, setWithFile)}
         onDragOver={dragOver}
-        onDrop={e => dropFile(e, setWithFile, onClick)}
+        onDrop={e => dropFile(e, setWithFile, onClick, multiple)}
         {...otherProps}
       >
         {icon}
