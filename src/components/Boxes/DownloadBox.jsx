@@ -1,15 +1,36 @@
 import React from 'react';
-import { string, object, node } from 'prop-types';
+import { string, object } from 'prop-types';
 import styled from 'styled-components';
 import download from '../../assets/download.svg';
 import { key } from 'styled-theme';
 
-const DownloadBox = ({ href, className, children, thumbnail,  ...otherProps }) => {
+const DownloadBox = ({ href, className, thumbnail, fileSize, filename, ...otherProps }) => {
+
+  const bytesToMega = value => {
+    const val =
+      value > 10000
+        ? `${(value / 1000000).toFixed(2)} mb`
+        : `${(value / 1000).toFixed(2)} kb`;
+    return val;
+  };
+
+  const calculateImageSize = base64String => {
+    let padding, inBytes, base64StringLength;
+    if(base64String.endsWith("==")) padding = 2;
+    else if (base64String.endsWith("=")) padding = 1;
+    else padding = 0;
+
+    base64StringLength = base64String.length;
+    inBytes =(base64StringLength / 4 ) * 3 - padding;
+    return bytesToMega(inBytes);
+  }
+
 
   return (
     <Download className={className}  {...otherProps}>
-       <a href={href} target="_blank">{thumbnail ? <Thumbnail src={thumbnail} alt="download"/> : null }
-        <span>{children}</span><img src={download} alt="download"/></a>
+       <a href={href} target="_blank" thumbnail={thumbnail}>{thumbnail ? <Thumbnail src={thumbnail} alt="download"/> : null }
+        
+        <Row thumbnail={thumbnail}><FileName>{filename} </FileName><FileSize>{calculateImageSize(fileSize)}</FileSize></Row><DownloadIcon src={download} alt="download"/></a>
     </Download>
   );
 };
@@ -17,27 +38,43 @@ const DownloadBox = ({ href, className, children, thumbnail,  ...otherProps }) =
 const Download = styled.div`
   width: 30rem;
   border: 0.1rem solid #F0F1F3;
-
   box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.05);
   border-radius: 5px;
-  padding: 0.8rem 2.4rem 0.8rem ;
+  padding: 0.8rem 2.4rem 0.8rem 1.6rem;
 
  & a {
    display:flex;
    width: 100%;
-   justify-content: space-between;
    align-items: center;
    text-decoration: none;
-
-   & span {
-    font-family: ${key('fonts.primary')};
-     margin-right: 4.5rem;
-     font-size: ${key('fonts.regular-size')};
-     font-weight: bold;
-     line-height: 130%;
-     color: black;
-   }
+   font-family: ${key('fonts.primary')};
+   font-size: ${key('fonts.regular-size')};
+   line-height: 130%;
   }
+`;
+
+
+const FileName = styled.span`
+  font-weight: bold;
+  color: ${key(`colors.font`)};
+  margin-right:1.5rem;
+
+`;
+
+const FileSize = styled.span`
+  font-weight: normal;
+  color: ${key(`colors.sub-txt`)};
+`;
+
+const Row = styled.span`
+ display:flex;
+  ${props => props.thumbnail ? 
+    'flex-direction:column;'
+  : 'flex-direction:row;' }
+`;
+
+const DownloadIcon = styled.img`
+    margin-left: auto;
 `;
 
 const Thumbnail = styled.img`
@@ -45,14 +82,16 @@ const Thumbnail = styled.img`
  height: 5rem;
  padding-top: 0.5rem;
  padding-bottom: 0.5rem;
+ margin-right: 1.5rem;
 `;
 
 DownloadBox.propTypes = {
   className: string,
   href: string, 
-  children: node.isRequired,
   thumbnail: string,
   otherProps: object,
+  fileSize: string,
+  filename: string
 };
 
 export default DownloadBox;

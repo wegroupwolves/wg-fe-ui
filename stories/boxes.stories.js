@@ -29,7 +29,7 @@ storiesOf('Mid level blocks/Boxes', module)
     return <Uploader supported={supported} multiple={true} />;
   })
   .add('DownloadBox', () => (
-     <DownloadBox otherProps={select('otherProps', ...propsObject)} href={text('href', 'href')} thumbnail={text('thumbnail', '')}> {text('fileName', 'fileName')} </DownloadBox>
+     <DownloadBox otherProps={select('otherProps', ...propsObject)} href={text('href', 'href')} thumbnail={text('thumbnail', 'iejiji')} fileSize={text('fileSize', 'zeknknioej&!ç')} filename={text('fileName', 'fileName')}/> 
   ));
 
 const StyledQuestionBox = styled(QuestionBox)`
