@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import styled from 'styled-components';
 import { key } from 'styled-theme';
 import PropTypes from 'prop-types';
@@ -14,31 +14,29 @@ const StyledCheck = styled.span`
     checked ? key('colors.toggle') : key('colors.outline')};
 `;
 
-const RadioOption = ({
-  checked,
-  disabled,
-  name,
-  handleChange,
-  icon,
-  children,
-  ...otherProps
-}) => {
-  return (
-    <Container checked={checked} disabled={disabled}>
-      <StyledInput
-        type="radio"
-        onChange={({ target: { value } }) => handleChange(value)}
-        checked={checked}
-        disabled={disabled}
-        name={name}
-        {...otherProps}
-      />
-      {icon}
-      <Text>{children}</Text>
-      <StyledCheck checked={checked} />
-    </Container>
-  );
-};
+const RadioOption = forwardRef(
+  (
+    { checked, disabled, name, handleChange, icon, children, ...otherProps },
+    ref,
+  ) => {
+    return (
+      <Container checked={checked} disabled={disabled}>
+        <StyledInput
+          type="radio"
+          onChange={({ target: { value } }) => handleChange(value)}
+          checked={checked}
+          disabled={disabled}
+          name={name}
+          ref={ref}
+          {...otherProps}
+        />
+        {icon}
+        <Text>{children}</Text>
+        <StyledCheck checked={checked} />
+      </Container>
+    );
+  },
+);
 
 RadioOption.displayName = 'RadioOption';
 

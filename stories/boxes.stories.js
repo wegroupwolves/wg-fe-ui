@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { storiesOf } from '@storybook/react';
 import { withKnobs, boolean, text, select } from '@storybook/addon-knobs';
 import { withInfo } from '@storybook/addon-info';
 import styled from 'styled-components';
+import UploadIcon from './../src/components/Icons/Upload';
+import PlusIcon from './../src/components/Icons/Plus';
 
 import { QuestionBox, Uploader, DownloadBox } from '../src';
 
@@ -22,11 +24,46 @@ storiesOf('Mid level blocks/Boxes', module)
     </StyledQuestionBox>
   ))
   .add('Uploader', () => {
-    const supported = [
-      { type: 'image', extension: 'jpeg' },
-      { type: 'image', extension: 'png' },
-    ];
-    return <Uploader supported={supported} multiple={true} />;
+    const supported = {
+      images: [
+        { type: 'image', extension: 'jpeg' },
+        { type: 'image', extension: 'png' },
+      ],
+      all: [],
+      documents: [
+        { type: 'application', extension: 'msword' },
+        { type: 'application', extension: 'pdf' },
+      ],
+    };
+    const ICONS = {
+      upload: <UploadIcon />,
+      plus: <PlusIcon />,
+    };
+    const labels = ['', 'upload or drop file here', 'upload file', 'drop file'];
+    const componentName = select('icon', Object.keys(ICONS), 'upload');
+    const ref = useRef();
+    return (
+      <Uploader
+        ref={ref}
+        supported={select('supported files', supported, supported['images'])}
+        multiple={boolean('multiple', true)}
+        icon={ICONS[componentName]}
+        text={select('label', labels)}
+      >
+        {({ files, loaded, handleClose }) =>
+          files.map((file, i) => (
+            <StyledFile
+              key={i}
+              loaded={loaded[i]}
+              name={file.name}
+              size={file.size}
+              source={file.img}
+              onClose={handleClose}
+            ></StyledFile>
+          ))
+        }
+      </Uploader>
+    );
   })
   .add('DownloadBox', () => (
      <DownloadBox 
@@ -39,6 +76,12 @@ storiesOf('Mid level blocks/Boxes', module)
 
 const StyledQuestionBox = styled(QuestionBox)`
   width: 85%;
+`;
+
+const StyledFile = styled(Uploader.FileBox)`
+  width: 30%;
+  margin-right: 3%;
+  margin-top: 45px;
 `;
 
 StyledQuestionBox.displayName = 'QuestionBox';

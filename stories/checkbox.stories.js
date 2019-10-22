@@ -6,7 +6,7 @@ import { withInfo } from '@storybook/addon-info';
 
 import { CheckBox, CheckOption } from '../src';
 
-import HouseIcon from './assets/HouseIcon.jsx';
+import Property from '../src/components/Icons/Property';
 
 storiesOf('Low level blocks/Checkboxes', module)
   .addDecorator(withKnobs)
@@ -40,17 +40,10 @@ storiesOf('Low level blocks/Checkboxes', module)
     return (
       <>
         <CheckOption
-          icon={<HouseIcon />}
+          icon={<Property />}
           handleClick={() => handleChangeCheckbox(1)}
           checked={checkedBox[1]}
-          disabled={true}
-        >
-          I encountered issues with my lugage
-        </CheckOption>
-        <CheckOption
-          icon={<HouseIcon />}
-          handleClick={() => handleChangeCheckbox(2)}
-          checked={checkedBox[2]}
+          disabled={boolean('disabled', false)}
         >
           I encountered issues with my lugage
         </CheckOption>

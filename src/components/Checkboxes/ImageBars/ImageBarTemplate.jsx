@@ -40,7 +40,7 @@ const Container = styled.label`
   }
   svg {
     margin: auto 1.6vw;
-    fill: key('colors.interactive');
+    fill: ${key('colors.interactive')};
   }
   ${({ checked }) =>
     checked
@@ -50,8 +50,7 @@ const Container = styled.label`
           ${Text} {
             color: ${key('colors.toggle')};
           }
-          svg > rect,
-          path {
+          svg {
             fill: ${key('colors.toggle')};
           }
         `

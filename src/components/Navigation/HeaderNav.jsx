@@ -1,12 +1,19 @@
 import React from 'react';
-import styled, { withTheme } from 'styled-components';
+import styled from 'styled-components';
 
 import LanguageSelector from './LanguageSelector';
 
 import { array, node, string, func, object } from 'prop-types';
 import { key } from 'styled-theme';
 
-const HeaderNav = ({ navTabs, theme, className, currentLocation, onClick, ...otherProps }) => {
+const HeaderNav = ({
+  navTabs,
+  theme,
+  className,
+  currentLocation,
+  onClick,
+  ...otherProps
+}) => {
   return (
     <Container className={className} {...otherProps}>
       <Wrapper>
@@ -87,7 +94,7 @@ const Logo = styled.img`
 HeaderNav.defaultProps = {
   navTabs: [],
   onClick: () => {},
-  otherProps: {}
+  otherProps: {},
 };
 
 HeaderNav.propTypes = {
@@ -95,11 +102,8 @@ HeaderNav.propTypes = {
   theme: node,
   className: string,
   onClick: func,
-  /** testje */
   currentLocation: string,
-  otherProps: object
+  otherProps: object,
 };
 
-const exportComponent = withTheme(HeaderNav);
-exportComponent.displayName = 'HeaderNav';
-export default exportComponent;
+export default HeaderNav;

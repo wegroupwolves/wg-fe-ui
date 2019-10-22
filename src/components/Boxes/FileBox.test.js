@@ -1,4 +1,4 @@
-import { FileBox } from '.';
+import Uploader from './Uploader';
 import { shallow, mount } from 'enzyme';
 import React from 'react';
 import Theme from '../../constants/theme';
@@ -8,29 +8,25 @@ import { ThemeProvider } from 'styled-components';
 
 describe('FileBox', () => {
   it('when file wasnt passed or equal to 0, should display be none', () => {
-    const file = { name: '', size: 0, source: '' };
     const wrapper = mount(
       <ThemeProvider theme={Theme}>
-        <FileBox {...file} loaded={0}>
-          Testje
-        </FileBox>
+        <Uploader.FileBox loaded={0}>Testje</Uploader.FileBox>
       </ThemeProvider>,
     );
-
-    expect(wrapper.find('Box')).toHaveStyleRule('display', 'none');
+    expect(wrapper.exists('Box')).toEqual(false);
   });
 
   it('when file was passed, should display be flex ', () => {
     const file = { name: '', size: 100, source: '' };
     const wrapper = mount(
       <ThemeProvider theme={Theme}>
-        <FileBox {...file} loaded={0}>
+        <Uploader.FileBox {...file} loaded={0}>
           Testje
-        </FileBox>
+        </Uploader.FileBox>
       </ThemeProvider>,
     );
 
-    expect(wrapper.find('Box')).toHaveStyleRule('display', 'flex');
+    expect(wrapper.exists('Box')).toEqual(true);
   });
 
   it('when function passed to onClose property, should be called ', () => {
@@ -38,14 +34,14 @@ describe('FileBox', () => {
     const onClose = jest.fn();
     const wrapper = mount(
       <ThemeProvider theme={Theme}>
-        <FileBox {...file} loaded={0} onClose={onClose}>
+        <Uploader.FileBox {...file} loaded={0} onClose={onClose}>
           Testje
-        </FileBox>
+        </Uploader.FileBox>
       </ThemeProvider>,
     );
 
     wrapper
-      .find(FileBox)
+      .find(Uploader.FileBox)
       .props()
       .onClose();
 
