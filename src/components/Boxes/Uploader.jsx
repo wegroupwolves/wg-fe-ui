@@ -1,8 +1,16 @@
-import React, { useState } from 'react';
-import { string, arrayOf, func, bool } from 'prop-types';
+import React, { forwardRef, useEffect, useState } from 'react';
+import { element, node, string, arrayOf, func, bool } from 'prop-types';
 import styled from 'styled-components';
 import UploadField from './../Buttons/UploadField';
 import FileBox from './FileBox';
+
+const removeFile = (dt, id) => dt.items.remove(id);
+
+const updateFiles = (dt, id, fileList, isRemoving = false) => {
+  isRemoving && removeFile(dt, id);
+  for (let j = 0; j < fileList.length; j++) dt.items.add(fileList[j]);
+  return dt;
+};
 
 const bytesToMega = value => {
   const val =
@@ -22,101 +30,104 @@ const Container = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+
+  @media (max-width: 780px) {
+    flex-direction: column;
+  }
 `;
 
-const StyledFile = styled(FileBox)`
-  width: 30%;
-  margin-right: 3%;
-  margin-top: 45px;
-`;
+const Uploader = forwardRef(
+  (
+    { supported, className, icon, text, multiple, onClick, onClose, children },
+    ref,
+  ) => {
+    const [id, setId] = useState(-1);
+    const [loaded, setLoaded] = useState([]);
+    const [files, setFiles] = useState([]);
+    const [dt, setDT] = useState(new DataTransfer());
 
-const Uploader = ({ supported, className, multiple, onClick, onClose }) => {
-  const [loaded, setLoaded] = useState([]);
-  const [files, setFiles] = useState([]);
-  const [value, setValue] = useState();
+    useEffect(() => {
+      setDT(v => updateFiles(v, id, [], true));
+    }, [id]);
 
-  const readFile = async (file, index) => {
-    let reader = new FileReader();
-    setLoaded(l => [...l, 0]);
-    reader.addEventListener('progress', e => {
-      const percentage = (file.size / e.loaded) * 100;
-      setLoaded(l => {
-        l[index] = percentage;
-        return [...l];
+    const readFile = async (file, index) => {
+      let reader = new FileReader();
+      setLoaded(l => [...l, 0]);
+      reader.addEventListener('progress', e => {
+        const percentage = (file.size / e.loaded) * 100;
+        setLoaded(l => {
+          l[index] = percentage;
+          return [...l];
+        });
       });
-    });
 
-    reader.addEventListener('loadend', e => {
-      setFiles(f => [
-        ...f,
-        {
-          name: shortifyText(file.name),
-          size: bytesToMega(file.size),
-          img: file.type.match('image.*') ? e.target.result : '',
-        },
-      ]);
+      reader.addEventListener('loadend', e => {
+        setFiles(f => [
+          ...f,
+          {
+            name: shortifyText(file.name),
+            size: bytesToMega(file.size),
+            img: file.type.match('image.*') ? e.target.result : '',
+          },
+        ]);
 
-      setLoaded(l => {
-        l[index] = null;
-        return [...l];
+        setLoaded(l => {
+          l[index] = null;
+          return [...l];
+        });
       });
-    });
 
-    await reader.readAsDataURL(file);
-  };
+      await reader.readAsDataURL(file);
+    };
 
-  const handleClick = target => {
-    if (!target.files) return false;
-    // [...target.files].reduce(async (promise, file, i) => {
-    //   await promise;
-    //   await readFile(file, i);
-    // }, Promise.resolve());
-    setValue(target.files);
-    target.files.forEach((t, i) => {
-      readFile(t, i);
-    });
-    onClick(target.files);
-  };
+    const handleClick = uploaded => {
+      if (!uploaded) return false;
+      // [...target.files].reduce(async (promise, file, i) => {
+      //   await promise;
+      //   await readFile(file, i);
+      // }, Promise.resolve());
+      if (!multiple) setFiles([]);
+      setDT(dataTransfer => {
+        const vdata = multiple ? dataTransfer : new DataTransfer();
+        return updateFiles(vdata, -1, uploaded);
+      });
+      Array.from(uploaded).forEach((t, i) => {
+        readFile(t, i);
+      });
+      onClick(uploaded);
+    };
 
-  const handleClose = file => {
-    let id;
-    setFiles(f => {
-      id = f.findIndex(fi => fi.name === file.name);
-      f[id] = { name: '', size: '', img: '' };
-      return [...f];
-    });
-    setValue(v => {
-      const dt = new DataTransfer();
-      for (let i = 0; i < v.length; i++) if (i !== id) dt.items.add(v[i]);
+    const handleClose = file => {
+      let id;
+      setFiles(f => {
+        id = f.findIndex(fi => fi.name === file.name);
+        const newFiles = f
+          .filter(file => file.name !== f[id].name)
+          .map(file => ({ ...file }));
+        setId(id);
+        return [...newFiles];
+      });
+      onClose();
+    };
 
-      return dt.files;
-    });
-    onClose();
-  };
-
-  return (
-    <StyledUploader className={className}>
-      <UploadField
-        supported={supported}
-        value={value}
-        multiple={multiple}
-        onClick={handleClick}
-      />
-      <Container>
-        {files.map((file, i) => (
-          <StyledFile
-            key={i}
-            loaded={loaded}
-            name={file.name}
-            size={file.size}
-            source={file.img}
-            onClose={handleClose}
-          ></StyledFile>
-        ))}
-      </Container>
-    </StyledUploader>
-  );
-};
+    if (ref.current && dt.files) ref.current.files = dt.files;
+    return (
+      <StyledUploader className={className}>
+        <UploadField
+          ref={ref}
+          supported={supported}
+          icon={icon}
+          multiple={multiple}
+          onClick={handleClick}
+          text={text}
+        />
+        <Container>
+          {files.length ? children({ files, loaded, handleClose }) : null}
+        </Container>
+      </StyledUploader>
+    );
+  },
+);
 
 const StyledUploader = styled.div`
   align-self: center;
@@ -135,14 +146,17 @@ const StyledUploader = styled.div`
   }
 `;
 
+Uploader.displayName = 'Uploader';
+
 Uploader.defaultProps = {
   onClick: Function.prototype,
   onClose: Function.prototype,
-  multiple: false,
 };
 
 Uploader.propTypes = {
+  children: node,
   className: string,
+  icon: element,
   multiple: bool,
   onClick: func,
   onClose: func,
@@ -150,6 +164,9 @@ Uploader.propTypes = {
     type: string,
     extension: string,
   }),
+  text: string,
 };
+
+Uploader.FileBox = FileBox;
 
 export default Uploader;

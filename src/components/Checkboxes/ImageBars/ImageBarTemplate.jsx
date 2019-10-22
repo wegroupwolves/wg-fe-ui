@@ -32,6 +32,16 @@ const Container = styled.label`
   border-radius: 2px;
   font-family: ${key('fonts.primary')};
   font-size: 1.6rem;
+  ${Text} {
+    color: ${({ disabled }) => (disabled ? key('colors.outline') : null)};
+  }
+  svg {
+    fill: ${({ disabled }) => (disabled ? key('colors.outline') : null)};
+  }
+  svg {
+    margin: auto 1.6vw;
+    fill: ${key('colors.interactive')};
+  }
   ${({ checked }) =>
     checked
       ? css`
@@ -40,23 +50,11 @@ const Container = styled.label`
           ${Text} {
             color: ${key('colors.toggle')};
           }
-          svg > rect,
-          path {
+          svg {
             fill: ${key('colors.toggle')};
           }
         `
       : null};
-  ${Text} {
-    color: ${({ disabled }) => (disabled ? key('colors.outline') : null)};
-  }
-  svg {
-    margin: auto 1.6vw;
-    fill: key('colors.interactive');
-  }
-  svg > rect,
-  path {
-    fill: ${key('colors.outline')};
-  }
 `;
 
 export { Container, StyledInput, Text };

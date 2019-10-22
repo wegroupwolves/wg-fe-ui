@@ -32,6 +32,7 @@ const ClaimStatus = ({ className, active, counter, stage }) => {
 const ProgressBar = ({
   activeId,
   background,
+  filledColor,
   className,
   height,
   stages,
@@ -43,6 +44,7 @@ const ProgressBar = ({
         stages={stages}
         activeId={activeId}
         background={background}
+        filledColor={filledColor}
         height={height}
       />
       {stages.map((stage, i) => (
@@ -95,6 +97,9 @@ ProgressBar.defaultProps = {
 
 ProgressBar.propTypes = {
   activeId: number,
+  background: string,
+  className: string,
+  filledColor: string,
   height: string,
   otherProps: object,
   stages: arrayOf({

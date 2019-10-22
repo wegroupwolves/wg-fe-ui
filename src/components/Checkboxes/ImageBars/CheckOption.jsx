@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import styled, { css } from 'styled-components';
 import { key } from 'styled-theme';
 import PropTypes from 'prop-types';
@@ -24,33 +24,39 @@ const StyledCheck = styled.span`
       : null};
 `;
 
-const CheckOption = ({
-  checked,
-  disabled,
-  name,
-  handleClick,
-  handleChange,
-  icon,
-  children,
-  ...otherProps
-}) => {
-  return (
-    <Container checked={checked} disabled={disabled}>
-      <StyledInput
-        type="checkbox"
-        onClick={({ target: { value } }) => handleClick(value)}
-        onChange={handleChange}
-        checked={checked}
-        disabled={disabled}
-        name={name}
-        {...otherProps}
-      />
-      {icon}
-      <Text>{children}</Text>
-      <StyledCheck checked={checked} />
-    </Container>
-  );
-};
+const CheckOption = forwardRef(
+  (
+    {
+      checked,
+      disabled,
+      name,
+      handleClick,
+      handleChange,
+      icon,
+      children,
+      ...otherProps
+    },
+    ref,
+  ) => {
+    return (
+      <Container checked={checked} disabled={disabled}>
+        <StyledInput
+          type="checkbox"
+          onClick={({ target: { value } }) => handleClick(value)}
+          onChange={({ target: { value } }) => handleChange(value)}
+          checked={checked}
+          disabled={disabled}
+          name={name}
+          ref={ref}
+          {...otherProps}
+        />
+        {icon}
+        <Text>{children}</Text>
+        <StyledCheck checked={checked} />
+      </Container>
+    );
+  },
+);
 
 CheckOption.displayName = 'CheckOption';
 

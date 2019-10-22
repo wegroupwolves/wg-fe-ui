@@ -1,60 +1,65 @@
-import React, { useState, useEffect } from 'react';
+import React, { forwardRef, useState, useEffect } from 'react';
 import { bool, node, func, string, object } from 'prop-types';
-import styled, { withTheme } from 'styled-components';
+import styled from 'styled-components';
 import { key } from 'styled-theme';
 
 import Checkmark from '../../assets/checkmark.js';
 
-const Checkbox = ({
-  className,
-  checked,
-  disabled,
-  onChange,
-  children,
-  name,
-  theme,
-  ...otherProps
-}) => {
-  const [isChecked, setIsChecked] = useState(checked ? true : false);
-  const handleChange = e => {
-    console.log('Change ', e);
-    if (!disabled) {
-      setIsChecked(e.currentTarget.checked);
-      onChange(e);
-    }
-  };
+const CheckBox = forwardRef(
+  (
+    {
+      className,
+      checked,
+      disabled,
+      onChange,
+      children,
+      name,
+      theme,
+      ...otherProps
+    },
+    ref,
+  ) => {
+    const [isChecked, setIsChecked] = useState(checked ? true : false);
+    const handleChange = e => {
+      if (!disabled) {
+        setIsChecked(e.currentTarget.checked);
+        onChange(e.target);
+      }
+    };
 
-  useEffect(() => {
-    if (isChecked != checked) {
-      setIsChecked(checked);
-    }
-  }, [checked]);
-  return (
-    <StyledLabel
-      htmlFor={name}
-      disabled={disabled}
-      className={className}
-      {...otherProps}
-    >
-      <input
-        name={name}
-        id={name}
+    useEffect(() => {
+      if (isChecked != checked) {
+        setIsChecked(checked);
+      }
+    }, [checked]);
+    return (
+      <StyledLabel
+        htmlFor={name}
         disabled={disabled}
-        checked={isChecked}
-        type="checkbox"
-        onChange={e => handleChange(e)}
-      />
-      <StyledBox disabled={disabled} checked={isChecked}>
-        {isChecked && disabled ? (
-          <StyledCheckmark color={theme.colors.disabled} />
-        ) : isChecked && !disabled ? (
-          <StyledCheckmark color={'white'} />
-        ) : null}
-      </StyledBox>
-      {children}
-    </StyledLabel>
-  );
-};
+        className={className}
+        {...otherProps}
+      >
+        <input
+          ref={ref}
+          name={name}
+          id={name}
+          disabled={disabled}
+          checked={isChecked}
+          type="checkbox"
+          onChange={e => handleChange(e)}
+        />
+        <StyledBox disabled={disabled} checked={isChecked}>
+          {isChecked && disabled ? (
+            <StyledCheckmark color={theme.colors.disabled} />
+          ) : isChecked && !disabled ? (
+            <StyledCheckmark color={'white'} />
+          ) : null}
+        </StyledBox>
+        {children}
+      </StyledLabel>
+    );
+  },
+);
 
 const StyledBox = styled.div`
   background-color: ${props =>
@@ -98,13 +103,15 @@ const StyledCheckmark = styled(Checkmark)`
   width: 80%;
 `;
 
-Checkbox.defaultProps = {
+CheckBox.displayName = 'CheckBox';
+
+CheckBox.defaultProps = {
   checked: false,
   disabled: false,
   otherProps: {},
 };
 
-Checkbox.propTypes = {
+CheckBox.propTypes = {
   /** Beeing able to use it in Styled Components */
   className: string,
   /** If true box is disabled */
@@ -121,6 +128,4 @@ Checkbox.propTypes = {
   theme: object,
 };
 
-const exportComponent = withTheme(Checkbox);
-exportComponent.displayName = 'Checkbox';
-export default exportComponent;
+export default CheckBox;

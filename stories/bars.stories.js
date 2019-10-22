@@ -27,11 +27,21 @@ const COMPONENT_CHOICES = {
   search_input: <SearchInput onChange={action('onChange')} />,
 };
 
+const backgrounds = ['#AEAEAE', '#C1C1C1', '#D3D4D8'];
+const fillColors = ['default', 'red', 'green', 'blue'];
+const activeIds = [1, 2, 3];
+const heights = ['7px', '3px', '5px', '10px'];
 storiesOf('Mid Level blocks/Bars', module)
   .addDecorator(withKnobs())
   .addDecorator(withInfo({ inline: true }))
   .add('ProgressBar', () => {
-    return <StyledProgressBar background="#AEAEAE" />;
+    const props = {
+      activeId: select('activeStep', activeIds),
+      background: select('color of bar', backgrounds),
+      filledColor: select('color of filled bar', fillColors),
+      height: select('height of Bar', heights),
+    };
+    return <StyledProgressBar {...props} />;
   })
   .add('ToolBar', () => {
     const componentName = select(
@@ -46,6 +56,20 @@ storiesOf('Mid Level blocks/Bars', module)
     );
   })
   .add('TrackingBar', () => {
+    const activeSteps = [
+      'filling',
+      'uploading_documents',
+      'data_analysis',
+      'claim_opened',
+      'approved',
+      'payout',
+    ];
+    const props = {
+      active: select('activeStep', activeSteps),
+      background: select('color of bar', backgrounds),
+      filledColor: select('color of filled bar', fillColors),
+      height: select('height of Bar', heights),
+    };
     return (
       <StyledTrackingBar
         stages={[
@@ -92,7 +116,7 @@ storiesOf('Mid Level blocks/Bars', module)
             id: 7,
           },
         ]}
-        background="#D3D4D8"
+        {...props}
       />
     );
   })
@@ -100,7 +124,10 @@ storiesOf('Mid Level blocks/Bars', module)
     const statuses = ['first', 'second', 'third'];
 
     return (
-      <OverviewClaimStatus statuses={statuses} currentStatus={statuses[1]} />
+      <OverviewClaimStatus
+        statuses={statuses}
+        currentStatus={select('status', statuses, 'first')}
+      />
     );
   })
   .add('FlightSelectBar', () => {
@@ -108,8 +135,9 @@ storiesOf('Mid Level blocks/Bars', module)
     return (
       <FlightSelectBar
         handleChange={setCheckedRadio}
+        disabled={select('disabled', [false, true], false)}
         checked={checkedRadio === 'first'}
-        value="first"
+        value={select('value', ['first', 'second', 'third'], 'first')}
       >
         <FlightSelectBar.FlightData
           border={true}

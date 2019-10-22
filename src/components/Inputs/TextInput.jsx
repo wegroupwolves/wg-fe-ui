@@ -1,4 +1,4 @@
-import React, { useState, useEffect, forwardRef } from 'react';
+import React, { forwardRef, useState, useEffect } from 'react';
 import { bool, node, func, string, object } from 'prop-types';
 import styled from 'styled-components';
 import { key } from 'styled-theme';
@@ -60,7 +60,6 @@ const TextInput = forwardRef(
         </StyledLabel>
         <InputContainer>
           <StyledInput
-            {...otherProps}
             ref={ref}
             id={name}
             name={name}
@@ -79,6 +78,7 @@ const TextInput = forwardRef(
               setFocus(false);
             }}
             onFocus={() => handleFocus()}
+            {...otherProps}
           />
           {error && touched ? (
             <StyledErrormark
@@ -179,6 +179,8 @@ const StyledErrormark = styled(Errormark)`
   transition: 0.2s;
   object-fit: contain;
 `;
+
+TextInput.displayName = 'TextInput';
 
 TextInput.defaultProps = {
   disabled: false,
