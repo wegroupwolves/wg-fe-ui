@@ -4,7 +4,7 @@
   "private": true,
   "main": "index.js",
   "scripts": {
-    "build": "rimraf dist/* && babel src -d dist",
+    "build": "rimraf dist/* && babel src -d dist --copy-files",
     "test": "jest",
     "test:watch": "jest --watch",
     "eject": "react-scripts eject",
