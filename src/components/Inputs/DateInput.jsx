@@ -390,7 +390,7 @@ const DateInput = forwardRef(
               keyDownHandler(e, setYear, 9999, 0, 'year', 'month', null)
             }
           />
-          {errors[name] && touched[name] ? (
+          {errors[name] ? (
             <StyledErrormark
               color="#F74040"
               focus={focus}
@@ -406,7 +406,7 @@ const DateInput = forwardRef(
             />
           ) : null}
         </Input>
-        {errors[name] && touched[name] ? (
+        {errors[name] ? (
           <ErrorContainer>
             <p>{errors[name]}</p>
           </ErrorContainer>
@@ -438,7 +438,7 @@ const Input = styled.label`
   height: 3.5rem;
   border: 0.1rem solid;
   border-color: ${props =>
-    props.errors & props.touched
+    props.errors
       ? key('colors.bad')
       : props.touched & !props.errors
       ? key('colors.good')

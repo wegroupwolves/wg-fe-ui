@@ -73,7 +73,7 @@ const TextAreaInput = ({
           }}
           onFocus={() => handleFocus()}
         />
-        {error && touched ? (
+        {error ? (
           <StyledErrormark
             color="#F74040"
             focus={focus}
@@ -89,7 +89,7 @@ const TextAreaInput = ({
           />
         ) : null}
       </InputContainer>
-      {error && touched ? (
+      {error ? (
         <ErrorContainer>
           <p>{error}</p>
         </ErrorContainer>
@@ -124,7 +124,7 @@ const StyledTextArea = styled.textarea`
   width: 100%;
   border: 0.1rem solid;
   border-color: ${props =>
-    props.error & props.touched
+    props.error
       ? key('colors.bad')
       : props.touched & !props.error
       ? key('colors.good')
@@ -176,7 +176,7 @@ const StyledErrormark = styled(Errormark)`
 TextAreaInput.defaultProps = {
   disabled: false,
   placeholder: null,
-  error: {},
+  error: '',
   touched: {},
   setFieldTouched: () => {},
   onChange: () => {},

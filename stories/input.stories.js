@@ -130,9 +130,11 @@ storiesOf('Low level blocks/Inputs', module)
     );
   })
   .add('SearchSelectInput', () => {
+    let errors = text('Error', '');
     return (
       <StyledSearchSelectInput
         disabled={boolean('Disabled', false)}
+        error={errors}
         options={select(
           'options',
           {
@@ -146,7 +148,7 @@ storiesOf('Low level blocks/Inputs', module)
           [],
         )}
         name="selection"
-        selected={(name, value) => console.log(name, value)}
+        selected={(name, value) => action(name, value)}
         loading={boolean('Loading', false)}
         initial={select('initial', {
           None: null,

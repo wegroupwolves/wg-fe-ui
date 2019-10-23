@@ -80,7 +80,7 @@ const TextInput = forwardRef(
             onFocus={() => handleFocus()}
             {...otherProps}
           />
-          {error && touched ? (
+          {error ? (
             <StyledErrormark
               color="#F74040"
               focus={focus}
@@ -96,7 +96,7 @@ const TextInput = forwardRef(
             />
           ) : null}
         </InputContainer>
-        {error && touched ? (
+        {error ? (
           <ErrorContainer>
             <p>{error}</p>
           </ErrorContainer>
@@ -132,7 +132,7 @@ const StyledInput = styled.input`
   width: 100%;
   border: 0.1rem solid;
   border-color: ${props =>
-    props.error & props.touched
+    props.error
       ? key('colors.bad')
       : props.touched & !props.error
       ? key('colors.good')
