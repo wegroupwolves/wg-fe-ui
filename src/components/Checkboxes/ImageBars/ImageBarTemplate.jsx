@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components';
 import { key } from 'styled-theme';
 
 const Text = styled.span`
-  margin: auto;
+  margin: 0 auto 0 0.2vw;
   font-size: 1.4rem;
   line-height: 2rem;
   letter-spacing: 0.1rem;
