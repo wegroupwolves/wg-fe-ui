@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { forwardRef, useEffect, useState } from 'react';
 import { element, node, string, arrayOf, func, bool } from 'prop-types';
 import styled from 'styled-components';
 import UploadField from './../Buttons/UploadField';
@@ -36,101 +36,98 @@ const Container = styled.div`
   }
 `;
 
-const Uploader = ({
-  supported,
-  className,
-  icon,
-  multiple,
-  onClick,
-  onClose,
-  children,
-}) => {
-  const ref = useRef();
-  const [id, setId] = useState(-1);
-  const [loaded, setLoaded] = useState([]);
-  const [files, setFiles] = useState([]);
-  const [dt, setDT] = useState(new DataTransfer());
+const Uploader = forwardRef(
+  (
+    { supported, className, icon, text, multiple, onClick, onClose, children },
+    ref,
+  ) => {
+    const [id, setId] = useState(-1);
+    const [loaded, setLoaded] = useState([]);
+    const [files, setFiles] = useState([]);
+    const [dt, setDT] = useState(new DataTransfer());
 
-  useEffect(() => {
-    setDT(v => updateFiles(v, id, [], true));
-  }, [id]);
+    useEffect(() => {
+      setDT(v => updateFiles(v, id, [], true));
+    }, [id]);
 
-  const readFile = async (file, index) => {
-    let reader = new FileReader();
-    setLoaded(l => [...l, 0]);
-    reader.addEventListener('progress', e => {
-      const percentage = (file.size / e.loaded) * 100;
-      setLoaded(l => {
-        l[index] = percentage;
-        return [...l];
+    const readFile = async (file, index) => {
+      let reader = new FileReader();
+      setLoaded(l => [...l, 0]);
+      reader.addEventListener('progress', e => {
+        const percentage = (file.size / e.loaded) * 100;
+        setLoaded(l => {
+          l[index] = percentage;
+          return [...l];
+        });
       });
-    });
 
-    reader.addEventListener('loadend', e => {
-      setFiles(f => [
-        ...f,
-        {
-          name: shortifyText(file.name),
-          size: bytesToMega(file.size),
-          img: file.type.match('image.*') ? e.target.result : '',
-        },
-      ]);
+      reader.addEventListener('loadend', e => {
+        setFiles(f => [
+          ...f,
+          {
+            name: shortifyText(file.name),
+            size: bytesToMega(file.size),
+            img: file.type.match('image.*') ? e.target.result : '',
+          },
+        ]);
 
-      setLoaded(l => {
-        l[index] = null;
-        return [...l];
+        setLoaded(l => {
+          l[index] = null;
+          return [...l];
+        });
       });
-    });
 
-    await reader.readAsDataURL(file);
-  };
+      await reader.readAsDataURL(file);
+    };
 
-  const handleClick = target => {
-    if (!target.files) return false;
-    // [...target.files].reduce(async (promise, file, i) => {
-    //   await promise;
-    //   await readFile(file, i);
-    // }, Promise.resolve());
-    if (!multiple) setFiles([]);
-    setDT(dataTransfer => {
-      const vdata = multiple ? dataTransfer : new DataTransfer();
-      return updateFiles(vdata, -1, target.files);
-    });
-    Array.from(target.files).forEach((t, i) => {
-      readFile(t, i);
-    });
-    onClick(target.files);
-  };
+    const handleClick = uploaded => {
+      if (!uploaded) return false;
+      // [...target.files].reduce(async (promise, file, i) => {
+      //   await promise;
+      //   await readFile(file, i);
+      // }, Promise.resolve());
+      if (!multiple) setFiles([]);
+      setDT(dataTransfer => {
+        const vdata = multiple ? dataTransfer : new DataTransfer();
+        return updateFiles(vdata, -1, uploaded);
+      });
+      Array.from(uploaded).forEach((t, i) => {
+        readFile(t, i);
+      });
+      onClick(uploaded);
+    };
 
-  const handleClose = file => {
-    let id;
-    setFiles(f => {
-      id = f.findIndex(fi => fi.name === file.name);
-      const newFiles = f
-        .filter(file => file.name !== f[id].name)
-        .map(file => ({ ...file }));
-      setId(id);
-      return [...newFiles];
-    });
-    onClose();
-  };
+    const handleClose = file => {
+      let id;
+      setFiles(f => {
+        id = f.findIndex(fi => fi.name === file.name);
+        const newFiles = f
+          .filter(file => file.name !== f[id].name)
+          .map(file => ({ ...file }));
+        setId(id);
+        return [...newFiles];
+      });
+      onClose();
+    };
 
-  if (ref.current && dt.files) ref.current.files = dt.files;
-  return (
-    <StyledUploader className={className}>
-      <UploadField
-        ref={ref}
-        supported={supported}
-        icon={icon}
-        multiple={multiple}
-        onClick={handleClick}
-      />
-      <Container>
-        {files.length ? children({ files, loaded, handleClose }) : null}
-      </Container>
-    </StyledUploader>
-  );
-};
+    if (ref.current && dt.files) ref.current.files = dt.files;
+    return (
+      <StyledUploader className={className}>
+        <UploadField
+          ref={ref}
+          supported={supported}
+          icon={icon}
+          multiple={multiple}
+          onClick={handleClick}
+          text={text}
+        />
+        <Container>
+          {files.length ? children({ files, loaded, handleClose }) : null}
+        </Container>
+      </StyledUploader>
+    );
+  },
+);
 
 const StyledUploader = styled.div`
   align-self: center;
@@ -149,6 +146,8 @@ const StyledUploader = styled.div`
   }
 `;
 
+Uploader.displayName = 'Uploader';
+
 Uploader.defaultProps = {
   onClick: Function.prototype,
   onClose: Function.prototype,
@@ -165,6 +164,7 @@ Uploader.propTypes = {
     type: string,
     extension: string,
   }),
+  text: string,
 };
 
 Uploader.FileBox = FileBox;

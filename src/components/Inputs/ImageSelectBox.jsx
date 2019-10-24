@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import styled from 'styled-components';
 import { key } from 'styled-theme/dist';
 import { string, func, node, object } from 'prop-types';
@@ -79,31 +79,28 @@ const RadioButton = styled.label`
 
 RadioButton.displayName = 'RadioButton';
 
-const ImageSelectBox = ({
-  selected,
-  label,
-  value,
-  icon,
-  onChange,
-  name,
-  ...otherProps
-}) => {
-  let mode = 'normal';
-  if (selected === value) mode = 'selected';
-  else if (selected) mode = 'inactive';
-  return (
-    <RadioButton {...otherProps} mode={mode} label={label}>
-      {icon}
-      <input
-        type="radio"
-        checked={selected === value}
-        value={value}
-        onChange={onChange}
-        name={name}
-      />
-    </RadioButton>
-  );
-};
+const ImageSelectBox = forwardRef(
+  ({ selected, label, value, icon, onChange, name, ...otherProps }, ref) => {
+    let mode = 'normal';
+    if (selected === value) mode = 'selected';
+    else if (selected) mode = 'inactive';
+    return (
+      <RadioButton {...otherProps} mode={mode} label={label}>
+        {icon}
+        <input
+          ref={ref}
+          type="radio"
+          checked={selected === value}
+          value={value}
+          onChange={onChange}
+          name={name}
+        />
+      </RadioButton>
+    );
+  },
+);
+
+ImageSelectBox.displayName = 'ImageSelectBox';
 
 ImageSelectBox.defaultProps = {
   label: 'means',

@@ -9,7 +9,14 @@ const getActiveId = (active, stages) => {
   return stages ? stages.findIndex(item => item.key === active) + 1 : 0;
 };
 
-const TrackingBar = ({ active, background, height, stages, className }) => {
+const TrackingBar = ({
+  active,
+  background,
+  filledColor,
+  height,
+  stages,
+  className,
+}) => {
   const activeId = getActiveId(active, stages);
 
   return (
@@ -18,6 +25,7 @@ const TrackingBar = ({ active, background, height, stages, className }) => {
         stages={stages.length}
         activeId={activeId}
         background={background}
+        filledColor={filledColor}
         height={height}
         offset={2.08}
         stepWidth={14.2857}
@@ -53,6 +61,7 @@ TrackingBar.defaultProps = {
 TrackingBar.propTypes = {
   active: string,
   background: string,
+  filledColor: string,
   stages: arrayOf({
     key: string,
     name: string,
