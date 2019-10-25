@@ -31,9 +31,9 @@ const DateInput = forwardRef(
     const browser = detect();
     const [focus, setFocus] = useState();
     const [iconRight, setIconRight] = useState('1rem');
-    const dayRef = useRef(null);
-    const monthRef = useRef(null);
-    const yearRef = useRef(null);
+    const dayRef = useRef();
+    const monthRef = useRef();
+    const yearRef = useRef();
 
     const ARROW_LEFT = 37;
     const ARROW_TOP = 38;
@@ -85,93 +85,64 @@ const DateInput = forwardRef(
       }
     }, [year, day, month]);
 
-    const keyDownHandler = (
-      event,
-      setValue,
-      max,
-      min,
-      type,
-      leftField,
-      rightField,
-    ) => {
+    const setRange = e => {
+      e.preventDefault();
+      e.target.setSelectionRange(
+        0,
+        e.target.getAttribute('data-maxlengthvalue'),
+      );
+    };
+
+    const keyDownHandler = (e, setValue, max, min, type) => {
       if (type !== 'day') {
         // If the inputType isn't day, go to previous field on left arrow key
-        if (event.keyCode === ARROW_LEFT) {
-          if (event.target.selectionStart === 0) {
-            event.preventDefault();
-            focusNextField(leftField);
-          }
+        if (e.keyCode === ARROW_LEFT && e.target.selectionStart === 0) {
+          e.preventDefault();
         }
 
         // If you use backspace on empty input, go to previous input
-        if (event.keyCode === 8) {
-          if (event.target.value === '') {
-            event.preventDefault();
-            focusNextField('day');
-          }
+        if (e.keyCode === 8 && !e.target.value) {
+          e.preventDefault();
+          focusNextField('day');
         }
       } else {
         // On left arrow key select everything and do nothing else
-        if (event.keyCode === ARROW_LEFT) {
-          event.preventDefault();
-          event.target.setSelectionRange(
-            0,
-            parseInt(event.target.getAttribute('data-maxlengthvalue')),
-          );
+        if (e.keyCode === ARROW_LEFT) {
+          setRange(e);
         }
       }
-      if (type !== 'year') {
+      if (
+        type !== 'year' &&
+        e.keyCode === ARROW_RIGHT &&
+        e.target.selectionEnd ===
+          parseInt(e.target.getAttribute('data-maxlengthvalue'))
+      ) {
         // If type isn't year, go to next field on right arrow key
-        if (event.keyCode === ARROW_RIGHT) {
-          if (
-            event.target.selectionEnd ===
-            parseInt(event.target.getAttribute('data-maxlengthvalue'))
-          ) {
-            event.preventDefault();
-            focusNextField(rightField);
-          }
-        }
+        e.preventDefault();
       } else {
         // Else if it is year, don't do anything except for select everything
-        if (event.keyCode === ARROW_RIGHT) {
-          if (
-            event.target.selectionEnd ===
-            parseInt(event.target.getAttribute('data-maxlengthvalue'))
-          ) {
-            event.preventDefault();
-            event.target.setSelectionRange(
-              0,
-              event.target.getAttribute('data-maxlengthvalue'),
-            );
-          }
+        if (
+          e.keyCode === ARROW_RIGHT &&
+          e.target.selectionEnd ===
+            parseInt(e.target.getAttribute('data-maxlengthvalue'))
+        ) {
+          setRange(e);
         }
       }
-      if (event.keyCode === ARROW_TOP) {
+      if (e.keyCode === ARROW_TOP && parseInt(e.target.value) < max) {
         // Increment the value of the focused input by 1
-        event.preventDefault();
-        if (parseInt(event.target.value) < max) {
-          setValue(pad(parseInt(event.target.value) + 1));
-          event.target.setSelectionRange(
-            0,
-            event.target.getAttribute('data-maxlengthvalue'),
-          );
-        }
+        setValue(pad(parseInt(e.target.value) + 1));
+        setRange(e);
       }
-      if (event.keyCode === ARROW_BOTTOM) {
+      if (e.keyCode === ARROW_BOTTOM && parseInt(event.target.value) > min) {
         // Decrement the value of the focused input by 1
-        event.preventDefault();
-        if (parseInt(event.target.value) > min) {
-          setValue(pad(parseInt(event.target.value) - 1));
-          event.target.setSelectionRange(
-            0,
-            event.target.getAttribute('data-maxlengthvalue'),
-          );
-        }
+        setValue(pad(parseInt(event.target.value) - 1));
+        setRange(e);
       }
     };
 
     // Pad the value -> pad(4) returns '04', pad(11) returns '11'
-    const pad = n => (n < 10 ? '0' + n : n);
+    const pad = n => (n < 10 ? `0${n}` : n);
 
     const handleFocus = () => {
       setFocus(true);
