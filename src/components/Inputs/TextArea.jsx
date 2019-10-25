@@ -7,7 +7,7 @@ import { detect } from 'detect-browser';
 import Checkmark from '../../assets/checkmark';
 import Errormark from '../../assets/errormark';
 
-const TextAreaInput = ({
+const TextArea = ({
   className,
   children,
   name,
@@ -20,10 +20,14 @@ const TextAreaInput = ({
   value,
   ...otherProps
 }) => {
-  const [inputValue, setInputValue] = useState(value ? value : '');
+  const [inputValue, setInputValue] = useState(value);
   const [focus, setFocus] = useState();
   const [iconRight, setIconRight] = useState('1rem');
   const browser = detect();
+  const handleChange = ({ target }) => {
+    setInputValue(target.value);
+    onChange(target.value);
+  };
 
   const handleFocus = () => {
     setFocus(true);
@@ -59,19 +63,16 @@ const TextAreaInput = ({
           id={name}
           name={name}
           disabled={disabled}
-          placeholder={placeholder ? placeholder : null}
+          placeholder={placeholder}
           error={error ? true : false}
           touched={touched ? true : false}
           value={inputValue}
-          onChange={e => {
-            onChange(e);
-            setInputValue(e.target.value);
-          }}
+          onChange={handleChange}
           onBlur={() => {
             setFieldTouched(name, true);
             setFocus(false);
           }}
-          onFocus={() => handleFocus()}
+          onFocus={handleFocus}
         />
         {error && touched ? (
           <StyledErrormark
@@ -111,7 +112,7 @@ const StyledLabel = styled.label`
   width: 100%;
   font-size: 1.4rem;
   margin-bottom: 0.7rem;
-  color: ${props => (props.disabled ? '#AEAEAE' : '#5B5550')};
+  color: ${({ disabled }) => (disabled ? '#AEAEAE' : '#5B5550')};
 `;
 
 const InputContainer = styled.div`
@@ -120,13 +121,13 @@ const InputContainer = styled.div`
 `;
 
 const StyledTextArea = styled.textarea`
-  background-color: ${props => (props.disabled ? '#F0F1F3' : 'white')};
+  background-color: ${({ disabled }) => (disabled ? '#F0F1F3' : 'white')};
   width: 100%;
   border: 0.1rem solid;
-  border-color: ${props =>
-    props.error & props.touched
+  border-color: ${({ error, touched }) =>
+    error & touched
       ? key('colors.bad')
-      : props.touched & !props.error
+      : touched & !error
       ? key('colors.good')
       : key('colors.outline')};
   border-radius: 0.3rem;
@@ -157,7 +158,7 @@ const ErrorContainer = styled.div`
 
 const StyledCheckmark = styled(Checkmark)`
   position: absolute;
-  right: ${props => (props.focus ? props.right : '1rem')};
+  right: ${({ focus, right }) => (focus ? right : '1rem')};
   bottom: 1.3rem;
   max-width: 2rem;
   transition: 0.2s;
@@ -166,24 +167,25 @@ const StyledCheckmark = styled(Checkmark)`
 
 const StyledErrormark = styled(Errormark)`
   position: absolute;
-  right: ${props => (props.focus ? props.right : '1rem')};
+  right: ${({ focus, right }) => (focus ? right : '1rem')};
   bottom: 1.2rem;
   max-width: 2rem;
   transition: 0.2s;
   object-fit: contain;
 `;
 
-TextAreaInput.defaultProps = {
+TextArea.defaultProps = {
   disabled: false,
-  placeholder: null,
+  placeholder: '',
   error: {},
+  value: '',
   touched: {},
   setFieldTouched: () => {},
   onChange: () => {},
   otherProps: {},
 };
 
-TextAreaInput.propTypes = {
+TextArea.propTypes = {
   /** Beeing able to use it in Styled Components */
   className: string,
   /** label above the input */
@@ -195,7 +197,7 @@ TextAreaInput.propTypes = {
   /** example value in the input */
   placeholder: string,
   /** string with errormessage */
-  error: string,
+  error: object,
   /** boolean to check if inputfield is touched */
   touched: bool,
   /** returns name and touched boolean */
@@ -205,7 +207,7 @@ TextAreaInput.propTypes = {
   /** Adds extra props to the element */
   otherProps: object,
   /** sets initial value */
-  value: node,
+  value: string,
 };
 
-export default TextAreaInput;
+export default TextArea;
