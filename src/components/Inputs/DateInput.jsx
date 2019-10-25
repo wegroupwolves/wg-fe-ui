@@ -430,6 +430,7 @@ const Input = styled.label`
   display: flex;
   position: relative;
   width: 100%;
+  box-sizing: border-box;
   align-items: center;
   overflow: hidden;
   justify-content: flex-start;
