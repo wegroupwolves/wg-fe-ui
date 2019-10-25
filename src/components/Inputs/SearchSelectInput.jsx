@@ -145,7 +145,7 @@ const Input = styled(Select)`
 `;
 
 const Label = styled.p`
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   transition: 0.2s;
   line-height: 1rem;
   margin-bottom: 1rem;

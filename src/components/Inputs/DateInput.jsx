@@ -435,7 +435,7 @@ const Input = styled.label`
   justify-content: flex-start;
   background-color: white;
   padding-left: 1.2rem;
-  height: 3.5rem;
+  height: 4rem;
   border: 0.1rem solid;
   border-color: ${props =>
     props.errors & props.touched
