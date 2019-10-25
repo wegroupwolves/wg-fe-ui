@@ -64,8 +64,8 @@ const TextArea = ({
           name={name}
           disabled={disabled}
           placeholder={placeholder}
-          error={error ? true : false}
-          touched={touched ? true : false}
+          error={error[name]}
+          touched={touched[name]}
           value={inputValue}
           onChange={handleChange}
           onBlur={() => {
@@ -74,14 +74,14 @@ const TextArea = ({
           }}
           onFocus={handleFocus}
         />
-        {error && touched ? (
+        {error[name] && touched[name] ? (
           <StyledErrormark
             color="#F74040"
             focus={focus}
             right={iconRight}
             browser={browser ? browser.name : null}
           />
-        ) : touched ? (
+        ) : touched[name] ? (
           <StyledCheckmark
             color="#00CD39"
             focus={focus}
@@ -90,9 +90,9 @@ const TextArea = ({
           />
         ) : null}
       </InputContainer>
-      {error && touched ? (
+      {error[name] && touched[name] ? (
         <ErrorContainer>
-          <p>{error}</p>
+          <p>{error[name]}</p>
         </ErrorContainer>
       ) : null}
     </Container>
