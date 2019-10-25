@@ -24,9 +24,9 @@ const DateInput = forwardRef(
     },
     ref,
   ) => {
-    const [day, setDay] = useState(value.day || ''); // Initialize the data with the data supplied to formik
-    const [month, setMonth] = useState(value.month || '');
-    const [year, setYear] = useState(value.year || '');
+    const [day, setDay] = useState(value.day); // Initialize the data with the data supplied to formik
+    const [month, setMonth] = useState(value.month);
+    const [year, setYear] = useState(value.year);
 
     const browser = detect();
     const [focus, setFocus] = useState();
@@ -64,7 +64,6 @@ const DateInput = forwardRef(
             0,
             yearRef.current.getAttribute('data-maxlengthvalue'),
           );
-          break;
       }
     };
 
@@ -76,12 +75,7 @@ const DateInput = forwardRef(
           month,
           year,
         });
-      }
-      if (!touched) {
-        // if 1 field has been filled, set the formik touched to true
-        if (day !== '' || year !== '' || month !== '') {
-          setFocus(true);
-        }
+        !touched && setFocus(true);
       }
     }, [year, day, month]);
 
@@ -142,7 +136,10 @@ const DateInput = forwardRef(
     };
 
     // Pad the value -> pad(4) returns '04', pad(11) returns '11'
-    const pad = n => (n < 10 ? `0${n}` : n);
+    const pad = n => {
+      if (!parseInt(n)) return '';
+      return parseInt(n) < 10 ? `0${n}` : n;
+    };
 
     const handleFocus = () => {
       setFocus(true);
@@ -162,48 +159,28 @@ const DateInput = forwardRef(
     };
 
     useEffect(() => {
-      setDay(value.day || ''); // Initialize the data with the data supplied to formik
-      setMonth(value.month || '');
-      setYear(value.year || '');
+      setDay(value.day); // Initialize the data with the data supplied to formik
+      setMonth(value.month);
+      setYear(value.year);
     }, [value]);
 
     // Single functions to handle all blurs
-    const blurHandlerType = (elem, max, min, setValue, oldValue) => {
-      let tempInput;
-      // If the blurred element only has one decimal, pad it
-      if (elem.value.length === 1) {
-        tempInput = pad(elem.value);
-      } else {
-        tempInput = elem.value;
-      }
-      if (
-        (parseInt(tempInput) < max && parseInt(tempInput) >= min) ||
-        tempInput === ''
-      ) {
-        // If the input only has '0', empty it
-        if (parseInt(tempInput) === 0) {
-          tempInput = '';
-        }
-        setValue(tempInput);
-      } else {
-        // If the input is bigger than the max or smaller than the min, ignore the second digit and pad the first
-        setValue(pad(parseInt(oldValue)));
-      }
+    const blurHandlerType = ({ value }, max, min, setValue, oldValue) => {
+      const inRange = parseInt(value) < max && parseInt(value) >= min;
+      let tempInput = inRange ? pad(value) : pad(oldValue);
+      setValue(tempInput);
     };
 
-    const handleBlurInput = e => {
-      switch (e.target.id) {
+    const handleBlurInput = ({ target }) => {
+      switch (target.id) {
         case 'day':
-          blurHandlerType(e.target, 32, 0, setDay, day);
+          blurHandlerType(target, 32, 0, setDay, day);
           break;
         case 'month':
-          blurHandlerType(e.target, 13, 0, setMonth, month);
+          blurHandlerType(target, 13, 0, setMonth, month);
           break;
         case 'year':
-          setYear(e.target.value);
-          break;
-        default:
-          break;
+          setYear(target.value);
       }
     };
 
