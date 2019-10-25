@@ -57,7 +57,7 @@ const TextArea = ({
   const handleBlur = () => {
     setFieldTouched(name, true);
     setFocus(false);
-  }
+  };
 
   return (
     <Container className={className}>

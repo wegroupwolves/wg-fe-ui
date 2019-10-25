@@ -19,7 +19,6 @@ const DateInput = forwardRef(
       value,
       onBlur,
       onChange,
-      onFocus,
       children,
       ...otherProps
     },
@@ -81,7 +80,7 @@ const DateInput = forwardRef(
       if (!touched) {
         // if 1 field has been filled, set the formik touched to true
         if (day !== '' || year !== '' || month !== '') {
-          onFocus(true);
+          setFocus(true);
         }
       }
     }, [year, day, month]);
@@ -305,7 +304,10 @@ const DateInput = forwardRef(
           break;
       }
     };
-    console.log('input: ', error, touched);
+
+    const onFocus = ({ target }) => {
+      target.setSelectionRange(0, target.getAttribute('data-maxlengthvalue'));
+    };
     return (
       <Container className={className} {...otherProps}>
         <StyledLabel disabled={disabled}>{children}</StyledLabel>
@@ -330,12 +332,7 @@ const DateInput = forwardRef(
             autoComplete="off"
             ref={dayRef}
             data-test-id="day"
-            onFocus={e => {
-              e.target.setSelectionRange(
-                0,
-                e.target.getAttribute('data-maxlengthvalue'),
-              );
-            }}
+            onFocus={onFocus}
             min={1}
             onKeyDown={e =>
               keyDownHandler(e, setDay, 31, 1, 'day', null, 'month')
@@ -355,12 +352,7 @@ const DateInput = forwardRef(
             ref={monthRef}
             autoComplete="off"
             data-test-id="month"
-            onFocus={e => {
-              e.target.setSelectionRange(
-                0,
-                e.target.getAttribute('data-maxlengthvalue'),
-              );
-            }}
+            onFocus={onFocus}
             min={1}
             onKeyDown={e =>
               keyDownHandler(e, setMonth, 12, 1, 'month', 'day', 'year')
@@ -380,12 +372,7 @@ const DateInput = forwardRef(
             type="text"
             autoComplete="off"
             data-test-id="year"
-            onFocus={e => {
-              e.target.setSelectionRange(
-                0,
-                e.target.getAttribute('data-maxlengthvalue'),
-              );
-            }}
+            onFocus={onFocus}
             min={1}
             onKeyDown={e =>
               keyDownHandler(e, setYear, 9999, 0, 'year', 'month', null)

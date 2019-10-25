@@ -57,6 +57,10 @@ const TextInput = forwardRef(
       setInputValue(target.value);
       onChange(target.value);
     };
+    const handleBlur = () => {
+      setFieldTouched(name, true);
+      setFocus(false);
+    }
 
     return (
       <Container className={className}>
@@ -75,10 +79,7 @@ const TextInput = forwardRef(
             touched={touched}
             value={inputValue}
             onChange={handleChange}
-            onBlur={() => {
-              setFieldTouched(name, true);
-              setFocus(false);
-            }}
+            onBlur={handleBlur}
             onFocus={handleFocus}
             {...otherProps}
           />
