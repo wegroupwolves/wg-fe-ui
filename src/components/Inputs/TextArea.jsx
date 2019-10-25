@@ -67,8 +67,8 @@ const TextArea = ({
             name={name}
             disabled={disabled}
             placeholder={placeholder}
-            error={error ? true : false}
-            touched={touched ? true : false}
+            error={error[name]}
+            touched={touched[name]}
             value={inputValue}
             maxLength={maxLength}
             count={value.length}
@@ -80,14 +80,14 @@ const TextArea = ({
             onFocus={handleFocus}
           />
         </Count>
-        {error && touched ? (
+        {error[name] && touched[name] ? (
           <StyledErrormark
             color="#F74040"
             focus={focus}
             right={iconRight}
             browser={browser ? browser.name : null}
           />
-        ) : touched ? (
+        ) : touched[name] ? (
           <StyledCheckmark
             color="#00CD39"
             focus={focus}
@@ -96,9 +96,9 @@ const TextArea = ({
           />
         ) : null}
       </InputContainer>
-      {error && touched ? (
+      {error[name] && touched[name] ? (
         <ErrorContainer>
-          <p>{error}</p>
+          <p>{error[name]}</p>
         </ErrorContainer>
       ) : null}
     </Container>
@@ -116,7 +116,7 @@ const Count = styled.div`
   width: 100%;
   &::after {
     content: ${({ count, maxLength, counter }) =>
-      `${counter ? `${count} / ${maxLength || '∞'}` : ''}`};
+      counter ? `'${count} / ${maxLength || '∞'}'` : ''};
     position: absolute;
     bottom: 20px;
     right: 15px;
