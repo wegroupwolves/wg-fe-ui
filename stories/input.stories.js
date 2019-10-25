@@ -19,12 +19,12 @@ import Car from './../src/components/Icons/Car';
 
 import {
   ImageSelectBox,
+  TextArea,
   TextInput,
   SearchInput,
   SearchSelectInput,
   DateInput,
 } from '../src';
-import TextAreaInput from '../src/components/Inputs/TextAreaInput';
 
 storiesOf('Low level blocks/Inputs', module)
   .addDecorator(withKnobs)
@@ -89,13 +89,13 @@ storiesOf('Low level blocks/Inputs', module)
       </StyledTextInput>
     );
   })
-  .add('TextAreaInput', () => {
+  .add('StyledTextArea', () => {
     let error = text('Error', '');
     let touched = boolean('Touched', false);
     let counter = boolean('Counter', false);
     let maxLength = number('maxLength', -1);
     return (
-      <StyledTextAreaInput
+      <StyledTextArea
         disabled={boolean('Disabled', false)}
         name="textarea"
         placeholder="This is a textarea."
@@ -106,7 +106,7 @@ storiesOf('Low level blocks/Inputs', module)
         value={text('DefaultValue', '')}
       >
         Text area
-      </StyledTextAreaInput>
+      </StyledTextArea>
     );
   })
   .add('DateInput', () => {
@@ -176,11 +176,11 @@ const StyledDateInput = styled(DateInput)`
   width: 27rem;
 `;
 
-const StyledTextAreaInput = styled(TextAreaInput)`
+const StyledTextArea = styled(TextArea)`
   width: 27rem;
 `;
 
 StyledTextInput.displayName = 'TextInput';
 StyledSearchSelectInput.displayName = 'SearchSelectInput';
 StyledDateInput.displayName = 'DateInput';
-StyledTextAreaInput.displayName = 'TextAreaInput';
+StyledTextArea.displayName = 'TextArea';
