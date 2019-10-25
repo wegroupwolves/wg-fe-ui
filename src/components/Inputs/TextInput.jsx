@@ -53,6 +53,15 @@ const TextInput = forwardRef(
       }
     }, [value]);
 
+    const handleChange = ({ target }) => {
+      setInputValue(target.value);
+      onChange(target.value);
+    };
+    const handleBlur = () => {
+      setFieldTouched(name, true);
+      setFocus(false);
+    }
+
     return (
       <Container className={className}>
         <StyledLabel disabled={disabled} htmlFor={name}>
@@ -65,19 +74,13 @@ const TextInput = forwardRef(
             name={name}
             type={type}
             disabled={disabled}
-            placeholder={placeholder ? placeholder : null}
-            error={error ? true : false}
-            touched={touched ? true : false}
+            placeholder={placeholder}
+            error={error}
+            touched={touched}
             value={inputValue}
-            onChange={e => {
-              onChange(e);
-              setInputValue(e.target.value);
-            }}
-            onBlur={() => {
-              setFieldTouched(name, true);
-              setFocus(false);
-            }}
-            onFocus={() => handleFocus()}
+            onChange={handleChange}
+            onBlur={handleBlur}
+            onFocus={handleFocus}
             {...otherProps}
           />
           {error && touched ? (
@@ -131,10 +134,10 @@ const StyledInput = styled.input`
   background-color: ${props => (props.disabled ? '#F0F1F3' : 'white')};
   width: 100%;
   border: 0.1rem solid;
-  border-color: ${props =>
-    props.error & props.touched
+  border-color: ${({ error, touched }) =>
+    error && touched
       ? key('colors.bad')
-      : props.touched & !props.error
+      : touched & !error
       ? key('colors.good')
       : key('colors.outline')};
   border-radius: 0.3rem;
@@ -164,7 +167,7 @@ const ErrorContainer = styled.div`
 
 const StyledCheckmark = styled(Checkmark)`
   position: absolute;
-  right: ${props => (props.focus ? props.right : '1rem')};
+  right: ${({ focus, right }) => (focus ? right : '1rem')};
   bottom: 1.3rem;
   max-width: 2rem;
   transition: 0.2s;
@@ -173,7 +176,7 @@ const StyledCheckmark = styled(Checkmark)`
 
 const StyledErrormark = styled(Errormark)`
   position: absolute;
-  right: ${props => (props.focus ? props.right : '1rem')};
+  right: ${({ focus, right }) => (focus ? right : '1rem')};
   bottom: 1.2rem;
   max-width: 2rem;
   transition: 0.2s;
@@ -184,7 +187,7 @@ TextInput.displayName = 'TextInput';
 
 TextInput.defaultProps = {
   disabled: false,
-  placeholder: null,
+  placeholder: '',
   error: '',
   touched: false,
   type: 'text',
@@ -217,7 +220,7 @@ TextInput.propTypes = {
   /** Adds extra props to the element */
   otherProps: object,
   /** sets initial value */
-  value: node,
+  value: string,
 };
 
 StyledInput.displayName = 'StyledInput';

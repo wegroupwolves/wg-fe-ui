@@ -14,12 +14,11 @@ const DateInput = forwardRef(
       className,
       name,
       disabled,
-      errors,
+      error,
       touched,
       value,
       onBlur,
       onChange,
-      onFocus,
       children,
       ...otherProps
     },
@@ -78,10 +77,10 @@ const DateInput = forwardRef(
           year,
         });
       }
-      if (!touched[name]) {
+      if (!touched) {
         // if 1 field has been filled, set the formik touched to true
         if (day !== '' || year !== '' || month !== '') {
-          onFocus(true);
+          setFocus(true);
         }
       }
     }, [year, day, month]);
@@ -305,16 +304,20 @@ const DateInput = forwardRef(
           break;
       }
     };
+
+    const onFocus = ({ target }) => {
+      target.setSelectionRange(0, target.getAttribute('data-maxlengthvalue'));
+    };
     return (
       <Container className={className} {...otherProps}>
         <StyledLabel disabled={disabled}>{children}</StyledLabel>
         <Input
-          errors={errors[name] ? true : false}
-          touched={touched[name] ? true : false}
+          error={error}
+          touched={touched}
           ref={ref}
           htmlFor={name}
-          onFocus={() => handleFocus()}
-          onBlur={() => onBlur()}
+          onFocus={handleFocus}
+          onBlur={onBlur}
         >
           <StyledSingleInputDate
             inputtype="day"
@@ -322,19 +325,14 @@ const DateInput = forwardRef(
             value={day}
             data-maxlengthvalue={2}
             maxValue={31}
-            onBlur={e => handleBlurInput(e)}
+            onBlur={handleBlurInput}
             onChange={handleChangedInput}
             placeholder="dd"
             type="text"
             autoComplete="off"
             ref={dayRef}
             data-test-id="day"
-            onFocus={e => {
-              e.target.setSelectionRange(
-                0,
-                e.target.getAttribute('data-maxlengthvalue'),
-              );
-            }}
+            onFocus={onFocus}
             min={1}
             onKeyDown={e =>
               keyDownHandler(e, setDay, 31, 1, 'day', null, 'month')
@@ -347,19 +345,14 @@ const DateInput = forwardRef(
             value={month}
             data-maxlengthvalue={2}
             maxValue={12}
-            onBlur={e => handleBlurInput(e)}
+            onBlur={handleBlurInput}
             onChange={handleChangedInput}
             placeholder="mm"
             type="text"
             ref={monthRef}
             autoComplete="off"
             data-test-id="month"
-            onFocus={e => {
-              e.target.setSelectionRange(
-                0,
-                e.target.getAttribute('data-maxlengthvalue'),
-              );
-            }}
+            onFocus={onFocus}
             min={1}
             onKeyDown={e =>
               keyDownHandler(e, setMonth, 12, 1, 'month', 'day', 'year')
@@ -373,31 +366,26 @@ const DateInput = forwardRef(
             maxLength={4}
             data-maxlengthvalue={9999}
             ref={yearRef}
-            onBlur={e => handleBlurInput(e)}
+            onBlur={handleBlurInput}
             onChange={handleChangedInput}
             placeholder="yyyy"
             type="text"
             autoComplete="off"
             data-test-id="year"
-            onFocus={e => {
-              e.target.setSelectionRange(
-                0,
-                e.target.getAttribute('data-maxlengthvalue'),
-              );
-            }}
+            onFocus={onFocus}
             min={1}
             onKeyDown={e =>
               keyDownHandler(e, setYear, 9999, 0, 'year', 'month', null)
             }
           />
-          {errors[name] && touched[name] ? (
+          {error && touched ? (
             <StyledErrormark
               color="#F74040"
               focus={focus}
               right={iconRight}
               browser={browser ? browser.name : null}
             />
-          ) : touched[name] ? (
+          ) : touched ? (
             <StyledCheckmark
               color="#00CD39"
               focus={focus}
@@ -406,9 +394,9 @@ const DateInput = forwardRef(
             />
           ) : null}
         </Input>
-        {errors[name] && touched[name] ? (
+        {error && touched ? (
           <ErrorContainer>
-            <p>{errors[name]}</p>
+            <p>{error}</p>
           </ErrorContainer>
         ) : null}
       </Container>
@@ -438,10 +426,10 @@ const Input = styled.label`
   padding-left: 1.2rem;
   height: 4rem;
   border: 0.1rem solid;
-  border-color: ${props =>
-    props.errors & props.touched
+  border-color: ${({ error, touched }) =>
+    error && touched
       ? key('colors.bad')
-      : props.touched & !props.errors
+      : touched && !error
       ? key('colors.good')
       : key('colors.outline')};
   border-radius: 0.3rem;
@@ -487,7 +475,7 @@ const ErrorContainer = styled.div`
 
 const StyledCheckmark = styled(Checkmark)`
   position: absolute;
-  right: ${props => (props.focus ? props.right : '1rem')};
+  right: ${({ focus, right }) => (focus ? right : '1rem')};
   bottom: 1.3rem;
   max-width: 2rem;
   transition: 0.2s;
@@ -496,7 +484,7 @@ const StyledCheckmark = styled(Checkmark)`
 
 const StyledErrormark = styled(Errormark)`
   position: absolute;
-  right: ${props => (props.focus ? props.right : '1rem')};
+  right: ${({ focus, right }) => (focus ? right : '1rem')};
   bottom: 1.2rem;
   max-width: 2rem;
   transition: 0.2s;
@@ -507,8 +495,7 @@ DateInput.displayName = 'DateInput';
 
 DateInput.defaultProps = {
   disabled: false,
-  errors: {},
-  touched: {},
+  touched: false,
   otherProps: {},
   value: {},
   onBlur: () => {},
@@ -525,9 +512,9 @@ DateInput.propTypes = {
   /** type of input: email, text, ... */
   disabled: bool,
   /** example value in the input */
-  errors: object,
+  error: string,
   /** object with inputname and boolean to check if touched */
-  touched: object,
+  touched: bool,
   /** Callback function that is fired when blurring the input field. */
   onBlur: func,
   /** Callback function that is fired when focusing the input field. */
