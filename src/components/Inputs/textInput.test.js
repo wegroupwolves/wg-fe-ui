@@ -13,7 +13,10 @@ describe('TextInput', () => {
         <TextInput name="firstname">Name</TextInput>
       </ThemeProvider>,
     );
-    expect(wrapper.find('StyledInput')).toHaveStyleRule('background-color', 'white');
+    expect(wrapper.find('StyledInput')).toHaveStyleRule(
+      'background-color',
+      'white',
+    );
 
     wrapper.setProps({
       children: (
