@@ -179,4 +179,4 @@ const StyledTextArea = styled(TextArea)`
 StyledTextInput.displayName = 'TextInput';
 StyledSearchSelectInput.displayName = 'SearchSelectInput';
 StyledDateInput.displayName = 'DateInput';
-StyledTextArea.displayName = 'TextAreaInput';
+StyledTextArea.displayName = 'TextArea';

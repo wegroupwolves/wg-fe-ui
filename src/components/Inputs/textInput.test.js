@@ -31,7 +31,7 @@ describe('TextInput', () => {
     );
   });
 
-  it('return value when input changes', () => {
+  it('returns value when input changes', () => {
     let ctrlName = 'fakeName';
     let ctrlValue = 'Ruben';
 
