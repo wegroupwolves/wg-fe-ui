@@ -430,12 +430,13 @@ const Input = styled.label`
   display: flex;
   position: relative;
   width: 100%;
+  box-sizing: border-box;
   align-items: center;
   overflow: hidden;
   justify-content: flex-start;
   background-color: white;
   padding-left: 1.2rem;
-  height: 3.5rem;
+  height: 4rem;
   border: 0.1rem solid;
   border-color: ${props =>
     props.errors & props.touched
