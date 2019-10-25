@@ -64,8 +64,8 @@ const TextArea = ({
           name={name}
           disabled={disabled}
           placeholder={placeholder}
-          error={error[name]}
-          touched={touched[name]}
+          error={error}
+          touched={touched}
           value={inputValue}
           onChange={handleChange}
           onBlur={() => {
@@ -74,7 +74,7 @@ const TextArea = ({
           }}
           onFocus={handleFocus}
         />
-        {error[name] && touched[name] ? (
+        {error && touched ? (
           <StyledErrormark
             color="#F74040"
             focus={focus}
@@ -90,9 +90,9 @@ const TextArea = ({
           />
         ) : null}
       </InputContainer>
-      {error[name] && touched[name] ? (
+      {error && touched ? (
         <ErrorContainer>
-          <p>{error[name]}</p>
+          <p>{error}</p>
         </ErrorContainer>
       ) : null}
     </Container>
@@ -125,9 +125,9 @@ const StyledTextArea = styled.textarea`
   width: 100%;
   border: 0.1rem solid;
   border-color: ${({ error, touched }) =>
-    error & touched
+    error && touched
       ? key('colors.bad')
-      : touched & !error
+      : touched && !error
       ? key('colors.good')
       : key('colors.outline')};
   border-radius: 0.3rem;
@@ -177,9 +177,9 @@ const StyledErrormark = styled(Errormark)`
 TextArea.defaultProps = {
   disabled: false,
   placeholder: '',
-  error: {},
+  error: '',
   value: '',
-  touched: {},
+  touched: false,
   setFieldTouched: () => {},
   onChange: () => {},
   otherProps: {},
@@ -197,7 +197,7 @@ TextArea.propTypes = {
   /** example value in the input */
   placeholder: string,
   /** string with errormessage */
-  error: object,
+  error: string,
   /** boolean to check if inputfield is touched */
   touched: bool,
   /** returns name and touched boolean */

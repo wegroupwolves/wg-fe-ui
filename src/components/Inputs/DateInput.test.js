@@ -11,7 +11,7 @@ describe('DateInput', () => {
     const onChange = jest.fn();
 
     const wrapper = mount(
-      <DateInput onChange={onChange} name="date" touched={{ date: true }}>
+      <DateInput onChange={onChange} name="date" touched={true}>
         test
       </DateInput>,
     );
@@ -36,7 +36,7 @@ describe('DateInput', () => {
     expect(calledOnChange[1]).toHaveProperty('year', '1996');
   });
 
-  it('has different border color on validation', () => {
+  it('has default border color on validation', () => {
     const wrapper = mount(
       <ThemeProvider theme={Theme}>
         <DateInput name="date">Test</DateInput>
@@ -48,32 +48,32 @@ describe('DateInput', () => {
       'border-color',
       Theme().colors['outline'],
     );
+  });
 
+  it('has bad border color when touched and has error', () => {
     // Check if border is red when errors and touched
-    wrapper.setProps({
-      children: (
-        <DateInput
-          errors={{ date: 'incorrect' }}
-          touched={{ date: true }}
-          name="date"
-        >
+    const wrapper = mount(
+      <ThemeProvider theme={Theme}>
+        <DateInput name="date" error="incorrect" touched={true}>
           Test
         </DateInput>
-      ),
-    });
+      </ThemeProvider>,
+    );
     expect(wrapper.find('label[htmlFor="date"]')).toHaveStyleRule(
       'border-color',
       Theme().colors['bad'],
     );
+  });
 
+  it('has good border color when touched but no error', () => {
     // Check if border is green when no errors but touched
-    wrapper.setProps({
-      children: (
-        <DateInput touched={{ date: true }} name="date">
+    const wrapper = mount(
+      <ThemeProvider theme={Theme}>
+        <DateInput name="date" touched={true}>
           Test
         </DateInput>
-      ),
-    });
+      </ThemeProvider>,
+    );
     expect(wrapper.find('label[htmlFor="date"]')).toHaveStyleRule(
       'border-color',
       Theme().colors['good'],
@@ -89,14 +89,14 @@ describe('DateInput', () => {
 
     // check if errormark shows when errors
     wrapper.setProps({
-      errors: { date: 'incorrect' },
-      touched: { date: true },
+      error: 'incorrect',
+      touched: true,
     });
     expect(wrapper.exists('Errormark')).toEqual(true);
     expect(wrapper.exists('Checkmark')).toEqual(false);
 
     // check if checkmark shows when no errors but touched
-    wrapper.setProps({ errors: {}, touched: { date: true } });
+    wrapper.setProps({ error: '', touched: true });
     expect(wrapper.exists('Checkmark')).toEqual(true);
     expect(wrapper.exists('Errormark')).toEqual(false);
   });
