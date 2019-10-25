@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { bool, node, func, string, object } from 'prop-types';
+import { bool, node, func, string, object, number } from 'prop-types';
 import styled from 'styled-components';
 import { key } from 'styled-theme';
 import { detect } from 'detect-browser';
@@ -18,6 +18,8 @@ const TextAreaInput = ({
   error,
   touched,
   value,
+  maxLength,
+  counter,
   ...otherProps
 }) => {
   const [inputValue, setInputValue] = useState(value ? value : '');
@@ -54,25 +56,29 @@ const TextAreaInput = ({
         {children}
       </StyledLabel>
       <InputContainer>
-        <StyledTextArea
-          {...otherProps}
-          id={name}
-          name={name}
-          disabled={disabled}
-          placeholder={placeholder ? placeholder : null}
-          error={error ? true : false}
-          touched={touched ? true : false}
-          value={inputValue}
-          onChange={e => {
-            onChange(e);
-            setInputValue(e.target.value);
-          }}
-          onBlur={() => {
-            setFieldTouched(name, true);
-            setFocus(false);
-          }}
-          onFocus={() => handleFocus()}
-        />
+        <Count maxLength={maxLength} count={value.length} counter={counter}>
+          <StyledTextArea
+            {...otherProps}
+            id={name}
+            name={name}
+            disabled={disabled}
+            placeholder={placeholder ? placeholder : null}
+            error={error ? true : false}
+            touched={touched ? true : false}
+            value={inputValue}
+            maxLength={maxLength}
+            count={value.length}
+            onChange={e => {
+              onChange(e);
+              setInputValue(e.target.value);
+            }}
+            onBlur={() => {
+              setFieldTouched(name, true);
+              setFocus(false);
+            }}
+            onFocus={() => handleFocus()}
+          />
+        </Count>
         {error && touched ? (
           <StyledErrormark
             color="#F74040"
@@ -102,6 +108,26 @@ const Container = styled.div`
   width: 100%;
   font-family: ${key('fonts.primary')};
   position: relative;
+`;
+
+const Count = styled.div`
+  position: relative;
+  width: 100%;
+  &::after {
+    content: '${({ count, maxLength, counter }) =>
+      `${counter ? `${count} / ${maxLength || '∞'}` : ''}`}';
+    position: absolute;
+    bottom: 20px;
+    right: 15px;
+    height: 13px;
+    max-width: 74px;
+    display: block;
+    white-space: nowrap;
+    font-size: 1.5rem;
+    line-height: 1.3rem;
+    letter-spacing: 0.924996px;
+    color: #DFDFDF;
+  }
 `;
 
 const StyledLabel = styled.label`
@@ -202,6 +228,10 @@ TextAreaInput.propTypes = {
   setFieldTouched: func,
   /** returns onChange event */
   onChange: func,
+  /** max input length */
+  maxLength: number,
+  /** boolean to set counter visibility */
+  counter: bool,
   /** Adds extra props to the element */
   otherProps: object,
   /** sets initial value */

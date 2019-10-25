@@ -4,6 +4,7 @@ import { storiesOf } from '@storybook/react';
 import {
   withKnobs,
   boolean,
+  number,
   text,
   select,
   object,
@@ -91,7 +92,8 @@ storiesOf('Low level blocks/Inputs', module)
   .add('TextAreaInput', () => {
     let error = text('Error', '');
     let touched = boolean('Touched', false);
-
+    let counter = boolean('Counter', false);
+    let maxLength = number('maxLength', -1);
     return (
       <StyledTextAreaInput
         disabled={boolean('Disabled', false)}
@@ -99,6 +101,8 @@ storiesOf('Low level blocks/Inputs', module)
         placeholder="This is a textarea."
         error={error}
         touched={touched}
+        counter={counter}
+        maxLength={maxLength}
         value={text('DefaultValue', '')}
       >
         Text area
