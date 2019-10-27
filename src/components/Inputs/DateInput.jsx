@@ -1,4 +1,10 @@
-import React, { useState, useEffect, useRef, forwardRef } from 'react';
+import React, {
+  useState,
+  useReducer,
+  useEffect,
+  useRef,
+  forwardRef,
+} from 'react';
 import { bool, string, object, func, node } from 'prop-types';
 
 import styled from 'styled-components';
@@ -24,9 +30,23 @@ const DateInput = forwardRef(
     },
     ref,
   ) => {
-    const [day, setDay] = useState(value.day); // Initialize the data with the data supplied to formik
-    const [month, setMonth] = useState(value.month);
-    const [year, setYear] = useState(value.year);
+    const init = () => ({ ...value });
+    const [date, dispatch] = useReducer((state, { type, payload }) => {
+      switch (type) {
+        case 'day':
+          return { ...state, day: payload };
+        case 'month':
+          return { ...state, month: payload };
+        case 'year':
+          return { ...state, year: payload };
+        case 'full':
+          return { ...payload };
+        case 'reset':
+          return init(payload);
+        default:
+          return { ...state };
+      }
+    }, init);
 
     const browser = detect();
     const [focus, setFocus] = useState();
@@ -36,48 +56,43 @@ const DateInput = forwardRef(
     const yearRef = useRef();
 
     const ARROW_LEFT = 37;
-    const ARROW_TOP = 38;
+    const ARROW_UP = 38;
     const ARROW_RIGHT = 39;
-    const ARROW_BOTTOM = 40;
+    const ARROW_DOWN = 40;
 
-    // Change focus to the field with the classname in the nextField argument
-    const focusNextField = nextField => {
-      switch (nextField) {
-        case 'day':
-          dayRef.current.focus();
-          dayRef.current.setSelectionRange(
-            0,
-            dayRef.current.getAttribute('data-maxlengthvalue'),
-          );
-
-          break;
-        case 'month':
-          monthRef.current.focus();
-          monthRef.current.setSelectionRange(
-            0,
-            monthRef.current.getAttribute('data-maxlengthvalue'),
-          );
-          break;
-        case 'year':
-          yearRef.current.focus();
-          yearRef.current.setSelectionRange(
-            0,
-            yearRef.current.getAttribute('data-maxlengthvalue'),
-          );
-      }
-    };
+    useEffect(() => {
+      dispatch({ type: 'full', payload: value });
+    }, [value]);
 
     useEffect(() => {
       // If any of the hooks are updated, update the formik value for validation
-      if (day !== '' || year !== '' || month !== '') {
-        onChange(name, {
-          day,
-          month,
-          year,
-        });
+      if (Object.values(date).filter(f => f).length) {
+        onChange(name, { ...date });
         !touched && setFocus(true);
       }
-    }, [year, day, month]);
+    }, [date]);
+
+    const prevRef = {
+      day: null,
+      month: dayRef,
+      year: monthRef,
+    };
+
+    const nextRef = {
+      day: monthRef,
+      month: yearRef,
+      year: null,
+    };
+
+    // Change focus to the field with the classname in the nextField argument
+    const focusNextField = field => {
+      if (!field) return;
+      field.current.focus();
+      field.current.setSelectionRange(
+        0,
+        field.current.getAttribute('data-maxlengthvalue'),
+      );
+    };
 
     const setRange = e => {
       e.preventDefault();
@@ -87,175 +102,101 @@ const DateInput = forwardRef(
       );
     };
 
-    const keyDownHandler = (e, setValue, max, min, type) => {
-      if (type !== 'day') {
-        // If the inputType isn't day, go to previous field on left arrow key
-        if (e.keyCode === ARROW_LEFT && e.target.selectionStart === 0) {
-          e.preventDefault();
-        }
-
-        // If you use backspace on empty input, go to previous input
-        if (e.keyCode === 8 && !e.target.value) {
-          e.preventDefault();
-          focusNextField('day');
-        }
-      } else {
-        // On left arrow key select everything and do nothing else
-        if (e.keyCode === ARROW_LEFT) {
-          setRange(e);
-        }
-      }
+    const keyDownHandler = (e, max, min, type) => {
       if (
-        type !== 'year' &&
-        e.keyCode === ARROW_RIGHT &&
-        e.target.selectionEnd ===
-          parseInt(e.target.getAttribute('data-maxlengthvalue'))
-      ) {
-        // If type isn't year, go to next field on right arrow key
-        e.preventDefault();
-      } else {
-        // Else if it is year, don't do anything except for select everything
-        if (
-          e.keyCode === ARROW_RIGHT &&
-          e.target.selectionEnd ===
-            parseInt(e.target.getAttribute('data-maxlengthvalue'))
-        ) {
-          setRange(e);
-        }
-      }
-      if (e.keyCode === ARROW_TOP && parseInt(e.target.value) < max) {
-        // Increment the value of the focused input by 1
-        setValue(pad(parseInt(e.target.value) + 1));
+        ![ARROW_UP, ARROW_DOWN, ARROW_RIGHT, ARROW_LEFT, 8, 9].includes(
+          e.keyCode,
+        )
+      )
+        return false;
+      e.preventDefault();
+      if (e.keyCode === ARROW_UP || e.keyCode === ARROW_DOWN) {
+        if (date[type] === '') return dispatch({ type, payload: 0 });
+        if (parseInt(date[type] < min || parseInt(date[type] > max)))
+          return false;
+        if (e.keyCode === ARROW_UP && parseInt(date[type]) < max)
+          dispatch({ type, payload: pad(parseInt(date[type]) + 1) });
+        else if (e.keyCode === ARROW_DOWN && parseInt(date[type]) > min)
+          dispatch({ type, payload: pad(parseInt(date[type]) - 1) });
         setRange(e);
-      }
-      if (e.keyCode === ARROW_BOTTOM && parseInt(event.target.value) > min) {
-        // Decrement the value of the focused input by 1
-        setValue(pad(parseInt(event.target.value) - 1));
-        setRange(e);
+      } else if ([ARROW_LEFT, 8].includes(e.keyCode)) {
+        focusNextField(prevRef[type]);
+        type === 'day' && setRange(e);
+        e.keyCode === 8 && dispatch({ type, payload: '' });
+      } else if ([ARROW_RIGHT, 9].includes(e.keyCode)) {
+        focusNextField(nextRef[type]);
+        type === 'year' && setRange(e);
       }
     };
 
     // Pad the value -> pad(4) returns '04', pad(11) returns '11'
     const pad = n => {
       if (!parseInt(n)) return '';
-      return parseInt(n) < 10 ? `0${n}` : n;
+      return parseInt(n) < 10 && n.length === 1 ? `0${n}` : n;
     };
 
     const handleFocus = () => {
       setFocus(true);
-      if (browser) {
-        switch (browser.name) {
-          case 'safari':
-            setIconRight('3.5rem');
-            break;
-          case '':
-            setIconRight('3.5rem');
-            break;
-          default:
-            setIconRight('1rem');
-            break;
-        }
+      if (!browser) return;
+      switch (browser.name) {
+        case ['', 'safari'].includes(browser.name):
+          setIconRight('3.5rem');
+          break;
+        default:
+          setIconRight('1rem');
       }
     };
 
-    useEffect(() => {
-      setDay(value.day); // Initialize the data with the data supplied to formik
-      setMonth(value.month);
-      setYear(value.year);
-    }, [value]);
-
     // Single functions to handle all blurs
-    const blurHandlerType = ({ value }, max, min, setValue, oldValue) => {
+    const blurHandlerType = ({ value }, max, min, type) => {
+      if (value === '') return false;
       const inRange = parseInt(value) < max && parseInt(value) >= min;
-      let tempInput = inRange ? pad(value) : pad(oldValue);
-      setValue(tempInput);
+      let tempInput = inRange ? pad(value) : date[type];
+      dispatch({ type, payload: tempInput });
     };
 
     const handleBlurInput = ({ target }) => {
+      if (target.id === 'year')
+        dispatch({ type: 'year', payload: target.value });
       switch (target.id) {
         case 'day':
-          blurHandlerType(target, 32, 0, setDay, day);
+          blurHandlerType(target, 32, 0, 'day');
           break;
         case 'month':
-          blurHandlerType(target, 13, 0, setMonth, month);
-          break;
-        case 'year':
-          setYear(target.value);
+          blurHandlerType(target, 13, 0, 'month');
       }
     };
 
     const handleChangedInputForType = (
-      e,
+      { target },
       nextField,
       max,
       min,
-      setValue,
-      oldValue,
       type,
     ) => {
-      if (type !== 'year') {
-        let tempValue;
-        if (
-          e.target.value.length === 1 &&
-          parseInt(e.target.value) > Math.floor(max / 10)
-        ) {
-          // if the first digit is high so that every other second digit would make the number too big
-          // pad the first digit and focus to the next field
-          tempValue = pad(e.target.value);
-          focusNextField(nextField);
-        } else {
-          // Else, just add it, if the input is filled, go to next input
-          tempValue = e.target.value;
-          if (e.target.value.length === 2) {
-            focusNextField(nextField);
-          }
-        }
-        if (e.target.value.length > 2) {
-          // If the input has more than 2 digits, take the old value
-          tempValue = oldValue;
-        }
-        if (!isNaN(tempValue)) {
-          if (
-            (parseInt(tempValue) < max && parseInt(tempValue) >= min) ||
-            tempValue === ''
-          ) {
-            // If the digit is a number and is valid, set it
-            setValue(tempValue);
-          } else {
-            // if not correct, reset to old value
-            setValue(pad(parseInt(oldValue)));
-          }
-        }
-      } else {
-        let tempValue = e.target.value;
-
-        if (e.target.value.length > 4) {
-          tempValue = oldValue;
-        }
-        if (!isNaN(tempValue)) {
-          setValue(tempValue);
-        }
-        setValue(tempValue);
+      let tempValue;
+      if (isNaN(target.value))
+        tempValue = pad(isNaN(date[type]) ? 0 : date[type]);
+      else if (parseInt(target.value) < min || parseInt(target.value) > max) {
+        tempValue = date[type] ? date[type] : 0;
       }
+      if (type === 'year') {
+        tempValue = target.value.length > 4 ? date[type] : target.value;
+      } else {
+        tempValue = target.value.length > 2 ? date[type] : target.value;
+      }
+      dispatch({ type, payload: tempValue });
+      target.value.length === 2 && focusNextField(nextField);
     };
 
     const handleChangedInput = e => {
-      switch (e.target.id) {
-        case 'day':
-          handleChangedInputForType(e, 'month', 32, 0, setDay, day, 'day');
-          break;
-        case 'month':
-          handleChangedInputForType(e, 'year', 13, 0, setMonth, month, 'month');
-          break;
-        case 'year':
-          handleChangedInputForType(e, null, 9999, 0, setYear, year, 'year');
-          break;
-      }
+      handleChangedInputForType(e, nextRef[e.target.id], 32, 0, e.target.id);
     };
 
     const onFocus = ({ target }) => {
       target.setSelectionRange(0, target.getAttribute('data-maxlengthvalue'));
     };
+
     return (
       <Container className={className} {...otherProps}>
         <StyledLabel disabled={disabled}>{children}</StyledLabel>
@@ -268,10 +209,10 @@ const DateInput = forwardRef(
           onBlur={onBlur}
         >
           <StyledSingleInputDate
-            inputtype="day"
             id="day"
-            value={day}
+            value={date.day}
             data-maxlengthvalue={2}
+            maxLength={2}
             maxValue={31}
             onBlur={handleBlurInput}
             onChange={handleChangedInput}
@@ -282,16 +223,14 @@ const DateInput = forwardRef(
             data-test-id="day"
             onFocus={onFocus}
             min={1}
-            onKeyDown={e =>
-              keyDownHandler(e, setDay, 31, 1, 'day', null, 'month')
-            }
+            onKeyDown={e => keyDownHandler(e, 31, 1, 'day', null, 'month')}
           />
           {'/'}
           <StyledSingleInputDate
-            inputtype="month"
             id="month"
-            value={month}
+            value={date.month}
             data-maxlengthvalue={2}
+            maxLength={2}
             maxValue={12}
             onBlur={handleBlurInput}
             onChange={handleChangedInput}
@@ -302,15 +241,12 @@ const DateInput = forwardRef(
             data-test-id="month"
             onFocus={onFocus}
             min={1}
-            onKeyDown={e =>
-              keyDownHandler(e, setMonth, 12, 1, 'month', 'day', 'year')
-            }
+            onKeyDown={e => keyDownHandler(e, 12, 1, 'month', 'day', 'year')}
           />
           {'/'}
           <StyledSingleInputDate
             id="year"
-            inputtype="year"
-            value={year}
+            value={date.year}
             maxLength={4}
             data-maxlengthvalue={9999}
             ref={yearRef}
@@ -321,10 +257,9 @@ const DateInput = forwardRef(
             autoComplete="off"
             data-test-id="year"
             onFocus={onFocus}
+            minLength={1}
             min={1}
-            onKeyDown={e =>
-              keyDownHandler(e, setYear, 9999, 0, 'year', 'month', null)
-            }
+            onKeyDown={e => keyDownHandler(e, 9999, 0, 'year', 'month', null)}
           />
           {error && touched ? (
             <StyledErrormark
@@ -362,7 +297,7 @@ const StyledLabel = styled.label`
   color: ${props => (props.disabled ? '#AEAEAE' : '#5B5550')};
 `;
 
-const Input = styled.label`
+const Input = styled.div`
   display: flex;
   position: relative;
   width: 100%;
@@ -386,7 +321,7 @@ const Input = styled.label`
 const StyledSingleInputDate = styled.input`
   flex-grow: 0;
   flex-shrink: 0;
-  width: ${props => (props.inputtype === 'year' ? '5rem' : '2.9rem')};
+  width: ${({ id }) => (id === 'year' ? '5rem' : '2.9rem')};
   border: none;
   letter-spacing: 0.1rem;
   align-items: center;
@@ -445,7 +380,7 @@ DateInput.defaultProps = {
   disabled: false,
   touched: false,
   otherProps: {},
-  value: {},
+  value: { day: '', month: '', year: '' },
   onBlur: () => {},
   onChange: () => {},
   onFocus: () => {},

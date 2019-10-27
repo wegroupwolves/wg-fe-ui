@@ -31,8 +31,8 @@ describe('DateInput', () => {
     const calledOnChange = onChange.mock.calls[0];
 
     expect(calledOnChange[0]).toBe(`date`);
-    expect(calledOnChange[1]).toHaveProperty('day', '08');
-    expect(calledOnChange[1]).toHaveProperty('month', '03');
+    expect(calledOnChange[1]).toHaveProperty('day', '8');
+    expect(calledOnChange[1]).toHaveProperty('month', '3');
     expect(calledOnChange[1]).toHaveProperty('year', '1996');
   });
 

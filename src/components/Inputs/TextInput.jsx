@@ -48,7 +48,7 @@ const TextInput = forwardRef(
     };
 
     useEffect(() => {
-      if (inputValue != value) {
+      if (inputValue !== value) {
         setInputValue(value);
       }
     }, [value]);
