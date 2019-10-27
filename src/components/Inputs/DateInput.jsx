@@ -65,7 +65,6 @@ const DateInput = forwardRef(
     }, [value]);
 
     useEffect(() => {
-      // If any of the hooks are updated, update the formik value for validation
       if (Object.values(date).filter(f => f).length) {
         onChange(name, { ...date });
         !touched && setFocus(true);
@@ -84,8 +83,14 @@ const DateInput = forwardRef(
       year: null,
     };
 
+    // Pad the value -> pad(4) returns '04', pad(11) returns '11'
+    const pad = n => {
+      if (!parseInt(n)) return '';
+      return parseInt(n) < 10 ? `0${parseInt(n)}` : n;
+    };
+
     // Change focus to the field with the classname in the nextField argument
-    const focusNextField = field => {
+    const focusField = field => {
       if (!field) return;
       field.current.focus();
       field.current.setSelectionRange(
@@ -102,17 +107,13 @@ const DateInput = forwardRef(
       );
     };
 
-    const keyDownHandler = (e, max, min, type) => {
-      if (
-        ![ARROW_UP, ARROW_DOWN, ARROW_RIGHT, ARROW_LEFT, 8, 9].includes(
-          e.keyCode,
-        )
-      )
-        return false;
+    const keyDownHandler = (e, max, min) => {
+      if (![8, 9, 37, 38, 39, 40].includes(e.keyCode)) return true;
+      const type = e.target.id;
       e.preventDefault();
       if (e.keyCode === ARROW_UP || e.keyCode === ARROW_DOWN) {
-        if (date[type] === '') return dispatch({ type, payload: 0 });
-        if (parseInt(date[type] < min || parseInt(date[type] > max)))
+        if (date[type] === '') return dispatch({ type, payload: '01' });
+        if (parseInt(date[type]) < min || parseInt(date[type]) > max)
           return false;
         if (e.keyCode === ARROW_UP && parseInt(date[type]) < max)
           dispatch({ type, payload: pad(parseInt(date[type]) + 1) });
@@ -120,19 +121,13 @@ const DateInput = forwardRef(
           dispatch({ type, payload: pad(parseInt(date[type]) - 1) });
         setRange(e);
       } else if ([ARROW_LEFT, 8].includes(e.keyCode)) {
-        focusNextField(prevRef[type]);
+        focusField(prevRef[type]);
         type === 'day' && setRange(e);
         e.keyCode === 8 && dispatch({ type, payload: '' });
       } else if ([ARROW_RIGHT, 9].includes(e.keyCode)) {
-        focusNextField(nextRef[type]);
-        type === 'year' && setRange(e);
+        setRange(e);
+        focusField(nextRef[type]);
       }
-    };
-
-    // Pad the value -> pad(4) returns '04', pad(11) returns '11'
-    const pad = n => {
-      if (!parseInt(n)) return '';
-      return parseInt(n) < 10 && n.length === 1 ? `0${n}` : n;
     };
 
     const handleFocus = () => {
@@ -148,11 +143,11 @@ const DateInput = forwardRef(
     };
 
     // Single functions to handle all blurs
-    const blurHandlerType = ({ value }, max, min, type) => {
+    const blurHandlerType = ({ id, value }, max, min) => {
       if (value === '') return false;
       const inRange = parseInt(value) < max && parseInt(value) >= min;
-      let tempInput = inRange ? pad(value) : date[type];
-      dispatch({ type, payload: tempInput });
+      let tempInput = inRange ? pad(value) : pad(date[id][0]);
+      dispatch({ type: id, payload: tempInput });
     };
 
     const handleBlurInput = ({ target }) => {
@@ -160,25 +155,20 @@ const DateInput = forwardRef(
         dispatch({ type: 'year', payload: target.value });
       switch (target.id) {
         case 'day':
-          blurHandlerType(target, 32, 0, 'day');
+          blurHandlerType(target, 32, 0);
           break;
         case 'month':
-          blurHandlerType(target, 13, 0, 'month');
+          blurHandlerType(target, 13, 0);
       }
     };
 
-    const handleChangedInputForType = (
-      { target },
-      nextField,
-      max,
-      min,
-      type,
-    ) => {
+    const handleChangedInputForType = ({ target }, max, min) => {
+      const type = target.id;
       let tempValue;
       if (isNaN(target.value))
-        tempValue = pad(isNaN(date[type]) ? 0 : date[type]);
+        tempValue = pad(isNaN(date[type]) ? 1 : date[type]);
       else if (parseInt(target.value) < min || parseInt(target.value) > max) {
-        tempValue = date[type] ? date[type] : 0;
+        tempValue = date[type] ? date[type] : 1;
       }
       if (type === 'year') {
         tempValue = target.value.length > 4 ? date[type] : target.value;
@@ -186,11 +176,11 @@ const DateInput = forwardRef(
         tempValue = target.value.length > 2 ? date[type] : target.value;
       }
       dispatch({ type, payload: tempValue });
-      target.value.length === 2 && focusNextField(nextField);
+      target.value.length === 2 && focusField(nextRef[type]);
     };
 
     const handleChangedInput = e => {
-      handleChangedInputForType(e, nextRef[e.target.id], 32, 0, e.target.id);
+      handleChangedInputForType(e, 32, 0);
     };
 
     const onFocus = ({ target }) => {
@@ -223,7 +213,7 @@ const DateInput = forwardRef(
             data-test-id="day"
             onFocus={onFocus}
             min={1}
-            onKeyDown={e => keyDownHandler(e, 31, 1, 'day', null, 'month')}
+            onKeyDown={e => keyDownHandler(e, 31, 1)}
           />
           {'/'}
           <StyledSingleInputDate
@@ -241,7 +231,7 @@ const DateInput = forwardRef(
             data-test-id="month"
             onFocus={onFocus}
             min={1}
-            onKeyDown={e => keyDownHandler(e, 12, 1, 'month', 'day', 'year')}
+            onKeyDown={e => keyDownHandler(e, 12, 1)}
           />
           {'/'}
           <StyledSingleInputDate
@@ -259,7 +249,7 @@ const DateInput = forwardRef(
             onFocus={onFocus}
             minLength={1}
             min={1}
-            onKeyDown={e => keyDownHandler(e, 9999, 0, 'year', 'month', null)}
+            onKeyDown={e => keyDownHandler(e, 9999, 0)}
           />
           {error && touched ? (
             <StyledErrormark
@@ -404,7 +394,7 @@ DateInput.propTypes = {
   onChange: func,
   /** Callback function that is fired when the component's value changes. */
   onFocus: func,
-  /** Current value of the input element. Format { day: 'DD', month: 'MM', year: 'YYYY' } */
+  /** Current value of the input element as { day: 'DD', month: 'MM', year: 'YYYY' } */
   value: object,
   /** Adds extra props to the element */
   otherProps: object,
