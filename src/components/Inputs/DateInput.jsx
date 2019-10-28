@@ -13,6 +13,7 @@ import { detect } from 'detect-browser';
 
 import Checkmark from '../../assets/checkmark';
 import Errormark from '../../assets/errormark';
+import Calendar from 'react-calendar';
 
 const DateInput = forwardRef(
   (
@@ -65,10 +66,9 @@ const DateInput = forwardRef(
     }, [value]);
 
     useEffect(() => {
-      if (Object.values(date).filter(f => f).length) {
-        onChange(name, { ...date });
-        !touched && setFocus(true);
-      }
+      if (!Object.values(date).filter(f => !f).length) return;
+      onChange(name, { ...date });
+      !touched && setFocus(false);
     }, [date]);
 
     const prevRef = {
@@ -181,9 +181,26 @@ const DateInput = forwardRef(
       handleChangedInputForType(target, 32, 0);
     };
 
+    const handleCalendarChange = dateStr => {
+      const date = new Date(dateStr);
+      const payload = {
+        day: pad(date.getDate()),
+        month: pad(date.getMonth() + 1),
+        year: date.getFullYear(),
+      };
+      setFocus(false);
+      dispatch({ type: 'full', payload });
+    };
+
     const onFocus = ({ target }) => {
       target.setSelectionRange(0, target.getAttribute('data-maxlengthvalue'));
     };
+
+    const calendarDate = new Date(
+      date.year,
+      parseInt(date.month) - 1 > -1 ? parseInt(date.month) - 1 : date.month,
+      date.day,
+    );
 
     return (
       <Container className={className} {...otherProps}>
@@ -265,6 +282,9 @@ const DateInput = forwardRef(
             />
           ) : null}
         </Input>
+        {focus && (
+          <Calendar onChange={handleCalendarChange} value={calendarDate} />
+        )}
         {error && touched ? (
           <ErrorContainer>
             <p>{error}</p>
