@@ -145,12 +145,7 @@ const Input = styled(Select)`
       }
     }
     &__multi-value {
-      background: linear-gradient(
-          0deg,
-          rgba(255, 128, 0, 0.05),
-          rgba(255, 128, 0, 0.05)
-        ),
-        #ffffff;
+      background: rgba(255, 128, 0, 0.05);
       border: 1px solid ${key(['colors', 'action'])};
       box-sizing: border-box;
       border-radius: 3px;
