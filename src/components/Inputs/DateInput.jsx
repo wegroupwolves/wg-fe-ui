@@ -150,37 +150,35 @@ const DateInput = forwardRef(
       dispatch({ type: id, payload: tempInput });
     };
 
-    const handleBlurInput = ({ target }) => {
-      if (target.id === 'year')
-        dispatch({ type: 'year', payload: target.value });
-      switch (target.id) {
+    const handleBlurInput = ({ target: { id, value } }) => {
+      if (id === 'year') dispatch({ type: 'year', payload: value });
+      switch (id) {
         case 'day':
-          blurHandlerType(target, 32, 0);
+          blurHandlerType({ id, value }, 32, 0);
           break;
         case 'month':
-          blurHandlerType(target, 13, 0);
+          blurHandlerType({ id, value }, 13, 0);
       }
     };
 
-    const handleChangedInputForType = ({ target }, max, min) => {
-      const type = target.id;
+    const handleChangedInputForType = ({ id, value }, max, min) => {
+      const type = id;
       let tempValue;
-      if (isNaN(target.value))
-        tempValue = pad(isNaN(date[type]) ? 1 : date[type]);
-      else if (parseInt(target.value) < min || parseInt(target.value) > max) {
+      if (isNaN(value)) tempValue = pad(isNaN(date[type]) ? 1 : date[type]);
+      else if (parseInt(value) < min || parseInt(value) > max) {
         tempValue = date[type] ? date[type] : 1;
       }
       if (type === 'year') {
-        tempValue = target.value.length > 4 ? date[type] : target.value;
+        tempValue = value.length > 4 ? date[type] : value;
       } else {
-        tempValue = target.value.length > 2 ? date[type] : target.value;
+        tempValue = value.length > 2 ? date[type] : value;
       }
       dispatch({ type, payload: tempValue });
-      target.value.length === 2 && focusField(nextRef[type]);
+      value.length === 2 && focusField(nextRef[type]);
     };
 
-    const handleChangedInput = e => {
-      handleChangedInputForType(e, 32, 0);
+    const handleChangedInput = ({ target }) => {
+      handleChangedInputForType(target, 32, 0);
     };
 
     const onFocus = ({ target }) => {
@@ -335,6 +333,8 @@ const Container = styled.div`
   font-family: ${key('fonts.primary')};
   position: relative;
 `;
+
+Container.displayName = 'Container';
 
 const ErrorContainer = styled.div`
   width: 100%;
