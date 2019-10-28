@@ -8,7 +8,7 @@ const SearchSelectInput = forwardRef(
   (
     {
       className,
-      selected,
+      onSelect,
       loading,
       options,
       name,
@@ -25,7 +25,7 @@ const SearchSelectInput = forwardRef(
     const [isSelected, setSelected] = useState();
 
     const handleChange = e => {
-      selected(name, e.value);
+      onSelect(name, e.value);
       setSelected(e);
     };
 
@@ -174,7 +174,7 @@ SearchSelectInput.propTypes = {
   /** Beeing able to use it in Styled Components */
   className: string,
   /** Returns name and value of selected */
-  selected: func.isRequired,
+  onSelect: func.isRequired,
   /** Sets name of inputfield */
   name: string.isRequired,
   /** if true input is disabled */

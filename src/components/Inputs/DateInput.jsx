@@ -307,6 +307,8 @@ const DateInput = forwardRef(
 
 const StyledCalendar = styled(Calendar)`
   min-width: 27rem;
+  position: absolute;
+  z-index: 2;
 `;
 
 const Input = styled.div`
