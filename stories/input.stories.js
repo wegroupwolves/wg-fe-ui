@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { storiesOf } from '@storybook/react';
 // import { linkTo } from '@storybook/addon-links';
 import {
@@ -113,13 +113,13 @@ storiesOf('Low level blocks/Inputs', module)
     let error = text('Error', '');
     let touched = boolean('Touched', false);
     let disabled = boolean('Disable', false);
-
+    const ref = useRef();
     return (
       <StyledDateInput
+        ref={ref}
         touched={touched}
         error={error}
         name="date"
-        value={object('value', { day: '', month: '', year: '' })}
         disabled={disabled}
         onChange={action('change')}
       >
@@ -150,7 +150,7 @@ storiesOf('Low level blocks/Inputs', module)
           [],
         )}
         name="selection"
-        selected={(name, value) => console.log(name, value)}
+        onSelected={(name, value) => console.log(name, value)}
         loading={boolean('Loading', false)}
         initial={select('initial', {
           None: null,

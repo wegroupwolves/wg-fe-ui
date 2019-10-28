@@ -15,6 +15,23 @@ import Checkmark from '../../assets/checkmark';
 import Errormark from '../../assets/errormark';
 import Calendar from 'react-calendar';
 
+const useClickOutside = (ref, handler) => {
+  useEffect(() => {
+    const listener = e => {
+      if (e.keyCode === 27) return handler();
+      ref.current && !ref.current.contains(e.target) && handler();
+    };
+    document.addEventListener('keyup', listener);
+    document.addEventListener('mousedown', listener);
+    document.addEventListener('touchstart', listener);
+    return () => {
+      document.removeEventListener('keyup', listener);
+      document.removeEventListener('mousedown', listener);
+      document.removeEventListener('touchstart', listener);
+    };
+  }, [ref, handler]);
+};
+
 const DateInput = forwardRef(
   (
     {
@@ -63,6 +80,8 @@ const DateInput = forwardRef(
     const ARROW_UP = 38;
     const ARROW_RIGHT = 39;
     const ARROW_DOWN = 40;
+
+    useClickOutside(ref, () => setFocus(false));
 
     useEffect(() => {
       dispatch({ type: 'full', payload: value });
@@ -202,20 +221,21 @@ const DateInput = forwardRef(
       target.setSelectionRange(0, target.getAttribute('data-maxlengthvalue'));
     };
 
-    const calendarDate = new Date(
-      date.year,
-      parseInt(date.month) - 1 > -1 ? parseInt(date.month) - 1 : date.month,
-      date.day,
-    );
+    const calendarDate = date.day
+      ? new Date(
+          date.year,
+          parseInt(date.month) - 1 > -1 ? parseInt(date.month) - 1 : date.month,
+          date.day,
+        )
+      : new Date();
 
     return (
-      <Container className={className} {...otherProps}>
+      <Container className={className} ref={ref} {...otherProps}>
         <StyledLabel disabled={disabled} htmlFor={name}>
           {children}
           <Input
             error={error}
             touched={touched}
-            ref={ref}
             onFocus={handleFocus}
             onBlur={onBlur}
           >
@@ -289,7 +309,7 @@ const DateInput = forwardRef(
             />
           ) : null}
         </StyledLabel>
-        {focus && isDateFilled() ? (
+        {focus ? (
           <StyledCalendar
             onChange={handleCalendarChange}
             value={calendarDate}
@@ -315,6 +335,7 @@ const Input = styled.div`
   display: flex;
   align-items: center;
   position: relative;
+  font-size: 1.5rem;
   width: 100%;
   box-sizing: border-box;
   align-items: center;
