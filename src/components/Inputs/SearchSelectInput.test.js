@@ -101,7 +101,7 @@ describe('SearchSelectInput', () => {
     expect(wrapper.find('input').props().disabled).toEqual(false);
 
     // check if label is sub-title color
-    expect(wrapper.find('p')).toHaveStyleRule(
+    expect(wrapper.find('label')).toHaveStyleRule(
       'color',
       Theme().colors['sub-title'],
     );
@@ -121,7 +121,7 @@ describe('SearchSelectInput', () => {
     });
 
     // check if label color changed to disabled
-    expect(wrapper.find('p')).toHaveStyleRule(
+    expect(wrapper.find('label')).toHaveStyleRule(
       'color',
       Theme().colors['disabled'],
     );

@@ -74,7 +74,7 @@ const DateInput = forwardRef(
       if (isDateFilled()) return;
       onChange(name, { ...date });
       !touched && setFocus(false);
-    }, [date]);
+    }, [date.day, date.month, date.year]);
 
     const prevRef = {
       day: null,
