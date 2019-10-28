@@ -158,6 +158,7 @@ storiesOf('Low level blocks/Inputs', module)
           Option2: { value: 'option2', label: 'Option 2' },
           Option3: { value: 'option3', label: 'Option 3' },
         })}
+        isMulti={boolean('Multiple', false)}
       >
         Selection
       </StyledSearchSelectInput>

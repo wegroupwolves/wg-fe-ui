@@ -8,7 +8,7 @@ const SearchSelectInput = forwardRef(
   (
     {
       className,
-      selected,
+      onSelected,
       loading,
       options,
       name,
@@ -18,6 +18,7 @@ const SearchSelectInput = forwardRef(
       noOptionMessage,
       loadingMessage,
       placeholder,
+      isMulti,
       ...otherProps
     },
     ref,
@@ -25,8 +26,8 @@ const SearchSelectInput = forwardRef(
     const [isSelected, setSelected] = useState();
 
     const handleChange = e => {
-      selected(name, e.value);
-      setSelected(e);
+      onSelected(name, e ? e.value : e);
+      setSelected(e || []);
     };
 
     useEffect(() => {
@@ -45,12 +46,14 @@ const SearchSelectInput = forwardRef(
         <Input
           ref={ref}
           isDisabled={disabled}
-          onChange={e => handleChange(e)}
+          onChange={handleChange}
           options={options}
           value={isSelected}
           noOptionsMessage={() => noOptionMessage}
           placeholder={loading ? loadingMessage : placeholder}
           classNamePrefix="Select"
+          isMulti={isMulti}
+          closeMenuOnSelect={!isMulti}
           {...otherProps}
         />
       </Container>
@@ -78,7 +81,7 @@ const Input = styled(Select)`
       border-radius: 0.3rem;
       border: 0.1rem solid ${key('colors.outline')};
       box-shadow: none;
-      height: 4.5rem;
+      height: ${({ isMulti }) => (isMulti ? 'fit-content' : '4.5rem')};
 
       &:hover {
         border-color: ${key('colors.interactive')};
@@ -141,6 +144,31 @@ const Input = styled(Select)`
         color: white;
       }
     }
+    &__multi-value {
+      background: rgba(255, 128, 0, 0.05);
+      border: 1px solid ${key(['colors', 'action'])};
+      box-sizing: border-box;
+      border-radius: 3px;
+
+      &__label {
+        color: ${key(['colors', 'action'])};
+        line-height: 1.8rem;
+        box-sizing: border-box;
+      }
+      &__remove {
+        cursor: pointer;
+        svg {
+          fill: ${key(['colors', 'action'])};
+        }
+
+        &:hover {
+          background-color: initial;
+        }
+      }
+    }
+    &__indicators {
+      ${({ isMulti }) => (isMulti ? 'display: none' : null)};
+    }
   }
 `;
 
@@ -163,6 +191,7 @@ SearchSelectInput.defaultProps = {
   loadingMessage: 'Loading...',
   placeholder: 'Choose your option',
   initial: null,
+  isMulti: false,
   otherProps: {},
 };
 
@@ -170,7 +199,7 @@ SearchSelectInput.propTypes = {
   /** Beeing able to use it in Styled Components */
   className: string,
   /** Returns name and value of selected */
-  selected: func.isRequired,
+  onSelected: func.isRequired,
   /** Sets name of inputfield */
   name: string.isRequired,
   /** if true input is disabled */
@@ -189,6 +218,8 @@ SearchSelectInput.propTypes = {
   loadingMessage: string,
   /** Message to show on load when no initial */
   placeholder: string,
+  /** Defines if it can handle multiple tags */
+  isMulti: bool,
   /** Adds extra props to the element */
   otherProps: object,
 };
