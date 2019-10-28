@@ -209,68 +209,69 @@ const DateInput = forwardRef(
 
     return (
       <Container className={className} {...otherProps}>
-        <StyledLabel disabled={disabled}>{children}</StyledLabel>
-        <Input
-          error={error}
-          touched={touched}
-          ref={ref}
-          htmlFor={name}
-          onFocus={handleFocus}
-          onBlur={onBlur}
-        >
-          <StyledSingleInputDate
-            id="day"
-            value={date.day}
-            data-maxlengthvalue={2}
-            maxLength={2}
-            maxValue={31}
-            onBlur={handleBlurInput}
-            onChange={handleChangedInput}
-            placeholder="dd"
-            type="text"
-            autoComplete="off"
-            ref={dayRef}
-            data-test-id="day"
-            onFocus={onFocus}
-            min={1}
-            onKeyDown={e => keyDownHandler(e, 31, 1)}
-          />
-          {'/'}
-          <StyledSingleInputDate
-            id="month"
-            value={date.month}
-            data-maxlengthvalue={2}
-            maxLength={2}
-            maxValue={12}
-            onBlur={handleBlurInput}
-            onChange={handleChangedInput}
-            placeholder="mm"
-            type="text"
-            ref={monthRef}
-            autoComplete="off"
-            data-test-id="month"
-            onFocus={onFocus}
-            min={1}
-            onKeyDown={e => keyDownHandler(e, 12, 1)}
-          />
-          {'/'}
-          <StyledSingleInputDate
-            id="year"
-            value={date.year}
-            maxLength={4}
-            data-maxlengthvalue={9999}
-            ref={yearRef}
-            onBlur={handleBlurInput}
-            onChange={handleChangedInput}
-            placeholder="yyyy"
-            type="text"
-            autoComplete="off"
-            data-test-id="year"
-            onFocus={onFocus}
-            minLength={1}
-            min={1}
-            onKeyDown={e => keyDownHandler(e, 9999, 0)}
-          />
+        <StyledLabel disabled={disabled} htmlFor={name}>
+          {children}
+          <Input
+            error={error}
+            touched={touched}
+            ref={ref}
+            onFocus={handleFocus}
+            onBlur={onBlur}
+          >
+            <StyledSingleInputDate
+              id="day"
+              value={date.day}
+              data-maxlengthvalue={2}
+              maxLength={2}
+              maxValue={31}
+              onBlur={handleBlurInput}
+              onChange={handleChangedInput}
+              placeholder="dd"
+              type="text"
+              autoComplete="off"
+              ref={dayRef}
+              data-test-id="day"
+              onFocus={onFocus}
+              min={1}
+              onKeyDown={e => keyDownHandler(e, 31, 1)}
+            />
+            {'/'}
+            <StyledSingleInputDate
+              id="month"
+              value={date.month}
+              data-maxlengthvalue={2}
+              maxLength={2}
+              maxValue={12}
+              onBlur={handleBlurInput}
+              onChange={handleChangedInput}
+              placeholder="mm"
+              type="text"
+              ref={monthRef}
+              autoComplete="off"
+              data-test-id="month"
+              onFocus={onFocus}
+              min={1}
+              onKeyDown={e => keyDownHandler(e, 12, 1)}
+            />
+            {'/'}
+            <StyledSingleInputDate
+              id="year"
+              value={date.year}
+              maxLength={4}
+              data-maxlengthvalue={9999}
+              ref={yearRef}
+              onBlur={handleBlurInput}
+              onChange={handleChangedInput}
+              placeholder="yyyy"
+              type="text"
+              autoComplete="off"
+              data-test-id="year"
+              onFocus={onFocus}
+              minLength={1}
+              min={1}
+              onKeyDown={e => keyDownHandler(e, 9999, 0)}
+            />
+          </Input>
           {error && touched ? (
             <StyledErrormark
               color="#F74040"
@@ -286,10 +287,10 @@ const DateInput = forwardRef(
               browser={browser ? browser.name : null}
             />
           ) : null}
-        </Input>
-        {focus && isDateFilled() && (
+        </StyledLabel>
+        {focus && isDateFilled() ? (
           <Calendar onChange={handleCalendarChange} value={calendarDate} />
-        )}
+        ) : null}
         {error && touched ? (
           <ErrorContainer>
             <p>{error}</p>
@@ -300,18 +301,9 @@ const DateInput = forwardRef(
   },
 );
 
-const StyledLabel = styled.label`
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  width: 100%;
-  font-size: 1.4rem;
-  margin-bottom: 1rem;
-  color: ${props => (props.disabled ? '#AEAEAE' : '#5B5550')};
-`;
-
 const Input = styled.div`
   display: flex;
+  align-items: center;
   position: relative;
   width: 100%;
   box-sizing: border-box;
@@ -321,6 +313,7 @@ const Input = styled.div`
   background-color: white;
   padding-left: 1.2rem;
   height: 4rem;
+  margin-top: 1rem;
   border: 0.1rem solid;
   border-color: ${({ error, touched }) =>
     error && touched
@@ -329,6 +322,17 @@ const Input = styled.div`
       ? key('colors.good')
       : key('colors.outline')};
   border-radius: 0.3rem;
+`;
+
+Input.displayName = 'Input';
+
+const StyledLabel = styled.label`
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 100%;
+  font-size: 1.4rem;
+  color: ${props => (props.disabled ? '#AEAEAE' : '#5B5550')};
 `;
 
 const StyledSingleInputDate = styled.input`

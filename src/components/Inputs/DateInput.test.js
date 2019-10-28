@@ -51,7 +51,7 @@ describe('DateInput', () => {
     );
 
     // check if borders have default color when not touched yet
-    expect(wrapper.find('div[htmlFor="date"]')).toHaveStyleRule(
+    expect(wrapper.find('Input')).toHaveStyleRule(
       'border-color',
       Theme().colors['outline'],
     );
@@ -66,7 +66,7 @@ describe('DateInput', () => {
         </DateInput>
       </ThemeProvider>,
     );
-    expect(wrapper.find('div[htmlFor="date"]')).toHaveStyleRule(
+    expect(wrapper.find('Input')).toHaveStyleRule(
       'border-color',
       Theme().colors['bad'],
     );
@@ -81,7 +81,7 @@ describe('DateInput', () => {
         </DateInput>
       </ThemeProvider>,
     );
-    expect(wrapper.find('div[htmlFor="date"]')).toHaveStyleRule(
+    expect(wrapper.find('Input')).toHaveStyleRule(
       'border-color',
       Theme().colors['good'],
     );
