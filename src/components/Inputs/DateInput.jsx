@@ -113,7 +113,7 @@ const DateInput = forwardRef(
     };
 
     const keyDownHandler = (e, max, min) => {
-      if (![8, 9, 37, 38, 39, 40].includes(e.keyCode)) return true;
+      if (![8, 37, 38, 39, 40].includes(e.keyCode)) return true;
       const type = e.target.id;
       e.preventDefault();
       if (e.keyCode === ARROW_UP || e.keyCode === ARROW_DOWN) {
@@ -129,7 +129,7 @@ const DateInput = forwardRef(
         focusField(prevRef[type]);
         type === 'day' && setRange(e);
         e.keyCode === 8 && dispatch({ type, payload: '' });
-      } else if ([ARROW_RIGHT, 9].includes(e.keyCode)) {
+      } else if (ARROW_RIGHT === e.keyCode) {
         setRange(e);
         focusField(nextRef[type]);
       }
@@ -183,6 +183,7 @@ const DateInput = forwardRef(
     };
 
     const handleChangedInput = ({ target }) => {
+      if (!/^\d{1,4}$/.test(target.value)) return;
       handleChangedInputForType(target, 32, 0);
     };
 
@@ -289,7 +290,10 @@ const DateInput = forwardRef(
           ) : null}
         </StyledLabel>
         {focus && isDateFilled() ? (
-          <Calendar onChange={handleCalendarChange} value={calendarDate} />
+          <StyledCalendar
+            onChange={handleCalendarChange}
+            value={calendarDate}
+          />
         ) : null}
         {error && touched ? (
           <ErrorContainer>
@@ -300,6 +304,10 @@ const DateInput = forwardRef(
     );
   },
 );
+
+const StyledCalendar = styled(Calendar)`
+  min-width: 27rem;
+`;
 
 const Input = styled.div`
   display: flex;
