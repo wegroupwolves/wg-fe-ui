@@ -150,7 +150,7 @@ storiesOf('Low level blocks/Inputs', module)
           [],
         )}
         name="selection"
-        selected={(name, value) => console.log(name, value)}
+        onSelected={(name, value) => console.log(name, value)}
         loading={boolean('Loading', false)}
         initial={select('initial', {
           None: null,
