@@ -11,7 +11,7 @@ describe('SearchSelectInput', () => {
     const wrapper = mount(
       <SearchSelectInput
         name="test"
-        selected={(name, value) => {
+        onSelect={(name, value) => {
           (testValue.name = name), (testValue.value = value);
         }}
         options={[
@@ -33,7 +33,7 @@ describe('SearchSelectInput', () => {
       .first()
       .simulate('keyDown', { key: 'Enter', keyCode: 13 });
 
-    // if simulate is complete, selected should be triggered
+    // if simulate is complete, onSelect should be triggered
     expect(testValue.value).toEqual('option1');
     expect(testValue.name).toEqual('test');
   });
@@ -42,7 +42,7 @@ describe('SearchSelectInput', () => {
       <SearchSelectInput
         name="test"
         loading={true}
-        selected={(name, value) => console.log(name, value)}
+        onSelect={(name, value) => console.log(name, value)}
         options={[
           { value: 'option1', label: 'Option 1' },
           { value: 'option2', label: 'Option 2' },
@@ -64,7 +64,7 @@ describe('SearchSelectInput', () => {
     const wrapper = mount(
       <SearchSelectInput
         name="test"
-        selected={(name, value) => console.log(name, value)}
+        onSelect={(name, value) => console.log(name, value)}
         options={[]}
       >
         Test
@@ -89,7 +89,7 @@ describe('SearchSelectInput', () => {
       <ThemeProvider theme={Theme}>
         <SearchSelectInput
           name="test"
-          selected={(name, value) => console.log(name, value)}
+          onSelect={(name, value) => console.log(name, value)}
           options={[]}
         >
           Test
@@ -111,7 +111,7 @@ describe('SearchSelectInput', () => {
       children: (
         <SearchSelectInput
           name="test"
-          selected={(name, value) => console.log(name, value)}
+          onSelect={(name, value) => console.log(name, value)}
           options={[]}
           disabled
         >
@@ -133,7 +133,7 @@ describe('SearchSelectInput', () => {
     const wrapper = mount(
       <SearchSelectInput
         name="test"
-        selected={(name, value) => console.log(name, value)}
+        onSelect={(name, value) => console.log(name, value)}
         options={[]}
         id={12}
       >
