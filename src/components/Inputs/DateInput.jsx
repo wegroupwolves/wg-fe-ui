@@ -32,22 +32,25 @@ const DateInput = forwardRef(
     ref,
   ) => {
     const init = () => ({ ...value });
-    const [date, dispatch] = useReducer((state, { type, payload }) => {
-      switch (type) {
-        case 'day':
-          return { ...state, day: payload };
-        case 'month':
-          return { ...state, month: payload };
-        case 'year':
-          return { ...state, year: payload };
-        case 'full':
-          return { ...payload };
-        case 'reset':
-          return init(payload);
-        default:
-          return { ...state };
-      }
-    }, init);
+    const [date, dispatch] = useReducer(
+      (state, { type, payload }) => {
+        switch (type) {
+          case 'day':
+            return { ...state, day: payload };
+          case 'month':
+            return { ...state, month: payload };
+          case 'year':
+            return { ...state, year: payload };
+          case 'full':
+            return { ...payload };
+          case 'reset':
+            return init(payload);
+          default:
+            return { ...state };
+        }
+      },
+      { ...value },
+    );
 
     const browser = detect();
     const [focus, setFocus] = useState();
@@ -65,8 +68,10 @@ const DateInput = forwardRef(
       dispatch({ type: 'full', payload: value });
     }, [value]);
 
+    const isDateFilled = () => Object.values(date).filter(f => !f).length;
+
     useEffect(() => {
-      if (!Object.values(date).filter(f => !f).length) return;
+      if (isDateFilled()) return;
       onChange(name, { ...date });
       !touched && setFocus(false);
     }, [date]);
@@ -282,7 +287,7 @@ const DateInput = forwardRef(
             />
           ) : null}
         </Input>
-        {focus && (
+        {focus && isDateFilled() && (
           <Calendar onChange={handleCalendarChange} value={calendarDate} />
         )}
         {error && touched ? (

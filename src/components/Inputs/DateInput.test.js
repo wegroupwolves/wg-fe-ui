@@ -6,6 +6,13 @@ import { act } from 'react-dom/test-utils';
 import 'jest-styled-components';
 import { ThemeProvider } from 'styled-components';
 
+jest.mock('react-calendar', () => ({
+  __esModule: true,
+  default: () => {
+    return <div></div>;
+  },
+}));
+
 describe('DateInput', () => {
   it('returns value when input changes', () => {
     const onChange = jest.fn();
