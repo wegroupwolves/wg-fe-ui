@@ -47,7 +47,7 @@ const SearchSelectInput = forwardRef(
           <Input
             ref={ref}
             isDisabled={disabled}
-            onChange={e => handleChange(e)}
+            onChange={handleChange}
             options={options}
             value={isSelected}
             noOptionsMessage={() => noOptionMessage}
