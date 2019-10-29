@@ -54,7 +54,7 @@ const TextInput = forwardRef(
     }, [value]);
 
     const handleChange = ({ target }) => {
-      setInputValue(target.value);
+      !otherProps.isMasked && setInputValue(target.value);
       onChange(target.value);
     };
     const handleBlur = () => {
