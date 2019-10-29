@@ -15,6 +15,7 @@ import {
 import { CheckBox, RadioOption, CheckOption } from './components/Checkboxes';
 import {
   ImageSelectBox,
+  MaskedInput,
   TextArea,
   TextInput,
   SearchInput,
@@ -52,6 +53,7 @@ export {
   ImageSelectBox,
   RadioOption,
   CheckOption,
+  MaskedInput,
   TextArea,
   TextInput,
   DateInput,
