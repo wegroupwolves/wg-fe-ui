@@ -30,14 +30,14 @@ const LoadingBar = ({
   activeId,
   background,
   height,
-  stages,
+  stagesLength,
   ...otherProps
 }) => {
   return (
     <ProgressTrack
       height={height}
       background={background}
-      len={stages}
+      len={stagesLength}
       activeId={activeId}
       {...otherProps}
     />
@@ -79,6 +79,7 @@ LoadingBar.propTypes = {
     id: number,
   }),
   stepWidth: number,
+  stagesLength: number,
   height: string,
 };
 

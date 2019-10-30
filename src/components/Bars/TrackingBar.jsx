@@ -22,7 +22,7 @@ const TrackingBar = ({
   return (
     <StyledTrackingBar className={className}>
       <LoadingBar
-        stages={stages.length}
+        stagesLength={stages.length}
         activeId={activeId}
         background={background}
         filledColor={filledColor}
