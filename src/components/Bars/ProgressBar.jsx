@@ -41,7 +41,7 @@ const ProgressBar = ({
   return (
     <StyledProgressBar {...otherProps} className={className}>
       <LoadingBar
-        stages={stages}
+        len={stages.length}
         activeId={activeId}
         background={background}
         filledColor={filledColor}

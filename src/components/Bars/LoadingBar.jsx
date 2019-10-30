@@ -20,7 +20,8 @@ const ProgressTrack = styled.div`
     height: ${({ height }) => height || '5px'};
     background-color: ${({ filledColor }) =>
       filledColor || key('colors.action')};
-    width: ${({ step }) => `${step}vw` || 0};
+    width: ${({ len, activeId }) =>
+      len ? `${(activeId - 1) * (100 / (len - 1))}%` : 0};
     transition: width 1s ease-in-out;
   }
 `;
@@ -29,23 +30,15 @@ const LoadingBar = ({
   activeId,
   background,
   height,
-  offset,
   stages,
-  stepWidth,
   ...otherProps
 }) => {
-  let step = stepWidth;
-  if (stepWidth) {
-    if (activeId === 1) step = offset;
-    else step = (activeId - 1) * (stepWidth + offset);
-  } else {
-    step = activeId * (100 / stages.length);
-  }
   return (
     <ProgressTrack
       height={height}
       background={background}
-      step={step}
+      len={stages}
+      activeId={activeId}
       {...otherProps}
     />
   );
