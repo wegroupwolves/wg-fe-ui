@@ -17,7 +17,7 @@ const formatMask = (value, mask, maskChar) => {
   let lastReplacedIndex = -1;
   const re = new RegExp(maskChar, 'g');
   const filledMask = mask.replace(re, (_, j) => {
-    if (i >= value.length) return ' ';
+    if (i >= value.length) return maskChar;
     lastReplacedIndex = j;
     return value[i++];
   });
