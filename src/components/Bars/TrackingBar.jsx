@@ -18,17 +18,14 @@ const TrackingBar = ({
   className,
 }) => {
   const activeId = getActiveId(active, stages);
-
   return (
     <StyledTrackingBar className={className}>
       <LoadingBar
-        stages={stages.length}
+        stagesLength={stages.length}
         activeId={activeId}
         background={background}
         filledColor={filledColor}
         height={height}
-        offset={2.08}
-        stepWidth={14.2857}
       />
       {stages.map(stage => (
         <TrackingStep key={stage.id} stage={stage} activeId={activeId} />

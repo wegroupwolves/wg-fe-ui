@@ -57,7 +57,7 @@ storiesOf('Mid Level blocks/Bars', module)
   })
   .add('TrackingBar', () => {
     const activeSteps = [
-      'filling',
+      'filing',
       'uploading_documents',
       'data_analysis',
       'claim_opened',
