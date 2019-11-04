@@ -20,8 +20,7 @@ const ProgressTrack = styled.div`
     height: ${({ height }) => height || '5px'};
     background-color: ${({ filledColor }) =>
       filledColor || key('colors.action')};
-    width: ${({ len, activeId }) =>
-      len ? `${(activeId - 1) * (100 / (len - 1))}%` : 0};
+    width: ${({ len, activeId }) => len ? `${activeId * (100 / len)}%` : 0}; 
     transition: width 1s ease-in-out;
   }
 `;
@@ -33,12 +32,14 @@ const LoadingBar = ({
   stagesLength,
   ...otherProps
 }) => {
+  const currentId = activeId - 1;
+  const len = stagesLength - 1;
   return (
     <ProgressTrack
       height={height}
+      activeId={currentId}
       background={background}
-      len={stagesLength}
-      activeId={activeId}
+      len={len}
       {...otherProps}
     />
   );
@@ -49,36 +50,12 @@ LoadingBar.defaultProps = {
   background: '',
   height: '7px',
   otherProps: {},
-  stages: [
-    {
-      key: 'start',
-      name: 'start',
-      id: 1,
-    },
-    {
-      key: 'middle',
-      name: 'middle',
-      id: 2,
-    },
-    {
-      key: 'end',
-      name: 'end',
-      id: 3,
-    },
-  ],
 };
 
 LoadingBar.propTypes = {
   activeId: number,
   background: string,
-  offset: number,
   otherProps: object,
-  stages: arrayOf({
-    key: string,
-    name: string,
-    id: number,
-  }),
-  stepWidth: number,
   stagesLength: number,
   height: string,
 };

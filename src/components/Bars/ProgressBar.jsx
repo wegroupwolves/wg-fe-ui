@@ -36,13 +36,13 @@ const ProgressBar = ({
   className,
   height,
   stages,
-  steps,
+  stepsLength,
   ...otherProps
 }) => {
   return (
     <StyledProgressBar {...otherProps} className={className}>
       <LoadingBar
-        stagesLength={steps || stages.length}
+        stagesLength={stepsLength || stages.length}
         activeId={activeId}
         background={background}
         filledColor={filledColor}
@@ -108,7 +108,7 @@ ProgressBar.propTypes = {
     name: string,
     id: number,
   }),
-  steps: number,
+  stepsLength: number,
 };
 
 export default ProgressBar;
