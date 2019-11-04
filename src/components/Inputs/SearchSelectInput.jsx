@@ -56,10 +56,15 @@ const SearchSelectInput = forwardRef(
             classNamePrefix="Select"
             isMulti={isMulti}
             closeMenuOnSelect={!isMulti}
+            error={error ? true : false}
             {...otherProps}
-          error={error ? true : false}
           />
         </Label>
+        {error ? (
+          <ErrorContainer>
+            <p>{error}</p>
+          </ErrorContainer>
+        ) : null}
       </Container>
     );
   },
@@ -70,7 +75,7 @@ const ErrorContainer = styled.div`
   display: flex;
   justify-content: flex-end;
   margin-top: -1rem;
-  font-size: 1rem;
+  font-size: 1.2rem;
   color: ${key('colors.bad')};
 `;
 
@@ -128,6 +133,7 @@ const Input = styled(Select)`
 
     &__single-value {
       color: black;
+      overflow: initial;
     }
 
     &__menu {
@@ -137,6 +143,7 @@ const Input = styled(Select)`
 
     &__menu-list {
       max-height: 13rem;
+      padding: 0;
     }
 
     &__menu-notice--no-options {
@@ -145,23 +152,27 @@ const Input = styled(Select)`
     }
 
     &__option {
-      font-size: 1.2rem;
+      font-size: 1.4rem;
       color: ${key('colors.sub-txt')};
+      padding: 1rem;
 
       :hover {
         cursor: pointer;
         background-color: ${key([`colors`, `hover`])};
-        color: white;
+        color: ${key([`colors`, `toggle`])};
+        /* color: ${key('colors.sub-txt')}; */
+        /* color: white; */
       }
 
       &--is-focused {
-        color: white;
+        /* color: white; */
+        color: ${key([`colors`, `toggle`])};
         background-color: ${key([`colors`, `hover`])};
       }
 
       &--is-selected {
-        background-color: ${key([`colors`, `toggle`])};
-        color: white;
+        color: ${key([`colors`, `action`])};
+        background-color: white;
       }
     }
     &__multi-value {
@@ -200,7 +211,6 @@ const Label = styled.label`
   line-height: 1rem;
   color: ${props =>
     props.disabled ? key('colors.disabled') : key('colors.sub-title')};
-  width: 80%;
 `;
 
 SearchSelectInput.displayName = 'SearchSelectInput';
