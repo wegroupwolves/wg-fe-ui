@@ -42,20 +42,22 @@ const SearchSelectInput = forwardRef(
 
     return (
       <Container className={className}>
-        <Label disabled={disabled}>{children}</Label>
-        <Input
-          ref={ref}
-          isDisabled={disabled}
-          onChange={handleChange}
-          options={options}
-          value={isSelected}
-          noOptionsMessage={() => noOptionMessage}
-          placeholder={loading ? loadingMessage : placeholder}
-          classNamePrefix="Select"
-          isMulti={isMulti}
-          closeMenuOnSelect={!isMulti}
-          {...otherProps}
-        />
+        <Label disabled={disabled}>
+          {children}
+          <Input
+            ref={ref}
+            isDisabled={disabled}
+            onChange={handleChange}
+            options={options}
+            value={isSelected}
+            noOptionsMessage={() => noOptionMessage}
+            placeholder={loading ? loadingMessage : placeholder}
+            classNamePrefix="Select"
+            isMulti={isMulti}
+            closeMenuOnSelect={!isMulti}
+            {...otherProps}
+          />
+        </Label>
       </Container>
     );
   },
@@ -70,6 +72,7 @@ const Container = styled.div`
 
 const Input = styled(Select)`
   width: 100%;
+  margin-top: 1rem;
   margin-bottom: 2rem;
 
   &:focus {
@@ -172,11 +175,12 @@ const Input = styled(Select)`
   }
 `;
 
-const Label = styled.p`
+const Label = styled.label`
+  display: flex;
+  flex-direction: column;
   font-size: 1.4rem;
   transition: 0.2s;
   line-height: 1rem;
-  margin-bottom: 1rem;
   color: ${props =>
     props.disabled ? key('colors.disabled') : key('colors.sub-title')};
   width: 80%;

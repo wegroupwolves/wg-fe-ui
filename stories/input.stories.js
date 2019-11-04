@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { storiesOf } from '@storybook/react';
 // import { linkTo } from '@storybook/addon-links';
 import {
@@ -109,7 +109,7 @@ storiesOf('Low level blocks/Inputs', module)
       </StyledTextInput>
     );
   })
-  .add('StyledTextArea', () => {
+  .add('TextArea', () => {
     let error = text('Error', '');
     let touched = boolean('Touched', false);
     let counter = boolean('Counter', false);
@@ -130,16 +130,16 @@ storiesOf('Low level blocks/Inputs', module)
     );
   })
   .add('DateInput', () => {
-    let errors = { date: text('Error', '') };
-    let touched = { date: boolean('Touched', false) };
+    let error = text('Error', '');
+    let touched = boolean('Touched', false);
     let disabled = boolean('Disable', false);
-
+    const ref = useRef();
     return (
       <StyledDateInput
+        ref={ref}
         touched={touched}
-        errors={errors}
+        error={error}
         name="date"
-        value={object('Value', { day: '' })}
         disabled={disabled}
         onChange={action('change')}
       >

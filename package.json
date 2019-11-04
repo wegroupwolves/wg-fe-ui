@@ -26,7 +26,7 @@
       "^.+\\.jsx?$": "babel-jest"
     },
     "moduleNameMapper": {
-      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js"
+      "\\.(css|scss|jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js"
     }
   },
   "eslintConfig": {
@@ -57,6 +57,7 @@
     "detect-browser": "^4.6.0",
     "formik": "^1.5.8",
     "i18next": "^17.2.0",
+    "react-calendar": "^2.19.2",
     "react-drag-drawer": "^3.3.1",
     "react-input-mask": "^2.0.4",
     "react-router": "^5.1.2",

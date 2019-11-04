@@ -6,6 +6,13 @@ import { act } from 'react-dom/test-utils';
 import 'jest-styled-components';
 import { ThemeProvider } from 'styled-components';
 
+jest.mock('react-calendar', () => ({
+  __esModule: true,
+  default: () => {
+    return <div></div>;
+  },
+}));
+
 describe('DateInput', () => {
   it('returns value when input changes', () => {
     const onChange = jest.fn();
@@ -31,8 +38,8 @@ describe('DateInput', () => {
     const calledOnChange = onChange.mock.calls[0];
 
     expect(calledOnChange[0]).toBe(`date`);
-    expect(calledOnChange[1]).toHaveProperty('day', '08');
-    expect(calledOnChange[1]).toHaveProperty('month', '03');
+    expect(calledOnChange[1]).toHaveProperty('day', '8');
+    expect(calledOnChange[1]).toHaveProperty('month', '3');
     expect(calledOnChange[1]).toHaveProperty('year', '1996');
   });
 
@@ -44,7 +51,7 @@ describe('DateInput', () => {
     );
 
     // check if borders have default color when not touched yet
-    expect(wrapper.find('label[htmlFor="date"]')).toHaveStyleRule(
+    expect(wrapper.find('Input')).toHaveStyleRule(
       'border-color',
       Theme().colors['outline'],
     );
@@ -59,7 +66,7 @@ describe('DateInput', () => {
         </DateInput>
       </ThemeProvider>,
     );
-    expect(wrapper.find('label[htmlFor="date"]')).toHaveStyleRule(
+    expect(wrapper.find('Input')).toHaveStyleRule(
       'border-color',
       Theme().colors['bad'],
     );
@@ -74,7 +81,7 @@ describe('DateInput', () => {
         </DateInput>
       </ThemeProvider>,
     );
-    expect(wrapper.find('label[htmlFor="date"]')).toHaveStyleRule(
+    expect(wrapper.find('Input')).toHaveStyleRule(
       'border-color',
       Theme().colors['good'],
     );
@@ -108,6 +115,6 @@ describe('DateInput', () => {
       </DateInput>,
     );
 
-    expect(wrapper.find('div').props().max).toEqual(12);
+    expect(wrapper.find('Container').props().max).toEqual(12);
   });
 });
