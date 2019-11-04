@@ -110,7 +110,7 @@ FileBox.propTypes = {
   children: node,
   className: string,
   name: string,
-  size: string,
+  size: number,
   source: string,
   loaded: number,
   onClose: func,

@@ -8,7 +8,7 @@ const SearchSelectInput = forwardRef(
   (
     {
       className,
-      selected,
+      onSelected,
       loading,
       options,
       name,
@@ -18,6 +18,7 @@ const SearchSelectInput = forwardRef(
       noOptionMessage,
       loadingMessage,
       placeholder,
+      isMulti,
       error,
       ...otherProps
     },
@@ -26,8 +27,8 @@ const SearchSelectInput = forwardRef(
     const [isSelected, setSelected] = useState();
 
     const handleChange = e => {
-      selected(name, e.value);
-      setSelected(e);
+      onSelected(name, e ? e.value : e);
+      setSelected(e || []);
     };
 
     useEffect(() => {
@@ -42,24 +43,23 @@ const SearchSelectInput = forwardRef(
 
     return (
       <Container className={className}>
-        <Label disabled={disabled}>{children}</Label>
-        <Input
-          ref={ref}
-          isDisabled={disabled}
-          onChange={e => handleChange(e)}
-          options={options}
-          value={isSelected}
-          noOptionsMessage={() => noOptionMessage}
-          placeholder={loading ? loadingMessage : placeholder}
-          classNamePrefix="Select"
+        <Label disabled={disabled}>
+          {children}
+          <Input
+            ref={ref}
+            isDisabled={disabled}
+            onChange={handleChange}
+            options={options}
+            value={isSelected}
+            noOptionsMessage={() => noOptionMessage}
+            placeholder={loading ? loadingMessage : placeholder}
+            classNamePrefix="Select"
+            isMulti={isMulti}
+            closeMenuOnSelect={!isMulti}
+            {...otherProps}
           error={error ? true : false}
-          {...otherProps}
-        />
-        {error ? (
-          <ErrorContainer>
-            <p>{error}</p>
-          </ErrorContainer>
-        ) : null}
+          />
+        </Label>
       </Container>
     );
   },
@@ -83,6 +83,7 @@ const Container = styled.div`
 
 const Input = styled(Select)`
   width: 100%;
+  margin-top: 1rem;
   margin-bottom: 2rem;
 
   &:focus {
@@ -100,7 +101,7 @@ const Input = styled(Select)`
           ? key('colors.good')
           : key('colors.outline')};
       box-shadow: none;
-      height: 4.5rem;
+      height: ${({ isMulti }) => (isMulti ? 'fit-content' : '4.5rem')};
 
       &:hover {
         border-color: ${key('colors.interactive')};
@@ -163,14 +164,40 @@ const Input = styled(Select)`
         color: white;
       }
     }
+    &__multi-value {
+      background: rgba(255, 128, 0, 0.05);
+      border: 1px solid ${key(['colors', 'action'])};
+      box-sizing: border-box;
+      border-radius: 3px;
+
+      &__label {
+        color: ${key(['colors', 'action'])};
+        line-height: 1.8rem;
+        box-sizing: border-box;
+      }
+      &__remove {
+        cursor: pointer;
+        svg {
+          fill: ${key(['colors', 'action'])};
+        }
+
+        &:hover {
+          background-color: initial;
+        }
+      }
+    }
+    &__indicators {
+      ${({ isMulti }) => (isMulti ? 'display: none' : null)};
+    }
   }
 `;
 
-const Label = styled.p`
-  font-size: 1.2rem;
+const Label = styled.label`
+  display: flex;
+  flex-direction: column;
+  font-size: 1.4rem;
   transition: 0.2s;
   line-height: 1rem;
-  margin-bottom: 1rem;
   color: ${props =>
     props.disabled ? key('colors.disabled') : key('colors.sub-title')};
   width: 80%;
@@ -185,6 +212,7 @@ SearchSelectInput.defaultProps = {
   loadingMessage: 'Loading...',
   placeholder: 'Choose your option',
   initial: null,
+  isMulti: false,
   otherProps: {},
 };
 
@@ -192,7 +220,7 @@ SearchSelectInput.propTypes = {
   /** Beeing able to use it in Styled Components */
   className: string,
   /** Returns name and value of selected */
-  selected: func.isRequired,
+  onSelected: func.isRequired,
   /** Sets name of inputfield */
   name: string.isRequired,
   /** if true input is disabled */
@@ -213,6 +241,8 @@ SearchSelectInput.propTypes = {
   loadingMessage: string,
   /** Message to show on load when no initial */
   placeholder: string,
+  /** Defines if it can handle multiple tags */
+  isMulti: bool,
   /** Adds extra props to the element */
   otherProps: object,
 };

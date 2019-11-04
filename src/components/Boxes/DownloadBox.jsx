@@ -43,7 +43,7 @@ const DownloadBox = ({
           <FileName>{filename} </FileName>
           <FileSize>{calculateImageSize(href)}</FileSize>
         </Container>
-        <DownloadIcon alt="download" />
+        <DownloadIcon src={download} alt="download" />
       </a>
     </Download>
   );
@@ -84,7 +84,7 @@ const Container = styled.span`
     props.thumbnail ? 'flex-direction:column;' : 'flex-direction:row;'}
 `;
 
-const DownloadIcon = styled(download)`
+const DownloadIcon = styled.img`
   margin-left: auto;
 `;
 
