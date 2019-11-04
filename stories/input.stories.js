@@ -19,6 +19,7 @@ import Car from './../src/components/Icons/Car';
 
 import {
   ImageSelectBox,
+  MaskedInput,
   TextArea,
   TextInput,
   SearchInput,
@@ -69,6 +70,25 @@ storiesOf('Low level blocks/Inputs', module)
           name="inputs"
         />
       </>
+    );
+  })
+  .add('MaskedInput', () => {
+    let error = text('Error', '');
+    let touched = boolean('Touched', false);
+    const [val, setVal] = useState('');
+    return (
+      <MaskedInput
+        disabled={boolean('Disabled', false)}
+        name="police"
+        type="text"
+        error={error}
+        onChange={setVal}
+        touched={touched}
+        // mask="+(  )   -   -  "
+        value={val}
+      >
+        Police zone
+      </MaskedInput>
     );
   })
   .add('TextInput', () => {
