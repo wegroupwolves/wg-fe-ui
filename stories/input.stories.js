@@ -133,6 +133,7 @@ storiesOf('Low level blocks/Inputs', module)
     let error = text('Error', '');
     let touched = boolean('Touched', false);
     let disabled = boolean('Disable', false);
+    let isCalendarEnabled = boolean('Enable datepicker', false);
     const ref = useRef();
     return (
       <StyledDateInput
@@ -140,6 +141,7 @@ storiesOf('Low level blocks/Inputs', module)
         touched={touched}
         error={error}
         name="date"
+        isCalendarEnabled={isCalendarEnabled}
         disabled={disabled}
         onChange={action('change')}
       >
