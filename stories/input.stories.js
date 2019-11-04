@@ -7,7 +7,6 @@ import {
   number,
   text,
   select,
-  object,
 } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 import { withInfo } from '@storybook/addon-info';

@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { key } from 'styled-theme';
 import { ActionButton } from './../Buttons';
-import { string, object, node, func } from 'prop-types';
+import { string, object, node, func, bool } from 'prop-types';
 
 const Box = styled.div`
   display: flex;
@@ -41,6 +41,7 @@ InnerBox.displayName = 'InnerBox';
 
 const ToolBar = ({
   btnName,
+  btnDisable,
   className,
   children,
   level,
@@ -51,7 +52,12 @@ const ToolBar = ({
     <Box className={className} {...otherProps}>
       <Wrapper>
         <InnerBox>{children}</InnerBox>
-        <ActionButton level={level} onClick={onClick} padding="0.5rem 1.5rem">
+        <ActionButton
+          disabled={btnDisable}
+          level={level}
+          onClick={onClick}
+          padding="0.5rem 1.5rem"
+        >
           {btnName}
         </ActionButton>
       </Wrapper>
@@ -62,12 +68,16 @@ const ToolBar = ({
 ToolBar.defaultProps = {
   btnName: 'New claim',
   level: 'primary',
+  btnDisable: false,
   onClick: Function.prototype,
   otherProps: {},
 };
 
 ToolBar.propTypes = {
+  /** Button name */
   btnName: string,
+  /** Disable button */
+  btnDisable: bool,
   /** Beeing able to use it in Styled Components */
   className: string,
   level: string,

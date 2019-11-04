@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { storiesOf } from '@storybook/react';
-import { withKnobs, select } from '@storybook/addon-knobs';
+import { withKnobs, select, boolean, text } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 import { withInfo } from '@storybook/addon-info';
 import styled from 'styled-components';
@@ -50,7 +50,11 @@ storiesOf('Mid Level blocks/Bars', module)
       'search_input',
     );
     return (
-      <StyledToolBar onClick={action('clicked it')}>
+      <StyledToolBar
+        btnName={text('Button text', 'Continue')}
+        btnDisable={boolean('Disable button', false)}
+        onClick={action('clicked it')}
+      >
         {COMPONENT_CHOICES[componentName]}
       </StyledToolBar>
     );
