@@ -82,7 +82,7 @@ const TextArea = ({
             onFocus={handleFocus}
           />
         </Count>
-        {error && touched ? (
+        {error ? (
           <StyledErrormark
             color="#F74040"
             focus={focus}
@@ -153,7 +153,7 @@ const StyledTextArea = styled.textarea`
   width: 100%;
   border: 0.1rem solid;
   border-color: ${({ error, touched }) =>
-    error && touched
+    error
       ? key('colors.bad')
       : touched && !error
       ? key('colors.good')

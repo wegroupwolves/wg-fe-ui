@@ -44,6 +44,7 @@ const DateInput = forwardRef(
       onBlur,
       onChange,
       children,
+      isCalendarEnabled,
       ...otherProps
     },
     ref,
@@ -293,7 +294,7 @@ const DateInput = forwardRef(
               onKeyDown={e => keyDownHandler(e, 9999, 0)}
             />
           </Input>
-          {error && touched ? (
+          {error ? (
             <StyledErrormark
               color="#F74040"
               focus={focus}
@@ -309,7 +310,7 @@ const DateInput = forwardRef(
             />
           ) : null}
         </StyledLabel>
-        {focus ? (
+        {focus && isCalendarEnabled ? (
           <StyledCalendar
             onChange={handleCalendarChange}
             value={calendarDate}
@@ -347,7 +348,7 @@ const Input = styled.div`
   margin-top: 1rem;
   border: 0.1rem solid;
   border-color: ${({ error, touched }) =>
-    error && touched
+    error
       ? key('colors.bad')
       : touched && !error
       ? key('colors.good')
@@ -429,6 +430,7 @@ DateInput.displayName = 'DateInput';
 DateInput.defaultProps = {
   disabled: false,
   touched: false,
+  isCalendarEnabled: false,
   otherProps: {},
   value: { day: '', month: '', year: '' },
   onBlur: () => {},
@@ -446,6 +448,8 @@ DateInput.propTypes = {
   disabled: bool,
   /** example value in the input */
   error: string,
+  /** show calendar on focus */
+  isCalendarEnabled: bool,
   /** object with inputname and boolean to check if touched */
   touched: bool,
   /** Callback function that is fired when blurring the input field. */

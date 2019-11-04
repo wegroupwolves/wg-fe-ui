@@ -1,7 +1,5 @@
 import React, { forwardRef } from 'react';
 import { bool, node, func, string, object } from 'prop-types';
-import styled from 'styled-components';
-import { key } from 'styled-theme';
 
 import TextInput from './TextInput';
 
@@ -43,7 +41,6 @@ const MaskedInput = forwardRef(
     },
     ref,
   ) => {
-
     const handleChange = val => {
       const rawValue = removeMask(val, mask);
       onChange(rawValue);
