@@ -1,9 +1,7 @@
 import React from 'react';
 import TrackingBar from './TrackingBar';
 import 'jest-styled-components';
-import { mount, shallow } from 'enzyme';
-import Theme from '../../constants/theme';
-import { ThemeProvider } from 'styled-components';
+import { shallow } from 'enzyme';
 import OpenedIcon from './../Icons/Opened';
 import FilingIcon from './../Icons/Filing';
 import LoupeIcon from './../Icons/Loupe';

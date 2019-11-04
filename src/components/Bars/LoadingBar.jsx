@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { key } from 'styled-theme/dist';
-import { string, arrayOf, object, number } from 'prop-types';
+import { string, object, number } from 'prop-types';
 
 const ProgressTrack = styled.div`
   position: absolute;
@@ -20,7 +20,7 @@ const ProgressTrack = styled.div`
     height: ${({ height }) => height || '5px'};
     background-color: ${({ filledColor }) =>
       filledColor || key('colors.action')};
-    width: ${({ len, activeId }) => len ? `${activeId * (100 / len)}%` : 0}; 
+    width: ${({ len, activeId }) => (len ? `${activeId * (100 / len)}%` : 0)};
     transition: width 1s ease-in-out;
   }
 `;

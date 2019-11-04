@@ -1,9 +1,7 @@
+import React from 'react';
 import { MaskedInput } from '.';
 import { mount } from 'enzyme';
-import React, { useState } from 'react';
-import Theme from '../../constants/theme';
 import 'jest-styled-components';
-import { ThemeProvider } from 'styled-components';
 import { act } from 'react-dom/test-utils';
 
 describe('MaskedInput', () => {

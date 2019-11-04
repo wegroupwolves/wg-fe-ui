@@ -103,11 +103,7 @@ ProgressBar.propTypes = {
   filledColor: string,
   height: string,
   otherProps: object,
-  stages: arrayOf({
-    key: string,
-    name: string,
-    id: number,
-  }),
+  stages: arrayOf(object),
   stepsLength: number,
 };
 

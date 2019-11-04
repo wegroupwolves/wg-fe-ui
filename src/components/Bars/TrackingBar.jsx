@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { key } from 'styled-theme/dist';
 import LoadingBar from './LoadingBar';
 import TrackingStep from './TrackingStep';
-import { arrayOf, node, number, string } from 'prop-types';
+import { arrayOf, string, object } from 'prop-types';
 
 const getActiveId = (active, stages) => {
   return stages ? stages.findIndex(item => item.key === active) + 1 : 0;
@@ -50,7 +50,7 @@ const StyledTrackingBar = styled.div`
 
 TrackingBar.defaultProps = {
   active: 'data_analysis',
-  background: key('colors.disabledGray'),
+  background: '#D3D4D8',
   height: '2px',
   stages: [],
 };
@@ -59,12 +59,7 @@ TrackingBar.propTypes = {
   active: string,
   background: string,
   filledColor: string,
-  stages: arrayOf({
-    key: string,
-    name: string,
-    icon: node,
-    id: number,
-  }),
+  stages: arrayOf(object),
   height: string,
   className: string,
 };

@@ -1,9 +1,7 @@
 import React from 'react';
 import ProgressBar from './ProgressBar';
 import 'jest-styled-components';
-import { mount, shallow } from 'enzyme';
-import Theme from '../../constants/theme';
-import { ThemeProvider } from 'styled-components';
+import { mount } from 'enzyme';
 
 describe('ProgressBar', () => {
   it('when rendered, component should have all children rendered', () => {

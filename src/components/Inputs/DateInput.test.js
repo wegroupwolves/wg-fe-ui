@@ -6,12 +6,13 @@ import { act } from 'react-dom/test-utils';
 import 'jest-styled-components';
 import { ThemeProvider } from 'styled-components';
 
-jest.mock('react-calendar', () => ({
-  __esModule: true,
-  default: () => {
-    return <div></div>;
-  },
-}));
+jest.mock('react-calendar', () => {
+  const mock = () => <div />;
+  return {
+    __esModule: true,
+    default: () => mock,
+  };
+});
 
 describe('DateInput', () => {
   it('returns value when input changes', () => {

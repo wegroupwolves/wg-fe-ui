@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { key } from 'styled-theme/dist';
 import FilingIcon from './../Icons/Filing';
-import { node, number, string, objectOf } from 'prop-types';
+import { node, number, string, shape } from 'prop-types';
 
 const backgroundColor = {
   done: key('colors.action'),
@@ -109,7 +109,7 @@ TrackingStep.defaultProps = {
 
 TrackingStep.propTypes = {
   activeId: number,
-  stage: objectOf({
+  stage: shape({
     key: string,
     name: string,
     icon: node,

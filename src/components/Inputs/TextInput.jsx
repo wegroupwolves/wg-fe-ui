@@ -26,6 +26,7 @@ const TextInput = forwardRef(
     ref,
   ) => {
     const [inputValue, setInputValue] = useState(value ? value : '');
+
     const [focus, setFocus] = useState();
     const [iconRight, setIconRight] = useState('1rem');
     const browser = detect();
@@ -60,7 +61,7 @@ const TextInput = forwardRef(
     const handleBlur = () => {
       setFieldTouched(name, true);
       setFocus(false);
-    }
+    };
 
     return (
       <Container className={className}>
@@ -194,6 +195,7 @@ TextInput.defaultProps = {
   setFieldTouched: () => {},
   onChange: () => {},
   otherProps: {},
+  value: '',
 };
 
 TextInput.propTypes = {
