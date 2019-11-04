@@ -19,6 +19,7 @@ const SearchSelectInput = forwardRef(
       loadingMessage,
       placeholder,
       isMulti,
+      error,
       ...otherProps
     },
     ref,
@@ -56,12 +57,22 @@ const SearchSelectInput = forwardRef(
             isMulti={isMulti}
             closeMenuOnSelect={!isMulti}
             {...otherProps}
+          error={error ? true : false}
           />
         </Label>
       </Container>
     );
   },
 );
+
+const ErrorContainer = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  margin-top: -1rem;
+  font-size: 1rem;
+  color: ${key('colors.bad')};
+`;
 
 const Container = styled.div`
   display: flex;
@@ -82,7 +93,13 @@ const Input = styled(Select)`
   & .Select {
     &__control {
       border-radius: 0.3rem;
-      border: 0.1rem solid ${key('colors.outline')};
+      border: 0.1rem solid;
+      border-color: ${props =>
+        props.error
+          ? key('colors.bad')
+          : props.touched & !props.error
+          ? key('colors.good')
+          : key('colors.outline')};
       box-shadow: none;
       height: ${({ isMulti }) => (isMulti ? 'fit-content' : '4.5rem')};
 
@@ -208,6 +225,8 @@ SearchSelectInput.propTypes = {
   name: string.isRequired,
   /** if true input is disabled */
   disabled: bool,
+  /** string with errormessage */
+  error: string,
   /** label above the input */
   children: string.isRequired,
   /** array of objects {value: 'test', label: 'Test'} */

@@ -100,7 +100,7 @@ const TextInput = forwardRef(
             />
           ) : null}
         </InputContainer>
-        {error && touched ? (
+        {error ? (
           <ErrorContainer>
             <p>{error}</p>
           </ErrorContainer>

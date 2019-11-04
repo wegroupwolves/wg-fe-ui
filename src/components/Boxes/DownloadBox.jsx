@@ -1,7 +1,7 @@
 import React from 'react';
 import { string, object } from 'prop-types';
 import styled from 'styled-components';
-import download from '../../assets/download.svg';
+import download from '../../assets/download';
 import { key } from 'styled-theme';
 
 const DownloadBox = ({

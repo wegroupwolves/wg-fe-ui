@@ -155,9 +155,11 @@ storiesOf('Low level blocks/Inputs', module)
     );
   })
   .add('SearchSelectInput', () => {
+    let errors = text('Error', '');
     return (
       <StyledSearchSelectInput
         disabled={boolean('Disabled', false)}
+        error={errors}
         options={select(
           'options',
           {
