@@ -119,6 +119,7 @@ const Input = styled(Select)`
 
     &__single-value {
       color: black;
+      overflow: visible;
     }
 
     &__menu {
