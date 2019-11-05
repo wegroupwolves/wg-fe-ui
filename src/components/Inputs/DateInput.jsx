@@ -10,9 +10,8 @@ import { bool, string, object, func, node } from 'prop-types';
 import styled from 'styled-components';
 import { key } from 'styled-theme';
 import { detect } from 'detect-browser';
-
-import Checkmark from '../../assets/checkmark';
-import Errormark from '../../assets/errormark';
+import Error from './../Messages/Error';
+import ValidationIcons from './../Inputs/ValidationIcons';
 import Calendar from 'react-calendar';
 
 const useClickOutside = (ref, handler) => {
@@ -49,7 +48,10 @@ const DateInput = forwardRef(
     },
     ref,
   ) => {
-    const init = () => ({ ...value });
+    const init = () => {
+      const values = value.split('/');
+      return { day: values[0], month: values[1], year: values[2] };
+    };
     const [date, dispatch] = useReducer(
       (state, { type, payload }) => {
         switch (type) {
@@ -88,11 +90,12 @@ const DateInput = forwardRef(
       dispatch({ type: 'full', payload: value });
     }, [value]);
 
-    const isDateFilled = () => Object.values(date).filter(f => !f).length;
+    const isDateFilled = () => Object.values(date).filter(f => f).length === 3;
 
     useEffect(() => {
-      if (isDateFilled()) return;
-      onChange(name, { ...date });
+      if (!isDateFilled()) return;
+      console.log('date: ', date);
+      onChange({ name, value: `${date.day}/${date.month}/${date.year}` });
       !touched && setFocus(false);
     }, [date.day, date.month, date.year]);
 
@@ -202,9 +205,10 @@ const DateInput = forwardRef(
       value.length === 2 && focusField(nextRef[type]);
     };
 
-    const handleChangedInput = ({ target }) => {
-      if (!/^\d{1,4}$/.test(target.value)) return;
-      handleChangedInputForType(target, 32, 0);
+    const handleChangedInput = e => {
+      if (!/^\d{1,4}$/.test(e.target.value)) return;
+      e.persist();
+      handleChangedInputForType(e.target, 32, 0);
     };
 
     const handleCalendarChange = dateStr => {
@@ -294,21 +298,13 @@ const DateInput = forwardRef(
               onKeyDown={e => keyDownHandler(e, 9999, 0)}
             />
           </Input>
-          {error ? (
-            <StyledErrormark
-              color="#F74040"
-              focus={focus}
-              right={iconRight}
-              browser={browser ? browser.name : null}
-            />
-          ) : touched ? (
-            <StyledCheckmark
-              color="#00CD39"
-              focus={focus}
-              right={iconRight}
-              browser={browser ? browser.name : null}
-            />
-          ) : null}
+          <ValidationIcons
+            error={error}
+            browser={browser}
+            focus={focus}
+            iconRight={iconRight}
+            touched={touched}
+          />
         </StyledLabel>
         {focus && isCalendarEnabled ? (
           <StyledCalendar
@@ -316,11 +312,7 @@ const DateInput = forwardRef(
             value={calendarDate}
           />
         ) : null}
-        {error ? (
-          <ErrorContainer>
-            <p>{error}</p>
-          </ErrorContainer>
-        ) : null}
+        <Error error={error} />
       </Container>
     );
   },
@@ -396,35 +388,6 @@ const Container = styled.div`
 `;
 
 Container.displayName = 'Container';
-
-const ErrorContainer = styled.div`
-  width: 100%;
-  display: flex;
-  justify-content: flex-end;
-  margin-top: 0.5rem;
-  font-size: 1.2rem;
-  color: ${key('colors.bad')};
-  position: absolute;
-`;
-
-const StyledCheckmark = styled(Checkmark)`
-  position: absolute;
-  right: ${({ focus, right }) => (focus ? right : '1rem')};
-  bottom: 1.3rem;
-  max-width: 2rem;
-  transition: 0.2s;
-  object-fit: contain;
-`;
-
-const StyledErrormark = styled(Errormark)`
-  position: absolute;
-  right: ${({ focus, right }) => (focus ? right : '1rem')};
-  bottom: 1.2rem;
-  max-width: 2rem;
-  transition: 0.2s;
-  object-fit: contain;
-`;
-
 DateInput.displayName = 'DateInput';
 
 DateInput.defaultProps = {
@@ -432,7 +395,7 @@ DateInput.defaultProps = {
   touched: false,
   isCalendarEnabled: false,
   otherProps: {},
-  value: { day: '', month: '', year: '' },
+  value: '',
   onBlur: () => {},
   onChange: () => {},
   onFocus: () => {},
@@ -459,7 +422,18 @@ DateInput.propTypes = {
   /** Callback function that is fired when the component's value changes. */
   onFocus: func,
   /** Current value of the input element as { day: 'DD', month: 'MM', year: 'YYYY' } */
-  value: object,
+  value: (props, propName, componentName) => {
+    if (!/\d{2}\/\d{2}\/\d{4}/.test(props[propName])) {
+      return new Error(
+        'Invalid prop `' +
+          propName +
+          '` supplied to' +
+          ' `' +
+          componentName +
+          '`. Validation failed.',
+      );
+    }
+  },
   /** Adds extra props to the element */
   otherProps: object,
 };

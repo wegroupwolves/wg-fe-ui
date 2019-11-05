@@ -31,17 +31,23 @@ describe('DateInput', () => {
     expect(onChange.mock.calls.length).toBe(0);
 
     act(() => {
-      day.props().onChange({ target: { value: '8', id: 'day' } });
-      month.props().onChange({ target: { value: '3', id: 'month' } });
-      year.props().onChange({ target: { value: '1996', id: 'year' } });
+      day
+        .props()
+        .onChange({ persist: () => {}, target: { value: '8', id: 'day' } });
+      month
+        .props()
+        .onChange({ persist: () => {}, target: { value: '3', id: 'month' } });
+      year
+        .props()
+        .onChange({ persist: () => {}, target: { value: '1996', id: 'year' } });
     });
 
     const calledOnChange = onChange.mock.calls[0];
 
-    expect(calledOnChange[0]).toBe(`date`);
-    expect(calledOnChange[1]).toHaveProperty('day', '8');
-    expect(calledOnChange[1]).toHaveProperty('month', '3');
-    expect(calledOnChange[1]).toHaveProperty('year', '1996');
+    expect(calledOnChange[0]).toStrictEqual({
+      name: 'date',
+      value: '8/3/1996',
+    });
   });
 
   it('has default border color on validation', () => {

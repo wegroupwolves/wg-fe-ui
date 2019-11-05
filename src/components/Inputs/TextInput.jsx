@@ -3,9 +3,8 @@ import { bool, node, func, string, object } from 'prop-types';
 import styled from 'styled-components';
 import { key } from 'styled-theme';
 import { detect } from 'detect-browser';
-
-import Checkmark from '../../assets/checkmark';
-import Errormark from '../../assets/errormark';
+import Error from './../Messages/Error';
+import ValidationIcons from './../Inputs/ValidationIcons';
 
 const TextInput = forwardRef(
   (
@@ -25,7 +24,7 @@ const TextInput = forwardRef(
     },
     ref,
   ) => {
-    const [inputValue, setInputValue] = useState(value ? value : '');
+    const [inputValue, setInputValue] = useState(value);
 
     const [focus, setFocus] = useState();
     const [iconRight, setIconRight] = useState('1rem');
@@ -54,9 +53,10 @@ const TextInput = forwardRef(
       }
     }, [value]);
 
-    const handleChange = ({ target }) => {
-      !otherProps.isMasked && setInputValue(target.value);
-      onChange(target.value);
+    const handleChange = e => {
+      e.persist();
+      !otherProps.isMasked && setInputValue(e.target.value);
+      onChange({ name: e.target.name, value: e.target.value });
     };
     const handleBlur = () => {
       setFieldTouched(name, true);
@@ -84,27 +84,15 @@ const TextInput = forwardRef(
             onFocus={handleFocus}
             {...otherProps}
           />
-          {error ? (
-            <StyledErrormark
-              color="#F74040"
-              focus={focus}
-              right={iconRight}
-              browser={browser ? browser.name : null}
-            />
-          ) : touched ? (
-            <StyledCheckmark
-              color="#00CD39"
-              focus={focus}
-              right={iconRight}
-              browser={browser ? browser.name : null}
-            />
-          ) : null}
+          <ValidationIcons
+            error={error}
+            browser={browser}
+            focus={focus}
+            iconRight={iconRight}
+            touched={touched}
+          />
         </InputContainer>
-        {error ? (
-          <ErrorContainer>
-            <p>{error}</p>
-          </ErrorContainer>
-        ) : null}
+        <Error error={error} />
       </Container>
     );
   },
@@ -154,34 +142,6 @@ const StyledInput = styled.input`
   &::placeholder {
     color: ${key('colors.button-toggle')};
   }
-`;
-
-const ErrorContainer = styled.div`
-  width: 100%;
-  display: flex;
-  justify-content: flex-end;
-  margin-top: 0.5rem;
-  font-size: 1.2rem;
-  color: ${key('colors.bad')};
-  position: absolute;
-`;
-
-const StyledCheckmark = styled(Checkmark)`
-  position: absolute;
-  right: ${({ focus, right }) => (focus ? right : '1rem')};
-  bottom: 1.3rem;
-  max-width: 2rem;
-  transition: 0.2s;
-  object-fit: contain;
-`;
-
-const StyledErrormark = styled(Errormark)`
-  position: absolute;
-  right: ${({ focus, right }) => (focus ? right : '1rem')};
-  bottom: 1.2rem;
-  max-width: 2rem;
-  transition: 0.2s;
-  object-fit: contain;
 `;
 
 TextInput.displayName = 'TextInput';

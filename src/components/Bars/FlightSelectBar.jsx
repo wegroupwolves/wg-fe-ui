@@ -100,12 +100,16 @@ const FlightSelectBar = forwardRef(
     { checked, disabled, handleChange, value, children, ...otherProps },
     ref,
   ) => {
+    const onChange = e => {
+      e.persist();
+      handleChange({ name: e.target.name, value: e.target.value });
+    };
     return (
       <StyledContainer checked={checked} disabled={disabled} {...otherProps}>
         <StyledInput
           ref={ref}
           type="radio"
-          onChange={({ target: { value } }) => handleChange(value)}
+          onChange={onChange}
           checked={checked}
           disabled={disabled}
           value={value}

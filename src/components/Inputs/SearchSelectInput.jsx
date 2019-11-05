@@ -27,7 +27,7 @@ const SearchSelectInput = forwardRef(
     const [isSelected, setSelected] = useState();
 
     const handleChange = e => {
-      onSelected(name, e ? e.value : e);
+      onSelected({ name, value: e ? e.value : e });
       setSelected(e || []);
     };
 
@@ -133,6 +133,7 @@ const Input = styled(Select)`
 
     &__single-value {
       color: black;
+      overflow: visible;
       overflow: initial;
     }
 

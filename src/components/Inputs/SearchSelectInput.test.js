@@ -11,7 +11,7 @@ describe('SearchSelectInput', () => {
     const wrapper = mount(
       <SearchSelectInput
         name="test"
-        onSelected={(name, value) => {
+        onSelected={({ name, value }) => {
           (testValue.name = name), (testValue.value = value);
         }}
         options={[

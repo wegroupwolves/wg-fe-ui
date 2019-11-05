@@ -3,9 +3,8 @@ import { bool, node, func, string, object, number } from 'prop-types';
 import styled from 'styled-components';
 import { key } from 'styled-theme';
 import { detect } from 'detect-browser';
-
-import Checkmark from '../../assets/checkmark';
-import Errormark from '../../assets/errormark';
+import Error from './../Messages/Error';
+import ValidationIcons from './../Inputs/ValidationIcons';
 
 const TextArea = ({
   className,
@@ -26,9 +25,10 @@ const TextArea = ({
   const [focus, setFocus] = useState();
   const [iconRight, setIconRight] = useState('1rem');
   const browser = detect();
-  const handleChange = ({ target }) => {
-    setInputValue(target.value);
-    onChange(target.value);
+  const handleChange = e => {
+    e.persist();
+    setInputValue(e.target.value);
+    onChange({ name: e.target.name, value: e.target.value });
   };
 
   const handleFocus = () => {
@@ -82,27 +82,15 @@ const TextArea = ({
             onFocus={handleFocus}
           />
         </Count>
-        {error ? (
-          <StyledErrormark
-            color="#F74040"
-            focus={focus}
-            right={iconRight}
-            browser={browser ? browser.name : null}
-          />
-        ) : touched[name] ? (
-          <StyledCheckmark
-            color="#00CD39"
-            focus={focus}
-            right={iconRight}
-            browser={browser ? browser.name : null}
-          />
-        ) : null}
+        <ValidationIcons
+          error={error}
+          browser={browser}
+          focus={focus}
+          iconRight={iconRight}
+          touched={touched}
+        />
       </InputContainer>
-      {error && touched ? (
-        <ErrorContainer>
-          <p>{error}</p>
-        </ErrorContainer>
-      ) : null}
+      <Error error={error} />
     </Container>
   );
 };
@@ -172,34 +160,6 @@ const StyledTextArea = styled.textarea`
   &::placeholder {
     color: ${key('colors.button-toggle')};
   }
-`;
-
-const ErrorContainer = styled.div`
-  width: 100%;
-  display: flex;
-  justify-content: flex-end;
-  margin-top: 0.5rem;
-  font-size: 1.2rem;
-  color: ${key('colors.bad')};
-  position: absolute;
-`;
-
-const StyledCheckmark = styled(Checkmark)`
-  position: absolute;
-  right: ${({ focus, right }) => (focus ? right : '1rem')};
-  bottom: 1.3rem;
-  max-width: 2rem;
-  transition: 0.2s;
-  object-fit: contain;
-`;
-
-const StyledErrormark = styled(Errormark)`
-  position: absolute;
-  right: ${({ focus, right }) => (focus ? right : '1rem')};
-  bottom: 1.2rem;
-  max-width: 2rem;
-  transition: 0.2s;
-  object-fit: contain;
 `;
 
 TextArea.defaultProps = {

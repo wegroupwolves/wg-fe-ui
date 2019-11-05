@@ -81,6 +81,10 @@ RadioButton.displayName = 'RadioButton';
 
 const ImageSelectBox = forwardRef(
   ({ selected, label, value, icon, onChange, name, ...otherProps }, ref) => {
+    const handleChange = e => {
+      e.persist();
+      onChange({ name: e.target.name, value: e.target.value });
+    };
     let mode = 'normal';
     if (selected === value) mode = 'selected';
     else if (selected) mode = 'inactive';
@@ -92,7 +96,7 @@ const ImageSelectBox = forwardRef(
           type="radio"
           checked={selected === value}
           value={value}
-          onChange={onChange}
+          onChange={handleChange}
           name={name}
         />
       </RadioButton>

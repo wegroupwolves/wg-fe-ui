@@ -32,7 +32,7 @@ storiesOf('Low level blocks/Inputs', module)
   .add('ImageSelectBox', () => {
     const [selected, setSelected] = useState('');
 
-    const handleChange = ({ target: { value } }) => setSelected(value);
+    const handleChange = ({ value }) => setSelected(value);
 
     return (
       <>
@@ -81,7 +81,7 @@ storiesOf('Low level blocks/Inputs', module)
         name="police"
         type="text"
         error={error}
-        onChange={setVal}
+        onChange={({ value }) => setVal(value)}
         touched={touched}
         // mask="+(  )   -   -  "
         value={val}
@@ -173,7 +173,7 @@ storiesOf('Low level blocks/Inputs', module)
           [],
         )}
         name="selection"
-        onSelected={(name, value) => console.log(name, value)}
+        onSelected={({ name, value }) => console.log(name, value)}
         loading={boolean('Loading', false)}
         initial={select('initial', {
           None: null,
