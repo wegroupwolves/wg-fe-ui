@@ -9,7 +9,7 @@ const Theme = () => {
   };
 
   Orange.colors = {
-   'sub-txt': '#A29C95',
+    'sub-txt': '#A29C95',
     highlight: '#505050',
     disabled: '#AEAEAE',
     disabledGray: '#D3D4D8',
@@ -30,7 +30,7 @@ const Theme = () => {
     // Buttons
     action: '#FF8000',
     toggle: '#FF9B21',
-    hover: '#FFBF80',
+    hover: '#ffefdc',
 
     outline: '#CCCCCC',
     backDrop: '#F0F1F3',
