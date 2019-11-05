@@ -138,10 +138,11 @@ storiesOf('Mid Level blocks/Bars', module)
     const [checkedRadio, setCheckedRadio] = useState(0);
     return (
       <FlightSelectBar
-        handleChange={setCheckedRadio}
+        handleChange={({ name, value }) => setCheckedRadio(name)}
         disabled={select('disabled', [false, true], false)}
-        checked={checkedRadio === 'first'}
+        checked={checkedRadio === 'selected'}
         value={select('value', ['first', 'second', 'third'], 'first')}
+        name="selected"
       >
         <FlightSelectBar.FlightData
           border={true}

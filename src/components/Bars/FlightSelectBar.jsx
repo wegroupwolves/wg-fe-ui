@@ -97,7 +97,7 @@ StyledFlightData.defaultProps = {
 
 const FlightSelectBar = forwardRef(
   (
-    { checked, disabled, handleChange, value, children, ...otherProps },
+    { checked, disabled, handleChange, value, children, name, ...otherProps },
     ref,
   ) => {
     const onChange = e => {
@@ -113,6 +113,7 @@ const FlightSelectBar = forwardRef(
           checked={checked}
           disabled={disabled}
           value={value}
+          name={name}
         />
         {children}
         <StyledCheck checked={checked} />
@@ -128,6 +129,7 @@ FlightSelectBar.FlightData.displayName = 'FlightSelectBar.FlightData';
 FlightSelectBar.propTypes = {
   checked: PropTypes.bool.isRequired,
   disabled: PropTypes.bool,
+  name: PropTypes.string,
   handleChange: PropTypes.func,
   value: PropTypes.string,
   icon: PropTypes.elementType,
@@ -137,6 +139,7 @@ FlightSelectBar.propTypes = {
 FlightSelectBar.defaultProps = {
   checked: false,
   value: '',
+  name: '',
 };
 
 export default FlightSelectBar;
