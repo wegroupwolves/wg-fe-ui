@@ -83,7 +83,7 @@ const ImageSelectBox = forwardRef(
   ({ selected, label, value, icon, onChange, name, ...otherProps }, ref) => {
     const handleChange = e => {
       e.persist();
-      onChange({ name: e.target.name, value: e.taget.value });
+      onChange({ name: e.target.name, value: e.target.value });
     };
     let mode = 'normal';
     if (selected === value) mode = 'selected';
