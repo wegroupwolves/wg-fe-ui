@@ -22,8 +22,9 @@ const CheckBox = forwardRef(
     const [isChecked, setIsChecked] = useState(checked ? true : false);
     const handleChange = e => {
       if (!disabled) {
+        e.persist();
         setIsChecked(e.currentTarget.checked);
-        onChange(e.target);
+        onChange({ name: e.target.name, value: e.target.value });
       }
     };
 

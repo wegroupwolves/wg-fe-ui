@@ -19,11 +19,15 @@ const RadioOption = forwardRef(
     { checked, disabled, name, handleChange, icon, children, ...otherProps },
     ref,
   ) => {
+    const onChange = e => {
+      e.persist();
+      handleChange({ name: e.target.name, value: e.target.value });
+    };
     return (
       <Container checked={checked} disabled={disabled}>
         <StyledInput
           type="radio"
-          onChange={({ target: { value } }) => handleChange(value)}
+          onChange={onChange}
           checked={checked}
           disabled={disabled}
           name={name}
