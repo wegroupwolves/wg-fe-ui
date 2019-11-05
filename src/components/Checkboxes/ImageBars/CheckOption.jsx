@@ -38,12 +38,18 @@ const CheckOption = forwardRef(
     },
     ref,
   ) => {
+    const onChange = e => {
+      e.persist();
+      handleChange({ name: e.target.name, value: e.target.value });
+    };
     return (
       <Container checked={checked} disabled={disabled}>
         <StyledInput
           type="checkbox"
-          onClick={({ target: { value } }) => handleClick(value)}
-          onChange={({ target: { value } }) => handleChange(value)}
+          onClick={({ target: { name, value } }) =>
+            handleClick({ name, value })
+          }
+          onChange={onChange}
           checked={checked}
           disabled={disabled}
           name={name}

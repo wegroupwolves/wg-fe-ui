@@ -41,9 +41,9 @@ const MaskedInput = forwardRef(
     },
     ref,
   ) => {
-    const handleChange = val => {
-      const rawValue = removeMask(val, mask);
-      onChange(rawValue);
+    const handleChange = ({ name, value, }) => {
+      const rawValue = removeMask(value, mask);
+      onChange({ name, value: rawValue });
     };
 
     return (

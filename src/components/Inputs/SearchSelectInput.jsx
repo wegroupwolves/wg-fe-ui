@@ -57,22 +57,13 @@ const SearchSelectInput = forwardRef(
             isMulti={isMulti}
             closeMenuOnSelect={!isMulti}
             {...otherProps}
-          error={error ? true : false}
+            error={error}
           />
         </Label>
       </Container>
     );
   },
 );
-
-const ErrorContainer = styled.div`
-  width: 100%;
-  display: flex;
-  justify-content: flex-end;
-  margin-top: -1rem;
-  font-size: 1rem;
-  color: ${key('colors.bad')};
-`;
 
 const Container = styled.div`
   display: flex;

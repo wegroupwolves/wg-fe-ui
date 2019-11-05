@@ -53,7 +53,7 @@ describe('TextInput', () => {
     const input = wrapper.find('input');
 
     act(() => {
-      input.props().onChange({ target: { value: 'WeGroup' } });
+      input.props().onChange({ persist: () => {}, target: { value: 'WeGroup' } });
     });
     setTimeout(() => {
       expect(input.props().value).toEqual('WeGroup');
