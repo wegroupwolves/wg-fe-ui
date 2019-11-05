@@ -94,7 +94,6 @@ const DateInput = forwardRef(
 
     useEffect(() => {
       if (!isDateFilled()) return;
-      console.log('date: ', date);
       onChange({ name, value: `${date.day}/${date.month}/${date.year}` });
       !touched && setFocus(false);
     }, [date.day, date.month, date.year]);
@@ -423,16 +422,10 @@ DateInput.propTypes = {
   onFocus: func,
   /** Current value of the input element as { day: 'DD', month: 'MM', year: 'YYYY' } */
   value: (props, propName, componentName) => {
-    if (!/\d{2}\/\d{2}\/\d{4}/.test(props[propName])) {
-      return new Error(
-        'Invalid prop `' +
-          propName +
-          '` supplied to' +
-          ' `' +
-          componentName +
-          '`. Validation failed.',
-      );
-    }
+    if (/\d{2}\/\d{2}\/\d{4}/.test(props[propName])) return string;
+    return new Error(
+      `Invalid prop ${propName} supplied to ${componentName}. Validation failed.`
+    );
   },
   /** Adds extra props to the element */
   otherProps: object,
