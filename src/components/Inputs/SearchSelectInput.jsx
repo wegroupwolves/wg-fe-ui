@@ -58,7 +58,6 @@ const SearchSelectInput = forwardRef(
             closeMenuOnSelect={!isMulti}
             error={error ? true : false}
             {...otherProps}
-            error={error}
           />
         </Label>
         {error ? (
@@ -135,6 +134,7 @@ const Input = styled(Select)`
     &__single-value {
       color: black;
       overflow: visible;
+      overflow: initial;
     }
 
     &__menu {
