@@ -8,5 +8,5 @@ ADD . /srv/design_system
 ADD ./cypress_install.sh /scripts/
 
 
-RUN npm build
 RUN npm install -g .
+RUN npm run build
