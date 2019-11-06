@@ -4,6 +4,7 @@ import { string } from 'prop-types';
 import { key } from 'styled-theme';
 
 const Error = ({ error }) => {
+  console.log('error: ', error);
   return error ? (
     <ErrorContainer>
       <p>{error}</p>
@@ -15,7 +16,7 @@ const ErrorContainer = styled.div`
   width: 100%;
   display: flex;
   justify-content: flex-end;
-  margin-top: -1rem;
+  margin-top: 1rem;
   font-size: 1rem;
   color: ${key('colors.bad')};
 `;

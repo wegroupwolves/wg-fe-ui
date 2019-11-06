@@ -65,10 +65,8 @@ const TextInput = forwardRef(
 
     return (
       <Container className={className}>
-        <StyledLabel disabled={disabled} htmlFor={name}>
+        <StyledLabel disabled={disabled}>
           {children}
-        </StyledLabel>
-        <InputContainer>
           <StyledInput
             ref={ref}
             id={name}
@@ -91,7 +89,7 @@ const TextInput = forwardRef(
             iconRight={iconRight}
             touched={touched}
           />
-        </InputContainer>
+        </StyledLabel>
         <Error error={error} />
       </Container>
     );
@@ -104,19 +102,14 @@ const Container = styled.div`
   position: relative;
 `;
 
+
 const StyledLabel = styled.label`
   display: flex;
   flex-direction: column;
   position: relative;
   width: 100%;
   font-size: 1.4rem;
-  margin-bottom: 0.7rem;
   color: ${props => (props.disabled ? '#AEAEAE' : '#5B5550')};
-`;
-
-const InputContainer = styled.div`
-  display: flex;
-  position: relative;
 `;
 
 const StyledInput = styled.input`
