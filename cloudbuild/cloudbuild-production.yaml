@@ -5,7 +5,7 @@ steps:
   entrypoint: 'bash'
   args:
     - '-c'
-    - 'docker build -t eu.gcr.io/$PROJECT_ID/${_NAMESPACE}/${_POD}:$TAG_NAME -t eu.gcr.io/$PROJECT_ID/${_NAMESPACE}/${_POD}:latest --cache-from eu.gcr.io/$PROJECT_ID/${_NAMESPACE}/${_POD}:latest .'
+    - 'docker build -t eu.gcr.io/$PROJECT_ID/${_NAMESPACE}/${_POD}:$TAG_NAME -t eu.gcr.io/$PROJECT_ID/${_NAMESPACE}/${_POD}:latest .'
 
 # PUSH DOCKER
 - name: 'gcr.io/cloud-builders/docker'
