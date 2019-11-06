@@ -38,7 +38,17 @@ const Container = styled.div`
 
 const Uploader = forwardRef(
   (
-    { supported, className, icon, text, multiple, onClick, onClose, children },
+    {
+      supported,
+      className,
+      name,
+      icon,
+      text,
+      multiple,
+      onClick,
+      onClose,
+      children,
+    },
     ref,
   ) => {
     const [id, setId] = useState(-1);
@@ -94,7 +104,7 @@ const Uploader = forwardRef(
       Array.from(uploaded).forEach((t, i) => {
         readFile(t, i);
       });
-      onClick(uploaded);
+      onClick({ name, value: uploaded });
     };
 
     const handleClose = file => {
@@ -115,6 +125,7 @@ const Uploader = forwardRef(
       <StyledUploader className={className}>
         <UploadField
           ref={ref}
+          name={name}
           supported={supported}
           icon={icon}
           multiple={multiple}
@@ -156,6 +167,7 @@ Uploader.defaultProps = {
 Uploader.propTypes = {
   children: node,
   className: string,
+  name: string,
   icon: element,
   multiple: bool,
   onClick: func,
