@@ -3,6 +3,8 @@ import styled from 'styled-components';
 import Select from 'react-select';
 import { func, string, bool, array, object } from 'prop-types';
 import { key } from 'styled-theme';
+import Error from './../Messages/Error';
+
 
 const SearchSelectInput = forwardRef(
   (
@@ -60,24 +62,11 @@ const SearchSelectInput = forwardRef(
             {...otherProps}
           />
         </Label>
-        {error ? (
-          <ErrorContainer>
-            <p>{error}</p>
-          </ErrorContainer>
-        ) : null}
+        <Error error={error} />
       </Container>
     );
   },
 );
-
-const ErrorContainer = styled.div`
-  width: 100%;
-  display: flex;
-  justify-content: flex-end;
-  margin-top: -1rem;
-  font-size: 1.2rem;
-  color: ${key('colors.bad')};
-`;
 
 const Container = styled.div`
   display: flex;
@@ -89,7 +78,6 @@ const Container = styled.div`
 const Input = styled(Select)`
   width: 100%;
   margin-top: 1rem;
-  margin-bottom: 2rem;
 
   &:focus {
     outline: none;
