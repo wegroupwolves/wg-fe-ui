@@ -1,0 +1,45 @@
+steps:
+
+# TAG IMAGE
+# get the tag it should use for next tagging and building the image with tag == tag
+# this will be used on tags X.X.X.X where we have MAJOR.MINOR.PATCH.BUILD
+# where BUILD => SEMVER = 3 # QA
+# where PATCH => SEMVER = 2 # STAGE
+# where MINOR => SEMVER = 1 #
+# where MAJOR => SEMVER = 0 # THIS SHOULD NEVER BE USED IN AUTO BUILDING
+- name: eu.gcr.io/sapient-tracer-168309/wg-base-images/wg-docker-autotagger
+  entrypoint: 'bash'
+  args:
+    - '-c'
+    - 'python /autotagger.py $$BITBUCKET_USERNAME $$BITBUCKET_SECRET ${_POD} ${COMMIT_SHA} ${_SEMVER} > /root/tag/tag'
+  secretEnv: ['BITBUCKET_SECRET', 'BITBUCKET_USERNAME']
+  volumes:
+  - name: 'tag'
+    path: /root/tag
+
+# BUILD DOCKER
+- name: 'gcr.io/cloud-builders/docker'
+  entrypoint: 'bash'
+  args:
+    - '-c'
+    - 'docker build -t eu.gcr.io/$PROJECT_ID/${_NAMESPACE}/${_POD}:$(cat /root/tag/tag) -t eu.gcr.io/$PROJECT_ID/${_NAMESPACE}/${_POD}:latest --cache-from eu.gcr.io/$PROJECT_ID/${_NAMESPACE}/${_POD}:latest .'
+  volumes:
+  - name: 'tag'
+    path: /root/tag
+
+# PUSH DOCKER
+- name: 'gcr.io/cloud-builders/docker'
+  args:
+  - 'push'
+  - 'eu.gcr.io/$PROJECT_ID/${_NAMESPACE}/${_POD}'
+
+substitutions:
+    _SEMVER: "3"
+    _NAMESPACE: base
+    _POD: wg-fe-design-system
+
+secrets:
+- kmsKeyName: projects/sapient-tracer-168309/locations/global/keyRings/bitbucket/cryptoKeys/bitbucket-key
+  secretEnv:
+    BITBUCKET_SECRET: "CiQAPWKAKplZiOEUiN3a+L2w5JvdVSvZfjOu2lDrbXjfX7nUs3ESPQAQKPOk4ImxoFZ0gvvz7DKUCA38gJZWBeTh0WARsoQoHj89v/87FNd3p0yf80rSo0PrCvzQQnmeiw3QOJk="
+    BITBUCKET_USERNAME: "CiQAPWKAKpBW16+53sNrtwDcpJR2IOaZVVSbavnXpXGybTrU2zESNwAQKPOk68w10qkDOsPjDseSMK4jRERZA55oR0ilDquyIfbHzUTx5LNRBWgJiT2z7GNuVZSsAP8="
