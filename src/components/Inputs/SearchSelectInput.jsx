@@ -5,7 +5,6 @@ import { func, string, bool, array, object } from 'prop-types';
 import { key } from 'styled-theme';
 import Error from './../Messages/Error';
 
-
 const SearchSelectInput = forwardRef(
   (
     {
@@ -78,6 +77,7 @@ const Container = styled.div`
 const Input = styled(Select)`
   width: 100%;
   margin-top: 1rem;
+  margin-bottom: ${({ error }) => (error ? 0 : '2rem')};
 
   &:focus {
     outline: none;
