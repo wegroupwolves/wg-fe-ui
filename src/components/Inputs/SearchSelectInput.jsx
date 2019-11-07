@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import Select from 'react-select';
 import { func, string, bool, array, object } from 'prop-types';
 import { key } from 'styled-theme';
+import Error from './../Messages/Error';
 
 const SearchSelectInput = forwardRef(
   (
@@ -27,7 +28,7 @@ const SearchSelectInput = forwardRef(
     const [isSelected, setSelected] = useState();
 
     const handleChange = e => {
-      onSelected({ name, value: e ? e.value : e });
+      if (e) onSelected({ name, value: Array.isArray(e) ? e : e.value });
       setSelected(e || []);
     };
 
@@ -60,24 +61,11 @@ const SearchSelectInput = forwardRef(
             {...otherProps}
           />
         </Label>
-        {error ? (
-          <ErrorContainer>
-            <p>{error}</p>
-          </ErrorContainer>
-        ) : null}
+        <Error error={error} />
       </Container>
     );
   },
 );
-
-const ErrorContainer = styled.div`
-  width: 100%;
-  display: flex;
-  justify-content: flex-end;
-  margin-top: -1rem;
-  font-size: 1.2rem;
-  color: ${key('colors.bad')};
-`;
 
 const Container = styled.div`
   display: flex;
@@ -88,8 +76,8 @@ const Container = styled.div`
 
 const Input = styled(Select)`
   width: 100%;
-  margin-top: 1rem;
-  margin-bottom: 2rem;
+  margin-top: 1.4rem;
+  margin-bottom: ${({ error }) => (error ? 0 : '2rem')};
 
   &:focus {
     outline: none;
@@ -106,7 +94,7 @@ const Input = styled(Select)`
           ? key('colors.good')
           : key('colors.outline')};
       box-shadow: none;
-      height: ${({ isMulti }) => (isMulti ? 'fit-content' : '4.5rem')};
+      height: ${({ isMulti }) => (isMulti ? 'fit-content' : '4rem')};
 
       &:hover {
         border-color: ${key('colors.interactive')};
