@@ -52,6 +52,11 @@ const Container = styled.label`
           }
           svg {
             fill: ${key('colors.toggle')};
+
+            path {
+              fill: ${key('colors.toggle')};
+              stroke: ${key('colors.toggle')};
+            }
           }
         `
       : null};
