@@ -5,7 +5,6 @@ import { func, string, bool, array, object } from 'prop-types';
 import { key } from 'styled-theme';
 import Error from './../Messages/Error';
 
-
 const SearchSelectInput = forwardRef(
   (
     {
@@ -29,7 +28,7 @@ const SearchSelectInput = forwardRef(
     const [isSelected, setSelected] = useState();
 
     const handleChange = e => {
-      onSelected({ name, value: e ? e.value : e });
+      if (e) onSelected({ name, value: Array.isArray(e) ? e : e.value });
       setSelected(e || []);
     };
 
