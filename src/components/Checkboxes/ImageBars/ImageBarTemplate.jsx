@@ -55,7 +55,6 @@ const Container = styled.label`
 
             path {
               fill: ${key('colors.toggle')};
-              stroke: ${key('colors.toggle')};
             }
           }
         `
