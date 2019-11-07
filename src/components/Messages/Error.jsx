@@ -15,8 +15,8 @@ const ErrorContainer = styled.div`
   width: 100%;
   display: flex;
   justify-content: flex-end;
-  margin-top: -1rem;
-  font-size: 1rem;
+  margin-top: 1rem;
+  font-size: 1.2rem;
   color: ${key('colors.bad')};
 `;
 

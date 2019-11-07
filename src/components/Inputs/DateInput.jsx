@@ -422,7 +422,7 @@ DateInput.propTypes = {
   onFocus: func,
   /** Current value of the input element as { day: 'DD', month: 'MM', year: 'YYYY' } */
   value: (props, propName, componentName) => {
-    if (/\d{2}\/\d{2}\/\d{4}/.test(props[propName])) return string;
+    if (/\d{2}\/\d{2}\/\d{4}/.test(props[propName])) return null;
     return new Error(
       `Invalid prop ${propName} supplied to ${componentName}. Validation failed.`
     );
