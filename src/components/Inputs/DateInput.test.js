@@ -33,10 +33,10 @@ describe('DateInput', () => {
     act(() => {
       day
         .props()
-        .onChange({ persist: () => {}, target: { value: '8', id: 'day' } });
+        .onChange({ persist: () => {}, target: { value: '08', id: 'day' } });
       month
         .props()
-        .onChange({ persist: () => {}, target: { value: '3', id: 'month' } });
+        .onChange({ persist: () => {}, target: { value: '03', id: 'month' } });
       year
         .props()
         .onChange({ persist: () => {}, target: { value: '1996', id: 'year' } });
@@ -46,7 +46,7 @@ describe('DateInput', () => {
 
     expect(calledOnChange[0]).toStrictEqual({
       name: 'date',
-      value: '8/3/1996',
+      value: '08/03/1996',
     });
   });
 

@@ -90,10 +90,13 @@ const DateInput = forwardRef(
       dispatch({ type: 'full', payload: value });
     }, [value]);
 
-    const isDateFilled = () => Object.values(date).filter(f => f).length === 3;
+    const isDate = () => {
+      const d = `${date.day}/${date.month}/${date.year}`;
+      return /\d{2}\/\d{2}\/\d{4}/.test(d);
+    }
 
     useEffect(() => {
-      if (!isDateFilled()) return;
+      if (!isDate()) return;
       onChange({ name, value: `${date.day}/${date.month}/${date.year}` });
       !touched && setFocus(false);
     }, [date.day, date.month, date.year]);
