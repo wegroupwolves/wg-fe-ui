@@ -48,7 +48,7 @@ function dropFile(e, setFile, onClick, multiple) {
 }
 
 const UploadField = forwardRef(
-  ({ icon, name, multiple, onClick, supported, text, ...otherProps }, ref) => {
+  ({ icon, name, multiple, onClick, supported, label, ...otherProps }, ref) => {
     const [withFile, setWithFile] = useState(false);
     const handleChange = ({ target }) => onClick(target.files);
     return (
@@ -62,7 +62,7 @@ const UploadField = forwardRef(
         {...otherProps}
       >
         {icon}
-        {withFile ? 'Drop file to upload' : text}
+        {withFile ? 'Drop file to upload' : label}
         <input
           accept={supported.length ? getAccepted(supported) : '*'}
           ref={ref}
@@ -128,7 +128,7 @@ UploadField.defaultProps = {
   multiple: false,
   icon: <UploadIcon />,
   name: 'label',
-  text: 'Click here or drag file to upload',
+  label: 'Click here or drag file to upload',
   otherProps: {},
   supported: [],
   fullwidth: false,
@@ -141,7 +141,7 @@ UploadField.propTypes = {
   multiple: bool,
   onClick: func.isRequired,
   supported: array,
-  text: string,
+  label: string,
   otherProps: object,
 };
 
