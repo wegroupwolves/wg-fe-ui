@@ -48,7 +48,7 @@ storiesOf('Mid level blocks/Boxes', module)
         supported={select('supported files', supported, supported['images'])}
         multiple={boolean('multiple', true)}
         icon={ICONS[componentName]}
-        text={select('label', labels)}
+        label={select('label', labels)}
       >
         {({ files, loaded, handleClose }) =>
           files.map((file, i) => (
@@ -66,12 +66,12 @@ storiesOf('Mid level blocks/Boxes', module)
     );
   })
   .add('DownloadBox', () => (
-     <DownloadBox 
-        otherProps={select('otherProps', ...propsObject)} 
-        href={text('href', 'href')} 
-        thumbnail={text('thumbnail', 'iejiji')} 
-        filename={text('fileName', 'fileName')}
-      /> 
+    <DownloadBox
+      otherProps={select('otherProps', ...propsObject)}
+      href={text('href', 'href')}
+      thumbnail={text('thumbnail', 'iejiji')}
+      filename={text('fileName', 'fileName')}
+    />
   ));
 
 const StyledQuestionBox = styled(QuestionBox)`
