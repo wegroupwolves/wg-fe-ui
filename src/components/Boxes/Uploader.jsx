@@ -43,7 +43,7 @@ const Uploader = forwardRef(
       className,
       name,
       icon,
-      text,
+      label,
       multiple,
       onClick,
       onClose,
@@ -130,7 +130,7 @@ const Uploader = forwardRef(
           icon={icon}
           multiple={multiple}
           onClick={handleClick}
-          text={text}
+          label={label}
         />
         <Container>
           {files.length ? children({ files, loaded, handleClose }) : null}
@@ -176,7 +176,7 @@ Uploader.propTypes = {
     type: string,
     extension: string,
   }),
-  text: string,
+  label: string,
 };
 
 Uploader.FileBox = FileBox;
