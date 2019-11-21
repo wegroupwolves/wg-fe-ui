@@ -12,7 +12,6 @@ import { key } from 'styled-theme';
 import { detect } from 'detect-browser';
 import Error from './../Messages/Error';
 import ValidationIcons from './../Inputs/ValidationIcons';
-import Calendar from 'react-calendar';
 
 const useClickOutside = (ref, handler) => {
   useEffect(() => {
@@ -43,7 +42,6 @@ const DateInput = forwardRef(
       onBlur,
       onChange,
       children,
-      isCalendarEnabled,
       ...otherProps
     },
     ref,
@@ -93,7 +91,7 @@ const DateInput = forwardRef(
     const isDate = () => {
       const d = `${date.day}/${date.month}/${date.year}`;
       return /\d{2}\/\d{2}\/\d{4}/.test(d);
-    }
+    };
 
     useEffect(() => {
       if (!isDate()) return;
@@ -213,28 +211,28 @@ const DateInput = forwardRef(
       handleChangedInputForType(e.target, 32, 0);
     };
 
-    const handleCalendarChange = dateStr => {
-      const date = new Date(dateStr);
-      const payload = {
-        day: pad(date.getDate()),
-        month: pad(date.getMonth() + 1),
-        year: date.getFullYear(),
-      };
-      setFocus(false);
-      dispatch({ type: 'full', payload });
-    };
+    // const handleCalendarChange = dateStr => {
+    //   const date = new Date(dateStr);
+    //   const payload = {
+    //     day: pad(date.getDate()),
+    //     month: pad(date.getMonth() + 1),
+    //     year: date.getFullYear(),
+    //   };
+    //   setFocus(false);
+    //   dispatch({ type: 'full', payload });
+    // };
 
     const onFocus = ({ target }) => {
       target.setSelectionRange(0, target.getAttribute('data-maxlengthvalue'));
     };
 
-    const calendarDate = date.day
-      ? new Date(
-          date.year,
-          parseInt(date.month) - 1 > -1 ? parseInt(date.month) - 1 : date.month,
-          date.day,
-        )
-      : new Date();
+    // const calendarDate = date.day
+    //   ? new Date(
+    //       date.year,
+    //       parseInt(date.month) - 1 > -1 ? parseInt(date.month) - 1 : date.month,
+    //       date.day,
+    //     )
+    //   : new Date();
 
     return (
       <Container className={className} ref={ref} {...otherProps}>
@@ -308,23 +306,17 @@ const DateInput = forwardRef(
             touched={touched}
           />
         </StyledLabel>
-        {focus && isCalendarEnabled ? (
-          <StyledCalendar
-            onChange={handleCalendarChange}
-            value={calendarDate}
-          />
-        ) : null}
         <Error error={error} />
       </Container>
     );
   },
 );
 
-const StyledCalendar = styled(Calendar)`
-  min-width: 27rem;
-  position: absolute;
-  z-index: 2;
-`;
+// const StyledCalendar = styled(Calendar)`
+//   min-width: 27rem;
+//   position: absolute;
+//   z-index: 2;
+// `;
 
 const Input = styled.div`
   display: flex;
@@ -427,7 +419,7 @@ DateInput.propTypes = {
   value: (props, propName, componentName) => {
     if (/\d{2}\/\d{2}\/\d{4}/.test(props[propName])) return null;
     return new Error(
-      `Invalid prop ${propName} supplied to ${componentName}. Validation failed.`
+      `Invalid prop ${propName} supplied to ${componentName}. Validation failed.`,
     );
   },
   /** Adds extra props to the element */
