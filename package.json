@@ -53,6 +53,21 @@
     "react-select": "^3.0.8"
   },
   "dependencies": {
+    "detect-browser": "^4.6.0",
+    "formik": "^1.5.8",
+    "i18next": "^17.2.0",
+    "react-calendar": "^2.19.2",
+    "react-dom": "^16.12.0",
+    "react-drag-drawer": "^3.3.1",
+    "react-input-mask": "^2.0.4",
+    "react-router": "^5.1.2",
+    "react-scripts": "^3.1.2",
+    "rimraf": "^3.0.0",
+    "styled-components": "^4.3.2",
+    "styled-theme": "^0.3.3",
+    "yup": "^0.27.0"
+  },
+  "devDependencies": {
     "@babel/cli": "^7.6.4",
     "@babel/core": "^7.6.4",
     "@babel/preset-env": "^7.6.3",
@@ -70,7 +85,6 @@
     "babel-plugin-transform-react-jsx": "^6.24.1",
     "babel-preset-env": "^1.7.0",
     "copy-webpack-plugin": "^5.0.4",
-    "detect-browser": "^4.6.0",
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.15.1",
     "enzyme-to-json": "^3.4.0",
@@ -82,25 +96,12 @@
     "eslint-plugin-prettier": "^3.1.0",
     "eslint-plugin-react": "^7.16.0",
     "eslint-plugin-react-hooks": "^2.1.2",
-    "formik": "^1.5.8",
-    "i18next": "^17.2.0",
     "jest": "^24.9.0",
     "jest-styled-components": "^6.3.3",
     "prettier": "^1.18.2",
-    "react-calendar": "^2.19.2",
-    "react-dom": "^16.12.0",
-    "react-drag-drawer": "^3.3.1",
-    "react-input-mask": "^2.0.4",
-    "react-router": "^5.1.2",
-    "react-scripts": "^3.1.2",
-    "rimraf": "^3.0.0",
-    "styled-components": "^4.3.2",
-    "styled-theme": "^0.3.3",
     "stylelint": "^10.1.0",
     "svg-inline-loader": "^0.8.0",
     "webpack": "^4.40.2",
-    "webpack-cli": "^3.3.7",
-    "yup": "^0.27.0"
-  },
-  "devDependencies": {}
+    "webpack-cli": "^3.3.7"
+  }
 }

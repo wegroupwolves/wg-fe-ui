@@ -25,7 +25,7 @@ const SearchSelectInput = forwardRef(
     },
     ref,
   ) => {
-    const [isSelected, setSelected] = useState();
+    const [isSelected, setSelected] = useState('');
 
     const handleChange = e => {
       if (e) onSelected({ name, value: Array.isArray(e) ? e : e.value });
