@@ -1,3 +1,4 @@
+// Import components
 import {
   ProgressBar,
   ToolBar,
@@ -41,6 +42,7 @@ import {
 import { ThemeProvider } from 'styled-components';
 import Theme from './constants/theme';
 
+// Export all components
 export {
   ActionButton,
   AddEntityButton,
@@ -81,4 +83,5 @@ export {
   SubLabel,
 };
 
-// Export all components
+// Export all icons
+export * from './components/Icons';
