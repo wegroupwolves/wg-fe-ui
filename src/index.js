@@ -39,7 +39,7 @@ import {
   Label,
   SubLabel,
 } from './components/Typography';
-import { ThemeProvider } from './components/ThemeProvider';
+import ThemeProvider from './components/ThemeProvider';
 import Theme from './constants/theme';
 
 // Export all components
