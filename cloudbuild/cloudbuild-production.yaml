@@ -1,0 +1,18 @@
+steps:
+
+# BUILD DOCKER AND TESTING IF WG_PY_MODELS INSTALLED
+- name: 'gcr.io/cloud-builders/docker'
+  entrypoint: 'bash'
+  args:
+    - '-c'
+    - 'docker build -t eu.gcr.io/$PROJECT_ID/${_NAMESPACE}/${_POD}:$TAG_NAME -t eu.gcr.io/$PROJECT_ID/${_NAMESPACE}/${_POD}:latest .'
+
+# PUSH DOCKER
+- name: 'gcr.io/cloud-builders/docker'
+  args:
+  - 'push'
+  - 'eu.gcr.io/$PROJECT_ID/${_NAMESPACE}/${_POD}'
+
+substitutions:
+    _NAMESPACE: base
+    _POD: wg-fe-design-system

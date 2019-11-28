@@ -5,8 +5,8 @@ FROM node:10-alpine AS builder
 WORKDIR /srv/design_system
 
 ADD . /srv/design_system
-ADD ./cypress_install.sh /scripts/
+# ADD ./cypress_install.sh /scripts/
 
 
-RUN npm build
-RUN npm install -g .
+RUN npm install --no-optional -g .
+RUN npm run build
