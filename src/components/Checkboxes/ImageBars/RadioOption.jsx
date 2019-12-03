@@ -12,6 +12,7 @@ const StyledCheck = styled.span`
   border: ${({ checked }) => (checked ? '5px solid' : '1.2px solid')};
   border-color: ${({ checked }) =>
     checked ? key('colors.toggle') : key('colors.outline')};
+  box-sizing: border-box;
 `;
 
 const RadioOption = forwardRef(
