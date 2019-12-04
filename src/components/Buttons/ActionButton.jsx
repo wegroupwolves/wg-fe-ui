@@ -1,7 +1,6 @@
 import React from 'react';
 import { object, bool, string, node, func } from 'prop-types';
 import styled from 'styled-components';
-import { key } from 'styled-theme';
 
 const ActionButton = ({
   level,
@@ -38,14 +37,14 @@ const ActionButton = ({
 };
 
 const StyledButton = styled.button`
-  font-family: ${key('fonts.primary')};
-  background-color: ${props =>
-    props.disabled
-      ? key('colors.disabled')
-      : props.level === 'primary'
-      ? key('colors.action')
-      : key('colors.interactive')};
-  font-size: ${key('fonts.normal-size')};
+  font-family: ${({ theme }) => theme.font};
+  background-color: ${({ theme, disabled, level }) =>
+    disabled
+      ? theme.ui.disabled
+      : level === 'primary'
+      ? theme.brand.primary
+      : theme.ui.interactive};
+  font-size: 1.6rem;
   border-radius: 0.5rem;
   min-width: 14rem;
   width: ${props => (props.fullwidth ? '100%' : '')};
