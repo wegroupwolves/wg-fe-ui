@@ -1,5 +1,5 @@
 import { configure, addDecorator } from '@storybook/react';
-import orange from './../src/themes/orange';
+import { orange } from './../src/themes';
 import ThemeProvider from '../src/components/ThemeProvider';
 import React from 'react';
 
@@ -9,6 +9,8 @@ function loadStories() {
   req.keys().forEach(filename => req(filename));
 }
 
-addDecorator(story => <ThemeProvider theme={orange}>{story()}</ThemeProvider>);
+addDecorator(story => (
+  <ThemeProvider theme={orange()}>{story()}</ThemeProvider>
+));
 
 configure(loadStories, module);
