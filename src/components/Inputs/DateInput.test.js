@@ -1,16 +1,27 @@
 import { DateInput } from '.';
 import { mount } from 'enzyme';
 import React from 'react';
-import Theme from '../../constants/theme';
+import { orange } from '../../themes';
+const theme = orange();
 import { act } from 'react-dom/test-utils';
 import 'jest-styled-components';
 import { ThemeProvider } from 'styled-components';
+
+// eslint-disable-next-line
+const ThemeProviderWrapper = ({ children }) => (
+  <ThemeProvider theme={theme}>{children}</ThemeProvider>
+);
+
+export const mountWithTheme = tree =>
+  mount(tree, {
+    wrappingComponent: ThemeProviderWrapper,
+  });
 
 describe('DateInput', () => {
   it('returns value when input changes', () => {
     const onChange = jest.fn();
 
-    const wrapper = mount(
+    const wrapper = mountWithTheme(
       <DateInput onChange={onChange} name="date" touched={true}>
         test
       </DateInput>,
@@ -43,51 +54,43 @@ describe('DateInput', () => {
   });
 
   it('has default border color on validation', () => {
-    const wrapper = mount(
-      <ThemeProvider theme={Theme}>
-        <DateInput name="date">Test</DateInput>
-      </ThemeProvider>,
-    );
+    const wrapper = mountWithTheme(<DateInput name="date">Test</DateInput>);
 
     // check if borders have default color when not touched yet
     expect(wrapper.find('Input')).toHaveStyleRule(
       'border-color',
-      Theme().colors['outline'],
+      theme.ui.outline,
     );
   });
 
   it('has bad border color when touched and has error', () => {
     // Check if border is red when errors and touched
-    const wrapper = mount(
-      <ThemeProvider theme={Theme}>
-        <DateInput name="date" error="incorrect" touched={true}>
-          Test
-        </DateInput>
-      </ThemeProvider>,
+    const wrapper = mountWithTheme(
+      <DateInput name="date" error="incorrect" touched={true}>
+        Test
+      </DateInput>,
     );
     expect(wrapper.find('Input')).toHaveStyleRule(
       'border-color',
-      Theme().colors['bad'],
+      theme.status.error,
     );
   });
 
   it('has good border color when touched but no error', () => {
     // Check if border is green when no errors but touched
-    const wrapper = mount(
-      <ThemeProvider theme={Theme}>
-        <DateInput name="date" touched={true}>
-          Test
-        </DateInput>
-      </ThemeProvider>,
+    const wrapper = mountWithTheme(
+      <DateInput name="date" touched={true}>
+        Test
+      </DateInput>,
     );
     expect(wrapper.find('Input')).toHaveStyleRule(
       'border-color',
-      Theme().colors['good'],
+      theme.status.succes,
     );
   });
 
   it('Good or bad icons show at right time', () => {
-    const wrapper = mount(<DateInput name="date">Test</DateInput>);
+    const wrapper = mountWithTheme(<DateInput name="date">Test</DateInput>);
 
     // check if icons don't exist
     expect(wrapper.exists('Errormark')).toEqual(false);
@@ -108,7 +111,7 @@ describe('DateInput', () => {
   });
 
   it('otherProps adds props to input', () => {
-    const wrapper = mount(
+    const wrapper = mountWithTheme(
       <DateInput max={12} name="date">
         Test
       </DateInput>,

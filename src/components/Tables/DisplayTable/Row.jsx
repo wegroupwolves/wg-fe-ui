@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import { node, string, object } from 'prop-types';
-import { key } from 'styled-theme/dist';
 
 const Row = ({ className, children, ...otherProps }) => {
   return (
@@ -15,7 +14,7 @@ const StyledRow = styled.tr`
   min-height: 5rem;
   padding: 0.5rem 1.5rem;
   display: flex;
-  border-top: 0.1rem solid ${key('colors.outline')};
+  border-top: 0.1rem solid ${({ theme }) => theme.ui.outline};
 
   &:first-child {
     border: none;
@@ -27,8 +26,8 @@ const StyledRow = styled.tr`
 `;
 
 Row.defaultProps = {
-  otherProps: {}
-}
+  otherProps: {},
+};
 
 Row.propTypes = {
   /** Beeing able to use it in Styled Components */

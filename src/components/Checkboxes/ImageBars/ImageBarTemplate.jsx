@@ -1,12 +1,11 @@
 import styled, { css } from 'styled-components';
-import { key } from 'styled-theme';
 
 const Text = styled.span`
   margin: 0 auto 0 0.2vw;
   font-size: 1.4rem;
   line-height: 2rem;
   letter-spacing: 0.1rem;
-  color: ${key('colors.highlight')};
+  color: ${({ theme }) => theme.typo.highlight};
 `;
 const StyledInput = styled.input`
   position: absolute;
@@ -28,33 +27,33 @@ const Container = styled.label`
 
   background: #ffffff;
   border: 1px solid;
-  border-color: ${key('colors.outline')};
+  border-color: ${({ theme }) => theme.ui.outline};
   border-radius: 2px;
-  font-family: ${key('fonts.primary')};
+  font-family: ${({ theme }) => theme.fonts};
   font-size: 1.6rem;
   ${Text} {
-    color: ${({ disabled }) => (disabled ? key('colors.outline') : null)};
+    color: ${({ disabled, theme }) => (disabled ? theme.ui.outline : null)};
   }
   svg {
-    fill: ${({ disabled }) => (disabled ? key('colors.outline') : null)};
+    fill: ${({ disabled, theme }) => (disabled ? theme.ui.outline : null)};
   }
   svg {
     margin: auto 1.6vw;
-    fill: ${key('colors.interactive')};
+    fill: ${({ theme }) => theme.ui.interactive};
   }
-  ${({ checked }) =>
+  ${({ checked, theme }) =>
     checked
       ? css`
-          background-color: ${key('colors.selected')};
-          border-color: ${key('colors.toggle')};
+          background-color: ${theme.brand.lightest};
+          border-color: ${theme.brand.secondary};
           ${Text} {
-            color: ${key('colors.toggle')};
+            color: ${theme.brand.secondary};
           }
           svg {
-            fill: ${key('colors.toggle')};
+            fill: ${theme.brand.secondary};
 
             path {
-              fill: ${key('colors.toggle')};
+              fill: ${theme.brand.secondary};
             }
           }
         `

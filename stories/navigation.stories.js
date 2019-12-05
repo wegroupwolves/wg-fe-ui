@@ -47,6 +47,7 @@ storiesOf('Mid level blocks/Navigation', module)
           currentLocation={tab}
           navTabs={navTabs}
           onClick={val => setTab(val)}
+          logo={'https://files.wegroup.be/logos/wegroup/wegroup-logo.svg'}
         />
       </Container>
     );

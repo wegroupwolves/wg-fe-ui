@@ -1,14 +1,26 @@
 import FlightSelectBar from './FlightSelectBar';
-import { shallow, mount } from 'enzyme';
+import { mount } from 'enzyme';
 import React from 'react';
-import Theme from '../../constants/theme';
 import 'jest-styled-components';
 
 import { ThemeProvider } from 'styled-components';
 
+import { orange } from '../../themes';
+const theme = orange();
+
+// eslint-disable-next-line
+const ThemeProviderWrapper = ({ children }) => (
+  <ThemeProvider theme={theme}>{children}</ThemeProvider>
+);
+
+export const mountWithTheme = tree =>
+  mount(tree, {
+    wrappingComponent: ThemeProviderWrapper,
+  });
+
 describe('FlightSelectBar', () => {
   it('can pass extra props', () => {
-    const wrapper = shallow(
+    const wrapper = mountWithTheme(
       <FlightSelectBar id={31} onChange={() => console.log('testen')}>
         Test
       </FlightSelectBar>,
@@ -17,36 +29,32 @@ describe('FlightSelectBar', () => {
   });
 
   it('when checked, style changes', () => {
-    const wrapper = mount(
-      <ThemeProvider theme={Theme}>
-        <FlightSelectBar
-          checked
-          name="check"
-          handleChange={() => console.log('test')}
-        >
-          Test
-        </FlightSelectBar>
-      </ThemeProvider>,
+    const wrapper = mountWithTheme(
+      <FlightSelectBar
+        checked
+        name="check"
+        handleChange={() => console.log('test')}
+      >
+        Test
+      </FlightSelectBar>,
     );
-    expect(wrapper).toHaveStyleRule('border-color', Theme().colors.toggle);
+    expect(wrapper).toHaveStyleRule('border-color', theme.brand.light);
     expect(wrapper.find('span').at(0)).toHaveStyleRule(
       'border-color',
-      Theme().colors.toggle,
+      theme.brand.secondary,
     );
   });
   it('can pass label and data', () => {
-    const wrapper = mount(
-      <ThemeProvider theme={Theme}>
-        <FlightSelectBar
-          checked
-          name="check"
-          handleChange={() => console.log('test')}
-        >
-          <FlightSelectBar.FlightData label="label" data="data" />
-        </FlightSelectBar>
-      </ThemeProvider>,
+    const wrapper = mountWithTheme(
+      <FlightSelectBar
+        checked
+        name="check"
+        handleChange={() => console.log('test')}
+      >
+        <FlightSelectBar.FlightData label="label" data="data" />
+      </FlightSelectBar>,
     );
-    expect(wrapper).toHaveStyleRule('border-color', Theme().colors.toggle);
+    expect(wrapper).toHaveStyleRule('border-color', theme.brand.secondary);
     expect(
       wrapper
         .find('span')

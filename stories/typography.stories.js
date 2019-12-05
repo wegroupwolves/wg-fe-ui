@@ -13,52 +13,49 @@ storiesOf('Low level blocks/Typography', module)
   .addDecorator(withInfo({ inline: true }))
   .add('Title', () => (
     <Title
-    otherProps={select('otherProps', ...propsObject)}
-    color={text('Color', '')}
+      otherProps={select('otherProps', ...propsObject)}
+      color={text('Color', '')}
     >
-       {text('Label', 'Title')}
+      {text('Label', 'Title')}
     </Title>
   ))
   .add('SubTitle', () => (
     <SubTitle
-    otherProps={select('otherProps', ...propsObject)}
-    color={text('Color', '')}
+      otherProps={select('otherProps', ...propsObject)}
+      color={text('Color', '')}
     >
-       {text('Label', 'SubTitle')}
+      {text('Label', 'SubTitle')}
     </SubTitle>
   ))
   .add('Text', () => (
     <Text
-    otherProps={select('otherProps', ...propsObject)}
-    color={text('Color', '')}
+      otherProps={select('otherProps', ...propsObject)}
+      color={text('Color', '')}
     >
-       {text('Label', 'Text')}
+      {text('Label', 'Text')}
     </Text>
   ))
   .add('TextBold', () => (
     <TextBold
-    otherProps={select('otherProps', ...propsObject)}
-    color={text('Color', '')}
+      otherProps={select('otherProps', ...propsObject)}
+      color={text('Color', '')}
     >
-       {text('Label', 'TextBold')}
+      {text('Label', 'TextBold')}
     </TextBold>
   ))
   .add('Label', () => (
     <Label
-    otherProps={select('otherProps', ...propsObject)}
-    color={text('Color', '')}
+      otherProps={select('otherProps', ...propsObject)}
+      color={text('Color', '')}
     >
-       {text('Label', 'Label')}
+      {text('Label', 'Label')}
     </Label>
   ))
   .add('SubLabel', () => (
     <SubLabel
-    otherProps={select('otherProps', ...propsObject)}
-    color={text('Color', '')}
+      otherProps={select('otherProps', ...propsObject)}
+      color={text('Color', '')}
     >
-       {text('Label', 'SubLabel')}
+      {text('Label', 'SubLabel')}
     </SubLabel>
-  ))
- 
-
-
+  ));

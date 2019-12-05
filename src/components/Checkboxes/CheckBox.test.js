@@ -1,7 +1,8 @@
 import CheckBox from './CheckBox';
 import { mount } from 'enzyme';
 import React from 'react';
-import Theme from '../../constants/theme';
+import { orange } from '../../themes';
+const theme = orange();
 import 'jest-styled-components';
 
 import { ThemeProvider } from 'styled-components';
@@ -9,7 +10,7 @@ import { ThemeProvider } from 'styled-components';
 describe('CheckBox', () => {
   it('can pass extra props', () => {
     const wrapper = mount(
-      <ThemeProvider theme={Theme}>
+      <ThemeProvider theme={theme}>
         <CheckBox name="test" id={31} onChange={() => console.log('testen')}>
           Testje
         </CheckBox>
@@ -20,13 +21,13 @@ describe('CheckBox', () => {
 
   it('changes style when disabled', () => {
     const wrapper = mount(
-      <ThemeProvider theme={Theme}>
+      <ThemeProvider theme={theme}>
         <CheckBox disabled name="check" onChange={() => console.log('test')}>
           Testje2
         </CheckBox>
       </ThemeProvider>,
     );
-    expect(wrapper).toHaveStyleRule('color', Theme().colors.disabled);
+    expect(wrapper).toHaveStyleRule('color', theme.ui.disabled);
     expect(wrapper.find('div')).toHaveStyleRule(
       'border',
       '0.1rem solid #CCCCCC',
@@ -35,7 +36,7 @@ describe('CheckBox', () => {
 
   it('when checked, style changes', () => {
     const wrapper = mount(
-      <ThemeProvider theme={Theme}>
+      <ThemeProvider theme={theme}>
         <CheckBox checked name="check" onChange={() => console.log('test')}>
           Testje2
         </CheckBox>
@@ -43,7 +44,7 @@ describe('CheckBox', () => {
     );
     expect(wrapper.find('div')).toHaveStyleRule(
       'background-color',
-      Theme().colors.action,
+      theme.brand.primary,
     );
   });
 });

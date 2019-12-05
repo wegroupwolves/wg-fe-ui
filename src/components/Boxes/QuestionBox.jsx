@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import { object, node, string, func, bool } from 'prop-types';
-import { key } from 'styled-theme/dist';
 
 const QuestionBox = ({
   children,
@@ -48,7 +47,7 @@ const QuestionBox = ({
 
 const Container = styled.div`
   display: flex;
-  font-family: ${key('fonts.primary')};
+  font-family: ${({ theme }) => theme.fonts};
   flex-direction: column;
   align-items: center;
   width: 100%;
@@ -81,29 +80,29 @@ const Answer = styled.p`
   flex-wrap: nowrap;
   justify-content: center;
   align-items: center;
-  font-size: ${key('fonts.big-size')};
+  font-size: 2.1rem;
   font-weight: bold;
-  background-color: ${props =>
-    props.disabled ? key('colors.disabled') : key('colors.action')};
+  background-color: ${({ theme, disabled }) =>
+    disabled ? theme.ui.disabled : theme.brand.primary};
   color: white;
   border: solid 0.2rem;
   border-radius: ${props => (props.left ? '0 0 0 1.6rem' : '0 0 1.6rem 0')};
-  border-color: ${props =>
-    props.disabled ? key('colors.disabled') : key('colors.toggle')};
+  border-color: ${({ disabled, theme }) =>
+    disabled ? theme.ui.disabled : theme.brand.secondary};
   cursor: pointer;
   transition: 0.3s;
   text-decoration: none;
 
   &:hover {
-    background-color: ${props =>
-      props.disabled ? key('colors.disabled') : key('colors.hover')};
+    background-color: ${({ theme, disabled }) =>
+      disabled ? theme.ui.disabled : theme.hover.primary};
     cursor: ${props => (props.disabled ? `default` : `pointer`)};
   }
 `;
 
 const Question = styled.div`
   display: flex;
-  font-size: ${key('fonts.normal-size')};
+  font-size: 1.6rem;
   width: 100%;
   flex-direction: row;
   justify-content: space-between;
@@ -120,7 +119,7 @@ QuestionBox.defaultProps = {
   option1: null,
   option2: null,
   response: Function.prototype,
-  otherProps: {}
+  otherProps: {},
 };
 
 QuestionBox.propTypes = {

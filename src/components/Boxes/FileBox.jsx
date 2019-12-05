@@ -2,13 +2,12 @@ import React from 'react';
 import { node, string, number, func } from 'prop-types';
 import styled from 'styled-components';
 import CloseIcon from './../Icons/Close';
-import { key } from 'styled-theme';
 
 const Box = styled.div`
   display: flex;
   align-items: center;
   padding: 19px 20px 15px 22px;
-  border: 1px solid ${key('colors.outline')};
+  border: 1px solid ${({ theme }) => theme.ui.outline};
   box-sizing: border-box;
   justify-content: space-between;
   /* Backdrop */
@@ -61,7 +60,7 @@ const Right = styled.div`
 const LoadingBar = styled.div`
   width: ${({ loaded }) => (loaded !== null ? '22vw' : 0)};
   height: 5px;
-  background-color: ${key('colors.backDrop')};
+  background-color: ${({ theme }) => theme.ui.backgroundLight};
   margin-top: 11px;
 
   &:before {
@@ -70,7 +69,7 @@ const LoadingBar = styled.div`
     transition: ${({ loaded }) => (loaded === 0 ? null : 'width 1s')};
     height: 5px;
     position: absolute;
-    background-color: ${key('colors.action')};
+    background-color: ${({ theme }) => theme.brand.primary};
   }
 `;
 

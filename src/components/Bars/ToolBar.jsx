@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import { key } from 'styled-theme';
 import { ActionButton } from './../Buttons';
 import { string, object, node, func, bool } from 'prop-types';
 
@@ -28,7 +27,7 @@ const InnerBox = styled.div`
   align-items: center;
   width: 85%;
   height: 100%;
-  border-right: 1px solid ${key('colors.outline')};
+  border-right: 1px solid ${({ theme }) => theme.ui.outline};
   margin-right: 2.4vw;
 
   input {

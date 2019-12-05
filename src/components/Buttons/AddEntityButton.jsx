@@ -1,7 +1,6 @@
 import React from 'react';
-import { object, bool, string, element, func } from 'prop-types';
+import { object, string, element, func } from 'prop-types';
 import styled from 'styled-components';
-import { key } from 'styled-theme';
 import PlusIcon from './../Icons/Plus';
 
 const AddEntityButton = ({ icon, onClick, name, ...otherProps }) => {
@@ -14,15 +13,15 @@ const AddEntityButton = ({ icon, onClick, name, ...otherProps }) => {
 };
 
 const StyledButton = styled.button`
-  font-family: ${key('fonts.primary')};
-  font-size: ${key('fonts.normal-size')};
+  font-family: ${({ theme }) => theme.fonts};
+  font-size: 1.6rem;
   line-height: 130%;
   border-radius: 0.5rem;
   min-width: 14rem;
   min-width: 250px;
   padding: 2vh 0;
   border: 0.5px solid;
-  border-color: ${key('colors.outline')};
+  border-color: ${({ theme }) => theme.ui.outline};
   box-sizing: border-box;
   border-radius: 5px;
   display: flex;
@@ -31,7 +30,7 @@ const StyledButton = styled.button`
   align-items: center;
   color: #505050;
   cursor: pointer;
-  background-color: ${key('colors.big-disabled')};
+  background-color: ${({ theme }) => theme.ui.background};
   position: relative;
 
   :active {
@@ -50,7 +49,7 @@ const StyledButton = styled.button`
     margin-bottom: 12px;
 
     &:hover line {
-      stroke: ${key('colors.interactive')};
+      stroke: ${({ theme }) => theme.ui.interactive};
     }
   }
 `;

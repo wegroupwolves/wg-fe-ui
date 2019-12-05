@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import { string } from 'prop-types';
-import { key } from 'styled-theme';
 
 const Error = ({ error }) => {
   return error ? (
@@ -18,7 +17,7 @@ const ErrorContainer = styled.div`
   margin-top: 1rem;
   margin-bottom: 1rem;
   font-size: 1.2rem;
-  color: ${key('colors.bad')};
+  color: ${({ theme }) => theme.status.error};
 `;
 
 Error.displayName = 'SearchSelectInput';

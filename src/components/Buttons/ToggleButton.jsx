@@ -1,7 +1,6 @@
 import React from 'react';
 import { bool, string, node, func, object } from 'prop-types';
 import styled from 'styled-components';
-import { key } from 'styled-theme';
 
 const ToggleButton = ({
   level,
@@ -35,18 +34,18 @@ const ToggleButton = ({
 };
 
 const StyledButton = styled.button`
-  font-family: ${key('fonts.primary')};
-  background-color: ${props =>
-    props.disabled
-      ? key('colors.disabled')
-      : props.level === 'active'
-      ? key('colors.toggle')
-      : key('colors.interactive')};
-  font-weight: 900;
-  font-size: ${key('fonts.normal-size')};
+  font-family: ${({ theme }) => theme.fonts};
+  background-color: ${({ disabled, level, theme }) =>
+    disabled
+      ? theme.ui.disabled
+      : level === 'active'
+      ? theme.brand.secondary
+      : theme.ui.interactive};
+  font-weight: 700;
+  font-size: 1.6rem;
   border-radius: 2.5rem;
   min-width: 12rem;
-  width: ${props => (props.fullwidth ? '100%' : '')};
+  width: ${({ fullwidth }) => (fullwidth ? '100%' : '')};
   height: 3.5rem;
   color: white;
   border: 0;
@@ -65,8 +64,8 @@ const StyledButton = styled.button`
   }
 
   :hover {
-    background-color: ${props =>
-      props.level === 'active' ? '' : key('colors.hover')};
+    background-color: ${({ theme, level }) =>
+      level === 'active' ? '' : theme.hover.primary};
   }
 `;
 
@@ -99,7 +98,7 @@ ToggleButton.propTypes = {
   /** Adds icon to button */
   icon: node,
   /** Adds extra props to the element */
-  otherProps: object
+  otherProps: object,
 };
 
 export default ToggleButton;

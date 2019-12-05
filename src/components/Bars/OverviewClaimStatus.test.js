@@ -1,9 +1,11 @@
 import OverviewClaimStatus from './OverviewClaimStatus';
 import { mount } from 'enzyme';
 import React from 'react';
-import theme from '../../constants/theme';
 import 'jest-styled-components';
 import { ThemeProvider } from 'styled-components';
+
+import { orange } from '../../themes';
+const theme = orange();
 
 describe('OverviewClaimStatus', () => {
   it('renders proper children', () => {

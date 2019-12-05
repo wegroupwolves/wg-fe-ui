@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import { node, string, object } from 'prop-types';
-import { key } from 'styled-theme/dist';
 
 const Key = ({ className, children, ...otherProps }) => {
   return (
@@ -12,7 +11,7 @@ const Key = ({ className, children, ...otherProps }) => {
 };
 
 const StyledKey = styled.th`
-  color: ${key('colors.title')};
+  color: ${({ theme }) => theme.typo.title};
   display: flex;
   align-items: center;
   width: 100%;
@@ -20,8 +19,8 @@ const StyledKey = styled.th`
 `;
 
 Key.defaultProps = {
-  otherProps: {}
-}
+  otherProps: {},
+};
 
 Key.propTypes = {
   /** Beeing able to use it in Styled Components */

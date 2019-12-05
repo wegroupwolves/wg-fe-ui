@@ -1,7 +1,6 @@
 import React, { forwardRef, useState, useEffect } from 'react';
 import { bool, node, func, string, object } from 'prop-types';
 import styled from 'styled-components';
-import { key } from 'styled-theme';
 
 import Checkmark from '../../assets/checkmark.js';
 
@@ -63,8 +62,8 @@ const CheckBox = forwardRef(
 );
 
 const StyledBox = styled.div`
-  background-color: ${props =>
-    props.checked && !props.disabled ? key('colors.action') : '#F0F1F3'};
+  background-color: ${({ theme, checked, disabled }) =>
+    checked && !disabled ? theme.brand.primary : '#F0F1F3'};
   width: 1.9rem;
   height: 1.9rem;
   border: ${props =>
@@ -87,13 +86,13 @@ const StyledBox = styled.div`
 `;
 
 const StyledLabel = styled.label`
-  font-family: ${key('fonts.primary')};
+  font-family: ${({ theme }) => theme.fonts};
   font-size: 1.4rem;
   line-height: 1.5rem;
   display: flex;
   align-items: center;
-  color: ${props =>
-    props.disabled ? key('colors.disabled') : key('colors.title')};
+  color: ${({ disabled, theme }) =>
+    disabled ? theme.ui.disabled : theme.typo.text};
 
   & input {
     display: none;

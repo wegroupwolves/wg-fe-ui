@@ -1,6 +1,5 @@
 import React, { forwardRef } from 'react';
 import styled, { css } from 'styled-components';
-import { key } from 'styled-theme/dist';
 import PropTypes from 'prop-types';
 import {
   Container,
@@ -13,15 +12,15 @@ const StyledCheck = styled.span`
   border-radius: 10px;
   border: ${({ checked }) => (checked ? '5px solid' : '1.2px solid')};
   box-sizing: border-box;
-  border-color: ${({ checked }) =>
-    checked ? key('colors.toggle') : key('colors.outline')};
+  border-color: ${({ checked, theme }) =>
+    checked ? theme.brand.secondary : theme.ui.outline};
 `;
 
 const FlightData = styled.div`
   display: flex;
   flex-direction: column;
-  border-right: ${({ border }) =>
-    border ? css`1px solid ${key('colors.outline')}` : null};
+  border-right: ${({ border, theme }) =>
+    border ? css`1px solid ${theme.ui.outline}` : null};
   padding-right: ${({ border }) => (border ? '1.7vw' : null)};
   margin-right: 7%;
   .label {
@@ -47,28 +46,28 @@ const StyledContainer = styled(Container)`
     margin: 0;
   }
 
-  ${({ checked }) =>
+  ${({ checked, theme }) =>
     checked
       ? css`
-          background-color: ${key('colors.selected')};
-          border-color: ${key('colors.toggle')};
+          background-color: ${theme.brand.lightest};
+          border-color: ${theme.brand.secondary};
           ${FlightData} {
-            border-right-color: ${key('colors.toggle')};
+            border-right-color: ${theme.brand.secondary};
             .label {
-              color: ${key('colors.toggle')};
+              color: ${theme.brand.secondary};
             }
             .data {
-              color: ${key('colors.action')};
+              color: ${theme.brand.primary};
             }
           }
           svg {
-            fill: ${key('colors.toggle')};
-            stroke: ${key('colors.toggle')};
+            fill: ${theme.brand.secondary};
+            stroke: ${theme.brand.secondary};
           }
         `
       : null};
   ${FlightData} > span {
-    color: ${({ disabled }) => (disabled ? key('colors.outline') : null)};
+    color: ${({ disabled, theme }) => (disabled ? theme.ui.outline : null)};
   }
 `;
 

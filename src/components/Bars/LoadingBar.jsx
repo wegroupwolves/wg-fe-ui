@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import { key } from 'styled-theme/dist';
 import { string, object, number } from 'prop-types';
 
 const ProgressTrack = styled.div`
@@ -8,7 +7,8 @@ const ProgressTrack = styled.div`
   width: 100%;
   min-width: 574px;
   height: ${({ height }) => height || '5px'};
-  background-color: ${({ background }) => background || key('colors.gray')};
+  background-color: ${({ background, theme }) =>
+    background || theme.ui.backgroundLight};
   @media (max-width: 768px) {
     display: none;
   }
@@ -18,8 +18,8 @@ const ProgressTrack = styled.div`
     left: 0;
     display: block;
     height: ${({ height }) => height || '5px'};
-    background-color: ${({ filledColor }) =>
-      filledColor || key('colors.action')};
+    background-color: ${({ filledColor, theme }) =>
+      filledColor || theme.brand.primary};
     width: ${({ len, activeId }) => (len ? `${activeId * (100 / len)}%` : 0)};
     transition: width 1s ease-in-out;
   }

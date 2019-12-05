@@ -2,7 +2,6 @@ import React from 'react';
 import { string, node, func, object } from 'prop-types';
 import BackArrow from './../Icons/BackArrow';
 import styled from 'styled-components';
-import { key } from 'styled-theme';
 
 const BackButton = ({
   onClick,
@@ -26,15 +25,15 @@ const BackButton = ({
 };
 
 const StyledButton = styled.button`
-  font-family: ${key('fonts.primary')};
+  font-family: ${({ theme }) => theme.fonts};
   background-color: ${({ background }) =>
     background ? background : 'initial'};
-  font-size: ${key('fonts.normal-size')};
+  font-size: 1.6rem;
   border-radius: 0.5rem;
   min-width: 12rem;
   height: 4rem;
-  color: ${({ background }) =>
-    background ? '#FFFFFF' : key('colors.highlight')};
+  color: ${({ background, theme }) =>
+    background ? '#FFFFFF' : theme.typo.highlight};
   font-size: 16px;
   line-height: 20px;
   border: 0;

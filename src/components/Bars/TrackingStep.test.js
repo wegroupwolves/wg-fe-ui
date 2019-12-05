@@ -4,13 +4,15 @@ import TrackingStep from './TrackingStep';
 import FilingIcon from './../Icons/Filing';
 import LoupeIcon from './../Icons/Loupe';
 import { mount } from 'enzyme';
-import Theme from './../../constants/theme';
 import { ThemeProvider } from 'styled-components';
+
+import { orange } from '../../themes';
+const theme = orange();
 
 describe('TrackingStep', () => {
   it('when step having status "current, should just get correct style', () => {
     const wrapper = mount(
-      <ThemeProvider theme={Theme}>
+      <ThemeProvider theme={theme}>
         <TrackingStep />
       </ThemeProvider>,
     );
@@ -22,13 +24,13 @@ describe('TrackingStep', () => {
     );
     expect(wrapper.find('StyledIcon')).toHaveStyleRule(
       'border-color',
-      Theme().colors.action,
+      theme.brand.primary,
     );
   });
 
   it('when step having status "done", should get action color', () => {
     const wrapper = mount(
-      <ThemeProvider theme={Theme}>
+      <ThemeProvider theme={theme}>
         <TrackingStep
           activeId={2}
           stage={{ key: 'filing', name: 'filing', icon: <FilingIcon />, id: 1 }}
@@ -38,7 +40,7 @@ describe('TrackingStep', () => {
 
     expect(wrapper.find('StyledIcon')).toHaveStyleRule(
       'background-color',
-      Theme().colors.action,
+      theme.brand.primary,
     );
     expect(wrapper.find('StyledIcon')).toHaveStyleRule(
       'border-color',
@@ -48,7 +50,7 @@ describe('TrackingStep', () => {
 
   it('when step having status "awaiting", should get white background', () => {
     const wrapper = mount(
-      <ThemeProvider theme={Theme}>
+      <ThemeProvider theme={theme}>
         <TrackingStep
           activeId={2}
           stage={{
@@ -67,7 +69,7 @@ describe('TrackingStep', () => {
     );
     expect(wrapper.find('StyledIcon')).toHaveStyleRule(
       'border-color',
-      Theme().colors.disabledGray,
+      theme.ui.disabled,
     );
   });
 });

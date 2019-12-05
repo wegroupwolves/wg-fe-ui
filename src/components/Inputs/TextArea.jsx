@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { bool, node, func, string, object, number } from 'prop-types';
 import styled from 'styled-components';
-import { key } from 'styled-theme';
 import { detect } from 'detect-browser';
 import Error from './../Messages/Error';
 import ValidationIcons from './../Inputs/ValidationIcons';
@@ -97,7 +96,7 @@ const TextArea = ({
 
 const Container = styled.div`
   width: 100%;
-  font-family: ${key('fonts.primary')};
+  font-family: ${({ theme }) => theme.fonts};
   position: relative;
 `;
 
@@ -140,26 +139,17 @@ const StyledTextArea = styled.textarea`
   background-color: ${({ disabled }) => (disabled ? '#F0F1F3' : 'white')};
   width: 100%;
   border: 0.1rem solid;
-  border-color: ${({ error, touched }) =>
+  border-color: ${({ error, touched, theme }) =>
     error
-      ? key('colors.bad')
+      ? theme.status.error
       : touched && !error
-      ? key('colors.good')
-      : key('colors.outline')};
+      ? theme.status.succes
+      : theme.ui.outline};
   border-radius: 0.3rem;
   height: 4rem;
   font-size: 1.6rem;
   padding: 1rem;
   min-height: 7rem;
-
-  &:focus {
-    outline: none;
-    border-color: ${key('colors.primary-regular')};
-  }
-
-  &::placeholder {
-    color: ${key('colors.button-toggle')};
-  }
 `;
 
 TextArea.defaultProps = {

@@ -1,7 +1,8 @@
 import RadioOption from './RadioOption';
 import { shallow, mount } from 'enzyme';
 import React from 'react';
-import Theme from '../../../constants/theme';
+import { orange } from '../../../themes';
+const theme = orange();
 import 'jest-styled-components';
 
 import { ThemeProvider } from 'styled-components';
@@ -18,7 +19,7 @@ describe('RadioOption', () => {
 
   it('when checked, style changes', () => {
     const wrapper = mount(
-      <ThemeProvider theme={Theme}>
+      <ThemeProvider theme={theme}>
         <RadioOption
           checked
           name="check"
@@ -28,10 +29,10 @@ describe('RadioOption', () => {
         </RadioOption>
       </ThemeProvider>,
     );
-    expect(wrapper).toHaveStyleRule('border-color', Theme().colors.toggle);
+    expect(wrapper).toHaveStyleRule('border-color', theme.brand.secondary);
     expect(wrapper.find('span').at(1)).toHaveStyleRule(
       'border-color',
-      Theme().colors.toggle,
+      theme.brand.secondary,
     );
   });
 });

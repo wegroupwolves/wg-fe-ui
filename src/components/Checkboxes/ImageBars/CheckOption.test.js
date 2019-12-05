@@ -1,7 +1,8 @@
 import CheckOption from './CheckOption';
 import { shallow, mount } from 'enzyme';
 import React from 'react';
-import Theme from '../../../constants/theme';
+import { orange } from '../../../themes';
+const theme = orange();
 import 'jest-styled-components';
 
 import { ThemeProvider } from 'styled-components';
@@ -18,7 +19,7 @@ describe('CheckOption', () => {
 
   it('when checked, style changes', () => {
     const wrapper = mount(
-      <ThemeProvider theme={Theme}>
+      <ThemeProvider theme={theme}>
         <CheckOption
           checked
           name="check"
@@ -29,10 +30,10 @@ describe('CheckOption', () => {
         </CheckOption>
       </ThemeProvider>,
     );
-    expect(wrapper).toHaveStyleRule('border-color', Theme().colors.toggle);
+    expect(wrapper).toHaveStyleRule('border-color', theme.brand.secondary);
     expect(wrapper.find('span').at(1)).toHaveStyleRule(
       'background-color',
-      Theme().colors.toggle,
+      theme.brand.secondary,
     );
   });
 });

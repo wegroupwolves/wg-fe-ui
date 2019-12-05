@@ -1,23 +1,34 @@
 import React from 'react';
 import styled from 'styled-components';
-import { key } from 'styled-theme/dist';
 import FilingIcon from './../Icons/Filing';
 import { node, number, string, shape } from 'prop-types';
 
-const backgroundColor = {
-  done: key('colors.action'),
-};
+function backgroundColor(status, theme) {
+  switch (status) {
+    case 'done':
+      return theme.brand.primary;
+  }
+}
 
-const borderColor = {
-  active: key('colors.action'),
-  disabled: key('colors.disabledGray'),
-};
+function borderColor(status, theme) {
+  switch (status) {
+    case 'active':
+      return theme.brand.primary;
+    case 'disabled':
+      return theme.ui.disabled;
+  }
+}
 
-const iconColor = {
-  done: '#FFFFFF',
-  active: key('colors.action'),
-  disabled: key('colors.disabledGray'),
-};
+function iconColor(status, theme) {
+  switch (status) {
+    case 'done':
+      return '#FFFFFF';
+    case 'active':
+      return theme.brand.primary;
+    case 'disabled':
+      return theme.ui.disabled;
+  }
+}
 
 /**
  * Checks actual stage status
@@ -62,7 +73,8 @@ const Status = styled.div`
 `;
 
 const StyledIcon = styled.div`
-  background-color: ${({ status }) => backgroundColor[status] || '#FFFFFF'};
+  background-color: ${({ status, theme }) =>
+    backgroundColor(status, theme) || '#FFFFFF'};
   display: flex;
   border-radius: 50%;
   width: 40px;
@@ -72,10 +84,11 @@ const StyledIcon = styled.div`
   align-items: center;
   box-sizing: border-box;
   border: ${({ status }) => (status !== 'done' ? '2.26px solid' : 'none')};
-  border-color: ${({ status }) => borderColor[status] || 'transparent'};
+  border-color: ${({ status, theme }) =>
+    borderColor(status, theme) || 'transparent'};
   path {
-    fill: ${({ status }) => iconColor[status] || '#FFFFFF'};
-    stroke: ${({ status }) => iconColor[status] || '#FFFFFF'};
+    fill: ${({ status, theme }) => iconColor(status, theme) || '#FFFFFF'};
+    stroke: ${({ status, theme }) => iconColor(status, theme) || '#FFFFFF'};
   }
 `;
 

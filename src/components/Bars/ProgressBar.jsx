@@ -1,11 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
-import { key } from 'styled-theme/dist';
 import { string, number, object, arrayOf } from 'prop-types';
 import LoadingBar from './LoadingBar';
 
 const Status = styled.span`
-  font-family: ${key('fonts.primary')};
+  font-family: ${({ theme }) => theme.fonts};
   font-size: 14px;
   font-weight: ${({ active }) => (active ? 'bold' : 'initial')};
   line-height: 24px;
