@@ -3,12 +3,11 @@ import styled from 'styled-components';
 
 import LanguageSelector from './LanguageSelector';
 
-import { array, node, string, func, object } from 'prop-types';
-import { key } from 'styled-theme';
+import { array, string, func, object } from 'prop-types';
 
 const HeaderNav = ({
   navTabs,
-  theme,
+  logo,
   className,
   currentLocation,
   onClick,
@@ -18,7 +17,7 @@ const HeaderNav = ({
     <Container className={className} {...otherProps}>
       <Wrapper>
         <LogoContainer>
-          <Logo src={theme.data.logo} alt="WeGroup" />
+          <Logo src={logo} alt="WeGroup" />
         </LogoContainer>
         <Navigation>
           {navTabs.map(tab => {
@@ -67,12 +66,12 @@ const NavItem = styled.li`
   margin: 0 3rem;
   font-size: 1.6rem;
   padding: 2.5rem 2rem 2rem;
-  font-family: ${key('fonts.primary')};
+  font-family: ${({ theme }) => theme.fonts};
   border-bottom: ${props => (props.active === true ? `3px solid` : 'none')};
-  border-color: ${props =>
-    props.active === true ? key('colors.action') : 'none'};
+  border-color: ${({ theme, active }) =>
+    active === true ? theme.brand.primary : 'none'};
   font-weight: ${props => (props.active === true ? `bold` : 'none')};
-  color: ${key([`colors`, `dark-grey-font`])};
+  color: ${({ theme }) => theme.typo.highlight};
 `;
 
 const Navigation = styled.ul`
@@ -99,7 +98,7 @@ HeaderNav.defaultProps = {
 
 HeaderNav.propTypes = {
   navTabs: array,
-  theme: node,
+  logo: string,
   className: string,
   onClick: func,
   currentLocation: string,

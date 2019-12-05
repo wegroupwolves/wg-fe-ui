@@ -1,6 +1,5 @@
 import React, { forwardRef } from 'react';
 import styled from 'styled-components';
-import { key } from 'styled-theme';
 import PropTypes from 'prop-types';
 import { Container, StyledInput, Text } from './ImageBarTemplate';
 
@@ -10,8 +9,8 @@ const StyledCheck = styled.span`
   border-radius: 10px;
   margin: auto 1.6vw;
   border: ${({ checked }) => (checked ? '5px solid' : '1.2px solid')};
-  border-color: ${({ checked }) =>
-    checked ? key('colors.toggle') : key('colors.outline')};
+  border-color: ${({ checked, theme }) =>
+    checked ? theme.brand.secondary : theme.ui.outline};
   box-sizing: border-box;
 `;
 

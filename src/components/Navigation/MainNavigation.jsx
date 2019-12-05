@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import { string, object, node } from 'prop-types';
-import { key } from 'styled-theme';
 import Item from './Item';
 
 const MainNavigation = ({ className, children, ...otherProps }) => {
@@ -15,14 +14,14 @@ const MainNavigation = ({ className, children, ...otherProps }) => {
 const Line = styled.div`
   height: 0.1rem;
   width: 100%;
-  background-color: ${key('colors.backDrop')};
+  background-color: ${({ theme }) => theme.ui.backgroundLight};
 `;
 
 const Title = styled.h1`
   text-transform: uppercase;
   font-size: 1.4rem;
   margin-left: 3.5rem;
-  color: ${key('colors.disabled')};
+  color: ${({ theme }) => theme.typo.text};
   margin-bottom: 1.5rem;
 
   &:not(:first-child) {
@@ -31,7 +30,7 @@ const Title = styled.h1`
 `;
 
 const NavigationBar = styled.nav`
-  font-family: ${key('fonts.primary')};
+  font-family: ${({ theme }) => theme.fonts};
   height: 100vh;
   width: 25rem;
   z-index: 100;
@@ -39,7 +38,7 @@ const NavigationBar = styled.nav`
   display: flex;
   flex-direction: column;
   position: fixed;
-  border-right: 1px solid ${key('colors.backDrop')};
+  border-right: 1px solid ${({ theme }) => theme.ui.outline};
 `;
 
 MainNavigation.Title = Title;
@@ -50,8 +49,8 @@ MainNavigation.Item = Item;
 MainNavigation.Item.displayName = 'MainNavigation.Item';
 
 MainNavigation.defaultProps = {
-  otherProps: {}
-}
+  otherProps: {},
+};
 
 MainNavigation.propTypes = {
   /** Beeing able to use it in Styled Components */

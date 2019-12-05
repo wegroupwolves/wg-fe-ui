@@ -2,7 +2,6 @@ import React, { forwardRef } from 'react';
 import { object, func, string, bool, node } from 'prop-types';
 import LoupeIcon from './../Icons/Loupe';
 import styled from 'styled-components';
-import { key } from 'styled-theme';
 
 const SearchInput = forwardRef(
   (
@@ -42,17 +41,17 @@ const StyledBox = styled.div`
     left: 0;
     transform: rotate(-90deg);
     path {
-      fill: ${key('colors.sub-txt')};
+      fill: ${({ theme }) => theme.ui.interactive};
     }
   }
 `;
 
 const Input = styled.input`
-  font-family: ${key('fonts.primary')};
+  font-family: ${({ theme }) => theme.fonts};
   font-size: 1.4rem;
-  color: ${key('colors.sub-txt')};
-  border: ${({ border }) =>
-    border ? `1px solid ${key('colors.disabled')}` : 'none'};
+  color: ${({ theme }) => theme.ui.interactive};
+  border: ${({ border, theme }) =>
+    border ? `1px solid ${theme.ui.disabled}` : 'none'};
   line-height: 2rem;
   padding: 3px 0.2vw 3px 5.7vw;
   width: 100%;

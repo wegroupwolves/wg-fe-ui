@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import i18next from 'i18next';
 import styled from 'styled-components';
-import { key } from 'styled-theme';
 import NL from '../../assets/flags/NL';
 import EN from '../../assets/flags/EN';
 import FR from '../../assets/flags/FR';
@@ -86,7 +85,7 @@ const DropDownContainer = styled.div`
     display: flex;
     padding: 0.7rem 1.5rem 0.7rem 0;
     margin-bottom: 0.5rem;
-    font-size: ${key(['fonts.normal-size'])};
+    font-size: 1.6rem;
     font-weight: bold;
 
     &:active {
@@ -94,7 +93,7 @@ const DropDownContainer = styled.div`
     }
 
     &:hover {
-      color: ${key('colors.primary-regular')};
+      color: ${({ theme }) => theme.brand.primary};
       background-color: #ececec;
     }
 

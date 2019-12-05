@@ -1,6 +1,5 @@
 import React, { forwardRef } from 'react';
 import styled from 'styled-components';
-import { key } from 'styled-theme';
 import { string, object, node } from 'prop-types';
 import Head from './Head';
 import HeaderCell from './HeaderCell';
@@ -17,7 +16,7 @@ const OverviewTable = forwardRef(
 );
 
 const Table = styled.table`
-  font-family: ${key('fonts.primary')};
+  font-family: ${({ theme }) => theme.fonts};
   width: 100%;
   text-align: left;
   margin-top: 2.5rem;

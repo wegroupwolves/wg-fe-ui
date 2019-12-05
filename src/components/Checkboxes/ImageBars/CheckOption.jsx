@@ -1,6 +1,5 @@
 import React, { forwardRef } from 'react';
 import styled, { css } from 'styled-components';
-import { key } from 'styled-theme';
 import PropTypes from 'prop-types';
 import { Container, StyledInput, Text } from './ImageBarTemplate';
 
@@ -10,11 +9,11 @@ const StyledCheck = styled.span`
   border-radius: 3px;
   margin: auto 1.6vw;
   border: 1.2px solid;
-  border-color: ${key('colors.outline')};
-  ${({ checked }) =>
+  border-color: ${({ theme }) => theme.ui.outline};
+  ${({ checked, theme }) =>
     checked
       ? css`
-          background-color: ${key('colors.toggle')};
+          background-color: ${theme.brand.secondary};
           text-align: center;
           &:before {
             content: '✔';
@@ -45,7 +44,7 @@ const CheckOption = forwardRef(
     const onClick = e => {
       e.persist();
       handleClick({ name: e.target.name, value: e.target.value });
-    }
+    };
     return (
       <Container checked={checked} disabled={disabled}>
         <StyledInput

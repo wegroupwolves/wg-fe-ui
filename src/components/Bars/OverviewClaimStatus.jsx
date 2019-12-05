@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import { key } from 'styled-theme/dist';
 
 const StatusRectangle = styled.div`
   min-width: 14px;
@@ -19,7 +18,7 @@ const StatusesContainer = styled.div`
 `;
 
 const Container = styled.div`
-  font-family: ${key('fonts.primary')};
+  font-family: ${({ theme }) => theme.fonts};
   span {
     font-size: 1.2rem;
     margin-bottom: 0.53rem;

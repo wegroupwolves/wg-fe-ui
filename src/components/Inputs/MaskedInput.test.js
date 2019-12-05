@@ -3,11 +3,25 @@ import { MaskedInput } from '.';
 import { mount } from 'enzyme';
 import 'jest-styled-components';
 import { act } from 'react-dom/test-utils';
+import { ThemeProvider } from 'styled-components';
+
+import { orange } from '../../themes';
+const theme = orange();
+
+// eslint-disable-next-line
+const ThemeProviderWrapper = ({ children }) => (
+  <ThemeProvider theme={theme}>{children}</ThemeProvider>
+);
+
+export const mountWithTheme = tree =>
+  mount(tree, {
+    wrappingComponent: ThemeProviderWrapper,
+  });
 
 describe('MaskedInput', () => {
   it('should call onChange with value without mask placed', () => {
     const onChange = jest.fn(val => val);
-    const wrapper = mount(
+    const wrapper = mountWithTheme(
       <MaskedInput onChange={onChange} name="test">
         test
       </MaskedInput>,
@@ -19,7 +33,7 @@ describe('MaskedInput', () => {
   });
 
   it('should pass formatted value to TextInput', () => {
-    const wrapper = mount(
+    const wrapper = mountWithTheme(
       <MaskedInput
         mask="+(_ _) _ _ _-_ _ _-_ _"
         maskChar="_"
@@ -36,7 +50,7 @@ describe('MaskedInput', () => {
   });
 
   it('otherProps adds props to input', () => {
-    const wrapper = mount(
+    const wrapper = mountWithTheme(
       <MaskedInput max={12} name="test">
         Test
       </MaskedInput>,

@@ -2,11 +2,25 @@ import { SubNavigation } from '.';
 import { mount } from 'enzyme';
 import React from 'react';
 import 'jest-styled-components';
+import { ThemeProvider } from 'styled-components';
+
+import { orange } from '../../themes';
+const theme = orange();
+
+// eslint-disable-next-line
+const ThemeProviderWrapper = ({ children }) => (
+  <ThemeProvider theme={theme}>{children}</ThemeProvider>
+);
+
+export const mountWithTheme = tree =>
+  mount(tree, {
+    wrappingComponent: ThemeProviderWrapper,
+  });
 
 describe('SubNavigation', () => {
   it('can increase value after click', () => {
     let value = 0;
-    const wrapper = mount(
+    const wrapper = mountWithTheme(
       <SubNavigation>
         <React.Fragment key={1}>
           <SubNavigation.Section onClick={() => value++}>
@@ -44,7 +58,7 @@ describe('SubNavigation', () => {
   });
 
   it('contains necesarry SubNavigation components', () => {
-    const wrapper = mount(
+    const wrapper = mountWithTheme(
       <SubNavigation>
         <React.Fragment key={1}>
           <SubNavigation.Section>Label</SubNavigation.Section>

@@ -1,35 +1,22 @@
 import React from 'react';
 import { string, node, object } from 'prop-types';
 import styled from 'styled-components';
-import { key } from 'styled-theme';
 
-const Text = ({
-  className,
-  children,
-  color,
-  ...otherProps
-}) => {
-
-
+const Text = ({ className, children, color, ...otherProps }) => {
   return (
-    <P
-    color={color}
-    className={className}
-    {...otherProps}
-    >
+    <P color={color} className={className} {...otherProps}>
       {children}
     </P>
   );
 };
 
 const P = styled.p`
-  font-family: ${key('fonts.primary')};
-  font-size: ${key('fonts.normal-size')};
+  font-family: ${({ theme }) => theme.fonts};
+  font-size: 1.6rem;
   font-weight: normal;
   line-height: 130%;
-  color: ${props =>  props.color ? props.color : key(`colors.font`) };
+  color: ${({ color, theme }) => (color ? color : theme.typo.title)};
 `;
-
 
 Text.propTypes = {
   /** Beeing able to use it in Styled Components */
@@ -38,6 +25,6 @@ Text.propTypes = {
   children: node.isRequired,
   color: string,
   otherProps: object,
-}
+};
 
 export default Text;

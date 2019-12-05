@@ -3,12 +3,23 @@ import { mount } from 'enzyme';
 import React from 'react';
 import 'jest-styled-components';
 import { ThemeProvider } from '../..';
-import Theme from '../../constants/theme';
+import { orange } from '../../themes';
+const theme = orange();
+
+// eslint-disable-next-line
+const ThemeProviderWrapper = ({ children }) => (
+  <ThemeProvider theme={theme}>{children}</ThemeProvider>
+);
+
+export const mountWithTheme = tree =>
+  mount(tree, {
+    wrappingComponent: ThemeProviderWrapper,
+  });
 
 describe('SearchSelectInput', () => {
   it('returns value and name of selected option', () => {
     let testValue = { name: null, value: null };
-    const wrapper = mount(
+    const wrapper = mountWithTheme(
       <SearchSelectInput
         name="test"
         onSelected={({ name, value }) => {
@@ -38,7 +49,7 @@ describe('SearchSelectInput', () => {
     expect(testValue.name).toEqual('test');
   });
   it('placeholder should be loading when enabled', () => {
-    const wrapper = mount(
+    const wrapper = mountWithTheme(
       <SearchSelectInput
         name="test"
         loading={true}
@@ -61,7 +72,7 @@ describe('SearchSelectInput', () => {
     ).toEqual('Loading...');
   });
   it('when no options available, show message', () => {
-    const wrapper = mount(
+    const wrapper = mountWithTheme(
       <SearchSelectInput
         name="test"
         onSelected={(name, value) => console.log(name, value)}
@@ -85,8 +96,8 @@ describe('SearchSelectInput', () => {
     ).toEqual('No options');
   });
   it('when disabled style changes and input is disabled', () => {
-    const wrapper = mount(
-      <ThemeProvider theme={Theme}>
+    const wrapper = mountWithTheme(
+      <ThemeProvider theme={theme}>
         <SearchSelectInput
           name="test"
           onSelected={(name, value) => console.log(name, value)}
@@ -101,10 +112,7 @@ describe('SearchSelectInput', () => {
     expect(wrapper.find('input').props().disabled).toEqual(false);
 
     // check if label is sub-title color
-    expect(wrapper.find('label')).toHaveStyleRule(
-      'color',
-      Theme().colors['sub-title'],
-    );
+    expect(wrapper.find('label')).toHaveStyleRule('color', theme.typo.subTitle);
 
     // set props to disabled
     wrapper.setProps({
@@ -121,16 +129,13 @@ describe('SearchSelectInput', () => {
     });
 
     // check if label color changed to disabled
-    expect(wrapper.find('label')).toHaveStyleRule(
-      'color',
-      Theme().colors['disabled'],
-    );
+    expect(wrapper.find('label')).toHaveStyleRule('color', theme.ui.disabled);
 
     // check if input prop disabled is true
     expect(wrapper.find('input').props().disabled).toEqual(true);
   });
   it('otherProps adds props to input', () => {
-    const wrapper = mount(
+    const wrapper = mountWithTheme(
       <SearchSelectInput
         name="test"
         onSelected={(name, value) => console.log(name, value)}

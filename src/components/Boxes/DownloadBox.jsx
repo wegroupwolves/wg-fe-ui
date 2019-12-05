@@ -2,7 +2,6 @@ import React from 'react';
 import { string, object } from 'prop-types';
 import styled from 'styled-components';
 import download from '../../assets/download';
-import { key } from 'styled-theme';
 
 const DownloadBox = ({
   href,
@@ -61,21 +60,21 @@ const Download = styled.div`
     width: 100%;
     align-items: center;
     text-decoration: none;
-    font-family: ${key('fonts.primary')};
-    font-size: ${key('fonts.regular-size')};
+    font-family: ${({ theme }) => theme.fonts};
+    font-size: 1.4rem;
     line-height: 130%;
   }
 `;
 
 const FileName = styled.span`
   font-weight: bold;
-  color: ${key(`colors.font`)};
+  color: ${({ theme }) => theme.typo.text};
   margin-right: 1.5rem;
 `;
 
 const FileSize = styled.span`
   font-weight: normal;
-  color: ${key(`colors.sub-txt`)};
+  color: ${({ theme }) => theme.typo.interactive};
 `;
 
 const Container = styled.span`

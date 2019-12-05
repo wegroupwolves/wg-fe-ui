@@ -1,29 +1,43 @@
 import React, { forwardRef } from 'react';
 import styled from 'styled-components';
-import { key } from 'styled-theme/dist';
 import { string, func, node, object } from 'prop-types';
 
-const backgroundColor = {
-  inactive: key('colors.inactive'),
-  normal: key('colors.normal'),
-  selected: key('colors.selected'),
-};
+function backgroundColor(status, theme) {
+  switch (status) {
+    case 'inactive':
+      return theme.ui.background;
+    case 'normal':
+      return '#FFFFFF';
+    case 'selected':
+      return theme.brand.lightest;
+  }
+}
 
-const borderColor = {
-  inactive: key('colors.outline'),
-  normal: key('colors.outline'),
-  selected: key('colors.toggle'),
-};
+function borderColor(status, theme) {
+  switch (status) {
+    case 'inactive':
+      return theme.ui.outline;
+    case 'normal':
+      return theme.ui.outline;
+    case 'selected':
+      return theme.brand.secondary;
+  }
+}
 
-const iconColor = {
-  inactive: key('colors.outline'),
-  normal: key('colors.interactive'),
-  selected: key('colors.toggle'),
-};
+function iconColor(status, theme) {
+  switch (status) {
+    case 'inactive':
+      return theme.ui.outline;
+    case 'normal':
+      return theme.ui.interactive;
+    case 'selected':
+      return theme.brand.secondary;
+  }
+}
 
 const RadioButton = styled.label`
-  font-family: ${key('fonts.primary')};
-  font-size: ${key('fonts.normal-size')};
+  font-family: ${({ theme }) => theme.fonts};
+  font-size: 1.6rem;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -34,13 +48,13 @@ const RadioButton = styled.label`
   padding: 43px auto auto 27px;
   cursor: pointer;
   margin-right: 1.3vw;
-  background-color: ${({ mode }) => backgroundColor[mode]};
+  background-color: ${({ mode, theme }) => backgroundColor(mode, theme)};
 
   border: 1px solid;
-  border-color: ${({ mode }) => borderColor[mode]};
+  border-color: ${({ mode, theme }) => borderColor(mode, theme)};
   box-sizing: border-box;
   border-radius: 5px;
-  color: ${({ mode }) => iconColor[mode]};
+  color: ${({ mode, theme }) => iconColor(mode, theme)};
 
   &::after {
     content: '${({ label }) => label}';
@@ -58,8 +72,8 @@ const RadioButton = styled.label`
     margin-bottom: 10px;
 
     path {
-      fill: ${({ mode }) => iconColor[mode]};
-      stroke: ${({ mode }) => iconColor[mode]};
+      fill: ${({ mode, theme }) => iconColor(mode, theme)};
+      stroke: ${({ mode, theme }) => iconColor(mode, theme)};
     }
   }
 

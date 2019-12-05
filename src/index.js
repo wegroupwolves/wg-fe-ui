@@ -51,7 +51,4 @@ export {
 // Export all icons
 export * from './components/Icons';
 
-// Export all themes
-export * from './themes';
-
 export { default as ThemeProvider } from './components/ThemeProvider';

@@ -5,7 +5,6 @@ export default (function() {
   const brandDark = '#db6f01';
   const brandSecondary = '#FF9B21';
   const brandFont = `Lato, Helvetica, Myriad, Sans-Serif`;
-
   return {
     brand: {
       primary: brandPrimary,
@@ -14,7 +13,7 @@ export default (function() {
       dark: brandDark,
       secondary: brandSecondary,
     },
-    typography: {
+    typo: {
       title: '#050505',
       text: '#0E0E0E',
       highlight: '#505050',
@@ -36,7 +35,7 @@ export default (function() {
     },
     hover: {
       primary: brandLightest,
-      secondary: brandLightest,
+      secondary: '#F6F6F6',
     },
     status: {
       succes: '#37D66C',

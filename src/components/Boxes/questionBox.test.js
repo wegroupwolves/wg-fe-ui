@@ -1,19 +1,32 @@
 import { QuestionBox } from '.';
-import { shallow, mount } from 'enzyme';
+import { mount } from 'enzyme';
 import React from 'react';
-import Theme from '../../constants/theme';
+import { orange } from '../../themes';
+import { ThemeProvider } from 'styled-components';
 import 'jest-styled-components';
 
-import { ThemeProvider } from 'styled-components';
+const theme = orange();
+
+// eslint-disable-next-line
+const ThemeProviderWrapper = ({ children }) => (
+  <ThemeProvider theme={theme}>{children}</ThemeProvider>
+);
+
+export const mountWithTheme = tree =>
+  mount(tree, {
+    wrappingComponent: ThemeProviderWrapper,
+  });
 
 describe('QuestionBox', () => {
   it('can pass extra props', () => {
-    const wrapper = shallow(<QuestionBox lol={'test'}>Testje</QuestionBox>);
+    const wrapper = mountWithTheme(
+      <QuestionBox lol={'test'}>Testje</QuestionBox>,
+    );
     expect(wrapper.props().lol).toEqual('test');
   });
   it('returns value when option is clicked', () => {
     let answer;
-    const wrapper = mount(
+    const wrapper = mountWithTheme(
       <QuestionBox option1="1" option2="2" response={res => (answer = res)}>
         Testje
       </QuestionBox>,
@@ -36,8 +49,8 @@ describe('QuestionBox', () => {
     expect(answer).toEqual('2');
   });
   it('style changes when disabled', () => {
-    const wrapper = mount(
-      <ThemeProvider theme={Theme}>
+    const wrapper = mountWithTheme(
+      <ThemeProvider theme={theme}>
         <QuestionBox option1="1" option2="2">
           test
         </QuestionBox>
@@ -47,7 +60,7 @@ describe('QuestionBox', () => {
     // check if color default is action
     expect(wrapper.find('.option1')).toHaveStyleRule(
       'background-color',
-      Theme().colors.action,
+      theme.brand.primary,
     );
 
     // add prop disabled to questionBox
@@ -62,7 +75,7 @@ describe('QuestionBox', () => {
     // check if bg color is disabled
     expect(wrapper.find('.option1')).toHaveStyleRule(
       'background-color',
-      Theme().colors.disabled,
+      theme.ui.disabled,
     );
   });
 });

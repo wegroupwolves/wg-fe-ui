@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import { key } from 'styled-theme';
 
 const Section = styled.li`
   font-weight: 900;
@@ -10,8 +9,8 @@ const Section = styled.li`
 const SubSection = styled.li`
   padding-right: 0.78vw;
   border-right: 1px solid;
-  border-color: ${({ active }) =>
-    active ? key('colors.action') : 'transparent'};
+  border-color: ${({ active, theme }) =>
+    active ? theme.brand.primary : 'transparent'};
 `;
 
 const Item = styled.li`
@@ -22,7 +21,7 @@ const Item = styled.li`
 
 const SectionContainer = styled.ul`
   padding-left: 0.78vw;
-  font-family: ${key('fonts.primary')};
+  font-family: ${({ theme }) => theme.fonts};
   overflow: ${({ active }) => (active ? 'auto' : 'hidden')};
   opacity: ${({ active }) => (active ? '1' : '0')};
   max-height: ${({ active }) => (active ? '100vh' : '0')};
@@ -36,9 +35,9 @@ SubSection.propTypes = {
 const StyledSubNavigation = styled.ul`
   font-size: 1.6rem;
   line-height: 2rem;
-  font-family: ${key('fonts.primary')};
+  font-family: ${({ theme }) => theme.fonts};
   li {
-    color: ${key('colors.highlight')};
+    color: ${({ theme }) => theme.typo.highlight};
     line-height: 2rem;
     text-align: right;
     margin-bottom: 1rem;

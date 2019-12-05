@@ -1,5 +1,4 @@
 import React from 'react';
-import { key } from 'styled-theme/dist';
 import { string, object, node } from 'prop-types';
 import styled from 'styled-components';
 
@@ -12,17 +11,17 @@ const Row = ({ className, children, ...otherProps }) => {
 };
 
 const Tr = styled.tr`
-  background-color: ${key('colors.normal')};
+  background-color: white;
   font-size: 1.6rem;
 
   :hover {
-    background-color: ${key('colors.selected')};
+    background-color: ${({ theme }) => theme.brand.lightest};
   }
 `;
 
 Row.defaultProps = {
-  otherProps: {}
-}
+  otherProps: {},
+};
 
 Row.propTypes = {
   /** Beeing able to use it in Styled Components */

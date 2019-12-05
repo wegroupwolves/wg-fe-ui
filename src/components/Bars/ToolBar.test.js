@@ -2,22 +2,24 @@ import React from 'react';
 import ToolBar from './ToolBar';
 import { SearchInput } from './../Inputs';
 import { shallow, mount } from 'enzyme';
-import Theme from '../../constants/theme';
 import 'jest-styled-components';
 import { ThemeProvider } from 'styled-components';
 import { BackButton } from './../Buttons';
 
+import { orange } from '../../themes';
+const theme = orange();
+
 describe('ToolBar', () => {
   it('when rendered, component should have correct style', () => {
     const wrapper = mount(
-      <ThemeProvider theme={Theme}>
+      <ThemeProvider theme={theme}>
         <ToolBar btnName="submit" />
       </ThemeProvider>,
     );
 
     expect(wrapper.find('InnerBox')).toHaveStyleRule(
       'border-right',
-      `1px solid ${Theme().colors.outline}`,
+      `1px solid ${theme.ui.outline}`,
     );
   });
 

@@ -1,7 +1,6 @@
 import React, { forwardRef, useState } from 'react';
 import { array, object, bool, string, element, func } from 'prop-types';
 import styled from 'styled-components';
-import { key } from 'styled-theme';
 import UploadIcon from '../Icons/Upload';
 
 const getAccepted = accepted => {
@@ -77,24 +76,24 @@ const UploadField = forwardRef(
 );
 
 const StyledButton = styled.label`
-  font-family: ${key('fonts.primary')};
-  font-size: ${key('fonts.normal-size')};
+  font-family: ${({ theme }) => theme.fonts};
+  font-size: 1.6rem;
   line-height: 130%;
   border-radius: 0.5rem;
   min-width: 14rem;
   width: ${({ fullwidth }) => (fullwidth ? '100%' : '52vw')};
   padding: 2vh 0;
   border: 0.5px solid;
-  border-color: ${({ withFile }) =>
-    withFile ? key('colors.toggle') : key('colors.big-disabled')};
+  border-color: ${({ withFile, theme }) =>
+    withFile ? theme.brand.secondary : theme.ui.outline};
   box-sizing: border-box;
   border-radius: 5px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  color: ${({ withFile }) =>
-    withFile ? key('colors.toggle') : key('colors.highlight')};
+  color: ${({ withFile, theme }) =>
+    withFile ? theme.brand.secondary : theme.typo.highlight};
   &:hover {
     cursor: pointer;
     input,
@@ -102,16 +101,16 @@ const StyledButton = styled.label`
       cursor: pointer;
     }
   }
-  background-color: ${({ withFile }) =>
-    withFile ? key('colors.selected') : key('colors.big-disabled')};
+  background-color: ${({ withFile, theme }) =>
+    withFile ? theme.ui.active : theme.ui.background};
   position: relative;
 
   svg {
     margin-bottom: 12px;
 
     path {
-      fill: ${({ withFile }) =>
-        withFile ? key('colors.toggle') : key('colors.interactive')};
+      fill: ${({ withFile, theme }) =>
+        withFile ? theme.brand.secondary : theme.ui.interactive};
     }
   }
 

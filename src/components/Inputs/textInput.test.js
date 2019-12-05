@@ -1,17 +1,26 @@
 import { TextInput } from '.';
 import { mount } from 'enzyme';
 import React from 'react';
-import Theme from '../../constants/theme';
+import { orange } from '../../themes';
+const theme = orange();
 import 'jest-styled-components';
 import { ThemeProvider } from 'styled-components';
 import { act } from 'react-dom/test-utils';
 
+// eslint-disable-next-line
+const ThemeProviderWrapper = ({ children }) => (
+  <ThemeProvider theme={theme}>{children}</ThemeProvider>
+);
+
+export const mountWithTheme = tree =>
+  mount(tree, {
+    wrappingComponent: ThemeProviderWrapper,
+  });
+
 describe('TextInput', () => {
   it('style changes when disabled', () => {
-    const wrapper = mount(
-      <ThemeProvider theme={Theme}>
-        <TextInput name="firstname">Name</TextInput>
-      </ThemeProvider>,
+    const wrapper = mountWithTheme(
+      <TextInput name="firstname">Name</TextInput>,
     );
     expect(wrapper.find('StyledInput')).toHaveStyleRule(
       'background-color',
@@ -27,7 +36,7 @@ describe('TextInput', () => {
     });
     expect(wrapper.find('input')).toHaveStyleRule(
       'background-color',
-      Theme().colors.backDrop,
+      '#F0F1F3',
     );
   });
 
@@ -35,7 +44,7 @@ describe('TextInput', () => {
     let ctrlName = 'fakeName';
     let ctrlValue = 'Ruben';
 
-    const wrapper = mount(
+    const wrapper = mountWithTheme(
       <TextInput
         setFieldValue={(name, value) => {
           ctrlName = name;
@@ -65,7 +74,7 @@ describe('TextInput', () => {
   it('returns touched value when input is touched', () => {
     let ctrlName = 'noTest';
     let ctrlTouched = false;
-    const wrapper = mount(
+    const wrapper = mountWithTheme(
       <TextInput
         name="test"
         setFieldTouched={(name, value) => {
@@ -84,16 +93,12 @@ describe('TextInput', () => {
   });
 
   it('has different border color on validation', () => {
-    const wrapper = mount(
-      <ThemeProvider theme={Theme}>
-        <TextInput name="test">Test</TextInput>
-      </ThemeProvider>,
-    );
+    const wrapper = mountWithTheme(<TextInput name="test">Test</TextInput>);
 
     // check if borders have default color when not touched yet
     expect(wrapper.find('input')).toHaveStyleRule(
       'border-color',
-      Theme().colors['outline'],
+      theme.ui.outline,
     );
 
     // Check if border is red when errors and touched
@@ -106,7 +111,7 @@ describe('TextInput', () => {
     });
     expect(wrapper.find('input')).toHaveStyleRule(
       'border-color',
-      Theme().colors['bad'],
+      theme.status.error,
     );
 
     // Check if border is green when no errors but touched
@@ -119,12 +124,12 @@ describe('TextInput', () => {
     });
     expect(wrapper.find('input')).toHaveStyleRule(
       'border-color',
-      Theme().colors['good'],
+      theme.status.succes,
     );
   });
 
   it('Good or bad icons show at right time', () => {
-    const wrapper = mount(<TextInput name="test">Test</TextInput>);
+    const wrapper = mountWithTheme(<TextInput name="test">Test</TextInput>);
 
     // check if icons don't exist
     expect(wrapper.exists('Errormark')).toEqual(false);
@@ -144,7 +149,7 @@ describe('TextInput', () => {
     expect(wrapper.exists('Errormark')).toEqual(false);
   });
   it('otherProps adds props to input', () => {
-    const wrapper = mount(
+    const wrapper = mountWithTheme(
       <TextInput max={12} name="test">
         Test
       </TextInput>,

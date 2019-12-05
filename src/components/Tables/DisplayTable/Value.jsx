@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import { node, string, func, object } from 'prop-types';
-import { key } from 'styled-theme/dist';
 
 const Value = ({ className, children, highlight, toggled, ...otherProps }) => {
   return (
@@ -13,7 +12,7 @@ const Value = ({ className, children, highlight, toggled, ...otherProps }) => {
 };
 
 const StyledValue = styled.td`
-  color: ${key('colors.highlight')};
+  color: ${({ theme }) => theme.typo.highlight};
   display: flex;
   align-items: center;
   width: 100%;
@@ -21,7 +20,7 @@ const StyledValue = styled.td`
   justify-content: space-between;
 
   & span {
-    background-color: ${key('colors.toggle')};
+    background-color: ${({ theme }) => theme.brand.secondary};
     color: white;
     text-transform: uppercase;
     height: 3rem;
@@ -30,13 +29,13 @@ const StyledValue = styled.td`
     justify-content: center;
     align-items: center;
     border-radius: 0.3rem;
-    font-size: ${key('fonts.small-size')};
+    font-size: 1.2rem;
   }
 `;
 
 Value.defaultProps = {
-  otherProps: {}
-}
+  otherProps: {},
+};
 
 Value.propTypes = {
   /** Beeing able to use it in Styled Components */

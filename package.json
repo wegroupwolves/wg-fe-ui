@@ -26,7 +26,8 @@
       "^.+\\.jsx?$": "babel-jest"
     },
     "moduleNameMapper": {
-      "\\.(css|scss|jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js"
+      "\\.(css|scss|jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js",
+      "^styled-components$": "<rootDir>/node_modules/styled-components"
     }
   },
   "eslintConfig": {
@@ -51,20 +52,19 @@
   "dependencies": {
     "@babel/cli": "^7.6.4",
     "@babel/core": "^7.6.4",
-    "babel-plugin-transform-object-rest-spread": "^7.0.0-alpha.20",
-    "babel-plugin-transform-react-jsx": "^6.24.1",
     "@babel/preset-env": "^7.6.3",
     "@babel/preset-react": "^7.6.3",
+    "babel-loader": "^8.0.6",
+    "babel-plugin-transform-object-rest-spread": "^7.0.0-alpha.20",
+    "babel-plugin-transform-react-jsx": "^6.24.1",
     "babel-preset-env": "^1.7.0",
-    "styled-components": "^4.3.2",
-    "styled-theme": "^0.3.3",
+    "copy-webpack-plugin": "^5.0.4",
+    "detect-browser": "^4.6.0",
+    "i18next": "^17.2.0",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-select": "^3.0.8",
-    "i18next": "^17.2.0",
-    "detect-browser": "^4.6.0",
-    "babel-loader": "^8.0.6",
-    "copy-webpack-plugin": "^5.0.4"
+    "styled-components": "^4.3.2"
   },
   "devDependencies": {
     "formik": "^1.5.8",

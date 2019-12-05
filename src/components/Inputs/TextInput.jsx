@@ -1,7 +1,6 @@
 import React, { forwardRef, useState, useEffect } from 'react';
 import { bool, node, func, string, object } from 'prop-types';
 import styled from 'styled-components';
-import { key } from 'styled-theme';
 import { detect } from 'detect-browser';
 import Error from './../Messages/Error';
 import ValidationIcons from './../Inputs/ValidationIcons';
@@ -98,10 +97,9 @@ const TextInput = forwardRef(
 
 const Container = styled.div`
   width: 100%;
-  font-family: ${key('fonts.primary')};
+  font-family: ${({ theme }) => theme.fonts};
   position: relative;
 `;
-
 
 const StyledLabel = styled.label`
   display: flex;
@@ -116,12 +114,12 @@ const StyledInput = styled.input`
   background-color: ${props => (props.disabled ? '#F0F1F3' : 'white')};
   width: 100%;
   border: 0.1rem solid;
-  border-color: ${({ error, touched }) =>
+  border-color: ${({ error, touched, theme }) =>
     error
-      ? key('colors.bad')
+      ? theme.status.error
       : touched & !error
-      ? key('colors.good')
-      : key('colors.outline')};
+      ? theme.status.succes
+      : theme.ui.outline};
   border-radius: 0.3rem;
   height: 4rem;
   font-size: 1.6rem;
@@ -130,11 +128,11 @@ const StyledInput = styled.input`
 
   &:focus {
     outline: none;
-    border-color: ${key('colors.primary-regular')};
+    border-color: ${({ theme }) => theme.brand.primary};
   }
 
   &::placeholder {
-    color: ${key('colors.button-toggle')};
+    color: ${({ theme }) => theme.ui.interactive};
   }
 `;
 

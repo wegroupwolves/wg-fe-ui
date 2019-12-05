@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import { key } from 'styled-theme/dist';
 import LoadingBar from './LoadingBar';
 import TrackingStep from './TrackingStep';
 import { arrayOf, string, object } from 'prop-types';
@@ -36,7 +35,7 @@ const TrackingBar = ({
 
 const StyledTrackingBar = styled.div`
   display: flex;
-  font-family: ${key('fonts.primary')};
+  font-family: ${({ theme }) => theme.fonts};
   justify-content: space-between;
   width: 100%;
   align-items: center;

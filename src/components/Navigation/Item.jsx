@@ -1,9 +1,15 @@
 import React from 'react';
 import { string, object, node, func, element, bool } from 'prop-types';
-import { key } from 'styled-theme';
 import styled from 'styled-components';
 
-const Item = ({ className, icon, onClick, children, isActive, ...otherProps }) => {
+const Item = ({
+  className,
+  icon,
+  onClick,
+  children,
+  isActive,
+  ...otherProps
+}) => {
   return (
     <Container
       {...otherProps}
@@ -35,9 +41,10 @@ const Container = styled.div`
   width: 100%;
   padding-right: 1rem;
   text-align: center;
-  background-color: ${props => (props.isActive ? '#f7f7f7' : 'none')};
-  border-right: ${props => (props.isActive ? '0.1rem solid' : 'none')};
-  border-color: ${props => (props.isActive ? key('colors.action') : 'none')};
+  background-color: ${({ isActive }) => (isActive ? '#f7f7f7' : 'none')};
+  border-right: ${({ isActive }) => (isActive ? '0.1rem solid' : 'none')};
+  border-color: ${({ isActive, theme }) =>
+    isActive ? theme.brand.primary : 'none'};
   cursor: pointer;
 
   & span {
@@ -58,7 +65,7 @@ const Container = styled.div`
 Item.defaultProps = {
   isActive: false,
   onClick: () => {},
-  otherProps: {}
+  otherProps: {},
 };
 
 Item.propTypes = {

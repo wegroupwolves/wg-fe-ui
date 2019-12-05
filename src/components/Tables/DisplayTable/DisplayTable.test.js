@@ -2,11 +2,25 @@ import DisplayTable from './DisplayTable';
 import { mount } from 'enzyme';
 import React from 'react';
 import 'jest-styled-components';
+import { ThemeProvider } from 'styled-components';
+
+import { orange } from '../../../themes';
+const theme = orange();
+
+// eslint-disable-next-line
+const ThemeProviderWrapper = ({ children }) => (
+  <ThemeProvider theme={theme}>{children}</ThemeProvider>
+);
+
+export const mountWithTheme = tree =>
+  mount(tree, {
+    wrappingComponent: ThemeProviderWrapper,
+  });
 
 describe('DisplayTable', () => {
   it('can add clickable highlight to value', () => {
     let value = 0;
-    const wrapper = mount(
+    const wrapper = mountWithTheme(
       <DisplayTable>
         <DisplayTable.Row>
           <DisplayTable.Value toggled={() => value++} highlight="highlight">
@@ -25,7 +39,7 @@ describe('DisplayTable', () => {
   });
 
   it('contains necesarry children components', () => {
-    const wrapper = mount(
+    const wrapper = mountWithTheme(
       <DisplayTable>
         <DisplayTable.Row>
           <DisplayTable.Key>Key</DisplayTable.Key>

@@ -1,7 +1,8 @@
 import { UploadField } from '.';
 import { mount } from 'enzyme';
 import React from 'react';
-import Theme from '../../constants/theme';
+import { orange } from '../../themes';
+const theme = orange();
 import 'jest-styled-components';
 import { ThemeProvider } from 'styled-components';
 import { act } from 'react-dom/test-utils';
@@ -9,7 +10,7 @@ import { act } from 'react-dom/test-utils';
 describe('UploadField', () => {
   it('When rendered should have default value of 52vw of width', () => {
     const wrapper = mount(
-      <ThemeProvider theme={Theme}>
+      <ThemeProvider theme={theme}>
         <UploadField onClick={() => {}} />
       </ThemeProvider>,
     );
@@ -18,7 +19,7 @@ describe('UploadField', () => {
 
   it('When dragged element enter, property withFile equals to true', () => {
     const wrapper = mount(
-      <ThemeProvider theme={Theme}>
+      <ThemeProvider theme={theme}>
         <UploadField onClick={() => {}} />
       </ThemeProvider>,
     );
@@ -39,7 +40,7 @@ describe('UploadField', () => {
 
   it('When dragged element leave, property withFile equals to false', () => {
     const wrapper = mount(
-      <ThemeProvider theme={Theme}>
+      <ThemeProvider theme={theme}>
         <UploadField onClick={() => {}} />
       </ThemeProvider>,
     );
@@ -63,7 +64,7 @@ describe('UploadField', () => {
     };
     const onClick = jest.fn();
     const wrapper = mount(
-      <ThemeProvider theme={Theme}>
+      <ThemeProvider theme={theme}>
         <UploadField onClick={onClick} />
       </ThemeProvider>,
     );

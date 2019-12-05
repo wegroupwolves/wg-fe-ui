@@ -5,10 +5,9 @@ import React, {
   useRef,
   forwardRef,
 } from 'react';
-import { bool, string, object, func, node } from 'prop-types';
+import { bool, string, object, func, node, shape } from 'prop-types';
 
 import styled from 'styled-components';
-import { key } from 'styled-theme';
 import { detect } from 'detect-browser';
 import Error from './../Messages/Error';
 import ValidationIcons from './../Inputs/ValidationIcons';
@@ -325,7 +324,6 @@ const Input = styled.div`
   font-size: 1.5rem;
   width: 100%;
   box-sizing: border-box;
-  align-items: center;
   overflow: hidden;
   justify-content: flex-start;
   background-color: white;
@@ -333,12 +331,12 @@ const Input = styled.div`
   height: 4rem;
   margin-top: 1rem;
   border: 0.1rem solid;
-  border-color: ${({ error, touched }) =>
+  border-color: ${({ error, touched, theme }) =>
     error
-      ? key('colors.bad')
+      ? theme.status.error
       : touched && !error
-      ? key('colors.good')
-      : key('colors.outline')};
+      ? theme.status.succes
+      : theme.ui.outline};
   border-radius: 0.3rem;
 `;
 
@@ -377,7 +375,7 @@ const StyledSingleInputDate = styled.input`
 
 const Container = styled.div`
   width: 100%;
-  font-family: ${key('fonts.primary')};
+  font-family: ${({ theme }) => theme.fonts};
   position: relative;
 `;
 
@@ -389,7 +387,7 @@ DateInput.defaultProps = {
   touched: false,
   isCalendarEnabled: false,
   otherProps: {},
-  value: '',
+  value: { day: '', month: '', year: '' },
   onBlur: () => {},
   onChange: () => {},
   onFocus: () => {},
@@ -416,12 +414,7 @@ DateInput.propTypes = {
   /** Callback function that is fired when the component's value changes. */
   onFocus: func,
   /** Current value of the input element as { day: 'DD', month: 'MM', year: 'YYYY' } */
-  value: (props, propName, componentName) => {
-    if (/\d{2}\/\d{2}\/\d{4}/.test(props[propName])) return null;
-    return new Error(
-      `Invalid prop ${propName} supplied to ${componentName}. Validation failed.`,
-    );
-  },
+  value: shape(),
   /** Adds extra props to the element */
   otherProps: object,
 };

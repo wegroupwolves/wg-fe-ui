@@ -4,7 +4,6 @@ import { string, object, node } from 'prop-types';
 import Value from './Value';
 import Row from './Row';
 import Key from './Key';
-import { key } from 'styled-theme/dist';
 
 const DisplayTable = ({ className, children, ...otherProps }) => {
   return (
@@ -16,8 +15,8 @@ const DisplayTable = ({ className, children, ...otherProps }) => {
 
 const StyledDisplayTable = styled.table`
   width: 100%;
-  font-family: ${key('fonts.primary')};
-  font-size: ${key('fonts.normal-size')};
+  font-family: ${({ theme }) => theme.fonts};
+  font-size: 1.6rem;
 `;
 
 const StyledBody = styled.tbody`
@@ -25,8 +24,8 @@ const StyledBody = styled.tbody`
 `;
 
 DisplayTable.defaultProps = {
-  otherProps: {}
-}
+  otherProps: {},
+};
 
 DisplayTable.propTypes = {
   /** Beeing able to use it in Styled Components */

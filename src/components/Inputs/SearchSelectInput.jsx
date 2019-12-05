@@ -2,7 +2,6 @@ import React, { forwardRef, useState, useEffect } from 'react';
 import styled from 'styled-components';
 import Select from 'react-select';
 import { func, string, bool, array, object } from 'prop-types';
-import { key } from 'styled-theme';
 import Error from './../Messages/Error';
 
 const SearchSelectInput = forwardRef(
@@ -71,7 +70,7 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  font-family: ${key('fonts.primary')};
+  font-family: ${({ theme }) => theme.fonts};
 `;
 
 const Input = styled(Select)`
@@ -87,23 +86,23 @@ const Input = styled(Select)`
     &__control {
       border-radius: 0.3rem;
       border: 0.1rem solid;
-      border-color: ${props =>
-        props.error
-          ? key('colors.bad')
-          : props.touched & !props.error
-          ? key('colors.good')
-          : key('colors.outline')};
+      border-color: ${({ theme, error, touched }) =>
+        error
+          ? theme.status.error
+          : touched & !error
+          ? theme.status.succes
+          : theme.ui.outline};
       box-shadow: none;
       height: ${({ isMulti }) => (isMulti ? 'fit-content' : '4rem')};
 
       &:hover {
-        border-color: ${key('colors.interactive')};
+        border-color: ${({ theme }) => theme.ui.interactive};
       }
     }
 
     &__control--menu-is-open {
       &:hover {
-        border-color: ${key('colors.interactive')};
+        border-color: ${({ theme }) => theme.ui.interactive};
       }
 
       .Select__dropdown-indicator {
@@ -116,7 +115,7 @@ const Input = styled(Select)`
 
     &__value-container {
       padding: 0 0.5em;
-      font-size: ${key('fonts.normal-size')};
+      font-size: 1.6rem;
     }
 
     &__single-value {
@@ -142,43 +141,40 @@ const Input = styled(Select)`
 
     &__option {
       font-size: 1.4rem;
-      color: ${key('colors.sub-txt')};
+      color: ${({ theme }) => theme.ui.interactive};
       padding: 1rem;
 
       :hover {
         cursor: pointer;
-        background-color: ${key([`colors`, `hover`])};
-        color: ${key([`colors`, `toggle`])};
-        /* color: ${key('colors.sub-txt')}; */
-        /* color: white; */
+        background-color: ${({ theme }) => theme.hover.secondary};
+        color: ${({ theme }) => theme.brand.secondary};
       }
 
       &--is-focused {
-        /* color: white; */
-        color: ${key([`colors`, `toggle`])};
-        background-color: ${key([`colors`, `hover`])};
+        color: ${({ theme }) => theme.brand.secondary};
+        background-color: ${({ theme }) => theme.hover.secondary};
       }
 
       &--is-selected {
-        color: ${key([`colors`, `action`])};
+        color: ${({ theme }) => theme.brand.primary};
         background-color: white;
       }
     }
     &__multi-value {
       background: rgba(255, 128, 0, 0.05);
-      border: 1px solid ${key(['colors', 'action'])};
+      border: 1px solid ${({ theme }) => theme.brand.primary};
       box-sizing: border-box;
       border-radius: 3px;
 
       &__label {
-        color: ${key(['colors', 'action'])};
+        color: ${({ theme }) => theme.brand.primary};
         line-height: 1.8rem;
         box-sizing: border-box;
       }
       &__remove {
         cursor: pointer;
         svg {
-          fill: ${key(['colors', 'action'])};
+          fill: ${({ theme }) => theme.brand.primary};
         }
 
         &:hover {
@@ -198,8 +194,8 @@ const Label = styled.label`
   font-size: 1.4rem;
   transition: 0.2s;
   line-height: 1rem;
-  color: ${props =>
-    props.disabled ? key('colors.disabled') : key('colors.sub-title')};
+  color: ${({ theme, disabled }) =>
+    disabled ? theme.ui.disabled : theme.typo.subTitle};
 `;
 
 SearchSelectInput.displayName = 'SearchSelectInput';
