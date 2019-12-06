@@ -1,16 +1,20 @@
 export default (function() {
   const brandPrimary = '#FF8000';
+  const brandLighter = '#F2BB80';
   const brandLight = '#FF9B21';
   const brandLightest = '#FFEFDC';
   const brandDark = '#db6f01';
+  const brandDarker = '#6d340d';
   const brandSecondary = '#FF9B21';
   const brandFont = `Lato, Helvetica, Myriad, Sans-Serif`;
   return {
     brand: {
       primary: brandPrimary,
       light: brandLight,
+      lighter: brandLighter,
       lightest: brandLightest,
       dark: brandDark,
+      darker: brandDarker,
       secondary: brandSecondary,
     },
     typo: {
