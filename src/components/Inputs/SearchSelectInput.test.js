@@ -19,7 +19,7 @@ export const mountWithTheme = tree =>
 
 describe('SearchSelectInput', () => {
   it('returns value and name of selected option', () => {
-    let testValue = { label: null, value: null };
+    let testValue = { label: '', value: '' };
     const wrapper = mountWithTheme(
       <SearchSelectInput
         name="test"
@@ -36,15 +36,12 @@ describe('SearchSelectInput', () => {
     );
 
     // simulate selecting the first option
-    wrapper
-      .find('.Select__control')
-      .first()
-      .simulate('keyDown', { key: 'ArrowDown', keyCode: 40 });
-    wrapper
-      .find('.Select__control')
-      .first()
-      .simulate('keyDown', { key: 'Enter', keyCode: 13 });
-
+    act(() => {
+      wrapper
+        .find('Select')
+        .instance()
+        .selectOption({ label: 'Option 1', value: 'option1' });
+    });
     // if simulate is complete, onSelected should be triggered
     expect(wrapper.props().name).toEqual('test');
     expect(testValue.value).toEqual('option1');
@@ -156,7 +153,7 @@ describe('SearchSelectInput', () => {
     expect(wrapper.find('Select').props().id).toEqual(12);
   });
   it('returns value and name of selected option', () => {
-    let testValue = { label: null, value: null };
+    const testValue = { label: '', value: '' };
     const wrapper = mountWithTheme(
       <SearchSelectInput
         async
@@ -176,19 +173,85 @@ describe('SearchSelectInput', () => {
     // simulate selecting the first option
     act(() => {
       wrapper
-        .find('.Select__control')
-        .at(1)
-        .simulate('keyDown', { key: 'ArrowDown', keyCode: 40 });
-      wrapper
-        .find('.Select__control')
-        .at(1)
-        .simulate('keyDown', { key: 'Enter', keyCode: 13 });
+        .find('Select')
+        .instance()
+        .selectOption({ label: 'Option 1', value: 'option1' });
     });
 
-    setTimeout(() => {
-      // if simulate is complete, onSelected should be triggered
-      expect(testValue.value).toEqual('option1');
-      expect(testValue.label).toEqual('Option 1');
+    // if simulate is complete, onSelected should be triggered
+    expect(testValue.value).toEqual('option1');
+    expect(testValue.label).toEqual('Option 1');
+  });
+
+  it('returns values and names of selected options', () => {
+    const testValues = [];
+    const wrapper = mountWithTheme(
+      <SearchSelectInput
+        isMulti
+        name="tags"
+        onSelected={({ value }) => {
+          testValues.push(...value);
+        }}
+        options={[
+          { value: 'option1', label: 'Option 1' },
+          { value: 'option2', label: 'Option 2' },
+          { value: 'option3', label: 'Option 3' },
+          { value: 'option4', label: 'Option 4' },
+        ]}
+      >
+        Test
+      </SearchSelectInput>,
+    );
+
+    const select = wrapper.find('Select').instance();
+
+    // simulate selecting the first option
+    act(() => {
+      select.selectOption({ label: 'Option 1', value: 'option1' });
+      select.selectOption({ label: 'Option 2', value: 'option2' });
     });
+
+    // if simulate is complete, onSelected should be triggered
+    expect(testValues).toEqual([
+      { label: 'Option 1', value: 'option1' },
+      { label: 'Option 2', value: 'option2' },
+    ]);
+  });
+
+  it('returns values and names of selected options', () => {
+    const testValues = [
+      { value: 'option1', label: 'Option 1' },
+      { value: 'option2', label: 'Option 2' },
+      { value: 'option3', label: 'Option 3' },
+      { value: 'option4', label: 'Option 4' },
+    ];
+    const values = [
+      { label: 'Option 1', value: 'option1' },
+      { label: 'Option 2', value: 'option2' },
+    ];
+    const wrapper = mountWithTheme(
+      <SearchSelectInput
+        isMulti
+        name="tags"
+        value={values}
+        onSelected={({ value }) => {
+          testValues.push(...value);
+        }}
+        options={testValues}
+      >
+        Test
+      </SearchSelectInput>,
+    );
+
+    // simulate selecting the first option
+    act(() => {
+      testValues.splice(0, 2);
+    });
+
+    // if simulate is complete, onSelected should be triggered
+    expect(wrapper.find('Select').props().options).toEqual([
+      { label: 'Option 3', value: 'option3' },
+      { label: 'Option 4', value: 'option4' },
+    ]);
   });
 });
