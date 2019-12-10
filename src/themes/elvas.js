@@ -3,7 +3,7 @@ export default (function() {
   const brandLight = '#77B5EB';
   const brandLightest = '#D3EAFF';
   const brandDark = '#16468a';
-  const brandSecondary = '#0db';
+  const brandSecondary = '#00DDBB';
   const brandFont = `Signika, Helvetica, Myriad, Sans-Serif`;
 
   return {
