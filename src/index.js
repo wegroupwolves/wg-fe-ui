@@ -1,3 +1,5 @@
+import './themes';
+
 // Import components
 export {
   ProgressBar,
@@ -50,7 +52,5 @@ export {
 
 // Export all icons
 export * from './components/Icons';
-
-import './themes';
 
 export { default as ThemeProvider } from './components/ThemeProvider';
