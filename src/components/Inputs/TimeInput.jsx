@@ -119,13 +119,12 @@ const TimeInput = forwardRef(
       if (![8, 37, 38, 39, 40].includes(e.keyCode)) return true;
       const type = e.target.id;
       e.preventDefault();
-      console.log('type: ', time[type], min);
       if (e.keyCode === ARROW_UP || e.keyCode === ARROW_DOWN) {
         if (time[type] === '' && type === 'hour')
           return dispatch({ type, payload: '01' });
         else if (time[type] === '') return dispatch({ type, payload: '00' });
         if (parseInt(time[type]) < min || parseInt(time[type]) > max)
-            return false;
+          return false;
         if (e.keyCode === ARROW_UP && parseInt(time[type]) <= max) {
           const num = parseInt(time[type]);
           if (type === 'hour' && timeFormat === 'am') {
@@ -137,7 +136,6 @@ const TimeInput = forwardRef(
           } else num < max && dispatch({ type, payload: pad(num + 1, type) });
         } else if (e.keyCode === ARROW_DOWN && parseInt(time[type]) >= min) {
           const num = parseInt(time[type]);
-          console.log('num: ', num);
           if (type === 'hour' && timeFormat === 'pm') {
             dispatch({
               type,
@@ -170,7 +168,7 @@ const TimeInput = forwardRef(
     // Single functions to handle all blurs
     const blurHandlerType = ({ id, value }, max, min) => {
       if (value === '') return false;
-      const inRange = parseInt(value) < max && parseInt(value) >= min;
+      const inRange = parseInt(value) <= max && parseInt(value) >= min;
       let tempInput = inRange ? pad(value, id) : pad(time[id][0], id);
       dispatch({ type: id, payload: tempInput });
     };
@@ -188,15 +186,14 @@ const TimeInput = forwardRef(
       }
     };
 
-    const handleChangedInputForType = ({ id, value }, max, min) => {
+    const handleChangedInputForType = ({ id, value, max, min }) => {
       const type = id;
       let tempValue;
-      if (isNaN(value)) tempValue = pad(isNaN(time[type]) ? 1 : time[type]);
+      if (isNaN(value))
+        tempValue = pad(isNaN(time[type]) ? 1 : time[type], type);
       else if (parseInt(value) < min || parseInt(value) > max) {
         tempValue = time[type] ? time[type] : 1;
-      } else {
-        tempValue = value.length > 2 ? time[type] : value;
-      }
+      } else tempValue = value;
       dispatch({ type, payload: tempValue });
       value.length === 2 && focusField(nextRef[type]);
     };
@@ -204,11 +201,7 @@ const TimeInput = forwardRef(
     const handleChangedInput = e => {
       if (!/^\d{1,2}$/.test(e.target.value)) return;
       e.persist();
-      handleChangedInputForType(
-        e.target,
-        e.target.min - 1,
-        e.target.maxValue + 1,
-      );
+      handleChangedInputForType(e.target);
     };
 
     const onFocus = ({ target }) => {
@@ -231,7 +224,7 @@ const TimeInput = forwardRef(
                 value={time.hour}
                 data-maxlengthvalue={2}
                 maxLength={2}
-                maxValue={is12HourFormat ? 12 : 24}
+                max={is12HourFormat ? 12 : 24}
                 onBlur={handleBlurInput}
                 onChange={handleChangedInput}
                 placeholder="hh"
@@ -250,7 +243,7 @@ const TimeInput = forwardRef(
                 value={time.minute}
                 data-maxlengthvalue={2}
                 maxLength={2}
-                maxValue={59}
+                max={59}
                 onBlur={handleBlurInput}
                 onChange={handleChangedInput}
                 placeholder="mm"
@@ -268,7 +261,7 @@ const TimeInput = forwardRef(
                 id="second"
                 value={time.second}
                 maxLength={4}
-                maxValue={59}
+                max={59}
                 data-maxlengthvalue={2}
                 ref={secondRef}
                 onBlur={handleBlurInput}
