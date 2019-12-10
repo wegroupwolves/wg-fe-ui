@@ -91,8 +91,9 @@ const TimeInput = forwardRef(
     };
 
     // Pad the value -> pad(4) returns '04', pad(11) returns '11'
-    const pad = n => {
-      if (!parseInt(n)) return '';
+    const pad = (n, type) => {
+      if (type === 'hour' && !parseInt(n)) return '01';
+      if (parseInt(n) < 0) return '00';
       return parseInt(n) < 10 ? `0${parseInt(n)}` : n;
     };
 
@@ -118,10 +119,13 @@ const TimeInput = forwardRef(
       if (![8, 37, 38, 39, 40].includes(e.keyCode)) return true;
       const type = e.target.id;
       e.preventDefault();
+      console.log('type: ', time[type], min);
       if (e.keyCode === ARROW_UP || e.keyCode === ARROW_DOWN) {
-        if (time[type] === '') return dispatch({ type, payload: '01' });
+        if (time[type] === '' && type === 'hour')
+          return dispatch({ type, payload: '01' });
+        else if (time[type] === '') return dispatch({ type, payload: '00' });
         if (parseInt(time[type]) < min || parseInt(time[type]) > max)
-          return false;
+            return false;
         if (e.keyCode === ARROW_UP && parseInt(time[type]) <= max) {
           const num = parseInt(time[type]);
           if (type === 'hour' && timeFormat === 'am') {
@@ -130,27 +134,25 @@ const TimeInput = forwardRef(
               payload: num === max ? '01' : pad(num + 1),
             });
             num === max && setTimeFormat('pm');
-          } else num < max && dispatch({ type, payload: pad(num + 1) });
-          setRange(e);
+          } else num < max && dispatch({ type, payload: pad(num + 1, type) });
         } else if (e.keyCode === ARROW_DOWN && parseInt(time[type]) >= min) {
           const num = parseInt(time[type]);
+          console.log('num: ', num);
           if (type === 'hour' && timeFormat === 'pm') {
             dispatch({
               type,
-              payload: num === min ? '12' : pad(parseInt(time[type]) - 1),
+              payload: num === min ? '12' : pad(num - 1),
             });
             num === min && setTimeFormat('am');
-          } else dispatch({ type, payload: pad(num - 1) });
-          setRange(e);
+          } else dispatch({ type, payload: pad(num - 1, type) });
         }
       } else if ([ARROW_LEFT, 8].includes(e.keyCode)) {
         focusField(prevRef[type]);
-        type === 'hour' && setRange(e);
         e.keyCode === 8 && dispatch({ type, payload: '' });
       } else if (ARROW_RIGHT === e.keyCode) {
-        setRange(e);
         focusField(nextRef[type]);
       }
+      setRange(e);
     };
 
     const handleFocus = () => {
@@ -169,7 +171,7 @@ const TimeInput = forwardRef(
     const blurHandlerType = ({ id, value }, max, min) => {
       if (value === '') return false;
       const inRange = parseInt(value) < max && parseInt(value) >= min;
-      let tempInput = inRange ? pad(value) : pad(time[id][0]);
+      let tempInput = inRange ? pad(value, id) : pad(time[id][0], id);
       dispatch({ type: id, payload: tempInput });
     };
 
@@ -202,7 +204,11 @@ const TimeInput = forwardRef(
     const handleChangedInput = e => {
       if (!/^\d{1,2}$/.test(e.target.value)) return;
       e.persist();
-      handleChangedInputForType(e.target, 32, 0);
+      handleChangedInputForType(
+        e.target,
+        e.target.min - 1,
+        e.target.maxValue + 1,
+      );
     };
 
     const onFocus = ({ target }) => {
@@ -234,7 +240,7 @@ const TimeInput = forwardRef(
                 ref={hourRef}
                 onFocus={onFocus}
                 min={1}
-                onKeyDown={e => keyDownHandler(e, is12HourFormat ? 12 : 24, 0)}
+                onKeyDown={e => keyDownHandler(e, is12HourFormat ? 12 : 24, 1)}
               />
             ) : null}
             {':'}
@@ -329,7 +335,7 @@ const StyledLabel = styled.label`
 const StyledSingleInputTime = styled.input`
   flex-grow: 0;
   flex-shrink: 0;
-  width: ${({ id }) => (id === 'year' ? '5rem' : '2.9rem')};
+  width: 2.9rem;
   border: none;
   letter-spacing: 0.1rem;
   align-items: center;

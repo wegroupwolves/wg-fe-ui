@@ -159,7 +159,7 @@ storiesOf('Low level blocks/Inputs', module)
         ref={ref}
         touched={touched}
         error={error}
-        is12HourFormat={boolean('is12HourFormat', false)}
+        is12HourFormat={boolean('is12HourFormat', true)}
         name="date"
         disabled={disabled}
         onChange={action('change')}
