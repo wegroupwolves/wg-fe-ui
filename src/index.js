@@ -25,6 +25,7 @@ export {
   SearchInput,
   SearchSelectInput,
   DateInput,
+  TimeInput,
 } from './components/Inputs';
 
 export { QuestionBox, Uploader, DownloadBox } from './components/Boxes';

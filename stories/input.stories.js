@@ -24,6 +24,7 @@ import {
   SearchInput,
   SearchSelectInput,
   DateInput,
+  TimeInput,
 } from '../src';
 
 storiesOf('Low level blocks/Inputs', module)
@@ -148,6 +149,25 @@ storiesOf('Low level blocks/Inputs', module)
       </StyledDateInput>
     );
   })
+  .add('TimeInput', () => {
+    let error = text('Error', '');
+    let touched = boolean('Touched', false);
+    let disabled = boolean('Disable', false);
+    const ref = useRef();
+    return (
+      <StyledTimeInput
+        ref={ref}
+        touched={touched}
+        error={error}
+        is12HourFormat={boolean('is12HourFormat', true)}
+        name="date"
+        disabled={disabled}
+        onChange={action('change')}
+      >
+        Time
+      </StyledTimeInput>
+    );
+  })
   .add('SearchInput', () => {
     const [val, setVal] = useState('');
     return (
@@ -221,6 +241,10 @@ const StyledDateInput = styled(DateInput)`
   width: 27rem;
 `;
 
+const StyledTimeInput = styled(TimeInput)`
+  width: 27rem;
+`;
+
 const StyledTextArea = styled(TextArea)`
   width: 27rem;
 `;
@@ -228,4 +252,5 @@ const StyledTextArea = styled(TextArea)`
 StyledTextInput.displayName = 'TextInput';
 StyledSearchSelectInput.displayName = 'SearchSelectInput';
 StyledDateInput.displayName = 'DateInput';
+StyledTimeInput.displayName = 'TimeInput';
 StyledTextArea.displayName = 'TextArea';
