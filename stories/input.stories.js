@@ -156,8 +156,28 @@ storiesOf('Low level blocks/Inputs', module)
   })
   .add('SearchSelectInput', () => {
     let errors = text('Error', '');
+    const loadOptions = () =>
+      new Promise(resolve => {
+        setTimeout(() => {
+          resolve(
+            select(
+              'options',
+              {
+                None: [],
+                multiple: [
+                  { value: 'option1', label: 'Option 1' },
+                  { value: 'option2', label: 'Option 2' },
+                  { value: 'option3', label: 'Option 3' },
+                ],
+              },
+              [],
+            ),
+          );
+        }, 500);
+      });
     return (
       <StyledSearchSelectInput
+        async={boolean('Async', false)}
         disabled={boolean('Disabled', false)}
         error={errors}
         options={select(
@@ -172,6 +192,7 @@ storiesOf('Low level blocks/Inputs', module)
           },
           [],
         )}
+        loadOptions={loadOptions}
         name="selection"
         onSelected={({ name, value }) => console.log(name, value)}
         loading={boolean('Loading', false)}

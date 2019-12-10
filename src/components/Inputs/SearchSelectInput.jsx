@@ -1,15 +1,18 @@
 import React, { forwardRef, useState, useEffect } from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import Select from 'react-select';
+import AsyncSelect from 'react-select/async';
 import { func, string, bool, array, object } from 'prop-types';
 import Error from './../Messages/Error';
 
 const SearchSelectInput = forwardRef(
   (
     {
+      async,
       className,
       onSelected,
       loading,
+      loadOptions,
       options,
       name,
       disabled,
@@ -26,9 +29,13 @@ const SearchSelectInput = forwardRef(
   ) => {
     const [isSelected, setSelected] = useState('');
 
-    const handleChange = e => {
-      if (e) onSelected({ name, value: Array.isArray(e) ? e : e.value });
-      setSelected(e || []);
+    const handleChange = option => {
+      setSelected(option || []);
+      if (!option) return;
+      onSelected({
+        label: option.label,
+        value: Array.isArray(option) ? option : option.value,
+      });
     };
 
     useEffect(() => {
@@ -45,20 +52,39 @@ const SearchSelectInput = forwardRef(
       <Container className={className}>
         <Label disabled={disabled}>
           {children}
-          <Input
-            ref={ref}
-            isDisabled={disabled}
-            onChange={handleChange}
-            options={options}
-            value={isSelected}
-            noOptionsMessage={() => noOptionMessage}
-            placeholder={loading ? loadingMessage : placeholder}
-            classNamePrefix="Select"
-            isMulti={isMulti}
-            closeMenuOnSelect={!isMulti}
-            error={error ? true : false}
-            {...otherProps}
-          />
+          {!async ? (
+            <Input
+              ref={ref}
+              isDisabled={disabled}
+              onChange={handleChange}
+              name={name}
+              options={options}
+              value={isSelected}
+              noOptionsMessage={() => noOptionMessage}
+              placeholder={loading ? loadingMessage : placeholder}
+              classNamePrefix="Select"
+              isMulti={isMulti}
+              closeMenuOnSelect={!isMulti}
+              error={error ? true : false}
+              {...otherProps}
+            />
+          ) : (
+            <AsyncInput
+              ref={ref}
+              placeholder={loading ? loadingMessage : placeholder}
+              classNamePrefix="Select"
+              isMulti={isMulti}
+              name={name}
+              closeMenuOnSelect={!isMulti}
+              error={error ? true : false}
+              isDisabled={disabled}
+              cacheOptions
+              value={isSelected}
+              loadOptions={loadOptions}
+              defaultOptions
+              onChange={handleChange}
+            />
+          )}
         </Label>
         <Error error={error} />
       </Container>
@@ -66,14 +92,7 @@ const SearchSelectInput = forwardRef(
   },
 );
 
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  font-family: ${({ theme }) => theme.fonts};
-`;
-
-const Input = styled(Select)`
+const styles = css`
   width: 100%;
   margin-top: 1.4rem;
   margin-bottom: ${({ error }) => (error ? 0 : '2rem')};
@@ -188,6 +207,13 @@ const Input = styled(Select)`
   }
 `;
 
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  font-family: ${({ theme }) => theme.fonts};
+`;
+
 const Label = styled.label`
   display: flex;
   flex-direction: column;
@@ -198,12 +224,22 @@ const Label = styled.label`
     disabled ? theme.ui.disabled : theme.typo.subTitle};
 `;
 
+const Input = styled(Select)`
+  ${styles};
+`;
+
+const AsyncInput = styled(AsyncSelect)`
+  ${styles}
+`;
+
 SearchSelectInput.displayName = 'SearchSelectInput';
 
 SearchSelectInput.defaultProps = {
+  async: false,
   disabled: false,
   loading: false,
   noOptionMessage: 'No options',
+  options: [],
   loadingMessage: 'Loading...',
   placeholder: 'Choose your option',
   initial: null,
@@ -212,6 +248,7 @@ SearchSelectInput.defaultProps = {
 };
 
 SearchSelectInput.propTypes = {
+  async: bool,
   /** Beeing able to use it in Styled Components */
   className: string,
   /** Returns name and value of selected */
@@ -229,6 +266,8 @@ SearchSelectInput.propTypes = {
   /** set true if options are loading */
   loading: bool,
   /** name that sets selected on load */
+  loadOptions: func,
+
   initial: object,
   /** Message to show when options are empty */
   noOptionMessage: string,

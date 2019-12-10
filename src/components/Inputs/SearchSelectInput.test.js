@@ -4,6 +4,7 @@ import React from 'react';
 import 'jest-styled-components';
 import { ThemeProvider } from '../..';
 import { orange } from '../../themes';
+import { act } from 'react-dom/test-utils';
 const theme = orange();
 
 // eslint-disable-next-line
@@ -18,12 +19,12 @@ export const mountWithTheme = tree =>
 
 describe('SearchSelectInput', () => {
   it('returns value and name of selected option', () => {
-    let testValue = { name: null, value: null };
+    let testValue = { label: '', value: '' };
     const wrapper = mountWithTheme(
       <SearchSelectInput
         name="test"
-        onSelected={({ name, value }) => {
-          (testValue.name = name), (testValue.value = value);
+        onSelected={({ label, value }) => {
+          (testValue.label = label), (testValue.value = value);
         }}
         options={[
           { value: 'option1', label: 'Option 1' },
@@ -35,18 +36,16 @@ describe('SearchSelectInput', () => {
     );
 
     // simulate selecting the first option
-    wrapper
-      .find('.Select__control')
-      .first()
-      .simulate('keyDown', { key: 'ArrowDown', keyCode: 40 });
-    wrapper
-      .find('.Select__control')
-      .first()
-      .simulate('keyDown', { key: 'Enter', keyCode: 13 });
-
+    act(() => {
+      wrapper
+        .find('Select')
+        .instance()
+        .selectOption({ label: 'Option 1', value: 'option1' });
+    });
     // if simulate is complete, onSelected should be triggered
+    expect(wrapper.props().name).toEqual('test');
     expect(testValue.value).toEqual('option1');
-    expect(testValue.name).toEqual('test');
+    expect(testValue.label).toEqual('Option 1');
   });
   it('placeholder should be loading when enabled', () => {
     const wrapper = mountWithTheme(
@@ -109,7 +108,12 @@ describe('SearchSelectInput', () => {
     );
 
     // check if input prop disabled is false by default
-    expect(wrapper.find('input').props().disabled).toEqual(false);
+    expect(
+      wrapper
+        .find('input')
+        .at(0)
+        .props().disabled,
+    ).toEqual(false);
 
     // check if label is sub-title color
     expect(wrapper.find('label')).toHaveStyleRule('color', theme.typo.subTitle);
@@ -147,5 +151,107 @@ describe('SearchSelectInput', () => {
     );
 
     expect(wrapper.find('Select').props().id).toEqual(12);
+  });
+  it('returns value and name of selected option', () => {
+    const testValue = { label: '', value: '' };
+    const wrapper = mountWithTheme(
+      <SearchSelectInput
+        async
+        name="test"
+        onSelected={({ label, value }) => {
+          (testValue.label = label), (testValue.value = value);
+        }}
+        loadOptions={() => [
+          { value: 'option1', label: 'Option 1' },
+          { value: 'option2', label: 'Option 2' },
+        ]}
+      >
+        Test
+      </SearchSelectInput>,
+    );
+
+    // simulate selecting the first option
+    act(() => {
+      wrapper
+        .find('Select')
+        .instance()
+        .selectOption({ label: 'Option 1', value: 'option1' });
+    });
+
+    // if simulate is complete, onSelected should be triggered
+    expect(testValue.value).toEqual('option1');
+    expect(testValue.label).toEqual('Option 1');
+  });
+
+  it('returns values and names of selected options', () => {
+    const testValues = [];
+    const wrapper = mountWithTheme(
+      <SearchSelectInput
+        isMulti
+        name="tags"
+        onSelected={({ value }) => {
+          testValues.push(...value);
+        }}
+        options={[
+          { value: 'option1', label: 'Option 1' },
+          { value: 'option2', label: 'Option 2' },
+          { value: 'option3', label: 'Option 3' },
+          { value: 'option4', label: 'Option 4' },
+        ]}
+      >
+        Test
+      </SearchSelectInput>,
+    );
+
+    const select = wrapper.find('Select').instance();
+
+    // simulate selecting the first option
+    act(() => {
+      select.selectOption({ label: 'Option 1', value: 'option1' });
+      select.selectOption({ label: 'Option 2', value: 'option2' });
+    });
+
+    // if simulate is complete, onSelected should be triggered
+    expect(testValues).toEqual([
+      { label: 'Option 1', value: 'option1' },
+      { label: 'Option 2', value: 'option2' },
+    ]);
+  });
+
+  it('returns values and names of selected options', () => {
+    const testValues = [
+      { value: 'option1', label: 'Option 1' },
+      { value: 'option2', label: 'Option 2' },
+      { value: 'option3', label: 'Option 3' },
+      { value: 'option4', label: 'Option 4' },
+    ];
+    const values = [
+      { label: 'Option 1', value: 'option1' },
+      { label: 'Option 2', value: 'option2' },
+    ];
+    const wrapper = mountWithTheme(
+      <SearchSelectInput
+        isMulti
+        name="tags"
+        value={values}
+        onSelected={({ value }) => {
+          testValues.push(...value);
+        }}
+        options={testValues}
+      >
+        Test
+      </SearchSelectInput>,
+    );
+
+    // simulate selecting the first option
+    act(() => {
+      testValues.splice(0, 2);
+    });
+
+    // if simulate is complete, onSelected should be triggered
+    expect(wrapper.find('Select').props().options).toEqual([
+      { label: 'Option 3', value: 'option3' },
+      { label: 'Option 4', value: 'option4' },
+    ]);
   });
 });
