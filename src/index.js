@@ -39,7 +39,10 @@ export {
   SubNavigation,
 } from './components/Navigation';
 
+export { LoadingSpinner } from './components/Loaders';
+
 export { Section } from './components/Section';
+// export { LoadingSpinner } from './components/Loaders';
 
 export {
   Title,
