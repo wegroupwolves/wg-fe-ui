@@ -33,7 +33,7 @@ const SearchSelectInput = forwardRef(
       setSelected(option || []);
       if (!option) return;
       onSelected({
-        label: option.label,
+        name,
         value: Array.isArray(option) ? option : option.value,
       });
     };
