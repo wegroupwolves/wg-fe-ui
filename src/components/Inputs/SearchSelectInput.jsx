@@ -83,6 +83,7 @@ const SearchSelectInput = forwardRef(
               loadOptions={loadOptions}
               defaultOptions
               onChange={handleChange}
+              {...otherProps}
             />
           )}
         </Label>
