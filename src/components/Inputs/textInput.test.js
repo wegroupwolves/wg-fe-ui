@@ -71,6 +71,7 @@ describe('TextInput', () => {
       expect(input.props().name).toEqual('test');
     });
   });
+
   it('returns touched value when input is touched', () => {
     let ctrlName = 'noTest';
     let ctrlTouched = false;
@@ -148,6 +149,7 @@ describe('TextInput', () => {
     expect(wrapper.exists('Checkmark')).toEqual(true);
     expect(wrapper.exists('Errormark')).toEqual(false);
   });
+
   it('otherProps adds props to input', () => {
     const wrapper = mountWithTheme(
       <TextInput max={12} name="test">

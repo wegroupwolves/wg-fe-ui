@@ -1,11 +1,11 @@
-export default (function() {
-  const brandPrimary = '#FF8000';
-  const brandLighter = '#F2BB80';
-  const brandLight = '#FF9B21';
-  const brandLightest = '#FFEFDC';
-  const brandDark = '#db6f01';
-  const brandDarker = '#6d340d';
-  const brandSecondary = '#FF9B21';
+export default function() {
+  const brandPrimary = '#4887D1';
+  const brandLight = '#A5C6D5';
+  const brandLighter = '#99bce5';
+  const brandLightest = '#EDF3FA';
+  const brandDark = '#24558f';
+  const brandDarker = '#003768';
+  const brandSecondary = '#A5C6D5';
   const brandFont = `Lato, Helvetica, Myriad, Sans-Serif`;
   return {
     brand: {
@@ -51,4 +51,4 @@ export default (function() {
     },
     font: brandFont,
   };
-});
+}

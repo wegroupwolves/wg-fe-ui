@@ -19,12 +19,12 @@ export const mountWithTheme = tree =>
 
 describe('SearchSelectInput', () => {
   it('returns value and name of selected option', () => {
-    let testValue = { label: '', value: '' };
+    let testValue = { name: '', value: '' };
     const wrapper = mountWithTheme(
       <SearchSelectInput
         name="test"
-        onSelected={({ label, value }) => {
-          (testValue.label = label), (testValue.value = value);
+        onSelected={({ value }) => {
+          (testValue.name = 'test'), (testValue.value = value);
         }}
         options={[
           { value: 'option1', label: 'Option 1' },
@@ -45,7 +45,7 @@ describe('SearchSelectInput', () => {
     // if simulate is complete, onSelected should be triggered
     expect(wrapper.props().name).toEqual('test');
     expect(testValue.value).toEqual('option1');
-    expect(testValue.label).toEqual('Option 1');
+    expect(testValue.name).toEqual('test');
   });
   it('placeholder should be loading when enabled', () => {
     const wrapper = mountWithTheme(
@@ -153,13 +153,13 @@ describe('SearchSelectInput', () => {
     expect(wrapper.find('Select').props().id).toEqual(12);
   });
   it('returns value and name of selected option', () => {
-    const testValue = { label: '', value: '' };
+    const testValue = { name: '', value: '' };
     const wrapper = mountWithTheme(
       <SearchSelectInput
         async
-        name="test"
-        onSelected={({ label, value }) => {
-          (testValue.label = label), (testValue.value = value);
+        name="testAsync"
+        onSelected={({ value }) => {
+          (testValue.name = 'testAsync'), (testValue.value = value);
         }}
         loadOptions={() => [
           { value: 'option1', label: 'Option 1' },
@@ -180,7 +180,7 @@ describe('SearchSelectInput', () => {
 
     // if simulate is complete, onSelected should be triggered
     expect(testValue.value).toEqual('option1');
-    expect(testValue.label).toEqual('Option 1');
+    expect(testValue.name).toEqual('testAsync');
   });
 
   it('returns values and names of selected options', () => {
