@@ -121,7 +121,6 @@ const Uploader = forwardRef(
           return await readFile(t, i);
         }),
       );
-      console.log('files: ', uploadedFiles);
       onClick({ name, value: uploadedFiles });
     };
 
@@ -137,6 +136,8 @@ const Uploader = forwardRef(
       });
       onClose();
     };
+
+    console.log('files: ', files);
 
     if (ref.current && dt.files) ref.current.files = dt.files;
     return (
