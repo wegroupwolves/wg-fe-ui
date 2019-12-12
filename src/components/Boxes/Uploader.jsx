@@ -63,34 +63,49 @@ const Uploader = forwardRef(
     const readFile = async (file, index) => {
       let reader = new FileReader();
       setLoaded(l => [...l, 0]);
-      reader.addEventListener('progress', e => {
-        const percentage = (file.size / e.loaded) * 100;
-        setLoaded(l => {
-          l[index] = percentage;
-          return [...l];
+
+      const fileNew = {
+        name: shortifyText(file.name),
+        size: bytesToMega(file.size),
+        type: file.type,
+        data: '',
+      };
+
+      return await new Promise((resolve, reject) => {
+        reader.readAsDataURL(file);
+
+        reader.addEventListener('progress', e => {
+          const percentage = (file.size / e.loaded) * 100;
+          setLoaded(l => {
+            l[index] = percentage;
+            return [...l];
+          });
+        });
+
+        reader.onerror = () => {
+          reader.abort();
+          reject(new DOMException('Problem parsing input file.'));
+        };
+
+        reader.addEventListener('loadend', e => {
+          fileNew.data = e.target.result;
+          setFiles(f => [
+            ...f,
+            {
+              ...fileNew,
+            },
+          ]);
+
+          setLoaded(l => {
+            l[index] = null;
+            return [...l];
+          });
+          resolve(fileNew);
         });
       });
-
-      reader.addEventListener('loadend', e => {
-        setFiles(f => [
-          ...f,
-          {
-            name: shortifyText(file.name),
-            size: bytesToMega(file.size),
-            img: file.type.match('image.*') ? e.target.result : '',
-          },
-        ]);
-
-        setLoaded(l => {
-          l[index] = null;
-          return [...l];
-        });
-      });
-
-      await reader.readAsDataURL(file);
     };
 
-    const handleClick = uploaded => {
+    const handleClick = async uploaded => {
       if (!uploaded) return false;
       // [...target.files].reduce(async (promise, file, i) => {
       //   await promise;
@@ -101,10 +116,13 @@ const Uploader = forwardRef(
         const vdata = multiple ? dataTransfer : new DataTransfer();
         return updateFiles(vdata, -1, uploaded);
       });
-      Array.from(uploaded).forEach((t, i) => {
-        readFile(t, i);
-      });
-      onClick({ name, value: uploaded });
+      const uploadedFiles = await Promise.all(
+        Array.from(uploaded).map(async (t, i) => {
+          return await readFile(t, i);
+        }),
+      );
+      console.log('files: ', uploadedFiles);
+      onClick({ name, value: uploadedFiles });
     };
 
     const handleClose = file => {
