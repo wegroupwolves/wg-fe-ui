@@ -1,10 +1,10 @@
 export default function() {
   const brandPrimary = '#424242';
   const brandLight = '#848484';
-  const brandLighter = '#bbb';
+  const brandLighter = '#bbbbbb';
   const brandLightest = '#f0f0f0';
-  const brandDark = '#CCC';
-  const brandDarker = '#111';
+  const brandDark = '#CCCCCC';
+  const brandDarker = '#111111';
   const brandSecondary = '#848484';
   const brandFont = `Lato, Helvetica, Myriad, Sans-Serif`;
   return {

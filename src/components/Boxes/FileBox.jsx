@@ -85,7 +85,7 @@ const FileBox = ({
   return size ? (
     <Box className={className}>
       <Left>
-        <img src={source} />
+        <img src={source} alt={name} />
         <span className="fileName">{name}</span>
         {size ? (
           <span className="fileSize">{size}</span>
