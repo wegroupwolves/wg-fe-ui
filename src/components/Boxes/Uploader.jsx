@@ -64,8 +64,11 @@ const Uploader = forwardRef(
       let reader = new FileReader();
       setLoaded(l => [...l, 0]);
 
+      const parts = file.name.split('.');
+
       const fileNew = {
-        name: shortifyText(file.name),
+        title: parts[0],
+        name: `${shortifyText(parts[0])}.${parts[1]}`,
         size: bytesToMega(file.size),
         type: file.type,
         data: '',
@@ -136,8 +139,6 @@ const Uploader = forwardRef(
       });
       onClose();
     };
-
-    console.log('files: ', files);
 
     if (ref.current && dt.files) ref.current.files = dt.files;
     return (
