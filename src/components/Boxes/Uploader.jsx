@@ -64,8 +64,11 @@ const Uploader = forwardRef(
       let reader = new FileReader();
       setLoaded(l => [...l, 0]);
 
+      const parts = file.name.split('.');
+
       const fileNew = {
-        name: shortifyText(file.name),
+        title: parts[0],
+        name: `${shortifyText(parts[0])}.${parts[1]}`,
         size: bytesToMega(file.size),
         type: file.type,
         data: '',
@@ -121,7 +124,6 @@ const Uploader = forwardRef(
           return await readFile(t, i);
         }),
       );
-      console.log('files: ', uploadedFiles);
       onClick({ name, value: uploadedFiles });
     };
 

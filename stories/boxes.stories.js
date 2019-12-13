@@ -57,7 +57,7 @@ storiesOf('Mid level blocks/Boxes', module)
               loaded={loaded[i]}
               name={file.name}
               size={file.size}
-              source={file.img}
+              source={file.data}
               onClose={handleClose}
             ></StyledFile>
           ))
