@@ -31,7 +31,7 @@ const SearchSelectInput = forwardRef(
 
     const handleChange = option => {
       setSelected(option || []);
-      if (!option) return;
+      if (!option) {onSelected({name, value: undefined}); return;};
       onSelected({
         name,
         value: Array.isArray(option) ? option : option.value,
@@ -280,6 +280,7 @@ SearchSelectInput.propTypes = {
   isMulti: bool,
   /** Adds extra props to the element */
   otherProps: object,
+  /** Triggers when input is cleared */
 };
 
 export default SearchSelectInput;
