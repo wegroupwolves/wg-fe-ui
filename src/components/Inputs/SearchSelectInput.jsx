@@ -23,7 +23,6 @@ const SearchSelectInput = forwardRef(
       placeholder,
       isMulti,
       error,
-      onClear,
       ...otherProps
     },
     ref,
@@ -31,11 +30,8 @@ const SearchSelectInput = forwardRef(
     const [isSelected, setSelected] = useState('');
 
     const handleChange = option => {
-      if(!option){
-        onClear();  
-      };
       setSelected(option || []);
-      if (!option) return;
+      if (!option) {onSelected({name, value: undefined}); return;};
       onSelected({
         name,
         value: Array.isArray(option) ? option : option.value,
@@ -250,7 +246,6 @@ SearchSelectInput.defaultProps = {
   initial: null,
   isMulti: false,
   otherProps: {},
-  onClear: () => {},
 };
 
 SearchSelectInput.propTypes = {
@@ -286,7 +281,6 @@ SearchSelectInput.propTypes = {
   /** Adds extra props to the element */
   otherProps: object,
   /** Triggers when input is cleared */
-  onClear: func,
 };
 
 export default SearchSelectInput;
