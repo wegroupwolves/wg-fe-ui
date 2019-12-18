@@ -39,7 +39,7 @@ const NavigationBar = styled.nav`
   display: flex;
   flex-direction: column;
   position: fixed;
-  border-right: 1px solid ${({ theme }) => theme.ui.outline};
+  border-right: 1px solid #f0f1f3;
 `;
 
 MainNavigation.Title = Title;
