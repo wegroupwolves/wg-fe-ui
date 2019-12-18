@@ -6,10 +6,10 @@ import { string, object, node, func, bool } from 'prop-types';
 const Box = styled.div`
   display: flex;
   background-color: #f7f7f7;
-  height: 70px;
+  height: 7.5rem;
   justify-content: space-between;
   align-items: center;
-  padding: 13px 9.21vw 12px 15.73vw;
+  padding: 18px 18.6rem 17px 3rem;
   box-sizing: border-box;
 `;
 
