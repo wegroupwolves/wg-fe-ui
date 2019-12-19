@@ -108,6 +108,7 @@ const StyledLabel = styled.label`
   width: 100%;
   font-size: 1.4rem;
   color: ${props => (props.disabled ? '#AEAEAE' : '#5B5550')};
+  line-height: 1rem;
 `;
 
 const StyledInput = styled.input`
@@ -126,7 +127,6 @@ const StyledInput = styled.input`
   padding-left: 0.7rem;
   margin-top: 1.4rem;
   box-sizing: border-box;
-  line-height: 1rem;
   &:focus {
     outline: none;
     border-color: ${({ theme }) => theme.brand.primary};
