@@ -125,6 +125,7 @@ const StyledInput = styled.input`
   font-size: 1.6rem;
   padding-left: 0.7rem;
   margin-top: 1rem;
+  box-sizing: border-box;
 
   &:focus {
     outline: none;
