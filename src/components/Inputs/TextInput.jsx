@@ -124,9 +124,9 @@ const StyledInput = styled.input`
   height: 4rem;
   font-size: 1.6rem;
   padding-left: 0.7rem;
-  margin-top: 1rem;
+  margin-top: 1.4rem;
   box-sizing: border-box;
-
+  line-height: 1rem;
   &:focus {
     outline: none;
     border-color: ${({ theme }) => theme.brand.primary};
