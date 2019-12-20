@@ -36,7 +36,7 @@ const TrackingBar = ({
 const StyledTrackingBar = styled.div`
   display: flex;
   font-family: ${({ theme }) => theme.fonts};
-  justify-content: space-between;
+  justify-content: space-evenly;
   width: 100%;
   align-items: center;
   margin: 4vh auto 0.55vh;
