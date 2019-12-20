@@ -25,10 +25,9 @@ const InnerBox = styled.div`
   position: relative;
   display: flex;
   align-items: center;
-  width: 85%;
+  width: 128rem;
   height: 100%;
   border-right: 1px solid ${({ theme }) => theme.ui.outline};
-  margin-right: 2.4vw;
 
   input {
     border: none;
