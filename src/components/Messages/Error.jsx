@@ -20,7 +20,7 @@ const ErrorContainer = styled.div`
   color: ${({ theme }) => theme.status.error};
 `;
 
-Error.displayName = 'SearchSelectInput';
+Error.displayName = 'Error';
 
 Error.defaultProps = {
   error: '',

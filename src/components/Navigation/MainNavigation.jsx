@@ -20,9 +20,10 @@ const Line = styled.div`
 const Title = styled.h1`
   text-transform: uppercase;
   font-size: 1.4rem;
-  margin-left: 3.5rem;
-  color: ${({ theme }) => theme.typo.text};
+  margin-left: 2.5rem;
+  color: ${({ theme }) => theme.ui.disabled};
   margin-bottom: 1.5rem;
+  margin-top: 2rem;
 
   &:not(:first-child) {
     margin-top: 2.5rem;
@@ -38,7 +39,7 @@ const NavigationBar = styled.nav`
   display: flex;
   flex-direction: column;
   position: fixed;
-  border-right: 1px solid ${({ theme }) => theme.ui.outline};
+  border-right: 1px solid #f0f1f3;
 `;
 
 MainNavigation.Title = Title;

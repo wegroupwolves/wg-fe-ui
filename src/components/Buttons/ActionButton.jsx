@@ -48,6 +48,7 @@ const StyledButton = styled.button`
   border-radius: 0.5rem;
   min-width: 14rem;
   width: ${props => (props.fullwidth ? '100%' : '')};
+  height: 4rem;
   color: white;
   border: 0;
   padding: ${({ padding }) => padding || '1rem 0.4rem'};
