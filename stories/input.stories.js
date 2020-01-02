@@ -176,6 +176,7 @@ storiesOf('Low level blocks/Inputs', module)
   })
   .add('SearchSelectInput', () => {
     let errors = text('Error', '');
+    const [value, setValue] = useState();
     const loadOptions = () =>
       new Promise(resolve => {
         setTimeout(() => {
@@ -188,7 +189,7 @@ storiesOf('Low level blocks/Inputs', module)
                   { value: 'option1', label: 'Option 1' },
                   { value: 'option2', label: 'Option 2' },
                   { value: 'option3', label: 'Option 3' },
-                ],
+                ].filter(o => o.label),
               },
               [],
             ),
@@ -200,6 +201,10 @@ storiesOf('Low level blocks/Inputs', module)
         async={boolean('Async', false)}
         disabled={boolean('Disabled', false)}
         error={errors}
+        value={select('value', {
+          None: null,
+          custom: { label: 'Dom', value: 'dom' }
+        })}
         options={select(
           'options',
           {
