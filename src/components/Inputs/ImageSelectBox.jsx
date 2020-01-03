@@ -103,7 +103,7 @@ const ImageSelectBox = forwardRef(
     if (selected === value) mode = 'selected';
     else if (selected) mode = 'inactive';
     return (
-      <RadioButton {...otherProps} mode={mode} label={label}>
+      <RadioButton mode={mode} label={label} {...otherProps}>
         {icon}
         <input
           ref={ref}
@@ -124,7 +124,6 @@ ImageSelectBox.defaultProps = {
   label: 'means',
   onChange: () => {},
   name: 'radios',
-  mode: 'normal',
   otherProps: {},
   selected: '',
 };
