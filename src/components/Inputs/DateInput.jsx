@@ -78,8 +78,6 @@ const DateInput = forwardRef(
           return { ...state, month: payload };
         case 'year':
           return { ...state, year: payload };
-        case 'reset':
-          return init(payload);
         default:
           return { ...state };
       }
@@ -261,7 +259,6 @@ const DateInput = forwardRef(
               type="text"
               autoComplete="off"
               ref={dayRef}
-              data-test-id="day"
               onFocus={onFocus}
               min={1}
               onKeyDown={e => keyDownHandler(e, 31, 1)}
@@ -279,7 +276,6 @@ const DateInput = forwardRef(
               type="text"
               ref={monthRef}
               autoComplete="off"
-              data-test-id="month"
               onFocus={onFocus}
               min={1}
               onKeyDown={e => keyDownHandler(e, 12, 1)}
@@ -296,7 +292,6 @@ const DateInput = forwardRef(
               placeholder="yyyy"
               type="text"
               autoComplete="off"
-              data-test-id="year"
               onFocus={onFocus}
               minLength={1}
               min={1}
