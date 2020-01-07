@@ -15,6 +15,7 @@ const SearchSelectInput = forwardRef(
       loadOptions,
       options,
       name,
+      value,
       disabled,
       children,
       initial,
@@ -27,11 +28,14 @@ const SearchSelectInput = forwardRef(
     },
     ref,
   ) => {
-    const [isSelected, setSelected] = useState('');
+    const [isSelected, setSelected] = useState();
 
     const handleChange = option => {
       setSelected(option || []);
-      if (!option) {onSelected({name, value: undefined}); return;};
+      if (!option) {
+        onSelected({ name, value: undefined }); 
+        return;
+      }
       onSelected({
         name,
         value: Array.isArray(option) ? option : option.value,
@@ -44,9 +48,11 @@ const SearchSelectInput = forwardRef(
       }
 
       if (initial) {
+        console.log('initial: ', initial);
         setSelected(initial);
       }
-    }, [options]);
+      if (value) setSelected(value);
+    }, [value, options]);
 
     return (
       <Container className={className}>
@@ -246,6 +252,7 @@ SearchSelectInput.defaultProps = {
   initial: null,
   isMulti: false,
   otherProps: {},
+  value: '',
 };
 
 SearchSelectInput.propTypes = {
@@ -281,6 +288,7 @@ SearchSelectInput.propTypes = {
   /** Adds extra props to the element */
   otherProps: object,
   /** Triggers when input is cleared */
+  value: string,
 };
 
 export default SearchSelectInput;
