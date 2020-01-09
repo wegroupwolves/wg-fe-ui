@@ -32,8 +32,8 @@ const LoadingBar = ({
   stagesLength,
   ...otherProps
 }) => {
-  const currentId = activeId - 1;
-  const len = stagesLength - 1;
+  const currentId = activeId;
+  const len = stagesLength + 1;
   return (
     <ProgressTrack
       height={height}

@@ -349,6 +349,7 @@ const StyledLabel = styled.label`
   position: relative;
   width: 100%;
   font-size: 1.4rem;
+  line-height: 1rem;
   color: ${props => (props.disabled ? '#AEAEAE' : '#5B5550')};
 `;
 
