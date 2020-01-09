@@ -2,7 +2,7 @@ import React, { forwardRef, useState, useEffect } from 'react';
 import { bool, node, func, string, object } from 'prop-types';
 import styled from 'styled-components';
 import { detect } from 'detect-browser';
-import Error from './../Messages/Error';
+import Error, { getBorderColor } from './../Messages/Error';
 import ValidationIcons from './../Inputs/ValidationIcons';
 
 const TextInput = forwardRef(
@@ -17,6 +17,7 @@ const TextInput = forwardRef(
       onChange,
       setFieldTouched,
       error,
+      warning,
       touched,
       value,
       ...otherProps
@@ -74,6 +75,7 @@ const TextInput = forwardRef(
             disabled={disabled}
             placeholder={placeholder}
             error={error}
+            warning={warning}
             touched={touched}
             value={inputValue}
             onChange={handleChange}
@@ -89,7 +91,7 @@ const TextInput = forwardRef(
             touched={touched}
           />
         </StyledLabel>
-        <Error error={error} />
+        <Error error={error} warning={warning} />
       </Container>
     );
   },
@@ -115,12 +117,8 @@ const StyledInput = styled.input`
   background-color: ${props => (props.disabled ? '#F0F1F3' : 'white')};
   width: 100%;
   border: 0.1rem solid;
-  border-color: ${({ error, touched, theme }) =>
-    error
-      ? theme.status.error
-      : touched & !error
-      ? theme.status.succes
-      : theme.ui.outline};
+  border-color: ${({ error, touched, theme, warning }) =>
+    getBorderColor(error, touched, theme, warning)};
   border-radius: 0.3rem;
   height: 4rem;
   font-size: 1.6rem;
@@ -143,6 +141,7 @@ TextInput.defaultProps = {
   disabled: false,
   placeholder: '',
   error: '',
+  warning: '',
   touched: false,
   type: 'text',
   setFieldTouched: () => {},
@@ -166,6 +165,8 @@ TextInput.propTypes = {
   placeholder: string,
   /** string with errormessage */
   error: string,
+  /** string with warningmessage */
+  warning: string,
   /** boolean to check if inputfield is touched */
   touched: bool,
   /** returns name and touched boolean */
