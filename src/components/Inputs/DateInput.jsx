@@ -5,7 +5,16 @@ import React, {
   useRef,
   forwardRef,
 } from 'react';
-import { bool, string, object, func, node, shape } from 'prop-types';
+import {
+  bool,
+  number,
+  string,
+  object,
+  func,
+  node,
+  oneOfType,
+  shape,
+} from 'prop-types';
 
 import styled from 'styled-components';
 import { detect } from 'detect-browser';
@@ -45,29 +54,34 @@ const DateInput = forwardRef(
     },
     ref,
   ) => {
-    const init = () => {
-      const values = value.split('/');
-      return { day: values[0], month: values[1], year: values[2] };
+    // Pad the value -> pad(4) returns '04', pad(11) returns '11'
+    const pad = n => {
+      if (!parseInt(n)) return '';
+      return parseInt(n) < 10 ? `0${parseInt(n)}` : n;
     };
-    const [date, dispatch] = useReducer(
-      (state, { type, payload }) => {
-        switch (type) {
-          case 'day':
-            return { ...state, day: payload };
-          case 'month':
-            return { ...state, month: payload };
-          case 'year':
-            return { ...state, year: payload };
-          case 'full':
-            return { ...payload };
-          case 'reset':
-            return init(payload);
-          default:
-            return { ...state };
-        }
-      },
-      { ...value },
-    );
+
+    const init = () => {
+      if (typeof value === 'object')
+        return {
+          day: pad(value.day),
+          month: pad(value.month),
+          year: value.year,
+        };
+      const values = value.split('/');
+      return { day: pad(values[0]), month: pad(values[1]), year: values[2] };
+    };
+    const [date, dispatch] = useReducer((state, { type, payload }) => {
+      switch (type) {
+        case 'day':
+          return { ...state, day: payload };
+        case 'month':
+          return { ...state, month: payload };
+        case 'year':
+          return { ...state, year: payload };
+        default:
+          return { ...state };
+      }
+    }, init(value));
 
     const browser = detect();
     const [focus, setFocus] = useState();
@@ -82,10 +96,6 @@ const DateInput = forwardRef(
     const ARROW_DOWN = 40;
 
     useClickOutside(ref, () => setFocus(false));
-
-    useEffect(() => {
-      dispatch({ type: 'full', payload: value });
-    }, [value]);
 
     const isDate = () => {
       const d = `${date.day}/${date.month}/${date.year}`;
@@ -108,12 +118,6 @@ const DateInput = forwardRef(
       day: monthRef,
       month: yearRef,
       year: null,
-    };
-
-    // Pad the value -> pad(4) returns '04', pad(11) returns '11'
-    const pad = n => {
-      if (!parseInt(n)) return '';
-      return parseInt(n) < 10 ? `0${parseInt(n)}` : n;
     };
 
     // Change focus to the field with the classname in the nextField argument
@@ -255,7 +259,6 @@ const DateInput = forwardRef(
               type="text"
               autoComplete="off"
               ref={dayRef}
-              data-test-id="day"
               onFocus={onFocus}
               min={1}
               onKeyDown={e => keyDownHandler(e, 31, 1)}
@@ -273,7 +276,6 @@ const DateInput = forwardRef(
               type="text"
               ref={monthRef}
               autoComplete="off"
-              data-test-id="month"
               onFocus={onFocus}
               min={1}
               onKeyDown={e => keyDownHandler(e, 12, 1)}
@@ -290,7 +292,6 @@ const DateInput = forwardRef(
               placeholder="yyyy"
               type="text"
               autoComplete="off"
-              data-test-id="year"
               onFocus={onFocus}
               minLength={1}
               min={1}
@@ -387,7 +388,7 @@ DateInput.defaultProps = {
   touched: false,
   isCalendarEnabled: false,
   otherProps: {},
-  value: { day: '', month: '', year: '' },
+  value: '01/02/1995',
   onBlur: () => {},
   onChange: () => {},
   onFocus: () => {},
@@ -414,7 +415,14 @@ DateInput.propTypes = {
   /** Callback function that is fired when the component's value changes. */
   onFocus: func,
   /** Current value of the input element as { day: 'DD', month: 'MM', year: 'YYYY' } */
-  value: shape(),
+  value: oneOfType([
+    string,
+    shape({
+      day: oneOfType([string, number]),
+      month: oneOfType([string, number]),
+      year: oneOfType([string, number]),
+    }),
+  ]),
   /** Adds extra props to the element */
   otherProps: object,
 };

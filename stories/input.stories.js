@@ -141,6 +141,7 @@ storiesOf('Low level blocks/Inputs', module)
         touched={touched}
         error={error}
         name="date"
+        value="02/10/1876"
         isCalendarEnabled={isCalendarEnabled}
         disabled={disabled}
         onChange={action('change')}

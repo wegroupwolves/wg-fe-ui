@@ -27,11 +27,11 @@ describe('DateInput', () => {
       </DateInput>,
     );
 
-    const day = wrapper.find('[data-test-id="day"]').at(1);
-    const month = wrapper.find('[data-test-id="month"]').at(1);
-    const year = wrapper.find('[data-test-id="year"]').at(1);
+    const day = wrapper.find('#day').at(1);
+    const month = wrapper.find('#month').at(1);
+    const year = wrapper.find('#year').at(1);
 
-    expect(onChange.mock.calls.length).toBe(0);
+    expect(onChange.mock.calls.length).toBe(1);
 
     act(() => {
       day
@@ -45,7 +45,7 @@ describe('DateInput', () => {
         .onChange({ persist: () => {}, target: { value: '1996', id: 'year' } });
     });
 
-    const calledOnChange = onChange.mock.calls[0];
+    const calledOnChange = onChange.mock.calls[1];
 
     expect(calledOnChange[0]).toStrictEqual({
       name: 'date',
