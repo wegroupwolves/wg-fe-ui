@@ -389,7 +389,7 @@ DateInput.defaultProps = {
   touched: false,
   isCalendarEnabled: false,
   otherProps: {},
-  value: '01/02/1995',
+  value: '',
   onBlur: () => {},
   onChange: () => {},
   onFocus: () => {},

@@ -1,5 +1,13 @@
 import React, { forwardRef } from 'react';
-import { object, func, string, bool, node } from 'prop-types';
+import {
+  object,
+  func,
+  string,
+  bool,
+  node,
+  number,
+  oneOfType,
+} from 'prop-types';
 import LoupeIcon from './../Icons/Loupe';
 import styled from 'styled-components';
 
@@ -78,7 +86,7 @@ SearchInput.propTypes = {
   icon: node,
   onChange: func,
   placeholder: string,
-  text: string,
+  text: oneOfType([string, number]),
   otherProps: object,
 };
 
