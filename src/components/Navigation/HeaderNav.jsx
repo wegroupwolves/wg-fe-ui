@@ -1,8 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-
-import LanguageSelector from './LanguageSelector';
-
 import { array, string, func, object } from 'prop-types';
 
 const HeaderNav = ({
@@ -34,7 +31,6 @@ const HeaderNav = ({
             );
           })}
         </Navigation>
-        <LanguageSelector />
       </Wrapper>
     </Container>
   );
