@@ -189,9 +189,7 @@ describe('SearchSelectInput', () => {
       <SearchSelectInput
         isMulti
         name="tags"
-        onSelected={({ value }) => {
-          testValues.push(...value);
-        }}
+        onSelected={({ value }) => testValues.push(...value)}
         options={[
           { value: 'option1', label: 'Option 1' },
           { value: 'option2', label: 'Option 2' },

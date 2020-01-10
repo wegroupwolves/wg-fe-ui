@@ -1,5 +1,13 @@
 import React, { forwardRef, useState, useEffect } from 'react';
-import { bool, node, func, string, object } from 'prop-types';
+import {
+  bool,
+  node,
+  number,
+  func,
+  string,
+  object,
+  oneOfType,
+} from 'prop-types';
 import styled from 'styled-components';
 import { detect } from 'detect-browser';
 import Error, { getBorderColor } from './../Messages/Error';
@@ -176,7 +184,7 @@ TextInput.propTypes = {
   /** Adds extra props to the element */
   otherProps: object,
   /** sets initial value */
-  value: string,
+  value: oneOfType([string, number]),
 };
 
 StyledInput.displayName = 'StyledInput';
