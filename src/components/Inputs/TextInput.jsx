@@ -109,6 +109,7 @@ const Container = styled.div`
   width: 100%;
   font-family: ${({ theme }) => theme.fonts};
   position: relative;
+  height: 9rem;
 `;
 
 const StyledLabel = styled.label`

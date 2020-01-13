@@ -42,6 +42,7 @@ const SearchInput = forwardRef(
 const StyledBox = styled.div`
   position: relative;
   width: 100%;
+  height: 9rem;
 
   svg {
     position: absolute;
