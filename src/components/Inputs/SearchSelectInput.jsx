@@ -227,6 +227,7 @@ const Container = styled.div`
   flex-direction: column;
   width: 100%;
   font-family: ${({ theme }) => theme.fonts};
+  height: 9rem;
 `;
 
 const Label = styled.label`
