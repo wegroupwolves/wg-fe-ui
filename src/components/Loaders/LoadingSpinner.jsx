@@ -1,12 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
+import { string } from 'prop-types';
 
-const LoadingSpinner = () => {
+const LoadingSpinner = ({ className }) => {
   return (
     <Spinner
       id="loadingSpinner"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 80 80"
+      className={className}
     >
       <defs>
         <path id="a" d="M0 0h40v40H0z" />
@@ -32,6 +34,9 @@ const Spinner = styled.svg`
   min-height: 80px;
   transform-origin: 40px 40px 40px;
   transition: 0.5s;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, -50%);
   animation: spinnerAnimation 1.3s infinite cubic-bezier(0.53, 0.21, 0.29, 0.67);
 
   @keyframes spinnerAnimation {
@@ -47,5 +52,9 @@ const Spinner = styled.svg`
 const Circle = styled.circle`
   stroke: ${({ theme }) => theme.brand.primary};
 `;
+
+LoadingSpinner.propTypes = {
+  className: string,
+};
 
 export default LoadingSpinner;
