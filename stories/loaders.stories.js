@@ -8,10 +8,5 @@ import LoadingSpinner from '../src/components/Loaders/LoadingSpinner.jsx';
 storiesOf('Low level blocks/Loaders', module)
   .addDecorator(withInfo({ inline: true }))
   .add('LoadingSpinner', () => {
-    return <StyledSpinner />;
+    return <LoadingSpinner />;
   });
-
-const StyledSpinner = styled(LoadingSpinner)`
-  width: 20px;
-  height: 20px;
-`;
