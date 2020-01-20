@@ -44,6 +44,7 @@ const Spinner = styled.svg`
           left: 50%;
           top: 50%;
           transform: translate(-50%, -50%);
+          z-index: 3;
         `
       : css`
           align-self: center;
