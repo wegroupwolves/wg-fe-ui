@@ -331,7 +331,6 @@ const Input = styled.div`
   padding-left: 1.2rem;
   height: 4rem;
   margin-top: 1.4rem;
-  margin-bottom: 2rem;
   border: 0.1rem solid;
   border-color: ${({ error, touched, theme }) =>
     error
