@@ -1,8 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-
-import LanguageSelector from './LanguageSelector';
-
 import { array, string, func, object } from 'prop-types';
 
 const HeaderNav = ({
@@ -34,7 +31,6 @@ const HeaderNav = ({
             );
           })}
         </Navigation>
-        <LanguageSelector />
       </Wrapper>
     </Container>
   );
@@ -58,7 +54,8 @@ const Container = styled.div`
   border-bottom: 0.2px solid #e2e2e2;
   box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.1);
   z-index: 11;
-  padding: 0 7rem 0 3.4rem;
+  padding: 0 7rem 0 2.5rem;
+  box-sizing: border-box;
 `;
 
 const NavItem = styled.li`

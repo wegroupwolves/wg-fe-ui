@@ -36,7 +36,7 @@ const Container = styled.div`
   color: #525252;
   font-size: 1.4rem;
   height: 5.5rem;
-  padding-left: 3.5rem;
+  padding-left: 2.5rem;
   font-weight: ${props => (props.isActive ? '700' : '400')};
   width: 100%;
   padding-right: 1rem;

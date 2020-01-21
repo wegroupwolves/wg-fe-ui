@@ -159,8 +159,8 @@ storiesOf('Low level blocks/Inputs', module)
         ref={ref}
         touched={touched}
         error={error}
-        is12HourFormat={boolean('is12HourFormat', true)}
-        name="date"
+        is12HourFormat={boolean('is12HourFormat', false)}
+        name="time"
         disabled={disabled}
         onChange={action('change')}
       >
@@ -176,6 +176,7 @@ storiesOf('Low level blocks/Inputs', module)
   })
   .add('SearchSelectInput', () => {
     let errors = text('Error', '');
+    const [option, setOption] = useState();
     const loadOptions = () =>
       new Promise(resolve => {
         setTimeout(() => {
@@ -188,7 +189,7 @@ storiesOf('Low level blocks/Inputs', module)
                   { value: 'option1', label: 'Option 1' },
                   { value: 'option2', label: 'Option 2' },
                   { value: 'option3', label: 'Option 3' },
-                ],
+                ].filter(o => o.label),
               },
               [],
             ),
@@ -200,6 +201,11 @@ storiesOf('Low level blocks/Inputs', module)
         async={boolean('Async', false)}
         disabled={boolean('Disabled', false)}
         error={errors}
+        value={select('value', {
+          None: null,
+          custom: { label: 'Dom', value: 'dom' },
+          normal: option,
+        })}
         options={select(
           'options',
           {
@@ -214,7 +220,11 @@ storiesOf('Low level blocks/Inputs', module)
         )}
         loadOptions={loadOptions}
         name="selection"
-        onSelected={({ name, value }) => console.log(name, value)}
+        onSelected={({ name, value }) => {
+          const option = value.length ? value : { name, value };
+          setOption(...option);
+          action('change')(...option);
+        }}
         loading={boolean('Loading', false)}
         initial={select('initial', {
           None: null,

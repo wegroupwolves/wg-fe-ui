@@ -2,10 +2,10 @@ import React from 'react';
 import styled from 'styled-components';
 import { string } from 'prop-types';
 
-const Error = ({ error }) => {
-  return error ? (
-    <ErrorContainer>
-      <p>{error}</p>
+const Error = ({ error, warning }) => {
+  return error || warning ? (
+    <ErrorContainer error={error}>
+      <p>{error || warning}</p>
     </ErrorContainer>
   ) : null;
 };
@@ -17,10 +17,11 @@ const ErrorContainer = styled.div`
   margin-top: 1rem;
   margin-bottom: 1rem;
   font-size: 1.2rem;
-  color: ${({ theme }) => theme.status.error};
+  color: ${({ theme, error }) =>
+    error ? theme.status.error : theme.status.warning};
 `;
 
-Error.displayName = 'SearchSelectInput';
+Error.displayName = 'Error';
 
 Error.defaultProps = {
   error: '',
@@ -29,6 +30,17 @@ Error.defaultProps = {
 Error.propTypes = {
   /** string with errormessage */
   error: string,
+  /** string with warningmessage */
+  warning: string,
+};
+
+export const getBorderColor = (error, touched, theme, warning) => {
+  if (error) return theme.status.error;
+  else {
+    if (warning) return theme.status.warning;
+    else if (touched) return theme.status.succes;
+  }
+  return theme.ui.outline;
 };
 
 export default Error;

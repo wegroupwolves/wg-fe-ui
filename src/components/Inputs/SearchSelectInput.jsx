@@ -2,7 +2,16 @@ import React, { forwardRef, useState, useEffect } from 'react';
 import styled, { css } from 'styled-components';
 import Select from 'react-select';
 import AsyncSelect from 'react-select/async';
-import { func, string, bool, array, object } from 'prop-types';
+import {
+  func,
+  string,
+  shape,
+  bool,
+  number,
+  arrayOf,
+  object,
+  oneOfType,
+} from 'prop-types';
 import Error from './../Messages/Error';
 
 const SearchSelectInput = forwardRef(
@@ -15,6 +24,7 @@ const SearchSelectInput = forwardRef(
       loadOptions,
       options,
       name,
+      value,
       disabled,
       children,
       initial,
@@ -27,11 +37,14 @@ const SearchSelectInput = forwardRef(
     },
     ref,
   ) => {
-    const [isSelected, setSelected] = useState('');
+    const [isSelected, setSelected] = useState();
 
     const handleChange = option => {
       setSelected(option || []);
-      if (!option) {onSelected({name, value: undefined}); return;};
+      if (!option) {
+        onSelected({ name, value: undefined });
+        return;
+      }
       onSelected({
         name,
         value: Array.isArray(option) ? option : option.value,
@@ -46,7 +59,8 @@ const SearchSelectInput = forwardRef(
       if (initial) {
         setSelected(initial);
       }
-    }, [options]);
+      if (value) setSelected(value);
+    }, [value, options]);
 
     return (
       <Container className={className}>
@@ -213,6 +227,7 @@ const Container = styled.div`
   flex-direction: column;
   width: 100%;
   font-family: ${({ theme }) => theme.fonts};
+  height: 9rem;
 `;
 
 const Label = styled.label`
@@ -246,6 +261,7 @@ SearchSelectInput.defaultProps = {
   initial: null,
   isMulti: false,
   otherProps: {},
+  value: null,
 };
 
 SearchSelectInput.propTypes = {
@@ -263,13 +279,29 @@ SearchSelectInput.propTypes = {
   /** label above the input */
   children: string.isRequired,
   /** array of objects {value: 'test', label: 'Test'} */
-  options: array.isRequired,
+  options: arrayOf(
+    shape({
+      value: oneOfType([string, number]),
+      label: string,
+    }),
+  ).isRequired,
   /** set true if options are loading */
   loading: bool,
   /** name that sets selected on load */
   loadOptions: func,
 
-  initial: object,
+  initial: oneOfType([
+    arrayOf(
+      shape({
+        value: oneOfType([string, number]),
+        label: string,
+      }),
+    ),
+    shape({
+      value: oneOfType([string, number]),
+      label: string,
+    }),
+  ]),
   /** Message to show when options are empty */
   noOptionMessage: string,
   /** Message to show when loading is true */
@@ -281,6 +313,18 @@ SearchSelectInput.propTypes = {
   /** Adds extra props to the element */
   otherProps: object,
   /** Triggers when input is cleared */
+  value: oneOfType([
+    arrayOf(
+      shape({
+        value: oneOfType([string, number]),
+        label: string,
+      }),
+    ),
+    shape({
+      value: oneOfType([string, number]),
+      label: string,
+    }),
+  ]),
 };
 
 export default SearchSelectInput;

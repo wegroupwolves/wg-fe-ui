@@ -1,5 +1,13 @@
 import React, { forwardRef } from 'react';
-import { bool, node, func, string, object } from 'prop-types';
+import {
+  bool,
+  node,
+  number,
+  func,
+  string,
+  object,
+  oneOfType,
+} from 'prop-types';
 
 import TextInput from './TextInput';
 
@@ -107,7 +115,7 @@ MaskedInput.propTypes = {
   /** Adds extra props to the element */
   otherProps: object,
   /** sets initial value */
-  value: string,
+  value: oneOfType([string, number]),
 };
 
 MaskedInput.displayName = 'MaskedInput';

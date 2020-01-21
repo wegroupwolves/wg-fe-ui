@@ -5,7 +5,16 @@ import React, {
   useRef,
   forwardRef,
 } from 'react';
-import { bool, string, object, func, node, shape } from 'prop-types';
+import {
+  bool,
+  number,
+  string,
+  object,
+  oneOfType,
+  func,
+  node,
+  shape,
+} from 'prop-types';
 
 import styled from 'styled-components';
 import { detect } from 'detect-browser';
@@ -303,7 +312,8 @@ const Input = styled.div`
   background-color: white;
   padding-left: 1.2rem;
   height: 4rem;
-  margin-top: 1rem;
+  margin-top: 1.4rem;
+  margin-bottom: 2rem;
   border: 0.1rem solid;
   border-color: ${({ error, touched, theme }) =>
     error
@@ -353,6 +363,7 @@ const Container = styled.div`
   width: 100%;
   font-family: ${({ theme }) => theme.fonts};
   position: relative;
+  height: 9rem;
 `;
 
 Container.displayName = 'Container';
@@ -390,8 +401,15 @@ TimeInput.propTypes = {
   onChange: func,
   /** Callback function that is fired when the component's value changes. */
   onFocus: func,
-  /** Current value of the input element as { day: 'DD', month: 'MM', year: 'YYYY' } */
-  value: shape(),
+  /** Current value of the input element as { hour: 'hh', minute: 'mm', second: 'ss' } */
+  value: oneOfType([
+    string,
+    shape({
+      hour: oneOfType([string, number]),
+      minute: oneOfType([string, number]),
+      second: oneOfType([string, number]),
+    }),
+  ]),
   /** Adds extra props to the element */
   otherProps: object,
   isHour: bool,
