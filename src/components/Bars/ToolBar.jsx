@@ -9,7 +9,7 @@ const Box = styled.div`
   height: 7.5rem;
   justify-content: space-between;
   align-items: center;
-  padding: 18px 18.6rem 17px 3rem;
+  padding: 18px 9.7vw 17px 1.56vw;
   box-sizing: border-box;
 `;
 
