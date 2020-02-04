@@ -17,8 +17,8 @@ describe('ToolBar', () => {
       </ThemeProvider>,
     );
 
-    expect(wrapper.find('InnerBox')).toHaveStyleRule(
-      'border-right',
+    expect(wrapper.find('ButtonWrapper')).toHaveStyleRule(
+      'border-left',
       `1px solid ${theme.ui.outline}`,
     );
   });

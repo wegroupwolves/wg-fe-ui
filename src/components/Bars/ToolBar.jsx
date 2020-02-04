@@ -26,6 +26,8 @@ const ButtonWrapper = styled.div`
   padding-left: 2rem;
 `;
 
+ButtonWrapper.displayName = 'ButtonWrapper';
+
 const InnerBox = styled.div`
   position: relative;
   display: flex;
