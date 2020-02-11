@@ -77,7 +77,7 @@ storiesOf('Low level blocks/Inputs', module)
     let touched = boolean('Touched', false);
     const [val, setVal] = useState('');
     return (
-      <MaskedInput
+      <StyledMaskedInput
         disabled={boolean('Disabled', false)}
         name="police"
         type="text"
@@ -89,7 +89,7 @@ storiesOf('Low level blocks/Inputs', module)
         maskChar=" "
       >
         Police zone
-      </MaskedInput>
+      </StyledMaskedInput>
     );
   })
   .add('TextInput', () => {
@@ -239,6 +239,10 @@ storiesOf('Low level blocks/Inputs', module)
       </StyledSearchSelectInput>
     );
   });
+
+const StyledMaskedInput = styled(MaskedInput)`
+  width: 27rem;
+`;
 
 const StyledTextInput = styled(TextInput)`
   width: 27rem;
