@@ -83,9 +83,10 @@ storiesOf('Low level blocks/Inputs', module)
         type="text"
         error={error}
         onChange={({ value }) => setVal(value)}
-        touched={touched}
-        // mask="+(  )   -   -  "
         value={val}
+        touched={touched}
+        mask="+(99)99-99-999"
+        maskChar=" "
       >
         Police zone
       </MaskedInput>
