@@ -85,8 +85,8 @@ storiesOf('Low level blocks/Inputs', module)
         onChange={({ value }) => setVal(value)}
         value={val}
         touched={touched}
-        mask="+(99)99-99-999"
-        maskChar=" "
+        mask="999-99999-99"
+      // maskChar=""
       >
         Police zone
       </StyledMaskedInput>
