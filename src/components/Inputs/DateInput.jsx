@@ -49,7 +49,7 @@ const DateInput = forwardRef(
       value,
       onBlur,
       onChange,
-      validFunc,
+      validate,
       children,
       ...otherProps
     },
@@ -105,7 +105,8 @@ const DateInput = forwardRef(
 
     useEffect(() => {
       if (!isDate()) return;
-      if (validFunc && !validFunc(`${date.day}/${date.month}/${date.year}`)) return;
+      if (validate && !validate(`${date.day}/${date.month}/${date.year}`))
+        return;
       onChange({ name, value: `${date.day}/${date.month}/${date.year}` });
       !touched && setFocus(false);
     }, [date.day, date.month, date.year]);
@@ -427,7 +428,7 @@ DateInput.propTypes = {
       year: oneOfType([string, number]),
     }),
   ]),
-  validFunc: func,
+  validate: func,
   /** Adds extra props to the element */
   otherProps: object,
 };
