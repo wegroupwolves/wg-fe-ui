@@ -136,7 +136,7 @@ storiesOf('Low level blocks/Inputs', module)
     let disabled = boolean('Disable', false);
     let isCalendarEnabled = boolean('Enable datepicker', false);
     const ref = useRef();
-    const validFunc = date => {
+    const validate = date => {
       const now = new Date(Date.now()).toLocaleDateString('en-GB');
       return now > date;
     };
@@ -146,7 +146,7 @@ storiesOf('Low level blocks/Inputs', module)
         touched={touched}
         error={error}
         name="date"
-        validFunc={validFunc}
+        validate={validate}
         isCalendarEnabled={isCalendarEnabled}
         disabled={disabled}
         onChange={action('change')}
