@@ -9,7 +9,7 @@ const Box = styled.div`
   height: 7.5rem;
   justify-content: space-between;
   align-items: center;
-  padding: 18px 18.6rem 17px 3rem;
+  padding: 18px 9.7vw 17px 1.56vw;
   box-sizing: border-box;
 `;
 
@@ -21,13 +21,18 @@ const Wrapper = styled.div`
   justify-content: space-between;
 `;
 
+const ButtonWrapper = styled.div`
+  border-left: 1px solid ${({ theme }) => theme.ui.outline};
+  padding-left: 2rem;
+`;
+
+ButtonWrapper.displayName = 'ButtonWrapper';
+
 const InnerBox = styled.div`
   position: relative;
   display: flex;
   align-items: center;
-  width: 128rem;
   height: 100%;
-  border-right: 1px solid ${({ theme }) => theme.ui.outline};
 
   input {
     border: none;
@@ -50,14 +55,16 @@ const ToolBar = ({
     <Box className={className} {...otherProps}>
       <Wrapper>
         <InnerBox>{children}</InnerBox>
-        <ActionButton
-          disabled={btnDisable}
-          level={level}
-          onClick={onClick}
-          padding="0.5rem 1.5rem"
-        >
-          {btnName}
-        </ActionButton>
+        <ButtonWrapper>
+          <ActionButton
+            disabled={btnDisable}
+            level={level}
+            onClick={onClick}
+            padding="0.5rem 1.5rem"
+          >
+            {btnName}
+          </ActionButton>
+        </ButtonWrapper>
       </Wrapper>
     </Box>
   );

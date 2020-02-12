@@ -38,7 +38,7 @@ describe('MaskedInput', () => {
         mask="+(_ _) _ _ _-_ _ _-_ _"
         maskChar="_"
         value="6778965443"
-        onChange={() => {}}
+        onChange={() => { }}
         name="test"
       >
         test
@@ -56,6 +56,6 @@ describe('MaskedInput', () => {
       </MaskedInput>,
     );
 
-    expect(wrapper.find('TextInput').props().max).toEqual(12);
+    expect(wrapper.find('StyledInput').props().max).toEqual(12);
   });
 });

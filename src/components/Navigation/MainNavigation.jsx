@@ -33,7 +33,7 @@ const Title = styled.h1`
 const NavigationBar = styled.nav`
   font-family: ${({ theme }) => theme.fonts};
   height: 100vh;
-  width: 25rem;
+  width: 13vw;
   z-index: 100;
   background-color: white;
   display: flex;
