@@ -18,7 +18,7 @@ const StatusesContainer = styled.div`
 `;
 
 const Container = styled.div`
-  font-family: ${({ theme }) => theme.fonts};
+  font-family: ${({ theme }) => theme.font};
   span {
     font-size: 1.2rem;
     margin-bottom: 0.53rem;

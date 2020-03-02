@@ -29,7 +29,7 @@ const Container = styled.label`
   border: 1px solid;
   border-color: ${({ theme }) => theme.ui.outline};
   border-radius: 2px;
-  font-family: ${({ theme }) => theme.fonts};
+  font-family: ${({ theme }) => theme.font};
   font-size: 1.6rem;
   ${Text} {
     color: ${({ disabled, theme }) => (disabled ? theme.ui.outline : null)};

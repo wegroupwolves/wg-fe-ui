@@ -36,7 +36,7 @@ function iconColor(status, theme) {
 }
 
 const RadioButton = styled.label`
-  font-family: ${({ theme }) => theme.fonts};
+  font-family: ${({ theme }) => theme.font};
   font-size: 1.6rem;
   position: relative;
   display: flex;
