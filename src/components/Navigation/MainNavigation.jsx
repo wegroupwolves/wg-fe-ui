@@ -14,7 +14,7 @@ const MainNavigation = ({ className, children, ...otherProps }) => {
 const Line = styled.div`
   height: 0.1rem;
   width: 100%;
-  background-color: ${({ theme }) => theme.ui.backgroundLight};
+  background-color: #f0f1f3;
 `;
 
 const Title = styled.h1`
@@ -33,7 +33,7 @@ const Title = styled.h1`
 const NavigationBar = styled.nav`
   font-family: ${({ theme }) => theme.font};
   height: 100vh;
-  width: 13vw;
+  width: 25rem;
   z-index: 100;
   background-color: white;
   display: flex;
@@ -42,12 +42,34 @@ const NavigationBar = styled.nav`
   border-right: 1px solid #f0f1f3;
 `;
 
+const Terms = styled.a`
+  font-size: 1.4rem;
+  margin: 2rem 0 1rem 2.5rem;
+`;
+
+const Copy = styled.p`
+  font-size: 1.4rem;
+  margin-left: 2.5rem;
+  color: ${({ theme }) => theme.ui.disabled};
+  line-height: 125%;
+`;
+
+const SignOutContainer = styled.div`
+  margin-top: auto;
+`;
+
 MainNavigation.Title = Title;
 MainNavigation.Title.displayName = 'MainNavigation.Title';
 MainNavigation.Line = Line;
 MainNavigation.Line.displayName = 'MainNavigation.Line';
 MainNavigation.Item = Item;
 MainNavigation.Item.displayName = 'MainNavigation.Item';
+MainNavigation.Terms = Terms;
+MainNavigation.Terms.displayName = 'MainNavigation.Terms';
+MainNavigation.Copy = Copy;
+MainNavigation.Copy.displayName = 'MainNavigation.Copy';
+MainNavigation.SignOutContainer = SignOutContainer;
+MainNavigation.Copy.SignOutContainer = 'MainNavigation.SignOutContainer';
 
 MainNavigation.defaultProps = {
   otherProps: {},

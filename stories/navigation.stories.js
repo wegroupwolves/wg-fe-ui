@@ -5,6 +5,7 @@ import { withKnobs } from '@storybook/addon-knobs';
 import { withInfo } from '@storybook/addon-info';
 
 import HouseIcon from './assets/HouseIcon.jsx';
+import IconActionPower from './assets/Icons/IconActionPower.jsx';
 import { HeaderNav, MainNavigation, SubNavigation } from '../src/index.js';
 
 storiesOf('Mid level blocks/Navigation', module)
@@ -24,11 +25,17 @@ storiesOf('Mid level blocks/Navigation', module)
           >
             Active
           </MainNavigation.Item>
-          <MainNavigation.Title>Other</MainNavigation.Title>
-          <MainNavigation.Item icon={<HouseIcon isActive={false} />}>
-            House
-          </MainNavigation.Item>
           <MainNavigation.Line />
+          <MainNavigation.Terms>Terms</MainNavigation.Terms>
+          <MainNavigation.Copy>
+            &copy; {new Date().getFullYear()} WeGroup NV. All rights reserved
+          </MainNavigation.Copy>
+          <MainNavigation.SignOutContainer>
+            <MainNavigation.Line />
+            <MainNavigation.Item icon={<IconActionPower color="#C4C4C4" />}>
+              Sign Out
+            </MainNavigation.Item>
+          </MainNavigation.SignOutContainer>
         </StyledMainNav>
       </Container>
     );
@@ -139,7 +146,7 @@ const Container = styled.div`
 `;
 
 const StyledMainNav = styled(MainNavigation)`
-  height: 35rem;
+  height: 40rem;
   position: absolute;
   left: 0;
   top: 0;
