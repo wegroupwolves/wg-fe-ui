@@ -77,18 +77,19 @@ storiesOf('Low level blocks/Inputs', module)
     let touched = boolean('Touched', false);
     const [val, setVal] = useState('');
     return (
-      <MaskedInput
+      <StyledMaskedInput
         disabled={boolean('Disabled', false)}
         name="police"
         type="text"
         error={error}
         onChange={({ value }) => setVal(value)}
-        touched={touched}
-        // mask="+(  )   -   -  "
         value={val}
+        touched={touched}
+        mask="999-99999-99"
+      // maskChar=""
       >
         Police zone
-      </MaskedInput>
+      </StyledMaskedInput>
     );
   })
   .add('TextInput', () => {
@@ -135,12 +136,17 @@ storiesOf('Low level blocks/Inputs', module)
     let disabled = boolean('Disable', false);
     let isCalendarEnabled = boolean('Enable datepicker', false);
     const ref = useRef();
+    const validate = date => {
+      const now = new Date(Date.now()).toLocaleDateString('en-GB');
+      return now > date;
+    };
     return (
       <StyledDateInput
         ref={ref}
         touched={touched}
         error={error}
         name="date"
+        validate={validate}
         isCalendarEnabled={isCalendarEnabled}
         disabled={disabled}
         onChange={action('change')}
@@ -238,6 +244,10 @@ storiesOf('Low level blocks/Inputs', module)
       </StyledSearchSelectInput>
     );
   });
+
+const StyledMaskedInput = styled(MaskedInput)`
+  width: 27rem;
+`;
 
 const StyledTextInput = styled(TextInput)`
   width: 27rem;

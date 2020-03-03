@@ -25,7 +25,7 @@ const BackButton = ({
 };
 
 const StyledButton = styled.button`
-  font-family: ${({ theme }) => theme.fonts};
+  font-family: ${({ theme }) => theme.font};
   background-color: ${({ background }) =>
     background ? background : 'initial'};
   font-size: 1.6rem;

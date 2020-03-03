@@ -15,7 +15,7 @@ const DisplayTable = ({ className, children, ...otherProps }) => {
 
 const StyledDisplayTable = styled.table`
   width: 100%;
-  font-family: ${({ theme }) => theme.fonts};
+  font-family: ${({ theme }) => theme.font};
   font-size: 1.6rem;
 `;
 

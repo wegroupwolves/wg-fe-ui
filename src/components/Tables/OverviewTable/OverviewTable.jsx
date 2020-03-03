@@ -16,7 +16,7 @@ const OverviewTable = forwardRef(
 );
 
 const Table = styled.table`
-  font-family: ${({ theme }) => theme.fonts};
+  font-family: ${({ theme }) => theme.font};
   width: 100%;
   text-align: left;
   margin-top: 2.5rem;

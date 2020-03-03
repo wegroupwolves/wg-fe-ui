@@ -21,7 +21,7 @@ const Item = styled.li`
 
 const SectionContainer = styled.ul`
   padding-left: 0.78vw;
-  font-family: ${({ theme }) => theme.fonts};
+  font-family: ${({ theme }) => theme.font};
   overflow: ${({ active }) => (active ? 'auto' : 'hidden')};
   opacity: ${({ active }) => (active ? '1' : '0')};
   max-height: ${({ active }) => (active ? '100vh' : '0')};
@@ -35,7 +35,7 @@ SubSection.propTypes = {
 const StyledSubNavigation = styled.ul`
   font-size: 1.6rem;
   line-height: 2rem;
-  font-family: ${({ theme }) => theme.fonts};
+  font-family: ${({ theme }) => theme.font};
   li {
     color: ${({ theme }) => theme.typo.highlight};
     line-height: 2rem;

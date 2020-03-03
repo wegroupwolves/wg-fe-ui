@@ -36,13 +36,13 @@ describe('DateInput', () => {
     act(() => {
       day
         .props()
-        .onChange({ persist: () => {}, target: { value: '08', id: 'day' } });
+        .onChange({ persist: () => { }, target: { value: '08', id: 'day' } });
       month
         .props()
-        .onChange({ persist: () => {}, target: { value: '03', id: 'month' } });
+        .onChange({ persist: () => { }, target: { value: '03', id: 'month' } });
       year
         .props()
-        .onChange({ persist: () => {}, target: { value: '1996', id: 'year' } });
+        .onChange({ persist: () => { }, target: { value: '1996', id: 'year' } });
     });
 
     const calledOnChange = onChange.mock.calls[0];
@@ -118,5 +118,88 @@ describe('DateInput', () => {
     );
 
     expect(wrapper.find('Container').props().max).toEqual(12);
+  });
+
+  it('should call validate callback and with false no date is returned when passed to component', () => {
+    const onChange = jest.fn();
+    const validate = jest.fn().mockReturnValue(false);
+
+    const wrapper = mountWithTheme(
+      <DateInput
+        onChange={onChange}
+        name="date"
+        touched={true}
+        validate={validate}
+      >
+        test
+      </DateInput>,
+    );
+
+    const day = wrapper.find('#day').at(1);
+    const month = wrapper.find('#month').at(1);
+    const year = wrapper.find('#year').at(1);
+
+    const date = new Date();
+
+    expect(onChange.mock.calls.length).toBe(0);
+    const pad = v => (parseInt(v) < 10 ? `0${v}` : `${v}`);
+
+    act(() => {
+      day.props().onChange({
+        persist: () => { },
+        target: { value: pad(date.getDay() + 1), id: 'day' },
+      });
+      month.props().onChange({
+        persist: () => { },
+        target: { value: pad(date.getMonth() + 1), id: 'month' },
+      });
+      year.props().onChange({
+        persist: () => { },
+        target: { value: date.getFullYear().toString(), id: 'year' },
+      });
+    });
+    expect(validate).toHaveBeenCalledTimes(1);
+    expect(onChange.mock.calls.length).toEqual(0);
+  });
+
+  it('should call validate callback and with true returned date changes when passed to component', () => {
+    const onChange = jest.fn();
+    const validate = jest.fn().mockReturnValue(true);
+
+    const wrapper = mountWithTheme(
+      <DateInput
+        onChange={onChange}
+        name="date"
+        touched={true}
+        validate={validate}
+      >
+        test
+      </DateInput>,
+    );
+
+    const day = wrapper.find('#day').at(1);
+    const month = wrapper.find('#month').at(1);
+    const year = wrapper.find('#year').at(1);
+
+    expect(onChange.mock.calls.length).toBe(0);
+
+    act(() => {
+      day
+        .props()
+        .onChange({ persist: () => { }, target: { value: '08', id: 'day' } });
+      month
+        .props()
+        .onChange({ persist: () => { }, target: { value: '03', id: 'month' } });
+      year
+        .props()
+        .onChange({ persist: () => { }, target: { value: '1996', id: 'year' } });
+    });
+
+    const calledOnChange = onChange.mock.calls[0];
+    expect(validate).toHaveBeenCalledTimes(1);
+    expect(calledOnChange[0]).toStrictEqual({
+      name: 'date',
+      value: '08/03/1996',
+    });
   });
 });

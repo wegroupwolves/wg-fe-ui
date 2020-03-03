@@ -49,6 +49,7 @@ const DateInput = forwardRef(
       value,
       onBlur,
       onChange,
+      validate,
       children,
       ...otherProps
     },
@@ -104,6 +105,8 @@ const DateInput = forwardRef(
 
     useEffect(() => {
       if (!isDate()) return;
+      if (validate && !validate(`${date.day}/${date.month}/${date.year}`))
+        return;
       onChange({ name, value: `${date.day}/${date.month}/${date.year}` });
       !touched && setFocus(false);
     }, [date.day, date.month, date.year]);
@@ -336,8 +339,8 @@ const Input = styled.div`
     error
       ? theme.status.error
       : touched && !error
-      ? theme.status.succes
-      : theme.ui.outline};
+        ? theme.status.succes
+        : theme.ui.outline};
   border-radius: 0.3rem;
 `;
 
@@ -377,7 +380,7 @@ const StyledSingleInputDate = styled.input`
 
 const Container = styled.div`
   width: 100%;
-  font-family: ${({ theme }) => theme.fonts};
+  font-family: ${({ theme }) => theme.font};
   position: relative;
   height: 9rem;
 `;
@@ -391,9 +394,9 @@ DateInput.defaultProps = {
   isCalendarEnabled: false,
   otherProps: {},
   value: '',
-  onBlur: () => {},
-  onChange: () => {},
-  onFocus: () => {},
+  onBlur: () => { },
+  onChange: () => { },
+  onFocus: () => { },
 };
 DateInput.propTypes = {
   /** Beeing able to use it in Styled Components */
@@ -425,6 +428,7 @@ DateInput.propTypes = {
       year: oneOfType([string, number]),
     }),
   ]),
+  validate: func,
   /** Adds extra props to the element */
   otherProps: object,
 };

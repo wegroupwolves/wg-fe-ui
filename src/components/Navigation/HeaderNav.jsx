@@ -63,7 +63,7 @@ const NavItem = styled.li`
   margin: 0 3rem;
   font-size: 1.6rem;
   padding: 2.5rem 2rem 2rem;
-  font-family: ${({ theme }) => theme.fonts};
+  font-family: ${({ theme }) => theme.font};
   border-bottom: ${props => (props.active === true ? `3px solid` : 'none')};
   border-color: ${({ theme, active }) =>
     active === true ? theme.brand.primary : 'none'};

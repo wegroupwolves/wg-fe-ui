@@ -12,7 +12,7 @@ const Section = ({ children, className, ...otherProps }) => {
 };
 
 const StyledSection = styled.section`
-  font-family: ${({ theme }) => theme.fonts};
+  font-family: ${({ theme }) => theme.font};
   width: 100%;
   max-width: 100rem;
   margin-bottom: 4.5rem;
@@ -26,7 +26,7 @@ const Content = styled.div`
   background-color: ${props => (props.background ? 'white' : 'none')};
   position: relative;
   font-size: 1.6rem;
-  padding: ${props => (props.background ? '3.5rem' : 'none')};
+  padding: ${props => (props.background ? '1.8vw' : 'none')};
   border: ${({ theme, background }) =>
     background ? `0.1rem solid ${theme.ui.outline}` : 'none'};
   box-shadow: ${props =>

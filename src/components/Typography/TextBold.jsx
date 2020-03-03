@@ -11,7 +11,7 @@ const TextBold = ({ className, children, color, ...otherProps }) => {
 };
 
 const P = styled.p`
-  font-family: ${({ theme }) => theme.fonts};
+  font-family: ${({ theme }) => theme.font};
   font-size: 1.6rem;
   font-weight: bold;
   line-height: 130%;
