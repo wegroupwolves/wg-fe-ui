@@ -41,6 +41,85 @@ import IconActionMarker from './IconActionMarker';
 import IconActionPhone from './IconActionPhone';
 import IconActionPower from './IconActionPower';
 import IconActionChevronLeft from './IconActionChevronLeft';
+import IconActionChevronRight from './IconActionChevronRight';
+import IconActionEye from './IconActionEye';
+import IconActionPlus from './IconActionPlus';
+import IconActionMessage from './IconActionMessage';
+import IconStatusExclamation from './IconStatusExclamation';
+import IconStatusCheck from './IconStatusCheck';
+import IconStudent from './IconStudent';
+import IconDashboard from './IconDashboard';
+import IconSettingsFilled from './IconSettingsFilled';
+import IconUnderwritingFilled from './IconUnderwritingFilled';
+import IconClaimsFilled from './IconClaimsFilled';
+import IconToolkitFilled from './IconToolkitFilled';
+import IconFamilyFilled from './IconFamilyFilled';
+import IconActivePVFilled from './IconActivePVFilled';
+import IconWitnessFilled from './IconWitnessFilled';
+import IconQualityFilled from './IconQualityFilled';
+import IconSmsFilled from './IconSmsFilled';
+import IconWorkAccidentFilled from './IconWorkAccidentFilled';
+import IconIdFilled from './IconIdFilled';
+import IconDocumentFilled from './IconDocumentFilled';
+import IconAtticFilled from './IconAtticFilled';
+import IconBasementFilled from './IconBasementFilled';
+import IconPassiveHouseFilled from './IconPassiveHouseFilled';
+import IconConstructionFilled from './IconConstructionFilled';
+import IconStoneFilled from './IconStoneFilled';
+import IconCornFilled from './IconCornFilled';
+import IconMeasureFilled from './IconMeasureFilled';
+import IconJewelryFilled from './IconJewelryFilled';
+import IconArtFilled from './IconArtFilled';
+import IconFurnitureFilled from './IconFurnitureFilled';
+import IconGarageFilled from './IconGarageFilled';
+import IconGuestsFilled from './IconGuestsFilled';
+import IconPropertyExtraFilled from './IconPropertyExtraFilled';
+import IconHomeOfficeFilled from './IconHomeOfficeFilled';
+import IconPoolFilled from './IconPoolFilled';
+import IconShedFilled from './IconShedFilled';
+import IconGardenFilled from './IconGardenFilled';
+import IconVacationFilled from './IconVacationFilled';
+import IconSurroundingsFilled from './IconSurroundingsFilled';
+import IconPetsFilled from './IconPetsFilled';
+import IconEStepFilled from './IconEStepFilled';
+import IconBikeFilled from './IconBikeFilled';
+import IconSharedEconomyFilled from './IconSharedEconomyFilled';
+import IconSolarPanelsFilled from './IconSolarPanelsFilled';
+import IconDisabilityFilled from './IconDisabilityFilled';
+import IconChildrenFilled from './IconChildrenFilled';
+import IconComputerFilled from './IconComputerFilled';
+import IconAllRisksFilled from './IconAllRisksFilled';
+import IconTenPercentFilled from './IconTenPercentFilled';
+import IconDroneFilled from './IconDroneFilled';
+import IconEmergencyBrakeFilled from './IconEmergencyBrakeFilled';
+import IconCruiseControlFilled from './IconCruiseControlFilled';
+import IconSupportFilled from './IconSupportFilled';
+import IconBlindSpotFilled from './IconBlindSpotFilled';
+import IconDamageAnimalsFilled from './IconDamageAnimalsFilled';
+import IconLaneControlFilled from './IconLaneControlFilled';
+import IconBAPlusPlusFilled from './IconBAPlusPlusFilled';
+import IconBAPlusFilled from './IconBAPlusFilled';
+import IconReplacementFilled from './IconReplacementFilled';
+import IconAttentionAssistanceFilled from './IconAttentionAssistanceFilled';
+import IconECallFilled from './IconECallFilled';
+import IconCoverageFilled from './IconCoverageFilled';
+import IconJokerFilled from './IconJokerFilled';
+import IconExtraObjectDamageFilled from './IconExtraObjectDamageFilled';
+import IconDriverFilled from './IconDriverFilled';
+import IconExtraCarDamageFilled from './IconExtraCarDamageFilled';
+import IconMirrorBreakageFilled from './IconMirrorBreakageFilled';
+import IconParkingFilled from './IconParkingFilled';
+import IconTravellingFilled from './IconTravellingFilled';
+import IconSearchCarFilled from './IconSearchCarFilled';
+import IconSavingFilled from './IconSavingFilled';
+import IconFlightAcceptedFilled from './IconFlightAcceptedFilled';
+import IconFlightCanceledFilled from './IconFlightCanceledFilled';
+import IconFlightDelayedFilled from './IconFlightDelayedFilled';
+import IconFlightMissedFilled from './IconFlightMissedFilled';
+import IconCancelFlightFilled from './IconCancelFlightFilled';
+import IconMobilityFilled from './IconMobilityFilled';
+import IconCertificateFilled from './IconCertificateFilled';
+import IconInjuredFilled from './IconInjuredFilled';
 
 export {
   IconFiredFilled,
@@ -85,4 +164,83 @@ export {
   IconActionPhone,
   IconActionPower,
   IconActionChevronLeft,
+  IconActionChevronRight,
+  IconActionEye,
+  IconActionPlus,
+  IconActionMessage,
+  IconStatusExclamation,
+  IconStatusCheck,
+  IconStudent,
+  IconDashboard,
+  IconSettingsFilled,
+  IconUnderwritingFilled,
+  IconClaimsFilled,
+  IconToolkitFilled,
+  IconFamilyFilled,
+  IconActivePVFilled,
+  IconWitnessFilled,
+  IconQualityFilled,
+  IconSmsFilled,
+  IconWorkAccidentFilled,
+  IconIdFilled,
+  IconDocumentFilled,
+  IconAtticFilled,
+  IconBasementFilled,
+  IconPassiveHouseFilled,
+  IconConstructionFilled,
+  IconStoneFilled,
+  IconCornFilled,
+  IconMeasureFilled,
+  IconJewelryFilled,
+  IconArtFilled,
+  IconFurnitureFilled,
+  IconGarageFilled,
+  IconGuestsFilled,
+  IconPropertyExtraFilled,
+  IconHomeOfficeFilled,
+  IconPoolFilled,
+  IconShedFilled,
+  IconGardenFilled,
+  IconVacationFilled,
+  IconSurroundingsFilled,
+  IconPetsFilled,
+  IconEStepFilled,
+  IconBikeFilled,
+  IconSharedEconomyFilled,
+  IconSolarPanelsFilled,
+  IconDisabilityFilled,
+  IconChildrenFilled,
+  IconComputerFilled,
+  IconAllRisksFilled,
+  IconTenPercentFilled,
+  IconDroneFilled,
+  IconEmergencyBrakeFilled,
+  IconCruiseControlFilled,
+  IconSupportFilled,
+  IconBlindSpotFilled,
+  IconDamageAnimalsFilled,
+  IconLaneControlFilled,
+  IconBAPlusPlusFilled,
+  IconBAPlusFilled,
+  IconReplacementFilled,
+  IconAttentionAssistanceFilled,
+  IconECallFilled,
+  IconCoverageFilled,
+  IconJokerFilled,
+  IconExtraObjectDamageFilled,
+  IconDriverFilled,
+  IconExtraCarDamageFilled,
+  IconMirrorBreakageFilled,
+  IconParkingFilled,
+  IconTravellingFilled,
+  IconSearchCarFilled,
+  IconSavingFilled,
+  IconFlightAcceptedFilled,
+  IconFlightCanceledFilled,
+  IconFlightDelayedFilled,
+  IconFlightMissedFilled,
+  IconCancelFlightFilled,
+  IconMobilityFilled,
+  IconCertificateFilled,
+  IconInjuredFilled,
 };

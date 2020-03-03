@@ -1,7 +1,7 @@
 import React from 'react';
 import { string } from 'prop-types';
 
-const IconActionDropDown = ({ className, color }) => {
+const IconActionChevronRight = ({ className, color }) => {
   return (
     <svg
       id="icons"
@@ -11,9 +11,9 @@ const IconActionDropDown = ({ className, color }) => {
       viewBox="0 0 50 50"
       fill="none"
     >
-      <title>Drop down</title>
+      <title>Chevron right</title>
       <path
-        d="M38 21L25 34L12 21"
+        d="M18.5 14.5L31.5 27.5L18.5 40.5"
         stroke={color}
         strokeWidth="4"
         strokeMiterlimit="10"
@@ -22,13 +22,13 @@ const IconActionDropDown = ({ className, color }) => {
   );
 };
 
-IconActionDropDown.defaultProps = {
+IconActionChevronRight.defaultProps = {
   color: 'black',
 };
 
-IconActionDropDown.propTypes = {
+IconActionChevronRight.propTypes = {
   color: string,
   className: string,
 };
 
-export default IconActionDropDown;
+export default IconActionChevronRight;
