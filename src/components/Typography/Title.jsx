@@ -11,7 +11,7 @@ const Title = ({ className, children, color, ...otherProps }) => {
 };
 
 const H1 = styled.h1`
-  font-family: ${({ theme }) => theme.fonts};
+  font-family: ${({ theme }) => theme.font};
   font-size: 2.1rem;
   font-weight: 900;
   line-height: 130%;

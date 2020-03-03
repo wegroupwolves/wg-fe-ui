@@ -115,7 +115,7 @@ const MaskedInput = forwardRef(
 
 const Container = styled.div`
   width: 100%;
-  font-family: ${({ theme }) => theme.fonts};
+  font-family: ${({ theme }) => theme.font};
   position: relative;
   height: 9rem;
 `;

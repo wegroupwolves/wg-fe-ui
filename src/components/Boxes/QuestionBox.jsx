@@ -47,7 +47,7 @@ const QuestionBox = ({
 
 const Container = styled.div`
   display: flex;
-  font-family: ${({ theme }) => theme.fonts};
+  font-family: ${({ theme }) => theme.font};
   flex-direction: column;
   align-items: center;
   width: 100%;

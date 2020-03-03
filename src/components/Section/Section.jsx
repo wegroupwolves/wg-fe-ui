@@ -12,7 +12,7 @@ const Section = ({ children, className, ...otherProps }) => {
 };
 
 const StyledSection = styled.section`
-  font-family: ${({ theme }) => theme.fonts};
+  font-family: ${({ theme }) => theme.font};
   width: 100%;
   max-width: 100rem;
   margin-bottom: 4.5rem;

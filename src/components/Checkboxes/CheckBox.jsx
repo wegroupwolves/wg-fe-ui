@@ -86,7 +86,7 @@ const StyledBox = styled.div`
 `;
 
 const StyledLabel = styled.label`
-  font-family: ${({ theme }) => theme.fonts};
+  font-family: ${({ theme }) => theme.font};
   font-size: 1.4rem;
   line-height: 1.5rem;
   display: flex;

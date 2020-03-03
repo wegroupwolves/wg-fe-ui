@@ -4,7 +4,7 @@ import { string, number, object, arrayOf } from 'prop-types';
 import LoadingBar from './LoadingBar';
 
 const Status = styled.span`
-  font-family: ${({ theme }) => theme.fonts};
+  font-family: ${({ theme }) => theme.font};
   font-size: 14px;
   font-weight: ${({ active }) => (active ? 'bold' : 'initial')};
   line-height: 24px;

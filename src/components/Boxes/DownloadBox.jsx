@@ -60,7 +60,7 @@ const Download = styled.div`
     width: 100%;
     align-items: center;
     text-decoration: none;
-    font-family: ${({ theme }) => theme.fonts};
+    font-family: ${({ theme }) => theme.font};
     font-size: 1.4rem;
     line-height: 130%;
   }

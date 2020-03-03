@@ -34,7 +34,7 @@ const ToggleButton = ({
 };
 
 const StyledButton = styled.button`
-  font-family: ${({ theme }) => theme.fonts};
+  font-family: ${({ theme }) => theme.font};
   background-color: ${({ disabled, level, theme }) =>
     disabled
       ? theme.ui.disabled
