@@ -35,6 +35,12 @@ import IconLiabilitybuildingFilled from './IconLiabilitybuildingFilled';
 import IconLandlordFilled from './IconLandlordFilled';
 import IconTenantFilled from './IconTenantFilled';
 import IconGlassBreakageFilled from './IconGlassBreakageFilled';
+import IconActionDropDown from './IconActionDropDown';
+import IconActionClose from './IconActionClose';
+import IconActionMarker from './IconActionMarker';
+import IconActionPhone from './IconActionPhone';
+import IconActionPower from './IconActionPower';
+import IconActionChevronLeft from './IconActionChevronLeft';
 
 export {
   IconFiredFilled,
@@ -73,4 +79,10 @@ export {
   IconLiabilitybuildingFilled,
   IconLandlordFilled,
   IconGlassBreakageFilled,
+  IconActionDropDown,
+  IconActionClose,
+  IconActionMarker,
+  IconActionPhone,
+  IconActionPower,
+  IconActionChevronLeft,
 };
