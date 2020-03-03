@@ -34,7 +34,7 @@ const NavigationBar = styled.nav`
   font-family: ${({ theme }) => theme.font};
   height: 100vh;
   width: 25rem;
-  z-index: 100;
+  z-index: 10;
   background-color: white;
   display: flex;
   flex-direction: column;
