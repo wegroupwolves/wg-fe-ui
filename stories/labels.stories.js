@@ -23,6 +23,8 @@ const LabelTypes = {
 
 const Statuses = {
   Default: 'default',
+  OfferSend: 'offer-send',
+  ContractSend: 'contract-send',
   Success: 'success',
   Warning: 'warning',
   Error: 'error',
