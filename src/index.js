@@ -38,6 +38,7 @@ export {
   MainNavigation,
   SubNavigation,
   QuickActionSubMenu,
+  CollapsibleSidebar,
 } from './components/Navigation';
 
 export { LoadingSpinner } from './components/Loaders';

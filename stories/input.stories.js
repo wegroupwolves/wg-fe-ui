@@ -86,7 +86,6 @@ storiesOf('Low level blocks/Inputs', module)
         value={val}
         touched={touched}
         mask="999-99999-99"
-      // maskChar=""
       >
         Police zone
       </StyledMaskedInput>

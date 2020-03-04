@@ -11,7 +11,9 @@ import {
   MainNavigation,
   SubNavigation,
   QuickActionSubMenu,
+  CollapsibleSidebar,
 } from '../src/index.js';
+import CheckBox from '../src/components/Checkboxes/CheckBox';
 
 const SubMenuItemTypes = {
   Default: null,
@@ -155,6 +157,43 @@ storiesOf('Mid level blocks/Navigation', module)
         />
       </QuickActionSubMenu>
     );
+  })
+  .add('CollapsibleSidebar', () => {
+    return (
+      <CollapsibleSidebarContainer>
+        <CollapsibleSidebar label="Filters">
+          <CheckBox
+            checked={false}
+            disabled={false}
+            name="Checkbox1"
+            onChange={function noRefCheck() {}}
+            otherProps={{}}
+          >
+            Item
+          </CheckBox>
+
+          <CheckBox
+            checked={false}
+            disabled={false}
+            name="Checkbox2"
+            onChange={function noRefCheck() {}}
+            otherProps={{}}
+          >
+            Item
+          </CheckBox>
+
+          <CheckBox
+            checked={false}
+            disabled={false}
+            name="Checkbox3"
+            onChange={function noRefCheck() {}}
+            otherProps={{}}
+          >
+            Item
+          </CheckBox>
+        </CollapsibleSidebar>
+      </CollapsibleSidebarContainer>
+    );
   });
 
 const Container = styled.div`
@@ -167,6 +206,11 @@ const Container = styled.div`
   > div {
     position: absolute;
   }
+`;
+
+const CollapsibleSidebarContainer = styled.div`
+  max-width: 300px;
+  width: 100%;
 `;
 
 const StyledMainNav = styled(MainNavigation)`
