@@ -19,7 +19,7 @@ const Line = styled.div`
 
 const Title = styled.h1`
   text-transform: uppercase;
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   margin-left: 2.5rem;
   color: ${({ theme }) => theme.ui.disabled};
   margin-bottom: 1rem;
