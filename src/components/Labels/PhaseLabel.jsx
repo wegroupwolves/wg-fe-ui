@@ -31,8 +31,12 @@ const PhaseLabelIndicator = styled.div`
     background-color: ${({ theme }) => theme.status.succes};
   }
 
-  &.warning {
-    background-color: ${({ theme }) => theme.status.warning};
+  &.offer-send {
+    background-color: ${({ theme }) => theme.status.blue};
+  }
+
+  &.contract-send {
+    background-color: ${({ theme }) => theme.status.yellow};
   }
 
   &.error {

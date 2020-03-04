@@ -45,6 +45,8 @@ export default (function() {
       succesLight: '#D2FDE0',
       errorLight: '#FFE1E1',
       warningLight: '#FFEFDC',
+      blue: '#00A3FF',
+      yellow: '#FFD600',
     },
     labels: {
       default: '#C1C1C1',
