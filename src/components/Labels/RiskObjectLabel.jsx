@@ -61,8 +61,11 @@ RiskObjectLabel.defaultProps = {
 };
 
 RiskObjectLabel.propTypes = {
+  /** The amount to be displayed inside the badge */
   amount: number,
+  /** The name of the icon to be displayed */
   icon: string,
+  /** The color of the icon */
   iconColor: string,
 };
 

@@ -4,6 +4,10 @@ import { withInfo } from '@storybook/addon-info';
 import { withKnobs, select, text, number } from '@storybook/addon-knobs';
 import * as Icons from '../src/components/Icons';
 
+import TypeLabel from '../src/components/Labels/TypeLabel';
+import RiskObjectLabel from '../src/components/Labels/RiskObjectLabel';
+import PhaseLabel from '../src/components/Labels/PhaseLabel';
+
 addParameters({
   options: {
     panelPosition: 'right',
@@ -17,16 +21,18 @@ const LabelTypes = {
   Lead: 'lead',
 };
 
+const Statuses = {
+  Default: 'default',
+  Success: 'success',
+  Warning: 'warning',
+  Error: 'error',
+};
+
 const IconsKeys = Object.keys(Icons);
 const IconsList = {};
 IconsKeys.map(IconKey => {
   IconsList[Icons[IconKey].name] = Icons[IconKey].name;
 });
-
-import TypeLabel from '../src/components/Labels/TypeLabel';
-import RiskObjectLabel from '../src/components/Labels/RiskObjectLabel';
-
-console.log(IconsKeys[0]);
 
 storiesOf('Low level blocks/Labels', module)
   .addDecorator(withKnobs)
@@ -45,5 +51,13 @@ storiesOf('Low level blocks/Labels', module)
         amount={number('Amount', 0)}
         icon={select('Icon', IconsList, IconsKeys[0])}
       ></RiskObjectLabel>
+    );
+  })
+  .add('PhaseLabel', () => {
+    return (
+      <PhaseLabel
+        status={select('Type', Statuses)}
+        text={text('Text', 'Lead')}
+      ></PhaseLabel>
     );
   });
