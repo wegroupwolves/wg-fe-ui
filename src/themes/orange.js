@@ -48,6 +48,21 @@ export default (function() {
       succesLight: '#D2FDE0',
       errorLight: '#FFE1E1',
       warningLight: '#FFEFDC',
+      blue: '#00A3FF',
+      yellow: '#FFD600',
+    },
+    labels: {
+      default: '#F6F6F6',
+      defaultText: '#AEAEAE',
+
+      prospect: '#E2EDF0',
+      prospectText: '#6EA3B4',
+
+      lead: '#FFF7CE',
+      leadText: '#C8893D',
+
+      customer: '#E3F0E2',
+      customerText: '#75B46E',
     },
     font: brandFont,
   };

@@ -23,6 +23,7 @@ const FlightData = styled.div`
     border ? css`1px solid ${theme.ui.outline}` : null};
   padding-right: ${({ border }) => (border ? '1.7vw' : null)};
   margin-right: 7%;
+
   .label {
     font-size: 1.4rem;
     line-height: 2rem;
@@ -33,7 +34,7 @@ const FlightData = styled.div`
     font-size: 1.6rem;
     line-height: 1.9rem;
     color: #505050;
-    font-weight: 900;
+    font-weight: 600;
   }
 `;
 

@@ -1,6 +1,6 @@
 // this will be the showing order in storybook
 import IconCarFilled from './IconCarFilled';
-import IconFiredFilled from './IconFireFilled';
+import IconFireFilled from './IconFireFilled';
 import IconTheftFilled from './IconTheftFilled';
 import IconOthersFilled from './IconOthersFilled';
 import IconTaxFilled from './IconTaxFilled';
@@ -122,7 +122,7 @@ import IconCertificateFilled from './IconCertificateFilled';
 import IconInjuredFilled from './IconInjuredFilled';
 
 export {
-  IconFiredFilled,
+  IconFireFilled,
   IconCarFilled,
   IconTheftFilled,
   IconOthersFilled,
