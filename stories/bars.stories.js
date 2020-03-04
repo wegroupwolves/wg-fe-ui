@@ -21,6 +21,8 @@ import PlaneIcon from './assets/Icons/Plane';
 import PayIcon from './assets/Icons/Pay';
 import UploadingIcon from './assets/Icons/Uploading';
 
+import Plane from '../src/components/Icons/Plane';
+
 const COMPONENT_CHOICES = {
   none: null,
   back_button: <BackButton />,
@@ -152,9 +154,9 @@ storiesOf('Mid Level blocks/Bars', module)
         <FlightSelectBar.FlightData label="Brussels" data="BRU" />
         <FlightSelectBar.FlightData label="Departure" data="17:55" />
         <FlightSelectBar.FlightData>
-          <ApprovedIcon />
+          <Plane color="#CCCCCC" />
         </FlightSelectBar.FlightData>
-        <FlightSelectBar.FlightData label="Chanty-Mansiejsk" data="HMA" />
+        <FlightSelectBar.FlightData label="Lisbon" data="LIS" />
         <FlightSelectBar.FlightData label="Arrival" data="20:10" />
       </FlightSelectBar>
     );
