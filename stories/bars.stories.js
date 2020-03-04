@@ -21,7 +21,15 @@ import PlaneIcon from './assets/Icons/Plane';
 import PayIcon from './assets/Icons/Pay';
 import UploadingIcon from './assets/Icons/Uploading';
 
+import RiskObjectBar from '../src/components/Bars/RiskObjectBar';
+
 import Plane from '../src/components/Icons/Plane';
+import * as Icons from '../src/components/Icons';
+const IconsKeys = Object.keys(Icons);
+const IconsList = {};
+IconsKeys.map(IconKey => {
+  IconsList[Icons[IconKey].name] = Icons[IconKey].name;
+});
 
 const COMPONENT_CHOICES = {
   none: null,
@@ -159,6 +167,34 @@ storiesOf('Mid Level blocks/Bars', module)
         <FlightSelectBar.FlightData label="Lisbon" data="LIS" />
         <FlightSelectBar.FlightData label="Arrival" data="20:10" />
       </FlightSelectBar>
+    );
+  })
+  .add('RiskObjectBar', () => {
+    return (
+      <div style={{ padding: '0px 40px', width: '100%' }}>
+        <RiskObjectBar icon={select('Icon', IconsList, '')}>
+          <RiskObjectBar.RiskObjectBarData
+            size="double"
+            label="Car"
+            data="BMW X1 (2015) (F45)"
+          />
+
+          <RiskObjectBar.RiskObjectBarData
+            label="License plate"
+            data="1UWJ768"
+          />
+
+          <RiskObjectBar.RiskObjectBarData
+            label="First registration"
+            data="28/01/2020"
+          />
+
+          <RiskObjectBar.RiskObjectBarData
+            label="Catalogue value"
+            data="€ 28.797,53"
+          />
+        </RiskObjectBar>
+      </div>
     );
   });
 

@@ -37,6 +37,7 @@ export {
   HeaderNav,
   MainNavigation,
   SubNavigation,
+  QuickActionSubMenu,
 } from './components/Navigation';
 
 export { LoadingSpinner } from './components/Loaders';

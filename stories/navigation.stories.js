@@ -1,12 +1,24 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { storiesOf } from '@storybook/react';
-import { withKnobs } from '@storybook/addon-knobs';
+import { withKnobs, select } from '@storybook/addon-knobs';
 import { withInfo } from '@storybook/addon-info';
 
 import HouseIcon from './assets/HouseIcon.jsx';
 import IconActionPower from './assets/Icons/IconActionPower.jsx';
-import { HeaderNav, MainNavigation, SubNavigation } from '../src/index.js';
+import {
+  HeaderNav,
+  MainNavigation,
+  SubNavigation,
+  QuickActionSubMenu,
+} from '../src/index.js';
+
+const SubMenuItemTypes = {
+  Default: null,
+  Success: 'success',
+  Warning: 'warning',
+  Danger: 'danger',
+};
 
 storiesOf('Mid level blocks/Navigation', module)
   .addDecorator(withKnobs)
@@ -130,6 +142,18 @@ storiesOf('Mid level blocks/Navigation', module)
           ))}
         </SubNavigation>
       </Container>
+    );
+  })
+  .add('QuickActionSubMenu', () => {
+    return (
+      <QuickActionSubMenu>
+        <QuickActionSubMenu.SubMenuItem label="View customer" />
+        <QuickActionSubMenu.SubMenuItem label="Edit customer" />
+        <QuickActionSubMenu.SubMenuItem
+          type={select('Type menu item', SubMenuItemTypes)}
+          label="Delete customer"
+        />
+      </QuickActionSubMenu>
     );
   });
 
