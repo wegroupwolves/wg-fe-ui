@@ -22,12 +22,8 @@ const Title = styled.h1`
   font-size: 1.4rem;
   margin-left: 2.5rem;
   color: ${({ theme }) => theme.ui.disabled};
-  margin-bottom: 1.5rem;
-  margin-top: 2rem;
-
-  &:not(:first-child) {
-    margin-top: 2.5rem;
-  }
+  margin-bottom: 1rem;
+  margin-top: 1.5rem;
 `;
 
 const NavigationBar = styled.nav`
@@ -45,6 +41,14 @@ const NavigationBar = styled.nav`
 const Terms = styled.a`
   font-size: 1.4rem;
   margin: 2rem 0 1rem 2.5rem;
+  text-decoration: none;
+  font-weight: 700;
+  color: #525252;
+
+  &:hover {
+    cursor: pointer;
+    color: ${({ theme }) => theme.brand.dark};
+  }
 `;
 
 const Copy = styled.p`

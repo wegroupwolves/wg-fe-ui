@@ -24,7 +24,7 @@ const Item = ({
 };
 
 const SvgIcon = styled.div`
-  max-height: 4.5rem;
+  max-height: 4rem;
   width: 6rem;
   text-align: left;
 `;
@@ -35,7 +35,7 @@ const Container = styled.div`
   text-decoration: none;
   color: #525252;
   font-size: 1.4rem;
-  height: 5.5rem;
+  height: 5rem;
   padding-left: 2.5rem;
   font-weight: ${props => (props.isActive ? '700' : '400')};
   width: 100%;

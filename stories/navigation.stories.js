@@ -26,7 +26,7 @@ storiesOf('Mid level blocks/Navigation', module)
             Active
           </MainNavigation.Item>
           <MainNavigation.Line />
-          <MainNavigation.Terms>Terms</MainNavigation.Terms>
+          <MainNavigation.Terms href="">Terms</MainNavigation.Terms>
           <MainNavigation.Copy>
             &copy; {new Date().getFullYear()} WeGroup NV. All rights reserved
           </MainNavigation.Copy>
