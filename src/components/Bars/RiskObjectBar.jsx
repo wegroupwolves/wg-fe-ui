@@ -1,11 +1,11 @@
 import React from 'react';
-import { string, node } from 'prop-types';
+import { string, node, object } from 'prop-types';
 import styled from 'styled-components';
 
 import * as Icons from '../Icons';
 import { QuickActionSubMenu } from '../Navigation/index';
 
-const IconsList = { Test: 'test' };
+const IconsList = {};
 Object.keys(Icons).map(IconKey => {
   IconsList[Icons[IconKey].name] = Icons[IconKey];
 });
@@ -25,7 +25,7 @@ StyledRiskObjectBarData.propTypes = {
   size: string,
 };
 
-const RiskObjectBar = ({ icon, children }) => {
+const RiskObjectBar = ({ icon, children, ...otherProps }) => {
   let ChosenIcon;
   let IconToRender;
 
@@ -40,7 +40,7 @@ const RiskObjectBar = ({ icon, children }) => {
   }
 
   return (
-    <RiskObjectBarContainer>
+    <RiskObjectBarContainer {...otherProps}>
       <section>
         {IconToRender}
 
@@ -78,6 +78,7 @@ const RiskObjectBarContainer = styled.div`
     display: flex;
     justify-content: flex-start;
     align-items: center;
+    flex-wrap: wrap;
 
     > div:not(:last-of-type) {
       margin-right: 50px;
@@ -121,6 +122,11 @@ RiskObjectBar.propTypes = {
   /** The name of the icon to be shown. No icon will be shown if left empty. */
   icon: string,
   children: node,
+  otherProps: object,
+};
+
+RiskObjectBar.defaultProps = {
+  otherProps: {},
 };
 
 RiskObjectBar.RiskObjectBarData = StyledRiskObjectBarData;

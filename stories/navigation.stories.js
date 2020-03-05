@@ -12,6 +12,7 @@ import {
   SubNavigation,
   QuickActionSubMenu,
   CollapsibleSidebar,
+  Pagination,
 } from '../src/index.js';
 import CheckBox from '../src/components/Checkboxes/CheckBox';
 
@@ -194,6 +195,9 @@ storiesOf('Mid level blocks/Navigation', module)
         </CollapsibleSidebar>
       </CollapsibleSidebarContainer>
     );
+  })
+  .add('Pagination', () => {
+    return <Pagination></Pagination>;
   });
 
 const Container = styled.div`

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { node, string, func } from 'prop-types';
+import { node, string, func, object } from 'prop-types';
 import styled from 'styled-components';
 import Icon from '../Icons/IconOthersFilled';
 
@@ -23,7 +23,7 @@ StyledSubmenuItem.defaultProps = {
   type: '',
 };
 
-const QuickActionSubMenu = ({ children }) => {
+const QuickActionSubMenu = ({ children, ...otherProps }) => {
   const [MenuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
@@ -46,7 +46,7 @@ const QuickActionSubMenu = ({ children }) => {
   };
 
   return (
-    <QuickActionSubMenuWrapper>
+    <QuickActionSubMenuWrapper {...otherProps}>
       <MenuToggle onClick={handleClick}>
         <Icon></Icon>
       </MenuToggle>
@@ -121,6 +121,11 @@ const SubMenuItem = styled.a`
 QuickActionSubMenu.propTypes = {
   /** Menu items passed as children. */
   children: node.isRequired,
+  otherProps: object,
+};
+
+QuickActionSubMenu.defaultProps = {
+  otherProps: {},
 };
 
 QuickActionSubMenu.SubMenuItem = StyledSubmenuItem;

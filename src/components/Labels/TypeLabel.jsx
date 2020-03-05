@@ -1,10 +1,13 @@
 import React from 'react';
-import { string } from 'prop-types';
+import { string, object } from 'prop-types';
 import styled from 'styled-components';
 
-const TypeLabel = ({ text, type, className }) => {
+const TypeLabel = ({ text, type, className, ...otherProps }) => {
   return (
-    <StyledLabel className={className ? `${type + ' ' + className}` : type}>
+    <StyledLabel
+      className={className ? `${type + ' ' + className}` : type}
+      {...otherProps}
+    >
       {text}
     </StyledLabel>
   );
@@ -40,6 +43,7 @@ const StyledLabel = styled.div`
 TypeLabel.defaultProps = {
   text: 'Prospect',
   type: 'default',
+  otherProps: {},
 };
 
 TypeLabel.propTypes = {
@@ -49,6 +53,7 @@ TypeLabel.propTypes = {
   type: string,
   /** Custom className that will be added on top of the type's className */
   className: string,
+  otherProps: object,
 };
 
 export default TypeLabel;
