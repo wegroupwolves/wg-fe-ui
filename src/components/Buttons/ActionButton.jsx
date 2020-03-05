@@ -39,33 +39,38 @@ const ActionButton = ({
 const StyledButton = styled.button`
   font-family: ${({ theme }) => theme.font};
   background-color: ${({ theme, disabled, level }) =>
-    disabled
+    disabled && level === 'primary'
       ? theme.ui.disabled
+      : (disabled && level === 'secondary') || level === 'secondary'
+      ? 'transparent'
       : level === 'primary'
       ? theme.brand.primary
-      : level === 'secondary'
-      ? 'transparent'
       : theme.brand.primary};
+
   font-size: 1.6rem;
   border-radius: 0.5rem;
   min-width: 14rem;
   width: ${props => (props.fullwidth ? '100%' : '')};
   height: 4rem;
+
   color: ${({ theme, disabled, level }) =>
-    disabled
+    (disabled && level === 'primary') || level === 'primary'
       ? 'white'
-      : level === 'primary'
-      ? 'white'
+      : disabled && level === 'secondary'
+      ? theme.ui.disabled
       : level === 'secondary'
       ? theme.brand.primary
-      : ''};
-  /* border: 0; */
+      : 'white'};
+
   border: ${({ theme, disabled, level }) =>
-    disabled || level === 'primary'
+    (disabled && level === 'primary') || level === 'primary'
       ? '0'
+      : disabled && level === 'secondary'
+      ? `2px solid ${theme.ui.disabled}`
       : level === 'secondary'
       ? `2px solid ${theme.brand.primary}`
-      : ''};
+      : '0'};
+
   padding: ${({ padding }) => padding || '1rem 0.4rem'};
   display: flex;
   justify-content: center;
