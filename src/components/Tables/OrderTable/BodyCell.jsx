@@ -14,6 +14,9 @@ const Td = styled.td`
   padding-top: 1.9rem;
   padding-bottom: 1.9rem;
   border-bottom: 1px solid #f0f1f3;
+  font-size: 1.4rem;
+  line-height: 130%;
+  color: '#505050';
 
   :first-of-type {
     padding-left: 2.5rem;
@@ -28,8 +31,8 @@ const Td = styled.td`
 `;
 
 BodyCell.defaultProps = {
-  otherProps: {}
-}
+  otherProps: {},
+};
 
 BodyCell.propTypes = {
   /** Beeing able to use it in Styled Components */

@@ -63,6 +63,7 @@
     "i18next": "^17.2.0",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
+    "react-drag-drawer": "^3.3.3",
     "react-input-mask": "^2.0.4",
     "react-select": "^3.0.8",
     "styled-components": "^4.3.2"

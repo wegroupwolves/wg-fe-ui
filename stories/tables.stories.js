@@ -60,9 +60,7 @@ storiesOf('Mid level blocks/Tables', module)
   .add('OrderTable', () => (
     <StyledOrderTable>
       <OrderTable.Head>
-        <OrderTable.HeaderCell isTitle width="20%">
-          Name
-        </OrderTable.HeaderCell>
+        <OrderTable.HeaderCell width="20%">Name</OrderTable.HeaderCell>
         <OrderTable.HeaderCell width="15%">Date</OrderTable.HeaderCell>
         <OrderTable.HeaderCell width="20%">Insurer</OrderTable.HeaderCell>
         <OrderTable.HeaderCell width="20%">Claim</OrderTable.HeaderCell>

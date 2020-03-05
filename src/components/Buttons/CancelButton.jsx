@@ -10,13 +10,15 @@ const CancelButton = ({ onClick, label, disabled, ...otherProps }) => {
   );
 };
 
-const StyledCancelButton = styled.a`
+const StyledCancelButton = styled.button`
   font-family: ${({ theme }) => theme.font};
   font-size: 1.6rem;
   line-height: 135%;
   color: ${({ theme }) => theme.ui.disabled};
   cursor: ${({ disabled }) => (disabled ? '' : 'pointer')};
   transition: 0.15s ease-in-out;
+  border: 0;
+  background-color: transparent;
 
   &:hover {
     color: ${({ theme, disabled }) =>
