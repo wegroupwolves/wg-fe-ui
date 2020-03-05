@@ -14,7 +14,7 @@ import {
   BackButton,
   UploadField,
   ToggleButton,
-  CancelButton,
+  TertiaryButton,
 } from '../src/';
 
 addParameters({
@@ -78,11 +78,11 @@ storiesOf('Low level blocks/Buttons', module)
       {text('Label', 'Add')}
     </ToggleButton>
   ))
-  .add('CancelButton', () => {
+  .add('TertiaryButton', () => {
     return (
-      <CancelButton
+      <TertiaryButton
         label={text('Label', 'Cancel')}
         disabled={boolean('Disabled?', false)}
-      ></CancelButton>
+      ></TertiaryButton>
     );
   });

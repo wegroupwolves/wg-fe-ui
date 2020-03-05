@@ -43,19 +43,35 @@ const StyledButton = styled.button`
       ? theme.ui.disabled
       : level === 'primary'
       ? theme.brand.primary
-      : theme.ui.interactive};
+      : level === 'secondary'
+      ? 'transparent'
+      : theme.brand.primary};
   font-size: 1.6rem;
   border-radius: 0.5rem;
   min-width: 14rem;
   width: ${props => (props.fullwidth ? '100%' : '')};
   height: 4rem;
-  color: white;
-  border: 0;
+  color: ${({ theme, disabled, level }) =>
+    disabled
+      ? 'white'
+      : level === 'primary'
+      ? 'white'
+      : level === 'secondary'
+      ? theme.brand.primary
+      : ''};
+  /* border: 0; */
+  border: ${({ theme, disabled, level }) =>
+    disabled || level === 'primary'
+      ? '0'
+      : level === 'secondary'
+      ? `2px solid ${theme.brand.primary}`
+      : ''};
   padding: ${({ padding }) => padding || '1rem 0.4rem'};
   display: flex;
   justify-content: center;
   align-items: center;
-  cursor: pointer;
+  cursor: ${({ disabled }) => (disabled ? 'not-allowed' : 'pointer')};
+  transition: 0.1s ease-in-out;
 
   :active {
     transform: scale(0.95);
@@ -66,7 +82,16 @@ const StyledButton = styled.button`
   }
 
   :hover {
-    /* background-color: #FFBF80; */
+    background-color: ${({ theme, level, disabled }) =>
+      disabled
+        ? theme.ui.disabled
+        : level === 'primary'
+        ? theme.brand.light
+        : level === 'secondary'
+        ? theme.brand.primary
+        : ''};
+
+    color: white;
   }
 `;
 

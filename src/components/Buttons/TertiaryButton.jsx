@@ -2,15 +2,15 @@ import React from 'react';
 import { string, bool, object, func } from 'prop-types';
 import styled from 'styled-components';
 
-const CancelButton = ({ onClick, label, disabled, ...otherProps }) => {
+const TertiaryButton = ({ onClick, label, disabled, ...otherProps }) => {
   return (
-    <StyledCancelButton onClick={onClick} disabled={disabled} {...otherProps}>
+    <StyledTertiaryButton onClick={onClick} disabled={disabled} {...otherProps}>
       {label}
-    </StyledCancelButton>
+    </StyledTertiaryButton>
   );
 };
 
-const StyledCancelButton = styled.button`
+const StyledTertiaryButton = styled.button`
   font-family: ${({ theme }) => theme.font};
   font-size: 1.6rem;
   line-height: 135%;
@@ -26,7 +26,7 @@ const StyledCancelButton = styled.button`
   }
 `;
 
-CancelButton.propTypes = {
+TertiaryButton.propTypes = {
   /** Text to be displayed. */
   label: string,
   disabled: bool,
@@ -35,9 +35,9 @@ CancelButton.propTypes = {
   onClick: func.isRequired,
 };
 
-CancelButton.defaultProps = {
+TertiaryButton.defaultProps = {
   otherProps: {},
   onClick: () => {},
 };
 
-export default CancelButton;
+export default TertiaryButton;

@@ -3,7 +3,7 @@ import AddEntityButton from './AddEntityButton';
 import BackButton from './BackButton';
 import UploadField from './UploadField';
 import ToggleButton from './ToggleButton';
-import CancelButton from './CancelButton';
+import TertiaryButton from './TertiaryButton';
 
 export {
   ActionButton,
@@ -11,5 +11,5 @@ export {
   BackButton,
   UploadField,
   ToggleButton,
-  CancelButton,
+  TertiaryButton,
 };
