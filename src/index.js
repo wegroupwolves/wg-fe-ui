@@ -14,6 +14,7 @@ export {
   BackButton,
   UploadField,
   ToggleButton,
+  CancelButton,
 } from './components/Buttons';
 
 export { CheckBox, RadioOption, CheckOption } from './components/Checkboxes';
