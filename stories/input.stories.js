@@ -27,6 +27,13 @@ import {
   TimeInput,
 } from '../src';
 
+import * as Icons from '../src/components/Icons';
+const IconsKeys = Object.keys(Icons);
+const IconsList = {};
+IconsKeys.map(IconKey => {
+  IconsList[Icons[IconKey].name] = Icons[IconKey].name;
+});
+
 storiesOf('Low level blocks/Inputs', module)
   .addDecorator(withKnobs)
   .addDecorator(withInfo({ inline: true }))
@@ -92,20 +99,32 @@ storiesOf('Low level blocks/Inputs', module)
     );
   })
   .add('TextInput', () => {
-    let error = text('Error', '');
-    let touched = boolean('Touched', false);
+    let error = text('Error', '', 'Input options');
+    let touched = boolean('Touched', false, 'Input options');
 
     return (
       <StyledTextInput
-        disabled={boolean('Disabled', false)}
+        disabled={boolean('Disabled', false, 'Input options')}
         name="emailadres"
         type="email"
-        placeholder="example@wegroup.be"
+        placeholder={text('Placeholder', 'example@wegroup.be', 'Input options')}
         error={error}
         touched={touched}
-        value={text('DefaultValue', '')}
+        value={text('DefaultValue', '', 'Input options')}
+        symbol={
+          boolean('Show symbol', true, 'Symbol options')
+            ? select('Icon', IconsList, IconsKeys[0], 'Symbol options')
+            : ''
+        }
+        symbolSide={select(
+          'Symbol side',
+          { Right: 'right', Left: 'left' },
+          'right',
+          'Symbol options',
+        )}
+        symbolText={boolean('Show symbol as text', false, 'Symbol options')}
       >
-        Email
+        {text('Label', 'Email', 'Input options')}
       </StyledTextInput>
     );
   })

@@ -13,6 +13,12 @@ import { detect } from 'detect-browser';
 import Error, { getBorderColor } from './../Messages/Error';
 import ValidationIcons from './../Inputs/ValidationIcons';
 
+import * as Icons from '../Icons';
+const IconsList = {};
+Object.keys(Icons).map(IconKey => {
+  IconsList[Icons[IconKey].name] = Icons[IconKey];
+});
+
 const TextInput = forwardRef(
   (
     {
@@ -28,6 +34,9 @@ const TextInput = forwardRef(
       warning,
       touched,
       value,
+      symbol,
+      symbolSide,
+      symbolText,
       ...otherProps
     },
     ref,
@@ -37,6 +46,12 @@ const TextInput = forwardRef(
     const [focus, setFocus] = useState();
     const [iconRight, setIconRight] = useState('1rem');
     const browser = detect();
+
+    let ChosenIcon;
+
+    if (symbolText == false) {
+      ChosenIcon = IconsList[symbol];
+    }
 
     const handleFocus = () => {
       setFocus(true);
@@ -80,6 +95,8 @@ const TextInput = forwardRef(
             id={name}
             name={name}
             type={type}
+            symbol={symbol}
+            symbolSide={symbolSide}
             disabled={disabled}
             placeholder={placeholder}
             error={error}
@@ -98,6 +115,13 @@ const TextInput = forwardRef(
             iconRight={iconRight}
             touched={touched}
           />
+          {symbol ? (
+            <StyledSymbol symbolSide={symbolSide}>
+              {symbolText ? symbol : <ChosenIcon color="#505050" />}
+            </StyledSymbol>
+          ) : (
+            ''
+          )}
         </StyledLabel>
         <Error error={error} warning={warning} />
       </Container>
@@ -131,9 +155,13 @@ const StyledInput = styled.input`
   border-radius: 0.3rem;
   height: 4rem;
   font-size: 1.6rem;
-  padding-left: 0.7rem;
   margin-top: 1.4rem;
   box-sizing: border-box;
+  padding-right: ${({ symbolSide, symbol }) =>
+    symbol !== '' && symbolSide == 'right' ? '4.7rem' : '0.7rem'};
+  padding-left: ${({ symbolSide, symbol }) =>
+    symbol !== '' && symbolSide == 'left' ? '4.7rem' : '0.7rem'};
+
   &:focus {
     outline: none;
     border-color: ${({ theme }) => theme.brand.primary};
@@ -144,6 +172,26 @@ const StyledInput = styled.input`
   }
 `;
 
+const StyledSymbol = styled.div`
+  position: absolute;
+  right: ${({ symbolSide }) => (symbolSide == 'right' ? '1px' : '')};
+  left: ${({ symbolSide }) => (symbolSide == 'right' ? '' : '1px')};
+  bottom: 1px;
+  height: calc(4rem - 2px);
+  width: 4rem;
+  background-color: ${({ theme }) => theme.ui.background};
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: ${({ theme }) => theme.typo.highlight};
+
+  > svg {
+    transform: scale(0.7);
+  }
+`;
+
 TextInput.displayName = 'TextInput';
 
 TextInput.defaultProps = {
@@ -151,6 +199,9 @@ TextInput.defaultProps = {
   placeholder: '',
   error: '',
   warning: '',
+  symbol: '',
+  symbolSide: 'right',
+  symbolText: false,
   touched: false,
   type: 'text',
   setFieldTouched: () => {},
@@ -176,6 +227,12 @@ TextInput.propTypes = {
   error: string,
   /** string with warningmessage */
   warning: string,
+  /** Pass an icon name to show said icon inside the input  */
+  symbol: string,
+  /** Choose a side at which the icon will be shown */
+  symbolSide: string,
+  /** Picks whether to show the symbol as an icon or as text */
+  symbolText: bool,
   /** boolean to check if inputfield is touched */
   touched: bool,
   /** returns name and touched boolean */
