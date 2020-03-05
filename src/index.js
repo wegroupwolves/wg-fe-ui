@@ -31,7 +31,7 @@ export {
 
 export { QuestionBox, Uploader, DownloadBox } from './components/Boxes';
 
-export { DisplayTable, OverviewTable } from './components/Tables';
+export { DisplayTable, OverviewTable, OrderTable } from './components/Tables';
 
 export {
   HeaderNav,
