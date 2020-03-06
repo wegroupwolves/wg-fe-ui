@@ -120,6 +120,7 @@ import IconCancelFlightFilled from './IconCancelFlightFilled';
 import IconMobilityFilled from './IconMobilityFilled';
 import IconCertificateFilled from './IconCertificateFilled';
 import IconInjuredFilled from './IconInjuredFilled';
+import IconDragHandlerFilled from './IconDragHandlerFilled';
 
 export {
   IconFireFilled,
@@ -243,4 +244,5 @@ export {
   IconMobilityFilled,
   IconCertificateFilled,
   IconInjuredFilled,
+  IconDragHandlerFilled,
 };
