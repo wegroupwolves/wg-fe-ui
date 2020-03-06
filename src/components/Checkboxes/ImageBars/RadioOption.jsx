@@ -1,6 +1,6 @@
 import React, { forwardRef } from 'react';
 import styled from 'styled-components';
-import PropTypes from 'prop-types';
+import PropTypes, { string } from 'prop-types';
 import { Container, StyledInput, Text } from './ImageBarTemplate';
 
 const StyledCheck = styled.span`
@@ -16,7 +16,16 @@ const StyledCheck = styled.span`
 
 const RadioOption = forwardRef(
   (
-    { checked, disabled, name, handleChange, icon, children, ...otherProps },
+    {
+      checked,
+      disabled,
+      name,
+      handleChange,
+      icon,
+      children,
+      className,
+      ...otherProps
+    },
     ref,
   ) => {
     const onChange = e => {
@@ -24,7 +33,7 @@ const RadioOption = forwardRef(
       handleChange({ name: e.target.name, value: e.target.value });
     };
     return (
-      <Container checked={checked} disabled={disabled}>
+      <Container checked={checked} disabled={disabled} className={className}>
         <StyledInput
           type="radio"
           onChange={onChange}
@@ -51,6 +60,7 @@ RadioOption.propTypes = {
   handleChange: PropTypes.func,
   icon: PropTypes.elementType,
   children: PropTypes.node,
+  className: string.isRequired,
 };
 
 RadioOption.defaultProps = {
