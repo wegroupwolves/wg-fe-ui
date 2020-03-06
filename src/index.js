@@ -57,6 +57,7 @@ export {
   TextBold,
   Label,
   SubLabel,
+  BorderedTitle,
 } from './components/Typography';
 
 // Export all icons
