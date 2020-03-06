@@ -65,6 +65,8 @@ export * from './components/Icons';
 
 export { DraggableList, DraggableContainer } from './components/DraggableList';
 
+export { Modal } from './components/Modals';
+
 export { default as ThemeProvider } from './components/ThemeProvider';
 
 export { Theme };
