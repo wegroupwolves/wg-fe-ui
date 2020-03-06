@@ -4,7 +4,15 @@ import { storiesOf } from '@storybook/react';
 import { withKnobs, text, select } from '@storybook/addon-knobs';
 import { withInfo } from '@storybook/addon-info';
 
-import { Title, SubTitle, Text, TextBold, Label, SubLabel } from '../src/';
+import {
+  Title,
+  SubTitle,
+  Text,
+  TextBold,
+  Label,
+  SubLabel,
+  BorderedTitle,
+} from '../src/';
 
 const propsObject = [{ none: null, id: { id: 'add' } }];
 
@@ -58,4 +66,7 @@ storiesOf('Low level blocks/Typography', module)
     >
       {text('Label', 'SubLabel')}
     </SubLabel>
-  ));
+  ))
+  .add('BorderedTitle', () => {
+    return <BorderedTitle>Bordered title</BorderedTitle>;
+  });
