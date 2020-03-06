@@ -1,5 +1,6 @@
 // Import components
 import * as Theme from './themes';
+
 export {
   ProgressBar,
   ToolBar,
@@ -14,6 +15,7 @@ export {
   BackButton,
   UploadField,
   ToggleButton,
+  TertiaryButton,
 } from './components/Buttons';
 
 export { CheckBox, RadioOption, CheckOption } from './components/Checkboxes';
@@ -27,11 +29,12 @@ export {
   SearchSelectInput,
   DateInput,
   TimeInput,
+  CommentBox,
 } from './components/Inputs';
 
 export { QuestionBox, Uploader, DownloadBox } from './components/Boxes';
 
-export { DisplayTable, OverviewTable } from './components/Tables';
+export { DisplayTable, OverviewTable, OrderTable } from './components/Tables';
 
 export {
   HeaderNav,
@@ -39,12 +42,12 @@ export {
   SubNavigation,
   QuickActionSubMenu,
   CollapsibleSidebar,
+  Pagination,
 } from './components/Navigation';
 
 export { LoadingSpinner } from './components/Loaders';
 
 export { Section } from './components/Section';
-// export { LoadingSpinner } from './components/Loaders';
 
 export {
   Title,

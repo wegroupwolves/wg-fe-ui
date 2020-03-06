@@ -6,6 +6,7 @@ import SearchInput from './SearchInput';
 import SearchSelectInput from './SearchSelectInput';
 import DateInput from './DateInput';
 import TimeInput from './TimeInput';
+import CommentBox from './CommentBox';
 
 export {
   ImageSelectBox,
@@ -16,4 +17,5 @@ export {
   SearchSelectInput,
   DateInput,
   TimeInput,
+  CommentBox,
 };

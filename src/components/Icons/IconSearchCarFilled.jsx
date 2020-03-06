@@ -1,13 +1,13 @@
 import React from 'react';
 import { string } from 'prop-types';
 
-const IconSearchCarFilled = ({ className, color }) => {
+const IconSearchCarFilled = ({ className, color, size }) => {
   return (
     <svg
       id="icons"
       className={className}
-      width="30"
-      height="30"
+      width={size}
+      height={size}
       viewBox="0 0 50 50"
     >
       <title>Search car</title>
@@ -21,6 +21,7 @@ const IconSearchCarFilled = ({ className, color }) => {
 
 IconSearchCarFilled.defaultProps = {
   color: 'black',
+  size: 30,
 };
 
 IconSearchCarFilled.propTypes = {

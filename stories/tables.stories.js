@@ -5,7 +5,7 @@ import { withKnobs, text } from '@storybook/addon-knobs';
 import { withInfo } from '@storybook/addon-info';
 import styled from 'styled-components';
 
-import { DisplayTable, OverviewTable } from '../src';
+import { DisplayTable, OverviewTable, OrderTable } from '../src';
 
 storiesOf('Mid level blocks/Tables', module)
   .addDecorator(withKnobs)
@@ -56,6 +56,33 @@ storiesOf('Mid level blocks/Tables', module)
         </OverviewTable.Row>
       </OverviewTable.Body>
     </StyledOverviewTable>
+  ))
+  .add('OrderTable', () => (
+    <StyledOrderTable>
+      <OrderTable.Head>
+        <OrderTable.HeaderCell width="20%">Name</OrderTable.HeaderCell>
+        <OrderTable.HeaderCell width="15%">Date</OrderTable.HeaderCell>
+        <OrderTable.HeaderCell width="20%">Insurer</OrderTable.HeaderCell>
+        <OrderTable.HeaderCell width="20%">Claim</OrderTable.HeaderCell>
+        <OrderTable.HeaderCell>Status</OrderTable.HeaderCell>
+      </OrderTable.Head>
+      <OrderTable.Body>
+        <OrderTable.Row>
+          <OrderTable.BodyCell>Laura Cox</OrderTable.BodyCell>
+          <OrderTable.BodyCell>18 June </OrderTable.BodyCell>
+          <OrderTable.BodyCell>AG Insurance</OrderTable.BodyCell>
+          <OrderTable.BodyCell>Bagage claim</OrderTable.BodyCell>
+          <OrderTable.BodyCell>Claim Opened</OrderTable.BodyCell>
+        </OrderTable.Row>
+        <OrderTable.Row>
+          <OrderTable.BodyCell>Laura Cox</OrderTable.BodyCell>
+          <OrderTable.BodyCell>18 June </OrderTable.BodyCell>
+          <OrderTable.BodyCell>AG Insurance</OrderTable.BodyCell>
+          <OrderTable.BodyCell>Bagage claim</OrderTable.BodyCell>
+          <OrderTable.BodyCell>Claim Opened</OrderTable.BodyCell>
+        </OrderTable.Row>
+      </OrderTable.Body>
+    </StyledOrderTable>
   ));
 
 const StyledDisplayTable = styled(DisplayTable)`
@@ -66,5 +93,10 @@ const StyledOverviewTable = styled(OverviewTable)`
   width: 80%;
 `;
 
+const StyledOrderTable = styled(OrderTable)`
+  width: 80%;
+`;
+
 StyledDisplayTable.displayName = 'DisplayTable';
 StyledOverviewTable.displayName = 'OverviewTable';
+StyledOrderTable.displayName = 'OrderTable';

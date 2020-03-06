@@ -1,5 +1,5 @@
 import React from 'react';
-import { string, number } from 'prop-types';
+import { string, number, object } from 'prop-types';
 import styled from 'styled-components';
 import * as Icons from '../Icons';
 
@@ -8,11 +8,11 @@ Object.keys(Icons).map(IconKey => {
   IconsList[Icons[IconKey].name] = Icons[IconKey];
 });
 
-const RiskObjectLabel = ({ amount, icon, iconColor }) => {
+const RiskObjectLabel = ({ amount, icon, iconColor, ...otherProps }) => {
   const ChosenIcon = IconsList[icon];
 
   return (
-    <RiskObjectLabelWrapper>
+    <RiskObjectLabelWrapper {...otherProps}>
       <RiskObjectLabelIcon>
         <ChosenIcon color={iconColor}></ChosenIcon>
       </RiskObjectLabelIcon>
@@ -58,6 +58,7 @@ RiskObjectLabel.defaultProps = {
   amount: 0,
   icon: 'IconCarFilled',
   iconColor: '#505050',
+  otherProps: {},
 };
 
 RiskObjectLabel.propTypes = {
@@ -67,6 +68,7 @@ RiskObjectLabel.propTypes = {
   icon: string,
   /** The color of the icon */
   iconColor: string,
+  otherProps: object,
 };
 
 export default RiskObjectLabel;

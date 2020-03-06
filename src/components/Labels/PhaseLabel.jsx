@@ -1,10 +1,10 @@
 import React from 'react';
-import { string } from 'prop-types';
+import { string, object } from 'prop-types';
 import styled from 'styled-components';
 
-const PhaseLabel = ({ status, text }) => {
+const PhaseLabel = ({ status, text, ...otherProps }) => {
   return (
-    <PhaseLabelWrapper>
+    <PhaseLabelWrapper {...otherProps}>
       <PhaseLabelIndicator className={status}></PhaseLabelIndicator>
       <PhaseLabelText>{text}</PhaseLabelText>
     </PhaseLabelWrapper>
@@ -53,6 +53,7 @@ const PhaseLabelText = styled.div`
 
 PhaseLabel.defaultProps = {
   status: 'default',
+  otherProps: {},
 };
 
 PhaseLabel.propTypes = {
@@ -60,6 +61,7 @@ PhaseLabel.propTypes = {
   status: string,
   /** The text to be displayed */
   text: string,
+  otherProps: object,
 };
 
 export default PhaseLabel;

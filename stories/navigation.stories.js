@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { storiesOf } from '@storybook/react';
-import { withKnobs, select } from '@storybook/addon-knobs';
+import { withKnobs, select, text } from '@storybook/addon-knobs';
 import { withInfo } from '@storybook/addon-info';
 
 import HouseIcon from './assets/HouseIcon.jsx';
@@ -12,6 +12,7 @@ import {
   SubNavigation,
   QuickActionSubMenu,
   CollapsibleSidebar,
+  Pagination,
 } from '../src/index.js';
 import CheckBox from '../src/components/Checkboxes/CheckBox';
 
@@ -161,7 +162,7 @@ storiesOf('Mid level blocks/Navigation', module)
   .add('CollapsibleSidebar', () => {
     return (
       <CollapsibleSidebarContainer>
-        <CollapsibleSidebar label="Filters">
+        <CollapsibleSidebar label={text('Title', 'Filters')}>
           <CheckBox
             checked={false}
             disabled={false}
@@ -194,6 +195,9 @@ storiesOf('Mid level blocks/Navigation', module)
         </CollapsibleSidebar>
       </CollapsibleSidebarContainer>
     );
+  })
+  .add('Pagination', () => {
+    return <Pagination></Pagination>;
   });
 
 const Container = styled.div`
