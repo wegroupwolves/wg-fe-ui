@@ -25,6 +25,8 @@ import {
   SearchSelectInput,
   DateInput,
   TimeInput,
+  CommentBox,
+  Section,
 } from '../src';
 
 import * as Icons from '../src/components/Icons';
@@ -260,6 +262,29 @@ storiesOf('Low level blocks/Inputs', module)
       >
         Selection
       </StyledSearchSelectInput>
+    );
+  })
+  .add('CommentBox', () => {
+    return (
+      <Section>
+        <Section.Content background={true}>
+          <CommentBox
+            title={text('Comment title', '27/02/2020 - Added by Schauwers P.')}
+            icon={select('Icon', IconsList, IconsKeys[0])}
+            id={1}
+          >
+            <p>
+              Cras dapibus. Fusce egestas elit eget lorem. Phasellus dolor.
+              Maecenas nec odio et ante tincidunt tempus. Vivamus quis mi.
+              Pellentesque auctor neque nec urna. Pellentesque libero tortor,
+              tincidunt et, tincidunt eget, semper nec, quam. Duis lobortis
+              massa imperdiet quam. Lorem ipsum dolor sit amet, consectetuer
+              adipiscing elit. Sed consequat, leo eget bibendum sodales, augue
+              velit cursus nunc, quis gravida magna mi a libero.
+            </p>
+          </CommentBox>
+        </Section.Content>
+      </Section>
     );
   });
 

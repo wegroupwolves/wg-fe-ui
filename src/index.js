@@ -1,5 +1,6 @@
 // Import components
 import * as Theme from './themes';
+
 export {
   ProgressBar,
   ToolBar,
@@ -28,6 +29,7 @@ export {
   SearchSelectInput,
   DateInput,
   TimeInput,
+  CommentBox,
 } from './components/Inputs';
 
 export { QuestionBox, Uploader, DownloadBox } from './components/Boxes';
@@ -46,7 +48,6 @@ export {
 export { LoadingSpinner } from './components/Loaders';
 
 export { Section } from './components/Section';
-// export { LoadingSpinner } from './components/Loaders';
 
 export {
   Title,
