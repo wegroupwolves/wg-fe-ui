@@ -7,6 +7,7 @@ export {
   TrackingBar,
   OverviewClaimStatus,
   FlightSelectBar,
+  RiskObjectBar,
 } from './components/Bars';
 
 export {
@@ -60,6 +61,8 @@ export {
 
 // Export all icons
 export * from './components/Icons';
+
+export { DraggableList, DraggableContainer } from './components/DraggableList';
 
 export { default as ThemeProvider } from './components/ThemeProvider';
 

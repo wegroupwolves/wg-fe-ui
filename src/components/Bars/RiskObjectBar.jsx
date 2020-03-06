@@ -1,5 +1,5 @@
 import React from 'react';
-import { string, node, object } from 'prop-types';
+import { string, node, object, bool } from 'prop-types';
 import styled from 'styled-components';
 
 import * as Icons from '../Icons';
@@ -25,7 +25,7 @@ StyledRiskObjectBarData.propTypes = {
   size: string,
 };
 
-const RiskObjectBar = ({ icon, children, ...otherProps }) => {
+const RiskObjectBar = ({ icon, children, isDragItem, ...otherProps }) => {
   let ChosenIcon;
   let IconToRender;
 
@@ -40,7 +40,7 @@ const RiskObjectBar = ({ icon, children, ...otherProps }) => {
   }
 
   return (
-    <RiskObjectBarContainer {...otherProps}>
+    <RiskObjectBarContainer isDragItem={isDragItem} {...otherProps}>
       <section>
         {IconToRender}
 
@@ -65,7 +65,8 @@ const RiskObjectBarContainer = styled.div`
   background-color: white;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
   width: 100%;
-  padding: 25px;
+  padding: ${({ isDragItem }) =>
+    isDragItem == true ? '25px 25px 25px 45px' : '25px'};
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -122,11 +123,15 @@ RiskObjectBar.propTypes = {
   /** The name of the icon to be shown. No icon will be shown if left empty. */
   icon: string,
   children: node,
+  /** Add this prop if the item is used in a Draggable component. */
+  isDragItem: bool,
   otherProps: object,
 };
 
 RiskObjectBar.defaultProps = {
   otherProps: {},
+  icon: '',
+  isDragItem: false,
 };
 
 RiskObjectBar.RiskObjectBarData = StyledRiskObjectBarData;
