@@ -17,7 +17,7 @@ storiesOf('Foundation/Icons', module)
           const Element = Icons[IconKey];
           return (
             <Item key={key}>
-              <Element color={color} />
+              <Element color={color} size={30} />
               <p>{IconKey}</p>
             </Item>
           );

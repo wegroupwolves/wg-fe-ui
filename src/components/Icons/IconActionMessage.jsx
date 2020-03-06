@@ -1,13 +1,13 @@
 import React from 'react';
 import { string } from 'prop-types';
 
-const IconActionMessage = ({ className, color }) => {
+const IconActionMessage = ({ className, color, size }) => {
   return (
     <svg
       id="icons"
       className={className}
-      width="30"
-      height="30"
+      width={size}
+      height={size}
       viewBox="0 0 50 50"
     >
       <title>IconActionMessage</title>
@@ -19,6 +19,7 @@ const IconActionMessage = ({ className, color }) => {
 
 IconActionMessage.defaultProps = {
   color: 'black',
+  size: 30,
 };
 
 IconActionMessage.propTypes = {

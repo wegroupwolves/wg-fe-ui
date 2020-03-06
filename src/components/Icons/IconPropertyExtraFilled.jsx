@@ -1,13 +1,13 @@
 import React from 'react';
 import { string } from 'prop-types';
 
-const IconPropertyExtraFilled = ({ className, color }) => {
+const IconPropertyExtraFilled = ({ className, color, size }) => {
   return (
     <svg
       id="icons"
       className={className}
-      width="30"
-      height="30"
+      width={size}
+      height={size}
       viewBox="0 0 50 50"
     >
       <title>Extra</title>
@@ -25,6 +25,7 @@ const IconPropertyExtraFilled = ({ className, color }) => {
 
 IconPropertyExtraFilled.defaultProps = {
   color: 'black',
+  size: 30,
 };
 
 IconPropertyExtraFilled.propTypes = {

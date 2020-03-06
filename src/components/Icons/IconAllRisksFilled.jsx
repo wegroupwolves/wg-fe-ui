@@ -1,13 +1,13 @@
 import React from 'react';
 import { string } from 'prop-types';
 
-const IconAllRisksFilled = ({ className, color }) => {
+const IconAllRisksFilled = ({ className, color, size }) => {
   return (
     <svg
       id="icons"
       className={className}
-      width="30"
-      height="30"
+      width={size}
+      height={size}
       viewBox="0 0 50 50"
     >
       <title>All risks</title>
@@ -25,6 +25,7 @@ const IconAllRisksFilled = ({ className, color }) => {
 
 IconAllRisksFilled.defaultProps = {
   color: 'black',
+  size: 30,
 };
 
 IconAllRisksFilled.propTypes = {
