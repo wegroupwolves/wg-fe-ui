@@ -21,6 +21,7 @@ const Table = styled.table`
   text-align: left;
   margin-top: 2.5rem;
   margin-bottom: 4rem;
+  vertical-align: middle;
 `;
 
 OverviewTable.propTypes = {

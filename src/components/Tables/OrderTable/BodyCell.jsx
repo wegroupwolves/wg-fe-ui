@@ -17,6 +17,7 @@ const Td = styled.td`
   font-size: 1.4rem;
   line-height: 130%;
   color: '#505050';
+  vertical-align: middle;
 
   :first-of-type {
     padding-left: 2.5rem;

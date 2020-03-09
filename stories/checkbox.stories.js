@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 import { storiesOf } from '@storybook/react';
-import { withKnobs, boolean } from '@storybook/addon-knobs';
+import { withKnobs, boolean, text } from '@storybook/addon-knobs';
 import { withInfo } from '@storybook/addon-info';
 
 import { CheckBox, CheckOption, CheckBoxContainer } from '../src';
@@ -52,7 +52,7 @@ storiesOf('Low level blocks/Checkboxes', module)
   })
   .add('CheckBoxContainer', () => {
     return (
-      <CheckBoxContainer>
+      <CheckBoxContainer label={text('Title', 'Contract types')}>
         <CheckBox name="lead">Lead</CheckBox>
         <CheckBox name="offer">Offer</CheckBox>
         <CheckBox name="contract">Contract</CheckBox>

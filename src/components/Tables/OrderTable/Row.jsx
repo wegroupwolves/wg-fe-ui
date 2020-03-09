@@ -13,6 +13,7 @@ const Row = ({ className, children, ...otherProps }) => {
 const Tr = styled.tr`
   background-color: white;
   font-size: 1.6rem;
+  vertical-align: middle;
 
   :hover {
     background-color: ${({ theme }) => theme.brand.lightest};

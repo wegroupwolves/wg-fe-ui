@@ -12,11 +12,12 @@ const Body = ({ className, children, ...otherProps }) => {
 
 const Tbody = styled.tbody`
   box-shadow: 0 2px 7px rgba(0, 0, 0, 0.1);
+  vertical-align: middle;
 `;
 
 Body.defaultProps = {
-  otherProps: {}
-}
+  otherProps: {},
+};
 
 Body.propTypes = {
   /** Beeing able to use it in Styled Components */
