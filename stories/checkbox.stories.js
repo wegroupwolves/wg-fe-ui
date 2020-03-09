@@ -4,7 +4,7 @@ import { storiesOf } from '@storybook/react';
 import { withKnobs, boolean } from '@storybook/addon-knobs';
 import { withInfo } from '@storybook/addon-info';
 
-import { CheckBox, CheckOption } from '../src';
+import { CheckBox, CheckOption, CheckBoxContainer } from '../src';
 
 import Property from '../src/components/Icons/Property';
 
@@ -48,5 +48,14 @@ storiesOf('Low level blocks/Checkboxes', module)
           I encountered issues with my lugage
         </CheckOption>
       </>
+    );
+  })
+  .add('CheckBoxContainer', () => {
+    return (
+      <CheckBoxContainer>
+        <CheckBox name="lead">Lead</CheckBox>
+        <CheckBox name="offer">Offer</CheckBox>
+        <CheckBox name="contract">Contract</CheckBox>
+      </CheckBoxContainer>
     );
   });

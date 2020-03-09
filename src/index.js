@@ -19,7 +19,12 @@ export {
   TertiaryButton,
 } from './components/Buttons';
 
-export { CheckBox, RadioOption, CheckOption } from './components/Checkboxes';
+export {
+  CheckBox,
+  RadioOption,
+  CheckOption,
+  CheckBoxContainer,
+} from './components/Checkboxes';
 
 export {
   ImageSelectBox,
