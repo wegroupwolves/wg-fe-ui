@@ -64,7 +64,7 @@ storiesOf('Mid level blocks/Tables', module)
         <OrderTable.HeaderCell width="15%">Date</OrderTable.HeaderCell>
         <OrderTable.HeaderCell width="20%">Insurer</OrderTable.HeaderCell>
         <OrderTable.HeaderCell width="20%">Claim</OrderTable.HeaderCell>
-        <OrderTable.HeaderCell>Status</OrderTable.HeaderCell>
+        <OrderTable.HeaderCell width="25%">Status</OrderTable.HeaderCell>
       </OrderTable.Head>
       <OrderTable.Body>
         <OrderTable.Row>

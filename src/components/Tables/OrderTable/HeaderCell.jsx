@@ -40,6 +40,7 @@ const Th = styled.th`
   font-size: ${props => (props.isTitle ? `1.6rem` : `1.4rem`)};
   color: ${({ isTitle, active }) =>
     isTitle || active ? '#5B5550' : '#A29C95'};
+  vertical-align: middle;
 `;
 
 const ThWrapper = styled.div`

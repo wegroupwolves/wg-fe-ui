@@ -16,6 +16,7 @@ const Th = styled.th`
   font-weight: ${props => (props.title ? `700` : `400`)};
   font-size: ${props => (props.title ? `1.6rem` : `1.4rem`)};
   color: ${props => (props.title ? `#5b5550` : `#a29c95`)};
+  vertical-align: middle;
 `;
 
 HeaderCell.defaultProps = {
@@ -23,7 +24,6 @@ HeaderCell.defaultProps = {
   title: false,
   width: 'unset',
 };
-
 
 HeaderCell.propTypes = {
   /** Beeing able to use it in Styled Components */
