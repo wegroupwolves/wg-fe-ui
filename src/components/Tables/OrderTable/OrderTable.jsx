@@ -17,8 +17,8 @@ const Table = styled.table`
   font-family: ${({ theme }) => theme.font};
   width: 100%;
   text-align: left;
-  margin-top: 2.5rem;
-  margin-bottom: 4rem;
+  /* margin-top: 2.5rem; */
+  /* margin-bottom: 4rem; */
 `;
 
 OrderTable.propTypes = {
