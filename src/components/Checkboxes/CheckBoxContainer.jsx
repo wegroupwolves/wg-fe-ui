@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import { node } from 'prop-types';
+import { node, string } from 'prop-types';
 import styled from 'styled-components';
 
 import CheckBox from './CheckBox';
 
-const CheckBoxContainer = ({ children }) => {
+const CheckBoxContainer = ({ children, label }) => {
   const [CheckedAll, setCheckedAll] = useState(false);
 
   const elements = React.Children.toArray(children);
@@ -13,10 +13,15 @@ const CheckBoxContainer = ({ children }) => {
     setCheckedAll(!CheckedAll);
   };
 
+  console.log(label);
+
   return (
     <CheckBoxContainerWrapper>
       <CheckBoxContainerHeader>
-        <span className="title">Contract types - </span>
+        <span className="title">
+          {label}
+          {label != '' ? ' -' : ''}{' '}
+        </span>
         <CheckBoxContainerToggler onClick={toggleCheckedAll}>
           {CheckedAll ? 'Deselect all' : 'Select all'}
         </CheckBoxContainerToggler>
@@ -62,6 +67,7 @@ const CheckBoxContainerToggler = styled.a`
 
 CheckBoxContainer.propTypes = {
   children: node,
+  label: string,
 };
 
 export default CheckBoxContainer;
