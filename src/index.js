@@ -65,10 +65,12 @@ export {
   BorderedTitle,
 } from './components/Typography';
 
-// Export all icons
-export * from './components/Icons';
+export { PhaseLabel, RiskObjectLabel, TypeLabel } from './components/Labels';
 
 export { DraggableList, DraggableContainer } from './components/DraggableList';
+
+// Export all icons
+export * from './components/Icons';
 
 export { default as ThemeProvider } from './components/ThemeProvider';
 
