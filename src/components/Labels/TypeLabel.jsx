@@ -23,6 +23,7 @@ const StyledLabel = styled.div`
   text-align: center;
   color: ${({ theme }) => theme.labels.defaultText};
   background: ${({ theme }) => theme.labels.default};
+  display: inline-block;
 
   &.prospect {
     color: ${({ theme }) => theme.labels.prospectText};
