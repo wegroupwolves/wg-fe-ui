@@ -38,6 +38,16 @@ const ActionButton = ({
 
 const StyledButton = styled.button`
   font-family: ${({ theme }) => theme.font};
+  font-size: 1.6rem;
+  border-radius: 0.5rem;
+  min-width: 14rem;
+  width: ${props => (props.fullwidth ? '100%' : '')};
+  height: 4rem;
+  transition: 0.1s ease-in-out;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
   background-color: ${({ theme, disabled, level }) =>
     disabled && level === 'primary'
       ? theme.ui.disabled
@@ -45,16 +55,14 @@ const StyledButton = styled.button`
       ? 'transparent'
       : level === 'primary'
       ? theme.brand.primary
+      : level === 'default'
+      ? theme.ui.interactive
       : theme.brand.primary};
 
-  font-size: 1.6rem;
-  border-radius: 0.5rem;
-  min-width: 14rem;
-  width: ${props => (props.fullwidth ? '100%' : '')};
-  height: 4rem;
-
   color: ${({ theme, disabled, level }) =>
-    (disabled && level === 'primary') || level === 'primary'
+    (disabled && level === 'primary') ||
+    level === 'primary' ||
+    level === 'default'
       ? 'white'
       : disabled && level === 'secondary'
       ? theme.ui.disabled
@@ -63,7 +71,9 @@ const StyledButton = styled.button`
       : 'white'};
 
   border: ${({ theme, disabled, level }) =>
-    (disabled && level === 'primary') || level === 'primary'
+    (disabled && level === 'primary') ||
+    level === 'primary' ||
+    level === 'default'
       ? '0'
       : disabled && level === 'secondary'
       ? `2px solid ${theme.ui.disabled}`
@@ -72,11 +82,8 @@ const StyledButton = styled.button`
       : '0'};
 
   padding: ${({ padding }) => padding || '1rem 0.4rem'};
-  display: flex;
-  justify-content: center;
-  align-items: center;
+
   cursor: ${({ disabled }) => (disabled ? 'not-allowed' : 'pointer')};
-  transition: 0.1s ease-in-out;
 
   :active {
     transform: scale(0.95);
@@ -94,6 +101,8 @@ const StyledButton = styled.button`
         ? theme.brand.light
         : level === 'secondary'
         ? theme.brand.primary
+        : level === 'default'
+        ? theme.ui.disabled
         : ''};
 
     color: white;

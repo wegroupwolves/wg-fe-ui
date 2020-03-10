@@ -13,7 +13,7 @@ describe('AddEntityButton', () => {
         <AddEntityButton onClick={() => {}} name="Add Entity" />
       </ThemeProvider>,
     );
-    expect(wrapper.find('StyledButton')).toHaveStyleRule('min-width', '250px');
+    expect(wrapper.find('StyledButton')).toHaveStyleRule('min-width', '25rem');
   });
 
   it('When clicked should invoke click Callback', () => {
