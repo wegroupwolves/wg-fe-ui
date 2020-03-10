@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
-import { string, node } from 'prop-types';
+import { string, node, bool } from 'prop-types';
 import styled from 'styled-components';
 
-const CollapsibleSidebar = ({ label, children }) => {
-  const [SideBarOpen, setSideBarOpen] = useState(false);
+const CollapsibleSidebar = ({ label, children, open }) => {
+  const [SideBarOpen, setSideBarOpen] = useState(open);
+
+  console.log(SideBarOpen);
 
   const handleToggle = () => {
-    SideBarOpen ? setSideBarOpen(false) : setSideBarOpen(true);
+    setSideBarOpen(!SideBarOpen);
   };
 
   return (
@@ -61,8 +63,18 @@ const SidebarToggle = styled.a`
 `;
 
 CollapsibleSidebar.propTypes = {
+  /** Label to be displayed at the top. */
   label: string,
+
+  /** Children to be displayed in the menu. */
   children: node,
+
+  /** Initial opened or closed state */
+  open: bool,
+};
+
+CollapsibleSidebar.defaultProps = {
+  open: false,
 };
 
 export default CollapsibleSidebar;

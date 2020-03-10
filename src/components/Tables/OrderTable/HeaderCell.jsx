@@ -1,36 +1,31 @@
 import React, { useState } from 'react';
-import { string, object, node, bool } from 'prop-types';
+import { string, object, node, bool, func } from 'prop-types';
 import styled from 'styled-components';
 import Icon from '../../Icons/IconActionDropDown';
 
-const HeaderCell = ({ width, className, children, isTitle, ...otherProps }) => {
-  const [Active, setActive] = useState(false);
-  const [Order, setOrder] = useState('ascending');
-
-  const clickHandler = () => {
-    if (!Active) {
-      setActive(true);
-    } else {
-      if (Order == 'ascending') {
-        setOrder('descending');
-      } else {
-        setOrder('ascending');
-      }
-    }
-  };
-
+const HeaderCell = ({
+  width,
+  className,
+  children,
+  isTitle,
+  onClick,
+  active,
+  order,
+  ...otherProps
+}) => {
   return (
     <Th
       width={width}
       isTitle={isTitle}
       className={className}
-      onClick={clickHandler}
-      active={Active}
+      onClick={onClick}
+      active={active}
+      order={order}
       {...otherProps}
     >
       <ThWrapper>
         {children}
-        <IconWrapper active={Active} order={Order}>
+        <IconWrapper active={active} order={order}>
           <Icon color="#505050" />
         </IconWrapper>
       </ThWrapper>
@@ -45,6 +40,7 @@ const Th = styled.th`
   font-size: ${props => (props.isTitle ? `1.6rem` : `1.4rem`)};
   color: ${({ isTitle, active }) =>
     isTitle || active ? '#5B5550' : '#A29C95'};
+  vertical-align: middle;
 `;
 
 const ThWrapper = styled.div`
@@ -73,6 +69,7 @@ HeaderCell.defaultProps = {
   otherProps: {},
   isTitle: false,
   width: 'unset',
+  onClick: () => {},
 };
 
 HeaderCell.propTypes = {
@@ -85,6 +82,9 @@ HeaderCell.propTypes = {
   width: string,
   /** Applies isTitle styling to the cell */
   isTitle: bool,
+  onClick: func,
+  order: string,
+  active: bool,
 };
 
 export default HeaderCell;

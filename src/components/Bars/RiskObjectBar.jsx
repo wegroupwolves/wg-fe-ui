@@ -73,6 +73,7 @@ const RiskObjectBarContainer = styled.div`
   font-family: ${({ theme }) => theme.font};
   border: 1px solid ${({ theme }) => theme.ui.outline};
   border-radius: 5px;
+  max-width: 100rem;
 
   > section:first-of-type {
     flex: 1 0 auto;

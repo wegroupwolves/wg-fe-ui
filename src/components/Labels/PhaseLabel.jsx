@@ -22,6 +22,7 @@ const PhaseLabelIndicator = styled.div`
   border-radius: 999px;
   margin-right: 8px;
   border: 0;
+  display: inline-block;
 
   &.default {
     background-color: ${({ theme }) => theme.ui.outline};

@@ -19,7 +19,12 @@ export {
   TertiaryButton,
 } from './components/Buttons';
 
-export { CheckBox, RadioOption, CheckOption } from './components/Checkboxes';
+export {
+  CheckBox,
+  RadioOption,
+  CheckOption,
+  CheckBoxContainer,
+} from './components/Checkboxes';
 
 export {
   ImageSelectBox,
@@ -60,12 +65,14 @@ export {
   BorderedTitle,
 } from './components/Typography';
 
-// Export all icons
-export * from './components/Icons';
+export { PhaseLabel, RiskObjectLabel, TypeLabel } from './components/Labels';
 
 export { DraggableList, DraggableContainer } from './components/DraggableList';
 
 export { Modal } from './components/Modals';
+
+// Export all icons
+export * from './components/Icons';
 
 export { default as ThemeProvider } from './components/ThemeProvider';
 
