@@ -49,7 +49,13 @@ storiesOf('Low level blocks/Buttons', module)
   .add('AddEntityButton', () => {
     const onClick = () => console.log('resource: ');
 
-    return <AddEntityButton onClick={onClick} name="Add Entity" />;
+    return (
+      <AddEntityButton
+        onClick={onClick}
+        name={text('Label', 'Add entity')}
+        fullwidth={boolean('Full width?', false)}
+      />
+    );
   })
   .add('BackButton', () => {
     const iconName = select('Icon', Object.keys(svg), 'back_arrow');
