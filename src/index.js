@@ -69,6 +69,8 @@ export { PhaseLabel, RiskObjectLabel, TypeLabel } from './components/Labels';
 
 export { DraggableList, DraggableContainer } from './components/DraggableList';
 
+export { Modal } from './components/Modals';
+
 // Export all icons
 export * from './components/Icons';
 
