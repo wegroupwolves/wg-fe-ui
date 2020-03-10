@@ -25,7 +25,7 @@ addParameters({
 
 // storiesOf('Welcome', module).add('to Storybook', () => <Welcome showApp={linkTo('Button')} />);
 
-const buttonLevels = ['primary', 'secondary'];
+const buttonLevels = ['primary', 'secondary', 'default'];
 const ToggleButtonLevels = ['active', 'non-active'];
 const iconObject = { none: null, House: buttonIcon };
 const svg = { none: null, back_arrow: <BackArrow /> };
