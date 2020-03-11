@@ -42,6 +42,7 @@ const backgrounds = ['#AEAEAE', '#C1C1C1', '#D3D4D8'];
 const fillColors = ['default', 'red', 'green', 'blue'];
 const activeIds = [1, 2, 3];
 const heights = ['7px', '3px', '5px', '10px'];
+
 storiesOf('Mid Level blocks/Bars', module)
   .addDecorator(withKnobs())
   .addDecorator(withInfo({ inline: true }))

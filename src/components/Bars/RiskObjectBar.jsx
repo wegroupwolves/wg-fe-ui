@@ -1,5 +1,5 @@
 import React from 'react';
-import { string, node, object, bool } from 'prop-types';
+import { string, node, object, bool, func } from 'prop-types';
 import styled from 'styled-components';
 
 import * as Icons from '../Icons';
@@ -25,7 +25,13 @@ StyledRiskObjectBarData.propTypes = {
   size: string,
 };
 
-const RiskObjectBar = ({ icon, children, isDragItem, ...otherProps }) => {
+const RiskObjectBar = ({
+  icon,
+  children,
+  isDragItem,
+  onClick,
+  ...otherProps
+}) => {
   let ChosenIcon;
   let IconToRender;
 
@@ -40,7 +46,11 @@ const RiskObjectBar = ({ icon, children, isDragItem, ...otherProps }) => {
   }
 
   return (
-    <RiskObjectBarContainer isDragItem={isDragItem} {...otherProps}>
+    <RiskObjectBarContainer
+      onClick={onClick}
+      isDragItem={isDragItem}
+      {...otherProps}
+    >
       <section>
         {IconToRender}
 
@@ -63,6 +73,7 @@ const RiskObjectBarContainer = styled.div`
   border: 1px solid ${({ theme }) => theme.ui.outline};
   border-radius: 5px;
   max-width: 100rem;
+  cursor: ${({ onClick }) => (onClick != undefined ? 'pointer' : 'auto')};
 
   section {
     flex: 1 0 auto;
@@ -108,6 +119,7 @@ RiskObjectBar.propTypes = {
   children: node,
   /** Add this prop if the item is used in a Draggable component. */
   isDragItem: bool,
+  onClick: func,
   otherProps: object,
 };
 
