@@ -18,8 +18,6 @@ const Table = styled.table`
   width: 100%;
   text-align: left;
   vertical-align: middle;
-  /* margin-top: 2.5rem; */
-  /* margin-bottom: 4rem; */
 `;
 
 OrderTable.propTypes = {

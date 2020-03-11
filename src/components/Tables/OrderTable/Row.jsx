@@ -1,10 +1,10 @@
 import React from 'react';
-import { string, object, node } from 'prop-types';
+import { string, object, node, func } from 'prop-types';
 import styled from 'styled-components';
 
-const Row = ({ className, children, ...otherProps }) => {
+const Row = ({ className, children, onClick, ...otherProps }) => {
   return (
-    <Tr className={className} {...otherProps}>
+    <Tr className={className} onClick={onClick} {...otherProps}>
       {children}
     </Tr>
   );
@@ -29,6 +29,7 @@ Row.propTypes = {
   className: string,
   /** Adds extra props to the element */
   otherProps: object,
+  onClick: func,
   children: node,
 };
 
