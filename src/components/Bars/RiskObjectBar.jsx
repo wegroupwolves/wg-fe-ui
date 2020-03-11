@@ -1,5 +1,5 @@
 import React from 'react';
-import { string, node, object, bool } from 'prop-types';
+import { string, node, object, bool, func } from 'prop-types';
 import styled from 'styled-components';
 
 import * as Icons from '../Icons';
@@ -25,7 +25,13 @@ StyledRiskObjectBarData.propTypes = {
   size: string,
 };
 
-const RiskObjectBar = ({ icon, children, isDragItem, ...otherProps }) => {
+const RiskObjectBar = ({
+  icon,
+  children,
+  isDragItem,
+  onClick,
+  ...otherProps
+}) => {
   let ChosenIcon;
   let IconToRender;
 
@@ -40,22 +46,15 @@ const RiskObjectBar = ({ icon, children, isDragItem, ...otherProps }) => {
   }
 
   return (
-    <RiskObjectBarContainer isDragItem={isDragItem} {...otherProps}>
+    <RiskObjectBarContainer
+      onClick={onClick}
+      isDragItem={isDragItem}
+      {...otherProps}
+    >
       <section>
         {IconToRender}
 
         {children}
-      </section>
-
-      <section>
-        <QuickActionSubMenu>
-          <QuickActionSubMenu.SubMenuItem label="View customer" />
-          <QuickActionSubMenu.SubMenuItem label="Edit customer" />
-          <QuickActionSubMenu.SubMenuItem
-            type="danger"
-            label="Delete customer"
-          />
-        </QuickActionSubMenu>
       </section>
     </RiskObjectBarContainer>
   );
@@ -74,8 +73,9 @@ const RiskObjectBarContainer = styled.div`
   border: 1px solid ${({ theme }) => theme.ui.outline};
   border-radius: 5px;
   max-width: 100rem;
+  cursor: ${({ onClick }) => (onClick != undefined ? 'pointer' : 'auto')};
 
-  > section:first-of-type {
+  section {
     flex: 1 0 auto;
     display: flex;
     justify-content: flex-start;
@@ -85,13 +85,6 @@ const RiskObjectBarContainer = styled.div`
     > div:not(:last-of-type) {
       margin-right: 50px;
     }
-  }
-
-  > section:last-of-type {
-    flex: 0 1 8%;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
   }
 `;
 
@@ -126,6 +119,7 @@ RiskObjectBar.propTypes = {
   children: node,
   /** Add this prop if the item is used in a Draggable component. */
   isDragItem: bool,
+  onClick: func,
   otherProps: object,
 };
 

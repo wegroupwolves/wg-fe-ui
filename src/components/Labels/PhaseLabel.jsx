@@ -1,12 +1,13 @@
 import React from 'react';
-import { string, object } from 'prop-types';
+import { string, object, node } from 'prop-types';
 import styled from 'styled-components';
 
-const PhaseLabel = ({ status, text, ...otherProps }) => {
+const PhaseLabel = ({ status, text, children, ...otherProps }) => {
   return (
     <PhaseLabelWrapper {...otherProps}>
       <PhaseLabelIndicator className={status}></PhaseLabelIndicator>
-      <PhaseLabelText>{text}</PhaseLabelText>
+      {!children && text ? <PhaseLabelText>{text}</PhaseLabelText> : ''}
+      {children && !text ? children : ''}
     </PhaseLabelWrapper>
   );
 };
@@ -62,6 +63,7 @@ PhaseLabel.propTypes = {
   status: string,
   /** The text to be displayed */
   text: string,
+  children: node,
   otherProps: object,
 };
 

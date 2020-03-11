@@ -19,47 +19,6 @@ const AddEntityButton = ({ fullwidth, icon, onClick, name, ...otherProps }) => {
   );
 };
 
-// const StyledButton = styled.button`
-//   font-family: ${({ theme }) => theme.font};
-//   font-size: 1.6rem;
-//   line-height: 130%;
-//   border-radius: 0.5rem;
-//   min-width: 25rem;
-//   padding: 2vh 0;
-//   border: 0.5px solid;
-//   border-color: ${({ theme }) => theme.ui.outline};
-//   box-sizing: border-box;
-//   display: flex;
-//   flex-direction: column;
-//   justify-content: center;
-//   align-items: center;
-//   color: #505050;
-//   cursor: pointer;
-//   background-color: ${({ theme }) => theme.ui.background};
-//   position: relative;
-//   width: ${({ fullwidth }) => (fullwidth ? '100%' : 'auto')};
-
-//   :active {
-//     transform: scale(0.95);
-//   }
-
-//   :focus {
-//     outline: none;
-//   }
-
-//   :hover {
-//     /* background-color: #FFBF80; */
-//   }
-
-//   svg {
-//     margin-bottom: 12px;
-
-//     &:hover line {
-//       stroke: ${({ theme }) => theme.ui.interactive};
-//     }
-//   }
-// `;
-
 const StyledButton = styled.button`
   min-width: 25rem;
   display: flex;
