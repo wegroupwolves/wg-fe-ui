@@ -3,8 +3,7 @@ import { storiesOf } from '@storybook/react';
 import { withInfo } from '@storybook/addon-info';
 import { withKnobs, select, text } from '@storybook/addon-knobs';
 
-import Modal from '../src/components/Modals/Modal';
-import { ActionButton, CancelButton } from '../src/';
+import { ActionButton, TertiaryButton, Modal } from '../src/';
 
 const ModalActionsPositions = {
   Left: 'left',
@@ -17,7 +16,7 @@ storiesOf('Low level blocks/Modals', module)
   .addDecorator(withInfo({ inline: true }))
   .add('Modal', () => {
     return (
-      <Modal title={text('Modal title', '')}>
+      <Modal title={text('Modal title', 'Default Title')}>
         <p>This is some content for the modal</p>
 
         <Modal.ModalActions
@@ -27,7 +26,7 @@ storiesOf('Low level blocks/Modals', module)
             'right',
           )}
         >
-          <CancelButton label="Cancel"></CancelButton>
+          <TertiaryButton label="Cancel"></TertiaryButton>
           <ActionButton>Primary</ActionButton>
         </Modal.ModalActions>
       </Modal>
