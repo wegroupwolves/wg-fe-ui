@@ -82,12 +82,13 @@ const PaginationPages = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 8px 10px;
+  padding: 8px 15px;
 `;
 
 const PaginationPage = styled.a`
   cursor: pointer;
-  padding: 4px;
+  padding: 4px 5px;
+  margin: 0 2px;
   background-color: ${({ active, theme }) =>
     active ? theme.brand.primary : 'white'};
   display: block;
