@@ -20,6 +20,7 @@ import LoupeIcon from './assets/Icons/Loupe';
 import PlaneIcon from './assets/Icons/Plane';
 import PayIcon from './assets/Icons/Pay';
 import UploadingIcon from './assets/Icons/Uploading';
+import QuickActionSubMenu from '../src/components/Navigation/QuickActionSubMenu';
 
 import RiskObjectBar from '../src/components/Bars/RiskObjectBar';
 
@@ -193,6 +194,24 @@ storiesOf('Mid Level blocks/Bars', module)
             label="Catalogue value"
             data="€ 28.797,53"
           />
+
+          <QuickActionSubMenu otherProps={{}}>
+            <QuickActionSubMenu.SubMenuItem
+              label="View customer"
+              onClick={function noRefCheck() {}}
+              type=""
+            />
+            <QuickActionSubMenu.SubMenuItem
+              label="Edit customer"
+              onClick={function noRefCheck() {}}
+              type=""
+            />
+            <QuickActionSubMenu.SubMenuItem
+              label="Delete customer"
+              onClick={function noRefCheck() {}}
+              type=""
+            />
+          </QuickActionSubMenu>
         </RiskObjectBar>
       </div>
     );

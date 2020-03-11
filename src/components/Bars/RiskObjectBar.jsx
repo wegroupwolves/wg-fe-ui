@@ -46,17 +46,6 @@ const RiskObjectBar = ({ icon, children, isDragItem, ...otherProps }) => {
 
         {children}
       </section>
-
-      <section>
-        <QuickActionSubMenu>
-          <QuickActionSubMenu.SubMenuItem label="View customer" />
-          <QuickActionSubMenu.SubMenuItem label="Edit customer" />
-          <QuickActionSubMenu.SubMenuItem
-            type="danger"
-            label="Delete customer"
-          />
-        </QuickActionSubMenu>
-      </section>
     </RiskObjectBarContainer>
   );
 };
@@ -75,7 +64,7 @@ const RiskObjectBarContainer = styled.div`
   border-radius: 5px;
   max-width: 100rem;
 
-  > section:first-of-type {
+  section {
     flex: 1 0 auto;
     display: flex;
     justify-content: flex-start;
@@ -85,13 +74,6 @@ const RiskObjectBarContainer = styled.div`
     > div:not(:last-of-type) {
       margin-right: 50px;
     }
-  }
-
-  > section:last-of-type {
-    flex: 0 1 8%;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
   }
 `;
 
