@@ -1,5 +1,5 @@
 import React from 'react';
-import { string, node, int } from 'prop-types';
+import { string, node, int, func } from 'prop-types';
 import styled from 'styled-components';
 
 import * as Icons from '../Icons';
@@ -9,15 +9,14 @@ Object.keys(Icons).map(IconKey => {
   IconsList[Icons[IconKey].name] = Icons[IconKey];
 });
 
-const CommentBox = ({ title, icon, children, id }) => {
-  const editHandler = () => {
-    console.log('Edit clicked');
-  };
-
-  const deleteHandler = () => {
-    console.log('Delete clicked');
-  };
-
+const CommentBox = ({
+  title,
+  icon,
+  children,
+  editHandler,
+  deleteHandler,
+  id,
+}) => {
   const ChosenIcon = IconsList[icon];
 
   return (
@@ -104,9 +103,18 @@ const CommentBoxAction = styled.a`
 `;
 
 CommentBox.propTypes = {
+  /** Title displayed next to the actions. */
   title: string,
+
+  /** Icon to be displayed on the left side. */
   icon: string,
   children: node,
+
+  /** Function to be ran when 'edit' is clicked. */
+  editHandler: func,
+
+  /** Function to be ran when 'delete' is clicked. */
+  deleteHandler: func,
   id: int,
 };
 
