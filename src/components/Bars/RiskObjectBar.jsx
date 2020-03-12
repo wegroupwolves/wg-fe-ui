@@ -1,0 +1,137 @@
+import React from 'react';
+import { string, node, object, bool, func } from 'prop-types';
+import styled from 'styled-components';
+
+import * as Icons from '../Icons';
+import { QuickActionSubMenu } from '../Navigation/index';
+
+const IconsList = {};
+Object.keys(Icons).map(IconKey => {
+  IconsList[Icons[IconKey].name] = Icons[IconKey];
+});
+
+const StyledRiskObjectBarData = ({ label, data, size, children }) => (
+  <RiskObjectBarData className={size}>
+    <span className="label">{label}</span>
+    <span className="data">{data}</span>
+    {children}
+  </RiskObjectBarData>
+);
+
+StyledRiskObjectBarData.propTypes = {
+  label: string,
+  data: string,
+  children: node,
+  size: string,
+};
+
+const RiskObjectBar = ({
+  icon,
+  children,
+  isDragItem,
+  onClick,
+  ...otherProps
+}) => {
+  let ChosenIcon;
+  let IconToRender;
+
+  if (icon !== '') {
+    ChosenIcon = IconsList[icon];
+
+    IconToRender = (
+      <RiskObjectBarIcon>
+        <ChosenIcon color="#CCCCCC"></ChosenIcon>
+      </RiskObjectBarIcon>
+    );
+  }
+
+  return (
+    <RiskObjectBarContainer
+      onClick={onClick}
+      isDragItem={isDragItem}
+      {...otherProps}
+    >
+      <section>
+        {IconToRender}
+
+        {children}
+      </section>
+    </RiskObjectBarContainer>
+  );
+};
+
+const RiskObjectBarContainer = styled.div`
+  background-color: white;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  width: 100%;
+  padding: ${({ isDragItem }) =>
+    isDragItem == true ? '25px 25px 25px 45px' : '25px'};
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  font-family: ${({ theme }) => theme.font};
+  border: 1px solid ${({ theme }) => theme.ui.outline};
+  border-radius: 5px;
+  max-width: 100rem;
+  cursor: ${({ onClick }) => (onClick != undefined ? 'pointer' : 'auto')};
+
+  section {
+    flex: 1 0 auto;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: wrap;
+
+    > div:not(:last-of-type) {
+      margin-right: 50px;
+    }
+  }
+`;
+
+const RiskObjectBarData = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  flex: 1 0 auto;
+
+  .label {
+    font-weight: normal;
+    font-size: 1.4rem;
+    line-height: 2rem;
+    color: #a29c95;
+  }
+
+  .data {
+    color: #505050;
+    font-weight: bold;
+    font-size: 1.6rem;
+    line-height: 1.9rem;
+  }
+
+  &.double {
+    flex: 2 0 auto;
+  }
+`;
+
+RiskObjectBar.propTypes = {
+  /** The name of the icon to be shown. No icon will be shown if left empty. */
+  icon: string,
+  children: node,
+  /** Add this prop if the item is used in a Draggable component. */
+  isDragItem: bool,
+  onClick: func,
+  otherProps: object,
+};
+
+RiskObjectBar.defaultProps = {
+  otherProps: {},
+  icon: '',
+  isDragItem: false,
+};
+
+RiskObjectBar.RiskObjectBarData = StyledRiskObjectBarData;
+RiskObjectBar.RiskObjectBarData.displayName = 'RiskObjectBar.RiskObjectBarData';
+
+const RiskObjectBarIcon = styled.div``;
+
+export default RiskObjectBar;

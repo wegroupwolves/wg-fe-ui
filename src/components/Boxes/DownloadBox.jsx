@@ -42,7 +42,7 @@ const DownloadBox = ({
           <FileName>{filename} </FileName>
           <FileSize>{calculateImageSize(href)}</FileSize>
         </Container>
-        <DownloadIcon src={download} alt="download" />
+        <DownloadIcon />
       </a>
     </Download>
   );
@@ -51,7 +51,7 @@ const DownloadBox = ({
 const Download = styled.div`
   width: 30rem;
   border: 0.1rem solid #f0f1f3;
-  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
   border-radius: 5px;
   padding: 0.8rem 2.4rem 0.8rem 1.6rem;
 
@@ -80,10 +80,10 @@ const FileSize = styled.span`
 const Container = styled.span`
   display: flex;
   ${props =>
-    props.thumbnail ? 'flex-direction:column;' : 'flex-direction:row;'}
+    props.thumbnail ? 'flex-direction: column;' : 'flex-direction: row;'}
 `;
 
-const DownloadIcon = styled.img`
+const DownloadIcon = styled(download)`
   margin-left: auto;
 `;
 

@@ -1,12 +1,27 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { storiesOf } from '@storybook/react';
-import { withKnobs } from '@storybook/addon-knobs';
+import { withKnobs, select, text, boolean } from '@storybook/addon-knobs';
 import { withInfo } from '@storybook/addon-info';
 
 import HouseIcon from './assets/HouseIcon.jsx';
 import IconActionPower from './assets/Icons/IconActionPower.jsx';
-import { HeaderNav, MainNavigation, SubNavigation } from '../src/index.js';
+import {
+  HeaderNav,
+  MainNavigation,
+  SubNavigation,
+  QuickActionSubMenu,
+  CollapsibleSidebar,
+  Pagination,
+} from '../src/index.js';
+import CheckBox from '../src/components/Checkboxes/CheckBox';
+
+const SubMenuItemTypes = {
+  Default: null,
+  Success: 'success',
+  Warning: 'warning',
+  Danger: 'danger',
+};
 
 storiesOf('Mid level blocks/Navigation', module)
   .addDecorator(withKnobs)
@@ -26,7 +41,7 @@ storiesOf('Mid level blocks/Navigation', module)
             Active
           </MainNavigation.Item>
           <MainNavigation.Line />
-          <MainNavigation.Terms>Terms</MainNavigation.Terms>
+          <MainNavigation.Terms href="">Terms</MainNavigation.Terms>
           <MainNavigation.Copy>
             &copy; {new Date().getFullYear()} WeGroup NV. All rights reserved
           </MainNavigation.Copy>
@@ -131,6 +146,58 @@ storiesOf('Mid level blocks/Navigation', module)
         </SubNavigation>
       </Container>
     );
+  })
+  .add('QuickActionSubMenu', () => {
+    return (
+      <QuickActionSubMenu>
+        <QuickActionSubMenu.SubMenuItem label="View customer" />
+        <QuickActionSubMenu.SubMenuItem label="Edit customer" />
+        <QuickActionSubMenu.SubMenuItem
+          type={select('Type menu item', SubMenuItemTypes)}
+          label="Delete customer"
+        />
+      </QuickActionSubMenu>
+    );
+  })
+  .add('CollapsibleSidebar', () => {
+    return (
+      <CollapsibleSidebarContainer>
+        <CollapsibleSidebar label={text('Title', 'Filters')} open>
+          <CheckBox
+            checked={false}
+            disabled={false}
+            name="Checkbox1"
+            onChange={function noRefCheck() {}}
+            otherProps={{}}
+          >
+            Item
+          </CheckBox>
+
+          <CheckBox
+            checked={false}
+            disabled={false}
+            name="Checkbox2"
+            onChange={function noRefCheck() {}}
+            otherProps={{}}
+          >
+            Item
+          </CheckBox>
+
+          <CheckBox
+            checked={false}
+            disabled={false}
+            name="Checkbox3"
+            onChange={function noRefCheck() {}}
+            otherProps={{}}
+          >
+            Item
+          </CheckBox>
+        </CollapsibleSidebar>
+      </CollapsibleSidebarContainer>
+    );
+  })
+  .add('Pagination', () => {
+    return <Pagination></Pagination>;
   });
 
 const Container = styled.div`
@@ -143,6 +210,11 @@ const Container = styled.div`
   > div {
     position: absolute;
   }
+`;
+
+const CollapsibleSidebarContainer = styled.div`
+  max-width: 300px;
+  width: 100%;
 `;
 
 const StyledMainNav = styled(MainNavigation)`

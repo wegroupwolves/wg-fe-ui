@@ -95,7 +95,7 @@ describe('ActionButton', () => {
     });
     expect(wrapper.childAt(0)).toHaveStyleRule(
       'background-color',
-      theme.ui.interactive,
+      'transparent',
     );
 
     // test random level
@@ -108,7 +108,7 @@ describe('ActionButton', () => {
     });
     expect(wrapper.childAt(0)).toHaveStyleRule(
       'background-color',
-      theme.ui.interactive,
+      theme.brand.primary,
     );
   });
 

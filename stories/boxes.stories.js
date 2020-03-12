@@ -69,7 +69,7 @@ storiesOf('Mid level blocks/Boxes', module)
     <DownloadBox
       otherProps={select('otherProps', ...propsObject)}
       href={text('href', 'href')}
-      thumbnail={text('thumbnail', 'iejiji')}
+      thumbnail={text('thumbnail', '')}
       filename={text('fileName', 'fileName')}
     />
   ));

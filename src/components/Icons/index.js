@@ -1,6 +1,6 @@
 // this will be the showing order in storybook
 import IconCarFilled from './IconCarFilled';
-import IconFiredFilled from './IconFireFilled';
+import IconFireFilled from './IconFireFilled';
 import IconTheftFilled from './IconTheftFilled';
 import IconOthersFilled from './IconOthersFilled';
 import IconTaxFilled from './IconTaxFilled';
@@ -120,9 +120,12 @@ import IconCancelFlightFilled from './IconCancelFlightFilled';
 import IconMobilityFilled from './IconMobilityFilled';
 import IconCertificateFilled from './IconCertificateFilled';
 import IconInjuredFilled from './IconInjuredFilled';
+import IconDragHandlerFilled from './IconDragHandlerFilled';
+import Upload from './Upload';
+import IconPlusFilled from './IconPlusFilled';
 
 export {
-  IconFiredFilled,
+  IconFireFilled,
   IconCarFilled,
   IconTheftFilled,
   IconOthersFilled,
@@ -243,4 +246,7 @@ export {
   IconMobilityFilled,
   IconCertificateFilled,
   IconInjuredFilled,
+  IconDragHandlerFilled,
+  Upload,
+  IconPlusFilled,
 };

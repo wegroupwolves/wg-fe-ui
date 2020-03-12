@@ -1,13 +1,13 @@
 import React from 'react';
 import { string } from 'prop-types';
 
-const IconECallFilled = ({ className, color }) => {
+const IconECallFilled = ({ className, color, size }) => {
   return (
     <svg
       id="icons"
       className={className}
-      width="30"
-      height="30"
+      width={size}
+      height={size}
       viewBox="0 0 50 50"
     >
       <title>E-call</title>
@@ -33,6 +33,7 @@ const IconECallFilled = ({ className, color }) => {
 
 IconECallFilled.defaultProps = {
   color: 'black',
+  size: 30,
 };
 
 IconECallFilled.propTypes = {

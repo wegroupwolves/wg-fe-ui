@@ -1,11 +1,13 @@
 // Import components
 import * as Theme from './themes';
+
 export {
   ProgressBar,
   ToolBar,
   TrackingBar,
   OverviewClaimStatus,
   FlightSelectBar,
+  RiskObjectBar,
 } from './components/Bars';
 
 export {
@@ -14,9 +16,15 @@ export {
   BackButton,
   UploadField,
   ToggleButton,
+  TertiaryButton,
 } from './components/Buttons';
 
-export { CheckBox, RadioOption, CheckOption } from './components/Checkboxes';
+export {
+  CheckBox,
+  RadioOption,
+  CheckOption,
+  CheckBoxContainer,
+} from './components/Checkboxes';
 
 export {
   ImageSelectBox,
@@ -27,22 +35,25 @@ export {
   SearchSelectInput,
   DateInput,
   TimeInput,
+  CommentBox,
 } from './components/Inputs';
 
 export { QuestionBox, Uploader, DownloadBox } from './components/Boxes';
 
-export { DisplayTable, OverviewTable } from './components/Tables';
+export { DisplayTable, OverviewTable, OrderTable } from './components/Tables';
 
 export {
   HeaderNav,
   MainNavigation,
   SubNavigation,
+  QuickActionSubMenu,
+  CollapsibleSidebar,
+  Pagination,
 } from './components/Navigation';
 
 export { LoadingSpinner } from './components/Loaders';
 
 export { Section } from './components/Section';
-// export { LoadingSpinner } from './components/Loaders';
 
 export {
   Title,
@@ -51,7 +62,14 @@ export {
   TextBold,
   Label,
   SubLabel,
+  BorderedTitle,
 } from './components/Typography';
+
+export { PhaseLabel, RiskObjectLabel, TypeLabel } from './components/Labels';
+
+export { DraggableList, DraggableContainer } from './components/DraggableList';
+
+export { Modal } from './components/Modals';
 
 // Export all icons
 export * from './components/Icons';

@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react';
 import { storiesOf } from '@storybook/react';
-// import { linkTo } from '@storybook/addon-links';
+
 import {
   withKnobs,
   boolean,
@@ -25,7 +25,16 @@ import {
   SearchSelectInput,
   DateInput,
   TimeInput,
+  CommentBox,
+  Section,
 } from '../src';
+
+import * as Icons from '../src/components/Icons';
+const IconsKeys = Object.keys(Icons);
+const IconsList = {};
+IconsKeys.map(IconKey => {
+  IconsList[Icons[IconKey].name] = Icons[IconKey].name;
+});
 
 storiesOf('Low level blocks/Inputs', module)
   .addDecorator(withKnobs)
@@ -86,27 +95,38 @@ storiesOf('Low level blocks/Inputs', module)
         value={val}
         touched={touched}
         mask="999-99999-99"
-      // maskChar=""
       >
         Police zone
       </StyledMaskedInput>
     );
   })
   .add('TextInput', () => {
-    let error = text('Error', '');
-    let touched = boolean('Touched', false);
+    let error = text('Error', '', 'Input options');
+    let touched = boolean('Touched', false, 'Input options');
 
     return (
       <StyledTextInput
-        disabled={boolean('Disabled', false)}
+        disabled={boolean('Disabled', false, 'Input options')}
         name="emailadres"
         type="email"
-        placeholder="example@wegroup.be"
+        placeholder={text('Placeholder', 'example@wegroup.be', 'Input options')}
         error={error}
         touched={touched}
-        value={text('DefaultValue', '')}
+        value={text('DefaultValue', '', 'Input options')}
+        symbol={
+          boolean('Show symbol', true, 'Symbol options')
+            ? select('Icon', IconsList, IconsKeys[0], 'Symbol options')
+            : ''
+        }
+        symbolSide={select(
+          'Symbol side',
+          { Right: 'right', Left: 'left' },
+          'right',
+          'Symbol options',
+        )}
+        symbolText={boolean('Show symbol as text', false, 'Symbol options')}
       >
-        Email
+        {text('Label', 'Email', 'Input options')}
       </StyledTextInput>
     );
   })
@@ -242,6 +262,29 @@ storiesOf('Low level blocks/Inputs', module)
       >
         Selection
       </StyledSearchSelectInput>
+    );
+  })
+  .add('CommentBox', () => {
+    return (
+      <Section>
+        <Section.Content background={true}>
+          <CommentBox
+            title={text('Comment title', '27/02/2020 - Added by Schauwers P.')}
+            icon={select('Icon', IconsList, IconsKeys[0])}
+            id={1}
+          >
+            <p>
+              Cras dapibus. Fusce egestas elit eget lorem. Phasellus dolor.
+              Maecenas nec odio et ante tincidunt tempus. Vivamus quis mi.
+              Pellentesque auctor neque nec urna. Pellentesque libero tortor,
+              tincidunt et, tincidunt eget, semper nec, quam. Duis lobortis
+              massa imperdiet quam. Lorem ipsum dolor sit amet, consectetuer
+              adipiscing elit. Sed consequat, leo eget bibendum sodales, augue
+              velit cursus nunc, quis gravida magna mi a libero.
+            </p>
+          </CommentBox>
+        </Section.Content>
+      </Section>
     );
   });
 

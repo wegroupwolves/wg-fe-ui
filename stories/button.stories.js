@@ -14,6 +14,7 @@ import {
   BackButton,
   UploadField,
   ToggleButton,
+  TertiaryButton,
 } from '../src/';
 
 addParameters({
@@ -24,7 +25,7 @@ addParameters({
 
 // storiesOf('Welcome', module).add('to Storybook', () => <Welcome showApp={linkTo('Button')} />);
 
-const buttonLevels = ['primary', 'secondary'];
+const buttonLevels = ['primary', 'secondary', 'default'];
 const ToggleButtonLevels = ['active', 'non-active'];
 const iconObject = { none: null, House: buttonIcon };
 const svg = { none: null, back_arrow: <BackArrow /> };
@@ -48,7 +49,13 @@ storiesOf('Low level blocks/Buttons', module)
   .add('AddEntityButton', () => {
     const onClick = () => console.log('resource: ');
 
-    return <AddEntityButton onClick={onClick} name="Add Entity" />;
+    return (
+      <AddEntityButton
+        onClick={onClick}
+        name={text('Label', 'Add entity')}
+        fullwidth={boolean('Full width?', false)}
+      />
+    );
   })
   .add('BackButton', () => {
     const iconName = select('Icon', Object.keys(svg), 'back_arrow');
@@ -76,4 +83,12 @@ storiesOf('Low level blocks/Buttons', module)
     >
       {text('Label', 'Add')}
     </ToggleButton>
-  ));
+  ))
+  .add('TertiaryButton', () => {
+    return (
+      <TertiaryButton
+        label={text('Label', 'Cancel')}
+        disabled={boolean('Disabled?', false)}
+      ></TertiaryButton>
+    );
+  });
