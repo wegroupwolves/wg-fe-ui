@@ -18,32 +18,23 @@ const BreadCrumbs = ({ urls }) => {
           </BreadCrumb>
         </BreadCrumbsContainer>
       ) : (
-        <BreadCrumbsContainer>Test</BreadCrumbsContainer>
+        <BreadCrumbsContainer>
+          {urls.map((url, index) => {
+            return (
+              <>
+                <BreadCrumb
+                  to={url.url}
+                  active={urls.length - 1 != index ? false : true}
+                >
+                  {url.label}
+                </BreadCrumb>
+                {urls.length - 1 != index ? <ChevronRight size={15} /> : ''}
+              </>
+            );
+          })}
+        </BreadCrumbsContainer>
       )}
     </>
-
-    // <BreadCrumbsContainer>
-    //   {urls.length > 2 ? (
-    //     <>
-    //       <BreadCrumb to={urls[0].url}>{urls[0].label}</BreadCrumb>
-    //     </>
-    //   ) : (
-    //     urls.map((url, index) => {
-    //       return (
-    //         <>
-    //           <BreadCrumb
-    //             to={url.url}
-    //             active={index == urls.length - 1 ? true : false}
-    //           >
-    //             {url.label}
-    //           </BreadCrumb>
-
-    //           {index != urls.length - 1 ? <ChevronRight size={14} /> : ''}
-    //         </>
-    //       );
-    //     })
-    //   )}
-    // </BreadCrumbsContainer>
   );
 };
 

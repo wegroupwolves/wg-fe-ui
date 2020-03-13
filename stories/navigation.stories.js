@@ -34,6 +34,17 @@ const mockUrls = [
     label: 'Next page',
     url: '/next-page',
   },
+];
+
+const moreMockUrls = [
+  {
+    label: 'Home',
+    url: '/',
+  },
+  {
+    label: 'Next page',
+    url: '/next-page',
+  },
   {
     label: 'Another page',
     url: '/another-page',
@@ -43,6 +54,11 @@ const mockUrls = [
     url: '/last-page',
   },
 ];
+
+const selectMockUrls = {
+  'Few urls': mockUrls,
+  'More urls': moreMockUrls,
+};
 
 storiesOf('Mid level blocks/Navigation', module)
   .addDecorator(withKnobs)
@@ -222,7 +238,9 @@ storiesOf('Mid level blocks/Navigation', module)
     return <Pagination></Pagination>;
   })
   .add('BreadCrumbs', () => {
-    return <BreadCrumbs urls={mockUrls}></BreadCrumbs>;
+    return (
+      <BreadCrumbs urls={select('Dataset', selectMockUrls, 1)}></BreadCrumbs>
+    );
   });
 
 const Container = styled.div`
