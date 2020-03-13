@@ -7,7 +7,7 @@ import ChevronRight from '../Icons/IconActionChevronRight';
 const BreadCrumbs = ({ urls }) => {
   return (
     <>
-      {urls.length > 2 ? (
+      {urls.length > 3 ? (
         <BreadCrumbsContainer>
           <BreadCrumb to={urls[0].url}> {urls[0].label} </BreadCrumb>
           <ChevronRight size={15} />

@@ -26,38 +26,27 @@ const SubMenuItemTypes = {
 };
 
 const mockUrls = [
-  {
-    label: 'Home',
-    url: '/',
-  },
-  {
-    label: 'Next page',
-    url: '/next-page',
-  },
+  { label: 'Home', url: '/' },
+  { label: 'Next page', url: '/next-page' },
 ];
 
 const moreMockUrls = [
-  {
-    label: 'Home',
-    url: '/',
-  },
-  {
-    label: 'Next page',
-    url: '/next-page',
-  },
-  {
-    label: 'Another page',
-    url: '/another-page',
-  },
-  {
-    label: 'The last page',
-    url: '/last-page',
-  },
+  { label: 'Home', url: '/' },
+  { label: 'Next page', url: '/next-page' },
+  { label: 'Another page', url: '/another-page' },
+];
+
+const collapseMockUrls = [
+  { label: 'Home', url: '/' },
+  { label: 'Next page', url: '/next-page' },
+  { label: 'Another page', url: '/another-page' },
+  { label: 'The last page', url: '/last-page' },
 ];
 
 const selectMockUrls = {
-  'Few urls': mockUrls,
-  'More urls': moreMockUrls,
+  'Two urls': mockUrls,
+  'Three urls': moreMockUrls,
+  'Collapsed urls (more than 3)': collapseMockUrls,
 };
 
 storiesOf('Mid level blocks/Navigation', module)
@@ -239,7 +228,9 @@ storiesOf('Mid level blocks/Navigation', module)
   })
   .add('BreadCrumbs', () => {
     return (
-      <BreadCrumbs urls={select('Dataset', selectMockUrls, 1)}></BreadCrumbs>
+      <BreadCrumbs
+        urls={select('Dataset', selectMockUrls, mockUrls)}
+      ></BreadCrumbs>
     );
   });
 
