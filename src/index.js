@@ -49,6 +49,7 @@ export {
   QuickActionSubMenu,
   CollapsibleSidebar,
   Pagination,
+  BreadCrumbs,
 } from './components/Navigation';
 
 export { LoadingSpinner } from './components/Loaders';
