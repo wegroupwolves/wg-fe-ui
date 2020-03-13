@@ -4,6 +4,7 @@ import SubNavigation from './SubNavigation';
 import QuickActionSubMenu from './QuickActionSubMenu';
 import CollapsibleSidebar from './CollapsibleSidebar';
 import Pagination from './Pagination';
+import BreadCrumbs from './BreadCrumbs';
 
 export {
   MainNavigation,
@@ -12,4 +13,5 @@ export {
   QuickActionSubMenu,
   CollapsibleSidebar,
   Pagination,
+  BreadCrumbs,
 };

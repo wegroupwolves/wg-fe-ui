@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { storiesOf } from '@storybook/react';
 import { withKnobs, select, text, boolean } from '@storybook/addon-knobs';
 import { withInfo } from '@storybook/addon-info';
+import { MemoryRouter } from 'react-router-dom';
 
 import HouseIcon from './assets/HouseIcon.jsx';
 import IconActionPower from './assets/Icons/IconActionPower.jsx';
@@ -13,6 +14,7 @@ import {
   QuickActionSubMenu,
   CollapsibleSidebar,
   Pagination,
+  BreadCrumbs,
 } from '../src/index.js';
 import CheckBox from '../src/components/Checkboxes/CheckBox';
 
@@ -23,9 +25,29 @@ const SubMenuItemTypes = {
   Danger: 'danger',
 };
 
+const mockUrls = [
+  {
+    label: 'Home',
+    url: '/',
+  },
+  {
+    label: 'Next page',
+    url: '/next-page',
+  },
+  {
+    label: 'Another page',
+    url: '/another-page',
+  },
+  {
+    label: 'The last page',
+    url: '/last-page',
+  },
+];
+
 storiesOf('Mid level blocks/Navigation', module)
   .addDecorator(withKnobs)
   .addDecorator(withInfo({ inline: true }))
+  .addDecorator(getStory => <MemoryRouter>{getStory()}</MemoryRouter>)
   .add('MainNavigation', () => {
     return (
       <Container>
@@ -198,6 +220,9 @@ storiesOf('Mid level blocks/Navigation', module)
   })
   .add('Pagination', () => {
     return <Pagination></Pagination>;
+  })
+  .add('BreadCrumbs', () => {
+    return <BreadCrumbs urls={mockUrls}></BreadCrumbs>;
   });
 
 const Container = styled.div`
