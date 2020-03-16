@@ -26,23 +26,28 @@ const SubMenuItemTypes = {
 };
 
 const mockUrls = [
-  {
-    label: 'Home',
-    url: '/',
-  },
-  {
-    label: 'Next page',
-    url: '/next-page',
-  },
-  {
-    label: 'Another page',
-    url: '/another-page',
-  },
-  {
-    label: 'The last page',
-    url: '/last-page',
-  },
+  { label: 'Home', url: '/' },
+  { label: 'Next page', url: '/next-page' },
 ];
+
+const moreMockUrls = [
+  { label: 'Home', url: '/' },
+  { label: 'Next page', url: '/next-page' },
+  { label: 'Another page', url: '/another-page' },
+];
+
+const collapseMockUrls = [
+  { label: 'Home', url: '/' },
+  { label: 'Next page', url: '/next-page' },
+  { label: 'Another page', url: '/another-page' },
+  { label: 'The last page', url: '/last-page' },
+];
+
+const selectMockUrls = {
+  'Two urls': mockUrls,
+  'Three urls': moreMockUrls,
+  'Collapsed urls (more than 3)': collapseMockUrls,
+};
 
 storiesOf('Mid level blocks/Navigation', module)
   .addDecorator(withKnobs)
@@ -222,7 +227,11 @@ storiesOf('Mid level blocks/Navigation', module)
     return <Pagination></Pagination>;
   })
   .add('BreadCrumbs', () => {
-    return <BreadCrumbs urls={mockUrls}></BreadCrumbs>;
+    return (
+      <BreadCrumbs
+        urls={select('Dataset', selectMockUrls, mockUrls)}
+      ></BreadCrumbs>
+    );
   });
 
 const Container = styled.div`
