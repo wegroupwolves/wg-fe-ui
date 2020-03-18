@@ -123,6 +123,7 @@ import IconInjuredFilled from './IconInjuredFilled';
 import IconDragHandlerFilled from './IconDragHandlerFilled';
 import Upload from './Upload';
 import IconPlusFilled from './IconPlusFilled';
+import IconPencilFilled from './IconPencilFilled';
 
 export {
   IconFireFilled,
@@ -249,4 +250,5 @@ export {
   IconDragHandlerFilled,
   Upload,
   IconPlusFilled,
+  IconPencilFilled,
 };
