@@ -124,6 +124,9 @@ import IconDragHandlerFilled from './IconDragHandlerFilled';
 import Upload from './Upload';
 import IconPlusFilled from './IconPlusFilled';
 import IconPencilFilled from './IconPencilFilled';
+import IconCabrioFilled from './IconCabrioFilled';
+import IconSuvFilled from './IconSuvFilled';
+import IconSportsCarFilled from './IconSportsCarFilled';
 
 export {
   IconFireFilled,
@@ -251,4 +254,7 @@ export {
   Upload,
   IconPlusFilled,
   IconPencilFilled,
+  IconCabrioFilled,
+  IconSuvFilled,
+  IconSportsCarFilled,
 };
