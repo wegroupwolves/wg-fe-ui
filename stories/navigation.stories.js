@@ -1,7 +1,13 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { storiesOf } from '@storybook/react';
-import { withKnobs, select, text, boolean } from '@storybook/addon-knobs';
+import {
+  withKnobs,
+  select,
+  text,
+  boolean,
+  number,
+} from '@storybook/addon-knobs';
 import { withInfo } from '@storybook/addon-info';
 import { MemoryRouter } from 'react-router-dom';
 
@@ -224,7 +230,19 @@ storiesOf('Mid level blocks/Navigation', module)
     );
   })
   .add('Pagination', () => {
-    return <Pagination></Pagination>;
+    return (
+      <Pagination
+        currentPage={number('Current page', 8)}
+        totalPages={number('Total possible pages', 20, {
+          range: true,
+          min: 20,
+          max: 100,
+        })}
+        pageLength={20}
+        base={`/api-url/url`}
+        otherFilters={'&id=test'}
+      ></Pagination>
+    );
   })
   .add('BreadCrumbs', () => {
     return (
