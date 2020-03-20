@@ -5,7 +5,7 @@ import * as Icons from '../Icons';
 
 const IconsList = {};
 Object.keys(Icons).map(IconKey => {
-  IconsList[Icons[IconKey].name] = Icons[IconKey];
+  IconsList[IconKey] = Icons[IconKey];
 });
 
 const AddEntityButton = ({ fullwidth, icon, onClick, name, ...otherProps }) => {
