@@ -1,5 +1,5 @@
 import React from 'react';
-import { string, int } from 'prop-types';
+import { string, number } from 'prop-types';
 
 const IconSportsCarFilled = ({ className, color, size }) => {
   return (
@@ -27,7 +27,7 @@ IconSportsCarFilled.defaultProps = {
 IconSportsCarFilled.propTypes = {
   color: string,
   className: string,
-  size: int,
+  size: number,
 };
 
 export default IconSportsCarFilled;

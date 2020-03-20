@@ -1,5 +1,5 @@
 import React from 'react';
-import { int, string } from 'prop-types';
+import { number, string } from 'prop-types';
 
 const Upload = ({ className, color, size }) => {
   return (
@@ -31,7 +31,7 @@ Upload.defaultProps = {
 Upload.propTypes = {
   color: string,
   className: string,
-  size: int,
+  size: number,
 };
 
 export default Upload;
