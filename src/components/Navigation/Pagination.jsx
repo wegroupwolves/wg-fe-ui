@@ -1,33 +1,82 @@
 import React from 'react';
-// import { string } from 'prop-types';
+import { Link } from 'react-router-dom';
+import { number, string } from 'prop-types';
 import styled from 'styled-components';
 import ChevronLeft from '../Icons/IconActionChevronLeft';
 import ChevronRight from '../Icons/IconActionChevronRight';
 
-const Pagination = () => {
+const Pagination = ({
+  currentPage,
+  totalPages,
+  pageLength,
+  base,
+  otherFilters,
+  ...otherProps
+}) => {
+  const urls = [];
+
+  for (let index = 1; index <= totalPages; index++) {
+    const generatedUrl = `${base}?page=${index}&pagelen=${pageLength}${otherFilters}`;
+    const pageNumber = index;
+
+    urls[index] = { url: generatedUrl, page: pageNumber };
+  }
+
   return (
-    <PaginationWrapper>
-      <PaginationButton>
-        <ChevronLeft color="#C1C1C1" />
-        <span className="label">Prev</span>
-      </PaginationButton>
+    <PaginationWrapper {...otherProps}>
+      {currentPage > 1 ? (
+        <PaginationButton>
+          <ChevronLeft color="#C1C1C1" />
+          <span className="label">Prev</span>
+        </PaginationButton>
+      ) : (
+        ''
+      )}
 
       <PaginationPages>
-        <PaginationPage>1</PaginationPage>
-        <PaginationPage>...</PaginationPage>
-        <PaginationPage>6</PaginationPage>
-        <PaginationPage>7</PaginationPage>
-        <PaginationPage active={true}>8</PaginationPage>
-        <PaginationPage>9</PaginationPage>
-        <PaginationPage>10</PaginationPage>
-        <PaginationPage>...</PaginationPage>
-        <PaginationPage>25</PaginationPage>
+        {currentPage > 3 ? (
+          <PaginationPage to={urls[1].url}>1</PaginationPage>
+        ) : (
+          ''
+        )}
+        {currentPage > 3 ? <PaginationPage disabled>...</PaginationPage> : ''}
+
+        {urls.map(url => {
+          return url.page >= currentPage - 2 && url.page <= currentPage + 2 ? (
+            <PaginationPage
+              to={url.url}
+              key={url.page}
+              active={url.page == currentPage ? true : false}
+            >
+              {url.page}
+            </PaginationPage>
+          ) : (
+            ''
+          );
+        })}
+
+        {currentPage < totalPages - 2 ? (
+          <PaginationPage disabled>...</PaginationPage>
+        ) : (
+          ''
+        )}
+        {currentPage < totalPages - 2 ? (
+          <PaginationPage to={urls[totalPages].url}>
+            {totalPages}
+          </PaginationPage>
+        ) : (
+          ''
+        )}
       </PaginationPages>
 
-      <PaginationButton>
-        <span className="label">Next</span>
-        <ChevronRight color="#C1C1C1" />
-      </PaginationButton>
+      {currentPage < totalPages ? (
+        <PaginationButton>
+          <span className="label">Next</span>
+          <ChevronRight color="#C1C1C1" />
+        </PaginationButton>
+      ) : (
+        ''
+      )}
     </PaginationWrapper>
   );
 };
@@ -36,7 +85,6 @@ const PaginationWrapper = styled.div`
   display: flex;
   font-family: ${({ theme }) => theme.font};
   justify-content: center;
-  /* align-items: center; */
   border: 1px solid #e4e4e4;
   background-color: white;
   overflow: hidden;
@@ -85,8 +133,9 @@ const PaginationPages = styled.div`
   padding: 8px 15px;
 `;
 
-const PaginationPage = styled.a`
-  cursor: pointer;
+const PaginationPage = styled(Link)`
+  cursor: ${({ active, disabled }) =>
+    active || disabled ? 'default' : 'pointer'};
   padding: 4px 5px;
   margin: 0 2px;
   background-color: ${({ active, theme }) =>
@@ -97,14 +146,35 @@ const PaginationPage = styled.a`
   font-size: 1.4rem;
   line-height: 130%;
   transition: color 0.15s ease-in-out;
+  text-decoration: none;
 
   &:hover {
-    color: ${({ active, theme }) => (active ? 'white' : theme.brand.primary)};
+    color: ${({ theme, active, disabled }) =>
+      active
+        ? 'white'
+        : disabled
+        ? theme.typo.interactive
+        : theme.brand.primary};
   }
 `;
 
-// Pagination.propTypes = {
-//   label: string,
-// };
+Pagination.propTypes = {
+  /** The current page the pagination component should show. */
+  currentPage: number.isRequired,
+  /** Total amount of pages possible. */
+  totalPages: number.isRequired,
+  /** Records shown per page. */
+  pageLength: number.isRequired,
+  /** URL on which the pagination is to be based. */
+  base: string,
+  /** Extra filters to be passed to the URL. */
+  otherFilters: string,
+};
+
+Pagination.defaultProps = {
+  currentPage: 1,
+  totalPages: 1,
+  pageLength: 20,
+};
 
 export default Pagination;
