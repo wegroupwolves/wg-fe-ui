@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 
 import { storiesOf } from '@storybook/react';
-import { withKnobs, boolean, text } from '@storybook/addon-knobs';
+import { withKnobs, boolean, text, select } from '@storybook/addon-knobs';
 import { withInfo } from '@storybook/addon-info';
 
 import { CheckBox, CheckOption, CheckBoxContainer } from '../src';
+
+import CheckBox_v2 from '../src/components/v2/Checkboxes/CheckBox_v2';
 
 import Property from '../src/components/Icons/Property';
 
@@ -57,5 +59,20 @@ storiesOf('Low level blocks/Checkboxes', module)
         <CheckBox name="offer">Offer</CheckBox>
         <CheckBox name="contract">Contract</CheckBox>
       </CheckBoxContainer>
+    );
+  })
+  .add('CheckBox_v2', () => {
+    return (
+      <CheckBox_v2
+        name="checktest"
+        disabled={boolean('Disabled?', false)}
+        checked={boolean('Checked?', false)}
+        side={select('Label side?', { Left: 'left', Right: 'right' }, 'right')}
+        onChange={e =>
+          console.log('Checkbox checked:', e.currentTarget.checked)
+        }
+      >
+        Item
+      </CheckBox_v2>
     );
   });
