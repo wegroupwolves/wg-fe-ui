@@ -13,6 +13,7 @@ import { MemoryRouter } from 'react-router-dom';
 
 import HouseIcon from './assets/HouseIcon.jsx';
 import IconActionPower from './assets/Icons/IconActionPower.jsx';
+
 import {
   HeaderNav,
   MainNavigation,
@@ -21,7 +22,9 @@ import {
   CollapsibleSidebar,
   Pagination,
   BreadCrumbs,
+  MobileMenu,
 } from '../src/index.js';
+
 import CheckBox from '../src/components/Checkboxes/CheckBox';
 
 const SubMenuItemTypes = {
@@ -250,6 +253,25 @@ storiesOf('Mid level blocks/Navigation', module)
         urls={select('Dataset', selectMockUrls, mockUrls)}
       ></BreadCrumbs>
     );
+  })
+  .add('MobileMenu', () => {
+    return (
+      <MobileSimulator
+        size={select(
+          'Mobile device size',
+          { Mobile: 'mobile', Tablet: 'tablet' },
+          'mobile',
+        )}
+      >
+        <MobileMenu>
+          <MobileMenu.Header>Menu header</MobileMenu.Header>
+
+          <MobileMenu.Content>Menu content</MobileMenu.Content>
+
+          <MobileMenu.Footer>Menu footer</MobileMenu.Footer>
+        </MobileMenu>
+      </MobileSimulator>
+    );
   });
 
 const Container = styled.div`
@@ -275,6 +297,15 @@ const StyledMainNav = styled(MainNavigation)`
   left: 0;
   top: 0;
   right: auto;
+`;
+
+const MobileSimulator = styled.div`
+  position: relative;
+  width: ${({ size }) => (size == 'mobile' ? '375px' : '768px')};
+  height: ${({ size }) => (size == 'mobile' ? '667px' : '1024px')};
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.3);
+  border-radius: 5px;
+  overflow: hidden;
 `;
 
 Container.displayName = '.';
