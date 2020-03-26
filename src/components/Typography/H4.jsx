@@ -1,9 +1,13 @@
 import React from 'react';
-import { node } from 'prop-types';
+import { node, string, object } from 'prop-types';
 import styled from 'styled-components';
 
-const H4 = ({ children }) => {
-  return <StyledH4>{children}</StyledH4>;
+const H4 = ({ children, className, ...otherProps }) => {
+  return (
+    <StyledH4 className={className} {...otherProps}>
+      {children}
+    </StyledH4>
+  );
 };
 
 const StyledH4 = styled.h4`
@@ -16,6 +20,8 @@ const StyledH4 = styled.h4`
 
 H4.propTypes = {
   children: node.isRequired,
+  className: string,
+  otherProps: object,
 };
 
 export default H4;
