@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 const H1 = ({ children, className, ...otherProps }) => {
   return (
-    <StyledH1 className={className} {...otherprops}>
+    <StyledH1 className={className} {...otherProps}>
       {children}
     </StyledH1>
   );
