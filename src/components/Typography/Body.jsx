@@ -1,10 +1,16 @@
 import React from 'react';
-import { node, bool } from 'prop-types';
+import { node, bool, string, object } from 'prop-types';
 import styled from 'styled-components';
 
-const Body = ({ children, bold, italic, light }) => {
+const Body = ({ children, bold, italic, light, className, ...otherProps }) => {
   return (
-    <StyledBody bold={bold} italic={italic} light={light}>
+    <StyledBody
+      bold={bold}
+      italic={italic}
+      light={light}
+      className={className}
+      {...otherProps}
+    >
       {children}
     </StyledBody>
   );
@@ -28,6 +34,8 @@ Body.propTypes = {
   italic: bool,
   /** Pass this prop to make the text lighter. */
   light: bool,
+  className: string,
+  otherProps: object,
 };
 
 export default Body;
