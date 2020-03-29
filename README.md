@@ -1,6 +1,6 @@
 # WG-FE-BROKER-PORTAL
 
-> An React based Front-end platform containing a few broker tools.
+> A React based Front-end platform containing a few broker tools.
 
 ## Table of Contents
 
