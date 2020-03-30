@@ -1,5 +1,3 @@
-# WG-FE-BROKER-PORTAL
-
 > A React based Front-end platform containing a few broker tools.
 
 ## Table of Contents
@@ -11,8 +9,7 @@
 - [Testing](#testing)
   - [Running tests automatically](#running-tests-automatically)
 - [Built Using](#built-using)
-- [Authors](#authors)
-- [Acknowledgements](#acknowledgements)
+
 
 ## About
 
