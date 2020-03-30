@@ -1,12 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
 import { storiesOf } from '@storybook/react';
-import { withKnobs, boolean } from '@storybook/addon-knobs';
+import { withKnobs, boolean, select } from '@storybook/addon-knobs';
 import { withInfo } from '@storybook/addon-info';
 import { Section } from '../src';
+import Section_v2 from '../src/components/v2/Section/Section_v2';
 
 const ColoredBackground = styled.div`
-  background-color: #f0f1f3;
+  background-color: #fbfbfb;
   width: 100%;
 
   & section {
@@ -30,6 +31,34 @@ storiesOf('Mid level blocks/Sections', module)
           This is content of the section.
         </Section.Content>
       </Section>
+    );
+  })
+  .add('Section_v2', () => {
+    return (
+      <Section_v2>
+        <Section_v2.Row
+          border={boolean('First row border?', true)}
+          size={select(
+            'Amount of columns?',
+            {
+              One: 'one',
+              Two: 'two',
+              Three: 'three',
+            },
+            'three',
+          )}
+        >
+          <div>1</div>
+          <div>2</div>
+          <div>3</div>
+        </Section_v2.Row>
+
+        <Section_v2.Row size="two">
+          <div>1</div>
+          <div>2</div>
+          <div>3</div>
+        </Section_v2.Row>
+      </Section_v2>
     );
   });
 

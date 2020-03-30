@@ -1,11 +1,11 @@
 import React from 'react';
-import { object, string, element, func } from 'prop-types';
+import { object, string, func, bool } from 'prop-types';
 import styled from 'styled-components';
 import * as Icons from '../Icons';
 
 const IconsList = {};
 Object.keys(Icons).map(IconKey => {
-  IconsList[Icons[IconKey].name] = Icons[IconKey];
+  IconsList[IconKey] = Icons[IconKey];
 });
 
 const AddEntityButton = ({ fullwidth, icon, onClick, name, ...otherProps }) => {
@@ -13,7 +13,7 @@ const AddEntityButton = ({ fullwidth, icon, onClick, name, ...otherProps }) => {
 
   return (
     <StyledButton fullwidth={fullwidth} onClick={onClick} {...otherProps}>
-      <ChosenIcon size={40}></ChosenIcon>
+      {ChosenIcon && <ChosenIcon size={40} />}
       <span className="label">{name}</span>
     </StyledButton>
   );
@@ -79,6 +79,7 @@ AddEntityButton.propTypes = {
   name: string.isRequired,
   onClick: func.isRequired,
   otherProps: object,
+  fullwidth: bool,
 };
 
 export default AddEntityButton;

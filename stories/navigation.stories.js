@@ -1,11 +1,19 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { storiesOf } from '@storybook/react';
-import { withKnobs, select, text, boolean } from '@storybook/addon-knobs';
+import {
+  withKnobs,
+  select,
+  text,
+  boolean,
+  number,
+} from '@storybook/addon-knobs';
 import { withInfo } from '@storybook/addon-info';
+import { MemoryRouter } from 'react-router-dom';
 
 import HouseIcon from './assets/HouseIcon.jsx';
 import IconActionPower from './assets/Icons/IconActionPower.jsx';
+
 import {
   HeaderNav,
   MainNavigation,
@@ -13,7 +21,10 @@ import {
   QuickActionSubMenu,
   CollapsibleSidebar,
   Pagination,
+  BreadCrumbs,
+  MobileMenu,
 } from '../src/index.js';
+
 import CheckBox from '../src/components/Checkboxes/CheckBox';
 
 const SubMenuItemTypes = {
@@ -23,9 +34,34 @@ const SubMenuItemTypes = {
   Danger: 'danger',
 };
 
+const mockUrls = [
+  { label: 'Home', url: '/' },
+  { label: 'Next page', url: '/next-page' },
+];
+
+const moreMockUrls = [
+  { label: 'Home', url: '/' },
+  { label: 'Next page', url: '/next-page' },
+  { label: 'Another page', url: '/another-page' },
+];
+
+const collapseMockUrls = [
+  { label: 'Home', url: '/' },
+  { label: 'Next page', url: '/next-page' },
+  { label: 'Another page', url: '/another-page' },
+  { label: 'The last page', url: '/last-page' },
+];
+
+const selectMockUrls = {
+  'Two urls': mockUrls,
+  'Three urls': moreMockUrls,
+  'Collapsed urls (more than 3)': collapseMockUrls,
+};
+
 storiesOf('Mid level blocks/Navigation', module)
   .addDecorator(withKnobs)
   .addDecorator(withInfo({ inline: true }))
+  .addDecorator(getStory => <MemoryRouter>{getStory()}</MemoryRouter>)
   .add('MainNavigation', () => {
     return (
       <Container>
@@ -197,7 +233,45 @@ storiesOf('Mid level blocks/Navigation', module)
     );
   })
   .add('Pagination', () => {
-    return <Pagination></Pagination>;
+    return (
+      <Pagination
+        currentPage={number('Current page', 8)}
+        totalPages={number('Total possible pages', 20, {
+          range: true,
+          min: 20,
+          max: 100,
+        })}
+        pageLength={20}
+        base={`/api-url/url`}
+        otherFilters={'&id=test'}
+      ></Pagination>
+    );
+  })
+  .add('BreadCrumbs', () => {
+    return (
+      <BreadCrumbs
+        urls={select('Dataset', selectMockUrls, mockUrls)}
+      ></BreadCrumbs>
+    );
+  })
+  .add('MobileMenu', () => {
+    return (
+      <MobileSimulator
+        size={select(
+          'Mobile device size',
+          { Mobile: 'mobile', Tablet: 'tablet' },
+          'mobile',
+        )}
+      >
+        <MobileMenu>
+          <MobileMenu.Header>Menu header</MobileMenu.Header>
+
+          <MobileMenu.Content>Menu content</MobileMenu.Content>
+
+          <MobileMenu.Footer>Menu footer</MobileMenu.Footer>
+        </MobileMenu>
+      </MobileSimulator>
+    );
   });
 
 const Container = styled.div`
@@ -223,6 +297,15 @@ const StyledMainNav = styled(MainNavigation)`
   left: 0;
   top: 0;
   right: auto;
+`;
+
+const MobileSimulator = styled.div`
+  position: relative;
+  width: ${({ size }) => (size == 'mobile' ? '375px' : '768px')};
+  height: ${({ size }) => (size == 'mobile' ? '667px' : '1024px')};
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.3);
+  border-radius: 5px;
+  overflow: hidden;
 `;
 
 Container.displayName = '.';

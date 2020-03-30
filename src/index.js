@@ -49,6 +49,8 @@ export {
   QuickActionSubMenu,
   CollapsibleSidebar,
   Pagination,
+  BreadCrumbs,
+  MobileMenu,
 } from './components/Navigation';
 
 export { LoadingSpinner } from './components/Loaders';
@@ -63,6 +65,11 @@ export {
   Label,
   SubLabel,
   BorderedTitle,
+  H1,
+  H2,
+  H3,
+  H4,
+  Body,
 } from './components/Typography';
 
 export { PhaseLabel, RiskObjectLabel, TypeLabel } from './components/Labels';
@@ -73,6 +80,10 @@ export { Modal } from './components/Modals';
 
 // Export all icons
 export * from './components/Icons';
+
+export { Section_v2 } from './components/v2/Section/Section_v2';
+
+export { CheckBox_v2 } from './components/v2/Checkboxes';
 
 export { default as ThemeProvider } from './components/ThemeProvider';
 

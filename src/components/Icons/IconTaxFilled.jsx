@@ -1,5 +1,5 @@
 import React from 'react';
-import { string, int } from 'prop-types';
+import { string, number } from 'prop-types';
 
 const IconTaxFilled = ({ className, color, size }) => {
   return (
@@ -28,7 +28,7 @@ IconTaxFilled.defaultProps = {
 IconTaxFilled.propTypes = {
   color: string,
   className: string,
-  size: int,
+  size: number,
 };
 
 export default IconTaxFilled;

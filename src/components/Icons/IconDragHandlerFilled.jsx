@@ -1,5 +1,5 @@
 import React from 'react';
-import { string, int } from 'prop-types';
+import { string, number } from 'prop-types';
 
 const IconDragHandlerFilled = ({ className, color, size }) => {
   return (
@@ -47,7 +47,7 @@ IconDragHandlerFilled.defaultProps = {
 IconDragHandlerFilled.propTypes = {
   color: string,
   className: string,
-  size: int,
+  size: number,
 };
 
 export default IconDragHandlerFilled;
