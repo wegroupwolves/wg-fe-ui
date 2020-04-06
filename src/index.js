@@ -55,7 +55,7 @@ export {
 
 export { LoadingSpinner } from './components/Loaders';
 
-export { Section } from './components/Section';
+export { Section, Section_v2 } from './components/Section';
 
 export {
   Title,
@@ -81,7 +81,7 @@ export { Modal } from './components/Modals';
 // Export all icons
 export * from './components/Icons';
 
-export { Section_v2 } from './components/v2/Section/Section_v2';
+// export { Section_v2 } from './components/v2/Section/Section_v2';
 
 export { CheckBox_v2 } from './components/v2/Checkboxes';
 

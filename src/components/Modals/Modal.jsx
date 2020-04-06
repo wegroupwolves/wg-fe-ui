@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { string, bool, node } from 'prop-types';
+import React, { useState, useEffect } from 'react';
+import { string, bool, node, func } from 'prop-types';
 import styled from 'styled-components';
 import Drawer from 'react-drag-drawer';
 
@@ -9,18 +9,36 @@ const StyledModalActions = ({ children, position }) => {
   return <ModalActions position={position}>{children}</ModalActions>;
 };
 
-const Modal = ({ title, canClose, children, showModal }) => {
-  const [Open, setOpen] = useState({ showModal });
+const Modal = ({
+  title,
+  canClose,
+  children,
+  showModal,
+  customCloseHandler,
+  large,
+}) => {
+  const [Open, setOpen] = useState(showModal);
+
+  useEffect(() => {
+    setOpen(showModal);
+  }, [showModal]);
 
   const closeHandler = () => {
     setOpen(false);
   };
 
   return (
-    <Drawer open={Open} onRequestClose={canClose ? closeHandler : ''}>
-      <ModalContainer>
-        {canClose ? (
-          <ModalCloser onClick={closeHandler}>
+    <Drawer
+      open={Open}
+      onRequestClose={
+        customCloseHandler ? customCloseHandler : canClose ? closeHandler : ''
+      }
+    >
+      <ModalContainer large={large}>
+        {canClose || customCloseHandler ? (
+          <ModalCloser
+            onClick={customCloseHandler ? customCloseHandler : closeHandler}
+          >
             <CloseIcon color="#505050" />
           </ModalCloser>
         ) : (
@@ -36,7 +54,7 @@ const Modal = ({ title, canClose, children, showModal }) => {
 
 const ModalContainer = styled.div`
   background: white;
-  width: 550px;
+  width: ${({ large }) => (large ? '100rem' : '55rem')};
   border: 1px solid #ccc;
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
   border-radius: 5px;
@@ -45,6 +63,11 @@ const ModalContainer = styled.div`
   overflow: hidden;
   position: relative;
   font-family: ${({ theme }) => theme.font};
+
+  @media screen and (max-width: 1200px) {
+    width: 100%;
+    margin: 0 3rem;
+  }
 `;
 
 const ModalTitleBar = styled.div`
@@ -124,14 +147,19 @@ Modal.propTypes = {
   /** A title to be displayed at the top of the modal. */
   title: string,
   /** Set to true to make the modal closeable. */
-  canClose: bool,
+  canClose: bool.isRequired,
+  /** Content of the modal */
   children: node,
-  showModal: bool,
+  /** Wether or not to show the modal. Set this to true on load to show the modal immediately. */
+  showModal: bool.isRequired,
+  /** Function to pass which handles the closing of the modal. */
+  customCloseHandler: func,
+  /** Set to true to have a larger modal */
+  large: bool,
 };
 
 Modal.defaultProps = {
   canClose: true,
-  showModal: true,
 };
 
 Modal.ModalActions = StyledModalActions;

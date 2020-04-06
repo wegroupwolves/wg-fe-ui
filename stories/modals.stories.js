@@ -1,7 +1,7 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { withInfo } from '@storybook/addon-info';
-import { withKnobs, select, text } from '@storybook/addon-knobs';
+import { withKnobs, select, text, boolean } from '@storybook/addon-knobs';
 
 import { ActionButton, TertiaryButton, Modal } from '../src/';
 
@@ -16,7 +16,10 @@ storiesOf('Low level blocks/Modals', module)
   .addDecorator(withInfo({ inline: true }))
   .add('Modal', () => {
     return (
-      <Modal title={text('Modal title', 'Default Title')}>
+      <Modal
+        title={text('Modal title', 'Default Title')}
+        showModal={boolean('Show modal?', true)}
+      >
         <p>This is some content for the modal</p>
 
         <Modal.ModalActions
