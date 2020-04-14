@@ -127,6 +127,13 @@ import IconPencilFilled from './IconPencilFilled';
 import IconCabrioFilled from './IconCabrioFilled';
 import IconSuvFilled from './IconSuvFilled';
 import IconSportsCarFilled from './IconSportsCarFilled';
+import IconCloseFamily from './IconCloseFamily';
+import IconHeavyWork from './IconHeavyWork';
+import IconParkingAids from './IconParkingAids';
+import IconPedestrian from './IconPedestrian';
+import IconPrint from './IconPrint';
+import IconStats from './IconStats';
+import IconWoman from './IconWoman';
 
 export {
   IconFireFilled,
@@ -257,4 +264,11 @@ export {
   IconCabrioFilled,
   IconSuvFilled,
   IconSportsCarFilled,
+  IconCloseFamily,
+  IconHeavyWork,
+  IconParkingAids,
+  IconPedestrian,
+  IconPrint,
+  IconStats,
+  IconWoman,
 };
