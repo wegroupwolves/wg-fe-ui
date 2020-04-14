@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { string, object, node, bool, func } from 'prop-types';
 import styled from 'styled-components';
 import Icon from '../../Icons/IconActionDropDown';
