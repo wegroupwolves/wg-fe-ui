@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { storiesOf } from '@storybook/react';
 import { withInfo } from '@storybook/addon-info';
 import { withKnobs, select, text } from '@storybook/addon-knobs';
@@ -15,20 +15,31 @@ storiesOf('Low level blocks/Modals', module)
   .addDecorator(withKnobs)
   .addDecorator(withInfo({ inline: true }))
   .add('Modal', () => {
-    return (
-      <Modal title={text('Modal title', 'Default Title')}>
-        <p>This is some content for the modal</p>
+    const [showModal, setShowModal] = useState(false);
 
-        <Modal.ModalActions
-          position={select(
-            'Position of the actions',
-            ModalActionsPositions,
-            'right',
-          )}
+    return (
+      <>
+        <ActionButton onClick={() => setShowModal(!showModal)}>
+          Click me!
+        </ActionButton>
+        <Modal
+          showModal={showModal}
+          setShowModal={setShowModal}
+          title={text('Modal title', 'Default Title')}
         >
-          <TertiaryButton label="Cancel"></TertiaryButton>
-          <ActionButton>Primary</ActionButton>
-        </Modal.ModalActions>
-      </Modal>
+          <p>This is some content for the modal</p>
+
+          <Modal.ModalActions
+            position={select(
+              'Position of the actions',
+              ModalActionsPositions,
+              'right',
+            )}
+          >
+            <TertiaryButton label="Cancel"></TertiaryButton>
+            <ActionButton>Primary</ActionButton>
+          </Modal.ModalActions>
+        </Modal>
+      </>
     );
   });
