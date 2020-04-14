@@ -74,14 +74,14 @@ export {
 
 export { PhaseLabel, RiskObjectLabel, TypeLabel } from './components/Labels';
 
-export { DraggableList, DraggableContainer } from './components/DraggableList';
+export { DraggableList } from './components/DraggableList';
 
 export { Modal } from './components/Modals';
 
 // Export all icons
 export * from './components/Icons';
 
-export { Section_v2 } from './components/v2/Section/Section_v2';
+export { Section_v2 } from './components/v2/Section';
 
 export { CheckBox_v2 } from './components/v2/Checkboxes';
 
