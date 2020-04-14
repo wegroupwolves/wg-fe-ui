@@ -10,6 +10,8 @@ function backgroundColor(status, theme) {
       return '#FFFFFF';
     case 'selected':
       return theme.brand.lightest;
+    default:
+      break;
   }
 }
 
@@ -21,6 +23,8 @@ function borderColor(status, theme) {
       return theme.ui.outline;
     case 'selected':
       return theme.brand.secondary;
+    default:
+      break;
   }
 }
 
@@ -32,6 +36,8 @@ function iconColor(status, theme) {
       return theme.ui.interactive;
     case 'selected':
       return theme.brand.secondary;
+    default:
+      break;
   }
 }
 

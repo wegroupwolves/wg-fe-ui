@@ -30,7 +30,7 @@ const CheckBox_v2 = forwardRef(
     };
 
     useEffect(() => {
-      if (isChecked != checked) {
+      if (isChecked !== checked) {
         setIsChecked(checked);
       }
     }, [checked]);
@@ -42,7 +42,7 @@ const CheckBox_v2 = forwardRef(
         className={className}
         {...otherProps}
       >
-        {side == 'left' ? children : null}
+        {side === 'left' ? children : null}
         <input
           ref={ref}
           name={name}
@@ -55,7 +55,7 @@ const CheckBox_v2 = forwardRef(
         <StyledBox disabled={disabled} checked={isChecked} side={side}>
           {isChecked ? <StyledCheckmark color={'white'} /> : null}
         </StyledBox>
-        {side == 'right' ? children : null}
+        {side === 'right' ? children : null}
       </StyledLabel>
     );
   },
@@ -71,8 +71,8 @@ const StyledBox = styled.div`
   border: 1px solid
     ${({ theme, disabled, checked }) =>
       disabled ? '#8990A3' : checked ? theme.brand.primary : '#E4E4E4'};
-  margin-right: ${({ side }) => (side == 'right' ? '1rem' : '')};
-  margin-left: ${({ side }) => (side == 'left' ? '1rem' : '')};
+  margin-right: ${({ side }) => (side === 'right' ? '1rem' : '')};
+  margin-left: ${({ side }) => (side === 'left' ? '1rem' : '')};
   background-color: ${({ theme, disabled, checked }) =>
     disabled && checked
       ? '#8990A3'

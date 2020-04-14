@@ -2,8 +2,6 @@ import React, { useState } from 'react';
 import { node, string } from 'prop-types';
 import styled from 'styled-components';
 
-import CheckBox from './CheckBox';
-
 const CheckBoxContainer = ({ children, label }) => {
   const [CheckedAll, setCheckedAll] = useState(false);
 
@@ -20,7 +18,7 @@ const CheckBoxContainer = ({ children, label }) => {
       <CheckBoxContainerHeader>
         <span className="title">
           {label}
-          {label != '' ? ' -' : ''}{' '}
+          {label !== '' ? ' -' : ''}{' '}
         </span>
         <CheckBoxContainerToggler onClick={toggleCheckedAll}>
           {CheckedAll ? 'Deselect all' : 'Select all'}

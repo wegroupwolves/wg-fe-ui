@@ -60,7 +60,7 @@ const SearchSelectInput = forwardRef(
         setSelected(initial);
       }
       if (value) setSelected(value);
-    }, [value, options]);
+    }, [value, options, initial, loading]);
 
     return (
       <Container className={className}>
@@ -148,7 +148,7 @@ const styles = css`
     }
 
     &__value-container {
-      padding: 0 0.5em;
+      padding: 0.5em;
       font-size: 1.6rem;
     }
 
@@ -202,12 +202,14 @@ const styles = css`
 
       &__label {
         color: ${({ theme }) => theme.brand.primary};
-        line-height: 1.8rem;
+        line-height: 1.6rem;
+        padding: 0.2rem 0.2rem 0.2rem 0.4rem;
         box-sizing: border-box;
       }
       &__remove {
         cursor: pointer;
-        svg {
+
+        & svg {
           fill: ${({ theme }) => theme.brand.primary};
         }
 
@@ -245,7 +247,7 @@ const Input = styled(Select)`
 `;
 
 const AsyncInput = styled(AsyncSelect)`
-  ${styles}
+  ${styles};
 `;
 
 SearchSelectInput.displayName = 'SearchSelectInput';

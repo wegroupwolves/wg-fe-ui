@@ -85,7 +85,16 @@ const TimeInput = forwardRef(
         value: `${time.hour}:${time.minute}:${time.second}${timeFormat}`,
       });
       !touched && setFocus(false);
-    }, [time.hour, time.minute, time.second]);
+    }, [
+      time.hour,
+      time.minute,
+      time.second,
+      isTime,
+      name,
+      touched,
+      onChange,
+      timeFormat,
+    ]);
 
     const prevRef = {
       hour: null,
@@ -313,7 +322,6 @@ const Input = styled.div`
   padding-left: 1.2rem;
   height: 4rem;
   margin-top: 1.4rem;
-  margin-bottom: 2rem;
   border: 0.1rem solid;
   border-color: ${({ error, touched, theme }) =>
     error

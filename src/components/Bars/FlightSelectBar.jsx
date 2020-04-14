@@ -20,14 +20,14 @@ const FlightData = styled.div`
   display: flex;
   flex-direction: column;
   border-right: ${({ border, theme }) =>
-    border ? css`1px solid ${theme.ui.outline}` : null};
+    border ? `1px solid ${theme.ui.outline}` : null};
   padding-right: ${({ border }) => (border ? '1.7vw' : null)};
   margin-right: 7%;
 
   .label {
     font-size: 1.4rem;
     line-height: 2rem;
-    color: #a29c95;
+    color: ${({ theme }) => theme.labels.defaultText};
   }
 
   .data {

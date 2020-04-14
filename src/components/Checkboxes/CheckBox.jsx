@@ -28,7 +28,7 @@ const CheckBox = forwardRef(
     };
 
     useEffect(() => {
-      if (isChecked != checked) {
+      if (isChecked !== checked) {
         setIsChecked(checked);
       }
     }, [checked]);

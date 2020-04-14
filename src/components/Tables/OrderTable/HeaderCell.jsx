@@ -52,7 +52,7 @@ const ThWrapper = styled.div`
 const IconWrapper = styled.div`
   display: ${({ active }) => (active ? 'flex' : 'none')};
   transform: rotate(
-    ${({ active, order }) => (active && order == 'ascending' ? '180deg' : '')}
+    ${({ active, order }) => (active && order === 'ascending' ? '180deg' : '')}
   );
   height: 1.6rem;
   width: 1.6rem;

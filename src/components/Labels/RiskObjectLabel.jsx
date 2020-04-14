@@ -4,9 +4,9 @@ import styled from 'styled-components';
 import * as Icons from '../Icons';
 
 const IconsList = {};
-Object.keys(Icons).map(IconKey => {
-  IconsList[Icons[IconKey].name] = Icons[IconKey];
-});
+Object.keys(Icons).map(
+  IconKey => (IconsList[Icons[IconKey].name] = Icons[IconKey]),
+);
 
 const RiskObjectLabel = ({ amount, icon, iconColor, ...otherProps }) => {
   const ChosenIcon = IconsList[icon];

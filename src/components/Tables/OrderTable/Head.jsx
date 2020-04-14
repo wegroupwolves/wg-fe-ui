@@ -26,7 +26,7 @@ const Head = ({ className, children, ...otherProps }) => {
         {elements.map((element, index) => {
           return React.cloneElement(element, {
             onClick: () => clickHandler(index),
-            active: index == ActiveOrder ? true : false,
+            active: index === ActiveOrder ? true : false,
             order: OrderDirection,
           });
         })}
