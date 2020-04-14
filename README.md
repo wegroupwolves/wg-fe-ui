@@ -1,5 +1,3 @@
-> A React based Front-end platform containing a few broker tools.
-
 ## Table of Contents
 
 - [About](#about)
@@ -13,7 +11,7 @@
 
 ## About
 
-An React based Front-end platform containing a design system.
+React implementation of the WeGroup Design System.
 
 ## Development
 
@@ -31,9 +29,9 @@ $ npm i
 $ npm run storybook
 ```
 
-## contributing
+## Contributing
 
-### pull-request
+### Pull request
 
 The project uses 2 main braches, master and dev. To contribute please open an pull-request from you current branch **feature/** or **bug/** to dev.
 
