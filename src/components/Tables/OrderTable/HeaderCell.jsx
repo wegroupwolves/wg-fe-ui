@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { string, object, node, bool, func } from 'prop-types';
 import styled from 'styled-components';
 import Icon from '../../Icons/IconActionDropDown';
@@ -37,7 +37,7 @@ const Th = styled.th`
   padding-bottom: 1.3rem;
   width: ${props => props.width};
   font-weight: ${({ isTitle, active }) => (isTitle || active ? '700' : '400')};
-  font-size: ${props => (props.isTitle ? `1.6rem` : `1.4rem`)};
+  font-size: ${props => (props.isTitle ? `1.6rem` : `1.3rem`)};
   color: ${({ isTitle, active }) =>
     isTitle || active ? '#5B5550' : '#A29C95'};
   vertical-align: middle;
