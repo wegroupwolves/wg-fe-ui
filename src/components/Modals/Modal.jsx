@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { string, bool, node } from 'prop-types';
+import React from 'react';
+import { string, bool, node, func } from 'prop-types';
 import styled from 'styled-components';
 import Drawer from 'react-drag-drawer';
 
@@ -9,18 +9,17 @@ const StyledModalActions = ({ children, position }) => {
   return <ModalActions position={position}>{children}</ModalActions>;
 };
 
-const Modal = ({ title, canClose, children, showModal }) => {
-  const [Open, setOpen] = useState({ showModal });
-
-  const closeHandler = () => {
-    setOpen(false);
-  };
+const Modal = ({ title, canClose, children, showModal, setShowModal }) => {
+  console.log('showModel: ', showModal);
 
   return (
-    <Drawer open={Open} onRequestClose={canClose ? closeHandler : ''}>
+    <StyledDrawer
+      open={showModal}
+      onRequestClose={canClose ? () => setShowModal(!showModal) : ''}
+    >
       <ModalContainer>
         {canClose ? (
-          <ModalCloser onClick={closeHandler}>
+          <ModalCloser onClick={() => setShowModal(!showModal)}>
             <CloseIcon color="#505050" />
           </ModalCloser>
         ) : (
@@ -30,9 +29,13 @@ const Modal = ({ title, canClose, children, showModal }) => {
 
         <ModalContent title={title}>{children}</ModalContent>
       </ModalContainer>
-    </Drawer>
+    </StyledDrawer>
   );
 };
+
+const StyledDrawer = styled(Drawer)`
+  z-index: 9999999;
+`;
 
 const ModalContainer = styled.div`
   background: white;
@@ -127,11 +130,12 @@ Modal.propTypes = {
   canClose: bool,
   children: node,
   showModal: bool,
+  setShowModal: func.isRequired,
 };
 
 Modal.defaultProps = {
   canClose: true,
-  showModal: true,
+  showModal: false,
 };
 
 Modal.ModalActions = StyledModalActions;
