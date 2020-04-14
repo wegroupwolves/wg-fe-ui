@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { string, object, node } from 'prop-types';
 
-const Head = ({ className, children, ...otherProps }) => {
+const Head = ({ className, children }) => {
   const [ActiveOrder, setActiveOrder] = useState(0);
   const [OrderDirection, setOrderDirection] = useState('descending');
 
@@ -21,7 +21,7 @@ const Head = ({ className, children, ...otherProps }) => {
   };
 
   return (
-    <thead className={className} {...otherProps}>
+    <thead className={className}>
       <tr>
         {elements.map((element, index) => {
           return React.cloneElement(element, {
