@@ -45,7 +45,7 @@ const StyledSectionRow = styled.div`
   > * {
     flex: 0 0
       ${({ size }) =>
-        size == 'three' ? '31.5%' : size == 'two' ? '47.5%' : '100%'};
+        size === 'three' ? '31.5%' : size === 'two' ? '47.5%' : '100%'};
     margin: 5px 0;
   }
 

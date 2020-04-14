@@ -24,11 +24,11 @@ const BreadCrumbs = ({ urls }) => {
               <>
                 <BreadCrumb
                   to={url.url}
-                  active={urls.length - 1 != index ? false : true}
+                  active={urls.length - 1 !== index ? false : true}
                 >
                   {url.label}
                 </BreadCrumb>
-                {urls.length - 1 != index ? <ChevronRight size={15} /> : ''}
+                {urls.length - 1 !== index ? <ChevronRight size={15} /> : ''}
               </>
             );
           })}

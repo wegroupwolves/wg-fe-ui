@@ -5,18 +5,11 @@ import styled from 'styled-components';
 import * as Icons from '../Icons';
 
 const IconsList = {};
-Object.keys(Icons).map(IconKey => {
-  IconsList[Icons[IconKey].name] = Icons[IconKey];
-});
+Object.keys(Icons).map(
+  IconKey => (IconsList[Icons[IconKey].name] = Icons[IconKey]),
+);
 
-const CommentBox = ({
-  title,
-  icon,
-  children,
-  editHandler,
-  deleteHandler,
-  id,
-}) => {
+const CommentBox = ({ title, icon, children, editHandler, deleteHandler }) => {
   const ChosenIcon = IconsList[icon];
 
   return (
@@ -53,7 +46,13 @@ const CommentBoxIcon = styled.div`
   margin-right: 20px;
 `;
 
-const CommentBoxContent = styled.div``;
+const CommentBoxContent = styled.div`
+  & p {
+    font-size: 1.6rem;
+    line-height: 130%;
+    color: ${({ theme }) => theme.typo.text};
+  }
+`;
 
 const CommentBoxHeader = styled.div`
   display: flex;
@@ -62,9 +61,9 @@ const CommentBoxHeader = styled.div`
   margin-bottom: 10px;
 
   .title {
-    font-size: 1.5rem;
+    font-size: 1.4rem;
     line-height: 2rem;
-    color: #a29c95;
+    color: ${({ theme }) => theme.labels.defaultText};
   }
 `;
 
@@ -75,9 +74,9 @@ const CommentBoxActions = styled.div`
 
   span {
     margin: 0 10px;
-    font-size: 1.5rem;
+    font-size: 1.4rem;
     line-height: 2rem;
-    color: #a29c95;
+    color: ${({ theme }) => theme.labels.defaultText};
   }
 
   ${CommentBoxWrapper}:hover & {
@@ -87,9 +86,9 @@ const CommentBoxActions = styled.div`
 
 const CommentBoxAction = styled.a`
   margin-right: 10px;
-  font-size: 1.5rem;
+  font-size: 1.4rem;
   line-height: 2rem;
-  color: #a29c95;
+  color: ${({ theme }) => theme.labels.defaultText};
   cursor: pointer;
   transition: color 0.1s ease-in-out;
 

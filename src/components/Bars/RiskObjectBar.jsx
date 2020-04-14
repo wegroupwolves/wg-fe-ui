@@ -3,12 +3,12 @@ import { string, node, object, bool, func } from 'prop-types';
 import styled from 'styled-components';
 
 import * as Icons from '../Icons';
-import { QuickActionSubMenu } from '../Navigation/index';
+// import { QuickActionSubMenu } from '../Navigation/index';
 
 const IconsList = {};
-Object.keys(Icons).map(IconKey => {
-  IconsList[Icons[IconKey].name] = Icons[IconKey];
-});
+Object.keys(Icons).map(
+  IconKey => (IconsList[Icons[IconKey].name] = Icons[IconKey]),
+);
 
 const StyledRiskObjectBarData = ({ label, data, size, children }) => (
   <RiskObjectBarData className={size}>
@@ -65,7 +65,7 @@ const RiskObjectBarContainer = styled.div`
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
   width: 100%;
   padding: ${({ isDragItem }) =>
-    isDragItem == true ? '25px 25px 25px 45px' : '25px'};
+    isDragItem === true ? '25px 25px 25px 45px' : '25px'};
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -73,7 +73,7 @@ const RiskObjectBarContainer = styled.div`
   border: 1px solid ${({ theme }) => theme.ui.outline};
   border-radius: 5px;
   max-width: 100rem;
-  cursor: ${({ onClick }) => (onClick != undefined ? 'pointer' : 'auto')};
+  cursor: ${({ onClick }) => (onClick !== undefined ? 'pointer' : 'auto')};
 
   section {
     flex: 1 0 auto;
@@ -98,7 +98,7 @@ const RiskObjectBarData = styled.div`
     font-weight: normal;
     font-size: 1.4rem;
     line-height: 2rem;
-    color: #a29c95;
+    color: ${({ theme }) => theme.labels.defaultText};
   }
 
   .data {

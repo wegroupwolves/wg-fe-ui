@@ -164,7 +164,7 @@ MaskedInput.defaultProps = {
   touched: false,
   type: 'text',
   value: '',
-  setFieldTouched: () => { },
+  setFieldTouched: () => {},
   otherProps: {},
 };
 

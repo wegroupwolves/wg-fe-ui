@@ -4,9 +4,8 @@ import FilingIcon from './../Icons/Filing';
 import { node, number, string, shape } from 'prop-types';
 
 function backgroundColor(status, theme) {
-  switch (status) {
-    case 'done':
-      return theme.brand.primary;
+  if (status === 'done') {
+    return theme.brand.primary;
   }
 }
 
@@ -16,6 +15,8 @@ function borderColor(status, theme) {
       return theme.brand.primary;
     case 'disabled':
       return theme.ui.disabled;
+    default:
+      break;
   }
 }
 
@@ -27,6 +28,8 @@ function iconColor(status, theme) {
       return theme.brand.primary;
     case 'disabled':
       return theme.ui.disabled;
+    default:
+      break;
   }
 }
 
@@ -64,10 +67,9 @@ const Status = styled.div`
     top: 5.76vh;
     font-size: calc(9px + 0.26vw);
     line-height: 18px;
-    text-align: center;
     text-transform: capitalize;
     margin-top: 1.8vh;
-    color: #A29C95;
+    color: ${({ theme }) => theme.labels.defaultText};
     width: 5vw;
   }
 `;

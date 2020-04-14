@@ -46,7 +46,7 @@ const Pagination = ({
             <PaginationPage
               to={url.url}
               key={url.page}
-              active={url.page == currentPage ? true : false}
+              active={url.page === currentPage ? true : false}
             >
               {url.page}
             </PaginationPage>

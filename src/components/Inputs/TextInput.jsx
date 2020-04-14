@@ -15,9 +15,9 @@ import ValidationIcons from './../Inputs/ValidationIcons';
 
 import * as Icons from '../Icons';
 const IconsList = {};
-Object.keys(Icons).map(IconKey => {
-  IconsList[Icons[IconKey].name] = Icons[IconKey];
-});
+Object.keys(Icons).map(
+  IconKey => (IconsList[Icons[IconKey].name] = Icons[IconKey]),
+);
 
 const TextInput = forwardRef(
   (
@@ -49,7 +49,7 @@ const TextInput = forwardRef(
 
     let ChosenIcon;
 
-    if (symbolText == false) {
+    if (symbolText === false) {
       ChosenIcon = IconsList[symbol];
     }
 
@@ -158,9 +158,9 @@ const StyledInput = styled.input`
   margin-top: 1.4rem;
   box-sizing: border-box;
   padding-right: ${({ symbolSide, symbol }) =>
-    symbol !== '' && symbolSide == 'right' ? '4.7rem' : '0.7rem'};
+    symbol !== '' && symbolSide === 'right' ? '4.7rem' : '0.7rem'};
   padding-left: ${({ symbolSide, symbol }) =>
-    symbol !== '' && symbolSide == 'left' ? '4.7rem' : '0.7rem'};
+    symbol !== '' && symbolSide === 'left' ? '4.7rem' : '0.7rem'};
 
   &:focus {
     outline: none;
@@ -174,8 +174,8 @@ const StyledInput = styled.input`
 
 const StyledSymbol = styled.div`
   position: absolute;
-  right: ${({ symbolSide }) => (symbolSide == 'right' ? '1px' : '')};
-  left: ${({ symbolSide }) => (symbolSide == 'right' ? '' : '1px')};
+  right: ${({ symbolSide }) => (symbolSide === 'right' ? '1px' : '')};
+  left: ${({ symbolSide }) => (symbolSide === 'right' ? '' : '1px')};
   bottom: 1px;
   height: calc(4rem - 2px);
   width: 4rem;
