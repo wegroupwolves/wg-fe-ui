@@ -1,22 +1,17 @@
 import React from 'react';
-import { string, number, object } from 'prop-types';
+import { string, number, object, node } from 'prop-types';
 import styled from 'styled-components';
-import * as Icons from '../Icons';
 
-const IconsList = {};
-Object.keys(Icons).map(
-  IconKey => (IconsList[Icons[IconKey].name] = Icons[IconKey]),
-);
+const RiskObjectLabel = ({ amount, icon, ...otherProps }) => {
+  let IconToRender;
 
-const RiskObjectLabel = ({ amount, icon, iconColor, ...otherProps }) => {
-  const ChosenIcon = IconsList[icon];
+  if (icon !== '') {
+    IconToRender = <RiskObjectLabelIcon>{icon}</RiskObjectLabelIcon>;
+  }
 
   return (
     <RiskObjectLabelWrapper {...otherProps}>
-      <RiskObjectLabelIcon>
-        <ChosenIcon color={iconColor}></ChosenIcon>
-      </RiskObjectLabelIcon>
-
+      {IconToRender}
       <RiskObjectLabelBadge>{amount}</RiskObjectLabelBadge>
     </RiskObjectLabelWrapper>
   );
@@ -65,7 +60,7 @@ RiskObjectLabel.propTypes = {
   /** The amount to be displayed inside the badge */
   amount: number,
   /** The name of the icon to be displayed */
-  icon: string,
+  icon: node,
   /** The color of the icon */
   iconColor: string,
   otherProps: object,
