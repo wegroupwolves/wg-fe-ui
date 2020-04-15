@@ -134,6 +134,7 @@ import IconPedestrian from './IconPedestrian';
 import IconPrint from './IconPrint';
 import IconStats from './IconStats';
 import IconWoman from './IconWoman';
+import IconPorch from './IconPorch';
 
 export {
   IconFireFilled,
@@ -271,4 +272,5 @@ export {
   IconPrint,
   IconStats,
   IconWoman,
+  IconPorch,
 };
