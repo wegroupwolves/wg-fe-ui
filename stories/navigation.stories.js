@@ -242,7 +242,7 @@ storiesOf('Mid level blocks/Navigation', module)
           max: 100,
         })}
         pageLength={20}
-        base={`/api-url/url`}
+        base={`/api-url/url/`}
         otherFilters={'&id=test'}
       ></Pagination>
     );
