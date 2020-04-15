@@ -2,22 +2,16 @@ import React from 'react';
 import { string, node, int, func } from 'prop-types';
 import styled from 'styled-components';
 
-import * as Icons from '../Icons';
-
-const IconsList = {};
-Object.keys(Icons).map(
-  IconKey => (IconsList[Icons[IconKey].name] = Icons[IconKey]),
-);
-
 const CommentBox = ({ title, icon, children, editHandler, deleteHandler }) => {
-  const ChosenIcon = IconsList[icon];
+  let IconToRender;
+
+  if (icon !== '') {
+    IconToRender = <CommentBoxIcon>{icon}</CommentBoxIcon>;
+  }
 
   return (
     <CommentBoxWrapper>
-      <CommentBoxIcon>
-        <ChosenIcon color="#D3D4D8"></ChosenIcon>
-      </CommentBoxIcon>
-
+      {IconToRender}
       <CommentBoxContent>
         <CommentBoxHeader>
           <span className="title">{title}</span>
@@ -106,7 +100,7 @@ CommentBox.propTypes = {
   title: string,
 
   /** Icon to be displayed on the left side. */
-  icon: string,
+  icon: node,
   children: node,
 
   /** Function to be ran when 'edit' is clicked. */
