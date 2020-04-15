@@ -164,7 +164,7 @@ storiesOf('Mid Level blocks/Bars', module)
   .add('RiskObjectBar', () => {
     return (
       <div style={{ padding: '0px 40px', width: '100%' }}>
-        <RiskObjectBar icon={select('Icon', IconsList, '')}>
+        <RiskObjectBar icon={<Icons.IconCarFilled color="#CCCCCC" />}>
           <RiskObjectBar.RiskObjectBarData
             size="double"
             label="Car"
