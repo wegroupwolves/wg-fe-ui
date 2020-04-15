@@ -2,9 +2,9 @@ import React from 'react';
 import { string, object, node, func } from 'prop-types';
 import styled from 'styled-components';
 
-const Row = ({ className, children, onClick, key, ...otherProps }) => {
+const Row = ({ className, children, onClick, ...otherProps }) => {
   return (
-    <Tr className={className} onClick={onClick} {...otherProps} key={key}>
+    <Tr className={className} onClick={onClick} {...otherProps}>
       {children}
     </Tr>
   );
@@ -32,7 +32,6 @@ Row.propTypes = {
   otherProps: object,
   onClick: func,
   children: node,
-  key: string,
 };
 
 export default Row;
