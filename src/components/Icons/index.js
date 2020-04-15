@@ -135,6 +135,11 @@ import IconPrint from './IconPrint';
 import IconStats from './IconStats';
 import IconWoman from './IconWoman';
 import IconPorch from './IconPorch';
+import IconElectricBike from './IconElectricBike';
+import IconHeavyScooter from './IconHeavyScooter';
+import IconLightScooter from './IconLightScooter';
+import IconMotor from './IconMotor';
+import IconCompanyCar from './IconCompanyCar';
 
 export {
   IconFireFilled,
@@ -273,4 +278,9 @@ export {
   IconStats,
   IconWoman,
   IconPorch,
+  IconElectricBike,
+  IconHeavyScooter,
+  IconLightScooter,
+  IconMotor,
+  IconCompanyCar,
 };
