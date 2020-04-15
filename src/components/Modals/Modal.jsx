@@ -9,12 +9,21 @@ const StyledModalActions = ({ children, position }) => {
   return <ModalActions position={position}>{children}</ModalActions>;
 };
 
-const Modal = ({ title, canClose, children, showModal, setShowModal, ...otherProps }) => {
+const Modal = ({
+  title,
+  canClose,
+  children,
+  showModal,
+  setShowModal,
+  className,
+  ...otherProps
+}) => {
   console.log('showModel: ', showModal);
 
   return (
     <StyledDrawer
-	{...otherProps}
+      {...otherProps}
+      className={className}
       open={showModal}
       onRequestClose={canClose ? () => setShowModal(!showModal) : ''}
     >
@@ -132,6 +141,7 @@ Modal.propTypes = {
   children: node,
   showModal: bool,
   setShowModal: func.isRequired,
+  className: string,
 };
 
 Modal.defaultProps = {
