@@ -5,7 +5,7 @@ import { action } from '@storybook/addon-actions';
 import { withInfo } from '@storybook/addon-info';
 import styled from 'styled-components';
 import {
-  BackButton,
+  //BackButton,
   SearchInput,
   ProgressBar,
   ToolBar,
@@ -164,7 +164,7 @@ storiesOf('Mid Level blocks/Bars', module)
   .add('RiskObjectBar', () => {
     return (
       <div style={{ padding: '0px 40px', width: '100%' }}>
-        <RiskObjectBar icon={select('Icon', IconsList, '')}>
+        <RiskObjectBar icon={select('Icon', IconsList, IconsKeys[0])}>
           <RiskObjectBar.RiskObjectBarData
             size="double"
             label="Car"

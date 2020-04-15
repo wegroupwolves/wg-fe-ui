@@ -1,14 +1,7 @@
 import React from 'react';
 import { string, node, object, bool, func } from 'prop-types';
 import styled from 'styled-components';
-
-import * as Icons from '../Icons';
 // import { QuickActionSubMenu } from '../Navigation/index';
-
-const IconsList = {};
-Object.keys(Icons).map(
-  IconKey => (IconsList[Icons[IconKey].name] = Icons[IconKey]),
-);
 
 const StyledRiskObjectBarData = ({ label, data, size, children }) => (
   <RiskObjectBarData className={size}>
@@ -32,17 +25,10 @@ const RiskObjectBar = ({
   onClick,
   ...otherProps
 }) => {
-  let ChosenIcon;
   let IconToRender;
 
   if (icon !== '') {
-    ChosenIcon = IconsList[icon];
-
-    IconToRender = (
-      <RiskObjectBarIcon>
-        <ChosenIcon color="#CCCCCC"></ChosenIcon>
-      </RiskObjectBarIcon>
-    );
+    IconToRender = <RiskObjectBarIcon>{icon}</RiskObjectBarIcon>;
   }
 
   return (
@@ -125,7 +111,7 @@ RiskObjectBar.propTypes = {
 
 RiskObjectBar.defaultProps = {
   otherProps: {},
-  icon: '',
+  icon: node,
   isDragItem: false,
 };
 
