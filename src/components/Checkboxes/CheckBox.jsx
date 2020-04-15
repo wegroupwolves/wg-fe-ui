@@ -93,6 +93,7 @@ const StyledLabel = styled.label`
   align-items: center;
   color: ${({ disabled, theme }) =>
     disabled ? theme.ui.disabled : theme.typo.text};
+  cursor: ${({ disabled }) => (disabled ? '' : 'pointer')};
 
   & input {
     display: none;

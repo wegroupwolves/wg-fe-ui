@@ -94,6 +94,7 @@ const StyledLabel = styled.label`
 
   display: flex;
   align-items: center;
+  cursor: ${({ disabled }) => (disabled ? '' : 'pointer')};
 
   & input {
     display: none;

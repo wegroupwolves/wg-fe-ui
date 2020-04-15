@@ -17,6 +17,7 @@ const Tr = styled.tr`
 
   :hover {
     background-color: ${({ theme }) => theme.brand.lightest};
+    cursor: ${({ onClick }) => (onClick ? 'pointer' : '')};
   }
 `;
 

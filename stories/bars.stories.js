@@ -32,12 +32,6 @@ IconsKeys.map(IconKey => {
   IconsList[Icons[IconKey].name] = Icons[IconKey].name;
 });
 
-const COMPONENT_CHOICES = {
-  none: null,
-  back_button: <BackButton />,
-  search_input: <SearchInput onChange={action('onChange')} />,
-};
-
 const backgrounds = ['#AEAEAE', '#C1C1C1', '#D3D4D8'];
 const fillColors = ['default', 'red', 'green', 'blue'];
 const activeIds = [1, 2, 3];
@@ -56,18 +50,14 @@ storiesOf('Mid Level blocks/Bars', module)
     return <StyledProgressBar {...props} />;
   })
   .add('ToolBar', () => {
-    const componentName = select(
-      'Child component',
-      Object.keys(COMPONENT_CHOICES),
-      'search_input',
-    );
+    const [val, setVal] = useState('');
     return (
       <StyledToolBar
         btnName={text('Button text', 'Continue')}
         btnDisable={boolean('Disable button', false)}
         onClick={action('clicked it')}
       >
-        {COMPONENT_CHOICES[componentName]}
+        <SearchInput text={val} placeholder="Search for..." onChange={setVal} />
       </StyledToolBar>
     );
   })

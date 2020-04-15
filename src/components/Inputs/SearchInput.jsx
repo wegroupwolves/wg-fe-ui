@@ -42,12 +42,15 @@ const SearchInput = forwardRef(
 const StyledBox = styled.div`
   position: relative;
   width: 100%;
+  height: 4rem;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
 
   svg {
-    position: absolute;
-    top: 3px;
-    left: 0;
     transform: rotate(-90deg);
+    flex: 0 0 30px;
+
     path {
       fill: ${({ theme }) => theme.ui.interactive};
     }
@@ -61,9 +64,16 @@ const Input = styled.input`
   border: ${({ border, theme }) =>
     border ? `1px solid ${theme.ui.disabled}` : 'none'};
   line-height: 2rem;
-  padding: 3px 0.2vw 3px 5.7vw;
+  padding: 0.3rem 1rem;
   width: 100%;
+  flex: 1 0 auto;
+  height: 100%;
   box-sizing: border-box;
+
+  &:focus {
+    outline: none;
+    box-shadow: 0;
+  }
 `;
 
 Input.displayName = 'Input';
