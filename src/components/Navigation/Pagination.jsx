@@ -16,16 +16,19 @@ const Pagination = ({
   const urls = [];
 
   for (let index = 1; index <= totalPages; index++) {
-    const generatedUrl = `${base}?page=${index}&pagelen=${pageLength}${otherFilters}`;
+    const generatedUrl = `${base}${index}`;
     const pageNumber = index;
 
     urls[index] = { url: generatedUrl, page: pageNumber };
   }
 
+  const prevUrl = currentPage - 1;
+  const nextUrl = currentPage + 1;
+
   return (
     <PaginationWrapper {...otherProps}>
       {currentPage > 1 ? (
-        <PaginationButton>
+        <PaginationButton to={urls[prevUrl].url}>
           <ChevronLeft color="#C1C1C1" />
           <span className="label">Prev</span>
         </PaginationButton>
@@ -34,12 +37,12 @@ const Pagination = ({
       )}
 
       <PaginationPages>
-        {currentPage > 3 ? (
+        {currentPage > 4 ? (
           <PaginationPage to={urls[1].url}>1</PaginationPage>
         ) : (
           ''
         )}
-        {currentPage > 3 ? <PaginationPage disabled>...</PaginationPage> : ''}
+        {currentPage > 4 ? <PaginationPage disabled>...</PaginationPage> : ''}
 
         {urls.map(url => {
           return url.page >= currentPage - 2 && url.page <= currentPage + 2 ? (
@@ -55,12 +58,12 @@ const Pagination = ({
           );
         })}
 
-        {currentPage < totalPages - 2 ? (
+        {currentPage < totalPages - 3 ? (
           <PaginationPage disabled>...</PaginationPage>
         ) : (
           ''
         )}
-        {currentPage < totalPages - 2 ? (
+        {currentPage < totalPages - 3 ? (
           <PaginationPage to={urls[totalPages].url}>
             {totalPages}
           </PaginationPage>
@@ -70,7 +73,7 @@ const Pagination = ({
       </PaginationPages>
 
       {currentPage < totalPages ? (
-        <PaginationButton>
+        <PaginationButton to={urls[nextUrl].url}>
           <span className="label">Next</span>
           <ChevronRight color="#C1C1C1" />
         </PaginationButton>
@@ -92,10 +95,11 @@ const PaginationWrapper = styled.div`
   box-shadow: 0 2px 7px rgba(0, 0, 0, 0.1);
 `;
 
-const PaginationButton = styled.a`
+const PaginationButton = styled(Link)`
   display: flex;
   align-items: center;
   cursor: pointer;
+  text-decoration: none;
 
   &:first-of-type {
     border-right: 1px solid #e4e4e4;
