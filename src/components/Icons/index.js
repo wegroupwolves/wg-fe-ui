@@ -140,6 +140,7 @@ import IconHeavyScooter from './IconHeavyScooter';
 import IconLightScooter from './IconLightScooter';
 import IconMotor from './IconMotor';
 import IconCompanyCar from './IconCompanyCar';
+import IconSixWheeler from './IconSixWheeler';
 
 export {
   IconFireFilled,
@@ -283,4 +284,5 @@ export {
   IconLightScooter,
   IconMotor,
   IconCompanyCar,
+  IconSixWheeler,
 };
