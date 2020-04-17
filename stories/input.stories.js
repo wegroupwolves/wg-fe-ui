@@ -30,6 +30,7 @@ import {
 } from '../src';
 
 import * as Icons from '../src/components/Icons';
+import { bool } from 'yup';
 const IconsKeys = Object.keys(Icons);
 const IconsList = {};
 IconsKeys.map(IconKey => {
@@ -197,7 +198,12 @@ storiesOf('Low level blocks/Inputs', module)
   .add('SearchInput', () => {
     const [val, setVal] = useState('');
     return (
-      <SearchInput text={val} placeholder="Search for..." onChange={setVal} />
+      <SearchInput
+        showButton={boolean('Show search button?', true)}
+        text={val}
+        placeholder="Search for..."
+        onChange={setVal}
+      />
     );
   })
   .add('SearchSelectInput', () => {
@@ -259,6 +265,7 @@ storiesOf('Low level blocks/Inputs', module)
           Option3: { value: 'option3', label: 'Option 3' },
         })}
         isMulti={boolean('Multiple', false)}
+        placeholder={text('Placeholder', 'Choose an option')}
       >
         Selection
       </StyledSearchSelectInput>

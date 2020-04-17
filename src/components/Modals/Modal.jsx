@@ -18,8 +18,6 @@ const Modal = ({
   className,
   ...otherProps
 }) => {
-  console.log('showModel: ', showModal);
-
   return (
     <StyledDrawer
       {...otherProps}
