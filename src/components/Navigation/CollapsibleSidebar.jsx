@@ -5,8 +5,6 @@ import styled from 'styled-components';
 const CollapsibleSidebar = ({ label, children, open }) => {
   const [SideBarOpen, setSideBarOpen] = useState(open);
 
-  console.log(SideBarOpen);
-
   const handleToggle = () => {
     setSideBarOpen(!SideBarOpen);
   };

@@ -11,8 +11,6 @@ const CheckBoxContainer = ({ children, label }) => {
     setCheckedAll(!CheckedAll);
   };
 
-  console.log(label);
-
   return (
     <CheckBoxContainerWrapper>
       <CheckBoxContainerHeader>

@@ -10,10 +10,22 @@ import {
 } from 'prop-types';
 import LoupeIcon from './../Icons/Loupe';
 import styled from 'styled-components';
+import ActionButton from '../Buttons/ActionButton';
 
 const SearchInput = forwardRef(
   (
-    { className, border, icon, onChange, placeholder, text, ...otherProps },
+    {
+      className,
+      border,
+      icon,
+      onChange,
+      placeholder,
+      text,
+      showButton,
+      buttonText,
+      buttonAction,
+      ...otherProps
+    },
     ref,
   ) => {
     const handleChange = ({ target: { value } }) => {
@@ -34,6 +46,13 @@ const SearchInput = forwardRef(
           onChange={handleChange}
           {...otherProps}
         />
+        {showButton ? (
+          <ActionButton level="secondary" onClick={buttonAction}>
+            {buttonText}
+          </ActionButton>
+        ) : (
+          ''
+        )}
       </StyledBox>
     );
   },
@@ -65,7 +84,7 @@ const Input = styled.input`
     border ? `1px solid ${theme.ui.disabled}` : 'none'};
   line-height: 2rem;
   padding: 0.3rem 1rem;
-  width: 100%;
+  background-color: transparent;
   flex: 1 0 auto;
   height: 100%;
   box-sizing: border-box;
@@ -87,6 +106,9 @@ SearchInput.defaultProps = {
   onChange: Function.prototype,
   placeholder: 'Search for name, status, ...',
   text: '',
+  showButton: false,
+  buttonText: 'Search',
+  buttonAction: () => console.log('Pass a click function for your search'),
   otherProps: {},
 };
 
@@ -97,6 +119,9 @@ SearchInput.propTypes = {
   onChange: func,
   placeholder: string,
   text: oneOfType([string, number]),
+  showButton: bool,
+  buttonText: string,
+  buttonAction: func,
   otherProps: object,
 };
 
