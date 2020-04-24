@@ -81,7 +81,11 @@ const PhoneInput = ({
 
   return (
     <Container className={className}>
-      <StyledLabel error={error}>
+      <StyledLabel
+        error={error}
+        disabled={disabled}
+        onClick={e => e.preventDefault()}
+      >
         {children}
         <ReactPhoneInput
           name={name}
@@ -92,10 +96,12 @@ const PhoneInput = ({
           onBlur={handleBlur}
           touched={touched}
           onFocus={handleFocus}
+          disabled={disabled}
           autoFormat={false}
           inputProps={{
             ...otherProps,
             name,
+            disabled,
             required: true,
             'data-test-id': dataTestId,
           }}
@@ -883,10 +889,9 @@ const StyledLabel = styled.label`
     margin-top: 0 !important;
     margin-bottom: 0 !important;
     margin-left: 0;
-    background: white;
-    background-color: white;
     width: 100%;
     border: 1px solid;
+    background-color: ${props => (props.disabled ? '#F0F1F3' : 'white')};
     border-color: ${({ error, touched, theme, warning }) =>
       getBorderColor(error, touched, theme, warning)};
     border-radius: 0.3rem;
@@ -933,6 +938,10 @@ const StyledLabel = styled.label`
     border-color: ${({ error, touched, theme, warning }) =>
       getBorderColor(error, touched, theme, warning)};
     border-radius: 3px 0 0 3px;
+
+    &:focus {
+      outline: none;
+    }
   }
   .react-tel-input .flag-dropdown.open-dropdown {
     background: white;
