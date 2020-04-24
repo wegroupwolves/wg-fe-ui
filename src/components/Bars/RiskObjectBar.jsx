@@ -3,7 +3,7 @@ import { string, node, object, bool, func } from 'prop-types';
 import styled from 'styled-components';
 // import { QuickActionSubMenu } from '../Navigation/index';
 
-const StyledRiskObjectBarData = ({ label, data, size, children }) => (
+const RiskObjectBarDataGroup = ({ label, data, size, children }) => (
   <RiskObjectBarData className={size}>
     <span className="label">{label}</span>
     <span className="data">{data}</span>
@@ -11,7 +11,7 @@ const StyledRiskObjectBarData = ({ label, data, size, children }) => (
   </RiskObjectBarData>
 );
 
-StyledRiskObjectBarData.propTypes = {
+RiskObjectBarDataGroup.propTypes = {
   label: string,
   data: string,
   children: node,
@@ -46,6 +46,31 @@ const RiskObjectBar = ({
   );
 };
 
+const RiskObjectBarData = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  flex: 1 0 auto;
+
+  .label {
+    font-weight: normal;
+    font-size: 1.4rem;
+    line-height: 2rem;
+    color: ${({ theme }) => theme.labels.defaultText};
+  }
+
+  .data {
+    color: #505050;
+    font-weight: bold;
+    font-size: 1.6rem;
+    line-height: 1.9rem;
+  }
+
+  &.double {
+    flex: 2 0 auto;
+  }
+`;
+
 const RiskObjectBarContainer = styled.div`
   background-color: white;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
@@ -72,30 +97,15 @@ const RiskObjectBarContainer = styled.div`
       margin-right: 50px;
     }
   }
-`;
 
-const RiskObjectBarData = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  flex: 1 0 auto;
+  &:hover {
+    background-color: ${({ theme }) => theme.brand.lightest};
+    border: 1px solid ${({ theme }) => theme.brand.light};
+    cursor: pointer;
 
-  .label {
-    font-weight: normal;
-    font-size: 1.4rem;
-    line-height: 2rem;
-    color: ${({ theme }) => theme.labels.defaultText};
-  }
-
-  .data {
-    color: #505050;
-    font-weight: bold;
-    font-size: 1.6rem;
-    line-height: 1.9rem;
-  }
-
-  &.double {
-    flex: 2 0 auto;
+    & ${RiskObjectBarData} span {
+      color: ${({ theme }) => theme.brand.light};
+    }
   }
 `;
 
@@ -115,7 +125,7 @@ RiskObjectBar.defaultProps = {
   isDragItem: false,
 };
 
-RiskObjectBar.RiskObjectBarData = StyledRiskObjectBarData;
+RiskObjectBar.RiskObjectBarData = RiskObjectBarDataGroup;
 RiskObjectBar.RiskObjectBarData.displayName = 'RiskObjectBar.RiskObjectBarData';
 
 const RiskObjectBarIcon = styled.div``;
