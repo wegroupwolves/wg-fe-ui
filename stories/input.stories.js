@@ -21,6 +21,7 @@ import {
   MaskedInput,
   TextArea,
   TextInput,
+  PhoneInput,
   SearchInput,
   SearchSelectInput,
   DateInput,
@@ -129,6 +130,35 @@ storiesOf('Low level blocks/Inputs', module)
       >
         {text('Label', 'Email', 'Input options')}
       </StyledTextInput>
+    );
+  })
+  .add('PhoneInput', () => {
+    let error = text('Error', '', 'Input options');
+    let touched = boolean('Touched', false, 'Input options');
+
+    return (
+      <StyledPhoneInput
+        disabled={boolean('Disabled', false, 'Input options')}
+        name="phone"
+        placeholder={text('Placeholder', '', 'Input options')}
+        error={error}
+        touched={touched}
+        value={text('DefaultValue', '', 'Input options')}
+        symbol={
+          boolean('Show symbol', true, 'Symbol options')
+            ? select('Icon', IconsList, IconsKeys[39], 'Symbol options')
+            : ''
+        }
+        symbolSide={select(
+          'Symbol side',
+          { Right: 'right', Left: 'left' },
+          'right',
+          'Symbol options',
+        )}
+        symbolText={boolean('Show symbol as text', false, 'Symbol options')}
+      >
+        {text('Label', 'Phone', 'Input options')}
+      </StyledPhoneInput>
     );
   })
   .add('TextArea', () => {
@@ -300,6 +330,10 @@ const StyledMaskedInput = styled(MaskedInput)`
 `;
 
 const StyledTextInput = styled(TextInput)`
+  width: 27rem;
+`;
+
+const StyledPhoneInput = styled(PhoneInput)`
   width: 27rem;
 `;
 

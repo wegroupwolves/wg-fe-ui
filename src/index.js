@@ -31,6 +31,7 @@ export {
   MaskedInput,
   TextArea,
   TextInput,
+  PhoneInput,
   SearchInput,
   SearchSelectInput,
   DateInput,
