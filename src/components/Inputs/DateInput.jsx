@@ -339,8 +339,8 @@ const Input = styled.div`
     error
       ? theme.status.error
       : touched && !error
-        ? theme.status.succes
-        : theme.ui.outline};
+      ? theme.status.succes
+      : theme.ui.outline};
   border-radius: 0.3rem;
 `;
 
@@ -352,7 +352,6 @@ const StyledLabel = styled.label`
   position: relative;
   width: 100%;
   font-size: 1.4rem;
-  line-height: 1rem;
   color: ${props => (props.disabled ? '#AEAEAE' : '#5B5550')};
 `;
 
@@ -394,9 +393,9 @@ DateInput.defaultProps = {
   isCalendarEnabled: false,
   otherProps: {},
   value: '',
-  onBlur: () => { },
-  onChange: () => { },
-  onFocus: () => { },
+  onBlur: () => {},
+  onChange: () => {},
+  onFocus: () => {},
 };
 DateInput.propTypes = {
   /** Beeing able to use it in Styled Components */
