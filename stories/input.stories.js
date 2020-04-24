@@ -146,7 +146,7 @@ storiesOf('Low level blocks/Inputs', module)
         value={text('DefaultValue', '', 'Input options')}
         symbol={
           boolean('Show symbol', true, 'Symbol options')
-            ? select('Icon', IconsList, IconsKeys[0], 'Symbol options')
+            ? select('Icon', IconsList, IconsKeys[39], 'Symbol options')
             : ''
         }
         symbolSide={select(
