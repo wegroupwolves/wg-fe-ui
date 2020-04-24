@@ -131,16 +131,14 @@ const Uploader = forwardRef(
       let id;
       setFiles(f => {
         id = f.findIndex(fi => fi.name === file.name);
-        const newFiles = f
-          .filter(file => file.name !== f[id].name)
-          .map(file => ({ ...file }));
+        const newFiles = f.filter(file => file.name !== f[id].name);
         setId(id);
         return [...newFiles];
       });
       onClose();
     };
 
-    if (ref.current && dt.files) ref.current.files = dt.files;
+    // if (ref.current && dt.files) ref.current.files = dt.files;
     return (
       <StyledUploader className={className}>
         <UploadField
