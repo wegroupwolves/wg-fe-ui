@@ -64,7 +64,7 @@ const PhoneInput = ({
 
   useEffect(() => {
     if (inputValue !== value.substring(1)) {
-      setInputValue(value);
+      setInputValue(value.substring(1));
     }
   }, [value]);
 
