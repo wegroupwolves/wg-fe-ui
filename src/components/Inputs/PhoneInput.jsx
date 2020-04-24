@@ -63,13 +63,14 @@ const PhoneInput = ({
   };
 
   useEffect(() => {
-    if (inputValue !== value) {
+    if (inputValue !== value.substring(1)) {
       setInputValue(value);
     }
   }, [value]);
 
   const onChange = e => {
     if (!disabled) {
+      setInputValue(e);
       handleChange({ name, value: (e.charAt(0) !== '+' ? '+' : '') + e });
     }
   };
@@ -90,7 +91,7 @@ const PhoneInput = ({
         <ReactPhoneInput
           name={name}
           placeholder={placeholder}
-          value={value}
+          value={inputValue}
           country={country}
           regions={regions}
           onBlur={handleBlur}
