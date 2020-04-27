@@ -35,7 +35,7 @@ function iconColor(status, theme) {
     case 'normal':
       return theme.ui.interactive;
     case 'selected':
-      return theme.brand.secondary;
+      return theme.brand.primary;
     default:
       break;
   }

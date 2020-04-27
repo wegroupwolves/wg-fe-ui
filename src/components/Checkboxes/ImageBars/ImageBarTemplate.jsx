@@ -47,13 +47,13 @@ const Container = styled.label`
           background-color: ${theme.brand.lightest};
           border-color: ${theme.brand.secondary};
           ${Text} {
-            color: ${theme.brand.secondary};
+            color: ${theme.brand.primary};
           }
           svg {
-            fill: ${theme.brand.secondary};
+            fill: ${theme.brand.primary};
 
             path {
-              fill: ${theme.brand.secondary};
+              fill: ${theme.brand.primary};
             }
           }
         `
