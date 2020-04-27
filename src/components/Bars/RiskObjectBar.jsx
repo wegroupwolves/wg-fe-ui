@@ -100,11 +100,11 @@ const RiskObjectBarContainer = styled.div`
 
   &:hover {
     background-color: ${({ theme }) => theme.brand.lightest};
-    border: 1px solid ${({ theme }) => theme.brand.light};
+    border: 1px solid ${({ theme }) => theme.brand.primary};
     cursor: pointer;
 
     & ${RiskObjectBarData} span {
-      color: ${({ theme }) => theme.brand.light};
+      color: ${({ theme }) => theme.brand.primary};
     }
   }
 `;
