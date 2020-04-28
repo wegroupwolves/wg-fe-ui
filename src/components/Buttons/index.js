@@ -1,4 +1,5 @@
 import ActionButton from './ActionButton';
+import EditActionButton from './EditActionButton';
 import AddEntityButton from './AddEntityButton';
 import BackButton from './BackButton';
 import UploadField from './UploadField';
@@ -7,6 +8,7 @@ import TertiaryButton from './TertiaryButton';
 
 export {
   ActionButton,
+  EditActionButton,
   AddEntityButton,
   BackButton,
   UploadField,

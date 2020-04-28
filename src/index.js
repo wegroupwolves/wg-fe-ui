@@ -12,6 +12,7 @@ export {
 
 export {
   ActionButton,
+  EditActionButton,
   AddEntityButton,
   BackButton,
   UploadField,

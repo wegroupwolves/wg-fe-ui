@@ -10,6 +10,7 @@ import buttonIcon from './assets/buttonIcon.svg';
 import { ReactComponent as BackArrow } from './assets/back-arrow.svg';
 import {
   ActionButton,
+  EditActionButton,
   AddEntityButton,
   BackButton,
   UploadField,
@@ -45,6 +46,9 @@ storiesOf('Low level blocks/Buttons', module)
     >
       {text('Label', 'Pay')}
     </ActionButton>
+  ))
+  .add('EditActionButton', () => (
+    <EditActionButton onClick={action('button clicked')}>Edit</EditActionButton>
   ))
   .add('AddEntityButton', () => {
     const onClick = () => console.log('resource: ');
