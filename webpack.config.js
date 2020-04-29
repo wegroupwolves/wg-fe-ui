@@ -1,5 +1,5 @@
 const path = require('path');
-const CopyPlugin = require('copy-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
   entry: './src/index.js',
@@ -43,6 +43,10 @@ module.exports = {
   externals: {
     react: 'commonjs react',
   },
-  // plugins: [new CopyPlugin([{ from: 'src' }])],
+  plugins: [
+    new MiniCssExtractPlugin({
+      filename: '[name].[contenthash].css',
+    }),
+  ],
   devtool: 'source-map',
 };
