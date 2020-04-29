@@ -1,3 +1,4 @@
 import LoadingSpinner from './LoadingSpinner';
+import PieProgressIndicator from './PieProgressIndicator';
 
-export { LoadingSpinner };
+export { LoadingSpinner, PieProgressIndicator };
