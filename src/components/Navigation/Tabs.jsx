@@ -11,13 +11,10 @@ import { string, bool, func, node } from 'prop-types';
 const Tabs = ({ defaultActive, onSelect, children }) => {
   const [active, setActive] = useState();
   const navigationList = useRef(null);
-  const [currentActiveClientRect] =
-    navigationList?.current?.children?.namedItem(active)?.getClientRects() ||
-    [];
-
-  console.log(
-    navigationList?.current?.children.namedItem(active).getClientRects(),
-  );
+  const currentActiveClientRect = navigationList?.current?.children
+    ?.namedItem(active)
+    ?.getBoundingClientRect();
+  const currentActiveClientRectParent = navigationList?.current?.getBoundingClientRect();
 
   useEffect(() => {
     setDefaultTabActive();
@@ -48,13 +45,16 @@ const Tabs = ({ defaultActive, onSelect, children }) => {
           {Children.toArray(children).map(child => {
             const { props } = child;
             return cloneElement(child, {
-              active: props.name === active, // eslint-disable react/prop-types
+              active: props.name === active,
               onClick: () => setActive(props.name),
             });
           })}
         </LinkList>
         <Selector
-          left={currentActiveClientRect?.left || 0}
+          left={
+            currentActiveClientRect?.left -
+              currentActiveClientRectParent?.left || 1
+          }
           width={currentActiveClientRect?.width + 2 || 0}
         />
         <DividerLine />
@@ -142,6 +142,7 @@ const Selector = styled.div`
 const SelectorContainer = styled.div`
   margin-top: 1rem;
   margin-bottom: 1rem;
+  position: relative;
 `;
 
 const DividerLine = styled.div`
