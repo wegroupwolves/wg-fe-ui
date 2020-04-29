@@ -11,9 +11,13 @@ import { string, bool, func, node } from 'prop-types';
 const Tabs = ({ defaultActive, onSelect, children }) => {
   const [active, setActive] = useState();
   const navigationList = useRef(null);
-  const currentActiveClientRect = navigationList?.current?.children
-    ?.namedItem(active)
-    ?.getBoundingClientRect();
+  const [currentActiveClientRect] =
+    navigationList?.current?.children?.namedItem(active)?.getClientRects() ||
+    [];
+
+  console.log(
+    navigationList?.current?.children.namedItem(active).getClientRects(),
+  );
 
   useEffect(() => {
     setDefaultTabActive();
