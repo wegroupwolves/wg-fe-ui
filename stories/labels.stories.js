@@ -4,9 +4,12 @@ import { withInfo } from '@storybook/addon-info';
 import { withKnobs, select, text, number } from '@storybook/addon-knobs';
 import * as Icons from '../src/components/Icons';
 
-import TypeLabel from '../src/components/Labels/TypeLabel';
-import RiskObjectLabel from '../src/components/Labels/RiskObjectLabel';
-import PhaseLabel from '../src/components/Labels/PhaseLabel';
+import {
+  TypeLabel,
+  RiskObjectLabel,
+  PhaseLabel,
+  Label,
+} from '../src/components/Labels/index';
 
 addParameters({
   options: {
@@ -39,6 +42,9 @@ IconsKeys.map(IconKey => {
 storiesOf('Low level blocks/Labels', module)
   .addDecorator(withKnobs)
   .addDecorator(withInfo({ inline: true }))
+  .add('Label', () => {
+    return <Label>{text('Label text', 'Theft')}</Label>;
+  })
   .add('TypeLabel', () => {
     return (
       <TypeLabel
