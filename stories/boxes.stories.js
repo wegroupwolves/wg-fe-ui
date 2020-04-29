@@ -6,13 +6,33 @@ import styled from 'styled-components';
 import UploadIcon from './../src/components/Icons/Upload';
 import PlusIcon from './../src/components/Icons/Plus';
 
-import { QuestionBox, Uploader, DownloadBox } from '../src';
+import { QuestionBox, Uploader, DownloadBox, AccordionBox } from '../src';
 
 const propsObject = [{ none: null, id: { id: 'add' } }];
 
 storiesOf('Mid level blocks/Boxes', module)
   .addDecorator(withKnobs)
   .addDecorator(withInfo({ inline: true }))
+  .add('AccordionBox', () => {
+    return (
+      <AccordionBoxContainer>
+        <AccordionBox>
+          <AccordionBox.Header>
+            <img
+              src="https://via.placeholder.com/125x31?text=Logo"
+              alt="Logo placeholder"
+            />
+          </AccordionBox.Header>
+
+          <AccordionBox.Content>
+            <AccordionBoxMockContent>
+              This is the content
+            </AccordionBoxMockContent>
+          </AccordionBox.Content>
+        </AccordionBox>
+      </AccordionBoxContainer>
+    );
+  })
   .add('QuestionBox', () => (
     <StyledQuestionBox
       option1="Ja"
@@ -82,6 +102,19 @@ const StyledFile = styled(Uploader.FileBox)`
   width: 30%;
   margin-right: 3%;
   margin-top: 45px;
+`;
+
+const AccordionBoxContainer = styled.div`
+  width: 100%;
+  padding: 0 4rem;
+`;
+
+const AccordionBoxMockContent = styled.div`
+  background-color: ${({ theme }) => theme.brand.lightest};
+  height: 20rem;
+  padding: 1.2rem;
+  border-radius: 5px;
+  border: 1px solid ${({ theme }) => theme.brand.primary};
 `;
 
 StyledQuestionBox.displayName = 'QuestionBox';

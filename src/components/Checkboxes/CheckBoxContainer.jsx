@@ -23,7 +23,7 @@ const CheckBoxContainer = ({ children, label }) => {
         </CheckBoxContainerToggler>
       </CheckBoxContainerHeader>
 
-      {elements.map((element, index) => {
+      {elements.map(element => {
         return React.cloneElement(element, {
           checked: CheckedAll,
           style: { marginBottom: '6px' },
