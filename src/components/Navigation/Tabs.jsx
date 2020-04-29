@@ -135,7 +135,7 @@ const Selector = styled.div`
 `;
 
 const SelectorContainer = styled.div`
-  margin-top: 5rem;
+  margin-top: 1rem;
   height: 3px;
 `;
 
