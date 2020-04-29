@@ -119,6 +119,7 @@ const Item = styled.li`
   width: ${props => props.width};
   margin-left: ${props => (props.rightAlign ? 'auto' : 'inherit')};
   border-bottom: 2px solid rgba(0, 0, 0, 0);
+  text-transform: capitalize;
   &:hover {
     font-weight: 700;
   }
@@ -140,7 +141,7 @@ const Selector = styled.div`
 
 const SelectorContainer = styled.div`
   margin-top: 1rem;
-  height: 3px;
+  margin-bottom: 1rem;
 `;
 
 const DividerLine = styled.div`
