@@ -1,13 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { storiesOf } from '@storybook/react';
-import {
-  withKnobs,
-  select,
-  text,
-  boolean,
-  number,
-} from '@storybook/addon-knobs';
+import { withKnobs, select, text, number } from '@storybook/addon-knobs';
 import { withInfo } from '@storybook/addon-info';
 import { MemoryRouter } from 'react-router-dom';
 
@@ -23,6 +17,7 @@ import {
   Pagination,
   BreadCrumbs,
   MobileMenu,
+  Tabs,
 } from '../src/index.js';
 
 import CheckBox from '../src/components/Checkboxes/CheckBox';
@@ -272,7 +267,27 @@ storiesOf('Mid level blocks/Navigation', module)
         </MobileMenu>
       </MobileSimulator>
     );
+  })
+  .add('Tabs', () => {
+    return (
+      <TabsContainer>
+        <Tabs onSelect={selected => console.log(selected)}>
+          <Tabs.Item name="home">Home</Tabs.Item>
+          <Tabs.Item name="car">Car</Tabs.Item>
+          <Tabs.Item name="family">Family</Tabs.Item>
+          <Tabs.Item name="legal">Legal</Tabs.Item>
+          <Tabs.Item name="selectedOffers" rightAlign>
+            Selected offers
+          </Tabs.Item>
+        </Tabs>
+      </TabsContainer>
+    );
   });
+
+const TabsContainer = styled.div`
+  width: 90%;
+  margin-bottom: 4rem;
+`;
 
 const Container = styled.div`
   width: ${({ autoWidth }) => (autoWidth ? 'auto' : '100%')};
@@ -309,6 +324,7 @@ const MobileSimulator = styled.div`
 `;
 
 Container.displayName = '.';
+TabsContainer.displayName = '.';
 HeaderNav.displayname = 'HeaderNav';
 
 StyledMainNav.displayName = 'MainNavigation';

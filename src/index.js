@@ -53,6 +53,7 @@ export {
   Pagination,
   BreadCrumbs,
   MobileMenu,
+  Tabs,
 } from './components/Navigation';
 
 export { LoadingSpinner } from './components/Loaders';

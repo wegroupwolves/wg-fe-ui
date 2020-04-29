@@ -6,6 +6,7 @@ import CollapsibleSidebar from './CollapsibleSidebar';
 import Pagination from './Pagination';
 import BreadCrumbs from './BreadCrumbs';
 import MobileMenu from './MobileMenu/MobileMenu';
+import Tabs from './Tabs';
 
 export {
   MainNavigation,
@@ -16,4 +17,5 @@ export {
   Pagination,
   BreadCrumbs,
   MobileMenu,
+  Tabs,
 };
