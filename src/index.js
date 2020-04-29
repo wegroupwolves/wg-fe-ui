@@ -40,7 +40,12 @@ export {
   CommentBox,
 } from './components/Inputs';
 
-export { QuestionBox, Uploader, DownloadBox } from './components/Boxes';
+export {
+  QuestionBox,
+  Uploader,
+  DownloadBox,
+  AccordionBox,
+} from './components/Boxes';
 
 export { DisplayTable, OverviewTable, OrderTable } from './components/Tables';
 
