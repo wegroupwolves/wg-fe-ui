@@ -142,7 +142,6 @@ const StyledSymbol = styled.div`
   bottom: 1px;
   height: calc(4rem - 2px);
   width: 4rem;
-  ${'' /* background-color: ${({ theme }) => theme.ui.background}; */}
   display: flex;
   justify-content: center;
   align-items: center;
