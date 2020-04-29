@@ -14,7 +14,6 @@ const CheckBox_v2 = forwardRef(
       children,
       name,
       side,
-      theme,
       ...otherProps
     },
     ref,
@@ -24,8 +23,8 @@ const CheckBox_v2 = forwardRef(
     const handleChange = e => {
       if (!disabled) {
         e.persist();
-        setIsChecked(e.currentTarget.checked);
-        onChange({ name: e.target.name, value: e.target.value });
+        setIsChecked(e.target.checked);
+        onChange({ name: e.target.name, value: e.target.checked });
       }
     };
 
@@ -50,7 +49,7 @@ const CheckBox_v2 = forwardRef(
           disabled={disabled}
           checked={isChecked}
           type="checkbox"
-          onChange={e => handleChange(e)}
+          onChange={handleChange}
         />
         <StyledBox disabled={disabled} checked={isChecked} side={side}>
           {isChecked ? <StyledCheckmark color={'white'} /> : null}
