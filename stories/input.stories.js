@@ -29,6 +29,7 @@ import {
   CommentBox,
   Section,
   ToggleInput,
+  AmountInput,
 } from '../src';
 
 import * as Icons from '../src/components/Icons';
@@ -332,6 +333,17 @@ storiesOf('Low level blocks/Inputs', module)
         trueLabel={text('Label for "on" state', 'Ja')}
         falseLabel={text('Label for "off" state', 'Neen')}
       ></ToggleInput>
+    );
+  })
+  .add('AmountInput', () => {
+    return (
+      <AmountInput
+        initialValue={number('Initial value', 1)}
+        min={number('Minimum value', 1)}
+        max={number('Maximum value', 100)}
+        inputAppend={text('Input append', '%')}
+        disabled={boolean('Disabled?', false)}
+      ></AmountInput>
     );
   });
 

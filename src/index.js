@@ -40,6 +40,7 @@ export {
   TimeInput,
   CommentBox,
   ToggleInput,
+  AmountInput,
 } from './components/Inputs';
 
 export {
