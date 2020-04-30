@@ -39,6 +39,7 @@ export {
   DateInput,
   TimeInput,
   CommentBox,
+  ToggleInput,
 } from './components/Inputs';
 
 export {

@@ -28,10 +28,10 @@ import {
   TimeInput,
   CommentBox,
   Section,
+  ToggleInput,
 } from '../src';
 
 import * as Icons from '../src/components/Icons';
-import { bool } from 'yup';
 const IconsKeys = Object.keys(Icons);
 const IconsList = {};
 IconsKeys.map(IconKey => {
@@ -322,6 +322,16 @@ storiesOf('Low level blocks/Inputs', module)
           </CommentBox>
         </Section.Content>
       </Section>
+    );
+  })
+  .add('ToggleInput', () => {
+    return (
+      <ToggleInput
+        disabled={boolean('Disabled?', false)}
+        checked={boolean('Checked?', false)}
+        trueLabel={text('Label for "on" state', 'Ja')}
+        falseLabel={text('Label for "off" state', 'Neen')}
+      ></ToggleInput>
     );
   });
 
