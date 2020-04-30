@@ -5,7 +5,16 @@ import { withKnobs, text } from '@storybook/addon-knobs';
 import { withInfo } from '@storybook/addon-info';
 import styled from 'styled-components';
 
-import { DisplayTable, OverviewTable, OrderTable } from '../src';
+import {
+  DisplayTable,
+  OverviewTable,
+  OrderTable,
+  StripedTable,
+  CheckBox_v2,
+  IconFurnitureFilled,
+  IconTheftFilled,
+  IconGardenFilled,
+} from '../src';
 
 storiesOf('Mid level blocks/Tables', module)
   .addDecorator(withKnobs)
@@ -83,6 +92,99 @@ storiesOf('Mid level blocks/Tables', module)
         </OrderTable.Row>
       </OrderTable.Body>
     </StyledOrderTable>
+  ))
+  .add('StripedTable', () => (
+    <StyledOverviewTable>
+      <StripedTable.Head>
+        <StripedTable.HeaderCell width="5%"></StripedTable.HeaderCell>
+        <StripedTable.HeaderCell width="5%"></StripedTable.HeaderCell>
+        <StripedTable.HeaderCell>Guarantee</StripedTable.HeaderCell>
+        <StripedTable.HeaderCell>Net premium</StripedTable.HeaderCell>
+        <StripedTable.HeaderCell>Taxes</StripedTable.HeaderCell>
+        <StripedTable.HeaderCell>Total premium</StripedTable.HeaderCell>
+        <StripedTable.HeaderCell>Commission</StripedTable.HeaderCell>
+        <StripedTable.HeaderCell>VK</StripedTable.HeaderCell>
+      </StripedTable.Head>
+
+      <StripedTable.Body>
+        <StripedTable.Row>
+          <StripedTable.BodyCell>
+            <CheckBox_v2 checked disabled />
+          </StripedTable.BodyCell>
+
+          <StripedTable.BodyCell>
+            <IconFurnitureFilled size={25} color="#8990A3" />
+          </StripedTable.BodyCell>
+
+          <StripedTable.BodyCell>Content</StripedTable.BodyCell>
+
+          <StripedTable.BodyCell>€ 92,36</StripedTable.BodyCell>
+
+          <StripedTable.BodyCell>€ 14,55</StripedTable.BodyCell>
+
+          <StripedTable.BodyCell>€ 106,91</StripedTable.BodyCell>
+
+          <StripedTable.BodyCell>27%</StripedTable.BodyCell>
+
+          <StripedTable.BodyCell>0%</StripedTable.BodyCell>
+        </StripedTable.Row>
+
+        <StripedTable.Row>
+          <StripedTable.BodyCell>
+            <CheckBox_v2 checked disabled />
+          </StripedTable.BodyCell>
+
+          <StripedTable.BodyCell>
+            <IconTheftFilled size={25} color="#8990A3" />
+          </StripedTable.BodyCell>
+
+          <StripedTable.BodyCell>Theft</StripedTable.BodyCell>
+
+          <StripedTable.BodyCell>€ 74,52</StripedTable.BodyCell>
+
+          <StripedTable.BodyCell>€ 11,74</StripedTable.BodyCell>
+
+          <StripedTable.BodyCell>€ 86,26</StripedTable.BodyCell>
+
+          <StripedTable.BodyCell>20%</StripedTable.BodyCell>
+
+          <StripedTable.BodyCell>0%</StripedTable.BodyCell>
+        </StripedTable.Row>
+
+        <StripedTable.Row>
+          <StripedTable.BodyCell>
+            <CheckBox_v2 checked disabled />
+          </StripedTable.BodyCell>
+
+          <StripedTable.BodyCell>
+            <IconGardenFilled size={25} color="#8990A3" />
+          </StripedTable.BodyCell>
+
+          <StripedTable.BodyCell>Garden</StripedTable.BodyCell>
+
+          <StripedTable.BodyCell>€ 30,00</StripedTable.BodyCell>
+
+          <StripedTable.BodyCell>€ 4,73</StripedTable.BodyCell>
+
+          <StripedTable.BodyCell>€ 34,73</StripedTable.BodyCell>
+
+          <StripedTable.BodyCell>20%</StripedTable.BodyCell>
+
+          <StripedTable.BodyCell>0%</StripedTable.BodyCell>
+        </StripedTable.Row>
+      </StripedTable.Body>
+
+      <StripedTable.Footer>
+        <StripedTable.FooterCell></StripedTable.FooterCell>
+        <StripedTable.FooterCell></StripedTable.FooterCell>
+        <StripedTable.FooterCell>Total</StripedTable.FooterCell>
+        <StripedTable.FooterCell>€ 196,88</StripedTable.FooterCell>
+        <StripedTable.FooterCell>€ 31,02</StripedTable.FooterCell>
+        <StripedTable.FooterCell>€ 227,90</StripedTable.FooterCell>
+        <StripedTable.FooterCell></StripedTable.FooterCell>
+        <StripedTable.FooterCell></StripedTable.FooterCell>
+      </StripedTable.Footer>
+    </StyledOverviewTable>
   ));
 
 const StyledDisplayTable = styled(DisplayTable)`
