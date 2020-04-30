@@ -8,6 +8,7 @@ import SearchSelectInput from './SearchSelectInput';
 import DateInput from './DateInput';
 import TimeInput from './TimeInput';
 import CommentBox from './CommentBox';
+import ToggleInput from './ToggleInput';
 
 export {
   ImageSelectBox,
@@ -20,4 +21,5 @@ export {
   DateInput,
   TimeInput,
   CommentBox,
+  ToggleInput,
 };
