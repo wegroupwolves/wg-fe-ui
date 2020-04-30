@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import { storiesOf, addParameters } from '@storybook/react';
 // import { linkTo } from '@storybook/addon-links';
@@ -16,6 +16,7 @@ import {
   UploadField,
   ToggleButton,
   TertiaryButton,
+  AddRemoveButton,
 } from '../src/';
 
 addParameters({
@@ -94,5 +95,16 @@ storiesOf('Low level blocks/Buttons', module)
         label={text('Label', 'Cancel')}
         disabled={boolean('Disabled?', false)}
       ></TertiaryButton>
+    );
+  })
+  .add('AddRemoveButton', () => {
+    const [isAdded, setIsAdded] = useState(false);
+    return (
+      <AddRemoveButton
+        added={isAdded}
+        onClick={() => {
+          setIsAdded(!isAdded);
+        }}
+      ></AddRemoveButton>
     );
   });

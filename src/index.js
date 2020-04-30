@@ -18,6 +18,7 @@ export {
   UploadField,
   ToggleButton,
   TertiaryButton,
+  AddRemoveButton,
 } from './components/Buttons';
 
 export {

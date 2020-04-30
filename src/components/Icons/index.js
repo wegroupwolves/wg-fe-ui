@@ -141,6 +141,7 @@ import IconLightScooter from './IconLightScooter';
 import IconMotor from './IconMotor';
 import IconCompanyCar from './IconCompanyCar';
 import IconSixWheeler from './IconSixWheeler';
+import IconMinus from './IconMinus';
 
 export {
   IconFireFilled,
@@ -267,6 +268,7 @@ export {
   IconDragHandlerFilled,
   Upload,
   IconPlusFilled,
+  IconMinus,
   IconPencilFilled,
   IconCabrioFilled,
   IconSuvFilled,
