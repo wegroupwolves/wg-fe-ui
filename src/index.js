@@ -49,7 +49,12 @@ export {
   AccordionBox,
 } from './components/Boxes';
 
-export { DisplayTable, OverviewTable, OrderTable } from './components/Tables';
+export {
+  DisplayTable,
+  OverviewTable,
+  OrderTable,
+  StripedTable,
+} from './components/Tables';
 
 export {
   HeaderNav,
