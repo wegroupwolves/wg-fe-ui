@@ -100,6 +100,8 @@ export { Section_v2 } from './components/v2/Section';
 
 export { CheckBox_v2 } from './components/v2/Checkboxes';
 
+export { Tooltip } from './components/Tooltips';
+
 export { default as ThemeProvider } from './components/ThemeProvider';
 
 export { Theme };
