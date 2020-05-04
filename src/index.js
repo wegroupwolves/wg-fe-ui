@@ -8,6 +8,7 @@ export {
   OverviewClaimStatus,
   FlightSelectBar,
   RiskObjectBar,
+  Alert,
 } from './components/Bars';
 
 export {

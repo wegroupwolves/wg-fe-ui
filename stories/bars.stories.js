@@ -12,6 +12,7 @@ import {
   OverviewClaimStatus,
   TrackingBar,
   FlightSelectBar,
+  Alert,
 } from './../src';
 import ApprovedIcon from './assets/Icons/Approved';
 import OpenedIcon from './assets/Icons/Opened';
@@ -205,6 +206,26 @@ storiesOf('Mid Level blocks/Bars', module)
           </QuickActionSubMenu>
         </RiskObjectBar>
       </div>
+    );
+  })
+  .add('Alert', () => {
+    return (
+      <Alert
+        icon={boolean('Default icon shown?', true)}
+        type={select('Alert type', {
+          None: '',
+          Normal: 'normal',
+          Primary: 'primary',
+          Error: 'error',
+          Warning: 'warning',
+          Success: 'success',
+        })}
+      >
+        Donec mi odio, faucibus at, scelerisque quis, convallis in, nisi. Nullam
+        accumsan lorem in dui. Aenean imperdiet. Vestibulum rutrum, mi nec
+        elementum vehicula, eros quam gravida nisl, id fringilla neque ante vel
+        mi. Curabitur blandit mollis lacus.
+      </Alert>
     );
   });
 
