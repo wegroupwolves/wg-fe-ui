@@ -13,6 +13,7 @@ const propsObject = [{ none: null, id: { id: 'add' } }];
 storiesOf('Mid level blocks/Boxes', module)
   .addDecorator(withKnobs)
   .addDecorator(withInfo({ inline: true }))
+
   .add('AccordionBox', () => {
     return (
       <AccordionBoxContainer>
@@ -33,6 +34,7 @@ storiesOf('Mid level blocks/Boxes', module)
       </AccordionBoxContainer>
     );
   })
+
   .add('QuestionBox', () => (
     <StyledQuestionBox
       option1="Ja"
@@ -43,6 +45,7 @@ storiesOf('Mid level blocks/Boxes', module)
       Is this a Question?
     </StyledQuestionBox>
   ))
+
   .add('Uploader', () => {
     const supported = {
       images: [
@@ -85,6 +88,7 @@ storiesOf('Mid level blocks/Boxes', module)
       </Uploader>
     );
   })
+
   .add('DownloadBox', () => (
     <DownloadBox
       otherProps={select('otherProps', ...propsObject)}

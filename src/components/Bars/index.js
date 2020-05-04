@@ -4,6 +4,7 @@ import OverviewClaimStatus from './OverviewClaimStatus';
 import TrackingBar from './TrackingBar';
 import FlightSelectBar from './FlightSelectBar';
 import RiskObjectBar from './RiskObjectBar';
+import Alert from './Alert';
 
 export {
   ProgressBar,
@@ -12,4 +13,5 @@ export {
   TrackingBar,
   FlightSelectBar,
   RiskObjectBar,
+  Alert,
 };
