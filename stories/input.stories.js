@@ -30,6 +30,7 @@ import {
   Section,
   ToggleInput,
   AmountInput,
+  RangeSlider,
 } from '../src';
 
 import * as Icons from '../src/components/Icons';
@@ -344,6 +345,30 @@ storiesOf('Low level blocks/Inputs', module)
         inputAppend={text('Input append', '%')}
         disabled={boolean('Disabled?', false)}
       ></AmountInput>
+    );
+  })
+  .add('RangeSlider', () => {
+    return (
+      <RangeSlider
+        initialValues={[
+          number('Initial low value', 100),
+          number('Initial high value', 200),
+        ]}
+        min={number('Minimum value', 24)}
+        max={number('Maximum value', 304)}
+        step={number('Steps', 1, { min: 1, max: 20, range: true, step: 1 })}
+        mode={select(
+          'Mode',
+          {
+            'Handles can cross': 1,
+            'Handles can not cross each other': 2,
+            'Handles can push each other': 3,
+          },
+          2,
+        )}
+        handlePrefix={text('Handle prefix', '€')}
+        onChanged={values => console.log(values)}
+      ></RangeSlider>
     );
   });
 
