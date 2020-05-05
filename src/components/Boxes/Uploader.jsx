@@ -47,6 +47,7 @@ const Uploader = forwardRef(
       multiple,
       onClick,
       onClose,
+      errorText,
       children,
     },
     ref,
@@ -65,10 +66,11 @@ const Uploader = forwardRef(
       setLoaded(l => [...l, 0]);
 
       const parts = file.name.split('.');
+      const extension = parts.length > 1 ? parts.slice(-1)[0] : ''; // get last el. of parts arr
 
       const fileNew = {
         title: parts[0],
-        name: `${shortifyText(parts[0])}.${parts[1]}`,
+        name: `${shortifyText(parts[0])}${extension ? `.${extension}` : ''}`,
         size: bytesToMega(file.size),
         type: file.type,
         data: '',
@@ -149,6 +151,7 @@ const Uploader = forwardRef(
           multiple={multiple}
           onClick={handleClick}
           label={label}
+          errorText={errorText}
         />
         <Container>
           {files.length ? children({ files, loaded, handleClose }) : null}
@@ -190,6 +193,7 @@ Uploader.propTypes = {
   multiple: bool,
   onClick: func,
   onClose: func,
+  errorText: string,
   supported: arrayOf({
     type: string,
     extension: string,

@@ -46,10 +46,36 @@ function dropFile(e, setFile, onClick, multiple) {
   counter = 0;
 }
 
+const validateFiles = (files, validFileTypes) => {
+  for (const f of files) {
+    const type = f.type.split('/')[1];
+    if (!validFileTypes.includes(type)) return false;
+  }
+  return true;
+};
+
 const UploadField = forwardRef(
-  ({ icon, name, multiple, onClick, supported, label, ...otherProps }, ref) => {
+  (
+    {
+      icon,
+      name,
+      multiple,
+      onClick,
+      supported,
+      label,
+      errorText,
+      ...otherProps
+    },
+    ref,
+  ) => {
     const [withFile, setWithFile] = useState(false);
-    const handleChange = ({ target }) => onClick(target.files);
+    const handleChange = ({ target }) => {
+      const fileTypes = supported.map(s => s.extension);
+      const extensionsOk = validateFiles(target.files, fileTypes);
+      if (supported && supported.length && !extensionsOk)
+        return alert(errorText);
+      onClick(target.files);
+    };
     return (
       <StyledButton
         withFile={withFile}
@@ -131,6 +157,7 @@ UploadField.defaultProps = {
   otherProps: {},
   supported: [],
   fullwidth: false,
+  errorText: 'File error!',
 };
 
 UploadField.propTypes = {
@@ -141,6 +168,7 @@ UploadField.propTypes = {
   onClick: func.isRequired,
   supported: array,
   label: string,
+  errorText: string,
   otherProps: object,
 };
 
