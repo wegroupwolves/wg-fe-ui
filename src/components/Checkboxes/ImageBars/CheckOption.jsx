@@ -2,12 +2,17 @@ import React, { forwardRef } from 'react';
 import styled, { css } from 'styled-components';
 import PropTypes from 'prop-types';
 import { Container, StyledInput, Text } from './ImageBarTemplate';
+import Checkmark from '../../../assets/checkmark.js';
 
-const StyledCheck = styled.span`
-  height: 19px;
-  min-width: 19px;
+const StyledCheck = styled.div`
+  width: 1.9rem;
+  height: 1.9rem;
+  min-width: 1.9rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   border-radius: 3px;
-  margin: auto 1.6vw;
+  margin: auto 2rem;
   border: 1.2px solid;
   border-color: ${({ theme }) => theme.ui.outline};
   ${({ checked, theme }) =>
@@ -15,12 +20,13 @@ const StyledCheck = styled.span`
       ? css`
           background-color: ${theme.brand.secondary};
           text-align: center;
-          &:before {
-            content: '✔';
-            color: #ffffff;
-          }
         `
       : null};
+`;
+
+const StyledCheckmark = styled(Checkmark)`
+  width: 80%;
+  margin: 0 !important;
 `;
 
 const CheckOption = forwardRef(
@@ -33,6 +39,7 @@ const CheckOption = forwardRef(
       handleChange,
       icon,
       children,
+      theme,
       ...otherProps
     },
     ref,
@@ -59,7 +66,13 @@ const CheckOption = forwardRef(
         />
         {icon}
         <Text>{children}</Text>
-        <StyledCheck checked={checked} />
+        <StyledCheck checked={checked}>
+          {checked && disabled ? (
+            <StyledCheckmark color={theme.colors.disabled} />
+          ) : checked && !disabled ? (
+            <StyledCheckmark color="white" />
+          ) : null}
+        </StyledCheck>
       </Container>
     );
   },
@@ -75,6 +88,7 @@ CheckOption.propTypes = {
   handleChange: PropTypes.func,
   icon: PropTypes.elementType,
   children: PropTypes.node,
+  theme: PropTypes.object,
 };
 
 CheckOption.defaultProps = {
