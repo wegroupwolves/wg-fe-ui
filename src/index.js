@@ -42,6 +42,7 @@ export {
   CommentBox,
   ToggleInput,
   AmountInput,
+  RangeSlider,
 } from './components/Inputs';
 
 export {

@@ -10,6 +10,7 @@ import TimeInput from './TimeInput';
 import CommentBox from './CommentBox';
 import ToggleInput from './ToggleInput';
 import AmountInput from './AmountInput';
+import RangeSlider from './RangeSlider/RangeSlider';
 
 export {
   ImageSelectBox,
@@ -24,4 +25,5 @@ export {
   CommentBox,
   ToggleInput,
   AmountInput,
+  RangeSlider,
 };
