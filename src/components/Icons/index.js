@@ -142,6 +142,12 @@ import IconMotor from './IconMotor';
 import IconCompanyCar from './IconCompanyCar';
 import IconSixWheeler from './IconSixWheeler';
 import IconMinus from './IconMinus';
+import IconEngineFilled from './IconEngineFilled';
+import IconInfoFilled from './IconInfoFilled';
+import IconPassengerFilled from './IconPassengerFilled';
+import IconHealthFilled from './IconHealthFilled';
+import IconBAXL from './IconBAXL';
+import IconBAPlusPlusXL from './IconBAPlusPlusXL';
 
 export {
   IconFireFilled,
@@ -287,4 +293,10 @@ export {
   IconMotor,
   IconCompanyCar,
   IconSixWheeler,
+  IconEngineFilled,
+  IconInfoFilled,
+  IconPassengerFilled,
+  IconHealthFilled,
+  IconBAXL,
+  IconBAPlusPlusXL,
 };
