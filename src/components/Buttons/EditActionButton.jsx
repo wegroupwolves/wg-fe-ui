@@ -54,13 +54,13 @@ const StyledButton = styled.button`
     padding: 1.2rem 1.8rem 1.2rem 0;
     > ${IconPencilFilled} {
       padding-left: 1.8rem;
-      transition: margin 0.1s ease-in-out 5s, padding 0.2s ease-in-out;
+      transition: margin 0.1s ease-out 5s, padding 0.2s ease-out;
     }
     > span {
       position: relative;
       opacity: 1;
       margin-left: 1rem;
-      transition: opacity 0.2s ease-in-out 0.1s;
+      transition: opacity 0.2s ease-in-out;
     }
   }
 `;
