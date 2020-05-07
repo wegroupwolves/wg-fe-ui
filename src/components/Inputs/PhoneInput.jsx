@@ -8,14 +8,9 @@ import ReactPhoneInput from 'react-phone-input-2';
 import { detect } from 'detect-browser';
 import flags from '../../assets/flags/flags.png';
 
-import * as Icons from '../Icons';
-const IconsList = {};
-Object.keys(Icons).map(IconKey => {
-  IconsList[Icons[IconKey].name] = Icons[IconKey];
-});
-
 const PhoneInput = ({
   name,
+  icon,
   children,
   error,
   value,
@@ -29,22 +24,12 @@ const PhoneInput = ({
   country,
   regions,
   warning,
-  symbol,
-  symbolSide,
-  symbolText,
   ...otherProps
 }) => {
   const [inputValue, setInputValue] = useState(value);
   const [focus, setFocus] = useState();
   const [iconRight, setIconRight] = useState('1rem');
   const browser = detect();
-
-  let ChosenIcon;
-
-  if (symbolText == false) {
-    ChosenIcon = IconsList[symbol];
-  }
-
   const handleFocus = () => {
     setFocus(true);
     if (browser) {
@@ -115,13 +100,7 @@ const PhoneInput = ({
           iconRight={iconRight}
           touched={touched}
         />
-        {symbol ? (
-          <StyledSymbol symbolSide={symbolSide}>
-            {symbolText ? symbol : <ChosenIcon color="#505050" />}
-          </StyledSymbol>
-        ) : (
-          ''
-        )}
+        {icon ? <StyledSymbol>{icon}</StyledSymbol> : ''}
       </StyledLabel>
       <Error error={error} warning={warning} />
     </Container>
@@ -137,16 +116,14 @@ const Container = styled.div`
 
 const StyledSymbol = styled.div`
   position: absolute;
-  right: ${({ symbolSide }) => (symbolSide == 'right' ? '1px' : '')};
-  left: ${({ symbolSide }) => (symbolSide == 'right' ? '' : '1px')};
+  right: 1px;
   bottom: 1px;
   height: calc(4rem - 2px);
   width: 4rem;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 1.8rem;
-  font-weight: bold;
+  font-size: 1rem;
   color: ${({ theme }) => theme.typo.highlight};
 
   > svg {
@@ -1056,9 +1033,6 @@ PhoneInput.defaultProps = {
   placeholder: ``,
   error: '',
   warning: '',
-  symbol: '',
-  symbolSide: 'right',
-  symbolText: false,
   className: ``,
   value: '',
   touched: false,
@@ -1084,12 +1058,6 @@ PhoneInput.propTypes = {
   error: string,
   /** string with warningmessage */
   warning: string,
-  /** Pass an icon name to show said icon inside the input  */
-  symbol: string,
-  /** Choose a side at which the icon will be shown */
-  symbolSide: string,
-  /** Picks whether to show the symbol as an icon or as text */
-  symbolText: bool,
   /** boolean to check if inputfield is touched */
   touched: bool,
   /** returns name and touched boolean */
@@ -1104,6 +1072,7 @@ PhoneInput.propTypes = {
   country: string,
   /** sets region value */
   regions: array,
+  icon: string,
 };
 
 export default PhoneInput;
