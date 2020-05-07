@@ -71,6 +71,7 @@ const TimeInput = forwardRef(
     const ARROW_DOWN = 40;
 
     const isTime = () => {
+      if (!time || !Object.keys(time).length) return;
       let t = '';
       if (isHour) t = time.hour;
       if (isMinute) t = t ? `${t}:${time.minute}` : time.minute;
