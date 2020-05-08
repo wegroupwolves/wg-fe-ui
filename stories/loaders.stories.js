@@ -45,6 +45,7 @@ storiesOf('Low level blocks/Loaders', module)
           range: true,
           step: 10,
         })}
+        relative={boolean('Relative positioning?', true)}
       >
         <H1>
           {number('Current items', 374, {
