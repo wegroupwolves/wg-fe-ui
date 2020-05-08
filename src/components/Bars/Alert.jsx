@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { node, string, object, func, bool } from 'prop-types';
+import { IconActionClose } from '../Icons/index';
 
 const Alert = ({ children, type, onClick, icon, className, ...otherProps }) => {
   return (
@@ -10,7 +11,15 @@ const Alert = ({ children, type, onClick, icon, className, ...otherProps }) => {
       className={className}
       {...otherProps}
     >
-      {icon ? <DefaultIcon type={type ? type : 'normal'}>i</DefaultIcon> : ''}
+      {icon ? (
+        type === 'error' ? (
+          <ErrorIcon color={'#F74040'} size={40} />
+        ) : (
+          <DefaultIcon type={type ? type : 'normal'}>i</DefaultIcon>
+        )
+      ) : (
+        ''
+      )}
 
       <ContentWrapper type={type}>{children}</ContentWrapper>
     </AlertBox>
@@ -45,6 +54,13 @@ const DefaultIcon = styled.div`
   font-size: 1.2rem;
   line-height: 1.4rem;
   margin-right: 1rem;
+`;
+
+const ErrorIcon = styled(IconActionClose)`
+  margin-right: 1rem;
+  width: 3rem;
+  height: 3rem;
+  flex: 0 0 3rem;
 `;
 
 const ContentWrapper = styled.div`
