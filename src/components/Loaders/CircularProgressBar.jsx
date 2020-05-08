@@ -1,12 +1,17 @@
 import React from 'react';
-import { number, node } from 'prop-types';
+import { number, node, bool } from 'prop-types';
 import styled from 'styled-components';
 
-const CircularProgressBar = ({ children, currentItems, maxItems }) => {
+const CircularProgressBar = ({
+  children,
+  currentItems,
+  maxItems,
+  relative,
+}) => {
   const calculatedPercentage = (currentItems * 100) / maxItems;
 
   return (
-    <Wrapper percentage={calculatedPercentage}>
+    <Wrapper percentage={calculatedPercentage} relative={relative}>
       <svg>
         <circle cx="140" cy="140" r="140"></circle>
         <circle cx="140" cy="140" r="140"></circle>
@@ -18,7 +23,11 @@ const CircularProgressBar = ({ children, currentItems, maxItems }) => {
 };
 
 const Wrapper = styled.div`
-  position: relative;
+  position: ${({ relative }) => (relative ? 'relative' : 'absolute')};
+  top: ${({ relative }) => (relative ? '' : '50%')};
+  left: ${({ relative }) => (relative ? '' : '50%')};
+  transform: ${({ relative }) => (relative ? '' : 'translate(-50%, -50%)')};
+  z-index: ${({ relative }) => (relative ? '' : '9999')};
 
   svg {
     position: relative;
@@ -69,6 +78,7 @@ CircularProgressBar.propTypes = {
   currentItems: number.isRequired,
   /** Max items of the progressbar. */
   maxItems: number.isRequired,
+  relative: bool,
 };
 
 export default CircularProgressBar;
