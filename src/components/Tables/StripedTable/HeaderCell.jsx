@@ -14,7 +14,7 @@ const Th = styled.th`
   padding-bottom: 1.2rem;
   vertical-align: middle;
   font-family: ${({ theme }) => theme.font};
-  font-weight: 500;
+  font-weight: 600;
   font-size: 1.4rem;
   line-height: 1.8rem;
   color: ${({ theme }) => theme.typo.text};
