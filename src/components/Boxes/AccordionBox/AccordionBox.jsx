@@ -12,6 +12,7 @@ const AccordionBox = ({ children }) => {
 
   const toggleOpenClose = () => {
     setIsOpen(!isOpen);
+    e.stopPropagination();
   };
 
   return (
