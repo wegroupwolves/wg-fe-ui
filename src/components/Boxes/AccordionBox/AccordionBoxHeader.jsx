@@ -5,12 +5,12 @@ import { node, bool, func } from 'prop-types';
 
 const AccordionBoxHeader = ({ children, open, toggle }) => {
   return (
-    <Wrapper>
+    <Wrapper onClick={toggle}>
       {children}
 
-      <Toggle onClick={toggle} open={open}>
+      <ToggleWrapper open={open}>
         <IconActionDropDown />
-      </Toggle>
+      </ToggleWrapper>
     </Wrapper>
   );
 };
@@ -21,14 +21,14 @@ const Wrapper = styled.div`
   padding-right: 6.5rem;
 `;
 
-const Toggle = styled.div`
+const ToggleWrapper = styled.div`
   position: absolute;
   top: 50%;
   right: 0;
   transform: ${({ open }) =>
     open ? 'translateY(-50%) rotate(180deg)' : 'translateY(-50%)'};
   cursor: pointer;
-  transition: transform 0.4s cubic-bezier(0.85, 0, 0.15, 1);
+  transition: transform 0.2s cubic-bezier(0.85, 0, 0.15, 1);
 
   svg path {
     stroke: ${({ theme }) => theme.ui.outline};
