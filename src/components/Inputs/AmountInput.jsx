@@ -1,19 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import { number, bool, string, object } from 'prop-types';
+import { number, bool, string, object, func } from 'prop-types';
 
 import { IconActionDropDown } from '../../index';
 
 const AmountInput = ({
-  initialValue,
+  value,
   disabled,
   min,
   max,
   className,
+  onChange,
   inputAppend,
   ...otherProps
 }) => {
-  const [currentValue, setCurrentValue] = useState(initialValue);
+  const [currentValue, setCurrentValue] = useState(value);
   const [isMaxReached, setIsMaxReached] = useState(currentValue === max);
   const [isMinReached, setIsMinReached] = useState(currentValue === min);
 
@@ -31,19 +32,38 @@ const AmountInput = ({
     }
   }, [currentValue]);
 
-  const handleChange = ({ target: { value } }) => {
-    if (disabled !== true) {
-      const parsedValue = parseFloat(value);
+  useEffect(() => {
+    if (value === min) {
+      setIsMinReached(true);
+    } else {
+      setIsMinReached(false);
+    }
 
-      if (parsedValue >= min && parsedValue <= max) {
-        setCurrentValue(parsedValue);
-      } else {
-        if (parsedValue < min) {
-          setCurrentValue(min);
-        } else if (parsedValue > max) {
-          setCurrentValue(max);
-        }
+    if (value === max) {
+      setIsMaxReached(true);
+    } else {
+      setIsMaxReached(false);
+    }
+  }, [value]);
+
+  const checkValue = ({ target: { value } }) => {
+    const parsedValue = parseFloat(value) || min;
+    if (parsedValue >= min && parsedValue <= max) {
+      setCurrentValue(parsedValue);
+    } else {
+      if (parsedValue < min) {
+        setCurrentValue(min);
+      } else if (parsedValue > max) {
+        setCurrentValue(max);
       }
+    }
+  };
+
+  const handleChange = ({ target: { value, name } }) => {
+    if (disabled !== true) {
+      const parsedValue = parseFloat(value) || undefined;
+      setCurrentValue(parsedValue);
+      onChange({ name: name, value: parsedValue });
     }
   };
 
@@ -76,6 +96,7 @@ const AmountInput = ({
         min={min}
         max={max}
         onChange={handleChange}
+        onBlur={checkValue}
         disabled={disabled}
       />
 
@@ -151,8 +172,8 @@ const InputExtra = styled.div`
 `;
 
 AmountInput.propTypes = {
-  /** Initial value of the input (only applied on mount). */
-  initialValue: number,
+  /** Value of the input (only applied on mount). */
+  value: number,
   /** Stops input from working in any way. */
   disabled: bool,
   /** Minimum value of the input. */
@@ -163,6 +184,8 @@ AmountInput.propTypes = {
   className: string,
   /** Editable string appended to the right of the input. */
   inputAppend: string,
+  /** returns onChange event */
+  onChange: func,
   /** Other props to be passed to the component. */
   otherProps: object,
 };
