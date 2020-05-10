@@ -148,6 +148,7 @@ import IconPassengerFilled from './IconPassengerFilled';
 import IconHealthFilled from './IconHealthFilled';
 import IconBAXL from './IconBAXL';
 import IconBAPlusPlusXL from './IconBAPlusPlusXL';
+import IconDownloadFilled from './IconDownloadFilled';
 
 export {
   IconFireFilled,
@@ -273,6 +274,7 @@ export {
   IconInjuredFilled,
   IconDragHandlerFilled,
   Upload,
+  IconDownloadFilled,
   IconPlusFilled,
   IconMinus,
   IconPencilFilled,
