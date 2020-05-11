@@ -10,9 +10,14 @@ const AccordionBox = ({ children }) => {
 
   const elements = React.Children.toArray(children);
 
-  const toggleOpenClose = () => {
+  /**
+   * To stop the AccordionBox from opening and closing on the click of a
+   * child element, add a e.stopPropagation() to the onClick of the child
+   * element.
+   */
+  const toggleOpenClose = e => {
+    e.stopPropagation();
     setIsOpen(!isOpen);
-    e.stopPropagination();
   };
 
   return (
