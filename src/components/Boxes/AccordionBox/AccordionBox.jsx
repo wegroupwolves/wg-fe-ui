@@ -33,9 +33,15 @@ const StyledAccordionBox = styled.div`
   border-radius: 12px;
   border: 1px solid #e4e4e4;
   padding: 2.7rem;
-
   box-shadow: 0 0 1px rgba(0, 0, 0, 0.04), 0 2px 6px rgba(0, 0, 0, 0.04),
     0 10px 20px rgba(0, 0, 0, 0.04);
+  cursor: pointer;
+  transition: box-shadow 0.15s ease-in-out;
+
+  &:hover {
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0.04), 0 2px 6px rgba(0, 0, 0, 0.04),
+      0 16px 24px rgba(0, 0, 0, 0.06);
+  }
 `;
 
 AccordionBox.propTypes = {
