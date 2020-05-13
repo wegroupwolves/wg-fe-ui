@@ -24,6 +24,15 @@ const StyledBody = styled.p`
 
   font-size: 1.6rem;
   line-height: 2rem;
+
+  > a {
+    color: ${({ theme }) => theme.brand.primary};
+    text-decoration: underline;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
 `;
 
 Body.propTypes = {

@@ -15,6 +15,15 @@ const StyledH2 = styled.h2`
   font-size: 2.1rem;
   line-height: 130%;
   color: #8990a3;
+
+  > a {
+    color: ${({ theme }) => theme.brand.primary};
+    text-decoration: underline;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
 `;
 
 H2.propTypes = {

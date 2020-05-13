@@ -16,6 +16,15 @@ const StyledH3 = styled.h3`
   font-size: 2.1rem;
   line-height: 2.7rem;
   color: ${({ theme }) => theme.typo.text};
+
+  > a {
+    color: ${({ theme }) => theme.brand.primary};
+    text-decoration: underline;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
 `;
 
 H3.propTypes = {
