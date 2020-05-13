@@ -16,6 +16,15 @@ const StyledH1 = styled.h1`
   font-size: 3.6rem;
   line-height: 130%;
   color: ${({ theme }) => theme.typo.title};
+
+  > a {
+    color: ${({ theme }) => theme.brand.primary};
+    text-decoration: underline;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
 `;
 
 H1.propTypes = {
