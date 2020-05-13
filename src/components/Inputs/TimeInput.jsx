@@ -342,6 +342,7 @@ const StyledLabel = styled.label`
   width: 100%;
   font-size: 1.4rem;
   color: ${props => (props.disabled ? '#AEAEAE' : '#5B5550')};
+  line-height: 1rem;
 `;
 
 const StyledSingleInputTime = styled.input`
