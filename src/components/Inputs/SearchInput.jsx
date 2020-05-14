@@ -86,7 +86,7 @@ const StyledBox = styled.div`
 const Input = styled.input`
   font-family: ${({ theme }) => theme.font};
   font-size: 1.4rem;
-  color: ${({ theme }) => theme.ui.interactive};
+  color: ${({ theme }) => theme.ui.outline};
   border: ${({ border, theme }) =>
     border ? `1px solid ${theme.ui.disabled}` : 'none'};
   line-height: 2rem;
