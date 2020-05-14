@@ -26,6 +26,7 @@ const SearchInput = forwardRef(
       buttonText,
       buttonAction,
       loading,
+      onClear,
       ...otherProps
     },
     ref,
@@ -37,6 +38,7 @@ const SearchInput = forwardRef(
     return (
       <StyledBox>
         {!loading ? icon : <SmallLoader />}
+
         <Input
           ref={ref}
           className={className}
@@ -48,6 +50,9 @@ const SearchInput = forwardRef(
           onChange={handleChange}
           {...otherProps}
         />
+
+        {text ? <ClearButton onClick={onClear}>X</ClearButton> : ''}
+
         {showButton ? (
           <ActionButton level="secondary" onClick={buttonAction}>
             {buttonText}
@@ -97,6 +102,25 @@ const Input = styled.input`
   }
 `;
 
+const ClearButton = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  background-color: ${({ theme }) => theme.ui.backgroundLight};
+  border-radius: 9999px;
+  font-family: ${({ theme }) => theme.font};
+  font-size: 0.8rem;
+  color: white;
+  margin: 0 2rem;
+  cursor: pointer;
+
+  &:hover {
+    background-color: ${({ theme }) => theme.brand.primary};
+  }
+`;
+
 Input.displayName = 'Input';
 
 SearchInput.displayName = 'SearchInput';
@@ -128,6 +152,8 @@ SearchInput.propTypes = {
   otherProps: object,
   /** Set this to true when calling an API to display a loading state in the search bar... */
   loading: bool,
+  /** Function passed to the clear button */
+  onClear: func,
 };
 
 export default SearchInput;

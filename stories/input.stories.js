@@ -226,6 +226,9 @@ storiesOf('Low level blocks/Inputs', module)
         placeholder="Search for..."
         onChange={setVal}
         loading={boolean('Is loading?', false)}
+        onClear={() => {
+          console.log('Clear input');
+        }}
       />
     );
   })
