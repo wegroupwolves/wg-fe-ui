@@ -108,13 +108,14 @@ const ClearButton = styled.div`
   align-items: center;
   width: 1.5rem;
   height: 1.5rem;
-  background-color: ${({ theme }) => theme.ui.backgroundLight};
+  background-color: ${({ theme }) => theme.ui.outline};
   border-radius: 9999px;
   font-family: ${({ theme }) => theme.font};
   font-size: 0.8rem;
   color: white;
   margin: 0 2rem;
   cursor: pointer;
+  flex: 0 0 1.5rem;
 
   &:hover {
     background-color: ${({ theme }) => theme.brand.primary};
