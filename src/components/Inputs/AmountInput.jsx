@@ -44,6 +44,17 @@ const AmountInput = ({
     } else {
       setIsMaxReached(false);
     }
+
+    if (value > max) {
+      setCurrentValue(max);
+    }
+    if (value < min) {
+      setCurrentValue(min);
+    }
+
+    if (value >= min && value <= max) {
+      setCurrentValue(value);
+    }
   }, [value]);
 
   const checkValue = ({ target: { value } }) => {
