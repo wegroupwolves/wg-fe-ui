@@ -7,6 +7,7 @@ import {
   LoadingSpinner,
   PieProgressIndicator,
   CircularProgressBar,
+  SmallLoader,
 } from '../src/components/Loaders/index';
 
 import { H1, H2 } from '../src/components/Typography/index';
@@ -65,4 +66,7 @@ storiesOf('Low level blocks/Loaders', module)
         <H2>quotes calculated</H2>
       </CircularProgressBar>
     );
+  })
+  .add('SmallLoader', () => {
+    return <SmallLoader />;
   });
