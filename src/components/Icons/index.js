@@ -149,6 +149,9 @@ import IconHealthFilled from './IconHealthFilled';
 import IconBAXL from './IconBAXL';
 import IconBAPlusPlusXL from './IconBAPlusPlusXL';
 import IconDownloadFilled from './IconDownloadFilled';
+import IconVanFilled from './IconVanFilled';
+import IconJeepFilled from './IconJeepFilled';
+import IconShoppingCartFilled from './IconShoppingCartFilled';
 
 export {
   IconFireFilled,
@@ -301,4 +304,7 @@ export {
   IconHealthFilled,
   IconBAXL,
   IconBAPlusPlusXL,
+  IconVanFilled,
+  IconJeepFilled,
+  IconShoppingCartFilled,
 };
