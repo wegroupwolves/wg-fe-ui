@@ -31,6 +31,8 @@ import {
   ToggleInput,
   AmountInput,
   RangeSlider,
+  FeatureInput,
+  IconSportsCarFilled,
 } from '../src';
 
 import * as Icons from '../src/components/Icons';
@@ -357,6 +359,20 @@ storiesOf('Low level blocks/Inputs', module)
         handlePrefix={text('Handle prefix', '€')}
         onChanged={values => console.log(values)}
       ></RangeSlider>
+    );
+  })
+  .add('FeatureInput', () => {
+    return (
+      <FeatureInput
+        icon={<IconSportsCarFilled />}
+        checked={boolean('Checked?', true)}
+        onChange={e => console.log('Checkbox checked:', e)}
+        name="Sports car"
+        editable={boolean('Editable?', true)}
+        disabled={boolean('Disabled?', false)}
+      >
+        Sports car
+      </FeatureInput>
     );
   });
 

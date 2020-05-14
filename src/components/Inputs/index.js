@@ -11,6 +11,7 @@ import CommentBox from './CommentBox';
 import ToggleInput from './ToggleInput';
 import AmountInput from './AmountInput';
 import RangeSlider from './RangeSlider/RangeSlider';
+import FeatureInput from './FeatureInput';
 
 export {
   ImageSelectBox,
@@ -26,4 +27,5 @@ export {
   ToggleInput,
   AmountInput,
   RangeSlider,
+  FeatureInput,
 };
