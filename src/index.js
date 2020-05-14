@@ -72,7 +72,7 @@ export {
   Tabs,
 } from './components/Navigation';
 
-export { LoadingSpinner } from './components/Loaders';
+export { LoadingSpinner, SmallLoader } from './components/Loaders';
 
 export { Section } from './components/Section';
 

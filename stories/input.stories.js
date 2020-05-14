@@ -225,6 +225,10 @@ storiesOf('Low level blocks/Inputs', module)
         text={val}
         placeholder="Search for..."
         onChange={setVal}
+        loading={boolean('Is loading?', false)}
+        onClear={() => {
+          console.log('Clear input');
+        }}
       />
     );
   })
