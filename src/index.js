@@ -43,6 +43,7 @@ export {
   ToggleInput,
   AmountInput,
   RangeSlider,
+  FeatureInput,
 } from './components/Inputs';
 
 export {
