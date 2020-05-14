@@ -11,6 +11,7 @@ import {
 import LoupeIcon from './../Icons/Loupe';
 import styled from 'styled-components';
 import ActionButton from '../Buttons/ActionButton';
+import SmallLoader from '../Loaders/SmallLoader';
 
 const SearchInput = forwardRef(
   (
@@ -24,6 +25,7 @@ const SearchInput = forwardRef(
       showButton,
       buttonText,
       buttonAction,
+      loading,
       ...otherProps
     },
     ref,
@@ -34,7 +36,7 @@ const SearchInput = forwardRef(
 
     return (
       <StyledBox>
-        {icon}
+        {!loading ? icon : <SmallLoader />}
         <Input
           ref={ref}
           className={className}
@@ -110,6 +112,7 @@ SearchInput.defaultProps = {
   buttonText: 'Search',
   buttonAction: () => console.log('Pass a click function for your search'),
   otherProps: {},
+  loading: false,
 };
 
 SearchInput.propTypes = {
@@ -123,6 +126,8 @@ SearchInput.propTypes = {
   buttonText: string,
   buttonAction: func,
   otherProps: object,
+  /** Set this to true when calling an API to display a loading state in the search bar... */
+  loading: bool,
 };
 
 export default SearchInput;

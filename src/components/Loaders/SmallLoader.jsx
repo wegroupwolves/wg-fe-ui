@@ -23,14 +23,14 @@ const Ball = styled.div`
   margin: 1rem 0.15rem;
   background: ${({ theme }) => theme.brand.light};
   border-radius: 9999px;
-  animation: 0.9s bounce infinite alternate;
+  animation: 0.6s bounce infinite alternate;
 
   &:nth-child(2) {
-    animation-delay: 0.3s;
+    animation-delay: 0.2s;
   }
 
   &:nth-child(3) {
-    animation-delay: 0.6s;
+    animation-delay: 0.4s;
   }
 
   @keyframes bounce {
@@ -41,6 +41,6 @@ const Ball = styled.div`
   }
 `;
 
-SmallLoader.propTypes = {};
+// SmallLoader.propTypes = {};
 
 export default SmallLoader;
