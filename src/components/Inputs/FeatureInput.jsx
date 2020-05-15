@@ -85,7 +85,7 @@ const Feature = styled.label`
     line-height: 130%;
     letter-spacing: 1px;
     color: ${({ theme, checked }) => (checked ? theme.brand.light : '#c2c5cf')};
-    flex: 1 0 auto;
+    flex: 0 1 auto;
   }
 
   input[type='checkbox'] {
