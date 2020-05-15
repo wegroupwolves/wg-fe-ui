@@ -34,13 +34,20 @@ const FeatureInput = forwardRef(
     };
 
     return (
-      <Feature checked={isChecked} className={className} {...otherProps}>
-        {icon}
+      <Feature
+        checked={isChecked}
+        className={className}
+        editable={editable}
+        {...otherProps}
+      >
+        <Left checked={isChecked}>
+          {icon}
 
-        <p>{children}</p>
+          <p>{children}</p>
+        </Left>
 
         {editable ? (
-          <>
+          <Right>
             <input
               ref={ref}
               name={name}
@@ -54,7 +61,7 @@ const FeatureInput = forwardRef(
             <StyledInput checked={isChecked} disabled={disabled}>
               {isChecked ? <IconStatusCheck size={25} /> : ''}
             </StyledInput>
-          </>
+          </Right>
         ) : (
           ''
         )}
@@ -76,7 +83,7 @@ const Feature = styled.label`
   border-radius: 2px;
   border: 1px solid
     ${({ theme, checked }) => (checked ? theme.brand.light : '#c2c5cf')};
-  cursor: pointer;
+  cursor: ${({ editable }) => (editable ? 'pointer' : 'default')};
 
   p {
     font-family: ${({ theme }) => theme.font};
@@ -91,16 +98,6 @@ const Feature = styled.label`
   input[type='checkbox'] {
     display: none;
   }
-
-  > svg {
-    flex: 0 0 35px;
-    margin-right: 2.5rem;
-
-    path {
-      fill: ${({ theme, checked }) =>
-        checked ? theme.brand.light : '#c2c5cf'};
-    }
-  }
 `;
 
 const StyledInput = styled.div`
@@ -111,6 +108,7 @@ const StyledInput = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  justify-self: end;
 
   background-color: ${({ theme, disabled }) =>
     disabled ? theme.ui.background : 'white'};
@@ -127,6 +125,25 @@ const StyledInput = styled.div`
     }
   }
 `;
+
+const Left = styled.div`
+  flex: 1 0 auto;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+
+  > svg {
+    flex: 0 0 35px;
+    margin-right: 2.5rem;
+
+    path {
+      fill: ${({ theme, checked }) =>
+        checked ? theme.brand.light : '#c2c5cf'};
+    }
+  }
+`;
+
+const Right = styled.div``;
 
 FeatureInput.displayName = 'FeatureInput';
 
