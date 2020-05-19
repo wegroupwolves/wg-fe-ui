@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { storiesOf } from '@storybook/react';
 import { withInfo } from '@storybook/addon-info';
-import { withKnobs, select, text } from '@storybook/addon-knobs';
+import { withKnobs, select, text, boolean } from '@storybook/addon-knobs';
 
 import { ActionButton, TertiaryButton, Modal } from '../src/';
 
@@ -26,6 +26,7 @@ storiesOf('Low level blocks/Modals', module)
           showModal={showModal}
           setShowModal={setShowModal}
           title={text('Modal title', 'Default Title')}
+          small={boolean('Small modal?', false)}
         >
           <p>This is some content for the modal</p>
 
