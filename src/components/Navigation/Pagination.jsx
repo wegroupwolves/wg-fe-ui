@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { number, string } from 'prop-types';
+import { number, string, func } from 'prop-types';
 import styled from 'styled-components';
 import ChevronLeft from '../Icons/IconActionChevronLeft';
 import ChevronRight from '../Icons/IconActionChevronRight';
@@ -8,9 +8,9 @@ import ChevronRight from '../Icons/IconActionChevronRight';
 const Pagination = ({
   currentPage,
   totalPages,
-  pageLength,
   base,
   otherFilters,
+  onClick,
   ...otherProps
 }) => {
   const urls = [];
@@ -19,16 +19,32 @@ const Pagination = ({
     const generatedUrl = `${base}${index}`;
     const pageNumber = index;
 
-    urls[index] = { url: generatedUrl, page: pageNumber };
+    if (base === undefined) {
+      urls[index] = { url: `${pageNumber}`, page: pageNumber };
+    } else {
+      urls[index] = { url: generatedUrl, page: pageNumber };
+    }
   }
+
+  console.log(urls);
 
   const prevUrl = currentPage - 1;
   const nextUrl = currentPage + 1;
 
+  // disable history pushing when you just want to update an querystring
+  // If there is no base given (=undefined) then just provide a callback
+  function handleOnclick(e) {
+    if (base === undefined) {
+      e.preventDefault();
+      const [, page] = e?.currentTarget?.getAttribute('href')?.split('/') || [];
+      onClick(page);
+    }
+  }
+
   return (
     <PaginationWrapper {...otherProps}>
       {currentPage > 1 ? (
-        <PaginationButton to={urls[prevUrl].url}>
+        <PaginationButton onClick={handleOnclick} to={urls[prevUrl].url}>
           <ChevronLeft color="#C1C1C1" />
           <span className="label">Prev</span>
         </PaginationButton>
@@ -38,7 +54,9 @@ const Pagination = ({
 
       <PaginationPages>
         {currentPage > 4 ? (
-          <PaginationPage to={urls[1].url}>1</PaginationPage>
+          <PaginationPage onClick={handleOnclick} to={urls[1].url}>
+            1
+          </PaginationPage>
         ) : (
           ''
         )}
@@ -50,6 +68,7 @@ const Pagination = ({
               to={url.url}
               key={url.page}
               active={url.page === currentPage ? true : false}
+              onClick={handleOnclick}
             >
               {url.page}
             </PaginationPage>
@@ -64,7 +83,7 @@ const Pagination = ({
           ''
         )}
         {currentPage < totalPages - 3 ? (
-          <PaginationPage to={urls[totalPages].url}>
+          <PaginationPage onClick={handleOnclick} to={urls[totalPages].url}>
             {totalPages}
           </PaginationPage>
         ) : (
@@ -73,7 +92,7 @@ const Pagination = ({
       </PaginationPages>
 
       {currentPage < totalPages ? (
-        <PaginationButton to={urls[nextUrl].url}>
+        <PaginationButton onClick={handleOnclick} to={urls[nextUrl].url}>
           <span className="label">Next</span>
           <ChevronRight color="#C1C1C1" />
         </PaginationButton>
@@ -162,6 +181,10 @@ const PaginationPage = styled(Link)`
   }
 `;
 
+Pagination.defaultProps = {
+  onClick: () => {},
+};
+
 Pagination.propTypes = {
   /** The current page the pagination component should show. */
   currentPage: number.isRequired,
@@ -171,6 +194,8 @@ Pagination.propTypes = {
   pageLength: number.isRequired,
   /** URL on which the pagination is to be based. */
   base: string,
+  /** Callback that fire's when there is no base */
+  onClick: func,
   /** Extra filters to be passed to the URL. */
   otherFilters: string,
 };

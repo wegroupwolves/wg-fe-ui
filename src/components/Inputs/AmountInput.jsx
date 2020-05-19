@@ -11,6 +11,7 @@ const AmountInput = ({
   max,
   className,
   onChange,
+  onBlur,
   inputAppend,
   ...otherProps
 }) => {
@@ -45,10 +46,10 @@ const AmountInput = ({
       setIsMaxReached(false);
     }
 
-    if (value > max) {
+    if (value >= max) {
       setCurrentValue(max);
     }
-    if (value < min) {
+    if (value <= min) {
       setCurrentValue(min);
     }
 
@@ -61,11 +62,14 @@ const AmountInput = ({
     const parsedValue = parseFloat(value) || min;
     if (parsedValue >= min && parsedValue <= max) {
       setCurrentValue(parsedValue);
+      onBlur(parsedValue);
     } else {
       if (parsedValue < min) {
         setCurrentValue(min);
+        onBlur(min);
       } else if (parsedValue > max) {
         setCurrentValue(max);
+        onBlur(max);
       }
     }
   };
@@ -182,6 +186,11 @@ const InputExtra = styled.div`
   align-items: center;
 `;
 
+AmountInput.defaultProps = {
+  onChange: () => {},
+  onBlur: () => {},
+};
+
 AmountInput.propTypes = {
   /** Value of the input (only applied on mount). */
   value: number,
@@ -197,6 +206,8 @@ AmountInput.propTypes = {
   inputAppend: string,
   /** returns onChange event */
   onChange: func,
+  /** returns onBlur event */
+  onBlur: func,
   /** Other props to be passed to the component. */
   otherProps: object,
 };
