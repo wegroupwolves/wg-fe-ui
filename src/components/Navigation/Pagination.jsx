@@ -36,7 +36,13 @@ const Pagination = ({
   function handleOnclick(e) {
     if (base === undefined) {
       e.preventDefault();
-      const [, page] = e?.currentTarget?.getAttribute('href')?.split('/') || [];
+      const page =
+        e?.currentTarget
+          ?.getAttribute('href')
+          ?.split('/')
+          ?.pop() || [];
+      console.log(page);
+
       onClick(page);
     }
   }
