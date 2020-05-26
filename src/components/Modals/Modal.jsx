@@ -16,6 +16,7 @@ const Modal = ({
   showModal,
   setShowModal,
   small,
+  large,
   className,
   ...otherProps
 }) => {
@@ -26,7 +27,7 @@ const Modal = ({
       open={showModal}
       onRequestClose={canClose ? () => setShowModal(!showModal) : ''}
     >
-      <ModalContainer small={small}>
+      <ModalContainer small={small} large={large}>
         {canClose ? (
           <ModalCloser onClick={() => setShowModal(!showModal)}>
             <CloseIcon color="#505050" />
@@ -48,7 +49,8 @@ const StyledDrawer = styled(Drawer)`
 
 const ModalContainer = styled.div`
   background: white;
-  width: ${({ small }) => (small ? '50rem' : '60rem')};
+  width: ${({ small, large }) =>
+    small ? '50rem' : large ? '100rem' : '60rem'};
   border: 1px solid #ccc;
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
   border-radius: 5px;
@@ -142,6 +144,8 @@ Modal.propTypes = {
   setShowModal: func.isRequired,
   /** Add this prop to display a smaller size of modal. */
   small: bool,
+  /** Add this prop to display a larger size of modal. */
+  large: bool,
   className: string,
 };
 
