@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { node, string, func, object } from 'prop-types';
 import styled from 'styled-components';
 import Icon from '../Icons/IconOthersFilled';
@@ -24,34 +24,40 @@ StyledSubmenuItem.defaultProps = {
 };
 
 const QuickActionSubMenu = ({ children, ...otherProps }) => {
-  const [MenuOpen, setMenuOpen] = useState(false);
+  const node = useRef();
+  const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
-    document.body.addEventListener('click', handleBodyClick);
+    if (menuOpen) {
+      document.body.addEventListener('click', handleClick);
+    } else {
+      document.body.removeEventListener('click', handleClick);
+    }
     return () => {
-      document.body.removeEventListener('click', handleBodyClick);
+      document.body.removeEventListener('click', handleClick);
     };
-  }, []);
+  }, [menuOpen]);
 
-  const handleBodyClick = () => {
-    MenuOpen ? setMenuOpen(false) : setMenuOpen(false);
-  };
-
-  const handleClick = () => {
-    MenuOpen ? setMenuOpen(false) : setMenuOpen(true);
+  const handleClick = e => {
+    if (node.current.contains(e.target)) {
+      console.log('clicked handle');
+      return;
+    }
+    setMenuOpen(false);
   };
 
   const handleInsideClick = e => {
     e.stopPropagation();
+    setMenuOpen(false);
   };
 
   return (
-    <QuickActionSubMenuWrapper {...otherProps}>
-      <MenuToggle onClick={handleClick}>
+    <QuickActionSubMenuWrapper {...otherProps} ref={node}>
+      <MenuToggle onClick={() => setMenuOpen(!menuOpen)}>
         <Icon></Icon>
       </MenuToggle>
 
-      <SubMenu open={MenuOpen} onClick={handleInsideClick}>
+      <SubMenu open={menuOpen} onClick={handleInsideClick}>
         {children}
       </SubMenu>
     </QuickActionSubMenuWrapper>
