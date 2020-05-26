@@ -40,7 +40,6 @@ const QuickActionSubMenu = ({ children, ...otherProps }) => {
 
   const handleClick = e => {
     if (node.current.contains(e.target)) {
-      console.log('clicked handle');
       return;
     }
     setMenuOpen(false);
