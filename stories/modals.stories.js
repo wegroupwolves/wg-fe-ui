@@ -27,6 +27,7 @@ storiesOf('Low level blocks/Modals', module)
           setShowModal={setShowModal}
           title={text('Modal title', 'Default Title')}
           small={boolean('Small modal?', false)}
+          large={boolean('Larger modal?', false)}
         >
           <p>This is some content for the modal</p>
 
