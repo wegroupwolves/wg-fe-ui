@@ -57,9 +57,9 @@ const Uploader = forwardRef(
     const [files, setFiles] = useState([]);
     const [dt, setDT] = useState(new DataTransfer());
 
-    useEffect(() => {
-      setDT(v => updateFiles(v, id, [], true));
-    }, [id]);
+    // useEffect(() => {
+    //   setDT(v => updateFiles(v, id, [], true));
+    // }, [id]);
 
     const readFile = async (file, index) => {
       let reader = new FileReader();
@@ -117,10 +117,10 @@ const Uploader = forwardRef(
       //   await readFile(file, i);
       // }, Promise.resolve());
       if (!multiple) setFiles([]);
-      setDT(dataTransfer => {
-        const vdata = multiple ? dataTransfer : new DataTransfer();
-        return updateFiles(vdata, -1, uploaded);
-      });
+      // setDT(dataTransfer => {
+      //   const vdata = multiple ? dataTransfer : new DataTransfer();
+      //   return updateFiles(vdata, -1, uploaded);
+      // });
       const uploadedFiles = await Promise.all(
         Array.from(uploaded).map(async (t, i) => {
           return await readFile(t, i);
