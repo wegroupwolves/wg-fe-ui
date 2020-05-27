@@ -101,7 +101,7 @@ const Feature = styled.label`
 `;
 
 const StyledInput = styled.div`
-  flex: 1 1 25px;
+  flex: 0 0 25px;
   width: 25px;
   height: 25px;
   border-radius: 2px;
@@ -127,7 +127,7 @@ const StyledInput = styled.div`
 `;
 
 const Left = styled.div`
-  flex: 1 1 auto;
+  flex: 1 0 auto;
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -147,8 +147,6 @@ const Right = styled.div``;
 
 FeatureInput.displayName = 'FeatureInput';
 
-FeatureInput.propTypes = {
-
-};
+FeatureInput.propTypes = {};
 
 export default FeatureInput;
