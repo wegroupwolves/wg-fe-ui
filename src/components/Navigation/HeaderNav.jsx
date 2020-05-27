@@ -8,13 +8,14 @@ const HeaderNav = ({
   className,
   currentLocation,
   onClick,
+  logoOnClick,
   ...otherProps
 }) => {
   return (
     <Container className={className} {...otherProps}>
       <Wrapper>
         <LogoContainer>
-          <Logo src={logo} alt="WeGroup" />
+          <Logo src={logo} alt="WeGroup" onClick={logoOnClick} />
         </LogoContainer>
         <Navigation>
           {navTabs.map(tab => {
@@ -85,6 +86,7 @@ const LogoContainer = styled.div`
 
 const Logo = styled.img`
   height: 100%;
+  ${({ onClick }) => (onClick ? 'cursor:pointer' : null)}
 `;
 
 HeaderNav.defaultProps = {
@@ -98,6 +100,7 @@ HeaderNav.propTypes = {
   logo: string,
   className: string,
   onClick: func,
+  logoOnClick: func,
   currentLocation: string,
   otherProps: object,
 };
