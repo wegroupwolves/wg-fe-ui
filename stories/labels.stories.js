@@ -26,11 +26,11 @@ const LabelTypes = {
 
 const Statuses = {
   Default: 'default',
-  OfferSend: 'offer-send',
-  ContractSend: 'contract-send',
-  Success: 'success',
+  Pending: 'PENDING',
+  Send: 'SEND',
+  Accepted: 'ACCEPTED',
   Warning: 'warning',
-  Error: 'error',
+  Cancelled: 'CANCELLED',
 };
 
 const IconsKeys = Object.keys(Icons);

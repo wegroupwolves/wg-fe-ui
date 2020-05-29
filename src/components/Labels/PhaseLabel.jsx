@@ -3,9 +3,23 @@ import { string, object, node } from 'prop-types';
 import styled from 'styled-components';
 
 const PhaseLabel = ({ status, text, children, ...otherProps }) => {
+  const red = ['REJECTED', 'CANCELLED', 'REFUSED', 'error', 'red'];
+  const blue = ['PENDING', 'offer-send', 'blue'];
+  const orange = ['warning', 'orange'];
+  const yellow = ['SEND', 'contract-send', 'yellow'];
+  const green = ['ACCEPTED', 'SIGNED', 'ACCEPTED', 'success', 'green'];
+
+  let statusClassName = 'default';
+
+  if (red.includes(status)) statusClassName = 'red';
+  if (blue.includes(status)) statusClassName = 'blue';
+  if (yellow.includes(status)) statusClassName = 'yellow';
+  if (green.includes(status)) statusClassName = 'green';
+  if (orange.includes(status)) statusClassName = 'orange';
+
   return (
     <PhaseLabelWrapper {...otherProps}>
-      <PhaseLabelIndicator className={status}></PhaseLabelIndicator>
+      <PhaseLabelIndicator className={statusClassName}></PhaseLabelIndicator>
       {!children && text ? <PhaseLabelText>{text}</PhaseLabelText> : ''}
       {children && !text ? children : ''}
     </PhaseLabelWrapper>
@@ -29,19 +43,23 @@ const PhaseLabelIndicator = styled.div`
     background-color: ${({ theme }) => theme.ui.outline};
   }
 
-  &.success {
+  &.green {
     background-color: ${({ theme }) => theme.status.succes};
   }
 
-  &.offer-send {
+  &.orange {
+    background-color: ${({ theme }) => theme.status.warning};
+  }
+
+  &.blue {
     background-color: ${({ theme }) => theme.status.blue};
   }
 
-  &.contract-send {
+  &.yellow {
     background-color: ${({ theme }) => theme.status.yellow};
   }
 
-  &.error {
+  &.red {
     background-color: ${({ theme }) => theme.status.error};
   }
 `;
