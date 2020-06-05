@@ -59,6 +59,10 @@ const ModalContainer = styled.div`
   overflow: hidden;
   position: relative;
   font-family: ${({ theme }) => theme.font};
+
+  @media screen and (max-width: 95rem) {
+    width: calc(100vw - 3rem);
+  }
 `;
 
 const ModalTitleBar = styled.div`
