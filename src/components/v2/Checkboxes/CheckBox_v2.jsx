@@ -67,6 +67,7 @@ const StyledBox = styled.div`
   width: 1.8rem;
   height: 1.8rem;
   border-radius: 0.3rem;
+  flex: 0 0 1.8rem;
   border: 1px solid
     ${({ theme, disabled, checked }) =>
       disabled ? '#8990A3' : checked ? theme.brand.primary : '#E4E4E4'};
@@ -81,7 +82,6 @@ const StyledBox = styled.div`
       ? theme.brand.primary
       : 'transparent'};
   margin-bottom: 2px;
-
   transition: background-color 0.1s ease-in-out, border 0.1s ease-in-out;
 `;
 
