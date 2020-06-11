@@ -32,10 +32,12 @@ const PhaseLabelWrapper = styled.div`
 `;
 
 const PhaseLabelIndicator = styled.div`
-  width: 11px;
-  height: 11px;
-  border-radius: 999px;
-  margin-right: 8px;
+  width: 1.1rem;
+  height: 1.1rem;
+  min-width: 1.1rem;
+  min-height: 1.1rem;
+  border-radius: 50%;
+  margin-right: 0.8rem;
   border: 0;
   display: inline-block;
 
@@ -66,7 +68,7 @@ const PhaseLabelIndicator = styled.div`
 
 const PhaseLabelText = styled.div`
   font-family: ${({ theme }) => theme.font};
-  font-size: 12px;
+  font-size: 1.2rem;
   line-height: 130%;
   color: ${({ theme }) => theme.typo.title};
 `;

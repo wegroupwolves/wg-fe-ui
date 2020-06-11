@@ -85,19 +85,20 @@ const SearchSelectInput = forwardRef(
           ) : (
             <AsyncInput
               ref={ref}
+              isDisabled={disabled}
+              onChange={handleChange}
               placeholder={loading ? loadingMessage : placeholder}
               classNamePrefix="Select"
               isMulti={isMulti}
               name={name}
               closeMenuOnSelect={!isMulti}
               error={error ? true : false}
-              isDisabled={disabled}
               cacheOptions
               value={isSelected}
               loadOptions={loadOptions}
               defaultOptions
-              onChange={handleChange}
               {...otherProps}
+              onFocus={() => console.log('Focussed')}
             />
           )}
         </Label>
