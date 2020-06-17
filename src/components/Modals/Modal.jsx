@@ -56,7 +56,7 @@ const ModalContainer = styled.div`
   border-radius: 5px;
   display: flex;
   flex-direction: column;
-  overflow: hidden;
+  /* overflow: hidden; */
   position: relative;
   font-family: ${({ theme }) => theme.font};
 
