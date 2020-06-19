@@ -98,6 +98,9 @@ const DateInput = forwardRef(
 
     useClickOutside(ref, () => setFocus(false));
 
+    /**
+     * Function to check wether or not a date is valid.
+     */
     const isDate = () => {
       const d = `${date.day}/${date.month}/${date.year}`;
       return /\d{2}\/\d{2}\/\d{4}/.test(d);
@@ -155,7 +158,7 @@ const DateInput = forwardRef(
           dispatch({ type, payload: pad(parseInt(date[type]) - 1) });
         setRange(e);
       } else if ([ARROW_LEFT, 8].includes(e.keyCode)) {
-        focusField(prevRef[type]);
+        e.keyCode === ARROW_LEFT && focusField(prevRef[type]);
         type === 'day' && setRange(e);
         e.keyCode === 8 && dispatch({ type, payload: '' });
       } else if (ARROW_RIGHT === e.keyCode) {
