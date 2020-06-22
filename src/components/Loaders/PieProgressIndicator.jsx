@@ -1,12 +1,12 @@
 import React from 'react';
-import { number, bool } from 'prop-types';
+import { number, bool, string } from 'prop-types';
 import styled from 'styled-components';
 
-const PieProgressIndicator = ({ percentage, big }) => {
+const PieProgressIndicator = ({ className, percentage, big }) => {
   const calculatedPercentage = percentage * 1.58;
 
   return (
-    <Wrapper size={big}>
+    <Wrapper className={className} size={big}>
       <svg width="106" height="106">
         <OuterCircle
           r="25"
@@ -41,6 +41,7 @@ const BorderCircle = styled.circle`
 PieProgressIndicator.propTypes = {
   /** The percentage that should be displayed. */
   percentage: number.isRequired,
+  className: string,
   /** Set big to true to show a bigger version of the indicator. */
   big: bool,
 };
