@@ -72,7 +72,11 @@ export {
   Tabs,
 } from './components/Navigation';
 
-export { LoadingSpinner, SmallLoader } from './components/Loaders';
+export {
+  LoadingSpinner,
+  SmallLoader,
+  PieProgressIndicator,
+} from './components/Loaders';
 
 export { Section } from './components/Section';
 
