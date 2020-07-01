@@ -6,6 +6,8 @@ import UploadField from './UploadField';
 import ToggleButton from './ToggleButton';
 import TertiaryButton from './TertiaryButton';
 import AddRemoveButton from './AddRemoveButton';
+import RoundedButton from './RoundedButton';
+import DashedButton from './DashedButton';
 
 export {
   ActionButton,
@@ -16,4 +18,6 @@ export {
   ToggleButton,
   TertiaryButton,
   AddRemoveButton,
+  RoundedButton,
+  DashedButton,
 };

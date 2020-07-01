@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
-
 import { storiesOf, addParameters } from '@storybook/react';
-// import { linkTo } from '@storybook/addon-links';
 import { withKnobs, select, boolean, text } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 import { withInfo } from '@storybook/addon-info';
+import styled from 'styled-components';
 
 import buttonIcon from './assets/buttonIcon.svg';
 import { ReactComponent as BackArrow } from './assets/back-arrow.svg';
@@ -17,6 +16,10 @@ import {
   ToggleButton,
   TertiaryButton,
   AddRemoveButton,
+  RoundedButton,
+  IconActionChevronRight,
+  IconActionPlus,
+  DashedButton,
 } from '../src/';
 
 addParameters({
@@ -24,8 +27,6 @@ addParameters({
     panelPosition: 'right',
   },
 });
-
-// storiesOf('Welcome', module).add('to Storybook', () => <Welcome showApp={linkTo('Button')} />);
 
 const buttonLevels = ['primary', 'secondary', 'default'];
 const ToggleButtonLevels = ['active', 'non-active'];
@@ -36,21 +37,30 @@ const propsObject = [{ none: null, id: { id: 'add' } }];
 storiesOf('Low level blocks/Buttons', module)
   .addDecorator(withKnobs)
   .addDecorator(withInfo({ inline: true }))
-  .add('ActionButton', () => (
-    <ActionButton
-      onClick={action('button clicked')}
-      fullwidth={boolean('Fullwidth', false)}
-      disabled={boolean('Disabled', false)}
-      icon={select('Icon', iconObject)}
-      level={select('Level', buttonLevels, 'primary')}
-      otherProps={select('otherProps', ...propsObject)}
-    >
-      {text('Label', 'Pay')}
-    </ActionButton>
-  ))
-  .add('EditActionButton', () => (
-    <EditActionButton onClick={action('button clicked')}>Edit</EditActionButton>
-  ))
+
+  .add('ActionButton', () => {
+    return (
+      <ActionButton
+        onClick={action('button clicked')}
+        fullwidth={boolean('Fullwidth', false)}
+        disabled={boolean('Disabled', false)}
+        icon={select('Icon', iconObject)}
+        level={select('Level', buttonLevels, 'primary')}
+        otherProps={select('otherProps', ...propsObject)}
+      >
+        {text('Label', 'Pay')}
+      </ActionButton>
+    );
+  })
+
+  .add('EditActionButton', () => {
+    return (
+      <EditActionButton onClick={action('button clicked')}>
+        Edit
+      </EditActionButton>
+    );
+  })
+
   .add('AddEntityButton', () => {
     const onClick = () => console.log('resource: ');
 
@@ -62,6 +72,7 @@ storiesOf('Low level blocks/Buttons', module)
       />
     );
   })
+
   .add('BackButton', () => {
     const iconName = select('Icon', Object.keys(svg), 'back_arrow');
     return (
@@ -73,22 +84,27 @@ storiesOf('Low level blocks/Buttons', module)
       />
     );
   })
+
   .add('UploadField', () => {
     const onClick = value => console.log('value: ', value);
     return <UploadField onClick={onClick} />;
   })
-  .add('ToggleButton', () => (
-    <ToggleButton
-      onClick={action('button clicked')}
-      fullwidth={boolean('Fullwidth', false)}
-      disabled={boolean('Disabled', false)}
-      icon={select('Icon', iconObject)}
-      level={select('Level', ToggleButtonLevels, 'active')}
-      otherProps={select('otherProps', ...propsObject)}
-    >
-      {text('Label', 'Add')}
-    </ToggleButton>
-  ))
+
+  .add('ToggleButton', () => {
+    return (
+      <ToggleButton
+        onClick={action('button clicked')}
+        fullwidth={boolean('Fullwidth', false)}
+        disabled={boolean('Disabled', false)}
+        icon={select('Icon', iconObject)}
+        level={select('Level', ToggleButtonLevels, 'active')}
+        otherProps={select('otherProps', ...propsObject)}
+      >
+        {text('Label', 'Add')}
+      </ToggleButton>
+    );
+  })
+
   .add('TertiaryButton', () => {
     return (
       <TertiaryButton
@@ -97,6 +113,7 @@ storiesOf('Low level blocks/Buttons', module)
       ></TertiaryButton>
     );
   })
+
   .add('AddRemoveButton', () => {
     const [isAdded, setIsAdded] = useState(false);
     return (
@@ -107,4 +124,49 @@ storiesOf('Low level blocks/Buttons', module)
         }}
       ></AddRemoveButton>
     );
+  })
+
+  .add('RoundedButton', () => {
+    return (
+      <RoundedButton
+        icon={<IconActionChevronRight size={20} />}
+        type={select(
+          'Button type',
+          {
+            Default: 'default',
+            Primary: 'primary',
+            Success: 'success',
+            Warning: 'warning',
+            Danger: 'danger',
+          },
+          'default',
+        )}
+      />
+    );
+  })
+
+  .add('DashedButton', () => {
+    return (
+      <DashedButtonWrapper>
+        <DashedButton
+          button={
+            <RoundedButton
+              type="primary"
+              icon={<IconActionPlus size={35} />}
+              iconType="fill"
+              size="large"
+            ></RoundedButton>
+          }
+          label="Een nieuwe wagen tariferen"
+          onClick={() => {
+            alert('The button was clicked');
+          }}
+        ></DashedButton>
+      </DashedButtonWrapper>
+    );
   });
+
+const DashedButtonWrapper = styled.div`
+  width: 320px;
+  height: 320px;
+`;

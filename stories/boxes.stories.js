@@ -1,12 +1,31 @@
 import React, { useRef } from 'react';
 import { storiesOf } from '@storybook/react';
-import { withKnobs, boolean, text, select } from '@storybook/addon-knobs';
+import {
+  withKnobs,
+  boolean,
+  text,
+  select,
+  number,
+} from '@storybook/addon-knobs';
 import { withInfo } from '@storybook/addon-info';
 import styled from 'styled-components';
 import UploadIcon from './../src/components/Icons/Upload';
 import PlusIcon from './../src/components/Icons/Plus';
 
-import { QuestionBox, Uploader, DownloadBox, AccordionBox } from '../src';
+import {
+  QuestionBox,
+  Uploader,
+  DownloadBox,
+  AccordionBox,
+  RiskObjectSelector,
+  RiskObjectDisplay,
+  IconCarFilled,
+  DataBlock,
+  H4,
+  Body,
+  RoundedButton,
+  IconActionClose,
+} from '../src';
 
 const propsObject = [{ none: null, id: { id: 'add' } }];
 
@@ -35,16 +54,18 @@ storiesOf('Mid level blocks/Boxes', module)
     );
   })
 
-  .add('QuestionBox', () => (
-    <StyledQuestionBox
-      option1="Ja"
-      option2="Nee"
-      response={answer => console.log(answer)}
-      disabled={boolean('disabled', false)}
-    >
-      Is this a Question?
-    </StyledQuestionBox>
-  ))
+  .add('QuestionBox', () => {
+    return (
+      <StyledQuestionBox
+        option1="Ja"
+        option2="Nee"
+        response={answer => console.log(answer)}
+        disabled={boolean('disabled', false)}
+      >
+        Is this a Question?
+      </StyledQuestionBox>
+    );
+  })
 
   .add('Uploader', () => {
     const supported = {
@@ -89,14 +110,73 @@ storiesOf('Mid level blocks/Boxes', module)
     );
   })
 
-  .add('DownloadBox', () => (
-    <DownloadBox
-      otherProps={select('otherProps', ...propsObject)}
-      href={text('href', 'href')}
-      thumbnail={text('thumbnail', '')}
-      filename={text('fileName', 'fileName')}
-    />
-  ));
+  .add('DownloadBox', () => {
+    return (
+      <DownloadBox
+        otherProps={select('otherProps', ...propsObject)}
+        href={text('href', 'href')}
+        thumbnail={text('thumbnail', '')}
+        filename={text('fileName', 'fileName')}
+      />
+    );
+  })
+
+  .add('RiskObjectSelector', () => {
+    return (
+      <RiskObjectSelector
+        icon={<IconCarFilled size={50} />}
+        label={text('Label', 'Car')}
+        amount={number('Amount', 2, { range: true, min: 0, max: 25, step: 1 })}
+        onClick={event => {
+          console.log(event);
+        }}
+      ></RiskObjectSelector>
+    );
+  })
+
+  .add('RiskObjectDisplay', () => {
+    return (
+      <RiskObjectDisplayWrapper>
+        <RiskObjectDisplay
+          icon={<IconCarFilled />}
+          title="Bugatti Cheyron"
+          onClick={event => {
+            console.log(event);
+          }}
+          hoverContent="Niet tariferen"
+          hoverButton={
+            <RoundedButton
+              icon={<IconActionClose size={40} />}
+              type="danger"
+              iconType="fill"
+              size="large"
+            />
+          }
+        >
+          <DataBlock>
+            <Body light smaller>
+              License plate
+            </Body>
+            <H4 larger>-</H4>
+          </DataBlock>
+
+          <DataBlock>
+            <Body light smaller>
+              Power (kW)
+            </Body>
+            <H4 larger>365</H4>
+          </DataBlock>
+
+          <DataBlock>
+            <Body light smaller>
+              Catalogue value
+            </Body>
+            <H4 larger>&euro; 2.998.000</H4>
+          </DataBlock>
+        </RiskObjectDisplay>
+      </RiskObjectDisplayWrapper>
+    );
+  });
 
 const StyledQuestionBox = styled(QuestionBox)`
   width: 85%;
@@ -119,6 +199,10 @@ const AccordionBoxMockContent = styled.div`
   padding: 1.2rem;
   border-radius: 5px;
   border: 1px solid ${({ theme }) => theme.brand.primary};
+`;
+
+const RiskObjectDisplayWrapper = styled.div`
+  width: 320px;
 `;
 
 StyledQuestionBox.displayName = 'QuestionBox';

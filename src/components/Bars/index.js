@@ -5,6 +5,7 @@ import TrackingBar from './TrackingBar';
 import FlightSelectBar from './FlightSelectBar';
 import RiskObjectBar from './RiskObjectBar';
 import Alert from './Alert';
+import ProspectInfoBar from './ProspectInfoBar';
 
 export {
   ProgressBar,
@@ -14,4 +15,5 @@ export {
   FlightSelectBar,
   RiskObjectBar,
   Alert,
+  ProspectInfoBar,
 };

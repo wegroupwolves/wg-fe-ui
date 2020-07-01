@@ -10,6 +10,7 @@ import H2 from './H2';
 import H3 from './H3';
 import H4 from './H4';
 import Body from './Body';
+import DataBlock from './DataBlock';
 
 export {
   Title,
@@ -24,4 +25,5 @@ export {
   H3,
   H4,
   Body,
+  DataBlock,
 };
