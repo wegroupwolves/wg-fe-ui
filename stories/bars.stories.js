@@ -13,6 +13,11 @@ import {
   TrackingBar,
   FlightSelectBar,
   Alert,
+  ProspectInfoBar,
+  IconIdFilled,
+  Body,
+  H4,
+  DataBlock,
 } from './../src';
 import ApprovedIcon from './assets/Icons/Approved';
 import OpenedIcon from './assets/Icons/Opened';
@@ -226,6 +231,39 @@ storiesOf('Mid Level blocks/Bars', module)
         elementum vehicula, eros quam gravida nisl, id fringilla neque ante vel
         mi. Curabitur blandit mollis lacus.
       </Alert>
+    );
+  })
+  .add('ProspectInfoBar', () => {
+    return (
+      <ProspectInfoBar icon={<IconIdFilled size={36} />}>
+        <DataBlock>
+          <Body light smaller>
+            Name
+          </Body>
+          <H4 larger>Louise WeGroup</H4>
+        </DataBlock>
+
+        <DataBlock>
+          <Body light smaller>
+            Date of birth
+          </Body>
+          <H4 larger>01/01/2015</H4>
+        </DataBlock>
+
+        <DataBlock>
+          <Body light smaller>
+            Address
+          </Body>
+          <H4 larger>Bomastraat 12a, 9000 Gent</H4>
+        </DataBlock>
+
+        <DataBlock>
+          <Body light smaller>
+            E-mail
+          </Body>
+          <H4 larger>louise@wegroup.be</H4>
+        </DataBlock>
+      </ProspectInfoBar>
     );
   });
 

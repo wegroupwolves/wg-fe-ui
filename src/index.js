@@ -9,6 +9,7 @@ export {
   FlightSelectBar,
   RiskObjectBar,
   Alert,
+  ProspectInfoBar,
 } from './components/Bars';
 
 export {
@@ -20,6 +21,8 @@ export {
   ToggleButton,
   TertiaryButton,
   AddRemoveButton,
+  RoundedButton,
+  DashedButton,
 } from './components/Buttons';
 
 export {
@@ -51,6 +54,8 @@ export {
   Uploader,
   DownloadBox,
   AccordionBox,
+  RiskObjectSelector,
+  RiskObjectDisplay,
 } from './components/Boxes';
 
 export {
@@ -93,9 +98,15 @@ export {
   H3,
   H4,
   Body,
+  DataBlock,
 } from './components/Typography';
 
-export { PhaseLabel, RiskObjectLabel, TypeLabel } from './components/Labels';
+export {
+  PhaseLabel,
+  RiskObjectLabel,
+  TypeLabel,
+  Badge,
+} from './components/Labels';
 
 export { DraggableList } from './components/DraggableList';
 

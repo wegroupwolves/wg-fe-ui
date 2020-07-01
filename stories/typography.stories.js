@@ -17,6 +17,7 @@ import {
   H3,
   H4,
   Body,
+  DataBlock,
 } from '../src/';
 
 const propsObject = [{ none: null, id: { id: 'add' } }];
@@ -85,7 +86,11 @@ storiesOf('Low level blocks/Typography', module)
     return <H3>{text('Text', 'This is an H3 title.')}</H3>;
   })
   .add('H4', () => {
-    return <H4>{text('Text', 'This is an H4 title.')}</H4>;
+    return (
+      <H4 larger={boolean('Larger?', false)}>
+        {text('Text', 'This is an H4 title.')}
+      </H4>
+    );
   })
   .add('Body', () => {
     return (
@@ -93,8 +98,19 @@ storiesOf('Low level blocks/Typography', module)
         bold={boolean('Bold?', false)}
         italic={boolean('Italic?', false)}
         light={boolean('Light?', true)}
+        smaller={boolean('Smaller?', false)}
       >
         {text('Text', 'This is some body text.')}
       </Body>
+    );
+  })
+  .add('DataBlock', () => {
+    return (
+      <DataBlock>
+        <Body light smaller>
+          Test
+        </Body>
+        <H4 larger>Test</H4>
+      </DataBlock>
     );
   });

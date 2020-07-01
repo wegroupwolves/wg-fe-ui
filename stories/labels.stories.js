@@ -9,6 +9,7 @@ import {
   RiskObjectLabel,
   PhaseLabel,
   Label,
+  Badge,
 } from '../src/components/Labels/index';
 
 addParameters({
@@ -42,9 +43,11 @@ IconsKeys.map(IconKey => {
 storiesOf('Low level blocks/Labels', module)
   .addDecorator(withKnobs)
   .addDecorator(withInfo({ inline: true }))
+
   .add('Label', () => {
     return <Label>{text('Label text', 'Theft')}</Label>;
   })
+
   .add('TypeLabel', () => {
     return (
       <TypeLabel
@@ -53,6 +56,7 @@ storiesOf('Low level blocks/Labels', module)
       ></TypeLabel>
     );
   })
+
   .add('RiskObjectLabel', () => {
     return (
       <RiskObjectLabel
@@ -61,11 +65,20 @@ storiesOf('Low level blocks/Labels', module)
       ></RiskObjectLabel>
     );
   })
+
   .add('PhaseLabel', () => {
     return (
       <PhaseLabel
         status={select('Type', Statuses)}
         text={text('Text', 'Lead')}
       ></PhaseLabel>
+    );
+  })
+
+  .add('Badge', () => {
+    return (
+      <Badge>
+        {number('Badge content', 2, { range: true, min: 0, max: 99, step: 1 })}
+      </Badge>
     );
   });
