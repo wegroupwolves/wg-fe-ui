@@ -1,8 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
-import { element, node } from 'prop-types';
+import { element, node, func } from 'prop-types';
 
-import { RoundedButton, IconActionChevronRight } from '../../../src';
+// import { RoundedButton, IconActionChevronRight } from '../../../src';
+import RoundedButton from '../Buttons/RoundedButton';
+import IconActionChevronRight from '../Icons/IconActionChevronRight';
 
 const ProspectInfoBar = ({ icon, children, onClick }) => {
   return (
@@ -75,8 +77,12 @@ const BarButton = styled.div`
 `;
 
 ProspectInfoBar.propTypes = {
+  /** Pass an icon as element to be displayed at the front of the bar. */
   icon: element,
+  /** Children to be displayed in the center of the bar. */
   children: node.isRequired,
+  /** Passing no function will result in the right arrow not being shown. */
+  onClick: func,
 };
 
 export default ProspectInfoBar;

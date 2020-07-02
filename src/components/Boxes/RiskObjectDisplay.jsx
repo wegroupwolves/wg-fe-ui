@@ -2,7 +2,7 @@ import React from 'react';
 import { string, element, node, func, object } from 'prop-types';
 import styled from 'styled-components';
 
-import { H4 } from '../../../src';
+import { H4 } from '../Typography';
 
 const RiskObjectDisplay = ({
   title,
