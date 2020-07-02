@@ -235,7 +235,12 @@ storiesOf('Mid Level blocks/Bars', module)
   })
   .add('ProspectInfoBar', () => {
     return (
-      <ProspectInfoBar icon={<IconIdFilled size={36} />}>
+      <ProspectInfoBar
+        icon={<IconIdFilled size={36} />}
+        onClick={event => {
+          console.log(event);
+        }}
+      >
         <DataBlock>
           <Body light smaller>
             Name
