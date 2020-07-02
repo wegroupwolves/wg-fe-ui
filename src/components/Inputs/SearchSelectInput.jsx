@@ -230,7 +230,7 @@ const Container = styled.div`
   flex-direction: column;
   width: 100%;
   font-family: ${({ theme }) => theme.font};
-  height: 9rem;
+  min-height: 9rem;
 `;
 
 const Label = styled.label`
