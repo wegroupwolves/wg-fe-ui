@@ -77,6 +77,7 @@ export {
   BreadCrumbs,
   MobileMenu,
   Tabs,
+  Switcher,
 } from './components/Navigation';
 
 export {
