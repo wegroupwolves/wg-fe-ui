@@ -1,7 +1,13 @@
 import React from 'react';
 import { storiesOf, addParameters } from '@storybook/react';
 import { withInfo } from '@storybook/addon-info';
-import { withKnobs, select, text, number } from '@storybook/addon-knobs';
+import {
+  withKnobs,
+  select,
+  text,
+  number,
+  boolean,
+} from '@storybook/addon-knobs';
 import * as Icons from '../src/components/Icons';
 
 import {
@@ -77,7 +83,10 @@ storiesOf('Low level blocks/Labels', module)
 
   .add('Badge', () => {
     return (
-      <Badge>
+      <Badge
+        size={select('Size', { Small: 'small', Normal: 'normal' }, 'normal')}
+        disabled={boolean('Disabled?', false)}
+      >
         {number('Badge content', 2, { range: true, min: 0, max: 99, step: 1 })}
       </Badge>
     );
