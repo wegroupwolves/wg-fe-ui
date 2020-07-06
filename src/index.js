@@ -23,6 +23,7 @@ export {
   AddRemoveButton,
   RoundedButton,
   DashedButton,
+  ButtonGroup,
 } from './components/Buttons';
 
 export {
