@@ -12,6 +12,7 @@ import styled from 'styled-components';
 import UploadIcon from './../src/components/Icons/Upload';
 import PlusIcon from './../src/components/Icons/Plus';
 
+// BOXES
 import {
   QuestionBox,
   Uploader,
@@ -19,6 +20,11 @@ import {
   AccordionBox,
   RiskObjectSelector,
   RiskObjectDisplay,
+  LinkBox,
+} from '../src';
+
+// OTHER ELEMENTS
+import {
   IconCarFilled,
   DataBlock,
   H4,
@@ -174,6 +180,18 @@ storiesOf('Mid level blocks/Boxes', module)
             <H4 larger>&euro; 2.998.000</H4>
           </DataBlock>
         </RiskObjectDisplay>
+      </RiskObjectDisplayWrapper>
+    );
+  })
+
+  .add('LinkBox', () => {
+    return (
+      <RiskObjectDisplayWrapper>
+        <LinkBox url={text('URL to be shown', 'https://click-to-copy-me.be')}>
+          <Body tiny light>
+            {text('Label', 'This is a bit of explanation about above URL.')}
+          </Body>
+        </LinkBox>
       </RiskObjectDisplayWrapper>
     );
   });

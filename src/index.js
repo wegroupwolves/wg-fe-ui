@@ -57,6 +57,7 @@ export {
   AccordionBox,
   RiskObjectSelector,
   RiskObjectDisplay,
+  LinkBox,
 } from './components/Boxes';
 
 export {
