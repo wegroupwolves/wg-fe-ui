@@ -21,6 +21,7 @@ import {
   RiskObjectSelector,
   RiskObjectDisplay,
   LinkBox,
+  CodeBox,
 } from '../src';
 
 // OTHER ELEMENTS
@@ -196,6 +197,14 @@ storiesOf('Mid level blocks/Boxes', module)
           </Body>
         </LinkBox>
       </RiskObjectDisplayWrapper>
+    );
+  })
+
+  .add('CodeBox', () => {
+    return (
+      <CodeBox canCopy={boolean('Can this be copied?', true)}>
+        {`<a href=”https://campaign.wegroup.be/t8529LDsXDWm” target=”_blank”>Click here</a>`}
+      </CodeBox>
     );
   });
 
