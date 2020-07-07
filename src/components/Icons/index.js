@@ -153,6 +153,7 @@ import IconVanFilled from './IconVanFilled';
 import IconJeepFilled from './IconJeepFilled';
 import IconShoppingCartFilled from './IconShoppingCartFilled';
 import IconChevronDown from './IconChevronDown';
+import IconClipBoard from './IconClipBoard';
 
 export {
   IconFireFilled,
@@ -309,4 +310,5 @@ export {
   IconJeepFilled,
   IconShoppingCartFilled,
   IconChevronDown,
+  IconClipBoard,
 };
