@@ -48,6 +48,7 @@ export {
   AmountInput,
   RangeSlider,
   FeatureInput,
+  ThemePicker,
 } from './components/Inputs';
 
 export {
