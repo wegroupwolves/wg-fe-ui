@@ -164,7 +164,13 @@ storiesOf('Low level blocks/Buttons', module)
           onClick={() => {
             alert('The button was clicked');
           }}
-        ></DashedButton>
+          styleName={select('Style of button?', {
+            Normal: 'normal',
+            Faded: 'faded',
+          })}
+        >
+          You can also pass children.
+        </DashedButton>
       </DashedButtonWrapper>
     );
   })
