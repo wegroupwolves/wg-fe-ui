@@ -130,13 +130,16 @@ storiesOf('Mid level blocks/Boxes', module)
   .add('RiskObjectSelector', () => {
     return (
       <RiskObjectSelector
-        icon={<IconCarFilled size={50} />}
         label={text('Label', 'Car')}
         amount={number('Amount', 2, { range: true, min: 0, max: 25, step: 1 })}
+        active={boolean('Is active?', false)}
+        size={select('Size?', { Square: 'square', Wide: 'wide' }, 'square')}
         onClick={event => {
           console.log(event);
         }}
-      ></RiskObjectSelector>
+      >
+        <IconCarFilled size={50} />
+      </RiskObjectSelector>
     );
   })
 
