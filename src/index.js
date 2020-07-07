@@ -24,6 +24,7 @@ export {
   RoundedButton,
   DashedButton,
   ButtonGroup,
+  IconLinkBlock,
 } from './components/Buttons';
 
 export {
