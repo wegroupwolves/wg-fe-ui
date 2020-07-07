@@ -8,6 +8,7 @@ const Body = ({
   italic,
   light,
   smaller,
+  tiny,
   className,
   ...otherProps
 }) => {
@@ -17,6 +18,7 @@ const Body = ({
       italic={italic}
       light={light}
       smaller={smaller}
+      tiny={tiny}
       className={className}
       {...otherProps}
     >
@@ -30,8 +32,10 @@ const StyledBody = styled.p`
   font-style: ${({ italic }) => (italic ? 'italic' : 'normal')};
   font-weight: ${({ bold }) => (bold ? 'bold' : 'normal')};
   color: ${({ theme, light }) => (light ? '#8990a3' : theme.font.text)};
-  font-size: ${({ smaller }) => (smaller ? '1.4rem' : '1.6rem')};
-  line-height: ${({ smaller }) => (smaller ? '1.6rem' : '2rem')};
+  font-size: ${({ smaller, tiny }) =>
+    smaller ? '1.4rem' : tiny ? '1.2rem' : '1.6rem'};
+  line-height: ${({ smaller, tiny }) =>
+    smaller ? '1.6rem' : tiny ? '1.5rem' : '2rem'};
 
   > a {
     color: ${({ theme }) => theme.brand.primary};
@@ -53,6 +57,8 @@ Body.propTypes = {
   light: bool,
   /** Pass this prop to reduce the font size to approx. 14px */
   smaller: bool,
+  /** Pass this prop to reduce the font size to approx. 12px  */
+  tiny: bool,
   className: string,
   otherProps: object,
 };

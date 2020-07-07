@@ -8,6 +8,8 @@ import TertiaryButton from './TertiaryButton';
 import AddRemoveButton from './AddRemoveButton';
 import RoundedButton from './RoundedButton';
 import DashedButton from './DashedButton';
+import ButtonGroup from './ButtonGroup';
+import IconLinkBlock from './IconLinkBlock';
 
 export {
   ActionButton,
@@ -20,4 +22,6 @@ export {
   AddRemoveButton,
   RoundedButton,
   DashedButton,
+  ButtonGroup,
+  IconLinkBlock,
 };

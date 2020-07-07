@@ -4,6 +4,8 @@ import DownloadBox from './DownloadBox';
 import AccordionBox from './AccordionBox/AccordionBox';
 import RiskObjectSelector from './RiskObjectSelector';
 import RiskObjectDisplay from './RiskObjectDisplay';
+import LinkBox from './LinkBox';
+import CodeBox from './CodeBox';
 
 export {
   QuestionBox,
@@ -12,4 +14,6 @@ export {
   AccordionBox,
   RiskObjectSelector,
   RiskObjectDisplay,
+  LinkBox,
+  CodeBox,
 };

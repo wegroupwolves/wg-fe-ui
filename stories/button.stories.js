@@ -20,6 +20,9 @@ import {
   IconActionChevronRight,
   IconActionPlus,
   DashedButton,
+  ButtonGroup,
+  IconLinkBlock,
+  IconHistoryFilled,
 } from '../src/';
 
 addParameters({
@@ -28,7 +31,7 @@ addParameters({
   },
 });
 
-const buttonLevels = ['primary', 'secondary', 'default'];
+const buttonLevels = ['primary', 'secondary', 'white', 'default'];
 const ToggleButtonLevels = ['active', 'non-active'];
 const iconObject = { none: null, House: buttonIcon };
 const svg = { none: null, back_arrow: <BackArrow /> };
@@ -164,9 +167,54 @@ storiesOf('Low level blocks/Buttons', module)
         ></DashedButton>
       </DashedButtonWrapper>
     );
+  })
+
+  .add('ButtonGroup', () => {
+    return (
+      <ButtonGroupContainer>
+        <ButtonGroup>
+          <ActionButton level="white" fullwidth>
+            First button
+          </ActionButton>
+
+          <ActionButton level="white" fullwidth>
+            Second button
+          </ActionButton>
+
+          <ActionButton level="white" fullwidth>
+            Third button
+          </ActionButton>
+        </ButtonGroup>
+      </ButtonGroupContainer>
+    );
+  })
+
+  .add('IconLinkBlock', () => {
+    return (
+      <IconLinkBlockWrapper>
+        <IconLinkBlock
+          icon={<IconHistoryFilled size={50} />}
+          iconType="fill"
+          label={text('Label', 'Hyperlink')}
+          onClick={e => {
+            console.log(e);
+          }}
+          active={boolean('Is active?', false)}
+          disabled={boolean('Is disabled?', false)}
+        ></IconLinkBlock>
+      </IconLinkBlockWrapper>
+    );
   });
 
 const DashedButtonWrapper = styled.div`
   width: 320px;
   height: 320px;
+`;
+
+const ButtonGroupContainer = styled.div`
+  width: 37rem;
+`;
+
+const IconLinkBlockWrapper = styled.div`
+  width: 14rem;
 `;

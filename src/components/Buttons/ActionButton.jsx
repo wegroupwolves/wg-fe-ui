@@ -57,6 +57,8 @@ const StyledButton = styled.button`
       ? theme.brand.primary
       : level === 'default'
       ? theme.ui.interactive
+      : level === 'white'
+      ? 'white'
       : theme.brand.primary};
 
   color: ${({ theme, disabled, level }) =>
@@ -68,6 +70,8 @@ const StyledButton = styled.button`
       ? theme.ui.disabled
       : level === 'secondary'
       ? theme.brand.primary
+      : level === 'white'
+      ? '#222'
       : 'white'};
 
   border: ${({ theme, disabled, level }) =>
@@ -105,7 +109,8 @@ const StyledButton = styled.button`
         ? theme.ui.disabled
         : ''};
 
-    color: white;
+    color: ${({ theme, level }) =>
+      level === 'white' ? theme.brand.primary : 'white'};
   }
 `;
 

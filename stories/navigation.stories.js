@@ -18,6 +18,7 @@ import {
   BreadCrumbs,
   MobileMenu,
   Tabs,
+  Switcher,
 } from '../src/index.js';
 
 import CheckBox from '../src/components/Checkboxes/CheckBox';
@@ -57,6 +58,7 @@ storiesOf('Mid level blocks/Navigation', module)
   .addDecorator(withKnobs)
   .addDecorator(withInfo({ inline: true }))
   .addDecorator(getStory => <MemoryRouter>{getStory()}</MemoryRouter>)
+
   .add('MainNavigation', () => {
     return (
       <Container>
@@ -86,6 +88,7 @@ storiesOf('Mid level blocks/Navigation', module)
       </Container>
     );
   })
+
   .add('HeaderNavigation', () => {
     // Mock navTabs
     const navTabs = [
@@ -105,6 +108,7 @@ storiesOf('Mid level blocks/Navigation', module)
       </Container>
     );
   })
+
   .add('SubNavigation', () => {
     // mocked sections
     const sections = [
@@ -178,6 +182,7 @@ storiesOf('Mid level blocks/Navigation', module)
       </Container>
     );
   })
+
   .add('QuickActionSubMenu', () => {
     return (
       <QuickActionSubMenu>
@@ -190,6 +195,7 @@ storiesOf('Mid level blocks/Navigation', module)
       </QuickActionSubMenu>
     );
   })
+
   .add('CollapsibleSidebar', () => {
     return (
       <CollapsibleSidebarContainer>
@@ -227,6 +233,7 @@ storiesOf('Mid level blocks/Navigation', module)
       </CollapsibleSidebarContainer>
     );
   })
+
   .add('Pagination', () => {
     return (
       <Pagination
@@ -242,6 +249,7 @@ storiesOf('Mid level blocks/Navigation', module)
       ></Pagination>
     );
   })
+
   .add('BreadCrumbs', () => {
     return (
       <BreadCrumbs
@@ -249,6 +257,7 @@ storiesOf('Mid level blocks/Navigation', module)
       ></BreadCrumbs>
     );
   })
+
   .add('MobileMenu', () => {
     return (
       <MobileSimulator
@@ -268,6 +277,7 @@ storiesOf('Mid level blocks/Navigation', module)
       </MobileSimulator>
     );
   })
+
   .add('Tabs', () => {
     return (
       <TabsContainer>
@@ -281,6 +291,28 @@ storiesOf('Mid level blocks/Navigation', module)
           </Tabs.Item>
         </Tabs>
       </TabsContainer>
+    );
+  })
+
+  .add('Switcher', () => {
+    return (
+      <Switcher>
+        <Switcher.SwitcherButton
+          active
+          onClick={e => {
+            console.log(e);
+          }}
+        >
+          Active campaigns
+        </Switcher.SwitcherButton>
+        <Switcher.SwitcherButton
+          onClick={e => {
+            console.log(e);
+          }}
+        >
+          All campaigns
+        </Switcher.SwitcherButton>
+      </Switcher>
     );
   });
 

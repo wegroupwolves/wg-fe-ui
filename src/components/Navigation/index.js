@@ -7,6 +7,7 @@ import Pagination from './Pagination';
 import BreadCrumbs from './BreadCrumbs';
 import MobileMenu from './MobileMenu/MobileMenu';
 import Tabs from './Tabs';
+import Switcher from './Switcher/Switcher';
 
 export {
   MainNavigation,
@@ -18,4 +19,5 @@ export {
   BreadCrumbs,
   MobileMenu,
   Tabs,
+  Switcher,
 };

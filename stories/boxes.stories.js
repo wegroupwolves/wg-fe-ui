@@ -12,6 +12,7 @@ import styled from 'styled-components';
 import UploadIcon from './../src/components/Icons/Upload';
 import PlusIcon from './../src/components/Icons/Plus';
 
+// BOXES
 import {
   QuestionBox,
   Uploader,
@@ -19,6 +20,12 @@ import {
   AccordionBox,
   RiskObjectSelector,
   RiskObjectDisplay,
+  LinkBox,
+  CodeBox,
+} from '../src';
+
+// OTHER ELEMENTS
+import {
   IconCarFilled,
   DataBlock,
   H4,
@@ -124,13 +131,16 @@ storiesOf('Mid level blocks/Boxes', module)
   .add('RiskObjectSelector', () => {
     return (
       <RiskObjectSelector
-        icon={<IconCarFilled size={50} />}
         label={text('Label', 'Car')}
         amount={number('Amount', 2, { range: true, min: 0, max: 25, step: 1 })}
+        active={boolean('Is active?', false)}
+        size={select('Size?', { Square: 'square', Wide: 'wide' }, 'square')}
         onClick={event => {
           console.log(event);
         }}
-      ></RiskObjectSelector>
+      >
+        <IconCarFilled size={50} />
+      </RiskObjectSelector>
     );
   })
 
@@ -175,6 +185,26 @@ storiesOf('Mid level blocks/Boxes', module)
           </DataBlock>
         </RiskObjectDisplay>
       </RiskObjectDisplayWrapper>
+    );
+  })
+
+  .add('LinkBox', () => {
+    return (
+      <RiskObjectDisplayWrapper>
+        <LinkBox url={text('URL to be shown', 'https://click-to-copy-me.be')}>
+          <Body tiny light>
+            {text('Label', 'This is a bit of explanation about above URL.')}
+          </Body>
+        </LinkBox>
+      </RiskObjectDisplayWrapper>
+    );
+  })
+
+  .add('CodeBox', () => {
+    return (
+      <CodeBox canCopy={boolean('Can this be copied?', true)}>
+        {`<a href=”https://campaign.wegroup.be/t8529LDsXDWm” target=”_blank”>Click here</a>`}
+      </CodeBox>
     );
   });
 

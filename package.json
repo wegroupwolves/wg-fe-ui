@@ -1,6 +1,6 @@
 {
   "name": "wg-fe-ui",
-  "version": "1.9.5-alpha.1",
+  "version": "1.10.0",
   "main": "index.js",
   "scripts": {
     "build": "babel src -d dist --copy-files",
@@ -58,6 +58,8 @@
     "babel-plugin-transform-object-rest-spread": "^7.0.0-alpha.20",
     "babel-plugin-transform-react-jsx": "^6.24.1",
     "babel-preset-env": "^1.7.0",
+    "cogo-toast": "^4.2.3",
+    "copy-to-clipboard": "^3.3.1",
     "copy-webpack-plugin": "^5.1.1",
     "detect-browser": "^4.6.0",
     "i18next": "^17.2.0",

@@ -16,24 +16,29 @@ import Property from './../src/components/Icons/Property';
 import Liability from './../src/components/Icons/Liability';
 import Car from './../src/components/Icons/Car';
 
+/* COMPONENTS
+-------------------------------------------------- */
 import {
   ImageSelectBox,
   MaskedInput,
-  TextArea,
   TextInput,
   PhoneInput,
+  TextArea,
   SearchInput,
   SearchSelectInput,
   DateInput,
   TimeInput,
   CommentBox,
-  Section,
   ToggleInput,
   AmountInput,
   RangeSlider,
   FeatureInput,
-  IconSportsCarFilled,
+  ThemePicker,
 } from '../src';
+
+/* OTHER ELEMENTS
+-------------------------------------------------- */
+import { Section, IconSportsCarFilled } from '../src';
 
 import * as Icons from '../src/components/Icons';
 const IconsKeys = Object.keys(Icons);
@@ -42,9 +47,20 @@ IconsKeys.map(IconKey => {
   IconsList[Icons[IconKey].name] = Icons[IconKey].name;
 });
 
+const themeList = {
+  orange: '#FF8000',
+  turquoise: '#1abc9c',
+  green: '#2ecc71',
+  blue: '#3498db',
+  purple: '#9b59b6',
+  yellow: '#f1c40f',
+  red: '#e74c3c',
+};
+
 storiesOf('Low level blocks/Inputs', module)
   .addDecorator(withKnobs)
   .addDecorator(withInfo({ inline: true }))
+
   .add('ImageSelectBox', () => {
     const [selected, setSelected] = useState('');
 
@@ -87,6 +103,7 @@ storiesOf('Low level blocks/Inputs', module)
       </>
     );
   })
+
   .add('MaskedInput', () => {
     let error = text('Error', '');
     let touched = boolean('Touched', false);
@@ -106,6 +123,7 @@ storiesOf('Low level blocks/Inputs', module)
       </StyledMaskedInput>
     );
   })
+
   .add('TextInput', () => {
     let error = text('Error', '', 'Input options');
     let touched = boolean('Touched', false, 'Input options');
@@ -135,6 +153,7 @@ storiesOf('Low level blocks/Inputs', module)
       </StyledTextInput>
     );
   })
+
   .add('PhoneInput', () => {
     let error = text('Error', '', 'Input options');
     let touched = boolean('Touched', false, 'Input options');
@@ -153,6 +172,7 @@ storiesOf('Low level blocks/Inputs', module)
       </StyledPhoneInput>
     );
   })
+
   .add('TextArea', () => {
     let error = text('Error', '');
     let touched = boolean('Touched', false);
@@ -173,6 +193,7 @@ storiesOf('Low level blocks/Inputs', module)
       </StyledTextArea>
     );
   })
+
   .add('DateInput', () => {
     let error = text('Error', '');
     let touched = boolean('Touched', false);
@@ -198,6 +219,7 @@ storiesOf('Low level blocks/Inputs', module)
       </StyledDateInput>
     );
   })
+
   .add('TimeInput', () => {
     let error = text('Error', '');
     let touched = boolean('Touched', false);
@@ -217,6 +239,7 @@ storiesOf('Low level blocks/Inputs', module)
       </StyledTimeInput>
     );
   })
+
   .add('SearchInput', () => {
     const [val, setVal] = useState('');
     return (
@@ -232,6 +255,7 @@ storiesOf('Low level blocks/Inputs', module)
       />
     );
   })
+
   .add('SearchSelectInput', () => {
     let errors = text('Error', '');
     const [option, setOption] = useState();
@@ -297,6 +321,7 @@ storiesOf('Low level blocks/Inputs', module)
       </StyledSearchSelectInput>
     );
   })
+
   .add('CommentBox', () => {
     return (
       <Section>
@@ -320,6 +345,7 @@ storiesOf('Low level blocks/Inputs', module)
       </Section>
     );
   })
+
   .add('ToggleInput', () => {
     return (
       <ToggleInput
@@ -330,6 +356,7 @@ storiesOf('Low level blocks/Inputs', module)
       ></ToggleInput>
     );
   })
+
   .add('AmountInput', () => {
     return (
       <AmountInput
@@ -341,6 +368,7 @@ storiesOf('Low level blocks/Inputs', module)
       ></AmountInput>
     );
   })
+
   .add('RangeSlider', () => {
     return (
       <RangeSlider
@@ -365,6 +393,7 @@ storiesOf('Low level blocks/Inputs', module)
       ></RangeSlider>
     );
   })
+
   .add('FeatureInput', () => {
     return (
       <FeatureInput
@@ -377,6 +406,18 @@ storiesOf('Low level blocks/Inputs', module)
       >
         Sports car
       </FeatureInput>
+    );
+  })
+
+  .add('ThemePicker', () => {
+    return (
+      <ThemePickerContainer>
+        <ThemePicker
+          themes={themeList}
+          activeTheme={'orange'}
+          disabled={boolean('Disabled?', false)}
+        />
+      </ThemePickerContainer>
     );
   });
 
@@ -406,6 +447,10 @@ const StyledTimeInput = styled(TimeInput)`
 
 const StyledTextArea = styled(TextArea)`
   width: 27rem;
+`;
+
+const ThemePickerContainer = styled.div`
+  width: 45rem;
 `;
 
 StyledTextInput.displayName = 'TextInput';
