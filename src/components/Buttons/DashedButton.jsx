@@ -39,19 +39,19 @@ const StyledDashedButton = styled.div`
   padding: 5rem;
 
   border: ${({ styleName }) =>
-    styleName === 'faded' ? null : '0.3rem dashed #f0f1f3'};
+    styleName !== 'faded' ? null : '0.3rem dashed #f0f1f3'};
 
   background-image: ${({ styleName }) =>
-    styleName === 'faded'
+    styleName !== 'faded'
       ? `url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='5' ry='5' stroke='%23D4D4D4FF' stroke-width='4' stroke-dasharray='8%2c 8' stroke-dashoffset='0' stroke-linecap='square'/%3e%3c/svg%3e")`
       : null};
 
   &:hover {
     border: ${({ theme, styleName }) =>
-      styleName === 'faded' ? null : `0.3rem dashed ${theme.brand.primary}`};
+      styleName !== 'faded' ? null : `0.3rem dashed ${theme.brand.primary}`};
 
     background-image: ${({ styleName }) =>
-      styleName === 'faded'
+      styleName !== 'faded'
         ? `url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='5' ry='5' stroke='%23FF8000' stroke-width='4' stroke-dasharray='8%2c 8' stroke-dashoffset='0' stroke-linecap='square'/%3e%3c/svg%3e")`
         : null};
   }
@@ -68,7 +68,7 @@ const Label = styled.div`
   color: #222;
 `;
 
-DashedButton.defaultProps = { styleName: 'normal' };
+DashedButton.defaultProps = { styleName: 'faded' };
 
 DashedButton.propTypes = {
   /** Children to be used inside the button. Will only show if no label and / or button were passed. */
