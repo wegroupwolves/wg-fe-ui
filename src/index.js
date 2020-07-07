@@ -88,6 +88,8 @@ export {
 
 export { Section } from './components/Section';
 
+export { Card } from './components/Cards';
+
 export {
   Title,
   SubTitle,
