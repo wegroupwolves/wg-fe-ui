@@ -154,6 +154,10 @@ import IconJeepFilled from './IconJeepFilled';
 import IconShoppingCartFilled from './IconShoppingCartFilled';
 import IconChevronDown from './IconChevronDown';
 import IconClipBoard from './IconClipBoard';
+import IconHyperlinkStroke from './IconHyperlinkStroke';
+import IconIframeStroke from './IconIframeStroke';
+import IconPopupStroke from './IconPopupStroke';
+import IconOpenInStroke from './IconOpenInStroke';
 
 export {
   IconFireFilled,
@@ -311,4 +315,8 @@ export {
   IconShoppingCartFilled,
   IconChevronDown,
   IconClipBoard,
+  IconHyperlinkStroke,
+  IconIframeStroke,
+  IconPopupStroke,
+  IconOpenInStroke,
 };
