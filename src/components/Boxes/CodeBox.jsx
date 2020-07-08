@@ -33,6 +33,8 @@ const CodeBox = ({ children, canCopy, className, otherProps }) => {
 const StyledCodeBox = styled.div`
   width: 100%;
   max-width: 100rem;
+  max-height: 55rem;
+  overflow-y: scroll;
   padding: ${({ canCopy }) =>
     canCopy ? '1.6rem 5.4rem 1.6rem 1.6rem' : '1.6rem'};
   background-color: white;
