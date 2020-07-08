@@ -201,7 +201,11 @@ storiesOf('Low level blocks/Buttons', module)
         <IconLinkBlock
           icon={<IconHistoryFilled size={50} />}
           iconType="fill"
-          label={text('Label', 'Hyperlink')}
+          label={text('Label', 'Copy as link')}
+          subLabel={text(
+            'Sub label',
+            'You can copy the URL and place it anywhere.',
+          )}
           onClick={e => {
             console.log(e);
           }}
@@ -222,5 +226,5 @@ const ButtonGroupContainer = styled.div`
 `;
 
 const IconLinkBlockWrapper = styled.div`
-  width: 14rem;
+  width: 21rem;
 `;

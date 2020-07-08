@@ -8,6 +8,7 @@ const IconLinkBlock = ({
   iconTopOffset,
   iconLeftOffset,
   label,
+  subLabel,
   onClick,
   active,
   disabled,
@@ -31,31 +32,56 @@ const IconLinkBlock = ({
           {icon}
         </IconWrapper>
       ) : null}
-      {label ? <Label>{label}</Label> : null}
+      {label || subLabel ? (
+        <TextBox>
+          {label ? <Label>{label}</Label> : null}
+          {subLabel ? <SubLabel>{subLabel}</SubLabel> : null}
+        </TextBox>
+      ) : null}
     </StyledIconLinkBlock>
   );
 };
 
 const IconWrapper = styled.div`
   position: absolute;
-  top: ${({ iconTopOffset }) => (iconTopOffset ? iconTopOffset : '0.5rem')};
-  left: ${({ iconLeftOffset }) => (iconLeftOffset ? iconLeftOffset : '0.5rem')};
+  top: ${({ iconTopOffset }) => (iconTopOffset ? iconTopOffset : '1.3rem')};
+  left: ${({ iconLeftOffset }) => (iconLeftOffset ? iconLeftOffset : '1.3rem')};
 
   > svg path {
     transition: fill 0.15s ease-in-out, stroke 0.15s ease-in-out;
   }
 `;
 
-const Label = styled.div`
+const TextBox = styled.div`
   position: absolute;
-  bottom: 1.6rem;
-  left: 1.6rem;
+  bottom: 2.4rem;
+  left: 2.4rem;
+  display: flex;
+  flex-flow: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+`;
+
+const Label = styled.h4`
   font-family: ${({ theme }) => theme.font};
   font-weight: 600;
   font-size: 1.8rem;
   line-height: 135%;
   color: #222;
-  transition: color 0.15s ease-in-out;
+  margin-bottom: 0.8rem;
+  margin-right: 2.4rem;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+`;
+
+const SubLabel = styled.p`
+  font-family: ${({ theme }) => theme.font};
+  font-size: 1.2rem;
+  line-height: 1.5rem;
+  color: #8990a3;
+  margin-right: 2.4rem;
 `;
 
 const StyledIconLinkBlock = styled.div`
@@ -98,6 +124,11 @@ const StyledIconLinkBlock = styled.div`
   ${Label} {
     color: ${({ active, disabled }) =>
       disabled ? '#D4D4D4' : active ? 'white' : '#222'};
+  }
+
+  ${SubLabel} {
+    color: ${({ active, disabled }) =>
+      disabled ? '#D4D4D4' : active ? 'white' : '#8990a3'};
   }
 
   &:hover {
@@ -147,6 +178,8 @@ IconLinkBlock.propTypes = {
   iconLeftOffset: string,
   /** A label to be displayed at the bottom of the element. */
   label: string.isRequired,
+  /** A secondary, smaller piece of text to be displayed below the normal label. */
+  subLabel: string,
   /** onClick function to be executed when the element is clicked. */
   onClick: func.isRequired,
   /** Defines wether the element is in it's active state or not. */
