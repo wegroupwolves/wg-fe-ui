@@ -22,6 +22,7 @@ import {
   RiskObjectDisplay,
   LinkBox,
   CodeBox,
+  GuidedImage,
 } from '../src';
 
 // OTHER ELEMENTS
@@ -206,6 +207,30 @@ storiesOf('Mid level blocks/Boxes', module)
         {`<a href=”https://campaign.wegroup.be/t8529LDsXDWm” target=”_blank”>Click here</a>`}
       </CodeBox>
     );
+  })
+
+  .add('GuidedImage', () => {
+    const stepsForGuidedImage = [
+      {
+        offsetTop: '10px',
+        offsetLeft: '10px',
+        content: 'This is some content for the first step.',
+      },
+      {
+        offsetTop: '50%',
+        offsetLeft: '50%',
+        content: 'This is some content for the second step.',
+      },
+    ];
+    return (
+      <GuidedImageContainer>
+        <GuidedImage
+          imageUrl="https://via.placeholder.com/1200x800?text=Placeholder+for+guided+image+component"
+          caption="A caption is a piece of text that is displayed to explain a little more about the image"
+          steps={stepsForGuidedImage}
+        ></GuidedImage>
+      </GuidedImageContainer>
+    );
   });
 
 const StyledQuestionBox = styled(QuestionBox)`
@@ -233,6 +258,10 @@ const AccordionBoxMockContent = styled.div`
 
 const RiskObjectDisplayWrapper = styled.div`
   width: 320px;
+`;
+
+const GuidedImageContainer = styled.div`
+  width: 85rem;
 `;
 
 StyledQuestionBox.displayName = 'QuestionBox';
