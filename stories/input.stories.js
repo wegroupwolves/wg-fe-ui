@@ -35,11 +35,18 @@ import {
   FeatureInput,
   ThemePicker,
   RoomInput,
+  CardPicker,
 } from '../src';
 
 /* OTHER ELEMENTS
 -------------------------------------------------- */
-import { Section, IconSportsCarFilled, IconFurnitureFilled } from '../src';
+import {
+  Section,
+  IconSportsCarFilled,
+  IconFurnitureFilled,
+  H4,
+  Body,
+} from '../src';
 
 import * as Icons from '../src/components/Icons';
 const IconsKeys = Object.keys(Icons);
@@ -453,6 +460,30 @@ storiesOf('Low level blocks/Inputs', module)
         ></RoomInput>
       </RoomInputContainer>
     );
+  })
+
+  .add('CardPicker', () => {
+    return (
+      <CardPickerContainer>
+        <CardPicker
+          active={boolean('Active?', false)}
+          disabled={boolean('Disabled?', false)}
+        >
+          <CardPicker.Header>
+            <H4>Header</H4>
+          </CardPicker.Header>
+          <CardPicker.Content>
+            <Body light smaller>
+              Pellentesque libero tortor, tincidunt et, tincidunt eget, semper
+              nec, quam. Ut varius tincidunt libero. Phasellus ullamcorper ipsum
+              rutrum nunc. Pellentesque habitant morbi tristique senectus et
+              netus et malesuada fames ac turpis egestas. Vivamus euismod
+              mauris.
+            </Body>
+          </CardPicker.Content>
+        </CardPicker>
+      </CardPickerContainer>
+    );
   });
 
 const StyledMaskedInput = styled(MaskedInput)`
@@ -489,6 +520,10 @@ const ThemePickerContainer = styled.div`
 
 const RoomInputContainer = styled.div`
   width: 30rem;
+`;
+
+const CardPickerContainer = styled.div`
+  width: 45rem;
 `;
 
 StyledTextInput.displayName = 'TextInput';
