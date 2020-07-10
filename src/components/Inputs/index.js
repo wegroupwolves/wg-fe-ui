@@ -14,6 +14,7 @@ import RangeSlider from './RangeSlider/RangeSlider';
 import FeatureInput from './FeatureInput';
 import ThemePicker from './ThemePicker';
 import RoomInput from './RoomInput';
+import CardPicker from './CardPicker/CardPicker';
 
 export {
   ImageSelectBox,
@@ -32,4 +33,5 @@ export {
   FeatureInput,
   ThemePicker,
   RoomInput,
+  CardPicker,
 };
