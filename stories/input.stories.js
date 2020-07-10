@@ -34,11 +34,12 @@ import {
   RangeSlider,
   FeatureInput,
   ThemePicker,
+  RoomInput,
 } from '../src';
 
 /* OTHER ELEMENTS
 -------------------------------------------------- */
-import { Section, IconSportsCarFilled } from '../src';
+import { Section, IconSportsCarFilled, IconFurnitureFilled } from '../src';
 
 import * as Icons from '../src/components/Icons';
 const IconsKeys = Object.keys(Icons);
@@ -419,6 +420,39 @@ storiesOf('Low level blocks/Inputs', module)
         />
       </ThemePickerContainer>
     );
+  })
+
+  .add('RoomInput', () => {
+    return (
+      <RoomInputContainer>
+        <RoomInput
+          icon={<IconFurnitureFilled size={50} />}
+          label={text('Label', 'Living room')}
+          info={text('Info button', 'Praesent porttitor nulla vitae posuere')}
+          onInputChange={e => {
+            console.log(e);
+          }}
+          minValue={number('Min value?', 0, {
+            range: true,
+            step: 1,
+            min: 0,
+            max: 100,
+          })}
+          maxValue={number('Max value?', 10, {
+            range: true,
+            step: 1,
+            min: 1,
+            max: 100,
+          })}
+          initialValue={number('Initial value?', 1, {
+            range: true,
+            step: 1,
+            min: 0,
+            max: 100,
+          })}
+        ></RoomInput>
+      </RoomInputContainer>
+    );
   });
 
 const StyledMaskedInput = styled(MaskedInput)`
@@ -451,6 +485,10 @@ const StyledTextArea = styled(TextArea)`
 
 const ThemePickerContainer = styled.div`
   width: 45rem;
+`;
+
+const RoomInputContainer = styled.div`
+  width: 30rem;
 `;
 
 StyledTextInput.displayName = 'TextInput';
