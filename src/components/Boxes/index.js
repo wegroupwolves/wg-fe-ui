@@ -6,6 +6,7 @@ import RiskObjectSelector from './RiskObjectSelector';
 import RiskObjectDisplay from './RiskObjectDisplay';
 import LinkBox from './LinkBox';
 import CodeBox from './CodeBox';
+import GuidedImage from './GuidedImage/GuidedImage';
 
 export {
   QuestionBox,
@@ -16,4 +17,5 @@ export {
   RiskObjectDisplay,
   LinkBox,
   CodeBox,
+  GuidedImage,
 };
