@@ -13,6 +13,7 @@ import AmountInput from './AmountInput';
 import RangeSlider from './RangeSlider/RangeSlider';
 import FeatureInput from './FeatureInput';
 import ThemePicker from './ThemePicker';
+import RoomInput from './RoomInput';
 
 export {
   ImageSelectBox,
@@ -30,4 +31,5 @@ export {
   RangeSlider,
   FeatureInput,
   ThemePicker,
+  RoomInput,
 };

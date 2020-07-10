@@ -50,6 +50,7 @@ export {
   RangeSlider,
   FeatureInput,
   ThemePicker,
+  RoomInput,
 } from './components/Inputs';
 
 export {
