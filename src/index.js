@@ -125,6 +125,7 @@ export { Modal } from './components/Modals';
 
 // Export all icons
 export * from './components/Icons';
+export { StatusIcon } from './components/Icons/StatusIcon';
 
 export { Section_v2 } from './components/v2/Section';
 

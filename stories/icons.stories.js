@@ -4,6 +4,7 @@ import { storiesOf } from '@storybook/react';
 import { withKnobs, select } from '@storybook/addon-knobs';
 import { withInfo } from '@storybook/addon-info';
 import * as Icons from '../src/components/Icons';
+import StatusIcon from '../src/components/Icons/StatusIcon';
 
 storiesOf('Foundation/Icons', module)
   .addDecorator(withKnobs)
@@ -23,6 +24,19 @@ storiesOf('Foundation/Icons', module)
           );
         })}
       </Container>
+    );
+  })
+
+  .add('StatusIcon', () => {
+    return (
+      <StatusIcon
+        type={select('Type?', {
+          Default: 'default',
+          Success: 'success',
+          Warning: 'warning',
+          Error: 'error',
+        })}
+      ></StatusIcon>
     );
   });
 
