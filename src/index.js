@@ -52,6 +52,7 @@ export {
   ThemePicker,
   RoomInput,
   CardPicker,
+  DropDown,
 } from './components/Inputs';
 
 export {
