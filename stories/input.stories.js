@@ -36,6 +36,7 @@ import {
   ThemePicker,
   RoomInput,
   CardPicker,
+  DropDown,
 } from '../src';
 
 /* OTHER ELEMENTS
@@ -64,6 +65,47 @@ const themeList = {
   yellow: '#f1c40f',
   red: '#e74c3c',
 };
+
+const DropDownOptions = [
+  {
+    title: 'Dropdown option 1',
+    text:
+      'Curabitur ullamcorper ultricies nisi. Maecenas egestas arcu quis ligula mattis placerat.',
+    value: 1,
+  },
+  {
+    title: 'Dropdown option 2',
+    text:
+      'In dui magna, posuere eget, vestibulum et, tempor auctor, justo. Fusce risus nisl, viverra et, tempor et, pretium in, sapien.',
+    value: 2,
+  },
+  {
+    title: 'Dropdown option 3',
+    text: 'In auctor lobortis lacus. Vestibulum ullamcorper mauris at ligula.',
+    value: 3,
+  },
+  {
+    title: 'Dropdown option 4',
+    text: 'Nullam quis ante. Curabitur suscipit suscipit tellus.',
+    value: 4,
+  },
+  {
+    title: 'Dropdown option 5',
+    text:
+      'Nulla consequat massa quis enim. Etiam sollicitudin, ipsum eu pulvinar rutrum, tellus ipsum laoreet sapien, quis venenatis ante odio sit amet eros.',
+    value: 5,
+  },
+  {
+    title: 'Dropdown option 6',
+    text: 'Suspendisse potenti. Cras dapibus.',
+    value: 6,
+  },
+  {
+    title: 'Dropdown option 7',
+    text: 'Etiam feugiat lorem non metus. Curabitur suscipit suscipit tellus.',
+    value: 7,
+  },
+];
 
 storiesOf('Low level blocks/Inputs', module)
   .addDecorator(withKnobs)
@@ -484,6 +526,24 @@ storiesOf('Low level blocks/Inputs', module)
         </CardPicker>
       </CardPickerContainer>
     );
+  })
+
+  .add('Dropdown', () => {
+    return (
+      <DropDownContainer>
+        <DropDown
+          name="test-dropdown"
+          options={DropDownOptions}
+          onValueChange={picked => {
+            console.log(picked);
+          }}
+          disabled={boolean('Disabled?', false)}
+          value={3}
+        >
+          Label
+        </DropDown>
+      </DropDownContainer>
+    );
   });
 
 const StyledMaskedInput = styled(MaskedInput)`
@@ -523,6 +583,10 @@ const RoomInputContainer = styled.div`
 `;
 
 const CardPickerContainer = styled.div`
+  width: 45rem;
+`;
+
+const DropDownContainer = styled.div`
   width: 45rem;
 `;
 

@@ -15,6 +15,7 @@ import FeatureInput from './FeatureInput';
 import ThemePicker from './ThemePicker';
 import RoomInput from './RoomInput';
 import CardPicker from './CardPicker/CardPicker';
+import DropDown from './DropDown';
 
 export {
   ImageSelectBox,
@@ -34,4 +35,5 @@ export {
   ThemePicker,
   RoomInput,
   CardPicker,
+  DropDown,
 };
