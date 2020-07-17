@@ -80,11 +80,13 @@ const Overlay = styled.div`
   left: 0;
   background: rgba(255, 128, 0, 0.9);
   border-radius: 0.5rem;
-  display: none;
+  display: flex;
+  opacity: 0;
   justify-content: center;
   align-items: center;
   flex-flow: column;
   cursor: pointer;
+  transition: opacity 0.15s linear;
 `;
 
 const HoverButton = styled.div`
@@ -113,7 +115,7 @@ const StyledRiskObjectDisplay = styled.div`
 
   &:hover {
     ${Overlay} {
-      display: flex;
+      opacity: 1;
     }
   }
 `;
