@@ -133,7 +133,8 @@ storiesOf('Mid level blocks/Boxes', module)
     return (
       <RiskObjectSelector
         label={text('Label', 'Car')}
-        amount={number('Amount', 2, { range: true, min: 0, max: 25, step: 1 })}
+        // amount={number('Amount', 2, { range: true, min: 0, max: 25, step: 1 })}
+        badge={text('Badge', '2 beschikbaar')}
         active={boolean('Is active?', false)}
         size={select('Size?', { Square: 'square', Wide: 'wide' }, 'square')}
         onClick={event => {

@@ -1,5 +1,5 @@
 import React from 'react';
-import { element, func, string, number, object, bool, node } from 'prop-types';
+import { element, func, string, object, bool, node } from 'prop-types';
 import styled from 'styled-components';
 
 import { H4 } from '../Typography';
@@ -10,7 +10,7 @@ const RiskObjectSelector = ({
   children,
   onClick,
   label,
-  amount,
+  badge,
   active,
   size,
   className,
@@ -26,7 +26,7 @@ const RiskObjectSelector = ({
         {children}
       </Button>
 
-      {amount && amount > 0 ? <StyledBadge>{amount}</StyledBadge> : null}
+      {badge ? <StyledBadge>{badge}</StyledBadge> : null}
 
       {active ? (
         <StyledBadge>
@@ -73,8 +73,10 @@ const Button = styled.div`
 const StyledBadge = styled(Badge)`
   position: absolute;
   top: 0;
-  right: 0;
-  transform: translate(50%, -50%);
+  right: -1.3rem;
+  padding: 1rem;
+  width: auto;
+  transform: translate(0, -50%);
 `;
 
 const Label = styled(H4)`
@@ -90,8 +92,8 @@ RiskObjectSelector.propTypes = {
   onClick: func,
   /** Label to be shown underneath the button. */
   label: string,
-  /** Amount to display within the badge. */
-  amount: number,
+  /** text to display within the badge. */
+  badge: string,
   /** Set to true to change styling to match an active state. */
   active: bool,
   /** Changes the sizing of the button ("square" / "wide"). */
