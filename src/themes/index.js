@@ -10,4 +10,5 @@ export { default as lightGreen } from './lightGreen';
 export { default as oceanGreen } from './oceanGreen';
 export { default as darkGrey } from './darkGrey';
 
+export { default as hillewaereBlue } from './hillewaereBlue';
 export { default as elvas } from './elvas';
