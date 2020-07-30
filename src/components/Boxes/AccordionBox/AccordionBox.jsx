@@ -41,7 +41,6 @@ const StyledAccordionBox = styled.div`
   padding: 2.7rem;
   box-shadow: 0 0 1px rgba(0, 0, 0, 0.04), 0 2px 6px rgba(0, 0, 0, 0.04),
     0 10px 20px rgba(0, 0, 0, 0.04);
-  cursor: pointer;
   transition: box-shadow 0.15s ease-in-out;
 
   &:hover {

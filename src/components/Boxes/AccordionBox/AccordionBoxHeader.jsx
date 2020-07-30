@@ -19,6 +19,7 @@ const Wrapper = styled.div`
   position: relative;
   width: 100%;
   padding-right: 6.5rem;
+  cursor: pointer;
 `;
 
 const ToggleWrapper = styled.div`

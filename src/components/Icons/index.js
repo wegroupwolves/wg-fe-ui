@@ -154,6 +154,7 @@ import IconJeepFilled from './IconJeepFilled';
 import IconShoppingCartFilled from './IconShoppingCartFilled';
 import IconChevronDown from './IconChevronDown';
 import IconClipBoard from './IconClipBoard';
+import StatusIcon from './StatusIcon';
 
 export {
   IconFireFilled,
@@ -311,4 +312,5 @@ export {
   IconShoppingCartFilled,
   IconChevronDown,
   IconClipBoard,
+  StatusIcon,
 };
