@@ -1,5 +1,5 @@
 import React from 'react';
-import { element, string, object } from 'prop-types';
+import { string, object } from 'prop-types';
 import styled from 'styled-components';
 
 import {

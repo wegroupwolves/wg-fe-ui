@@ -4,7 +4,7 @@ import { storiesOf } from '@storybook/react';
 import { withKnobs, select } from '@storybook/addon-knobs';
 import { withInfo } from '@storybook/addon-info';
 import * as Icons from '../src/components/Icons';
-import StatusIcon from '../src/components/Icons/StatusIcon';
+import { StatusIcon } from '../src/components/Icons';
 
 storiesOf('Foundation/Icons', module)
   .addDecorator(withKnobs)
