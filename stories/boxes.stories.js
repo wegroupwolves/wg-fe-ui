@@ -18,6 +18,7 @@ import {
   Uploader,
   DownloadBox,
   AccordionBox,
+  SelectOffersAccordionBox,
   RiskObjectSelector,
   RiskObjectDisplay,
   LinkBox,
@@ -58,6 +59,27 @@ storiesOf('Mid level blocks/Boxes', module)
             </AccordionBoxMockContent>
           </AccordionBox.Content>
         </AccordionBox>
+      </AccordionBoxContainer>
+    );
+  })
+
+  .add('SelectOffersAccordionBox', () => {
+    return (
+      <AccordionBoxContainer>
+        <SelectOffersAccordionBox>
+          <SelectOffersAccordionBox.Header>
+            <img
+              src="https://via.placeholder.com/125x31?text=Logo"
+              alt="Logo placeholder"
+            />
+          </SelectOffersAccordionBox.Header>
+
+          <SelectOffersAccordionBox.Content>
+            <AccordionBoxMockContent>
+              This is the content
+            </AccordionBoxMockContent>
+          </SelectOffersAccordionBox.Content>
+        </SelectOffersAccordionBox>
       </AccordionBoxContainer>
     );
   })
