@@ -60,6 +60,7 @@ export {
   Uploader,
   DownloadBox,
   AccordionBox,
+  SelectOffersAccordionBox,
   RiskObjectSelector,
   RiskObjectDisplay,
   LinkBox,
