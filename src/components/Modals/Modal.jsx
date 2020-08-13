@@ -60,7 +60,7 @@ const ModalContainer = styled.div`
   position: relative;
   font-family: ${({ theme }) => theme.font};
 
-  @media screen and (max-width: 95rem) {
+  @media screen and (max-width: 950px) {
     width: calc(100vw - 3rem);
   }
 `;
