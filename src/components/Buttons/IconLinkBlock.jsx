@@ -13,6 +13,7 @@ const IconLinkBlock = ({
   disabled,
   className,
   otherProps,
+  info,
 }) => {
   return (
     <StyledIconLinkBlock
@@ -31,7 +32,8 @@ const IconLinkBlock = ({
           {icon}
         </IconWrapper>
       ) : null}
-      {label ? <Label>{label}</Label> : null}
+      {label ? <Label info={info}>{label}</Label> : null}
+      {info ? <Info>{info}</Info> : null}
     </StyledIconLinkBlock>
   );
 };
@@ -48,7 +50,7 @@ const IconWrapper = styled.div`
 
 const Label = styled.div`
   position: absolute;
-  bottom: 1.6rem;
+  bottom: ${({ info }) => (info ? '4.6rem' : '1.6rem')};
   left: 1.6rem;
   font-family: ${({ theme }) => theme.font};
   font-weight: 600;
@@ -56,6 +58,16 @@ const Label = styled.div`
   line-height: 135%;
   color: #222;
   transition: color 0.15s ease-in-out;
+`;
+
+const Info = styled.div`
+  position: absolute;
+  margin-right: 1rem;
+  bottom: 1.6rem;
+  left: 1.6rem;
+  color: #8990a3;
+  font-size: 1.2rem;
+  line-height: 1.3rem;
 `;
 
 const StyledIconLinkBlock = styled.div`
