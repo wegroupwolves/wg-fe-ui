@@ -201,6 +201,7 @@ storiesOf('Low level blocks/Buttons', module)
         <IconLinkBlock
           icon={<IconHistoryFilled size={50} />}
           iconType="fill"
+          info={text('Info', 'Example of text block')}
           label={text('Label', 'Hyperlink')}
           onClick={e => {
             console.log(e);
