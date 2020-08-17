@@ -123,7 +123,7 @@ export {
 
 export { DraggableList } from './components/DraggableList';
 
-export { Modal } from './components/Modals';
+export { Modal, ModalWithSteps } from './components/Modals';
 
 // Export all icons
 export * from './components/Icons';
