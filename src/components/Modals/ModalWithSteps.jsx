@@ -1,16 +1,21 @@
-import React from 'react';
+import React, { createContext, useContext } from 'react';
 import { string, bool, node, func, shape, number } from 'prop-types';
 import styled from 'styled-components';
 import Drawer from 'react-drag-drawer';
 
 import CloseIcon from '../Icons/IconActionClose';
+const StepModalContext = createContext();
 
 const StyledModalActions = ({ children, position }) => {
   return <ModalActions position={position}>{children}</ModalActions>;
 };
 
+const ModalContent = ({ children, step }) => {
+  const { currentStep } = useContext(StepModalContext);
+  return currentStep === step ? children : null;
+};
+
 const ModalWithSteps = ({
-  title,
   canClose,
   children,
   showModal,
@@ -21,35 +26,35 @@ const ModalWithSteps = ({
   steps,
   currentStep,
 }) => {
-  console.log(steps);
-  console.log(currentStep);
   return (
-    <StyledDrawer
-      className={className}
-      open={showModal}
-      onRequestClose={canClose ? () => setShowModal(!showModal) : ''}
-    >
-      <ModalContainer small={small} large={large}>
-        {canClose ? (
-          <ModalCloser onClick={() => setShowModal(!showModal)}>
-            <CloseIcon color="#505050" />
-          </ModalCloser>
-        ) : null}
+    <StepModalContext.Provider value={{ currentStep }}>
+      <StyledDrawer
+        className={className}
+        open={showModal}
+        onRequestClose={canClose ? () => setShowModal(!showModal) : ''}
+      >
+        <ModalContainer small={small} large={large}>
+          {canClose ? (
+            <ModalCloser onClick={() => setShowModal(!showModal)}>
+              <CloseIcon color="#505050" />
+            </ModalCloser>
+          ) : null}
 
-        <ModalTitleBar>
-          <ModalTitle>{title}</ModalTitle>
-          <ModalSteps currentStep={currentStep}>
-            {steps.map(step => (
-              <StepLabel key={step.step}>
-                {step.label}
-                {step.step}
-              </StepLabel>
-            ))}
-          </ModalSteps>
-        </ModalTitleBar>
-        <ModalContent title={title}>{children}</ModalContent>
-      </ModalContainer>
-    </StyledDrawer>
+          <ModalTitleBar>
+            <ModalTitle>
+              Step {currentStep + 1}/{steps.length}
+              {steps.map(
+                ({ step, label }) =>
+                  step === currentStep && (
+                    <StepLabel key={step.step}>{label}</StepLabel>
+                  ),
+              )}
+            </ModalTitle>
+          </ModalTitleBar>
+          <div>{children}</div>
+        </ModalContainer>
+      </StyledDrawer>
+    </StepModalContext.Provider>
   );
 };
 
@@ -76,22 +81,16 @@ const ModalContainer = styled.div`
 `;
 
 const StepLabel = styled.p`
-  color: #8990a3;
-`;
-
-const ModalSteps = styled.div`
-  margin-left: 3rem;
-  display: flex;
-
-  & ${StepLabel} {
-    font-weight: ${({ currentStep, key }) =>
-      key == currentStep ? 'bold' : 'normal'};
-  }
+  color: black;
+  text-transform: initial;
+  margin-left: 1rem;
+  font-weight: bold;
 `;
 
 const ModalTitleBar = styled.div`
   width: 100%;
-  padding: 3rem 3rem 2.2rem;
+  padding-left: 2.2rem;
+  height: 6.5rem;
   border-bottom: 1px solid #ccc;
   background-color: #fcfcfc;
   display: flex;
@@ -99,18 +98,18 @@ const ModalTitleBar = styled.div`
 `;
 
 const ModalTitle = styled.h1`
-  font-weight: bold;
-  font-size: 2.1rem;
+  color: #8990a3;
+  display: flex;
+  text-transform: uppercase;
+  font-size: 1.6rem;
   line-height: 135%;
   text-align: left;
-  letter-spacing: -0.03em;
 `;
-
-const ModalContent = styled.div``;
 
 const ModalCloser = styled.a`
   position: absolute;
-  top: 3rem;
+  top: 3.25rem;
+  transform: translate(0%, -50%);
   right: 3rem;
   z-index: 9999;
   cursor: pointer;
@@ -163,6 +162,10 @@ StyledModalActions.propTypes = { children: node, position: string };
 
 StyledModalActions.defaultProps = { position: 'right' };
 
+ModalContent.propTypes = { children: node, step: number };
+
+ModalContent.defaultProps = { step: 0 };
+
 ModalWithSteps.propTypes = {
   title: string.isRequired,
   /** Set to true to make the modal closeable. */
@@ -186,5 +189,7 @@ ModalWithSteps.defaultProps = {
 
 ModalWithSteps.ModalActions = StyledModalActions;
 ModalWithSteps.ModalActions.displayName = 'ModalWithSteps.ModalActions';
+ModalWithSteps.ModalContent = ModalContent;
+ModalWithSteps.ModalContent.displayName = 'ModalWithSteps.ModalContent';
 
 export default ModalWithSteps;
