@@ -55,9 +55,12 @@ const ModalContainer = styled.div`
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
   border-radius: 5px;
   display: flex;
+  max-height: 90vh;
   flex-direction: column;
+  height: 100%;
   /* overflow: hidden; */
   position: relative;
+  overflow-x: scroll;
   font-family: ${({ theme }) => theme.font};
 
   @media screen and (max-width: 950px) {
