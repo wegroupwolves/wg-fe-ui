@@ -19,6 +19,7 @@ const DropDown = ({
   disabled,
   className,
   otherProps,
+  placeholder,
 }) => {
   const [showMenu, setShowMenu] = useState(false);
   const [currentValue, setCurrentValue] = useState(value);
@@ -59,8 +60,7 @@ const DropDown = ({
           show={showMenu}
           disabled={disabled}
         >
-          {currentOption ? currentOption?.title : 'Please select an option'}
-
+          {currentOption ? currentOption?.title : placeholder}
           <DropDownIcon>
             <IconChevronDown size={25} />
           </DropDownIcon>
@@ -182,6 +182,7 @@ DropDown.propTypes = {
   className: string,
   /** Extra props to be passed to the element. */
   otherProps: object,
+  placeholder: string,
 };
 
 export default DropDown;

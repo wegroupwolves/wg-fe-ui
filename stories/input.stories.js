@@ -539,6 +539,7 @@ storiesOf('Low level blocks/Inputs', module)
           }}
           disabled={boolean('Disabled?', false)}
           value={3}
+          placeholder={text('Placeholder', 'Choose an option')}
         >
           Label
         </DropDown>
