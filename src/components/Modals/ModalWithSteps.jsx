@@ -29,11 +29,10 @@ const ModalWithSteps = ({
   return (
     <StepModalContext.Provider value={{ currentStep }}>
       <StyledDrawer
-        className={className}
         open={showModal}
         onRequestClose={canClose ? () => setShowModal(!showModal) : ''}
       >
-        <ModalContainer small={small} large={large}>
+        <ModalContainer className={className} small={small} large={large}>
           {canClose ? (
             <ModalCloser onClick={() => setShowModal(!showModal)}>
               <CloseIcon color="#505050" />
