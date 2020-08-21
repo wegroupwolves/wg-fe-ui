@@ -6,8 +6,12 @@ import Drawer from 'react-drag-drawer';
 import CloseIcon from '../Icons/IconActionClose';
 const StepModalContext = createContext();
 
-const StyledModalActions = ({ children, position }) => {
-  return <ModalActions position={position}>{children}</ModalActions>;
+const StyledModalActions = ({ children, position, className }) => {
+  return (
+    <ModalActions className={className} position={position}>
+      {children}
+    </ModalActions>
+  );
 };
 
 const ModalContent = ({ children, step }) => {
@@ -157,7 +161,11 @@ const handleActionsPosition = position => {
   }
 };
 
-StyledModalActions.propTypes = { children: node, position: string };
+StyledModalActions.propTypes = {
+  children: node,
+  position: string,
+  className: string,
+};
 
 StyledModalActions.defaultProps = { position: 'right' };
 
