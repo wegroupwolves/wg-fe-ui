@@ -18,7 +18,10 @@ const GuidedImageStep = ({
       offsetLeft={offsetLeft}
       className={className}
       {...otherProps}
-      onClick={() => {
+      onMouseEnter={() => {
+        setShowStep(!showStep);
+      }}
+      onMouseLeave={() => {
         setShowStep(!showStep);
       }}
     >
