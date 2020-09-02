@@ -499,6 +499,12 @@ storiesOf('Low level blocks/Inputs', module)
             min: 0,
             max: 100,
           })}
+          value={number('Value?', 1, {
+            range: true,
+            step: 1,
+            min: 0,
+            max: 100,
+          })}
         ></RoomInput>
       </RoomInputContainer>
     );
