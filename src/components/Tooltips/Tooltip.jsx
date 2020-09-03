@@ -58,7 +58,8 @@ const TooltipToggle = styled.a`
 `;
 
 const TooltipContent = styled.div`
-  z-index: 9;
+  display: ${({ active }) => (active ? 'block' : 'none')};
+  z-index: 0;
   position: absolute;
   left: 50%;
   bottom: 100%;
