@@ -58,6 +58,7 @@ const TooltipToggle = styled.a`
 `;
 
 const TooltipContent = styled.div`
+  visibility: ${({ active }) => (active ? 'visible' : 'hidden')};
   z-index: 9;
   position: absolute;
   left: 50%;
@@ -72,6 +73,7 @@ const TooltipContent = styled.div`
     active ? 'translate(-50%, 0)' : 'translate(-50%, 1em)'};
 
   font-family: ${({ theme }) => theme.font};
+  transition: all 0.2s ease;
   font-size: 14px;
   line-height: 1.8rem;
   color: white;
