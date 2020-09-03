@@ -12,6 +12,7 @@ const RoomInput = ({
   onInputChange,
   className,
   otherProps,
+  value,
 }) => {
   const [showInfo, setShowInfo] = useState(false);
   const [inputValue, setInputValue] = useState(initialValue);
@@ -24,6 +25,10 @@ const RoomInput = ({
     /** Pass back the current value of the input */
     onInputChange(inputValue);
   }, [inputValue]);
+
+  useEffect(() => {
+    setInputValue(value);
+  }, [value]);
 
   /* Event handling
   -------------------------------------------------- */
@@ -319,6 +324,8 @@ RoomInput.propTypes = {
   className: string,
   /** Extra props to be passed to the element. */
   otherProps: object,
+  /** Value to change the component value so that it can be updated */
+  value: number,
 };
 
 export default RoomInput;
