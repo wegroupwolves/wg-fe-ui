@@ -158,6 +158,17 @@ import StatusIcon from './StatusIcon';
 import IconHyperLink from './IconHyperLink';
 import IconPopup from './IconPopup';
 import IconCustomLink from './IconCustomLink';
+import IconBedroomFilled from './IconBedroomFilled';
+import IconBathroomFilled from './IconBathroomFilled';
+import IconDressingFilled from './IconDressingFilled';
+import IconFireplaceFilled from './IconFireplaceFilled';
+import IconKitchenFilled from './IconKitchenFilled';
+import IconOtherRoomsFilled from './IconOtherRoomsFilled';
+import IconPlayroomFilled from './IconPlayroomFilled';
+import IconPrivateHomeOfficeFilled from './IconPrivateHomeOfficeFilled';
+import IconStorageRoomFilled from './IconStorageRoomFilled';
+import IconWashingRoomFilled from './IconWashingRoomFilled';
+import IconWellnessRoomFilled from './IconWellnessRoomFilled';
 
 export {
   IconFireFilled,
@@ -319,4 +330,15 @@ export {
   IconPopup,
   IconCustomLink,
   StatusIcon,
+  IconDressingFilled,
+  IconBedroomFilled,
+  IconBathroomFilled,
+  IconFireplaceFilled,
+  IconKitchenFilled,
+  IconOtherRoomsFilled,
+  IconPlayroomFilled,
+  IconPrivateHomeOfficeFilled,
+  IconStorageRoomFilled,
+  IconWashingRoomFilled,
+  IconWellnessRoomFilled,
 };
