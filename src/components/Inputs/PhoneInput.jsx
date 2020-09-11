@@ -92,6 +92,7 @@ const PhoneInput = ({
             'data-test-id': dataTestId,
           }}
           onChange={onChange}
+          {...otherProps}
         />
         <ValidationIcons
           error={error}
