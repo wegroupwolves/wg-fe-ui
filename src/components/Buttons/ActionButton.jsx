@@ -13,9 +13,9 @@ const ActionButton = ({
   padding,
   ...otherProps
 }) => {
-  const handleClick = () => {
+  const handleClick = e => {
     if (!disabled) {
-      onClick();
+      onClick(e);
     }
   };
 
