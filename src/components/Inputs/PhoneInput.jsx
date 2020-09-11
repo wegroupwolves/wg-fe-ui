@@ -82,6 +82,7 @@ const PhoneInput = ({
           onBlur={handleBlur}
           touched={touched}
           onFocus={handleFocus}
+          specialLabel=""
           disabled={disabled}
           autoFormat={false}
           inputProps={{
