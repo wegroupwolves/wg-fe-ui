@@ -82,6 +82,7 @@ const PhoneInput = ({
           onBlur={handleBlur}
           touched={touched}
           onFocus={handleFocus}
+          specialLabel=""
           disabled={disabled}
           autoFormat={false}
           inputProps={{
@@ -92,6 +93,7 @@ const PhoneInput = ({
             'data-test-id': dataTestId,
           }}
           onChange={onChange}
+          {...otherProps}
         />
         <ValidationIcons
           error={error}

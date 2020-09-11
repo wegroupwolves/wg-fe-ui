@@ -1,6 +1,6 @@
 {
   "name": "wg-fe-ui",
-  "version": "1.13.1",
+  "version": "1.13.2",
   "main": "index.js",
   "scripts": {
     "build": "babel src -d dist --copy-files",
@@ -69,7 +69,7 @@
     "react-dom": "^16.12.0",
     "react-drag-drawer": "^3.3.3",
     "react-input-mask": "^2.0.4",
-    "react-phone-input-2": "^2.13.3",
+    "react-phone-input-2": "^2.13.8",
     "react-router-dom": "^5.1.2",
     "react-select": "^3.0.8",
     "storybook": "^5.3.18",
