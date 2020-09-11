@@ -16,7 +16,6 @@ const ActionButton = ({
   const handleClick = e => {
     if (!disabled) {
       onClick(e);
-      console.log(e);
     }
   };
 
