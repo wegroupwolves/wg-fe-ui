@@ -13,6 +13,7 @@ const AmountInput = ({
   onChange,
   onBlur,
   inputAppend,
+  name,
   ...otherProps
 }) => {
   const [currentValue, setCurrentValue] = useState(value);
@@ -58,49 +59,46 @@ const AmountInput = ({
     }
   }, [value]);
 
-  const checkValue = ({ target: { value } }) => {
-    const parsedValue = parseFloat(value) || min;
+  const checkValue = value => {
+    const parsedValue = parseFloat(value) || undefined;
     if (parsedValue >= min && parsedValue <= max) {
-      setCurrentValue(parsedValue);
-      onBlur(parsedValue);
+      return parsedValue;
     } else {
       if (parsedValue < min) {
-        setCurrentValue(min);
-        onBlur(min);
+        return min;
       } else if (parsedValue > max) {
-        setCurrentValue(max);
-        onBlur(max);
+        return max;
       }
     }
   };
 
-  const handleChange = ({ target: { value, name } }) => {
+  const handleChange = value => {
     if (disabled !== true) {
-      const parsedValue = parseFloat(value) || undefined;
-      setCurrentValue(parsedValue);
-      onChange({ name: name, value: parsedValue });
-    }
-  };
-
-  const increaseValue = () => {
-    if (currentValue < max && disabled !== true) {
-      setCurrentValue(currentValue + 1);
-    }
-  };
-
-  const decreaseValue = () => {
-    if (currentValue > min && disabled !== true) {
-      setCurrentValue(currentValue - 1);
+      setCurrentValue(checkValue(value));
+      onBlur(value);
+      onChange({ name, value });
     }
   };
 
   return (
     <Wrapper disabled={disabled} className={className} {...otherProps}>
       <InputControls>
-        <InputControl disabled={isMaxReached} onClick={increaseValue}>
+        <InputControl
+          disabled={isMaxReached}
+          onClick={() => {
+            handleChange(currentValue + 1);
+            checkValue(currentValue + 1);
+          }}
+        >
           <IconActionDropDown size={14} />
         </InputControl>
-        <InputControl disabled={isMinReached} onClick={decreaseValue}>
+        <InputControl
+          disabled={isMinReached}
+          onClick={() => {
+            handleChange(currentValue - 1);
+            checkValue(currentValue - 1);
+          }}
+        >
           <IconActionDropDown size={14} />
         </InputControl>
       </InputControls>
@@ -110,7 +108,7 @@ const AmountInput = ({
         value={currentValue}
         min={min}
         max={max}
-        onChange={handleChange}
+        onChange={({ target: { value } }) => handleChange(value)}
         onBlur={checkValue}
         disabled={disabled}
       />
