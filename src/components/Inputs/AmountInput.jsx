@@ -13,94 +13,61 @@ const AmountInput = ({
   onChange,
   onBlur,
   inputAppend,
+  name,
   ...otherProps
 }) => {
   const [currentValue, setCurrentValue] = useState(value);
-  const [isMaxReached, setIsMaxReached] = useState(currentValue === max);
-  const [isMinReached, setIsMinReached] = useState(currentValue === min);
 
-  useEffect(() => {
-    if (currentValue === min) {
-      setIsMinReached(true);
-    } else {
-      setIsMinReached(false);
-    }
-
-    if (currentValue === max) {
-      setIsMaxReached(true);
-    } else {
-      setIsMaxReached(false);
-    }
-  }, [currentValue]);
-
-  useEffect(() => {
-    if (value === min) {
-      setIsMinReached(true);
-    } else {
-      setIsMinReached(false);
-    }
-
-    if (value === max) {
-      setIsMaxReached(true);
-    } else {
-      setIsMaxReached(false);
-    }
-
-    if (value >= max) {
-      setCurrentValue(max);
-    }
-    if (value <= min) {
-      setCurrentValue(min);
-    }
-
-    if (value >= min && value <= max) {
-      setCurrentValue(value);
-    }
-  }, [value]);
-
-  const checkValue = ({ target: { value } }) => {
-    const parsedValue = parseFloat(value) || min;
+  const checkValue = (value, isBlur) => {
+    const parsedValue = parseFloat(value) || undefined;
     if (parsedValue >= min && parsedValue <= max) {
-      setCurrentValue(parsedValue);
-      onBlur(parsedValue);
+      return parsedValue;
     } else {
-      if (parsedValue < min) {
-        setCurrentValue(min);
-        onBlur(min);
+      if (parsedValue === undefined && isBlur) {
+        return min;
+      } else if (parsedValue < min) {
+        return min;
       } else if (parsedValue > max) {
-        setCurrentValue(max);
-        onBlur(max);
+        return max;
       }
     }
   };
 
-  const handleChange = ({ target: { value, name } }) => {
+  const handleChange = (value, isBlur = false) => {
     if (disabled !== true) {
-      const parsedValue = parseFloat(value) || undefined;
-      setCurrentValue(parsedValue);
-      onChange({ name: name, value: parsedValue });
+      setCurrentValue(checkValue(value, isBlur));
+      onBlur(value);
+      onChange({ name, value });
     }
   };
 
-  const increaseValue = () => {
-    if (currentValue < max && disabled !== true) {
-      setCurrentValue(currentValue + 1);
-    }
-  };
-
-  const decreaseValue = () => {
-    if (currentValue > min && disabled !== true) {
-      setCurrentValue(currentValue - 1);
+  const handleOnKeyDown = ({ keyCode }) => {
+    if (keyCode === 38) {
+      //Key: arrow up
+      handleChange(currentValue ? currentValue + 1 : min + 1);
+    } else if (keyCode === 40) {
+      //Key: arrow down
+      handleChange(currentValue - 1);
     }
   };
 
   return (
     <Wrapper disabled={disabled} className={className} {...otherProps}>
       <InputControls>
-        <InputControl disabled={isMaxReached} onClick={increaseValue}>
+        <InputControl
+          disabled={currentValue === max}
+          onClick={() => {
+            handleChange(currentValue ? currentValue + 1 : min + 1);
+          }}
+        >
           <IconActionDropDown size={14} />
         </InputControl>
-        <InputControl disabled={isMinReached} onClick={decreaseValue}>
+        <InputControl
+          disabled={currentValue === min || currentValue === undefined}
+          onClick={() => {
+            handleChange(currentValue - 1);
+          }}
+        >
           <IconActionDropDown size={14} />
         </InputControl>
       </InputControls>
@@ -110,9 +77,10 @@ const AmountInput = ({
         value={currentValue}
         min={min}
         max={max}
-        onChange={handleChange}
-        onBlur={checkValue}
+        onChange={({ target: { value } }) => handleChange(value)}
+        onBlur={({ target: { value } }) => handleChange(value, true)}
         disabled={disabled}
+        onKeyDown={handleOnKeyDown}
       />
 
       {inputAppend ? <InputExtra>{inputAppend}</InputExtra> : ''}
@@ -210,6 +178,8 @@ AmountInput.propTypes = {
   onBlur: func,
   /** Other props to be passed to the component. */
   otherProps: object,
+  /** Name of the component */
+  name: string,
 };
 
 export default AmountInput;
