@@ -493,13 +493,7 @@ storiesOf('Low level blocks/Inputs', module)
             min: 1,
             max: 100,
           })}
-          initialValue={number('Initial value?', 1, {
-            range: true,
-            step: 1,
-            min: 0,
-            max: 100,
-          })}
-          value={number('Value?', 1, {
+          value={number('Value?', 0, {
             range: true,
             step: 1,
             min: 0,
