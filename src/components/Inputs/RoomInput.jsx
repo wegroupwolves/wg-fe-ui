@@ -6,7 +6,6 @@ const RoomInput = ({
   icon,
   label,
   info,
-  initialValue,
   minValue,
   maxValue,
   onInputChange,
@@ -15,9 +14,9 @@ const RoomInput = ({
   value,
 }) => {
   const [showInfo, setShowInfo] = useState(false);
-  const [inputValue, setInputValue] = useState(initialValue);
-  const [wasMinReached, setWasMinReached] = useState(false);
-  const [wasMaxReached, setWasMaxReached] = useState(false);
+  const [inputValue, setInputValue] = useState();
+  const [wasMinReached, setWasMinReached] = useState(value === minValue);
+  const [wasMaxReached, setWasMaxReached] = useState(value === maxValue);
 
   /* Life cycles
   -------------------------------------------------- */
@@ -301,7 +300,6 @@ const Input = styled.input`
 `;
 
 RoomInput.defaultProps = {
-  initialValue: 0,
   minValue: 0,
 };
 
@@ -312,8 +310,6 @@ RoomInput.propTypes = {
   label: string.isRequired,
   /** Info to be shown in the tooltip. (If left empty, tooltip will not be displayed) */
   info: string,
-  /** Initial value of the input. */
-  initialValue: number,
   /** The minimum value the input can have. */
   minValue: number,
   /** The maximum value the input can have. */
