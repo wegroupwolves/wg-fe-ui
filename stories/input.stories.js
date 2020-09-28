@@ -366,6 +366,7 @@ storiesOf('Low level blocks/Inputs', module)
         })}
         isMulti={boolean('Multiple', false)}
         placeholder={text('Placeholder', 'Choose an option')}
+        data-test-id="random_data_id_example"
       >
         Selection
       </StyledSearchSelectInput>
