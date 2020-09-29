@@ -50,7 +50,7 @@ const CheckBox = forwardRef(
         />
         <StyledBox disabled={disabled} checked={isChecked}>
           {isChecked && disabled ? (
-            <StyledCheckmark color={theme.colors.disabled} />
+            <StyledCheckmark color="#A29C95" />
           ) : isChecked && !disabled ? (
             <StyledCheckmark color={'white'} />
           ) : null}
