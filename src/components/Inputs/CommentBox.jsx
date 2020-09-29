@@ -18,8 +18,15 @@ const CommentBox = ({ title, icon, children, editHandler, deleteHandler }) => {
 
           <CommentBoxActions>
             <span> | </span>
-            <CommentBoxAction onClick={editHandler}>Edit</CommentBoxAction>
-            <CommentBoxAction onClick={deleteHandler}>Delete</CommentBoxAction>
+            <CommentBoxAction onClick={editHandler} data-test-id="comment_edit">
+              Edit
+            </CommentBoxAction>
+            <CommentBoxAction
+              onClick={deleteHandler}
+              data-test-id="comment_delete"
+            >
+              Delete
+            </CommentBoxAction>
           </CommentBoxActions>
         </CommentBoxHeader>
 
@@ -76,6 +83,10 @@ const CommentBoxActions = styled.div`
   ${CommentBoxWrapper}:hover & {
     display: flex;
   }
+
+  ${CommentBoxWrapper}:focus & {
+    display: flex;
+  }
 `;
 
 const CommentBoxAction = styled.a`
@@ -90,7 +101,8 @@ const CommentBoxAction = styled.a`
     margin-right: 0;
   }
 
-  &:hover {
+  &:hover,
+  &:focus {
     color: ${({ theme }) => theme.brand.primary};
   }
 `;
