@@ -1,6 +1,6 @@
 import React, { forwardRef, useState, useEffect } from 'react';
 import { bool, node, func, string, object } from 'prop-types';
-import styled from 'styled-components';
+import styled, { withTheme } from 'styled-components';
 
 import Checkmark from '../../assets/checkmark.js';
 
@@ -50,7 +50,7 @@ const CheckBox = forwardRef(
         />
         <StyledBox disabled={disabled} checked={isChecked}>
           {isChecked && disabled ? (
-            <StyledCheckmark color="#A29C95" />
+            <StyledCheckmark color={theme.ui.disabled} />
           ) : isChecked && !disabled ? (
             <StyledCheckmark color={'white'} />
           ) : null}
@@ -129,4 +129,4 @@ CheckBox.propTypes = {
   theme: object,
 };
 
-export default CheckBox;
+export default withTheme(CheckBox);
