@@ -1,8 +1,7 @@
 import React from 'react';
-import { object, bool, func, node } from 'prop-types';
+import { object, bool, func, node, string } from 'prop-types';
 import styled from 'styled-components';
 import { IconPencilFilled } from '../Icons';
-import { string } from 'yup';
 
 const EditActionButton = ({
   children,
@@ -40,7 +39,7 @@ const StyledButton = styled.button`
   cursor: ${({ disabled }) => (disabled ? 'not-allowed' : 'pointer')};
   border: 0;
 
-  > ${IconPencilFilled} {
+  > svg {
     margin: 0;
   }
 
@@ -52,7 +51,7 @@ const StyledButton = styled.button`
   :hover {
     width: auto;
     padding: 1.2rem 1.8rem 1.2rem 0;
-    > ${IconPencilFilled} {
+    > svg {
       padding-left: 1.8rem;
       transition: margin 0.1s ease-in-out 5s, padding 0.2s ease-in-out;
     }
