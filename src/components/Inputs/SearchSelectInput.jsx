@@ -64,7 +64,7 @@ const SearchSelectInput = forwardRef(
 
     return (
       <Container className={className}>
-        <Label disabled={disabled}>
+        <Label disabled={disabled} {...otherProps}>
           {children}
           {!async ? (
             <Input
@@ -80,7 +80,6 @@ const SearchSelectInput = forwardRef(
               isMulti={isMulti}
               closeMenuOnSelect={!isMulti}
               error={error ? true : false}
-              {...otherProps}
             />
           ) : (
             <AsyncInput
