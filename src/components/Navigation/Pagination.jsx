@@ -11,6 +11,8 @@ const Pagination = ({
   base,
   otherFilters,
   onClick,
+  nextText,
+  prevText,
   ...otherProps
 }) => {
   const urls = [];
@@ -26,8 +28,6 @@ const Pagination = ({
     }
   }
 
-  console.log(urls);
-
   const prevUrl = currentPage - 1;
   const nextUrl = currentPage + 1;
 
@@ -41,7 +41,6 @@ const Pagination = ({
           ?.getAttribute('href')
           ?.split('/')
           ?.pop() || [];
-      console.log(page);
 
       onClick(page);
     }
@@ -52,7 +51,7 @@ const Pagination = ({
       {currentPage > 1 ? (
         <PaginationButton onClick={handleOnclick} to={urls[prevUrl].url}>
           <ChevronLeft color="#C1C1C1" />
-          <span className="label">Prev</span>
+          <span className="label">{prevText}</span>
         </PaginationButton>
       ) : (
         ''
@@ -99,7 +98,7 @@ const Pagination = ({
 
       {currentPage < totalPages ? (
         <PaginationButton onClick={handleOnclick} to={urls[nextUrl].url}>
-          <span className="label">Next</span>
+          <span className="label">{nextText}</span>
           <ChevronRight color="#C1C1C1" />
         </PaginationButton>
       ) : (
@@ -189,6 +188,8 @@ const PaginationPage = styled(Link)`
 
 Pagination.defaultProps = {
   onClick: () => {},
+  prevText: 'Prev',
+  nextText: 'Next',
 };
 
 Pagination.propTypes = {
@@ -202,6 +203,10 @@ Pagination.propTypes = {
   base: string,
   /** Callback that fire's when there is no base */
   onClick: func,
+  /** Text which has to be displayed on the previous button */
+  prevText: string,
+  /** Text which has to be displayed on the next button */
+  nextText: string,
   /** Extra filters to be passed to the URL. */
   otherFilters: string,
 };
