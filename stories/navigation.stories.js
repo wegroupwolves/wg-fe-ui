@@ -243,6 +243,8 @@ storiesOf('Mid level blocks/Navigation', module)
           min: 20,
           max: 100,
         })}
+        nextText={text('Next button text', 'Next')}
+        prevText={text('Previous button text', 'Prev')}
         pageLength={20}
         base={`/api-url/url/`}
         otherFilters={'&id=test'}
