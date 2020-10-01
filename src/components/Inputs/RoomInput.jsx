@@ -14,7 +14,7 @@ const RoomInput = ({
   value,
 }) => {
   const [showInfo, setShowInfo] = useState(false);
-  const [inputValue, setInputValue] = useState();
+  const [inputValue, setInputValue] = useState(value);
   const [wasMinReached, setWasMinReached] = useState(value === minValue);
   const [wasMaxReached, setWasMaxReached] = useState(value === maxValue);
 
@@ -26,6 +26,7 @@ const RoomInput = ({
   }, [inputValue]);
 
   useEffect(() => {
+    if (value != inputValue);
     setInputValue(value);
   }, [value]);
 
