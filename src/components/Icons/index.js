@@ -152,6 +152,7 @@ import IconDownloadFilled from './IconDownloadFilled';
 import IconVanFilled from './IconVanFilled';
 import IconJeepFilled from './IconJeepFilled';
 import IconShoppingCartFilled from './IconShoppingCartFilled';
+import IconShoppingBasket from './IconShoppingBasket';
 import IconChevronDown from './IconChevronDown';
 import IconClipBoard from './IconClipBoard';
 import StatusIcon from './StatusIcon';
@@ -324,6 +325,7 @@ export {
   IconVanFilled,
   IconJeepFilled,
   IconShoppingCartFilled,
+  IconShoppingBasket,
   IconChevronDown,
   IconClipBoard,
   IconHyperLink,
