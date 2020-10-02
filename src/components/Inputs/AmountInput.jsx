@@ -18,6 +18,10 @@ const AmountInput = ({
 }) => {
   const [currentValue, setCurrentValue] = useState(value);
 
+  useEffect(() => {
+    setCurrentValue(value);
+  }, [value]);
+
   const checkValue = (value, isBlur) => {
     const parsedValue = parseFloat(value) || undefined;
     if (parsedValue >= min && parsedValue <= max) {
