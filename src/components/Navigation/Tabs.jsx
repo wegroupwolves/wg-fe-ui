@@ -112,7 +112,7 @@ Tab.propTypes = {
 };
 
 const Item = styled.li`
-  font-weight: ${props => (props.active ? 700 : 500)};
+  color: ${props => (props.active ? 'black' : '#8990a3')};
   cursor: pointer;
   font-size: 1.6rem;
   text-align: center;
@@ -122,7 +122,7 @@ const Item = styled.li`
   border-bottom: 2px solid rgba(0, 0, 0, 0);
   text-transform: capitalize;
   &:hover {
-    font-weight: 700;
+    color: black;
   }
 `;
 
