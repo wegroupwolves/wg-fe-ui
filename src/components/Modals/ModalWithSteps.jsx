@@ -1,6 +1,6 @@
 import React, { createContext, useContext } from 'react';
 import { string, bool, node, func, shape, number } from 'prop-types';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import Drawer from 'react-drag-drawer';
 
 import CloseIcon from '../Icons/IconActionClose';
@@ -29,6 +29,9 @@ const ModalWithSteps = ({
   className,
   steps,
   currentStep,
+  visualSteps,
+  title,
+  onLabelClick,
 }) => {
   return (
     <StepModalContext.Provider value={{ currentStep }}>
@@ -43,16 +46,43 @@ const ModalWithSteps = ({
             </ModalCloser>
           ) : null}
 
-          <ModalTitleBar>
-            <ModalTitle>
-              Step {currentStep + 1}/{steps.length}
-              {steps.map(
-                ({ step, label }) =>
-                  step === currentStep && (
-                    <StepLabel key={step.step}>{label}</StepLabel>
-                  ),
-              )}
-            </ModalTitle>
+          <ModalTitleBar visualSteps={visualSteps}>
+            {visualSteps ? (
+              <VisualStepsWrapper>
+                <Title>{title}</Title>
+                <StepsWrapper>
+                  {steps.map(({ step, label }) => (
+                    <StepArrow
+                      key={step}
+                      active={currentStep >= step}
+                      fill={
+                        currentStep - 1 >= step &&
+                        step < steps[steps.length - 1].step
+                      }
+                      first={step === 0}
+                      isCurrentStep={currentStep === step}
+                      isPreviousStep={currentStep - 1 === step}
+                    >
+                      <div>
+                        <StepArrowLabel onClick={step => onLabelClick(step)}>
+                          {label}
+                        </StepArrowLabel>
+                      </div>
+                    </StepArrow>
+                  ))}
+                </StepsWrapper>
+              </VisualStepsWrapper>
+            ) : (
+              <ModalTitle>
+                Step {currentStep + 1}/{steps.length}
+                {steps.map(
+                  ({ step, label }) =>
+                    step === currentStep && (
+                      <StepLabel key={step}>{label}</StepLabel>
+                    ),
+                )}
+              </ModalTitle>
+            )}
           </ModalTitleBar>
           <div>{children}</div>
         </ModalContainer>
@@ -60,6 +90,113 @@ const ModalWithSteps = ({
     </StepModalContext.Provider>
   );
 };
+
+const StepArrowLabel = styled.div`
+  display: flex;
+  justify-items: center;
+  align-items: center;
+  margin: 1rem 1.5rem;
+  color: #8990a3;
+  z-index: 1;
+  cursor: pointer;
+  white-space: nowrap;
+  font-weight: ${({ isCurrentStep }) => (isCurrentStep ? 700 : 500)};
+`;
+
+const StepsWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  padding: 0 2rem;
+`;
+
+const StepArrow = styled.div`
+  display: flex;
+  border-radius: 5px;
+  font-size: 1.3rem;
+  opacity: 0.5;
+  ${({ active }) =>
+    active
+      ? css`
+          * {
+            background-color: rgba(240,241,243,0.5);
+          }
+          opacity: 1;
+
+          /* The following :before and :after pseudo selectors are used to
+          create the triangle effect when visualSteps boolean is turnedo n*/
+
+
+          /* --- CURRENT STEP --- */   
+          /* Color background grey */   
+          /* Draw grey triangle after square */          
+          ${({ isCurrentStep }) =>
+            isCurrentStep &&
+            css`
+              * {
+                background-color: rgba(240, 241, 243, 1);
+              }
+              &:after {
+                content: '';
+                display: inline-block;
+                border-top: 16px solid transparent;
+                border-bottom: 16px solid transparent;
+                border-left: 16px solid rgba(240, 241, 243, 1);
+              }
+            `}
+
+          /* --- NOT FIRST AND CURRENT STEP --- */   
+          /* Draw LIGHT grey triangle before square */     
+          ${({ first, isCurrentStep }) =>
+            !first &&
+            isCurrentStep &&
+            css`
+              &:before {
+                content: '';
+                display: inline-block;
+                border-top: 16px solid rgba(240, 241, 243, 1);
+                border-bottom: 16px solid rgba(240, 241, 243, 1);
+                border-left: 16px solid rgba(240, 241, 243, 0.5);
+              }
+            `}
+
+          /* --- FILL AND NOT PREVIOUS STEP --- */   
+          /* Draw LIGHT grey triangle after square */     
+          ${({ fill, isPreviousStep }) =>
+            fill &&
+            !isPreviousStep &&
+            css`
+              &:after {
+                content: '';
+                display: inline-block;
+                border-top: 0 solid transparent;
+                border-bottom: 0 solid transparent;
+                border-left: 16px solid rgba(240, 241, 243, 0.5);
+              }
+            `}
+        `
+      : css`
+          /* --- NOT ACTIVE --- */
+          /* If step has not been passed yet */
+          &:after {
+            content: '';
+            display: inline-block;
+            border-top: 16px solid transparent;
+            border-bottom: 16px solid transparent;
+            border-left: 16px solid transparent;
+          }
+        `}
+`;
+
+const Title = styled.h2`
+  color: black;
+  font-size: 2rem;
+  font-weight: 500;
+`;
+
+const VisualStepsWrapper = styled.div`
+  display: flex;
+  align-items: center;
+`;
 
 const StyledDrawer = styled(Drawer)`
   z-index: 9999999;
@@ -92,8 +229,8 @@ const StepLabel = styled.p`
 
 const ModalTitleBar = styled.div`
   width: 100%;
+  height: ${({ visualSteps }) => (visualSteps ? '7.5rem' : '6.5rem')};
   padding-left: 2.2rem;
-  height: 6.5rem;
   border-bottom: 1px solid #ccc;
   background-color: #fcfcfc;
   display: flex;
@@ -187,6 +324,8 @@ ModalWithSteps.propTypes = {
   className: string,
   currentStep: number.isRequired,
   steps: shape([]).isRequired,
+  visualSteps: bool,
+  onLabelClick: func,
 };
 
 ModalWithSteps.defaultProps = {
