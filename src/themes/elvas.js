@@ -60,6 +60,9 @@ export default (function() {
 
       customer: '#E3F0E2',
       customerText: '#75B46E',
+
+      guarantee: '#F0F1F3',
+      guaranteeText: '#8990A3',
     },
     font: brandFont,
   };
