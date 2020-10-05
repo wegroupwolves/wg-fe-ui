@@ -66,20 +66,18 @@ storiesOf('Low level blocks/Modals', module)
           small={boolean('Small modal?', false)}
           large={boolean('Larger modal?', false)}
           currentStep={number('Current step', 0)}
-          visualSteps={boolean('Visual steps?', false)}
-          onLabelClick={function noRefCheck() {}}
           steps={[
             {
               step: 0,
-              label: 'Acknowledgements',
+              label: 'Generate offers - Acknowledgements',
             },
             {
               step: 1,
-              label: 'Informatieplicht fiches',
+              label: 'Generate offers - Informatieplicht fiches',
             },
             {
               step: 2,
-              label: 'Termination letter',
+              label: 'Generate offers - Termination letter',
             },
           ]}
         >
