@@ -262,6 +262,7 @@ const ModalTitle = styled.h1`
   font-size: 1.6rem;
   line-height: 135%;
   text-align: left;
+  font-weight: 600;
 `;
 
 const ModalCloser = styled.a`
