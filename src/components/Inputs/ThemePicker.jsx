@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { string, object, bool } from 'prop-types';
+import { string, object, bool, func } from 'prop-types';
 import styled from 'styled-components';
 
 import { IconChevronDown } from '../Icons';
@@ -7,6 +7,7 @@ import { IconChevronDown } from '../Icons';
 const ThemePicker = ({
   themes,
   activeTheme,
+  onChange,
   disabled,
   className,
   otherProps,
@@ -25,6 +26,10 @@ const ThemePicker = ({
       }
     });
   }, [activeTheme]);
+
+  useEffect(() => {
+    onChange(currentTheme);
+  }, [currentTheme]);
 
   const handleOpenClose = () => {
     setIsOpen(!isOpen);
@@ -166,6 +171,8 @@ ThemePicker.propTypes = {
   themes: object.isRequired,
   /** The key of the initial active theme. */
   activeTheme: string.isRequired,
+  /** onChange handler when a theme is picked */
+  onChange: func.isRequired,
   /** Disabled the operation and selection of colors. */
   disabled: bool,
   /** Extra classnames to be passed to the element. */
