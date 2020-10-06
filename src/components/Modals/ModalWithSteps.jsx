@@ -41,7 +41,7 @@ const ModalWithSteps = ({
       >
         <ModalContainer className={className} small={small} large={large}>
           {canClose ? (
-            <ModalCloser onClick={() => setShowModal(!showModal)}>
+            <ModalCloser>
               <CloseIcon color="#505050" />
             </ModalCloser>
           ) : null}
@@ -96,8 +96,7 @@ const StepArrowLabel = styled.div`
   display: flex;
   justify-items: center;
   align-items: center;
-  height: 2rem;
-  margin: 1rem 1.5rem;
+  margin: 10px;
   color: #8990a3;
   z-index: 1;
   cursor: pointer;
@@ -138,9 +137,9 @@ const StepArrow = styled.div`
               &:after {
                 content: '';
                 display: inline-block;
-                border-top: 20px solid transparent;
-                border-bottom: 20px solid transparent;
-                border-left: 20px solid rgba(240, 241, 243, 1);
+                border-top: 16px solid transparent;
+                border-bottom: 16px solid transparent;
+                border-left: 16px solid rgba(240, 241, 243, 1);
               }
             `}
 
@@ -153,9 +152,9 @@ const StepArrow = styled.div`
               &:before {
                 content: '';
                 display: inline-block;
-                border-top: 20px solid rgba(240, 241, 243, 1);
-                border-bottom: 20px solid rgba(240, 241, 243, 1);
-                border-left: 20px solid rgba(240, 241, 243, 0.5);
+                border-top: 16px solid rgba(240, 241, 243, 1);
+                border-bottom: 16px solid rgba(240, 241, 243, 1);
+                border-left: 16px solid rgba(240, 241, 243, 0.5);
               }
             `}
 
@@ -168,12 +167,16 @@ const StepArrow = styled.div`
                 }
               `}
 
-              ${({ last }) =>
+              ${({ last, isCurrentStep }) =>
                 last &&
+                !isCurrentStep &&
                 css`
-                  * {
-                    border-top-right-radius: 5px;
-                    border-bottom-right-radius: 5px;
+                  &:after {
+                    content: '';
+                    display: inline-block;
+                    border-top: 16px solid transparent;
+                    border-bottom: 16px solid transparent;
+                    border-left: 16px solid rgba(240, 241, 243, 0.5);
                   }
                 `}
 
@@ -188,7 +191,7 @@ const StepArrow = styled.div`
                 display: inline-block;
                 border-top: 0 solid transparent;
                 border-bottom: 0 solid transparent;
-                border-left: 20px solid rgba(240, 241, 243, 0.5);
+                border-left: 16px solid rgba(240, 241, 243, 0.5);
               }
             `}
         `
@@ -198,9 +201,9 @@ const StepArrow = styled.div`
           &:after {
             content: '';
             display: inline-block;
-            border-top: 20px solid transparent;
-            border-bottom: 20px solid transparent;
-            border-left: 20px solid transparent;
+            border-top: 16px solid transparent;
+            border-bottom: 16px solid transparent;
+            border-left: 16px solid transparent;
           }
         `}
 `;
