@@ -467,6 +467,7 @@ storiesOf('Low level blocks/Inputs', module)
           themes={themeList}
           activeTheme={'orange'}
           disabled={boolean('Disabled?', false)}
+          onChange={() => {}}
         />
       </ThemePickerContainer>
     );
