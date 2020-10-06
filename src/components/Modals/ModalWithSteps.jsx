@@ -250,8 +250,7 @@ const ModalTitleBar = styled.div`
   width: 100%;
   height: ${({ visualSteps }) => (visualSteps ? '7.5rem' : '6.5rem')};
   padding-left: 2.2rem;
-  border-bottom: 1px solid #ccc;
-  background-color: #fcfcfc;
+  border-bottom: 1px solid #f0f1f3;
   display: flex;
   align-items: center;
 `;
@@ -288,6 +287,8 @@ const ModalActions = styled.div`
   margin-top: 4rem;
   align-items: center;
   padding: 3rem;
+  background-color: #fbfbfb;
+  border-top: 1px solid #f0f1f3;
 
   > button {
     margin: 0 1rem;
