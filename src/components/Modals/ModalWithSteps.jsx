@@ -60,11 +60,12 @@ const ModalWithSteps = ({
                         step < steps[steps.length - 1].step
                       }
                       first={step === 0}
+                      last={step === steps[steps.length - 1].step}
                       isCurrentStep={currentStep === step}
                       isPreviousStep={currentStep - 1 === step}
                     >
                       <div>
-                        <StepArrowLabel onClick={step => onLabelClick(step)}>
+                        <StepArrowLabel onClick={() => onLabelClick(step)}>
                           {label}
                         </StepArrowLabel>
                       </div>
@@ -95,6 +96,7 @@ const StepArrowLabel = styled.div`
   display: flex;
   justify-items: center;
   align-items: center;
+  height: 2rem;
   margin: 1rem 1.5rem;
   color: #8990a3;
   z-index: 1;
@@ -111,13 +113,12 @@ const StepsWrapper = styled.div`
 
 const StepArrow = styled.div`
   display: flex;
-  border-radius: 5px;
   font-size: 1.3rem;
   opacity: 0.5;
   ${({ active }) =>
     active
       ? css`
-          * {
+          > * {
             background-color: rgba(240,241,243,0.5);
           }
           opacity: 1;
@@ -125,22 +126,21 @@ const StepArrow = styled.div`
           /* The following :before and :after pseudo selectors are used to
           create the triangle effect when visualSteps boolean is turnedo n*/
 
-
           /* --- CURRENT STEP --- */   
           /* Color background grey */   
           /* Draw grey triangle after square */          
           ${({ isCurrentStep }) =>
             isCurrentStep &&
             css`
-              * {
+              > * {
                 background-color: rgba(240, 241, 243, 1);
               }
               &:after {
                 content: '';
                 display: inline-block;
-                border-top: 16px solid transparent;
-                border-bottom: 16px solid transparent;
-                border-left: 16px solid rgba(240, 241, 243, 1);
+                border-top: 20px solid transparent;
+                border-bottom: 20px solid transparent;
+                border-left: 20px solid rgba(240, 241, 243, 1);
               }
             `}
 
@@ -153,11 +153,29 @@ const StepArrow = styled.div`
               &:before {
                 content: '';
                 display: inline-block;
-                border-top: 16px solid rgba(240, 241, 243, 1);
-                border-bottom: 16px solid rgba(240, 241, 243, 1);
-                border-left: 16px solid rgba(240, 241, 243, 0.5);
+                border-top: 20px solid rgba(240, 241, 243, 1);
+                border-bottom: 20px solid rgba(240, 241, 243, 1);
+                border-left: 20px solid rgba(240, 241, 243, 0.5);
               }
             `}
+
+            ${({ first }) =>
+              first &&
+              css`
+                * {
+                  border-top-left-radius: 5px;
+                  border-bottom-left-radius: 5px;
+                }
+              `}
+
+              ${({ last }) =>
+                last &&
+                css`
+                  * {
+                    border-top-right-radius: 5px;
+                    border-bottom-right-radius: 5px;
+                  }
+                `}
 
           /* --- FILL AND NOT PREVIOUS STEP --- */   
           /* Draw LIGHT grey triangle after square */     
@@ -170,7 +188,7 @@ const StepArrow = styled.div`
                 display: inline-block;
                 border-top: 0 solid transparent;
                 border-bottom: 0 solid transparent;
-                border-left: 16px solid rgba(240, 241, 243, 0.5);
+                border-left: 20px solid rgba(240, 241, 243, 0.5);
               }
             `}
         `
@@ -180,9 +198,9 @@ const StepArrow = styled.div`
           &:after {
             content: '';
             display: inline-block;
-            border-top: 16px solid transparent;
-            border-bottom: 16px solid transparent;
-            border-left: 16px solid transparent;
+            border-top: 20px solid transparent;
+            border-bottom: 20px solid transparent;
+            border-left: 20px solid transparent;
           }
         `}
 `;
@@ -191,6 +209,7 @@ const Title = styled.h2`
   color: black;
   font-size: 2rem;
   font-weight: 500;
+  margin-right: 2rem;
 `;
 
 const VisualStepsWrapper = styled.div`
@@ -231,8 +250,7 @@ const ModalTitleBar = styled.div`
   width: 100%;
   height: ${({ visualSteps }) => (visualSteps ? '7.5rem' : '6.5rem')};
   padding-left: 2.2rem;
-  border-bottom: 1px solid #ccc;
-  background-color: #fcfcfc;
+  border-bottom: 1px solid #f0f1f3;
   display: flex;
   align-items: center;
 `;
@@ -244,6 +262,7 @@ const ModalTitle = styled.h1`
   font-size: 1.6rem;
   line-height: 135%;
   text-align: left;
+  font-weight: 600;
 `;
 
 const ModalCloser = styled.a`
@@ -268,6 +287,8 @@ const ModalActions = styled.div`
   margin-top: 4rem;
   align-items: center;
   padding: 3rem;
+  background-color: #fbfbfb;
+  border-top: 1px solid #f0f1f3;
 
   > button {
     margin: 0 1rem;
