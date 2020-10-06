@@ -36,6 +36,7 @@ const Bar = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: stretch;
+  margin: 0 2rem;
 `;
 
 const BarIcon = styled.div`
@@ -52,25 +53,24 @@ const BarIcon = styled.div`
 `;
 
 const BarContent = styled.div`
-  flex: 1 0 auto;
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(4, auto);
+  row-gap: 1.5rem;
+  column-gap: 3rem;
   align-items: center;
-  padding: 0 2.4rem;
+  padding: 1.5rem 2rem;
 
-  /** Disabled to ensure every child gets equal spacing */
-  /* stylelint-disable-next-line selector-max-universal */
-  > * {
-    margin-right: 3.2rem;
+  @media screen and (max-width: 900px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
 
-    /* stylelint-disable-next-line selector-max-universal */
-    &:last-child {
-      margin-right: 0;
-    }
+  @media screen and (max-width: 600px) {
+    grid-template-columns: repeat(1, 1fr);
   }
 `;
 
 const BarButton = styled.div`
-  flex: 0 0 8.4rem;
+  margin-right: 2rem;
   display: flex;
   justify-content: center;
   align-items: center;
