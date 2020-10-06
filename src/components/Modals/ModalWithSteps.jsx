@@ -65,7 +65,7 @@ const ModalWithSteps = ({
                       isPreviousStep={currentStep - 1 === step}
                     >
                       <div>
-                        <StepArrowLabel onClick={step => onLabelClick(step)}>
+                        <StepArrowLabel onClick={() => onLabelClick(step)}>
                           {label}
                         </StepArrowLabel>
                       </div>
