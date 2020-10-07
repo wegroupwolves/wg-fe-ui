@@ -32,6 +32,7 @@ const ModalWithSteps = ({
   visualSteps,
   title,
   onLabelClick,
+  pointerEnabled,
 }) => {
   return (
     <StepModalContext.Provider value={{ currentStep }}>
@@ -41,7 +42,7 @@ const ModalWithSteps = ({
       >
         <ModalContainer className={className} small={small} large={large}>
           {canClose ? (
-            <ModalCloser onClick={() => setShowModal(!showModal)}>
+            <ModalCloser>
               <CloseIcon color="#505050" />
             </ModalCloser>
           ) : null}
@@ -65,7 +66,10 @@ const ModalWithSteps = ({
                       isPreviousStep={currentStep - 1 === step}
                     >
                       <div>
-                        <StepArrowLabel onClick={() => onLabelClick(step)}>
+                        <StepArrowLabel
+                          onClick={() => onLabelClick(step)}
+                          pointerEnabled={pointerEnabled}
+                        >
                           {label}
                         </StepArrowLabel>
                       </div>
@@ -96,11 +100,10 @@ const StepArrowLabel = styled.div`
   display: flex;
   justify-items: center;
   align-items: center;
-  height: 2rem;
-  margin: 1rem 1.5rem;
+  margin: 10px;
   color: #8990a3;
   z-index: 1;
-  cursor: pointer;
+  cursor: ${({ pointerEnabled }) => (pointerEnabled ? 'pointer' : 'auto')};
   white-space: nowrap;
   font-weight: ${({ isCurrentStep }) => (isCurrentStep ? 700 : 500)};
 `;
@@ -115,6 +118,7 @@ const StepArrow = styled.div`
   display: flex;
   font-size: 1.3rem;
   opacity: 0.5;
+  height: 32px;
   ${({ active }) =>
     active
       ? css`
@@ -138,9 +142,9 @@ const StepArrow = styled.div`
               &:after {
                 content: '';
                 display: inline-block;
-                border-top: 20px solid transparent;
-                border-bottom: 20px solid transparent;
-                border-left: 20px solid rgba(240, 241, 243, 1);
+                border-top: 16px solid transparent;
+                border-bottom: 16px solid transparent;
+                border-left: 16px solid rgba(240, 241, 243, 1);
               }
             `}
 
@@ -153,9 +157,9 @@ const StepArrow = styled.div`
               &:before {
                 content: '';
                 display: inline-block;
-                border-top: 20px solid rgba(240, 241, 243, 1);
-                border-bottom: 20px solid rgba(240, 241, 243, 1);
-                border-left: 20px solid rgba(240, 241, 243, 0.5);
+                border-top: 16px solid rgba(240, 241, 243, 1);
+                border-bottom: 16px solid rgba(240, 241, 243, 1);
+                border-left: 16px solid rgba(240, 241, 243, 0.5);
               }
             `}
 
@@ -168,12 +172,16 @@ const StepArrow = styled.div`
                 }
               `}
 
-              ${({ last }) =>
+              ${({ last, isCurrentStep }) =>
                 last &&
+                !isCurrentStep &&
                 css`
-                  * {
-                    border-top-right-radius: 5px;
-                    border-bottom-right-radius: 5px;
+                  &:after {
+                    content: '';
+                    display: inline-block;
+                    border-top: 16px solid transparent;
+                    border-bottom: 16px solid transparent;
+                    border-left: 16px solid rgba(240, 241, 243, 0.5);
                   }
                 `}
 
@@ -188,7 +196,7 @@ const StepArrow = styled.div`
                 display: inline-block;
                 border-top: 0 solid transparent;
                 border-bottom: 0 solid transparent;
-                border-left: 20px solid rgba(240, 241, 243, 0.5);
+                border-left: 16px solid rgba(240, 241, 243, 0.5);
               }
             `}
         `
@@ -198,9 +206,9 @@ const StepArrow = styled.div`
           &:after {
             content: '';
             display: inline-block;
-            border-top: 20px solid transparent;
-            border-bottom: 20px solid transparent;
-            border-left: 20px solid transparent;
+            border-top: 16px solid transparent;
+            border-bottom: 16px solid transparent;
+            border-left: 16px solid transparent;
           }
         `}
 `;
@@ -248,7 +256,7 @@ const StepLabel = styled.p`
 
 const ModalTitleBar = styled.div`
   width: 100%;
-  height: ${({ visualSteps }) => (visualSteps ? '7.5rem' : '6.5rem')};
+  height: ${({ visualSteps }) => (visualSteps ? '8.5rem' : '6.5rem')};
   padding-left: 2.2rem;
   border-bottom: 1px solid #f0f1f3;
   display: flex;
@@ -347,6 +355,7 @@ ModalWithSteps.propTypes = {
   steps: shape([]).isRequired,
   visualSteps: bool,
   onLabelClick: func,
+  pointerEnabled: bool,
 };
 
 ModalWithSteps.defaultProps = {
