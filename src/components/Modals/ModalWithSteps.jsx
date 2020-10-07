@@ -32,6 +32,7 @@ const ModalWithSteps = ({
   visualSteps,
   title,
   onLabelClick,
+  pointerEnabled,
 }) => {
   return (
     <StepModalContext.Provider value={{ currentStep }}>
@@ -65,7 +66,10 @@ const ModalWithSteps = ({
                       isPreviousStep={currentStep - 1 === step}
                     >
                       <div>
-                        <StepArrowLabel onClick={() => onLabelClick(step)}>
+                        <StepArrowLabel
+                          onClick={() => onLabelClick(step)}
+                          pointerEnabled={pointerEnabled}
+                        >
                           {label}
                         </StepArrowLabel>
                       </div>
@@ -99,7 +103,7 @@ const StepArrowLabel = styled.div`
   margin: 10px;
   color: #8990a3;
   z-index: 1;
-  cursor: pointer;
+  cursor: ${({ pointerEnabled }) => (pointerEnabled ? 'pointer' : 'auto')};
   white-space: nowrap;
   font-weight: ${({ isCurrentStep }) => (isCurrentStep ? 700 : 500)};
 `;
@@ -114,6 +118,7 @@ const StepArrow = styled.div`
   display: flex;
   font-size: 1.3rem;
   opacity: 0.5;
+  height: 32px;
   ${({ active }) =>
     active
       ? css`
@@ -251,7 +256,7 @@ const StepLabel = styled.p`
 
 const ModalTitleBar = styled.div`
   width: 100%;
-  height: ${({ visualSteps }) => (visualSteps ? '7.5rem' : '6.5rem')};
+  height: ${({ visualSteps }) => (visualSteps ? '8.5rem' : '6.5rem')};
   padding-left: 2.2rem;
   border-bottom: 1px solid #f0f1f3;
   display: flex;
@@ -350,6 +355,7 @@ ModalWithSteps.propTypes = {
   steps: shape([]).isRequired,
   visualSteps: bool,
   onLabelClick: func,
+  pointerEnabled: bool,
 };
 
 ModalWithSteps.defaultProps = {
