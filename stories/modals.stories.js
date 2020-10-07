@@ -68,6 +68,7 @@ storiesOf('Low level blocks/Modals', module)
           currentStep={number('Current step', 0)}
           visualSteps={boolean('Visual steps?', false)}
           onLabelClick={function noRefCheck() {}}
+          pointerEnabled={boolean('Pointer enabled?', false)}
           steps={[
             {
               step: 0,

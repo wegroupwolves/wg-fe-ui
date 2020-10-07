@@ -35,7 +35,6 @@ const Bar = styled.div`
   border-radius: 4px;
   display: flex;
   justify-content: space-between;
-  margin: 0 2rem;
 `;
 
 const BarIcon = styled.div`
