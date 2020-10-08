@@ -31,8 +31,6 @@ const ModalWithSteps = ({
   currentStep,
   visualSteps,
   title,
-  onLabelClick,
-  pointerEnabled,
 }) => {
   return (
     <StepModalContext.Provider value={{ currentStep }}>
@@ -41,12 +39,6 @@ const ModalWithSteps = ({
         onRequestClose={canClose ? () => setShowModal(!showModal) : ''}
       >
         <ModalContainer className={className} small={small} large={large}>
-          {canClose ? (
-            <ModalCloser>
-              <CloseIcon color="#505050" />
-            </ModalCloser>
-          ) : null}
-
           <ModalTitleBar visualSteps={visualSteps}>
             {visualSteps ? (
               <VisualStepsWrapper>
@@ -66,12 +58,7 @@ const ModalWithSteps = ({
                       isPreviousStep={currentStep - 1 === step}
                     >
                       <div>
-                        <StepArrowLabel
-                          onClick={() => onLabelClick(step)}
-                          pointerEnabled={pointerEnabled}
-                        >
-                          {label}
-                        </StepArrowLabel>
+                        <StepArrowLabel>{label}</StepArrowLabel>
                       </div>
                     </StepArrow>
                   ))}
@@ -88,6 +75,11 @@ const ModalWithSteps = ({
                 )}
               </ModalTitle>
             )}
+            {canClose ? (
+              <ModalCloser onClick={() => setShowModal(!showModal)}>
+                <CloseIcon color="#505050" />
+              </ModalCloser>
+            ) : null}
           </ModalTitleBar>
           <div>{children}</div>
         </ModalContainer>
@@ -110,6 +102,7 @@ const StepArrowLabel = styled.div`
 
 const StepsWrapper = styled.div`
   display: flex;
+  flex-grow: 1;
   align-items: center;
   padding: 0 2rem;
 `;
@@ -216,13 +209,14 @@ const StepArrow = styled.div`
 const Title = styled.h2`
   color: black;
   font-size: 2rem;
-  font-weight: 500;
+  font-weight: 600;
   margin-right: 2rem;
 `;
 
 const VisualStepsWrapper = styled.div`
   display: flex;
   align-items: center;
+  flex-grow: 1;
 `;
 
 const StyledDrawer = styled(Drawer)`
@@ -274,12 +268,8 @@ const ModalTitle = styled.h1`
 `;
 
 const ModalCloser = styled.a`
-  position: absolute;
-  top: 3.25rem;
-  transform: translate(0%, -50%);
-  right: 3rem;
-  z-index: 9999;
   cursor: pointer;
+  padding-right: 3rem;
 
   &:hover {
     svg > path {
@@ -354,8 +344,6 @@ ModalWithSteps.propTypes = {
   currentStep: number.isRequired,
   steps: shape([]).isRequired,
   visualSteps: bool,
-  onLabelClick: func,
-  pointerEnabled: bool,
 };
 
 ModalWithSteps.defaultProps = {
