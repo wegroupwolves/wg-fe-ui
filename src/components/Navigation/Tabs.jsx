@@ -18,7 +18,7 @@ const Tabs = ({ defaultActive, onSelect, className, children }) => {
 
   useEffect(() => {
     setDefaultTabActive();
-  }, []);
+  }, [defaultActive]);
 
   function setDefaultTabActive() {
     let tabName;
