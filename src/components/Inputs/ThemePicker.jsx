@@ -144,7 +144,7 @@ const ThemePickerInput = styled.div`
 
   &:focus {
     outline: 0;
-    border: 1px solid ${({ theme }) => theme.brand.primary};
+    border: 1px solid ${({ theme, disabled }) => !disabled ? theme.brand.primary : 'rgba(0,0,0,0)'};
   }
 `;
 
