@@ -33,16 +33,16 @@ const ThemePicker = ({
   }, [currentTheme]);
 
   const handleOpenClose = () => {
+    if (disabled && !isOpen) return; 
     setIsOpen(!isOpen);
   };
 
   const handleColorSelect = (colorName, colorCode) => {
+    if (disabled) return;
     const newTheme = {};
     newTheme.name = colorName;
     newTheme.color = colorCode;
-
     setCurrentTheme(newTheme);
-
     setIsOpen(false);
   };
 
