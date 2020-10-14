@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { string, object, bool, func } from 'prop-types';
 import styled from 'styled-components';
 
@@ -15,6 +15,8 @@ const ThemePicker = ({
 }) => {
   const [currentTheme, setCurrentTheme] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
+  const inputRef = useRef();
+  const containerRef = useRef();
 
   useEffect(() => {
     const newTheme = {};
@@ -28,6 +30,20 @@ const ThemePicker = ({
     });
   }, [activeTheme]);
 
+  const handleInputClickOutside = (e) => {
+    if (disabled || isOpen) return;
+    if (containerRef.current && !containerRef.current.contains(e.target)) {
+      setIsOpen(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener('click', handleInputClickOutside, true);
+    return () => {
+      document.removeEventListener('click', handleInputClickOutside, true);
+    };
+  }, []);
+
   useEffect(() => {
     onChange(currentTheme);
   }, [currentTheme]);
@@ -37,20 +53,42 @@ const ThemePicker = ({
     setIsOpen(!isOpen);
   };
 
+  const handleInputKey = (e) => {
+    if (!disabled) {
+      if (e.keyCode === 32) {
+        e.preventDefault();
+        setIsOpen(prevValue => !prevValue);
+      }
+    }
+  };
+
+  const handleInputKeyOption = (e, key, theme) => {
+    if (!disabled) {
+      if (e.keyCode === 32) {
+        e.preventDefault();
+        handleColorSelect(key, theme);
+      }
+    }
+  };
+
   const handleColorSelect = (colorName, colorCode) => {
     if (disabled) return;
     const newTheme = {};
     newTheme.name = colorName;
     newTheme.color = colorCode;
     setCurrentTheme(newTheme);
+    inputRef.current.focus();
     setIsOpen(false);
   };
 
   return (
-    <StyledThemePicker className={className} {...otherProps}>
+    <StyledThemePicker className={className} ref={containerRef} {...otherProps}>
       <ThemePickerInput
+        ref={inputRef}
+        onKeyDown={handleInputKey}
+        tabIndex="0"
         opensUp={opensUp}
-        onClick={() => handleOpenClose()}
+        onClick={handleOpenClose}
         isOpen={isOpen}
         disabled={disabled}
       >
@@ -67,6 +105,8 @@ const ThemePicker = ({
             return (
               <DropdownItem
                 key={key}
+                tabIndex="0"
+                onKeyDown={e => handleInputKeyOption(e, key, themes[key])}
                 onClick={() => {
                   handleColorSelect(key, themes[key]);
                 }}
@@ -101,6 +141,11 @@ const ThemePickerInput = styled.div`
   padding: 0.6rem;
   cursor: ${({ disabled }) => (disabled ? 'not-allowed' : 'pointer')};
   transition: border-radius .2s ease;
+
+  &:focus {
+    outline: 0;
+    border: 1px solid ${({ theme }) => theme.brand.primary};
+  }
 `;
 
 const ColorBlock = styled.div`
@@ -123,7 +168,7 @@ const DropdownIcon = styled.div`
 const ThemePickerDropdown = styled.div`
   visibility: ${({ isOpen }) => (isOpen ? 'visible' : 'hidden')};
   position: absolute;
-  top: ${({ opensUp }) => opensUp ? 'auto' : '4.4rem'};
+  top: ${({ opensUp }) => opensUp ? 'auto' : '100%'};
   bottom: ${({ opensUp }) => opensUp ? '100%' : 'auto'};
   left: 0;
   right: 0;
@@ -150,7 +195,13 @@ const DropdownItem = styled.div`
   cursor: pointer;
 
   &:hover {
+    outline: none;
     background-color: #f0f1f3;
+  }
+
+  &:focus {
+    outline: none;
+    border: 1px solid ${({ theme }) => theme.brand.primary};
   }
 `;
 

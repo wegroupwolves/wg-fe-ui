@@ -537,6 +537,7 @@ storiesOf('Low level blocks/Inputs', module)
         <DropDown
           name="test-dropdown"
           options={DropDownOptions}
+          opensUp={boolean('Open up?', false)}
           onValueChange={picked => {
             console.log(picked);
           }}
