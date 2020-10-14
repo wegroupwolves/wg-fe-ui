@@ -9,6 +9,7 @@ const ThemePicker = ({
   activeTheme,
   onChange,
   disabled,
+  opensUp,
   className,
   otherProps,
 }) => {
@@ -32,22 +33,23 @@ const ThemePicker = ({
   }, [currentTheme]);
 
   const handleOpenClose = () => {
+    if (disabled && !isOpen) return; 
     setIsOpen(!isOpen);
   };
 
   const handleColorSelect = (colorName, colorCode) => {
+    if (disabled) return;
     const newTheme = {};
     newTheme.name = colorName;
     newTheme.color = colorCode;
-
     setCurrentTheme(newTheme);
-
     setIsOpen(false);
   };
 
   return (
     <StyledThemePicker className={className} {...otherProps}>
       <ThemePickerInput
+        opensUp={opensUp}
         onClick={() => handleOpenClose()}
         isOpen={isOpen}
         disabled={disabled}
@@ -60,7 +62,7 @@ const ThemePicker = ({
       </ThemePickerInput>
 
       {disabled ? null : (
-        <ThemePickerDropdown isOpen={isOpen}>
+        <ThemePickerDropdown opensUp={opensUp} isOpen={isOpen}>
           {Object.keys(themes).map(key => {
             return (
               <DropdownItem
@@ -91,13 +93,14 @@ const ThemePickerInput = styled.div`
   height: 4.5rem;
   background: ${({ disabled }) => (disabled ? '#F0F1F3' : 'white')};
   border: 1px solid ${({ disabled }) => (disabled ? '#F0F1F3' : '#e4e4e4')};
-  border-radius: ${({ disabled, isOpen }) =>
-    disabled ? '0.5rem' : isOpen ? '0.5rem 0.5rem 0 0' : '0.5rem'};
+  border-radius: ${({ isOpen, opensUp }) =>
+    isOpen && opensUp ? '0 0 5px 5px' : isOpen  ? '5px 5px 0 0' : '5px'};
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 0.6rem;
   cursor: ${({ disabled }) => (disabled ? 'not-allowed' : 'pointer')};
+  transition: border-radius .2s ease;
 `;
 
 const ColorBlock = styled.div`
@@ -118,18 +121,21 @@ const DropdownIcon = styled.div`
 `;
 
 const ThemePickerDropdown = styled.div`
-  display: ${({ isOpen }) => (isOpen ? 'flex' : 'none')};
+  visibility: ${({ isOpen }) => (isOpen ? 'visible' : 'hidden')};
   position: absolute;
-  top: 4.4rem;
+  top: ${({ opensUp }) => opensUp ? 'auto' : '4.4rem'};
+  bottom: ${({ opensUp }) => opensUp ? '100%' : 'auto'};
   left: 0;
   right: 0;
   height: 15rem;
+  max-height: ${({ isOpen }) => (isOpen ? '15rem' : '0')};
   overflow-y: scroll;
   border: 1px solid #e4e4e4;
   z-index: 9999;
   background-color: white;
   flex-flow: column;
-  border-radius: 0 0 5px 5px;
+  border-radius: ${({ opensUp }) => opensUp ? '5px 5px 0 0' : '0 0 5px 5px'};
+  transition: all .2s ease;
 `;
 
 const DropdownItem = styled.div`
@@ -175,6 +181,8 @@ ThemePicker.propTypes = {
   onChange: func.isRequired,
   /** Disabled the operation and selection of colors. */
   disabled: bool,
+  /** Opens the dropdown up instead of down */
+  opensUp: bool,
   /** Extra classnames to be passed to the element. */
   className: string,
   /** Extra props to be passed to the element. */
