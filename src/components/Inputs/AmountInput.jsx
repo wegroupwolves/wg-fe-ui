@@ -207,7 +207,7 @@ AmountInput.propTypes = {
   otherProps: object,
   /** Name of the component */
   name: string,
-  /** If it should round the number (RECOMMENDED) */
+  /** If it should round the number */
   roundNumber: bool,
 };
 
