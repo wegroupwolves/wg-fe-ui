@@ -48,7 +48,7 @@ const AmountInput = ({
     if (!disabled) {
       if (isBlur) {
         setCurrentValue(checkValue(roundedValue));
-        onBlur({ name, roundedValue });
+        onBlur({ name, value: roundedValue });
       } else {
         setCurrentValue(value);
         onChange({ name, value });
