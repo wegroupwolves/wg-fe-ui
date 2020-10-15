@@ -134,6 +134,7 @@ const StyledInput = styled.input`
   height: 36px;
   border: 0;
   margin-left: 4rem;
+  padding-right: 3rem;
   font-size: 1.4rem;
   background-color: transparent;
 
