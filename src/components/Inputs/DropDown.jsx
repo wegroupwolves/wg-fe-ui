@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
-import { element, array, bool, string, object, func } from 'prop-types';
-
+import { node, array, bool, string, object, func } from 'prop-types';
+import Error from './../Messages/Error';
 import { IconChevronDown } from '../Icons';
 import { H4, Body } from '../Typography';
 
@@ -16,6 +16,7 @@ const DropDown = ({
   children,
   options,
   value,
+  error,
   disabled,
   className,
   otherProps,
@@ -88,10 +89,10 @@ const DropDown = ({
 
   return (
     <DropDownWrapper ref={containerRef} disabled={disabled} className={className} {...otherProps}>
-      <Label for={name}>{children}</Label>
-
+      <Label htmlFor={name}>{children}</Label>
       <StyledDropDown>
         <Input
+          error={error}
           ref={inputRef}
           onKeyDown={handleInputKey}
           tabIndex="0"
@@ -104,8 +105,8 @@ const DropDown = ({
           <DropDownIcon>
             <IconChevronDown size={25} />
           </DropDownIcon>
+          <StyledError error={error} />
         </Input>
-
         <Menu show={showMenu} opensUp={opensUp}>
           {options.map(option => {
             return (
@@ -128,10 +129,17 @@ const DropDown = ({
   );
 };
 
+const StyledError = styled(Error)`
+  position: absolute;
+  top: 100%;
+  right: 0;
+`;
+
 const DropDownWrapper = styled.div`
   width: 100%;
   max-width: 100rem;
   z-index: 9999;
+  height: 9rem;
 `;
 
 const Label = styled.label`
@@ -151,7 +159,7 @@ const StyledDropDown = styled.div`
 const Input = styled.div`
   width: 100%;
   height: 4.5rem;
-  border: 1px solid #e4e4e4;
+  border: 1px solid ${({ error }) => error ? 'red' : '#e4e4e4'};
   background-color: ${({ disabled }) => (disabled ? '#E4E4E4' : 'white')};
   border-radius: ${({ show, opensUp }) =>
     show && opensUp ? '0 0 5px 5px' : show  ? '5px 5px 0 0' : '5px'};
@@ -159,7 +167,6 @@ const Input = styled.div`
   display: flex;
   align-items: center;
   cursor: ${({ disabled }) => (disabled ? 'not-allowed' : 'pointer')};
-
   font-family: ${({ theme }) => theme.font};
   font-size: 1.6rem;
   line-height: 2rem;
@@ -225,8 +232,12 @@ DropDown.propTypes = {
   name: string.isRequired,
   /** Function that passes back the complete chosen option object. */
   onValueChange: func.isRequired,
-  /** Label to be displayed above the input. */
-  children: element,
+  /** string with errormessage */
+  error: string,
+  /** label above the input */
+  children: node.isRequired,
+  /** name of input and label */
+  name: string.isRequired,
   /** Array of options (Options can contain: title, text, value). */
   options: array.isRequired,
   /** Value of the initial chosen option. */

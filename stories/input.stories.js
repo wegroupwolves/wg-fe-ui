@@ -466,10 +466,13 @@ storiesOf('Low level blocks/Inputs', module)
         <ThemePicker
           themes={themeList}
           activeTheme={'orange'}
+          error={text('Error', 'Choose an option')}
           disabled={boolean('Disabled?', false)}
           opensUp={boolean('Open up?', false)}
           onChange={() => {}}
-        />
+        >
+          ThemePicker
+        </ThemePicker>
       </ThemePickerContainer>
     );
   })
@@ -544,6 +547,7 @@ storiesOf('Low level blocks/Inputs', module)
           disabled={boolean('Disabled?', false)}
           value={3}
           placeholder={text('Placeholder', 'Choose an option')}
+          error={text('Error', 'Choose an option')}
         >
           Label
         </DropDown>

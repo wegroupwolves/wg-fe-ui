@@ -2,9 +2,9 @@ import React from 'react';
 import styled from 'styled-components';
 import { string } from 'prop-types';
 
-const Error = ({ error, warning }) => {
+const Error = ({ error, warning, className }) => {
   return error || warning ? (
-    <ErrorContainer error={error}>
+    <ErrorContainer className={className} error={error}>
       <p>{error || warning}</p>
     </ErrorContainer>
   ) : null;
@@ -30,6 +30,8 @@ Error.defaultProps = {
 Error.propTypes = {
   /** string with errormessage */
   error: string,
+  /** Beeing able to use it in Styled Components */
+  className: string,
   /** string with warningmessage */
   warning: string,
 };

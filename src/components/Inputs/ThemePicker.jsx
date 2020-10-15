@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { string, object, bool, func } from 'prop-types';
+import { string, object, bool, func, node } from 'prop-types';
+import Error from './../Messages/Error';
 import styled from 'styled-components';
 
 import { IconChevronDown } from '../Icons';
@@ -7,11 +8,14 @@ import { IconChevronDown } from '../Icons';
 const ThemePicker = ({
   themes,
   activeTheme,
+  name,
   onChange,
   disabled,
   opensUp,
   className,
+  error,
   otherProps,
+  children,
 }) => {
   const [currentTheme, setCurrentTheme] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
@@ -83,48 +87,64 @@ const ThemePicker = ({
 
   return (
     <StyledThemePicker className={className} ref={containerRef} {...otherProps}>
-      <ThemePickerInput
-        ref={inputRef}
-        onKeyDown={handleInputKey}
-        tabIndex="0"
-        opensUp={opensUp}
-        onClick={handleOpenClose}
-        isOpen={isOpen}
-        disabled={disabled}
-      >
-        <ColorBlock color={currentTheme?.color} />
-        <ColorName disabled={disabled}>{currentTheme?.name}</ColorName>
-        <DropdownIcon>
-          <IconChevronDown size={30} />
-        </DropdownIcon>
-      </ThemePickerInput>
+      <Label htmlFor={name}>{children}</Label>
+      <StyledDropDown>
+        <ThemePickerInput
+          ref={inputRef}
+          onKeyDown={handleInputKey}
+          tabIndex="0"
+          error={error}
+          opensUp={opensUp}
+          onClick={handleOpenClose}
+          isOpen={isOpen}
+          disabled={disabled}
+        >
+          <ColorBlock color={currentTheme?.color} />
+          <ColorName disabled={disabled}>{currentTheme?.name}</ColorName>
+          <DropdownIcon>
+            <IconChevronDown size={30} />
+          </DropdownIcon>
+          <StyledError error={error} />
+        </ThemePickerInput>
 
-      {disabled ? null : (
-        <ThemePickerDropdown opensUp={opensUp} isOpen={isOpen}>
-          {Object.keys(themes).map(key => {
-            return (
-              <DropdownItem
-                key={key}
-                tabIndex="0"
-                onKeyDown={e => handleInputKeyOption(e, key, themes[key])}
-                onClick={() => {
-                  handleColorSelect(key, themes[key]);
-                }}
-              >
-                <ColorDrop color={themes[key]} />
-                <ColorName>{key}</ColorName>
-              </DropdownItem>
-            );
-          })}
-        </ThemePickerDropdown>
-      )}
+        {disabled ? null : (
+          <ThemePickerDropdown opensUp={opensUp} isOpen={isOpen}>
+            {Object.keys(themes).map(key => {
+              return (
+                <DropdownItem
+                  key={key}
+                  tabIndex="0"
+                  onKeyDown={e => handleInputKeyOption(e, key, themes[key])}
+                  onClick={() => {
+                    handleColorSelect(key, themes[key]);
+                  }}
+                >
+                  <ColorDrop color={themes[key]} />
+                  <ColorName>{key}</ColorName>
+                </DropdownItem>
+              );
+            })}
+          </ThemePickerDropdown>
+        )}
+      </StyledDropDown>
     </StyledThemePicker>
   );
 };
 
+const StyledError = styled(Error)`
+  position: absolute;
+  top: 100%;
+  right: 0;
+`;
+
 const StyledThemePicker = styled.div`
   width: 100%;
+  height: 9rem;
   max-width: 100rem;
+  position: relative;
+`;
+
+const StyledDropDown = styled.div`
   position: relative;
 `;
 
@@ -132,7 +152,7 @@ const ThemePickerInput = styled.div`
   width: 100%;
   height: 4.5rem;
   background: ${({ disabled }) => (disabled ? '#F0F1F3' : 'white')};
-  border: 1px solid ${({ disabled }) => (disabled ? '#F0F1F3' : '#e4e4e4')};
+  border: 1px solid ${({ disabled, error }) => (disabled ? '#F0F1F3' : error ? 'red' : '#e4e4e4')};
   border-radius: ${({ isOpen, opensUp }) =>
     isOpen && opensUp ? '0 0 5px 5px' : isOpen  ? '5px 5px 0 0' : '5px'};
   display: flex;
@@ -223,11 +243,27 @@ const ColorName = styled.div`
   text-transform: capitalize;
 `;
 
+const Label = styled.label`
+  font-family: ${({ theme }) => theme.font};
+  font-size: 1.4rem;
+  line-height: 2rem;
+  letter-spacing: 0.01em;
+  color: #8990a3;
+  margin-bottom: 0.8rem;
+  display: block;
+`;
+
 ThemePicker.propTypes = {
   /** An object containing all possible themes and their hexcodes. */
   themes: object.isRequired,
+  /** string with errormessage */
+  error: string,
+  /** name of input and label */
+  name: string.isRequired,
   /** The key of the initial active theme. */
   activeTheme: string.isRequired,
+  /** Label to be displayed above the input. */
+  children: node,
   /** onChange handler when a theme is picked */
   onChange: func.isRequired,
   /** Disabled the operation and selection of colors. */
