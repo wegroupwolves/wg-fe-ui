@@ -142,6 +142,7 @@ const StyledThemePicker = styled.div`
   height: 9rem;
   max-width: 100rem;
   position: relative;
+  font-family: ${({ theme }) => theme.font};
 `;
 
 const StyledDropDown = styled.div`
