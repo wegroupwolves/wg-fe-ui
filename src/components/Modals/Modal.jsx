@@ -60,7 +60,7 @@ const ModalContainer = styled.div`
   height: 100%;
   /* overflow: hidden; */
   position: relative;
-  overflow-x: scroll;
+  overflow-x: auto;
   font-family: ${({ theme }) => theme.font};
 
   @media screen and (max-width: 950px) {
