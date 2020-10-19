@@ -225,7 +225,7 @@ storiesOf('Mid level blocks/Boxes', module)
 
   .add('CodeBox', () => {
     return (
-      <CodeBox canCopy={boolean('Can this be copied?', true)}>
+      <CodeBox copySuccessText={text('Text to be shown in toaster after copy', 'Copied to clipboard.')} canCopy={boolean('Can this be copied?', true)}>
         {`<a href=”https://campaign.wegroup.be/t8529LDsXDWm” target=”_blank”>Click here</a>`}
       </CodeBox>
     );
