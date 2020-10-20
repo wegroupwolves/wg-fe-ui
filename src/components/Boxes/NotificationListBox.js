@@ -11,6 +11,7 @@ const NotificationListBox = ({
   children,
   seen,
   onClick,
+  tooltipText = "Mark notification as seen",
   markRead = () => {
     console.log('clicked mark as read');
   },
@@ -47,7 +48,7 @@ const NotificationListBox = ({
       <MarkIconContainer>
         <MarkIcon onClick={markRead} onMouseLeave={() => setShowTooltip(false)} onMouseEnter={() => setShowTooltip(true)}>
           <TooltipContainer onClick={e => e.stopPropagation()} showTooltip={showTooltip}>
-            <p>Mark notification as seen</p>
+            <p>{tooltipText}</p>
           </TooltipContainer>
           {seen ? (
             <IconActionEyeCrossed size={22} color="white" />

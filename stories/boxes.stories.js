@@ -236,8 +236,9 @@ storiesOf('Mid level blocks/Boxes', module)
   .add('NotificationListBox', () => {
     return (
       <NotificationListBox
-        title={text('Title text', 'Placeholder title.')}
+        tooltipText={text('Tooltip text', 'Mark notification as seen.')}
         time={text('Time text', '2m')}
+        title={text('Title text', 'Placeholder title.')}
         description={text('Description text', 'Placeholder description.')}
         icon={<IconDocumentFilled color="#fff" />}
       >
