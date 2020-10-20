@@ -59,7 +59,7 @@ const ThemePicker = ({
 
   const handleInputKey = (e) => {
     if (!disabled) {
-      if (e.keyCode === 32) {
+      if (e.keyCode === 32 || e.keyCode === 13) {
         e.preventDefault();
         setIsOpen(prevValue => !prevValue);
       }
@@ -68,7 +68,7 @@ const ThemePicker = ({
 
   const handleInputKeyOption = (e, key, theme) => {
     if (!disabled) {
-      if (e.keyCode === 32) {
+      if (e.keyCode === 32 || e.keyCode === 13) {
         e.preventDefault();
         handleColorSelect(key, theme);
       }
