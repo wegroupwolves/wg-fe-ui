@@ -1,9 +1,24 @@
-import React from 'react';
-import { node, bool, string, object } from 'prop-types';
+import React, { useState } from 'react';
+import { node, string, object, bool, func } from 'prop-types';
 import styled from 'styled-components';
 import { IconActionEye, IconActionEyeCrossed } from '../Icons';
 
-const NotificationListBox = ({ title, icon, time, description, children, seen, onClick, markRead, className, otherProps }) => {
+const NotificationListBox = ({
+  title,
+  icon,
+  time,
+  description,
+  children,
+  seen,
+  onClick,
+  markRead = () => {
+    console.log('clicked mark as read');
+  },
+  className,
+  otherProps
+}) => {
+  const [showTooltip, setShowTooltip] = useState(false);
+
   return (
     <Container className={className} {...otherProps} onClick={onClick}>
       <NotificationBox onClick={onClick}>
@@ -30,7 +45,10 @@ const NotificationListBox = ({ title, icon, time, description, children, seen, o
         </ContentContainer>
       </NotificationBox>
       <MarkIconContainer>
-        <MarkIcon onClick={markRead}>
+        <MarkIcon onClick={markRead} onMouseLeave={() => setShowTooltip(false)} onMouseEnter={() => setShowTooltip(true)}>
+          <TooltipContainer onClick={e => e.stopPropagation()} showTooltip={showTooltip}>
+            <p>Mark notification as seen</p>
+          </TooltipContainer>
           {seen ? (
             <IconActionEyeCrossed size={22} color="white" />
           ) : (
@@ -41,6 +59,33 @@ const NotificationListBox = ({ title, icon, time, description, children, seen, o
     </Container>
   );
 };
+
+const TooltipContainer = styled.div`
+  position: absolute;
+  bottom: calc(100% + 1rem);
+  padding: 1.5rem;
+  font-size: 1.4rem;
+  border-radius: 5px;
+  right: 0;
+  cursor: default;
+  background-color: #11141C;
+  visibility: ${({ showTooltip }) => showTooltip ? 'visible' : 'hidden'};
+  opacity: ${({ showTooltip }) => showTooltip ? '1' : '0'};
+  color: white;
+  transition: all .2s ease;
+
+  &::after {
+    content: '';
+    top: 100%;
+    right: 2px;
+    width: 0;
+    height: 0;
+    border: 7px solid transparent;
+    border-top-color: #11141c;
+    transform: translate(-50%, 0);
+    position: absolute;
+  }
+`;
 
 const TimeLeft = styled.div`
   font-weight: 500;
@@ -80,6 +125,7 @@ const IconCircle = styled.div`
 const Container = styled.div`
   display: flex;
   width: 100%;
+  position: relative;
   font-family: ${({ theme }) => theme.font};
 `;
 
@@ -141,11 +187,26 @@ const ContentContainer = styled.div`
 const MarkIconContainer = styled.div`
   margin-left: 2rem;
   display: flex;
+  overflow: visible;
   align-items: flex-start;
   justify-content: flex-end;
 `;
 
 NotificationListBox.propTypes = {
+  /** Boolean if the notification has been seen already or not. */
+  seen: bool.isRequired,
+  /** String how long ago the notification happened */
+  time: string.isRequired,
+  /** Notification description */
+  description: string.isRequired,
+  /** Notification title */
+  title: string.isRequired,
+  /** Notification content */
+  content: string.isRequired,
+  /** onClick function when clicked on the notification */
+  onClick: func.isRequired,
+  /** onClick function when clicked on the eye icon */
+  markRead: func.isRequired,
   /** Code to be displayed within the element. This is also what will be copied if copying is enabled. */
   children: node.isRequired,
   /** Extra classnames to pass to the element. */
