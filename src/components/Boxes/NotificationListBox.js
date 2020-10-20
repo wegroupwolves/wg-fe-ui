@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { node, string, object, bool, func } from 'prop-types';
 import styled from 'styled-components';
 import { IconActionEye, IconActionEyeCrossed } from '../Icons';
@@ -18,8 +18,6 @@ const NotificationListBox = ({
   className,
   otherProps
 }) => {
-  const [showTooltip, setShowTooltip] = useState(false);
-
   return (
     <Container className={className} {...otherProps} onClick={onClick}>
       <NotificationBox onClick={onClick}>
@@ -46,8 +44,8 @@ const NotificationListBox = ({
         </ContentContainer>
       </NotificationBox>
       <MarkIconContainer>
-        <MarkIcon onClick={markRead} onMouseLeave={() => setShowTooltip(false)} onMouseEnter={() => setShowTooltip(true)}>
-          <TooltipContainer onClick={e => e.stopPropagation()} showTooltip={showTooltip}>
+        <MarkIcon onClick={markRead}>
+          <TooltipContainer onClick={e => e.stopPropagation()}>
             <p>{tooltipText}</p>
           </TooltipContainer>
           {seen ? (
@@ -70,8 +68,8 @@ const TooltipContainer = styled.div`
   right: 0;
   cursor: default;
   background-color: #11141C;
-  visibility: ${({ showTooltip }) => showTooltip ? 'visible' : 'hidden'};
-  opacity: ${({ showTooltip }) => showTooltip ? '1' : '0'};
+  visibility: hidden;
+  opacity: 0;
   color: white;
   transition: all .2s ease;
 
@@ -110,6 +108,11 @@ const MarkIcon = styled.button`
 
   &:hover {
     background-color: ${({ theme }) => theme.brand.lighter};
+
+    & > ${TooltipContainer} {
+      visibility: visible;
+      opacity: 1;
+    }
   }
 
   &:focus {
@@ -202,12 +205,12 @@ NotificationListBox.propTypes = {
   description: string.isRequired,
   /** Notification title */
   title: string.isRequired,
-  /** Notification content */
-  content: string.isRequired,
+  /** tooltip text */
+  tooltipText: string,
   /** onClick function when clicked on the notification */
-  onClick: func.isRequired,
+  onClick: func,
   /** onClick function when clicked on the eye icon */
-  markRead: func.isRequired,
+  markRead: func,
   /** Code to be displayed within the element. This is also what will be copied if copying is enabled. */
   children: node.isRequired,
   /** Extra classnames to pass to the element. */
