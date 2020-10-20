@@ -240,6 +240,7 @@ storiesOf('Mid level blocks/Boxes', module)
         time={text('Time text', '2m')}
         title={text('Title text', 'Placeholder title.')}
         description={text('Description text', 'Placeholder description.')}
+        seen={boolean('Has been seen?', false)}
         icon={<IconDocumentFilled color="#fff" />}
       >
         {text('Content', 'Placeholder content.')} 
