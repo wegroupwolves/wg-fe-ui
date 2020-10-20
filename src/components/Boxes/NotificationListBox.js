@@ -22,11 +22,13 @@ const NotificationListBox = ({
     <Container className={className} {...otherProps} onClick={onClick}>
       <NotificationBox onClick={onClick}>
         <HeaderContainer>
-          <IconContainer>
-            <IconCircle>
-              {icon}
-            </IconCircle>
-          </IconContainer>
+          {icon && (
+            <IconContainer>
+              <IconCircle>
+                {icon}
+              </IconCircle>
+            </IconContainer>
+          )}
           <HeaderContentContainer>
             <Title>
               {title}
