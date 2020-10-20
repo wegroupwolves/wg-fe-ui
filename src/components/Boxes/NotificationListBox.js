@@ -125,7 +125,14 @@ const MarkIcon = styled.button`
 const IconCircle = styled.div`
   border-radius: 50%;
   padding: 0.5rem;
+  width: 100%;
+  height: 100%;
   background-color: ${({ theme }) => theme.brand.primary};
+
+  & > svg {
+    height: 100%;
+    width: 100%;
+  }
 `;
 
 const Container = styled.div`
@@ -153,6 +160,7 @@ const NotificationBox = styled.div`
 const HeaderContainer = styled.div`
   display: flex;
   padding: 2rem;
+  min-height: 7.8rem;
   border-bottom: 1px solid #ececec;
   align-items: center;
 `;
@@ -165,6 +173,9 @@ const HeaderContentContainer = styled.div`
 
 const IconContainer = styled.div`
   margin-right: 2rem;
+  height: 3.8rem;
+  width: 3.8rem;
+  flex: 0 0 auto;
 `;
 
 
