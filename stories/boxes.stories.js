@@ -21,9 +21,11 @@ import {
   SelectOffersAccordionBox,
   RiskObjectSelector,
   RiskObjectDisplay,
+  NotificationListBox,
   LinkBox,
   CodeBox,
   GuidedImage,
+  IconDocumentFilled,
 } from '../src';
 
 // OTHER ELEMENTS
@@ -228,6 +230,19 @@ storiesOf('Mid level blocks/Boxes', module)
       <CodeBox copySuccessText={text('Text to be shown in toaster after copy', 'Copied to clipboard.')} canCopy={boolean('Can this be copied?', true)}>
         {`<a href=”https://campaign.wegroup.be/t8529LDsXDWm” target=”_blank”>Click here</a>`}
       </CodeBox>
+    );
+  })
+  
+  .add('NotificationListBox', () => {
+    return (
+      <NotificationListBox
+        title={text('Title text', 'Placeholder title.')}
+        time={text('Time text', '2m')}
+        description={text('Description text', 'Placeholder description.')}
+        icon={<IconDocumentFilled color="#fff" />}
+      >
+        {text('Content', 'Placeholder content.')} 
+      </NotificationListBox>
     );
   })
 

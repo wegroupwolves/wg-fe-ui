@@ -43,6 +43,7 @@ import IconActionPower from './IconActionPower';
 import IconActionChevronLeft from './IconActionChevronLeft';
 import IconActionChevronRight from './IconActionChevronRight';
 import IconActionEye from './IconActionEye';
+import IconActionEyeCrossed from './IconActionEyeCrossed';
 import IconActionPlus from './IconActionPlus';
 import IconActionMessage from './IconActionMessage';
 import IconStatusExclamation from './IconStatusExclamation';
@@ -216,6 +217,7 @@ export {
   IconActionChevronLeft,
   IconActionChevronRight,
   IconActionEye,
+  IconActionEyeCrossed,
   IconActionPlus,
   IconActionMessage,
   IconStatusExclamation,

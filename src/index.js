@@ -64,6 +64,7 @@ export {
   RiskObjectSelector,
   RiskObjectDisplay,
   LinkBox,
+  NotificationListBox,
   CodeBox,
   GuidedImage,
 } from './components/Boxes';
