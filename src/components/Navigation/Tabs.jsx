@@ -133,7 +133,7 @@ const LinkList = styled.ul`
 const Selector = styled.div`
   position: absolute;
   height: 2px;
-  background-color: #ff8000;
+  background-color: ${({ theme }) => theme.brand.primary };
   left: ${props => (props.left ? `${props.left}px` : 'inherit')};
   width: ${props => (props.width ? `${props.width}px` : 'inherit')};
   transition: 0.3s ease-out;
