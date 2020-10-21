@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import { element, string, number, func, object } from 'prop-types';
 
@@ -18,15 +18,23 @@ const RoomInput = ({
   const [wasMinReached, setWasMinReached] = useState(value === minValue);
   const [wasMaxReached, setWasMaxReached] = useState(value === maxValue);
 
+  const initialRender = useRef(true);
+
   /* Life cycles
   -------------------------------------------------- */
   useEffect(() => {
     /** Pass back the current value of the input */
-    onInputChange(inputValue);
+    // Avoid initialRender onChange call (can cause bugs in ProFlow)
+    if (initialRender.current) {
+      initialRender.current = false;
+    } else {
+      onInputChange(inputValue);
+    }
   }, [inputValue]);
 
   useEffect(() => {
-    if (value != inputValue);
+    setWasMinReached(value <= minValue);
+    setWasMaxReached(value >= maxValue);
     setInputValue(value);
   }, [value]);
 
