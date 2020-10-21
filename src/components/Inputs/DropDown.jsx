@@ -60,7 +60,7 @@ const DropDown = ({
 
   const handleInputKey = (e) => {
     if (!disabled) {
-      if (e.keyCode === 32) {
+      if (e.keyCode === 32 || e.keyCode === 13) {
         e.preventDefault();
         setShowMenu(!showMenu);
       }
@@ -69,7 +69,7 @@ const DropDown = ({
 
   const handleInputKeyOption = (e, value) => {
     if (!disabled) {
-      if (e.keyCode === 32) {
+      if (e.keyCode === 32 || e.keyCode === 13) {
         e.preventDefault();
         handleOptionClick(value);
       }
