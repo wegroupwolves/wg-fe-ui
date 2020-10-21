@@ -235,16 +235,18 @@ storiesOf('Mid level blocks/Boxes', module)
   
   .add('NotificationListBox', () => {
     return (
-      <NotificationListBox
-        tooltipText={text('Tooltip text', 'Mark notification as seen.')}
-        time={text('Time text', '2m')}
-        title={text('Title text', 'Placeholder title.')}
-        description={text('Description text', 'Placeholder description.')}
-        seen={boolean('Has been seen?', false)}
-        icon={<IconDocumentFilled color="#fff" />}
-      >
-        {text('Content', 'Placeholder content.')} 
-      </NotificationListBox>
+      <NotificationWrapper>
+        <NotificationListBox
+          tooltipText={text('Tooltip text', 'Mark notification as seen.')}
+          time={text('Time text', '2m')}
+          title={text('Title text', 'Placeholder title.')}
+          description={text('Description text', 'Placeholder description.')}
+          seen={boolean('Has been seen?', false)}
+          icon={<IconDocumentFilled color="#fff" />}
+        >
+          {text('Content', 'Placeholder content.')} 
+        </NotificationListBox>
+      </NotificationWrapper>
     );
   })
 
@@ -273,6 +275,10 @@ storiesOf('Mid level blocks/Boxes', module)
   });
 
 const StyledQuestionBox = styled(QuestionBox)`
+  width: 85%;
+`;
+
+const NotificationWrapper = styled.div`
   width: 85%;
 `;
 
