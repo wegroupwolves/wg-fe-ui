@@ -1,7 +1,7 @@
 import React from 'react';
 import { node, string, element, object, bool, func } from 'prop-types';
 import styled from 'styled-components';
-import { IconActionEye, IconActionEyeCrossed } from '../Icons';
+import { IconActionRead, IconActionUnRead } from '../Icons';
 import LinkHandler from '../Link';
 
 const NotificationListBox = ({
@@ -51,9 +51,9 @@ const NotificationListBox = ({
             <p>{tooltipText}</p>
           </TooltipContainer>
           {seen ? (
-            <IconActionEyeCrossed size={22} color="white" />
+            <IconActionUnRead size={22} color="white" />
           ) : (
-            <IconActionEye size={22} color="white" />
+            <IconActionRead size={22} color="white" />
           )}
         </MarkIcon>
       </MarkIconContainer>
@@ -108,6 +108,11 @@ const MarkIcon = styled.button`
   background-color: ${({ theme }) => theme.brand.primary};
   transition: all .2s ease;
   cursor: pointer;
+
+  & > svg {
+    height: 90%;
+    width: 90%;
+  }
 
   &:hover {
     background-color: ${({ theme }) => theme.brand.lighter};

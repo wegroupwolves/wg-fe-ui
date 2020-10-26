@@ -44,6 +44,8 @@ import IconActionChevronLeft from './IconActionChevronLeft';
 import IconActionChevronRight from './IconActionChevronRight';
 import IconActionEye from './IconActionEye';
 import IconActionEyeCrossed from './IconActionEyeCrossed';
+import IconActionRead from './IconActionRead';
+import IconActionUnRead from './IconActionUnRead';
 import IconActionPlus from './IconActionPlus';
 import IconActionMessage from './IconActionMessage';
 import IconStatusExclamation from './IconStatusExclamation';
@@ -218,6 +220,8 @@ export {
   IconActionChevronRight,
   IconActionEye,
   IconActionEyeCrossed,
+  IconActionRead,
+  IconActionUnRead,
   IconActionPlus,
   IconActionMessage,
   IconStatusExclamation,
