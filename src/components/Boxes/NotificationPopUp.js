@@ -1,6 +1,6 @@
 import React from 'react';
 import { string, object, func, element } from 'prop-types';
-import LinkHandler from '../LinkHandler';
+import LinkHandler from '../Link';
 import styled, { keyframes } from 'styled-components';
 
 const NotificationPopUp = ({

@@ -2,7 +2,7 @@ import React from 'react';
 import { node, string, element, object, bool, func } from 'prop-types';
 import styled from 'styled-components';
 import { IconActionEye, IconActionEyeCrossed } from '../Icons';
-import LinkHandler from '../LinkHandler';
+import LinkHandler from '../Link';
 
 const NotificationListBox = ({
   title,
