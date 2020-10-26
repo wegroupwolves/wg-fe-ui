@@ -1,7 +1,8 @@
 import React from 'react';
-import { node, string, object, bool, func } from 'prop-types';
+import { node, string, element, object, bool, func } from 'prop-types';
 import styled from 'styled-components';
 import { IconActionEye, IconActionEyeCrossed } from '../Icons';
+import LinkHandler from '../LinkHandler';
 
 const NotificationListBox = ({
   title,
@@ -10,7 +11,8 @@ const NotificationListBox = ({
   description,
   children,
   seen,
-  onClick,
+  to,
+  onClick = () => {},
   tooltipText = "Mark notification as seen",
   markRead = () => {
     console.log('clicked mark as read');
@@ -19,8 +21,8 @@ const NotificationListBox = ({
   otherProps
 }) => {
   return (
-    <Container className={className} {...otherProps} onClick={onClick}>
-      <NotificationBox onClick={onClick}>
+    <Container className={className} {...otherProps}>
+      <NotificationBox to={to} onClick={onClick}>
         <HeaderContainer>
           {icon && (
             <IconContainer>
@@ -92,6 +94,7 @@ const TimeLeft = styled.div`
   font-weight: 500;
   font-size: 14px;
   text-align: right;
+  margin-left: 2rem;
   color: #8990A3;
 `;
 
@@ -142,7 +145,8 @@ const Container = styled.div`
   font-family: ${({ theme }) => theme.font};
 `;
 
-const NotificationBox = styled.div`
+const NotificationBox = styled(LinkHandler)`
+  text-decoration: none;
   display: flex;
   flex-direction: column;
   flex: 1 1 100%;
@@ -151,6 +155,7 @@ const NotificationBox = styled.div`
   border-radius: 5px;
   cursor: pointer;
   transition: all .2s ease;
+  filter: drop-shadow(-4px 4px 12px rgba(0, 0, 0, 0.05));
 
   &:hover {
     border: 1px solid ${({ theme }) => theme.brand.primary};
@@ -168,6 +173,7 @@ const HeaderContainer = styled.div`
 const HeaderContentContainer = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: center;
   flex: 1 1 100%;
 `;
 
@@ -184,12 +190,13 @@ const Title = styled.div`
   font-weight: 500;
   font-size: 16px;
   color: #2D2D2D;
-  margin-bottom: 2px;
+  margin-bottom: 5px;
 `;
 
 const Description = styled.div`
   font-style: normal;
   font-weight: normal;
+  line-height: 1.3;
   font-size: 14px;
   color: #8990A3;
 `;
@@ -198,6 +205,7 @@ const ContentContainer = styled.div`
   padding: 2rem;
   font-style: normal;
   font-size: 16px;
+  line-height: 1.4;
   color: #8990A3;
 `;
 
@@ -220,8 +228,12 @@ NotificationListBox.propTypes = {
   title: string.isRequired,
   /** tooltip text */
   tooltipText: string,
+  /** To url where to go to when clicking on the notification */
+  to: string,
   /** onClick function when clicked on the notification */
   onClick: func,
+  /** Pass an icon as element to be displayed at the front of the bar. */
+  icon: element,
   /** onClick function when clicked on the eye icon */
   markRead: func,
   /** Code to be displayed within the element. This is also what will be copied if copying is enabled. */
