@@ -14,9 +14,7 @@ const NotificationListBox = ({
   to,
   onClick = () => {},
   tooltipText = "Mark notification as seen",
-  markRead = () => {
-    console.log('clicked mark as read');
-  },
+  markRead = () => {},
   className,
   otherProps
 }) => {
@@ -26,7 +24,7 @@ const NotificationListBox = ({
         <HeaderContainer>
           {icon && (
             <IconContainer>
-              <IconCircle>
+              <IconCircle seen={seen}>
                 {icon}
               </IconCircle>
             </IconContainer>
@@ -130,7 +128,7 @@ const IconCircle = styled.div`
   padding: 0.5rem;
   width: 100%;
   height: 100%;
-  background-color: ${({ theme }) => theme.brand.primary};
+  background-color: ${({ theme, seen }) => seen ? '#6d6d6d' : theme.brand.primary};
 
   & > svg {
     height: 100%;
