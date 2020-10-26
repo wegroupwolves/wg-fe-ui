@@ -64,6 +64,7 @@ export {
   RiskObjectSelector,
   RiskObjectDisplay,
   LinkBox,
+  NotificationListBox,
   CodeBox,
   GuidedImage,
 } from './components/Boxes';
@@ -113,6 +114,8 @@ export {
   Body,
   DataBlock,
 } from './components/Typography';
+
+export { Link } from './components/Link';
 
 export {
   PhaseLabel,

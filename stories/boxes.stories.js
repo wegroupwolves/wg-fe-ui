@@ -5,7 +5,6 @@ import {
   boolean,
   text,
   select,
-  number,
 } from '@storybook/addon-knobs';
 import { withInfo } from '@storybook/addon-info';
 import styled from 'styled-components';
@@ -21,9 +20,11 @@ import {
   SelectOffersAccordionBox,
   RiskObjectSelector,
   RiskObjectDisplay,
+  NotificationListBox,
   LinkBox,
   CodeBox,
   GuidedImage,
+  IconDocumentFilled,
 } from '../src';
 
 // OTHER ELEMENTS
@@ -35,6 +36,7 @@ import {
   RoundedButton,
   IconActionClose,
 } from '../src';
+import NotificationPopUp from '../src/components/Boxes/NotificationPopUp';
 
 const propsObject = [{ none: null, id: { id: 'add' } }];
 
@@ -230,6 +232,38 @@ storiesOf('Mid level blocks/Boxes', module)
       </CodeBox>
     );
   })
+  
+  .add('NotificationListBox', () => {
+    return (
+      <NotificationWrapper>
+        <NotificationListBox
+          tooltipText={text('Tooltip text', 'Mark notification as seen.')}
+          time={text('Time text', '2m')}
+          title={text('Title text', 'Placeholder title.')}
+          description={text('Description text', 'Placeholder description.')}
+          seen={boolean('Has been seen?', false)}
+          to={text('To', 'https://wegroup.be')}
+          icon={<IconDocumentFilled color="#fff" />}
+        >
+          {text('Content', 'Placeholder content.')} 
+        </NotificationListBox>
+      </NotificationWrapper>
+    );
+  })
+
+  .add('NotificationPopUp', () => {
+    return (
+      <NotificationWrapper>
+        <NotificationPopUp
+          time={text('Time text', '2m')}
+          title={text('Title text', 'Placeholder title.')}
+          to={text('To', 'https://wegroup.be')}
+          description={text('Description text', 'Placeholder description.')}
+          icon={<IconDocumentFilled color="#fff" />}
+        />
+      </NotificationWrapper>
+    );
+  })
 
   .add('GuidedImage', () => {
     const stepsForGuidedImage = [
@@ -256,6 +290,10 @@ storiesOf('Mid level blocks/Boxes', module)
   });
 
 const StyledQuestionBox = styled(QuestionBox)`
+  width: 85%;
+`;
+
+const NotificationWrapper = styled.div`
   width: 85%;
 `;
 
