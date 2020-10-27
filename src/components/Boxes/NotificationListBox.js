@@ -93,6 +93,7 @@ const TimeLeft = styled.div`
   font-size: 14px;
   text-align: right;
   margin-left: 2rem;
+  flex-shrink: 0;
   color: #8990A3;
 `;
 
@@ -144,6 +145,8 @@ const IconCircle = styled.div`
 const Container = styled.div`
   display: flex;
   width: 100%;
+  word-break: break-word;
+  max-width: 100%;
   position: relative;
   font-family: ${({ theme }) => theme.font};
 `;

@@ -99,6 +99,7 @@ const Container = styled(LinkHandler)`
   box-sizing: border-box;
   display: flex;
   width: 100%;
+  word-break: break-word;
   position: relative;
   font-family: ${({ theme }) => theme.font};
   flex: 1 1 100%;
