@@ -117,6 +117,8 @@ export {
 
 export { Link } from './components/Link';
 
+export { TimerWithPause } from './components/TimerWithPause';
+
 export {
   PhaseLabel,
   RiskObjectLabel,
