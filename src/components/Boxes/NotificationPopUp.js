@@ -1,7 +1,14 @@
-import React from 'react';
+// stylelint-disable value-keyword-case
+import React, { useEffect, useState } from 'react';
 import { string, object, func, element } from 'prop-types';
+import styled from 'styled-components';
+
+// Components
 import LinkHandler from '../Link';
-import styled, { keyframes } from 'styled-components';
+import Timer from '../TimerWithPause';
+
+let hideTimer;
+let hidePopUpFunctionTimer;
 
 const NotificationPopUp = ({
   title,
@@ -9,12 +16,40 @@ const NotificationPopUp = ({
   time,
   description,
   to,
+  hidePopup = () => {},
   onClick = () => {},
   className,
+  hideDelay = 10,
   otherProps
 }) => {
+  const [show, setShow] = useState(false);
+
+  useEffect(() => {
+    setShow(true);
+    // Show the popup default
+    hideTimer = new Timer(() => {
+      // After the hideDelay timer is done, start the hide animation
+      setShow(false);
+      hidePopUpFunctionTimer = setTimeout(() => {
+        // after hide animation return the callback function
+        hidePopup();
+      }, 500);
+    }, hideDelay * 1000);
+  }, []);
   return (
-    <Container className={className} {...otherProps} onClick={onClick} to={to}>
+    <Container
+      showPopup={show}
+      onMouseEnter={() => {
+        hideTimer.pause();
+        if (hidePopUpFunctionTimer) clearTimeout(hidePopUpFunctionTimer);
+        setShow(true);
+      }}
+      onMouseLeave={() => hideTimer.resume()}
+      className={className}
+      onClick={onClick}
+      to={to}
+      {...otherProps}
+    >
       {icon && (
         <IconContainer>
           <IconCircle>
@@ -36,16 +71,6 @@ const NotificationPopUp = ({
     </Container>
   );
 };
-
-const FadeIn = keyframes`
-  from {
-    opacity: 0;
-  }
-
-  to {
-    opacity: 1;
-  }
-`;
 
 const TimeLeft = styled.div`
   font-weight: 500;
@@ -71,6 +96,7 @@ const IconCircle = styled.div`
 `;
 
 const Container = styled(LinkHandler)`
+  box-sizing: border-box;
   display: flex;
   width: 100%;
   position: relative;
@@ -82,10 +108,21 @@ const Container = styled(LinkHandler)`
   justify-content: space-between;
   filter: drop-shadow(-4px 4px 12px rgba(0, 0, 0, 0.05));
   border-radius: 5px;
+  opacity: 1;
+  max-height: 15rem;
   cursor: pointer;
+  overflow: hidden;
   padding: 2rem;
-  animation: ${FadeIn} 200ms ease;
-  transition: all .2s ease;
+  transition: all 500ms ease;
+  transform: scaleY(1);
+  ${({ showPopup }) => !showPopup && `
+    opacity: 0;
+    max-height: 0;
+    transform: scaleY(0);
+    padding: 0;
+    border-color: rgba(0,0,0,0);
+    border-width: 0;
+  `}
 
   &:hover {
     border: 1px solid ${({ theme }) => theme.brand.primary};
