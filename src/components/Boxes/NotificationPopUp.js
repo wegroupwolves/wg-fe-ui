@@ -1,25 +1,11 @@
 // stylelint-disable value-keyword-case
 import React, { useEffect, useState } from 'react';
 import { string, object, func, element } from 'prop-types';
-import LinkHandler from '../Link';
 import styled from 'styled-components';
 
-const Timer = function(callback, delay) {
-  var timerId, start, remaining = delay;
-
-  this.pause = function() {
-      window.clearTimeout(timerId);
-      remaining -= Date.now() - start;
-  };
-
-  this.resume = function() {
-      start = Date.now();
-      window.clearTimeout(timerId);
-      timerId = window.setTimeout(callback, remaining);
-  };
-
-  this.resume();
-};
+// Components
+import LinkHandler from '../Link';
+import Timer from '../TimerWithPause';
 
 let hideTimer;
 let hidePopUpFunctionTimer;
@@ -40,17 +26,19 @@ const NotificationPopUp = ({
 
   useEffect(() => {
     setShow(true);
+    // Show the popup default
     hideTimer = new Timer(() => {
+      // After the hideDelay timer is done, start the hide animation
       setShow(false);
       hidePopUpFunctionTimer = setTimeout(() => {
+        // after hide animation return the callback function
         hidePopup();
       }, 500);
     }, hideDelay * 1000);
   }, []);
   return (
     <Container
-      hideDelay={hideDelay}
-      show={show}
+      showPopup={show}
       onMouseEnter={() => {
         hideTimer.pause();
         if (hidePopUpFunctionTimer) clearTimeout(hidePopUpFunctionTimer);
@@ -127,7 +115,7 @@ const Container = styled(LinkHandler)`
   padding: 2rem;
   transition: all 500ms ease;
   transform: scaleY(1);
-  ${({ show }) => !show && `
+  ${({ showPopup }) => !showPopup && `
     opacity: 0;
     max-height: 0;
     transform: scaleY(0);
