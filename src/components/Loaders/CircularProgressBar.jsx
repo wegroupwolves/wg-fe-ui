@@ -36,6 +36,8 @@ const Wrapper = styled.div`
     transform: rotate(-90deg);
 
     circle {
+      transition: all 0.3s ease;
+      stroke-linecap: round;
       width: 300px;
       height: 300px;
       fill: none;
@@ -61,6 +63,8 @@ const Wrapper = styled.div`
 
 const Inner = styled.div`
   position: absolute;
+  word-break: break-word;
+  padding: 2rem;
   top: 0;
   right: 0;
   bottom: 0;
