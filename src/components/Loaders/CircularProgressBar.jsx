@@ -70,6 +70,7 @@ const Inner = styled.div`
   bottom: 0;
   left: 0;
   display: flex;
+  text-align: center;
   flex-flow: column;
   justify-content: center;
   align-items: center;
