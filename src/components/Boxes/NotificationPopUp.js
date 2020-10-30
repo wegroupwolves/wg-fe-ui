@@ -93,22 +93,11 @@ const SlideIn = keyframes`
 
 const SlideOut = keyframes`
   0% {
-    margin-bottom: 2rem;
     right: 0;
     opacity: 1;
-    transform: scaleY(1);
-    box-shadow: none;
-  }
-  20% {
-    margin-bottom: 2rem;
-    box-shadow: inset 0 0 5px rgba(5,5,5,0.1);
-    right: 0;
-    opacity: 1;
-    transform: scaleY(0.7);
   }
   100% {
     opacity: 0;
-    margin-bottom: -15rem;
     right: -100%;
   }
 `;
