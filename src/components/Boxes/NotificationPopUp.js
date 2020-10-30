@@ -179,4 +179,6 @@ NotificationPopUp.propTypes = {
   otherProps: object,
 };
 
+NotificationPopUp.displayName = 'NotificationPopUp';
+
 export default NotificationPopUp;
