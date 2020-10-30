@@ -8,7 +8,7 @@ import React, {
 import styled from 'styled-components';
 import { string, bool, func, node } from 'prop-types';
 
-const Tabs = ({ defaultActive, onSelect, className, children }) => {
+const Tabs = ({ defaultActive, onSelect, className, children, activeTab }) => {
   const [active, setActive] = useState();
   const navigationList = useRef(null);
   const currentActiveClientRect = navigationList?.current?.children
@@ -33,10 +33,24 @@ const Tabs = ({ defaultActive, onSelect, className, children }) => {
   }
 
   useEffect(() => {
-    if (active) {
+    if (active && !activeTab) {
       onSelect(active);
     }
   }, [active]);
+
+  useEffect(() => {
+    if (activeTab) {
+      setActive(activeTab);
+    }
+  }, [activeTab]);
+
+  const handleTabClick = tabName => {
+    if (activeTab) {
+      onSelect(tabName);
+    } else {
+      setActive(tabName);
+    }
+  };
 
   return (
     <TabContainer className={className}>
@@ -46,7 +60,7 @@ const Tabs = ({ defaultActive, onSelect, className, children }) => {
             const { props } = child;
             return cloneElement(child, {
               active: props.name === active,
-              onClick: () => setActive(props.name),
+              onClick: () => handleTabClick(props.name),
             });
           })}
         </LinkList>
@@ -79,6 +93,7 @@ Tabs.propTypes = {
   children: node.isRequired,
   onSelect: func,
   className: string,
+  activeTab: string,
 };
 
 const Tab = ({ name, rightAlign, children, active, onClick, width }) => {
@@ -133,7 +148,7 @@ const LinkList = styled.ul`
 const Selector = styled.div`
   position: absolute;
   height: 2px;
-  background-color: ${({ theme }) => theme.brand.primary };
+  background-color: ${({ theme }) => theme.brand.primary};
   left: ${props => (props.left ? `${props.left}px` : 'inherit')};
   width: ${props => (props.width ? `${props.width}px` : 'inherit')};
   transition: 0.3s ease-out;
