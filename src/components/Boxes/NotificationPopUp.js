@@ -8,7 +8,6 @@ import LinkHandler from '../Link';
 import Timer from '../TimerWithPause';
 
 let hideTimer;
-let hidePopUpFunctionTimer;
 
 const NotificationPopUp = ({
   title,
@@ -30,23 +29,18 @@ const NotificationPopUp = ({
     hideTimer = new Timer(() => {
       // After the hideDelay timer is done, start the hide animation
       setShow(false);
-      hidePopUpFunctionTimer = setTimeout(() => {
+      let hidePopUpFunctionTimer = setTimeout(() => {
         // after hide animation return the callback function
         hidePopup();
       }, 500);
     }, hideDelay * 1000);
-
-    return () => {
-      hideTimer.clear();
-      clearTimeout(hidePopUpFunctionTimer);
-    }
   }, []);
+
   return (
     <Container
       showPopup={show}
       onMouseEnter={() => {
         hideTimer.pause();
-        if (hidePopUpFunctionTimer) clearTimeout(hidePopUpFunctionTimer);
         setShow(true);
       }}
       onMouseLeave={() => hideTimer.resume()}
@@ -130,7 +124,7 @@ const Container = styled(({showPopup, ...props}) => <LinkHandler {...props} />)`
   display: flex;
   width: 100%;
   word-break: break-word;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
   position: relative;
   font-family: ${({ theme }) => theme.font};
   flex: 1 1 100%;
