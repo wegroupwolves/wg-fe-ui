@@ -35,6 +35,11 @@ const NotificationPopUp = ({
         hidePopup();
       }, 500);
     }, hideDelay * 1000);
+
+    return () => {
+      hideTimer.clear();
+      clearTimeout(hidePopUpFunctionTimer);
+    }
   }, []);
   return (
     <Container
@@ -95,11 +100,12 @@ const IconCircle = styled.div`
   }
 `;
 
-const Container = styled(LinkHandler)`
+const Container = styled(({showPopup, ...props}) => <LinkHandler {...props} />)`
   box-sizing: border-box;
   display: flex;
   width: 100%;
   word-break: break-word;
+  margin-bottom: 2rem;
   position: relative;
   font-family: ${({ theme }) => theme.font};
   flex: 1 1 100%;
@@ -119,6 +125,7 @@ const Container = styled(LinkHandler)`
   ${({ showPopup }) => !showPopup && `
     opacity: 0;
     max-height: 0;
+    margin-bottom: 0;
     transform: scaleY(0);
     padding: 0;
     border-color: rgba(0,0,0,0);

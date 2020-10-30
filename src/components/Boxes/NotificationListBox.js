@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { node, string, element, object, bool, func } from 'prop-types';
 import styled from 'styled-components';
 import { IconActionRead, IconActionUnRead } from '../Icons';
 import LinkHandler from '../Link';
+
+let hidePopUpFunctionTimer;
 
 const NotificationListBox = ({
   title,
@@ -18,8 +20,24 @@ const NotificationListBox = ({
   className,
   otherProps
 }) => {
+  const [show, setShow] = useState(true);
+
+  const markAsRead = () => {
+    setShow(false);
+    hidePopUpFunctionTimer = setTimeout(() => {
+      // after hide animation return the callback function
+      markRead();
+    }, 500);
+  };
+
+  useEffect(() => {
+    return () => {
+      clearTimeout(hidePopUpFunctionTimer);
+    }
+  }, []);
+
   return (
-    <Container className={className} {...otherProps}>
+    <Container className={className} show={show} {...otherProps}>
       <NotificationBox to={to} onClick={onClick}>
         <HeaderContainer>
           {icon && (
@@ -46,7 +64,7 @@ const NotificationListBox = ({
         </ContentContainer>
       </NotificationBox>
       <MarkIconContainer>
-        <MarkIcon onClick={markRead}>
+        <MarkIcon onClick={markAsRead}>
           <TooltipContainer onClick={e => e.stopPropagation()}>
             <p>{tooltipText}</p>
           </TooltipContainer>
@@ -149,6 +167,20 @@ const Container = styled.div`
   max-width: 100%;
   position: relative;
   font-family: ${({ theme }) => theme.font};
+  transition: all 500ms ease;
+  max-height: 100rem;
+  overflow: hidden;
+  margin-bottom: 2rem;
+  ${({ show }) => !show && `
+    opacity: 0;
+    margin-bottom: 0;
+    max-height: 0;
+    padding: 0;
+    border-color: rgba(0,0,0,0);
+    border-width: 0;
+    border: none;
+  `}
+
 `;
 
 const NotificationBox = styled(LinkHandler)`
