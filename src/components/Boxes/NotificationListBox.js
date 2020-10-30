@@ -13,6 +13,7 @@ const NotificationListBox = ({
   description,
   children,
   seen,
+  formattedTime,
   to,
   onClick = () => {},
   tooltipText = "Mark notification as seen",
@@ -55,7 +56,7 @@ const NotificationListBox = ({
               {description}
             </Description>
           </HeaderContentContainer>
-          <TimeLeft>
+          <TimeLeft title={formattedTime}>
             {time}
           </TimeLeft>
         </HeaderContainer>
@@ -169,7 +170,6 @@ const Container = styled.div`
   font-family: ${({ theme }) => theme.font};
   transition: all 500ms ease;
   max-height: 100rem;
-  overflow: hidden;
   margin-bottom: 2rem;
   ${({ show }) => !show && `
     opacity: 0;
@@ -188,6 +188,7 @@ const NotificationBox = styled(LinkHandler)`
   display: flex;
   flex-direction: column;
   flex: 1 1 100%;
+  overflow: hidden;
   background: white;
   border: 0.5px solid #ECECEC;
   border-radius: 5px;
@@ -260,6 +261,8 @@ NotificationListBox.propTypes = {
   seen: bool.isRequired,
   /** String how long ago the notification happened */
   time: string.isRequired,
+  /** String how long ago the notification happened */
+  formattedTime: string.isRequired,
   /** Notification description */
   description: string.isRequired,
   /** Notification title */
