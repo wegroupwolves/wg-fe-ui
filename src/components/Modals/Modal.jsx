@@ -18,6 +18,7 @@ const Modal = ({
   small,
   large,
   className,
+  width,
   ...otherProps
 }) => {
   return (
@@ -27,7 +28,7 @@ const Modal = ({
       open={showModal}
       onRequestClose={canClose ? () => setShowModal(!showModal) : ''}
     >
-      <ModalContainer small={small} large={large}>
+      <ModalContainer small={small} large={large} width={width}>
         {canClose ? (
           <ModalCloser onClick={() => setShowModal(!showModal)}>
             <CloseIcon color="#505050" />
@@ -49,8 +50,8 @@ const StyledDrawer = styled(Drawer)`
 
 const ModalContainer = styled.div`
   background: white;
-  width: ${({ small, large }) =>
-    small ? '50rem' : large ? '100rem' : '60rem'};
+  width: ${({ small, large, width }) =>
+    width ? width : small ? '50rem' : large ? '100rem' : '60rem'};
   border: 1px solid #ccc;
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
   border-radius: 5px;
@@ -153,6 +154,8 @@ Modal.propTypes = {
   small: bool,
   /** Add this prop to display a larger size of modal. */
   large: bool,
+  /** Pass a custom width to modal */
+  width: string,
   className: string,
 };
 
