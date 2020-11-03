@@ -50,6 +50,7 @@ import {
 } from '../src';
 
 import * as Icons from '../src/components/Icons';
+import DateinputNew from '../src/components/Inputs/DateInput_New';
 const IconsKeys = Object.keys(Icons);
 const IconsList = {};
 IconsKeys.map(IconKey => {
@@ -535,6 +536,12 @@ storiesOf('Low level blocks/Inputs', module)
     );
   })
 
+  .add('DateInputNew', () => {
+    return (
+      <StyledDateInputNew value={text('value', '2013-03-10T02:00:00.000Z')} />
+    );
+  })
+
   .add('Dropdown', () => {
     return (
       <DropDownContainer>
@@ -573,6 +580,10 @@ const StyledSearchSelectInput = styled(SearchSelectInput)`
 `;
 
 const StyledDateInput = styled(DateInput)`
+  width: 27rem;
+`;
+
+const StyledDateInputNew = styled(DateinputNew)`
   width: 27rem;
 `;
 
