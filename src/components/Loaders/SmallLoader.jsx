@@ -1,13 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
-// import PropTypes from 'prop-types';
+import { string, object } from 'prop-types';
 
-const SmallLoader = () => {
+const SmallLoader = ({ color, ...otherProps }) => {
   return (
-    <LoaderWrapper>
-      <Ball />
-      <Ball />
-      <Ball />
+    <LoaderWrapper {...otherProps}>
+      <Ball color={color} />
+      <Ball color={color} />
+      <Ball color={color} />
     </LoaderWrapper>
   );
 };
@@ -21,7 +21,7 @@ const Ball = styled.div`
   width: 0.5rem;
   height: 0.5rem;
   margin: 1rem 0.15rem;
-  background: ${({ theme }) => theme.brand.light};
+  background: ${({ theme, color }) => (color ? color : theme.brand.light)};
   border-radius: 9999px;
   animation: 0.6s bounce infinite alternate;
 
@@ -41,6 +41,11 @@ const Ball = styled.div`
   }
 `;
 
-// SmallLoader.propTypes = {};
+SmallLoader.propTypes = {
+  /** Color of the balls */
+  color: string,
+  /** Other props */
+  otherProps: object,
+};
 
 export default SmallLoader;
