@@ -21,7 +21,7 @@ const ActionButton = ({
     }
   };
 
-  return (
+  return tooltipText ? (
     <ListenerWrapper
       onMouseEnter={() => tooltipText && setIsActive(true)}
       onMouseLeave={() => tooltipText && setIsActive(false)}
@@ -40,10 +40,24 @@ const ActionButton = ({
         {children}
       </StyledButton>
     </ListenerWrapper>
+  ) : (
+    <StyledButton
+      level={level}
+      onClick={handleClick}
+      fullwidth={fullwidth}
+      disabled={disabled}
+      padding={padding}
+      className={className}
+      {...otherProps}
+    >
+      {icon ? <Image src={icon} /> : null}
+      {children}
+    </StyledButton>
   );
 };
 
 const ListenerWrapper = styled.div`
+  display: flex;
   position: relative;
   z-index: 9;
 `;
