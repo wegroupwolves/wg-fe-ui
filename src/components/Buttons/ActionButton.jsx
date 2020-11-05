@@ -25,6 +25,7 @@ const ActionButton = ({
     <ListenerWrapper
       onMouseEnter={() => tooltipText && setIsActive(true)}
       onMouseLeave={() => tooltipText && setIsActive(false)}
+      disabled={disabled}
     >
       <TooltipContent active={isActive}>{tooltipText}</TooltipContent>
       <StyledButton
@@ -34,6 +35,7 @@ const ActionButton = ({
         disabled={disabled}
         padding={padding}
         className={className}
+        tooltipText={tooltipText}
         {...otherProps}
       >
         {icon ? <Image src={icon} /> : null}
@@ -60,6 +62,7 @@ const ListenerWrapper = styled.div`
   display: flex;
   position: relative;
   z-index: 9;
+  cursor: ${({ disabled }) => (disabled ? 'not-allowed' : 'pointer')};
 `;
 
 const TooltipContent = styled.div`
@@ -100,7 +103,7 @@ const TooltipContent = styled.div`
 const StyledButton = styled.button`
   // Fix for bug with onMouseLeave with disabled input children
   &[disabled] {
-    pointer-events: none;
+    pointer-events: ${({ tooltipText }) => (tooltipText ? 'none' : 'auto')};
   }
   font-family: ${({ theme }) => theme.font};
   font-size: 1.6rem;
