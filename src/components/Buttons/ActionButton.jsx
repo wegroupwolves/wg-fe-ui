@@ -22,31 +22,29 @@ const ActionButton = ({
   };
 
   return (
-    <>
-      <ListenerWrapper
-        onMouseEnter={() => tooltipText && setIsActive(true)}
-        onMouseLeave={() => tooltipText && setIsActive(false)}
-      >
-        <StyledButton
-          level={level}
-          onClick={handleClick}
-          fullwidth={fullwidth}
-          disabled={disabled}
-          padding={padding}
-          className={className}
-          {...otherProps}
-        >
-          {icon ? <Image src={icon} /> : null}
-          {children}
-        </StyledButton>
-      </ListenerWrapper>
+    <ListenerWrapper
+      onMouseEnter={() => tooltipText && setIsActive(true)}
+      onMouseLeave={() => tooltipText && setIsActive(false)}
+    >
       <TooltipContent active={isActive}>{tooltipText}</TooltipContent>
-    </>
+      <StyledButton
+        level={level}
+        onClick={handleClick}
+        fullwidth={fullwidth}
+        disabled={disabled}
+        padding={padding}
+        className={className}
+        {...otherProps}
+      >
+        {icon ? <Image src={icon} /> : null}
+        {children}
+      </StyledButton>
+    </ListenerWrapper>
   );
 };
 
 const ListenerWrapper = styled.div`
-  display: relative;
+  position: relative;
   z-index: 9;
 `;
 
@@ -54,8 +52,8 @@ const TooltipContent = styled.div`
   visibility: ${({ active }) => (active ? 'visible' : 'hidden')};
   z-index: 9;
   position: absolute;
+  bottom: 100%;
   left: 50%;
-  top: 10%;
   opacity: ${({ active }) => (active ? '1' : '0')};
   margin-bottom: 1em;
   padding: 1em;
