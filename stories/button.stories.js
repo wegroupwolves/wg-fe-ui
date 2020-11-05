@@ -50,6 +50,7 @@ storiesOf('Low level blocks/Buttons', module)
         icon={select('Icon', iconObject)}
         level={select('Level', buttonLevels, 'primary')}
         otherProps={select('otherProps', ...propsObject)}
+        tooltipText={text('Tooltip text')}
       >
         {text('Label', 'Pay')}
       </ActionButton>
