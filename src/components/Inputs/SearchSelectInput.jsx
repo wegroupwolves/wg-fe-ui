@@ -80,6 +80,7 @@ const SearchSelectInput = forwardRef(
               isMulti={isMulti}
               closeMenuOnSelect={!isMulti}
               error={error ? true : false}
+              {...otherProps}
             />
           ) : (
             <AsyncInput
@@ -97,7 +98,6 @@ const SearchSelectInput = forwardRef(
               loadOptions={loadOptions}
               defaultOptions
               {...otherProps}
-              onFocus={() => console.log('Focussed')}
             />
           )}
         </Label>
