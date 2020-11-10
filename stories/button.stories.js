@@ -23,6 +23,7 @@ import {
   ButtonGroup,
   IconLinkBlock,
   IconHistoryFilled,
+  ToggleButtonGroup,
 } from '../src/';
 
 addParameters({
@@ -36,6 +37,7 @@ const ToggleButtonLevels = ['active', 'non-active'];
 const iconObject = { none: null, House: buttonIcon };
 const svg = { none: null, back_arrow: <BackArrow /> };
 const propsObject = [{ none: null, id: { id: 'add' } }];
+const items = ['Button 1', 'Button 2', 'Button 3'];
 
 storiesOf('Low level blocks/Buttons', module)
   .addDecorator(withKnobs)
@@ -106,6 +108,22 @@ storiesOf('Low level blocks/Buttons', module)
       >
         {text('Label', 'Add')}
       </ToggleButton>
+    );
+  })
+
+  .add('ToggleButtonGroup', () => {
+    const [active, setActive] = useState('Button 1');
+    return (
+      <ToggleButtonGroup
+        onClick={setActive}
+        fullwidth={boolean('Fullwidth', false)}
+        disabled={boolean('Disabled', false)}
+        icon={select('Icon', iconObject)}
+        level={select('Level', ToggleButtonLevels, 'active')}
+        items={items}
+        active={active}
+        otherProps={select('otherProps', ...propsObject)}
+      />
     );
   })
 

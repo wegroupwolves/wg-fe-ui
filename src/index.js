@@ -19,6 +19,7 @@ export {
   BackButton,
   UploadField,
   ToggleButton,
+  ToggleButtonGroup,
   TertiaryButton,
   AddRemoveButton,
   RoundedButton,
