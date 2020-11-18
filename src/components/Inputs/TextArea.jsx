@@ -12,6 +12,7 @@ const TextArea = ({
   disabled,
   placeholder,
   onChange,
+  onBlur,
   setFieldTouched,
   error,
   warning,
@@ -54,9 +55,10 @@ const TextArea = ({
     }
   }, [value]);
 
-  const handleBlur = () => {
+  const handleBlur = e => {
     setFieldTouched(name, true);
     setFocus(false);
+    onBlur({ name: e.target.name, value: e.target.value });
   };
 
   return (
@@ -183,6 +185,8 @@ TextArea.propTypes = {
   setFieldTouched: func,
   /** returns onChange event */
   onChange: func,
+  /** returns onBlur event */
+  onBlur: func,
   /** max input length */
   maxLength: number,
   /** boolean to set counter visibility */
