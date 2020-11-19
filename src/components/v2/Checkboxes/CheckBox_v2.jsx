@@ -70,7 +70,7 @@ const StyledBox = styled.div`
   flex: 0 0 1.8rem;
   border: 1px solid
     ${({ theme, disabled, checked }) =>
-      disabled ? '#8990A3' : checked ? theme.brand.primary : '#E4E4E4'};
+      disabled ? ' #E4E4E4' : checked ? theme.brand.primary : '#8990A3'};
   margin-right: ${({ side }) => (side === 'right' ? '1rem' : '')};
   margin-left: ${({ side }) => (side === 'left' ? '1rem' : '')};
   background-color: ${({ theme, disabled, checked }) =>
