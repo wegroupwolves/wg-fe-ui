@@ -1,6 +1,6 @@
 {
   "name": "wg-fe-ui",
-  "version": "1.13.49",
+  "version": "1.13.50",
   "main": "index.js",
   "scripts": {
     "build": "babel src -d dist --copy-files",
