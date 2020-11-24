@@ -78,7 +78,8 @@ const Overlay = styled.div`
   right: 0;
   bottom: 0;
   left: 0;
-  background: rgba(255, 128, 0, 0.9);
+  background: ${({ theme }) =>
+    theme ? theme.brand.primary : 'rgba(255, 128, 0, 0.9)'};
   border-radius: 0.5rem;
   display: flex;
   opacity: 0;
