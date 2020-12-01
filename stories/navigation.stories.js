@@ -1,7 +1,13 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { storiesOf } from '@storybook/react';
-import { withKnobs, select, text, number } from '@storybook/addon-knobs';
+import {
+  withKnobs,
+  select,
+  text,
+  number,
+  boolean,
+} from '@storybook/addon-knobs';
 import { withInfo } from '@storybook/addon-info';
 import { MemoryRouter } from 'react-router-dom';
 
@@ -21,7 +27,7 @@ import {
   Switcher,
 } from '../src/index.js';
 
-import CheckBox from '../src/components/Checkboxes/CheckBox';
+import CheckBox_v2 from '../src/components/v2/Checkboxes/CheckBox_v2';
 
 const SubMenuItemTypes = {
   Default: null,
@@ -197,38 +203,39 @@ storiesOf('Mid level blocks/Navigation', module)
   })
 
   .add('CollapsibleSidebar', () => {
+    const [checkedArray, setCheckedArray] = useState([false, false, false]);
+
+    console.log(checkedArray);
     return (
       <CollapsibleSidebarContainer>
-        <CollapsibleSidebar label={text('Title', 'Filters')} open>
-          <CheckBox
-            checked={false}
-            disabled={false}
-            name="Checkbox1"
-            onChange={function noRefCheck() {}}
-            otherProps={{}}
-          >
-            Item
-          </CheckBox>
-
-          <CheckBox
-            checked={false}
-            disabled={false}
-            name="Checkbox2"
-            onChange={function noRefCheck() {}}
-            otherProps={{}}
-          >
-            Item
-          </CheckBox>
-
-          <CheckBox
-            checked={false}
-            disabled={false}
-            name="Checkbox3"
-            onChange={function noRefCheck() {}}
-            otherProps={{}}
-          >
-            Item
-          </CheckBox>
+        <CollapsibleSidebar
+          label={text('Title', 'Filters')}
+          selectAll={boolean('Select all', false)}
+          onSelectAllClick={() => {
+            setCheckedArray([true, true, true]);
+          }}
+          onDeselectAllClick={() => {
+            setCheckedArray([false, false, false]);
+          }}
+          isAllSelected={checkedArray.every(checked => checked)}
+          open
+        >
+          {checkedArray.map((checked, index) => (
+            <CheckBox_v2
+              key={'checkbox_' + index}
+              checked={checked}
+              disabled={false}
+              name={'Checkbox' + index}
+              onChange={({ value }) => {
+                const localChecked = checkedArray;
+                localChecked[index] = value;
+                setCheckedArray([...localChecked]);
+              }}
+              otherProps={{}}
+            >
+              Item
+            </CheckBox_v2>
+          ))}
         </CollapsibleSidebar>
       </CollapsibleSidebarContainer>
     );
