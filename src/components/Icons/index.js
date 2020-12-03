@@ -175,8 +175,10 @@ import IconWashingRoomFilled from './IconWashingRoomFilled';
 import IconWellnessRoomFilled from './IconWellnessRoomFilled';
 import IconCarGlassBreakage from './IconCarGlassBreakage';
 import IconCarCollision from './IconCarCollision';
+import IconResetFilled from './IconResetFilled';
 
 export {
+  IconResetFilled,
   IconFireFilled,
   IconCarFilled,
   IconTheftFilled,
