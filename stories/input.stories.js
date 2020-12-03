@@ -50,6 +50,7 @@ import {
 } from '../src';
 
 import * as Icons from '../src/components/Icons';
+import MultiTabTextArea from '../src/components/Inputs/MultiTabTextArea';
 const IconsKeys = Object.keys(Icons);
 const IconsList = {};
 IconsKeys.map(IconKey => {
@@ -241,6 +242,36 @@ storiesOf('Low level blocks/Inputs', module)
       >
         Text area
       </StyledTextArea>
+    );
+  })
+
+  .add('MultiTabTextArea', () => {
+    let error = text('Error', '');
+    return (
+      <MultiTabTextArea
+        disabled={boolean('Disabled', false)}
+        onChange={() => null}
+        onReset={() => null}
+        values={{}}
+        maxLength={100}
+        errors={error ? { input_nl: error } : {}}
+        areas={[
+          {
+            tab: 'EN',
+            name: 'input_en',
+          },
+          {
+            tab: 'NL',
+            name: 'input_nl',
+          },
+          {
+            tab: 'FR',
+            name: 'input_fr',
+          },
+        ]}
+      >
+        Text area
+      </MultiTabTextArea>
     );
   })
 

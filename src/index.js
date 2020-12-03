@@ -38,6 +38,7 @@ export {
   ImageSelectBox,
   MaskedInput,
   TextArea,
+  MultiTabTextArea,
   TextInput,
   PhoneInput,
   SearchInput,
