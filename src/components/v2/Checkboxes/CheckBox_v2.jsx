@@ -121,14 +121,14 @@ CheckBox_v2.propTypes = {
   /** If true box is initialy checked */
   checked: bool,
   /** The label next to the box */
-  children: node.isRequired,
+  children: node,
   /** Triggered when button is clicked */
-  onChange: func.isRequired,
+  onChange: func,
   /** Adds extra props to the element */
   otherProps: object,
   /** Pass this prop with "left" or "right" to show the label on the respective side. */
   side: string,
-  name: string.isRequired,
+  name: string,
   theme: object,
 };
 
