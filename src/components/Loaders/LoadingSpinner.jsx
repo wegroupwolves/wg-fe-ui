@@ -1,6 +1,6 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
-import { boolean, string } from 'prop-types';
+import { bool, string } from 'prop-types';
 
 const LoadingSpinner = ({ isAbsolute, className }) => {
   return (
@@ -69,7 +69,7 @@ LoadingSpinner.defaultProps = {
 
 LoadingSpinner.propTypes = {
   className: string,
-  isAbsolute: boolean,
+  isAbsolute: bool,
 };
 
 export default LoadingSpinner;
