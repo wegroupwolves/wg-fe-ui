@@ -12,8 +12,8 @@ const Wrapper = styled.div`
 `;
 
 AccordionBoxContent.propTypes = {
-  children: node.isRequired,
-  open: bool.isRequired,
+  children: node,
+  open: bool,
 };
 
 export default AccordionBoxContent;

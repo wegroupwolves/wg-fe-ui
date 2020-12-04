@@ -11,6 +11,7 @@ import {
   arrayOf,
   object,
   oneOfType,
+  node,
 } from 'prop-types';
 import Error from './../Messages/Error';
 
@@ -271,15 +272,15 @@ SearchSelectInput.propTypes = {
   /** Beeing able to use it in Styled Components */
   className: string,
   /** Returns name and value of selected */
-  onSelected: func.isRequired,
+  onSelected: func,
   /** Sets name of inputfield */
-  name: string.isRequired,
+  name: string,
   /** if true input is disabled */
   disabled: bool,
   /** string with errormessage */
-  error: string,
+  error: oneOfType(string, bool),
   /** label above the input */
-  children: string.isRequired,
+  children: node,
   /** array of objects {value: 'test', label: 'Test'} */
   options: arrayOf(
     shape({

@@ -1,5 +1,5 @@
 import React, { createContext, useContext } from 'react';
-import { string, bool, node, func, shape, number } from 'prop-types';
+import { string, bool, node, func, array, number } from 'prop-types';
 import styled, { css } from 'styled-components';
 import Drawer from 'react-drag-drawer';
 import CloseIcon from '../Icons/IconActionClose';
@@ -352,7 +352,7 @@ ModalWithSteps.propTypes = {
   large: bool,
   className: string,
   currentStep: number.isRequired,
-  steps: shape([]).isRequired,
+  steps: array.isRequired,
   visualSteps: bool,
   /** Step text */
   stepText: string.isRequired,

@@ -54,13 +54,13 @@ const RadioOption = forwardRef(
 RadioOption.displayName = 'RadioOption';
 
 RadioOption.propTypes = {
-  checked: PropTypes.bool.isRequired,
+  checked: PropTypes.bool,
   disabled: PropTypes.bool,
   name: PropTypes.string,
   handleChange: PropTypes.func,
   icon: PropTypes.elementType,
   children: PropTypes.node,
-  className: string.isRequired,
+  className: string,
 };
 
 RadioOption.defaultProps = {

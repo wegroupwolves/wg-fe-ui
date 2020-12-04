@@ -120,7 +120,7 @@ CheckBox.propTypes = {
   /** If true box is initialy checked */
   checked: bool,
   /** The label next to the box */
-  children: node.isRequired,
+  children: node,
   /** Triggered when button is clicked */
   onChange: func.isRequired,
   /** Adds extra props to the element */
