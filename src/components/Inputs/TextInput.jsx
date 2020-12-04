@@ -214,9 +214,9 @@ TextInput.propTypes = {
   /** Beeing able to use it in Styled Components */
   className: string,
   /** label above the input */
-  children: node.isRequired,
+  children: node,
   /** name of input and label */
-  name: string.isRequired,
+  name: string,
   /** type of input: email, text, ... */
   type: string,
   /** if true input is disabled */

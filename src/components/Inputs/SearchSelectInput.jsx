@@ -271,15 +271,15 @@ SearchSelectInput.propTypes = {
   /** Beeing able to use it in Styled Components */
   className: string,
   /** Returns name and value of selected */
-  onSelected: func.isRequired,
+  onSelected: func,
   /** Sets name of inputfield */
-  name: string.isRequired,
+  name: string,
   /** if true input is disabled */
   disabled: bool,
   /** string with errormessage */
   error: string,
   /** label above the input */
-  children: string.isRequired,
+  children: string,
   /** array of objects {value: 'test', label: 'Test'} */
   options: arrayOf(
     shape({
