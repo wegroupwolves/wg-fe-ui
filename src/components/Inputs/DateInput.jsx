@@ -251,7 +251,6 @@ const DateInput = forwardRef(
             onBlur={onBlur}
           >
             <StyledSingleInputDate
-              id="day"
               value={date.day}
               data-maxlengthvalue={2}
               maxLength={2}
@@ -268,7 +267,6 @@ const DateInput = forwardRef(
             />
             {'/'}
             <StyledSingleInputDate
-              id="month"
               value={date.month}
               data-maxlengthvalue={2}
               maxLength={2}
@@ -285,7 +283,6 @@ const DateInput = forwardRef(
             />
             {'/'}
             <StyledSingleInputDate
-              id="year"
               value={date.year}
               maxLength={4}
               data-maxlengthvalue={9999}

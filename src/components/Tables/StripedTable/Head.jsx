@@ -1,9 +1,9 @@
 import React from 'react';
 import { string, object, node } from 'prop-types';
 
-const Head = ({ className, children, ...otherProps }) => {
+const Head = ({ className, children, ...rest }) => {
   return (
-    <thead className={className} {...otherProps}>
+    <thead className={className} {...rest}>
       <tr>{children}</tr>
     </thead>
   );

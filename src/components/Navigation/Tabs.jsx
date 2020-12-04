@@ -84,13 +84,13 @@ Tabs.defaultProps = {
 
 Tabs.propTypes = {
   /** only for Tabs.Item */
-  name: string.isRequired,
+  name: string,
   /** Dont set on Tabs.Item this is only for internal usage */
   active: bool,
   /** Dont set on Tabs.Item this is only for internal usage */
   onClick: func,
   defaultActive: string,
-  children: node.isRequired,
+  children: node,
   onSelect: func,
   className: string,
   activeTab: string,

@@ -38,8 +38,8 @@ const ToggleWrapper = styled.div`
 
 AccordionBoxHeader.propTypes = {
   children: node,
-  open: bool.isRequired,
-  toggle: func.isRequired,
+  open: bool,
+  toggle: func,
 };
 
 export default AccordionBoxHeader;

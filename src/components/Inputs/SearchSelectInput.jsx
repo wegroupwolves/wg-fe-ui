@@ -11,6 +11,7 @@ import {
   arrayOf,
   object,
   oneOfType,
+  node,
 } from 'prop-types';
 import Error from './../Messages/Error';
 
@@ -277,9 +278,9 @@ SearchSelectInput.propTypes = {
   /** if true input is disabled */
   disabled: bool,
   /** string with errormessage */
-  error: string,
+  error: oneOfType(string, bool),
   /** label above the input */
-  children: string,
+  children: node,
   /** array of objects {value: 'test', label: 'Test'} */
   options: arrayOf(
     shape({
