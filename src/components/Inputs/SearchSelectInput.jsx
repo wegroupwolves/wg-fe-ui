@@ -2,18 +2,7 @@ import React, { forwardRef, useState, useEffect } from 'react';
 import styled, { css } from 'styled-components';
 import Select from 'react-select';
 import AsyncSelect from 'react-select/async';
-import {
-  func,
-  string,
-  shape,
-  bool,
-  number,
-  arrayOf,
-  object,
-  oneOfType,
-  node,
-  any,
-} from 'prop-types';
+import { func, string, bool, object, node, any } from 'prop-types';
 import Error from './../Messages/Error';
 
 const SearchSelectInput = forwardRef(
@@ -39,7 +28,7 @@ const SearchSelectInput = forwardRef(
     },
     ref,
   ) => {
-    const [isSelected, setSelected] = useState();
+    const [isSelected, setSelected] = useState('');
 
     const handleChange = option => {
       setSelected(option || []);
