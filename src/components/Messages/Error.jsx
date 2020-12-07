@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { string } from 'prop-types';
+import { string, oneOfType, bool } from 'prop-types';
 
 const Error = ({ error, warning, className }) => {
   return error || warning ? (
@@ -29,7 +29,7 @@ Error.defaultProps = {
 
 Error.propTypes = {
   /** string with errormessage */
-  error: string,
+  error: oneOfType([string, bool]),
   /** Beeing able to use it in Styled Components */
   className: string,
   /** string with warningmessage */
