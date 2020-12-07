@@ -2,9 +2,9 @@ import React from 'react';
 import { string, object, node } from 'prop-types';
 import styled from 'styled-components';
 
-const Body = ({ className, children, ...otherProps }) => {
+const Body = ({ className, children, ...rest }) => {
   return (
-    <Tbody className={className} {...otherProps}>
+    <Tbody className={className} {...rest}>
       {children}
     </Tbody>
   );
@@ -15,14 +15,14 @@ const Tbody = styled.tbody`
 `;
 
 Body.defaultProps = {
-  otherProps: {},
+  rest: {},
 };
 
 Body.propTypes = {
   /** Beeing able to use it in Styled Components */
   className: string,
   /** Adds extra props to the element */
-  otherProps: object,
+  rest: object,
   children: node,
 };
 

@@ -2,9 +2,9 @@ import React from 'react';
 import { string, object, node } from 'prop-types';
 import styled from 'styled-components';
 
-const BodyCell = ({ className, children, ...otherProps }) => {
+const BodyCell = ({ className, children, ...rest }) => {
   return (
-    <Td className={className} {...otherProps}>
+    <Td className={className} {...rest}>
       {children}
     </Td>
   );
@@ -31,14 +31,14 @@ const Td = styled.td`
 `;
 
 BodyCell.defaultProps = {
-  otherProps: {},
+  rest: {},
 };
 
 BodyCell.propTypes = {
   /** Beeing able to use it in Styled Components */
   className: string,
   /** Adds extra props to the element */
-  otherProps: object,
+  rest: object,
   children: node,
 };
 

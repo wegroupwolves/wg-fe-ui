@@ -37,7 +37,7 @@ const ModalWithSteps = ({
     <StepModalContext.Provider value={{ currentStep }}>
       <StyledDrawer
         open={showModal}
-        onRequestClose={canClose ? () => setShowModal(!showModal) : ''}
+        onRequestClose={canClose ? () => setShowModal(!showModal) : () => {}}
       >
         <ModalContainer className={className} small={small} large={large}>
           <ModalTitleBar visualSteps={visualSteps}>
@@ -52,6 +52,8 @@ const ModalWithSteps = ({
                       fill={
                         currentStep - 1 >= step &&
                         step < steps[steps.length - 1].step
+                          ? 1
+                          : 0
                       }
                       first={step === 0}
                       last={step === steps[steps.length - 1].step}

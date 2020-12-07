@@ -2,9 +2,9 @@ import React from 'react';
 import { string, object, node } from 'prop-types';
 import styled from 'styled-components';
 
-const FooterCell = ({ width, className, children, ...otherProps }) => {
+const FooterCell = ({ width, className, children, ...rest }) => {
   return (
-    <Td width={width} className={className} {...otherProps}>
+    <Td width={width} className={className} {...rest}>
       {children}
     </Td>
   );
@@ -21,7 +21,7 @@ const Td = styled.th`
 `;
 
 FooterCell.defaultProps = {
-  otherProps: {},
+  rest: {},
   width: 'unset',
 };
 
@@ -29,7 +29,7 @@ FooterCell.propTypes = {
   /** Beeing able to use it in Styled Components */
   className: string,
   /** Adds extra props to the element */
-  otherProps: object,
+  rest: object,
   children: node,
   /** The width of the tableCell element */
   width: string,

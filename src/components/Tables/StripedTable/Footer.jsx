@@ -1,23 +1,23 @@
 import React from 'react';
 import { string, object, node } from 'prop-types';
 
-const Footer = ({ className, children, ...otherProps }) => {
+const Footer = ({ className, children, ...rest }) => {
   return (
-    <tfoot className={className} {...otherProps}>
+    <tfoot className={className} {...rest}>
       <tr>{children}</tr>
     </tfoot>
   );
 };
 
 Footer.defaultProps = {
-  otherProps: {},
+  rest: {},
 };
 
 Footer.propTypes = {
   /** Beeing able to use it in Styled Components */
   className: string,
   /** Adds extra props to the element */
-  otherProps: object,
+  rest: object,
   children: node,
 };
 
