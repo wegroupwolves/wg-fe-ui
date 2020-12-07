@@ -161,6 +161,7 @@ TextArea.defaultProps = {
   touched: false,
   setFieldTouched: () => {},
   onChange: () => {},
+  onBlur: () => {},
   otherProps: {},
 };
 
@@ -168,9 +169,9 @@ TextArea.propTypes = {
   /** Beeing able to use it in Styled Components */
   className: string,
   /** label above the input */
-  children: node.isRequired,
+  children: node,
   /** name of input and label */
-  name: string.isRequired,
+  name: string,
   /** if true input is disabled */
   disabled: bool,
   /** example value in the input */

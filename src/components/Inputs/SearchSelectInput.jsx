@@ -12,6 +12,7 @@ import {
   object,
   oneOfType,
   node,
+  any,
 } from 'prop-types';
 import Error from './../Messages/Error';
 
@@ -278,33 +279,17 @@ SearchSelectInput.propTypes = {
   /** if true input is disabled */
   disabled: bool,
   /** string with errormessage */
-  error: oneOfType([string, bool]),
+  error: any,
   /** label above the input */
   children: node,
   /** array of objects {value: 'test', label: 'Test'} */
-  options: arrayOf(
-    shape({
-      value: oneOfType([string, number]),
-      label: string,
-    }),
-  ),
+  options: any,
   /** set true if options are loading */
   loading: bool,
   /** name that sets selected on load */
   loadOptions: func,
 
-  initial: oneOfType([
-    arrayOf(
-      shape({
-        value: oneOfType([string, number]),
-        label: string,
-      }),
-    ),
-    shape({
-      value: oneOfType([string, number]),
-      label: string,
-    }),
-  ]),
+  initial: any,
   /** Message to show when options are empty */
   noOptionMessage: string,
   /** Message to show when loading is true */
@@ -316,19 +301,7 @@ SearchSelectInput.propTypes = {
   /** Adds extra props to the element */
   otherProps: object,
   /** Triggers when input is cleared */
-  value: oneOfType([
-    arrayOf(
-      shape({
-        value: oneOfType([string, number]),
-        label: string,
-      }),
-    ),
-    shape({
-      value: oneOfType([string, number]),
-      label: string,
-    }),
-    string,
-  ]),
+  value: any,
 };
 
 export default SearchSelectInput;
