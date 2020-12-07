@@ -122,10 +122,10 @@ CheckBox.propTypes = {
   /** The label next to the box */
   children: node,
   /** Triggered when button is clicked */
-  onChange: func.isRequired,
+  onChange: func,
   /** Adds extra props to the element */
   otherProps: object,
-  name: string.isRequired,
+  name: string,
   theme: object,
 };
 

@@ -278,7 +278,7 @@ SearchSelectInput.propTypes = {
   /** if true input is disabled */
   disabled: bool,
   /** string with errormessage */
-  error: oneOfType(string, bool),
+  error: oneOfType([string, bool]),
   /** label above the input */
   children: node,
   /** array of objects {value: 'test', label: 'Test'} */
@@ -287,7 +287,7 @@ SearchSelectInput.propTypes = {
       value: oneOfType([string, number]),
       label: string,
     }),
-  ).isRequired,
+  ),
   /** set true if options are loading */
   loading: bool,
   /** name that sets selected on load */
@@ -327,6 +327,7 @@ SearchSelectInput.propTypes = {
       value: oneOfType([string, number]),
       label: string,
     }),
+    string,
   ]),
 };
 

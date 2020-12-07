@@ -10,14 +10,14 @@ const Head = ({ className, children, ...rest }) => {
 };
 
 Head.defaultProps = {
-  otherProps: {},
+  rest: {},
 };
 
 Head.propTypes = {
   /** Beeing able to use it in Styled Components */
   className: string,
   /** Adds extra props to the element */
-  otherProps: object,
+  rest: object,
   children: node,
 };
 
