@@ -23,13 +23,12 @@ const Modal = ({
 }) => {
   return (
     <StyledDrawer
-      {...otherProps}
-      className={className}
       open={showModal}
       onRequestClose={canClose ? () => setShowModal(!showModal) : ''}
     >
       <ModalContainer
-        className="wg-modal"
+        {...otherProps}
+        className={className}
         small={small}
         large={large}
         width={width}
