@@ -211,6 +211,7 @@ storiesOf('Mid level blocks/Navigation', module)
         <CollapsibleSidebar
           label={text('Title', 'Filters')}
           selectAll={boolean('Select all', false)}
+          hideButton={boolean('Hide button', false)}
           onSelectAllClick={() => {
             setCheckedArray([true, true, true]);
           }}
