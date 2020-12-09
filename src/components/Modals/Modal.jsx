@@ -28,7 +28,12 @@ const Modal = ({
       open={showModal}
       onRequestClose={canClose ? () => setShowModal(!showModal) : ''}
     >
-      <ModalContainer small={small} large={large} width={width}>
+      <ModalContainer
+        className="wg-modal"
+        small={small}
+        large={large}
+        width={width}
+      >
         {canClose ? (
           <ModalCloser onClick={() => setShowModal(!showModal)}>
             <CloseIcon color="#505050" />
