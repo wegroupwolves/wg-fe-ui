@@ -3,9 +3,9 @@ import styled from 'styled-components';
 import { IconActionDropDown } from '../../Icons/index';
 import { node, bool, func } from 'prop-types';
 
-const AccordionBoxHeader = ({ children, open, toggle }) => {
+const AccordionBoxHeader = ({ children, open, toggle, ...rest }) => {
   return (
-    <Wrapper onClick={toggle}>
+    <Wrapper onClick={toggle} {...rest}>
       {children}
 
       <ToggleWrapper open={open}>
