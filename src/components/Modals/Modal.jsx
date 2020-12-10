@@ -23,12 +23,16 @@ const Modal = ({
 }) => {
   return (
     <StyledDrawer
-      {...otherProps}
-      className={className}
       open={showModal}
       onRequestClose={canClose ? () => setShowModal(!showModal) : ''}
     >
-      <ModalContainer small={small} large={large} width={width}>
+      <ModalContainer
+        {...otherProps}
+        className={className}
+        small={small}
+        large={large}
+        width={width}
+      >
         {canClose ? (
           <ModalCloser onClick={() => setShowModal(!showModal)}>
             <CloseIcon color="#505050" />
