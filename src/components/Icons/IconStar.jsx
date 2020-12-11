@@ -3,9 +3,19 @@ import { string, number } from 'prop-types';
 
 const IconStar = ({ className, color, size }) => {
   return (
-    <svg width="27" height="26" viewBox="0 0 27 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg
+      className={className}
+      width={size}
+      height={size}
+      viewBox="0 0 27 26"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
       <title>IconStar</title>
-      <path d="M13.3152 20.72L5.08667 25.326L6.92417 16.0767L0 9.674L9.36483 8.56333L13.3152 0L17.2655 8.56333L26.6303 9.674L19.7062 16.0767L21.5437 25.326L13.3152 20.72Z" fill="#2D2D2D"/>
+      <path
+        d="M13.3152 20.72L5.08667 25.326L6.92417 16.0767L0 9.674L9.36483 8.56333L13.3152 0L17.2655 8.56333L26.6303 9.674L19.7062 16.0767L21.5437 25.326L13.3152 20.72Z"
+        fill={color}
+      />
     </svg>
   );
 };
