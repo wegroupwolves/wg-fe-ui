@@ -173,6 +173,7 @@ import IconPrivateHomeOfficeFilled from './IconPrivateHomeOfficeFilled';
 import IconStorageRoomFilled from './IconStorageRoomFilled';
 import IconWashingRoomFilled from './IconWashingRoomFilled';
 import IconWellnessRoomFilled from './IconWellnessRoomFilled';
+import IconStar from './IconStar';
 import IconCarGlassBreakage from './IconCarGlassBreakage';
 import IconCarCollision from './IconCarCollision';
 import IconResetFilled from './IconResetFilled';
@@ -353,6 +354,7 @@ export {
   IconStorageRoomFilled,
   IconWashingRoomFilled,
   IconWellnessRoomFilled,
+  IconStar,
   IconCarCollision,
   IconCarGlassBreakage,
 };
