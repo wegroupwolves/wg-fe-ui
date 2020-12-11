@@ -4,12 +4,12 @@ import { string, number } from 'prop-types';
 const IconStar = ({ className, color, size }) => {
   return (
     <svg
+      id="icons"
       className={className}
       width={size}
       height={size}
       viewBox="0 0 27 26"
       fill="none"
-      xmlns="http://www.w3.org/2000/svg"
     >
       <title>IconStar</title>
       <path
