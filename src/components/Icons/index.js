@@ -169,6 +169,7 @@ import IconPrivateHomeOfficeFilled from './IconPrivateHomeOfficeFilled';
 import IconStorageRoomFilled from './IconStorageRoomFilled';
 import IconWashingRoomFilled from './IconWashingRoomFilled';
 import IconWellnessRoomFilled from './IconWellnessRoomFilled';
+import IconStar from './IconStar';
 
 export {
   IconFireFilled,
@@ -341,4 +342,5 @@ export {
   IconStorageRoomFilled,
   IconWashingRoomFilled,
   IconWellnessRoomFilled,
+  IconStar,
 };
