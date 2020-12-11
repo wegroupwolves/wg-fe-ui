@@ -14,16 +14,21 @@ const AmountInput = ({
   onBlur,
   inputAppend,
   name,
+  roundNumber = true,
   ...otherProps
 }) => {
   const [currentValue, setCurrentValue] = useState(value);
 
-  const checkValue = (value, isBlur) => {
+  useEffect(() => {
+    setCurrentValue(value);
+  }, [value]);
+
+  const checkValue = value => {
     const parsedValue = parseFloat(value) || undefined;
     if (parsedValue >= min && parsedValue <= max) {
       return parsedValue;
     } else {
-      if (parsedValue === undefined && isBlur) {
+      if (parsedValue === undefined) {
         return min;
       } else if (parsedValue < min) {
         return min;
@@ -34,39 +39,61 @@ const AmountInput = ({
   };
 
   const handleChange = (value, isBlur = false) => {
-    if (disabled !== true) {
-      setCurrentValue(checkValue(value, isBlur));
-      onBlur(value);
-      onChange({ name, value });
+    let roundedValue = value;
+
+    if (roundNumber) {
+      roundedValue = Math.round(roundedValue * 100) / 100;
+    }
+
+    if (!disabled) {
+      if (isBlur) {
+        const checkedValue = checkValue(roundedValue);
+        setCurrentValue(checkedValue);
+        onBlur({ name, value: checkedValue });
+      } else {
+        setCurrentValue(value);
+        onChange({ name, value });
+      }
     }
   };
 
   const handleOnKeyDown = ({ keyCode }) => {
     if (keyCode === 38) {
       //Key: arrow up
-      handleChange(currentValue ? currentValue + 1 : min + 1);
+      handlePlus();
     } else if (keyCode === 40) {
       //Key: arrow down
-      handleChange(currentValue - 1);
+      handleMinus();
+    }
+  };
+
+  const handlePlus = () => {
+    // Check if number is integer or float
+    if (currentValue % 1 === 0) {
+      handleChange(currentValue ? currentValue + 1 : min + 1, true);
+    } else {
+      handleChange(currentValue ? Math.ceil(currentValue) : min + 1, true);
+    }
+  };
+
+  const handleMinus = () => {
+    // Check if number is integer or float
+    if (currentValue % 1 === 0) {
+      handleChange(currentValue - 1, true);
+    } else {
+      handleChange(Math.floor(currentValue), true);
     }
   };
 
   return (
     <Wrapper disabled={disabled} className={className} {...otherProps}>
       <InputControls>
-        <InputControl
-          disabled={currentValue === max}
-          onClick={() => {
-            handleChange(currentValue ? currentValue + 1 : min + 1);
-          }}
-        >
+        <InputControl disabled={currentValue === max} onClick={handlePlus}>
           <IconActionDropDown size={14} />
         </InputControl>
         <InputControl
           disabled={currentValue === min || currentValue === undefined}
-          onClick={() => {
-            handleChange(currentValue - 1);
-          }}
+          onClick={handleMinus}
         >
           <IconActionDropDown size={14} />
         </InputControl>
@@ -130,6 +157,7 @@ const StyledInput = styled.input`
   height: 36px;
   border: 0;
   margin-left: 4rem;
+  padding-right: 3rem;
   font-size: 1.4rem;
   background-color: transparent;
 
@@ -180,6 +208,8 @@ AmountInput.propTypes = {
   otherProps: object,
   /** Name of the component */
   name: string,
+  /** If it should round the number */
+  roundNumber: bool,
 };
 
 export default AmountInput;

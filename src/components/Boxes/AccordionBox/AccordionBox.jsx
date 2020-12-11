@@ -5,7 +5,7 @@ import { node } from 'prop-types';
 import AccordionBoxContent from './AccordionBoxContent';
 import AccordionBoxHeader from './AccordionBoxHeader';
 
-const AccordionBox = ({ children }) => {
+const AccordionBox = ({ children, ...rest }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const elements = React.Children.toArray(children);
@@ -21,7 +21,7 @@ const AccordionBox = ({ children }) => {
   };
 
   return (
-    <StyledAccordionBox>
+    <StyledAccordionBox {...rest}>
       {elements.map(element => {
         return React.cloneElement(element, {
           open: isOpen,

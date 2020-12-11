@@ -1,5 +1,5 @@
 import React from 'react';
-import { string } from 'prop-types';
+import { string, number } from 'prop-types';
 
 const IconShedFilled = ({ className, color, size }) => {
   return (
@@ -45,6 +45,7 @@ IconShedFilled.defaultProps = {
 IconShedFilled.propTypes = {
   color: string,
   className: string,
+  size: number,
 };
 
 export default IconShedFilled;

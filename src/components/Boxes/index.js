@@ -7,6 +7,8 @@ import RiskObjectSelector from './RiskObjectSelector';
 import RiskObjectDisplay from './RiskObjectDisplay';
 import LinkBox from './LinkBox';
 import CodeBox from './CodeBox';
+import NotificationListBox from './NotificationListBox';
+import NotificationPopUp from './NotificationPopUp';
 import GuidedImage from './GuidedImage/GuidedImage';
 
 export {
@@ -17,6 +19,8 @@ export {
   SelectOffersAccordionBox,
   RiskObjectSelector,
   RiskObjectDisplay,
+  NotificationListBox,
+  NotificationPopUp,
   LinkBox,
   CodeBox,
   GuidedImage,

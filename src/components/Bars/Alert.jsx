@@ -7,7 +7,7 @@ const Alert = ({ children, type, onClick, icon, className, ...otherProps }) => {
   return (
     <AlertBox
       type={type}
-      onCLick={onClick}
+      onClick={onClick}
       className={className}
       {...otherProps}
     >

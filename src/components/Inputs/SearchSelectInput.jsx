@@ -2,16 +2,7 @@ import React, { forwardRef, useState, useEffect } from 'react';
 import styled, { css } from 'styled-components';
 import Select from 'react-select';
 import AsyncSelect from 'react-select/async';
-import {
-  func,
-  string,
-  shape,
-  bool,
-  number,
-  arrayOf,
-  object,
-  oneOfType,
-} from 'prop-types';
+import { func, string, bool, object, node, any } from 'prop-types';
 import Error from './../Messages/Error';
 
 const SearchSelectInput = forwardRef(
@@ -37,7 +28,7 @@ const SearchSelectInput = forwardRef(
     },
     ref,
   ) => {
-    const [isSelected, setSelected] = useState();
+    const [isSelected, setSelected] = useState('');
 
     const handleChange = option => {
       setSelected(option || []);
@@ -80,6 +71,7 @@ const SearchSelectInput = forwardRef(
               isMulti={isMulti}
               closeMenuOnSelect={!isMulti}
               error={error ? true : false}
+              {...otherProps}
             />
           ) : (
             <AsyncInput
@@ -97,7 +89,6 @@ const SearchSelectInput = forwardRef(
               loadOptions={loadOptions}
               defaultOptions
               {...otherProps}
-              onFocus={() => console.log('Focussed')}
             />
           )}
         </Label>
@@ -271,39 +262,23 @@ SearchSelectInput.propTypes = {
   /** Beeing able to use it in Styled Components */
   className: string,
   /** Returns name and value of selected */
-  onSelected: func.isRequired,
+  onSelected: func,
   /** Sets name of inputfield */
-  name: string.isRequired,
+  name: string,
   /** if true input is disabled */
   disabled: bool,
   /** string with errormessage */
-  error: string,
+  error: any,
   /** label above the input */
-  children: string.isRequired,
+  children: node,
   /** array of objects {value: 'test', label: 'Test'} */
-  options: arrayOf(
-    shape({
-      value: oneOfType([string, number]),
-      label: string,
-    }),
-  ).isRequired,
+  options: any,
   /** set true if options are loading */
   loading: bool,
   /** name that sets selected on load */
   loadOptions: func,
 
-  initial: oneOfType([
-    arrayOf(
-      shape({
-        value: oneOfType([string, number]),
-        label: string,
-      }),
-    ),
-    shape({
-      value: oneOfType([string, number]),
-      label: string,
-    }),
-  ]),
+  initial: any,
   /** Message to show when options are empty */
   noOptionMessage: string,
   /** Message to show when loading is true */
@@ -315,18 +290,7 @@ SearchSelectInput.propTypes = {
   /** Adds extra props to the element */
   otherProps: object,
   /** Triggers when input is cleared */
-  value: oneOfType([
-    arrayOf(
-      shape({
-        value: oneOfType([string, number]),
-        label: string,
-      }),
-    ),
-    shape({
-      value: oneOfType([string, number]),
-      label: string,
-    }),
-  ]),
+  value: any,
 };
 
 export default SearchSelectInput;

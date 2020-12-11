@@ -1,6 +1,6 @@
 import React, { forwardRef, useState, useEffect } from 'react';
 import { bool, node, func, string, object } from 'prop-types';
-import styled from 'styled-components';
+import styled, { withTheme } from 'styled-components';
 
 import Checkmark from '../../assets/checkmark.js';
 
@@ -50,7 +50,7 @@ const CheckBox = forwardRef(
         />
         <StyledBox disabled={disabled} checked={isChecked}>
           {isChecked && disabled ? (
-            <StyledCheckmark color={theme.colors.disabled} />
+            <StyledCheckmark color={theme.ui.disabled} />
           ) : isChecked && !disabled ? (
             <StyledCheckmark color={'white'} />
           ) : null}
@@ -120,13 +120,13 @@ CheckBox.propTypes = {
   /** If true box is initialy checked */
   checked: bool,
   /** The label next to the box */
-  children: node.isRequired,
+  children: node,
   /** Triggered when button is clicked */
-  onChange: func.isRequired,
+  onChange: func,
   /** Adds extra props to the element */
   otherProps: object,
-  name: string.isRequired,
+  name: string,
   theme: object,
 };
 
-export default CheckBox;
+export default withTheme(CheckBox);

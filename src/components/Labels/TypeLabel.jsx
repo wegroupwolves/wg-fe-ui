@@ -39,6 +39,11 @@ const StyledLabel = styled.div`
     color: ${({ theme }) => theme.labels.leadText};
     background: ${({ theme }) => theme.labels.lead};
   }
+
+  &.guarantee {
+    color: ${({ theme }) => theme.labels.guaranteeText};
+    background: ${({ theme }) => theme.labels.guarantee};
+  }
 `;
 
 TypeLabel.defaultProps = {

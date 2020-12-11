@@ -7,6 +7,7 @@ const Tooltip = ({
   toggleIcon,
   children,
   onClick,
+  direction,
   ...otherProps
 }) => {
   const [isActive, setIsActive] = useState(false);
@@ -22,7 +23,9 @@ const Tooltip = ({
         {toggleIcon}
       </TooltipToggle>
 
-      <TooltipContent active={isActive}>{children}</TooltipContent>
+      <TooltipContent active={isActive} direction={direction}>
+        {children}
+      </TooltipContent>
     </TooltipWrapper>
   );
 };
@@ -61,7 +64,8 @@ const TooltipContent = styled.div`
   visibility: ${({ active }) => (active ? 'visible' : 'hidden')};
   z-index: 9;
   position: absolute;
-  left: 50%;
+  left: ${({ direction }) =>
+    direction === 'left' ? '-260px' : direction === 'right' ? '280px' : '50%'};
   bottom: 100%;
   opacity: ${({ active }) => (active ? '1' : '0')};
   margin-bottom: 1em;
@@ -82,7 +86,8 @@ const TooltipContent = styled.div`
     content: '';
     position: absolute;
     top: 100%;
-    left: 50%;
+    left: ${({ direction }) =>
+      direction === 'left' ? '95%' : direction === 'right' ? '5%' : '50%'};
     width: 0;
     height: 0;
     border: 0.5em solid transparent;
@@ -106,6 +111,8 @@ Tooltip.propTypes = {
   children: node.isRequired,
   /** Optional onClick function to be passed. */
   onClick: func,
+  /** What direction the tooltop should pop out to */
+  direction: string,
   /** Extra props to be passed to the component. */
   otherProps: object,
 };

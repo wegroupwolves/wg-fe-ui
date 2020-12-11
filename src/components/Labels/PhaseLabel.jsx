@@ -3,7 +3,7 @@ import { string, object, node } from 'prop-types';
 import styled from 'styled-components';
 
 const PhaseLabel = ({ status, text, children, ...otherProps }) => {
-  const red = ['REJECTED', 'CANCELLED', 'REFUSED', 'error', 'red'];
+  const red = ['REJECTED', 'REJECTED_RSR', 'REJECTED_NS', 'CANCELLED', 'REFUSED', 'SUSPENDED', 'TERMINATED', 'error', 'red'];
   const blue = ['PENDING', 'offer-send', 'blue'];
   const orange = ['warning', 'orange'];
   const yellow = ['SEND', 'contract-send', 'yellow'];

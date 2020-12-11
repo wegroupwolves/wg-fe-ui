@@ -43,6 +43,9 @@ import IconActionPower from './IconActionPower';
 import IconActionChevronLeft from './IconActionChevronLeft';
 import IconActionChevronRight from './IconActionChevronRight';
 import IconActionEye from './IconActionEye';
+import IconActionEyeCrossed from './IconActionEyeCrossed';
+import IconActionRead from './IconActionRead';
+import IconActionUnRead from './IconActionUnRead';
 import IconActionPlus from './IconActionPlus';
 import IconActionMessage from './IconActionMessage';
 import IconStatusExclamation from './IconStatusExclamation';
@@ -152,6 +155,7 @@ import IconDownloadFilled from './IconDownloadFilled';
 import IconVanFilled from './IconVanFilled';
 import IconJeepFilled from './IconJeepFilled';
 import IconShoppingCartFilled from './IconShoppingCartFilled';
+import IconShoppingBasket from './IconShoppingBasket';
 import IconChevronDown from './IconChevronDown';
 import IconClipBoard from './IconClipBoard';
 import StatusIcon from './StatusIcon';
@@ -170,8 +174,12 @@ import IconStorageRoomFilled from './IconStorageRoomFilled';
 import IconWashingRoomFilled from './IconWashingRoomFilled';
 import IconWellnessRoomFilled from './IconWellnessRoomFilled';
 import IconStar from './IconStar';
+import IconCarGlassBreakage from './IconCarGlassBreakage';
+import IconCarCollision from './IconCarCollision';
+import IconResetFilled from './IconResetFilled';
 
 export {
+  IconResetFilled,
   IconFireFilled,
   IconCarFilled,
   IconTheftFilled,
@@ -216,6 +224,9 @@ export {
   IconActionChevronLeft,
   IconActionChevronRight,
   IconActionEye,
+  IconActionEyeCrossed,
+  IconActionRead,
+  IconActionUnRead,
   IconActionPlus,
   IconActionMessage,
   IconStatusExclamation,
@@ -325,6 +336,7 @@ export {
   IconVanFilled,
   IconJeepFilled,
   IconShoppingCartFilled,
+  IconShoppingBasket,
   IconChevronDown,
   IconClipBoard,
   IconHyperLink,
@@ -343,4 +355,6 @@ export {
   IconWashingRoomFilled,
   IconWellnessRoomFilled,
   IconStar,
+  IconCarCollision,
+  IconCarGlassBreakage,
 };

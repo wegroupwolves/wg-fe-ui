@@ -1,7 +1,7 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { withInfo } from '@storybook/addon-info';
-import { boolean, withKnobs, number } from '@storybook/addon-knobs';
+import { boolean, withKnobs, number, text } from '@storybook/addon-knobs';
 
 import {
   LoadingSpinner,
@@ -68,5 +68,5 @@ storiesOf('Low level blocks/Loaders', module)
     );
   })
   .add('SmallLoader', () => {
-    return <SmallLoader />;
+    return <SmallLoader color={text('Color', '')} />;
   });

@@ -11,8 +11,8 @@ const Wrapper = styled.div`
 `;
 
 SelectOffersAccordionBoxContent.propTypes = {
-  children: node.isRequired,
-  open: bool.isRequired,
+  children: node,
+  open: bool,
 };
 
 export default SelectOffersAccordionBoxContent;

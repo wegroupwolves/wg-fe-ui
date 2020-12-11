@@ -12,13 +12,11 @@ import {
   FooterCell,
 } from './index';
 
-const StripedTable = forwardRef(
-  ({ className, children, ...otherProps }, ref) => (
-    <Table className={className} ref={ref} {...otherProps}>
-      {children}
-    </Table>
-  ),
-);
+const StripedTable = forwardRef(({ className, children, ...rest }, ref) => (
+  <Table className={className} ref={ref} {...rest}>
+    {children}
+  </Table>
+));
 
 const Table = styled.table`
   font-family: ${({ theme }) => theme.font};
@@ -31,7 +29,7 @@ StripedTable.propTypes = {
   /** Beeing able to use it in Styled Components */
   className: string,
   /** Adds extra props to the element */
-  otherProps: object,
+  rest: object,
   children: node,
 };
 
