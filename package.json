@@ -1,6 +1,6 @@
 {
   "name": "wg-fe-ui",
-  "version": "1.13.5",
+  "version": "1.14.11",
   "main": "index.js",
   "scripts": {
     "build": "babel src -d dist --copy-files",
@@ -73,6 +73,7 @@
     "react-router-dom": "^5.1.2",
     "react-select": "^3.0.8",
     "storybook": "^5.3.18",
+    "storybook-react-router": "^1.0.8",
     "styled-components": "^4.3.2"
   },
   "devDependencies": {
@@ -99,7 +100,7 @@
     "formik": "^1.5.8",
     "jest": "^25.2.3",
     "jest-styled-components": "^6.3.3",
-    "mini-css-extract-plugin": "^0.9.0",
+    "mini-css-extract-plugin": "^0.7.0",
     "prettier": "^1.18.2",
     "react-router": "^5.1.2",
     "react-scripts": "^3.4.1",

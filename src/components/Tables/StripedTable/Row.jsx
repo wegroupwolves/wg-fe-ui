@@ -2,9 +2,9 @@ import React from 'react';
 import { string, object, node, func } from 'prop-types';
 import styled from 'styled-components';
 
-const Row = ({ className, children, onClick, ...otherProps }) => {
+const Row = ({ className, children, onClick, ...rest }) => {
   return (
-    <Tr className={className} onClick={onClick} {...otherProps}>
+    <Tr className={className} onClick={onClick} {...rest}>
       {children}
     </Tr>
   );
@@ -31,14 +31,14 @@ const Tr = styled.tr`
 `;
 
 Row.defaultProps = {
-  otherProps: {},
+  rest: {},
 };
 
 Row.propTypes = {
   /** Beeing able to use it in Styled Components */
   className: string,
   /** Adds extra props to the element */
-  otherProps: object,
+  rest: object,
   onClick: func,
   children: node,
 };

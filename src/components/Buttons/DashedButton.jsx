@@ -50,9 +50,11 @@ const StyledDashedButton = styled.div`
     border: ${({ theme, styleName }) =>
       styleName !== 'faded' ? null : `0.3rem dashed ${theme.brand.primary}`};
 
-    background-image: ${({ styleName }) =>
+    background-image: ${({ theme, styleName }) =>
       styleName !== 'faded'
-        ? `url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='5' ry='5' stroke='%23FF8000' stroke-width='4' stroke-dasharray='8%2c 8' stroke-dashoffset='0' stroke-linecap='square'/%3e%3c/svg%3e")`
+        ? `url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='5' ry='5' stroke='%23${theme.brand.primary.substring(
+            1,
+          )}' stroke-width='4' stroke-dasharray='8%2c 8' stroke-dashoffset='0' stroke-linecap='square'/%3e%3c/svg%3e")`
         : null};
   }
 `;

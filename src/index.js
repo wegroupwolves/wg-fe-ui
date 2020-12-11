@@ -38,6 +38,7 @@ export {
   ImageSelectBox,
   MaskedInput,
   TextArea,
+  MultiTabTextArea,
   TextInput,
   PhoneInput,
   SearchInput,
@@ -64,6 +65,8 @@ export {
   RiskObjectSelector,
   RiskObjectDisplay,
   LinkBox,
+  NotificationListBox,
+  NotificationPopUp,
   CodeBox,
   GuidedImage,
 } from './components/Boxes';
@@ -113,6 +116,10 @@ export {
   Body,
   DataBlock,
 } from './components/Typography';
+
+export { Link } from './components/Link';
+
+export { TimerWithPause } from './components/TimerWithPause';
 
 export {
   PhaseLabel,

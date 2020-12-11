@@ -34,6 +34,7 @@ storiesOf('Low level blocks/Modals', module)
           title={text('Modal title', 'Default Title')}
           small={boolean('Small modal?', false)}
           large={boolean('Larger modal?', false)}
+          width={text('Custom width', '')}
         >
           <p>This is some content for the modal</p>
 
@@ -66,18 +67,21 @@ storiesOf('Low level blocks/Modals', module)
           small={boolean('Small modal?', false)}
           large={boolean('Larger modal?', false)}
           currentStep={number('Current step', 0)}
+          visualSteps={boolean('Visual steps?', false)}
+          onLabelClick={function noRefCheck() {}}
+          pointerEnabled={boolean('Pointer enabled?', false)}
           steps={[
             {
               step: 0,
-              label: 'Generate offers - Acknowledgements',
+              label: 'Acknowledgements',
             },
             {
               step: 1,
-              label: 'Generate offers - Informatieplicht fiches',
+              label: 'Informatieplicht fiches',
             },
             {
               step: 2,
-              label: 'Generate offers - Termination letter',
+              label: 'Termination letter',
             },
           ]}
         >

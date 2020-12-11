@@ -1,5 +1,5 @@
 import React from 'react';
-import { string, object, node, func, element, shape } from 'prop-types';
+import { string, object, node, func, element, bool } from 'prop-types';
 import styled from 'styled-components';
 
 const Item = ({
@@ -73,7 +73,7 @@ Item.propTypes = {
   className: string,
   /** Adds extra props to the element */
   otherProps: object,
-  isActive: shape({}),
+  isActive: bool,
   icon: element,
   onClick: func,
   children: node.isRequired,

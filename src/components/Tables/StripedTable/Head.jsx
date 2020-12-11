@@ -1,23 +1,23 @@
 import React from 'react';
 import { string, object, node } from 'prop-types';
 
-const Head = ({ className, children, ...otherProps }) => {
+const Head = ({ className, children, ...rest }) => {
   return (
-    <thead className={className} {...otherProps}>
+    <thead className={className} {...rest}>
       <tr>{children}</tr>
     </thead>
   );
 };
 
 Head.defaultProps = {
-  otherProps: {},
+  rest: {},
 };
 
 Head.propTypes = {
   /** Beeing able to use it in Styled Components */
   className: string,
   /** Adds extra props to the element */
-  otherProps: object,
+  rest: object,
   children: node,
 };
 

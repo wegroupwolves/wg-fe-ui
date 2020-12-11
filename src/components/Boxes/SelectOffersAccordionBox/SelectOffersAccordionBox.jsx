@@ -50,7 +50,7 @@ const StyledAccordionBox = styled.div`
 `;
 
 SelectOffersAccordionBox.propTypes = {
-  children: node.isRequired,
+  children: node,
 };
 
 SelectOffersAccordionBox.Header = SelectOffersAccordionBoxHeader;

@@ -12,6 +12,7 @@ const TextArea = ({
   disabled,
   placeholder,
   onChange,
+  onBlur,
   setFieldTouched,
   error,
   warning,
@@ -54,9 +55,10 @@ const TextArea = ({
     }
   }, [value]);
 
-  const handleBlur = () => {
+  const handleBlur = e => {
     setFieldTouched(name, true);
     setFocus(false);
+    onBlur({ name: e.target.name, value: e.target.value });
   };
 
   return (
@@ -159,6 +161,7 @@ TextArea.defaultProps = {
   touched: false,
   setFieldTouched: () => {},
   onChange: () => {},
+  onBlur: () => {},
   otherProps: {},
 };
 
@@ -166,9 +169,9 @@ TextArea.propTypes = {
   /** Beeing able to use it in Styled Components */
   className: string,
   /** label above the input */
-  children: node.isRequired,
+  children: node,
   /** name of input and label */
-  name: string.isRequired,
+  name: string,
   /** if true input is disabled */
   disabled: bool,
   /** example value in the input */
@@ -183,6 +186,8 @@ TextArea.propTypes = {
   setFieldTouched: func,
   /** returns onChange event */
   onChange: func,
+  /** returns onBlur event */
+  onBlur: func,
   /** max input length */
   maxLength: number,
   /** boolean to set counter visibility */

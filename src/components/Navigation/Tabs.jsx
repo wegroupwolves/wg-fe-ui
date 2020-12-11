@@ -8,7 +8,7 @@ import React, {
 import styled from 'styled-components';
 import { string, bool, func, node } from 'prop-types';
 
-const Tabs = ({ defaultActive, onSelect, className, children }) => {
+const Tabs = ({ defaultActive, onSelect, className, children, activeTab }) => {
   const [active, setActive] = useState();
   const navigationList = useRef(null);
   const currentActiveClientRect = navigationList?.current?.children
@@ -18,7 +18,7 @@ const Tabs = ({ defaultActive, onSelect, className, children }) => {
 
   useEffect(() => {
     setDefaultTabActive();
-  }, []);
+  }, [defaultActive]);
 
   function setDefaultTabActive() {
     let tabName;
@@ -33,10 +33,24 @@ const Tabs = ({ defaultActive, onSelect, className, children }) => {
   }
 
   useEffect(() => {
-    if (active) {
+    if (active && !activeTab) {
       onSelect(active);
     }
   }, [active]);
+
+  useEffect(() => {
+    if (activeTab) {
+      setActive(activeTab);
+    }
+  }, [activeTab]);
+
+  const handleTabClick = tabName => {
+    if (activeTab) {
+      onSelect(tabName);
+    } else {
+      setActive(tabName);
+    }
+  };
 
   return (
     <TabContainer className={className}>
@@ -46,7 +60,7 @@ const Tabs = ({ defaultActive, onSelect, className, children }) => {
             const { props } = child;
             return cloneElement(child, {
               active: props.name === active,
-              onClick: () => setActive(props.name),
+              onClick: () => handleTabClick(props.name),
             });
           })}
         </LinkList>
@@ -70,15 +84,16 @@ Tabs.defaultProps = {
 
 Tabs.propTypes = {
   /** only for Tabs.Item */
-  name: string.isRequired,
+  name: string,
   /** Dont set on Tabs.Item this is only for internal usage */
   active: bool,
   /** Dont set on Tabs.Item this is only for internal usage */
   onClick: func,
   defaultActive: string,
-  children: node.isRequired,
+  children: node,
   onSelect: func,
   className: string,
+  activeTab: string,
 };
 
 const Tab = ({ name, rightAlign, children, active, onClick, width }) => {
@@ -112,7 +127,7 @@ Tab.propTypes = {
 };
 
 const Item = styled.li`
-  font-weight: ${props => (props.active ? 700 : 500)};
+  color: ${props => (props.active ? 'black' : '#8990a3')};
   cursor: pointer;
   font-size: 1.6rem;
   text-align: center;
@@ -122,7 +137,7 @@ const Item = styled.li`
   border-bottom: 2px solid rgba(0, 0, 0, 0);
   text-transform: capitalize;
   &:hover {
-    font-weight: 700;
+    color: black;
   }
 `;
 
@@ -133,7 +148,7 @@ const LinkList = styled.ul`
 const Selector = styled.div`
   position: absolute;
   height: 2px;
-  background-color: #ff8000;
+  background-color: ${({ theme }) => theme.brand.primary};
   left: ${props => (props.left ? `${props.left}px` : 'inherit')};
   width: ${props => (props.width ? `${props.width}px` : 'inherit')};
   transition: 0.3s ease-out;

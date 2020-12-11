@@ -13,14 +13,14 @@ const ProspectInfoBar = ({ icon, children, onClick }) => {
 
       <BarContent>{children}</BarContent>
 
-      {onClick ? (
-        <BarButton>
+      <BarButton>
+        {onClick ? (
           <RoundedButton
             icon={<IconActionChevronRight size={20} />}
             onClick={onClick}
           />
-        </BarButton>
-      ) : null}
+        ) : null}
+      </BarButton>
     </Bar>
   );
 };
@@ -35,16 +35,14 @@ const Bar = styled.div`
   border-radius: 4px;
   display: flex;
   justify-content: space-between;
-  align-items: stretch;
 `;
 
 const BarIcon = styled.div`
-  flex: 0 0 8.4rem;
   display: flex;
   justify-content: center;
   align-items: center;
   border-right: 1px solid #e4e4e4;
-  padding: 2.4rem 0;
+  padding: 2rem;
 
   svg path {
     fill: ${({ theme }) => theme.ui.disabled};
@@ -52,25 +50,24 @@ const BarIcon = styled.div`
 `;
 
 const BarContent = styled.div`
-  flex: 1 0 auto;
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(4, auto);
+  row-gap: 1.5rem;
+  column-gap: 3rem;
   align-items: center;
-  padding: 0 2.4rem;
+  padding: 1.5rem 3rem;
 
-  /** Disabled to ensure every child gets equal spacing */
-  /* stylelint-disable-next-line selector-max-universal */
-  > * {
-    margin-right: 3.2rem;
+  @media screen and (max-width: 900px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
 
-    /* stylelint-disable-next-line selector-max-universal */
-    &:last-child {
-      margin-right: 0;
-    }
+  @media screen and (max-width: 600px) {
+    grid-template-columns: repeat(1, 1fr);
   }
 `;
 
 const BarButton = styled.div`
-  flex: 0 0 8.4rem;
+  margin-right: 2rem;
   display: flex;
   justify-content: center;
   align-items: center;

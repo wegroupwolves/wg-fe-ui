@@ -11,6 +11,8 @@ const Pagination = ({
   base,
   otherFilters,
   onClick,
+  nextText,
+  prevText,
   ...otherProps
 }) => {
   const urls = [];
@@ -26,8 +28,6 @@ const Pagination = ({
     }
   }
 
-  console.log(urls);
-
   const prevUrl = currentPage - 1;
   const nextUrl = currentPage + 1;
 
@@ -41,7 +41,6 @@ const Pagination = ({
           ?.getAttribute('href')
           ?.split('/')
           ?.pop() || [];
-      console.log(page);
 
       onClick(page);
     }
@@ -52,7 +51,7 @@ const Pagination = ({
       {currentPage > 1 ? (
         <PaginationButton onClick={handleOnclick} to={urls[prevUrl].url}>
           <ChevronLeft color="#C1C1C1" />
-          <span className="label">Prev</span>
+          <span className="label">{prevText}</span>
         </PaginationButton>
       ) : (
         ''
@@ -66,14 +65,18 @@ const Pagination = ({
         ) : (
           ''
         )}
-        {currentPage > 4 ? <PaginationPage disabled>...</PaginationPage> : ''}
+        {currentPage > 4 ? (
+          <PaginationPageNoLink>...</PaginationPageNoLink>
+        ) : (
+          ''
+        )}
 
         {urls.map(url => {
           return url.page >= currentPage - 2 && url.page <= currentPage + 2 ? (
             <PaginationPage
               to={url.url}
               key={url.page}
-              active={url.page === currentPage ? true : false}
+              active={url.page === currentPage ? 1 : 0}
               onClick={handleOnclick}
             >
               {url.page}
@@ -84,7 +87,7 @@ const Pagination = ({
         })}
 
         {currentPage < totalPages - 3 ? (
-          <PaginationPage disabled>...</PaginationPage>
+          <PaginationPageNoLink disabled>...</PaginationPageNoLink>
         ) : (
           ''
         )}
@@ -99,7 +102,7 @@ const Pagination = ({
 
       {currentPage < totalPages ? (
         <PaginationButton onClick={handleOnclick} to={urls[nextUrl].url}>
-          <span className="label">Next</span>
+          <span className="label">{nextText}</span>
           <ChevronRight color="#C1C1C1" />
         </PaginationButton>
       ) : (
@@ -187,8 +190,24 @@ const PaginationPage = styled(Link)`
   }
 `;
 
+const PaginationPageNoLink = styled.div`
+  padding: 4px 5px;
+  margin: 0 2px;
+  background-color: ${({ active, theme }) =>
+    active ? theme.brand.primary : 'white'};
+  display: block;
+  border-radius: 5px;
+  color: ${({ active, theme }) => (active ? 'white' : theme.typo.interactive)};
+  font-size: 1.4rem;
+  line-height: 130%;
+  transition: color 0.15s ease-in-out;
+  text-decoration: none;
+`;
+
 Pagination.defaultProps = {
   onClick: () => {},
+  prevText: 'Prev',
+  nextText: 'Next',
 };
 
 Pagination.propTypes = {
@@ -202,6 +221,10 @@ Pagination.propTypes = {
   base: string,
   /** Callback that fire's when there is no base */
   onClick: func,
+  /** Text which has to be displayed on the previous button */
+  prevText: string,
+  /** Text which has to be displayed on the next button */
+  nextText: string,
   /** Extra filters to be passed to the URL. */
   otherFilters: string,
 };

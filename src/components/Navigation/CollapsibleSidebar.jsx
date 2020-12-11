@@ -1,8 +1,21 @@
 import React, { useState } from 'react';
-import { string, node, bool } from 'prop-types';
+import { string, node, bool, func } from 'prop-types';
 import styled from 'styled-components';
 
-const CollapsibleSidebar = ({ label, children, open }) => {
+const CollapsibleSidebar = ({
+  label,
+  children,
+  open,
+  selectAll,
+  onSelectAllClick,
+  onDeselectAllClick,
+  isAllSelected,
+  hideText = 'Hide',
+  showText = 'Show',
+  selectAllText = 'Select all',
+  deselectAllText = 'Deselect all',
+  hideButton,
+}) => {
   const [SideBarOpen, setSideBarOpen] = useState(open);
 
   const handleToggle = () => {
@@ -13,9 +26,22 @@ const CollapsibleSidebar = ({ label, children, open }) => {
     <Sidebar>
       <SidebarHeader>
         <span className="title">{label}</span>
-        <SidebarToggle onClick={handleToggle}>
-          {SideBarOpen ? 'Hide' : 'Show'}
-        </SidebarToggle>
+        {!hideButton &&
+          (selectAll ? (
+            <SidebarToggle
+              onClick={args =>
+                isAllSelected
+                  ? onDeselectAllClick(args)
+                  : onSelectAllClick(args)
+              }
+            >
+              {isAllSelected ? deselectAllText : selectAllText}
+            </SidebarToggle>
+          ) : (
+            <SidebarToggle onClick={handleToggle}>
+              {SideBarOpen ? hideText : showText}
+            </SidebarToggle>
+          ))}
       </SidebarHeader>
 
       <SidebarContent open={SideBarOpen}>{children}</SidebarContent>
@@ -49,6 +75,7 @@ const SidebarContent = styled.div`
 `;
 
 const SidebarToggle = styled.a`
+  margin-left: 2rem;
   font-size: 1rem;
   line-height: 1.6rem;
   text-transform: uppercase;
@@ -69,6 +96,33 @@ CollapsibleSidebar.propTypes = {
 
   /** Initial opened or closed state */
   open: bool,
+
+  /** If select  all should show instead of hide */
+  selectAll: bool,
+
+  /** The select all event */
+  onSelectAllClick: func,
+
+  /** The deselect all event */
+  onDeselectAllClick: func,
+
+  /** Are all fields selected */
+  isAllSelected: bool,
+
+  /** Content for hide text */
+  hideText: string,
+
+  /** Content for show text */
+  showText: string,
+
+  /** Content for select all text */
+  selectAllText: string,
+
+  /** Content for deselect all text */
+  deselectAllText: string,
+
+  /** Should button on the right be hidden */
+  hideButton: bool,
 };
 
 CollapsibleSidebar.defaultProps = {

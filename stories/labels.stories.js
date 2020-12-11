@@ -29,6 +29,7 @@ const LabelTypes = {
   Prospect: 'prospect',
   Customer: 'customer',
   Lead: 'lead',
+  Guarantee: 'guarantee',
 };
 
 const Statuses = {

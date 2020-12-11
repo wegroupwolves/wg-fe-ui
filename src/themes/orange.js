@@ -22,7 +22,7 @@ export default (function() {
       text: '#0E0E0E',
       highlight: '#505050',
       subTitle: '#5B5550',
-      interactive: '#C1C1C1',
+      interactive: '#858585',
       outline: '#CCCCCC',
       editable: '#3297FD',
       selected: brandLight,
@@ -63,6 +63,9 @@ export default (function() {
 
       customer: '#E3F0E2',
       customerText: '#75B46E',
+
+      guarantee: '#F0F1F3',
+      guaranteeText: '#8990A3',
     },
     font: brandFont,
   };

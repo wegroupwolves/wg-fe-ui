@@ -1,11 +1,17 @@
 import React from 'react';
-import { string, bool, object, func } from 'prop-types';
+import { string, bool, object, func, node } from 'prop-types';
 import styled from 'styled-components';
 
-const TertiaryButton = ({ onClick, label, disabled, ...otherProps }) => {
+const TertiaryButton = ({
+  onClick,
+  label,
+  disabled,
+  children,
+  ...otherProps
+}) => {
   return (
     <StyledTertiaryButton onClick={onClick} disabled={disabled} {...otherProps}>
-      {label}
+      {label ? label : children}
     </StyledTertiaryButton>
   );
 };
@@ -31,6 +37,8 @@ TertiaryButton.propTypes = {
   label: string,
   disabled: bool,
   otherProps: object,
+  /** Children nodes */
+  children: node,
   /** Function to be ran when this button is clicked. */
   onClick: func.isRequired,
 };

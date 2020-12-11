@@ -50,6 +50,7 @@ import {
 } from '../src';
 
 import * as Icons from '../src/components/Icons';
+import MultiTabTextArea from '../src/components/Inputs/MultiTabTextArea';
 const IconsKeys = Object.keys(Icons);
 const IconsList = {};
 IconsKeys.map(IconKey => {
@@ -244,6 +245,36 @@ storiesOf('Low level blocks/Inputs', module)
     );
   })
 
+  .add('MultiTabTextArea', () => {
+    let error = text('Error', '');
+    return (
+      <MultiTabTextArea
+        disabled={boolean('Disabled', false)}
+        onChange={() => null}
+        onReset={() => null}
+        values={{}}
+        maxLength={100}
+        errors={error ? { input_nl: error } : {}}
+        areas={[
+          {
+            tab: 'EN',
+            name: 'input_en',
+          },
+          {
+            tab: 'NL',
+            name: 'input_nl',
+          },
+          {
+            tab: 'FR',
+            name: 'input_fr',
+          },
+        ]}
+      >
+        Text area
+      </MultiTabTextArea>
+    );
+  })
+
   .add('DateInput', () => {
     let error = text('Error', '');
     let touched = boolean('Touched', false);
@@ -416,6 +447,7 @@ storiesOf('Low level blocks/Inputs', module)
         max={number('Maximum value', 100)}
         inputAppend={text('Input append', '%')}
         disabled={boolean('Disabled?', false)}
+        roundNumber={boolean('Round numbers?', true)}
       ></AmountInput>
     );
   })
@@ -466,8 +498,13 @@ storiesOf('Low level blocks/Inputs', module)
         <ThemePicker
           themes={themeList}
           activeTheme={'orange'}
+          error={text('Error', 'Choose an option')}
           disabled={boolean('Disabled?', false)}
-        />
+          opensUp={boolean('Open up?', false)}
+          onChange={() => {}}
+        >
+          ThemePicker
+        </ThemePicker>
       </ThemePickerContainer>
     );
   })
@@ -535,12 +572,14 @@ storiesOf('Low level blocks/Inputs', module)
         <DropDown
           name="test-dropdown"
           options={DropDownOptions}
+          opensUp={boolean('Open up?', false)}
           onValueChange={picked => {
             console.log(picked);
           }}
           disabled={boolean('Disabled?', false)}
           value={3}
           placeholder={text('Placeholder', 'Choose an option')}
+          error={text('Error', 'Choose an option')}
         >
           Label
         </DropDown>
