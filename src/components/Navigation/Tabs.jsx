@@ -8,7 +8,14 @@ import React, {
 import styled from 'styled-components';
 import { string, bool, func, node } from 'prop-types';
 
-const Tabs = ({ defaultActive, onSelect, className, children, activeTab }) => {
+const Tabs = ({
+  defaultActive,
+  onSelect,
+  className,
+  children,
+  activeTab,
+  ...rest
+}) => {
   const [active, setActive] = useState();
   const navigationList = useRef(null);
   const currentActiveClientRect = navigationList?.current?.children
@@ -53,7 +60,7 @@ const Tabs = ({ defaultActive, onSelect, className, children, activeTab }) => {
   };
 
   return (
-    <TabContainer className={className}>
+    <TabContainer className={className} {...rest}>
       <SelectorContainer>
         <LinkList ref={navigationList}>
           {Children.toArray(children).map(child => {
@@ -96,7 +103,15 @@ Tabs.propTypes = {
   activeTab: string,
 };
 
-const Tab = ({ name, rightAlign, children, active, onClick, width }) => {
+const Tab = ({
+  name,
+  rightAlign,
+  children,
+  active,
+  onClick,
+  width,
+  ...rest
+}) => {
   return (
     <Item
       onClick={onClick}
@@ -104,6 +119,7 @@ const Tab = ({ name, rightAlign, children, active, onClick, width }) => {
       rightAlign={rightAlign}
       active={active}
       width={width}
+      {...rest}
     >
       {children}
     </Item>
