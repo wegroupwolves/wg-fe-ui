@@ -113,10 +113,6 @@ const DateinputNew = ({
   });
 
   useEffect(() => {
-    console.log(date);
-  }, [date]);
-
-  useEffect(() => {
     const dateObj = getDateObjFromValue(value);
     setDate(dateObj);
   }, [value]);
