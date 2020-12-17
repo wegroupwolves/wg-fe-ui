@@ -538,7 +538,22 @@ storiesOf('Low level blocks/Inputs', module)
 
   .add('DateInputNew', () => {
     return (
-      <StyledDateInputNew value={text('value', '2013-03-10T02:00:00.000Z')} />
+      <StyledDateInputNew
+        value={select(
+          'Date input',
+          {
+            '2013-03-10T02:00:00.000Z': '2013-03-10T02:00:00.000Z',
+            '{ day: 3, month: 10, year: 2013 }': {
+              day: 3,
+              month: 10,
+              year: 2013,
+            },
+            '03/10/2013': '03/10/2013',
+            '03-10-2013': '03-10-2013',
+          },
+          '2013-03-10T02:00:00.000Z',
+        )}
+      />
     );
   })
 
