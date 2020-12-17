@@ -1,14 +1,13 @@
 // stylelint-disable value-keyword-case
 import React, { useEffect, useState } from 'react';
 import { string, object, func, element } from 'prop-types';
-import styled from 'styled-components';
+import styled, { keyframes, css } from 'styled-components';
 
 // Components
 import LinkHandler from '../Link';
 import Timer from '../TimerWithPause';
 
 let hideTimer;
-let hidePopUpFunctionTimer;
 
 const NotificationPopUp = ({
   title,
@@ -19,10 +18,10 @@ const NotificationPopUp = ({
   hidePopup = () => {},
   onClick = () => {},
   className,
-  hideDelay = 10,
+  hideDelay = 5,
   otherProps
 }) => {
-  const [show, setShow] = useState(false);
+  const [show, setShow] = useState(true);
 
   useEffect(() => {
     setShow(true);
@@ -30,18 +29,18 @@ const NotificationPopUp = ({
     hideTimer = new Timer(() => {
       // After the hideDelay timer is done, start the hide animation
       setShow(false);
-      hidePopUpFunctionTimer = setTimeout(() => {
+      let hidePopUpFunctionTimer = setTimeout(() => {
         // after hide animation return the callback function
         hidePopup();
       }, 500);
     }, hideDelay * 1000);
   }, []);
+
   return (
     <Container
       showPopup={show}
       onMouseEnter={() => {
         hideTimer.pause();
-        if (hidePopUpFunctionTimer) clearTimeout(hidePopUpFunctionTimer);
         setShow(true);
       }}
       onMouseLeave={() => hideTimer.resume()}
@@ -72,6 +71,31 @@ const NotificationPopUp = ({
   );
 };
 
+const SlideIn = keyframes`
+  0% {
+    right: -100%;
+    opacity: 0;
+  }
+  80% {
+    right: 5%;
+    opacity: 1;
+  }
+  100% {
+    right: 0;
+  }
+`;
+
+const SlideOut = keyframes`
+  0% {
+    right: 0;
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    right: -100%;
+  }
+`;
+
 const TimeLeft = styled.div`
   font-weight: 500;
   font-size: 14px;
@@ -95,13 +119,16 @@ const IconCircle = styled.div`
   }
 `;
 
-const Container = styled(LinkHandler)`
+const Container = styled(({showPopup, ...props}) => <LinkHandler {...props} />)`
   box-sizing: border-box;
   display: flex;
   width: 100%;
+  word-break: break-word;
+  margin-bottom: 1rem;
   position: relative;
   font-family: ${({ theme }) => theme.font};
   flex: 1 1 100%;
+  max-height: 20rem;
   background: white;
   border: 0.5px solid #ECECEC;
   text-decoration: none;
@@ -109,19 +136,17 @@ const Container = styled(LinkHandler)`
   filter: drop-shadow(-4px 4px 12px rgba(0, 0, 0, 0.05));
   border-radius: 5px;
   opacity: 1;
-  max-height: 15rem;
   cursor: pointer;
+  top: 0;
+  right: 0;
   overflow: hidden;
   padding: 2rem;
   transition: all 500ms ease;
-  transform: scaleY(1);
-  ${({ showPopup }) => !showPopup && `
-    opacity: 0;
-    max-height: 0;
-    transform: scaleY(0);
-    padding: 0;
-    border-color: rgba(0,0,0,0);
-    border-width: 0;
+  z-index: 10;
+  animation: ${SlideIn} 500ms forwards ease;
+  ${({ showPopup }) => !showPopup && css`
+    animation: ${SlideOut} 500ms forwards ease;
+    z-index: 9;
   `}
 
   &:hover {
@@ -177,5 +202,7 @@ NotificationPopUp.propTypes = {
   /** Extra props to pass to the element. */
   otherProps: object,
 };
+
+NotificationPopUp.displayName = 'NotificationPopUp';
 
 export default NotificationPopUp;

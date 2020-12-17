@@ -1,9 +1,9 @@
 import React, { createContext, useContext } from 'react';
-import { string, bool, node, func, shape, number } from 'prop-types';
+import { string, bool, node, func, array, number } from 'prop-types';
 import styled, { css } from 'styled-components';
 import Drawer from 'react-drag-drawer';
-
 import CloseIcon from '../Icons/IconActionClose';
+
 const StepModalContext = createContext();
 
 const StyledModalActions = ({ children, position, className }) => {
@@ -31,19 +31,20 @@ const ModalWithSteps = ({
   currentStep,
   visualSteps,
   title,
+  stepText = 'Step',
 }) => {
   return (
     <StepModalContext.Provider value={{ currentStep }}>
       <StyledDrawer
         open={showModal}
-        onRequestClose={canClose ? () => setShowModal(!showModal) : ''}
+        onRequestClose={canClose ? () => setShowModal(!showModal) : () => {}}
       >
         <ModalContainer className={className} small={small} large={large}>
           <ModalTitleBar visualSteps={visualSteps}>
             {visualSteps ? (
-              <VisualStepsWrapper>
+              <TopStepsWrapper>
                 <Title>{title}</Title>
-                <StepsWrapper>
+                <VisualStepsWrapper>
                   {steps.map(({ step, label }) => (
                     <StepArrow
                       key={step}
@@ -51,6 +52,8 @@ const ModalWithSteps = ({
                       fill={
                         currentStep - 1 >= step &&
                         step < steps[steps.length - 1].step
+                          ? 1
+                          : 0
                       }
                       first={step === 0}
                       last={step === steps[steps.length - 1].step}
@@ -62,17 +65,19 @@ const ModalWithSteps = ({
                       </div>
                     </StepArrow>
                   ))}
-                </StepsWrapper>
-              </VisualStepsWrapper>
+                </VisualStepsWrapper>
+              </TopStepsWrapper>
             ) : (
               <ModalTitle>
-                Step {currentStep + 1}/{steps.length}
-                {steps.map(
-                  ({ step, label }) =>
-                    step === currentStep && (
-                      <StepLabel key={step}>{label}</StepLabel>
-                    ),
-                )}
+                {stepText} {currentStep + 1}/{steps.length}
+                <StepsWrapper>
+                  {steps.map(
+                    ({ step, label }) =>
+                      step === currentStep && (
+                        <StepLabel key={step}>{label}</StepLabel>
+                      ),
+                  )}
+                </StepsWrapper>
               </ModalTitle>
             )}
             {canClose ? (
@@ -100,11 +105,17 @@ const StepArrowLabel = styled.div`
   font-weight: ${({ isCurrentStep }) => (isCurrentStep ? 700 : 500)};
 `;
 
-const StepsWrapper = styled.div`
+const TopStepsWrapper = styled.div`
   display: flex;
   flex-grow: 1;
   align-items: center;
   padding: 0 2rem;
+`;
+
+const StepsWrapper = styled.div`
+  display: flex;
+  flex-grow: 1;
+  align-items: center;
 `;
 
 const StepArrow = styled.div`
@@ -258,6 +269,7 @@ const ModalTitleBar = styled.div`
 `;
 
 const ModalTitle = styled.h1`
+  flex-grow: 1;
   color: #8990a3;
   display: flex;
   text-transform: uppercase;
@@ -342,8 +354,10 @@ ModalWithSteps.propTypes = {
   large: bool,
   className: string,
   currentStep: number.isRequired,
-  steps: shape([]).isRequired,
+  steps: array.isRequired,
   visualSteps: bool,
+  /** Step text */
+  stepText: string.isRequired,
 };
 
 ModalWithSteps.defaultProps = {

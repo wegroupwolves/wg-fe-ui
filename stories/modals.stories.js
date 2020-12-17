@@ -34,6 +34,7 @@ storiesOf('Low level blocks/Modals', module)
           title={text('Modal title', 'Default Title')}
           small={boolean('Small modal?', false)}
           large={boolean('Larger modal?', false)}
+          width={text('Custom width', '')}
         >
           <p>This is some content for the modal</p>
 

@@ -2,9 +2,9 @@ import React from 'react';
 import { string, object, node } from 'prop-types';
 import styled from 'styled-components';
 
-const HeaderCell = ({ width, className, children, ...otherProps }) => {
+const HeaderCell = ({ width, className, children, ...rest }) => {
   return (
-    <Th width={width} className={className} {...otherProps}>
+    <Th width={width} className={className} {...rest}>
       {children}
     </Th>
   );
@@ -21,7 +21,7 @@ const Th = styled.th`
 `;
 
 HeaderCell.defaultProps = {
-  otherProps: {},
+  rest: {},
   width: 'unset',
 };
 
@@ -29,7 +29,7 @@ HeaderCell.propTypes = {
   /** Beeing able to use it in Styled Components */
   className: string,
   /** Adds extra props to the element */
-  otherProps: object,
+  rest: object,
   children: node,
   /** The width of the tableCell element */
   width: string,

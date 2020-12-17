@@ -65,14 +65,18 @@ const Pagination = ({
         ) : (
           ''
         )}
-        {currentPage > 4 ? <PaginationPage disabled>...</PaginationPage> : ''}
+        {currentPage > 4 ? (
+          <PaginationPageNoLink>...</PaginationPageNoLink>
+        ) : (
+          ''
+        )}
 
         {urls.map(url => {
           return url.page >= currentPage - 2 && url.page <= currentPage + 2 ? (
             <PaginationPage
               to={url.url}
               key={url.page}
-              active={url.page === currentPage ? true : false}
+              active={url.page === currentPage ? 1 : 0}
               onClick={handleOnclick}
             >
               {url.page}
@@ -83,7 +87,7 @@ const Pagination = ({
         })}
 
         {currentPage < totalPages - 3 ? (
-          <PaginationPage disabled>...</PaginationPage>
+          <PaginationPageNoLink disabled>...</PaginationPageNoLink>
         ) : (
           ''
         )}
@@ -184,6 +188,20 @@ const PaginationPage = styled(Link)`
         ? theme.typo.interactive
         : theme.brand.primary};
   }
+`;
+
+const PaginationPageNoLink = styled.div`
+  padding: 4px 5px;
+  margin: 0 2px;
+  background-color: ${({ active, theme }) =>
+    active ? theme.brand.primary : 'white'};
+  display: block;
+  border-radius: 5px;
+  color: ${({ active, theme }) => (active ? 'white' : theme.typo.interactive)};
+  font-size: 1.4rem;
+  line-height: 130%;
+  transition: color 0.15s ease-in-out;
+  text-decoration: none;
 `;
 
 Pagination.defaultProps = {

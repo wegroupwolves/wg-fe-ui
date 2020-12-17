@@ -26,6 +26,8 @@ const MaskedInput = forwardRef(
       value,
       disabled,
       onChange,
+      onBlur,
+      onFocus,
       setFieldTouched,
       error,
       warning,
@@ -81,8 +83,8 @@ const MaskedInput = forwardRef(
             maskChar={maskChar}
             value={inputValue}
             onChange={handleChange}
-            onBlur={handleBlur}
-            onFocus={handleFocus}
+            onBlur={onBlur || handleBlur}
+            onFocus={onFocus || handleFocus}
           >
             {inputProps => (
               <StyledInput
@@ -193,6 +195,10 @@ MaskedInput.propTypes = {
   error: string,
   /** returns onChange event */
   onChange: func,
+  /** returns onBlur event */
+  onBlur: func,
+  /** returns onFocus event */
+  onFocus: func,
   /** Adds extra props to the element */
   otherProps: object,
   /** sets initial value */

@@ -38,6 +38,7 @@ export {
   ImageSelectBox,
   MaskedInput,
   TextArea,
+  MultiTabTextArea,
   TextInput,
   PhoneInput,
   SearchInput,
@@ -65,6 +66,7 @@ export {
   RiskObjectDisplay,
   LinkBox,
   NotificationListBox,
+  NotificationPopUp,
   CodeBox,
   GuidedImage,
 } from './components/Boxes';

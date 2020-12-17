@@ -251,7 +251,6 @@ const DateInput = forwardRef(
             onBlur={onBlur}
           >
             <StyledSingleInputDate
-              id="day"
               value={date.day}
               data-maxlengthvalue={2}
               maxLength={2}
@@ -268,7 +267,6 @@ const DateInput = forwardRef(
             />
             {'/'}
             <StyledSingleInputDate
-              id="month"
               value={date.month}
               data-maxlengthvalue={2}
               maxLength={2}
@@ -285,7 +283,6 @@ const DateInput = forwardRef(
             />
             {'/'}
             <StyledSingleInputDate
-              id="year"
               value={date.year}
               maxLength={4}
               data-maxlengthvalue={9999}
@@ -402,9 +399,9 @@ DateInput.propTypes = {
   /** Beeing able to use it in Styled Components */
   className: string,
   /** name of input and label */
-  name: string.isRequired,
+  name: string,
   /** label above the input */
-  children: node.isRequired,
+  children: node,
   /** type of input: email, text, ... */
   disabled: bool,
   /** example value in the input */
