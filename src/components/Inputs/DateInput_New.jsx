@@ -174,42 +174,46 @@ const DateinputNew = ({
 
   return (
     <Container className={className} name={name} {...rest}>
-      <StyledLabel disabled={disabled} />
-      {children}
-      <Input>
-        <DateInput
-          name="day"
-          placeholder="DD"
-          maxLength={2}
-          onChange={handleFieldChange}
-          onBlur={handleFieldBlur}
-          value={date.day}
-          type="number"
-        />
-        <Slash>/</Slash>
-        <DateInput
-          name="month"
-          placeholder="MM"
-          maxLength={2}
-          ref={monthRef}
-          onChange={handleFieldChange}
-          onBlur={handleFieldBlur}
-          value={date.month}
-          type="number"
-        />
-        <Slash>/</Slash>
-        <DateInput
-          name="year"
-          placeholder="YYYY"
-          maxLength={4}
-          ref={yearRef}
-          onChange={handleFieldChange}
-          onBlur={handleFieldBlur}
-          value={date.year}
-          type="number"
-          year
-        />
-      </Input>
+      <StyledLabel disabled={disabled}>
+        {children}
+        <Input disabled={disabled}>
+          <DateInput
+            name="day"
+            placeholder="DD"
+            maxLength={2}
+            onChange={handleFieldChange}
+            onBlur={handleFieldBlur}
+            value={date.day}
+            disabled={disabled}
+            type="number"
+          />
+          <Slash>/</Slash>
+          <DateInput
+            name="month"
+            placeholder="MM"
+            maxLength={2}
+            ref={monthRef}
+            onChange={handleFieldChange}
+            onBlur={handleFieldBlur}
+            value={date.month}
+            disabled={disabled}
+            type="number"
+          />
+          <Slash>/</Slash>
+          <DateInput
+            name="year"
+            placeholder="YYYY"
+            maxLength={4}
+            ref={yearRef}
+            onChange={handleFieldChange}
+            onBlur={handleFieldBlur}
+            value={date.year}
+            disabled={disabled}
+            type="number"
+            year
+          />
+        </Input>
+      </StyledLabel>
     </Container>
   );
 };
@@ -220,7 +224,7 @@ const Input = styled.div`
   grid-template-columns: repeat(3, 1fr);
   font-size: 1.7rem;
   width: 100%;
-  background-color: white;
+  background-color: ${({ disabled }) => (disabled ? '#F0F1F3' : 'white')};
   padding-left: 1.2rem;
   margin-top: 1.4rem;
   border: 0.1rem solid;

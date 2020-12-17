@@ -570,6 +570,7 @@ storiesOf('Low level blocks/Inputs', module)
   .add('DateInputNew', () => {
     return (
       <StyledDateInputNew
+        disabled={boolean('Disabled', false)}
         value={select(
           'Date input',
           {
@@ -584,7 +585,9 @@ storiesOf('Low level blocks/Inputs', module)
           },
           '2013-03-10T02:00:00.000Z',
         )}
-      />
+      >
+        {text('Label', '')}
+      </StyledDateInputNew>
     );
   })
 
