@@ -90,9 +90,6 @@ const DateinputNew = ({
       if (value.includes('-') && value.includes('/')) {
         throw new Error('No valid seperators, use / or -');
       }
-      if (value.includes('-') && value.includes('/')) {
-        throw new Error('Date contains / and -, use only 1 for a date');
-      }
 
       setReturnType(value.includes('/') ? 'slash' : 'dash');
       const values = value.split(value.includes('/') ? '/' : '-');
@@ -246,7 +243,7 @@ const DateinputNew = ({
     <Container className={className} name={name} {...rest}>
       <StyledLabel disabled={disabled}>
         {children}
-        <Input disabled={disabled}>
+        <Input disabled={disabled} error={error}>
           <DateInput
             name="day"
             placeholder="DD"
@@ -288,9 +285,37 @@ const DateinputNew = ({
           />
         </Input>
       </StyledLabel>
+
+      {error ? (
+        <ErrorContainer className="errorBox">
+          <ErrorMss name={name} component="p" className="error">
+            {error}
+          </ErrorMss>
+        </ErrorContainer>
+      ) : null}
     </Container>
   );
 };
+const ErrorContainer = styled.div`
+  height: 1.5rem;
+  margin-top: 0.8rem;
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: flex-end;
+  text-align: right;
+  margin-right: 0.5rem;
+  color: ${({ theme }) => theme.brand.primary};
+`;
+
+const ErrorMss = styled.p`
+  color: red;
+  font-size: 1.1rem;
+  width: 100%;
+  margin-top: -1rem;
+  margin-left: 0.5rem;
+  text-align: right;
+`;
 
 const Input = styled.div`
   display: flex;

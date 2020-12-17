@@ -579,6 +579,7 @@ storiesOf('Low level blocks/Inputs', module)
       <Flex>
         <StyledDateInputNew
           name="dateInput"
+          error={text('Error', '')}
           disabled={boolean('Disabled', false)}
           onChange={val => setReturnedOnChangeDate(val)}
           onBlur={val => setReturnedOnBlurDate(val)}
