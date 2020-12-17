@@ -28,6 +28,10 @@ const DateinputNew = ({
   children,
   ...rest
 }) => {
+  const [returnType, setReturnType] = useState('iso');
+  const monthRef = useRef();
+  const yearRef = useRef();
+
   /** Converts the value to a date object */
   const getDateObjFromValue = value => {
     let dateObj = {
@@ -46,43 +50,15 @@ const DateinputNew = ({
     return dateObj;
   };
 
-  const [date, setDate] = useState(getDateObjFromValue());
-  const [returnType, setReturnType] = useState('iso');
-
-  const monthRef = useRef();
-  const yearRef = useRef();
-
-  useEffect(() => {
-    console.log(date);
-  }, [date]);
-
-  useEffect(() => {
-    const dateObj = getDateObjFromValue();
-    setDate(dateObj);
-  }, [value]);
-
   const pad = n => {
     if (!parseInt(n)) return '';
     return parseInt(n) < 10 ? `0${parseInt(n)}` : n;
   };
 
   const isISODate = date => {
-    if (!/\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}Z/.test(date)) return false;
-    var d = new Date(date);
-    return d.toISOString() === date;
-  };
-
-  const formatISODate = date => {
-    const newDate = new Date(date);
-    const day = newDate.getDate();
-    const month = newDate.getMonth() + 1;
-    const formattedDate =
-      (day <= 9 ? '0' + day : day) +
-      '/' +
-      (month <= 9 ? '0' + month : month) +
-      '/' +
-      newDate.getFullYear();
-    return formattedDate;
+    return /[+-]?\d{4}(-[01]\d(-[0-3]\d(T[0-2]\d:[0-5]\d:?([0-5]\d(\.\d+)?)?[+-][0-2]\d:[0-5]\dZ?)?)?)?/.test(
+      date,
+    );
   };
 
   /**
@@ -90,8 +66,14 @@ const DateinputNew = ({
    * @param {*} value The date value in string, object or ISO format
    */
   const init = value => {
-    console.log(value);
-    if (typeof value === 'object') {
+    if (value instanceof Date) {
+      setReturnType('date');
+      return {
+        day: pad(value.getDate()),
+        month: pad(value.getMonth()),
+        year: value.getFullYear(),
+      };
+    } else if (typeof value === 'object') {
       setReturnType('object');
       return {
         day: pad(value.day),
@@ -100,18 +82,22 @@ const DateinputNew = ({
       };
     } else if (isISODate(value)) {
       setReturnType('iso');
-      const values = formatISODate(value).split('/');
-      return { day: pad(values[0]), month: pad(values[1]), year: values[2] };
+      const isoDate = new Date(value);
+      return {
+        day: pad(isoDate.getDate()),
+        month: pad(isoDate.getMonth()),
+        year: isoDate.getFullYear(),
+      };
     } else if (typeof value === 'string') {
-      if (value.contains('-') && value.contains('/')) {
+      if (value.includes('-') && value.includes('/')) {
         throw new Error('No valid seperators, use / or -');
       }
-      if (value.contains('-') && value.contains('/')) {
+      if (value.includes('-') && value.includes('/')) {
         throw new Error('Date contains / and -, use only 1 for a date');
       }
 
-      setReturnType(value.contains('/') ? 'slash' : 'dash');
-      const values = value.split(value.contains('/') ? '/' : '-');
+      setReturnType(value.includes('/') ? 'slash' : 'dash');
+      const values = value.split(value.includes('/') ? '/' : '-');
       return {
         day: pad(values[0] || ''),
         month: pad(values[1] || ''),
@@ -122,10 +108,27 @@ const DateinputNew = ({
     }
   };
 
+  const [date, setDate] = useState({
+    day: '',
+    month: '',
+    year: '',
+  });
+
+  useEffect(() => {
+    console.log(date);
+  }, [date]);
+
+  useEffect(() => {
+    const dateObj = getDateObjFromValue(value);
+    setDate(dateObj);
+  }, [value]);
+
   const getReturnDate = (_date, _returnType) => {
     if (!date) throw new Error('No date object provided');
 
     switch (_returnType) {
+      case 'date':
+        return new Date(_date.year, _date.month, _date.day);
       case 'object':
         return _date;
       case 'slash':
@@ -140,36 +143,50 @@ const DateinputNew = ({
   };
 
   /** Callback with complete value */
-  const handleChange = () => {
-    const returnValue = getReturnDate(date, returnType);
-    onChange({ name, returnValue });
+  const handleChange = (_date, _returnType) => {
+    const returnValue = getReturnDate(_date, _returnType);
+    onChange({ name, value: returnValue });
   };
 
   /** Callback with complete value */
-  const handleBlur = () => {
-    const returnValue = getReturnDate(date, returnType);
-    onBlur({ name, returnValue });
+  const handleBlur = (_date, _returnType) => {
+    const returnValue = getReturnDate(_date, _returnType);
+    onBlur({ name, value: returnValue });
   };
 
   /** Callback with single value */
   const handleFieldChange = ({ target: { name, value } }) => {
-    console.log('Handled change');
-    if (name === 'day' && value?.length === 2) {
-      monthRef.current.focus();
-    } else if (name === 'month' && value?.length === 2) {
-      yearRef.current.focus();
+    if (name === 'day') {
+      if (value?.length === 2) {
+        monthRef.current.focus();
+        monthRef.current.select();
+      } else if (value?.length > 2) {
+        value = value.substring(0, 2);
+      }
+    } else if (name === 'month') {
+      if (value?.length === 2) {
+        yearRef.current.focus();
+        yearRef.current.select();
+      } else if (value?.length > 2) {
+        value = value.substring(0, 2);
+      }
+    } else if (name === 'year' && value?.length > 4) {
+      return;
     }
 
-    setDate(date => ({ ...date, [name]: value }));
+    const changedDate = { ...date, [name]: value };
+    setDate(changedDate);
     onFieldChange({ name, value });
-    handleChange();
+    handleChange(changedDate, returnType);
   };
 
   const handleFieldBlur = ({ target: { name, value } }) => {
-    if (name !== 'year')
-      setDate(date => ({ ...date, [name]: pad(value || '') }));
+    let changedDate;
+    if (name !== 'year') changedDate = { ...date, [name]: pad(value || '') };
+    else changedDate = { ...date, [name]: value || '' };
+
     onFieldBlur({ name, value });
-    handleBlur();
+    handleBlur(changedDate, returnType);
   };
 
   return (
@@ -295,9 +312,9 @@ DateinputNew.propTypes = {
   /** Beeing able to use it in Styled Components */
   className: string,
   /** name of input and label */
-  name: string.isRequired,
+  name: string,
   /** label above the input */
-  children: node.isRequired,
+  children: node,
   /** type of input: email, text, ... */
   disabled: bool,
   /** example value in the input */
@@ -317,14 +334,7 @@ DateinputNew.propTypes = {
   /** Callback function that is fired when the component's value changes. */
   onFocus: func,
   /** Current value of the input element as { day: 'DD', month: 'MM', year: 'YYYY' } */
-  value: oneOfType([
-    string,
-    shape({
-      day: oneOfType([string, number]),
-      month: oneOfType([string, number]),
-      year: oneOfType([string, number]),
-    }),
-  ]),
+  value: oneOfType([object, string]),
   validate: func,
   /** Adds extra props to the element */
   rest: object,

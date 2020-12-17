@@ -568,26 +568,70 @@ storiesOf('Low level blocks/Inputs', module)
   })
 
   .add('DateInputNew', () => {
+    const [returnedOnChangeDate, setReturnedOnChangeDate] = useState('');
+    const [returnedOnBlurDate, setReturnedOnBlurDate] = useState('');
+    const [returnedOnFieldChangeDate, setReturnedOnFieldChangeDate] = useState(
+      '',
+    );
+    const [returnedOnFieldBlurDate, setReturnedOnFieldBlurDate] = useState('');
+
     return (
-      <StyledDateInputNew
-        disabled={boolean('Disabled', false)}
-        value={select(
-          'Date input',
-          {
-            '2013-03-10T02:00:00.000Z': '2013-03-10T02:00:00.000Z',
-            '{ day: 3, month: 10, year: 2013 }': {
-              day: 3,
-              month: 10,
-              year: 2013,
+      <Flex>
+        <StyledDateInputNew
+          name="dateInput"
+          disabled={boolean('Disabled', false)}
+          onChange={val => setReturnedOnChangeDate(val)}
+          onBlur={val => setReturnedOnBlurDate(val)}
+          onFieldChange={val => setReturnedOnFieldChangeDate(val)}
+          onFieldBlur={val => setReturnedOnFieldBlurDate(val)}
+          value={select(
+            'Date input',
+            {
+              'ISO: 2013-03-10T00:00:00+01:00': String(
+                '2013-03-10T00:00:00+01:00',
+              ),
+              'ISO: 1997-07-16': '1997-07-16',
+              'Javascript Date object: 2013-03-10T02:00:00.000Z':
+                '2013-03-10T02:00:00.000Z',
+              'Date object: { day: 3, month: 10, year: 2013 }': {
+                day: 10,
+                month: 3,
+                year: 2013,
+              },
+              'Date string: 10/03/2013': '10/03/2013',
+              'Date string: 10-03-2013': '10-03-2013',
             },
-            '03/10/2013': '03/10/2013',
-            '03-10-2013': '03-10-2013',
-          },
-          '2013-03-10T02:00:00.000Z',
-        )}
-      >
-        {text('Label', '')}
-      </StyledDateInputNew>
+            '2013-03-10T00:00:00+01:00',
+          )}
+        >
+          {text('Label', 'Date')}
+        </StyledDateInputNew>
+        <div>
+          <H1>Returned dates</H1>
+          <P>
+            The following dates are what is returned from the date component. On
+            initial render these should be empty. The same type of date will
+            always be returned. Inputting ISO =&gt; onXXX outputs ISO.
+          </P>
+          <P>
+            The difference between onFieldXXX and onXXX are that for the field
+            the single value gets returned. Changing year for date 17/07/1996 to
+            for example 1997 will give the following:
+            <UL>
+              <LI>- onChange: 17/07/1997</LI>
+              <LI>- onFieldChange: 1997</LI>
+            </UL>
+          </P>
+          <H2>Returned on change date:</H2>
+          <P>{JSON.stringify(returnedOnChangeDate)}</P>
+          <H2>Returned on blur date:</H2>
+          <P>{JSON.stringify(returnedOnBlurDate)}</P>
+          <H2>Returned on field change date:</H2>
+          <P>{JSON.stringify(returnedOnFieldChangeDate)}</P>
+          <H2>Returned on field blur date:</H2>
+          <P>{JSON.stringify(returnedOnFieldBlurDate)}</P>
+        </div>
+      </Flex>
     );
   })
 
@@ -611,6 +655,35 @@ storiesOf('Low level blocks/Inputs', module)
       </DropDownContainer>
     );
   });
+
+const H1 = styled.h1`
+  font-size: 3em;
+  margin-top: 1em;
+`;
+
+const H2 = styled.h2`
+  margin-top: 0.5em;
+  font-size: 2em;
+`;
+
+const P = styled.p`
+  font-size: 1.5em;
+  margin: 0.5em 0;
+`;
+
+const UL = styled.ul`
+  margin: 0.5em 0;
+`;
+
+const LI = styled.li`
+  display: list-item;
+`;
+
+const Flex = styled.div`
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+`;
 
 const StyledMaskedInput = styled(MaskedInput)`
   width: 27rem;
