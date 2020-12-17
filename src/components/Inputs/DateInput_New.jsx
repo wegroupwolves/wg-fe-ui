@@ -1,15 +1,6 @@
 /* eslint-disable no-unused-vars */
 import React, { useState, useRef, useEffect } from 'react';
-import {
-  bool,
-  number,
-  string,
-  object,
-  func,
-  node,
-  oneOfType,
-  shape,
-} from 'prop-types';
+import { bool, string, object, func, node, oneOfType } from 'prop-types';
 import styled from 'styled-components';
 import { formatISO } from 'date-fns';
 
@@ -29,8 +20,14 @@ const DateinputNew = ({
   ...rest
 }) => {
   const [returnType, setReturnType] = useState('iso');
+  const dayRef = useRef();
   const monthRef = useRef();
   const yearRef = useRef();
+
+  const ARROW_LEFT = 37;
+  const ARROW_UP = 38;
+  const ARROW_RIGHT = 39;
+  const ARROW_DOWN = 40;
 
   /** Converts the value to a date object */
   const getDateObjFromValue = value => {
@@ -56,7 +53,7 @@ const DateinputNew = ({
   };
 
   const isISODate = date => {
-    return /[+-]?\d{4}(-[01]\d(-[0-3]\d(T[0-2]\d:[0-5]\d:?([0-5]\d(\.\d+)?)?[+-][0-2]\d:[0-5]\dZ?)?)?)?/.test(
+    return /[+-]?\d{4}(-[01]\d(-[0-3]\d(T[1-2]\d:[0-5]\d:?([0-5]\d(\.\d+)?)?[+-][0-2]\d:[0-5]\dZ?)?)?)/.test(
       date,
     );
   };
@@ -66,11 +63,12 @@ const DateinputNew = ({
    * @param {*} value The date value in string, object or ISO format
    */
   const init = value => {
+    // Don't remove ISO date month + 1, month 0 => January
     if (value instanceof Date) {
       setReturnType('date');
       return {
         day: pad(value.getDate()),
-        month: pad(value.getMonth()),
+        month: pad(value.getMonth() + 1),
         year: value.getFullYear(),
       };
     } else if (typeof value === 'object') {
@@ -85,7 +83,7 @@ const DateinputNew = ({
       const isoDate = new Date(value);
       return {
         day: pad(isoDate.getDate()),
-        month: pad(isoDate.getMonth()),
+        month: pad(isoDate.getMonth() + 1),
         year: isoDate.getFullYear(),
       };
     } else if (typeof value === 'string') {
@@ -123,8 +121,32 @@ const DateinputNew = ({
     setDate(dateObj);
   }, [value]);
 
-  const onKeyDown = e =>
-    (e.keyCode === 69 || e.keyCode === 190) && e.preventDefault();
+  const onKeyDown = e => {
+    if (e.keyCode === 69 || e.keyCode === 190) {
+      e.preventDefault();
+    } else if (![8, 37, 38, 39, 40].includes(e.keyCode)) return true;
+
+    if (e.keyCode !== 8) e.preventDefault();
+
+    switch (e.keyCode) {
+      case ARROW_UP:
+        if (!isFalseNumber(e.target.name, Number(e.target.value) + 1)) {
+          e.target.value = pad(Number(e.target.value) + 1);
+          return handleFieldChange(e, false);
+        }
+        break;
+      case ARROW_DOWN:
+        if (!isFalseNumber(e.target.name, Number(e.target.value) - 1)) {
+          e.target.value = pad(Number(e.target.value) - 1);
+          return handleFieldChange(e, false);
+        }
+        break;
+      case ARROW_LEFT:
+        return handlePreviousField(e.target.name);
+      case ARROW_RIGHT:
+        return handleNextField(e.target.name);
+    }
+  };
 
   const getReturnDate = (_date, _returnType) => {
     if (!date) throw new Error('No date object provided');
@@ -157,23 +179,51 @@ const DateinputNew = ({
     onBlur({ name, value: returnValue });
   };
 
-  /** Callback with single value */
-  const handleFieldChange = ({ target: { name, value } }) => {
+  const handlePreviousField = name => {
+    if (name === 'month') {
+      dayRef.current.focus();
+      dayRef.current.select();
+    } else if (name === 'year') {
+      monthRef.current.focus();
+      monthRef.current.select();
+    }
+  };
+
+  const handleNextField = name => {
     if (name === 'day') {
-      if (value > 31) {
+      monthRef.current.focus();
+      monthRef.current.select();
+    } else if (name === 'month') {
+      yearRef.current.focus();
+      yearRef.current.select();
+    }
+  };
+
+  const isFalseNumber = (name, value) => {
+    if (name === 'day') {
+      return value > 31 || value < 0;
+    } else if (name === 'month') {
+      return value > 12 || value < 0;
+    } else {
+      return false;
+    }
+  };
+
+  /** Callback with single value */
+  const handleFieldChange = ({ target: { name, value } }, move) => {
+    if (name === 'day') {
+      if (isFalseNumber(name, value)) {
         return;
-      } else if (value?.length === 2) {
-        monthRef.current.focus();
-        monthRef.current.select();
+      } else if (value?.length === 2 && move) {
+        handleNextField(name);
       } else if (value?.length > 2) {
         value = value.substring(0, 2);
       }
     } else if (name === 'month') {
-      if (value > 12) {
+      if (isFalseNumber(name, value)) {
         return;
-      } else if (value?.length === 2) {
-        yearRef.current.focus();
-        yearRef.current.select();
+      } else if (value?.length === 2 && move) {
+        handleNextField(name);
       } else if (value?.length > 2) {
         value = value.substring(0, 2);
       }
@@ -205,6 +255,7 @@ const DateinputNew = ({
             name="day"
             placeholder="DD"
             maxLength={2}
+            ref={dayRef}
             onChange={handleFieldChange}
             onBlur={handleFieldBlur}
             value={date.day}

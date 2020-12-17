@@ -600,6 +600,8 @@ storiesOf('Low level blocks/Inputs', module)
               },
               'Date string: 10/03/2013': '10/03/2013',
               'Date string: 10-03-2013': '10-03-2013',
+              'Incomplete date string: 10-03': '10-03',
+              'Incomplete date string: 2020-10': '2020-10',
             },
             '2013-03-10T00:00:00+01:00',
           )}
