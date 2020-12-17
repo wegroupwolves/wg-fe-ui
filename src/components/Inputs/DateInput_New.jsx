@@ -123,6 +123,9 @@ const DateinputNew = ({
     setDate(dateObj);
   }, [value]);
 
+  const onKeyDown = e =>
+    (e.keyCode === 69 || e.keyCode === 190) && e.preventDefault();
+
   const getReturnDate = (_date, _returnType) => {
     if (!date) throw new Error('No date object provided');
 
@@ -157,14 +160,18 @@ const DateinputNew = ({
   /** Callback with single value */
   const handleFieldChange = ({ target: { name, value } }) => {
     if (name === 'day') {
-      if (value?.length === 2) {
+      if (value > 31) {
+        return;
+      } else if (value?.length === 2) {
         monthRef.current.focus();
         monthRef.current.select();
       } else if (value?.length > 2) {
         value = value.substring(0, 2);
       }
     } else if (name === 'month') {
-      if (value?.length === 2) {
+      if (value > 12) {
+        return;
+      } else if (value?.length === 2) {
         yearRef.current.focus();
         yearRef.current.select();
       } else if (value?.length > 2) {
@@ -202,6 +209,7 @@ const DateinputNew = ({
             onBlur={handleFieldBlur}
             value={date.day}
             disabled={disabled}
+            onKeyDown={onKeyDown}
             type="number"
           />
           <Slash>/</Slash>
@@ -214,6 +222,7 @@ const DateinputNew = ({
             onBlur={handleFieldBlur}
             value={date.month}
             disabled={disabled}
+            onKeyDown={onKeyDown}
             type="number"
           />
           <Slash>/</Slash>
@@ -226,6 +235,7 @@ const DateinputNew = ({
             onBlur={handleFieldBlur}
             value={date.year}
             disabled={disabled}
+            onKeyDown={onKeyDown}
             type="number"
             year
           />
