@@ -51,6 +51,7 @@ import {
 
 import * as Icons from '../src/components/Icons';
 import MultiTabTextArea from '../src/components/Inputs/MultiTabTextArea';
+import DateInputV4 from '../src/components/Inputs/DateInputV4';
 const IconsKeys = Object.keys(Icons);
 const IconsList = {};
 IconsKeys.map(IconKey => {
@@ -566,6 +567,91 @@ storiesOf('Low level blocks/Inputs', module)
     );
   })
 
+  .add('DateInputV4', () => {
+    const [returnedOnChangeDate, setReturnedOnChangeDate] = useState('');
+    const [returnedOnBlurDate, setReturnedOnBlurDate] = useState('');
+    const [returnedOnFieldChangeDate, setReturnedOnFieldChangeDate] = useState(
+      '',
+    );
+    const [returnedOnFieldBlurDate, setReturnedOnFieldBlurDate] = useState('');
+
+    return (
+      <Flex>
+        <StyledDateInputNew
+          name="dateInput"
+          error={text('Error', '')}
+          disabled={boolean('Disabled', false)}
+          onChange={setReturnedOnChangeDate}
+          onBlur={setReturnedOnBlurDate}
+          onFieldChange={setReturnedOnFieldChangeDate}
+          onFieldBlur={setReturnedOnFieldBlurDate}
+          value={select(
+            'Date input',
+            {
+              'ISO: 2013-03-10T00:00:00+01:00': String(
+                '2013-03-10T00:00:00+01:00',
+              ),
+              'ISO: 1997-07-16': '1997-07-16',
+              'Javascript Date object: 2013-03-10T02:00:00.000Z':
+                '2013-03-10T02:00:00.000Z',
+              'Date object: { day: 3, month: 10, year: 2013 }': {
+                day: 10,
+                month: 3,
+                year: 2013,
+              },
+              'Date string: 10/03/2013': '10/03/2013',
+              'Date string: 10-03-2013': '10-03-2013',
+              'Incomplete date string: 10-03': '10-03',
+              'Incomplete date string: 2020-10': '2020-10',
+              Empty: '',
+            },
+            '2013-03-10T00:00:00+01:00',
+          )}
+        >
+          {text('Label', 'Date')}
+        </StyledDateInputNew>
+        <div>
+          <H1>Supported input date types</H1>
+          <P>
+            <UL>
+              <LI>- Javascript date object</LI>
+              <LI>
+                - Date object:{' '}
+                {JSON.stringify({ day: 3, month: 10, year: 2013 })}
+              </LI>
+              <LI>- ISO formats</LI>
+              <LI>- DD/MM/YYYY</LI>
+              <LI>- DD-MM-YYYY</LI>
+            </UL>
+          </P>
+          <H1>Returned dates</H1>
+          <P>
+            The following dates are what is returned from the date component. On
+            initial render these should be empty. The same type of date will
+            always be returned. Inputting ISO =&gt; onXXX outputs ISO.
+          </P>
+          <P>
+            The difference between onFieldXXX and onXXX are that for the field
+            the single value gets returned. Changing year for date 17/07/1996 to
+            for example 1997 will give the following:
+            <UL>
+              <LI>- onChange: 17/07/1997</LI>
+              <LI>- onFieldChange: 1997</LI>
+            </UL>
+          </P>
+          <H2>Returned on change date:</H2>
+          <P>{JSON.stringify(returnedOnChangeDate)}</P>
+          <H2>Returned on blur date:</H2>
+          <P>{JSON.stringify(returnedOnBlurDate)}</P>
+          <H2>Returned on field change date:</H2>
+          <P>{JSON.stringify(returnedOnFieldChangeDate)}</P>
+          <H2>Returned on field blur date:</H2>
+          <P>{JSON.stringify(returnedOnFieldBlurDate)}</P>
+        </div>
+      </Flex>
+    );
+  })
+
   .add('Dropdown', () => {
     return (
       <DropDownContainer>
@@ -587,6 +673,35 @@ storiesOf('Low level blocks/Inputs', module)
     );
   });
 
+const H1 = styled.h1`
+  font-size: 3rem;
+  margin-top: 1rem;
+`;
+
+const H2 = styled.h2`
+  margin-top: 0.5rem;
+  font-size: 2rem;
+`;
+
+const P = styled.p`
+  font-size: 1.5rem;
+  margin: 0.5rem 0;
+`;
+
+const UL = styled.ul`
+  margin: 0.5rem 0;
+`;
+
+const LI = styled.li`
+  display: list-item;
+`;
+
+const Flex = styled.div`
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+`;
+
 const StyledMaskedInput = styled(MaskedInput)`
   width: 27rem;
 `;
@@ -604,6 +719,10 @@ const StyledSearchSelectInput = styled(SearchSelectInput)`
 `;
 
 const StyledDateInput = styled(DateInput)`
+  width: 27rem;
+`;
+
+const StyledDateInputNew = styled(DateInputV4)`
   width: 27rem;
 `;
 
