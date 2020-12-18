@@ -81,7 +81,6 @@ const DateInputV4 = ({
     } else if (isISODate(value)) {
       setReturnType('iso');
       const isoDate = new Date(value);
-      console.log(isoDate);
       return {
         day: pad(isoDate.getDate()),
         // Month +1 to adjust for javascript date starting from 00
