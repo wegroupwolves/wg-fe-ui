@@ -1,10 +1,9 @@
-/* eslint-disable no-unused-vars */
 import React, { useState, useRef, useEffect } from 'react';
 import { bool, string, object, func, node, oneOfType } from 'prop-types';
 import styled from 'styled-components';
 import { formatISO } from 'date-fns';
 
-const DateinputNew = ({
+const DateInputV4 = ({
   className,
   name,
   disabled,
@@ -410,17 +409,14 @@ const Container = styled.div`
   height: 9rem;
 `;
 
-DateinputNew.defaultProps = {
+DateInputV4.defaultProps = {
   disabled: false,
-  touched: false,
-  isCalendarEnabled: false,
-  otherProps: {},
   value: '',
   onBlur: () => {},
   onChange: () => {},
 };
 
-DateinputNew.propTypes = {
+DateInputV4.propTypes = {
   /** Beeing able to use it in Styled Components */
   className: string,
   /** Name of input and label */
@@ -445,4 +441,4 @@ DateinputNew.propTypes = {
   rest: object,
 };
 
-export default DateinputNew;
+export default DateInputV4;

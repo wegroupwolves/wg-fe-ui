@@ -51,7 +51,7 @@ import {
 
 import * as Icons from '../src/components/Icons';
 import MultiTabTextArea from '../src/components/Inputs/MultiTabTextArea';
-import DateinputNew from '../src/components/Inputs/DateInput_New';
+import DateInputV4 from '../src/components/Inputs/DateInputV4';
 const IconsKeys = Object.keys(Icons);
 const IconsList = {};
 IconsKeys.map(IconKey => {
@@ -722,7 +722,7 @@ const StyledDateInput = styled(DateInput)`
   width: 27rem;
 `;
 
-const StyledDateInputNew = styled(DateinputNew)`
+const StyledDateInputNew = styled(DateInputV4)`
   width: 27rem;
 `;
 
