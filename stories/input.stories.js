@@ -567,7 +567,7 @@ storiesOf('Low level blocks/Inputs', module)
     );
   })
 
-  .add('DateInputNew', () => {
+  .add('DateInputV4', () => {
     const [returnedOnChangeDate, setReturnedOnChangeDate] = useState('');
     const [returnedOnBlurDate, setReturnedOnBlurDate] = useState('');
     const [returnedOnFieldChangeDate, setReturnedOnFieldChangeDate] = useState(
