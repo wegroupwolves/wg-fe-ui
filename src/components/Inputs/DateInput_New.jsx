@@ -19,11 +19,14 @@ const DateinputNew = ({
   ...rest
 }) => {
   const [returnType, setReturnType] = useState('iso');
+  const [lastPressedKey, setLastPressedKey] = useState();
   const dayRef = useRef();
   const monthRef = useRef();
   const yearRef = useRef();
 
   const BACKSPACE = 8;
+  const KEY_E = 69;
+  const PERIOD = 190;
   const ARROW_LEFT = 37;
   const ARROW_UP = 38;
   const ARROW_RIGHT = 39;
@@ -116,9 +119,15 @@ const DateinputNew = ({
   }, [value]);
 
   const onKeyDown = e => {
-    if (e.keyCode === 69 || e.keyCode === 190) {
+    setLastPressedKey(e.keyCode);
+    if (e.keyCode === KEY_E || e.keyCode === PERIOD) {
       e.preventDefault();
-    } else if (![8, 37, 38, 39, 40].includes(e.keyCode)) return true;
+    } else if (
+      ![BACKSPACE, ARROW_UP, ARROW_DOWN, ARROW_LEFT, ARROW_RIGHT].includes(
+        e.keyCode,
+      )
+    )
+      return true;
 
     if (e.keyCode === BACKSPACE) {
       if (e.target.value?.length === 0) {
@@ -185,20 +194,26 @@ const DateinputNew = ({
     if (name === 'month') {
       dayRef.current.focus();
       !noSelect && dayRef.current.select();
+      return true;
     } else if (name === 'year') {
       monthRef.current.focus();
       !noSelect && monthRef.current.select();
+      return true;
     }
+    return false;
   };
 
   const handleNextField = name => {
     if (name === 'day') {
       monthRef.current.focus();
       monthRef.current.select();
+      return true;
     } else if (name === 'month') {
       yearRef.current.focus();
       yearRef.current.select();
+      return true;
     }
+    return false;
   };
 
   const isFalseNumber = (name, value) => {
@@ -213,19 +228,26 @@ const DateinputNew = ({
 
   /** Callback with single value */
   const handleFieldChange = ({ target: { name, value } }, move) => {
+    let moved = false;
     if (name === 'day') {
       if (isFalseNumber(name, value)) {
         return;
-      } else if (value?.length === 2 && move) {
-        handleNextField(name);
+      } else if (
+        (value?.length === 2 || (value > 3 && lastPressedKey !== BACKSPACE)) &&
+        move
+      ) {
+        moved = handleNextField(name);
       } else if (value?.length > 2) {
         value = value.substring(0, 2);
       }
     } else if (name === 'month') {
       if (isFalseNumber(name, value)) {
         return;
-      } else if (value?.length === 2 && move) {
-        handleNextField(name);
+      } else if (
+        (value?.length === 2 || (value > 1 && lastPressedKey !== BACKSPACE)) &&
+        move
+      ) {
+        moved = handleNextField(name);
       } else if (value?.length > 2) {
         value = value.substring(0, 2);
       }
@@ -233,7 +255,7 @@ const DateinputNew = ({
       return;
     }
 
-    const changedDate = { ...date, [name]: value };
+    const changedDate = { ...date, [name]: moved ? pad(value || '') : value };
     setDate(changedDate);
     onFieldChange({ name, value });
     handleChange(changedDate, returnType);
@@ -243,7 +265,7 @@ const DateinputNew = ({
     let changedDate;
     if (name !== 'year') changedDate = { ...date, [name]: pad(value || '') };
     else changedDate = { ...date, [name]: value || '' };
-
+    setDate(changedDate);
     onFieldBlur({ name, value });
     handleBlur(changedDate, returnType);
   };
@@ -336,7 +358,7 @@ const Input = styled.div`
   background-color: ${({ disabled }) => (disabled ? '#F0F1F3' : 'white')};
   padding-left: 1.2rem;
   margin-top: 1.4rem;
-  border: 0.1rem solid;
+  border: 1px solid;
   height: 4rem;
   border-color: ${({ error, touched, theme }) =>
     error
@@ -344,12 +366,12 @@ const Input = styled.div`
       : touched && !error
       ? theme.status.succes
       : theme.ui.outline};
-  border-radius: 0.3rem;
+  border-radius: 3px;
 `;
 
 const Slash = styled.span`
   color: #757575;
-  margin: 0 0.15rem -0.1rem 0.15rem;
+  margin: 2px 1px 1px 1px;
   font-size: 1.8rem;
 `;
 

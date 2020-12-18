@@ -581,10 +581,10 @@ storiesOf('Low level blocks/Inputs', module)
           name="dateInput"
           error={text('Error', '')}
           disabled={boolean('Disabled', false)}
-          onChange={val => setReturnedOnChangeDate(val)}
-          onBlur={val => setReturnedOnBlurDate(val)}
-          onFieldChange={val => setReturnedOnFieldChangeDate(val)}
-          onFieldBlur={val => setReturnedOnFieldBlurDate(val)}
+          onChange={setReturnedOnChangeDate}
+          onBlur={setReturnedOnBlurDate}
+          onFieldChange={setReturnedOnFieldChangeDate}
+          onFieldBlur={setReturnedOnFieldBlurDate}
           value={select(
             'Date input',
             {
@@ -603,6 +603,7 @@ storiesOf('Low level blocks/Inputs', module)
               'Date string: 10-03-2013': '10-03-2013',
               'Incomplete date string: 10-03': '10-03',
               'Incomplete date string: 2020-10': '2020-10',
+              Empty: '',
             },
             '2013-03-10T00:00:00+01:00',
           )}
@@ -660,22 +661,22 @@ storiesOf('Low level blocks/Inputs', module)
   });
 
 const H1 = styled.h1`
-  font-size: 3em;
-  margin-top: 1em;
+  font-size: 3rem;
+  margin-top: 1rem;
 `;
 
 const H2 = styled.h2`
-  margin-top: 0.5em;
-  font-size: 2em;
+  margin-top: 0.5rem;
+  font-size: 2rem;
 `;
 
 const P = styled.p`
-  font-size: 1.5em;
-  margin: 0.5em 0;
+  font-size: 1.5rem;
+  margin: 0.5rem 0;
 `;
 
 const UL = styled.ul`
-  margin: 0.5em 0;
+  margin: 0.5rem 0;
 `;
 
 const LI = styled.li`
