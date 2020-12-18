@@ -15,7 +15,6 @@ const DateinputNew = ({
   onBlur,
   onFieldChange,
   onFieldBlur,
-  validate,
   children,
   ...rest
 }) => {
@@ -24,6 +23,7 @@ const DateinputNew = ({
   const monthRef = useRef();
   const yearRef = useRef();
 
+  const BACKSPACE = 8;
   const ARROW_LEFT = 37;
   const ARROW_UP = 38;
   const ARROW_RIGHT = 39;
@@ -63,12 +63,11 @@ const DateinputNew = ({
    * @param {*} value The date value in string, object or ISO format
    */
   const init = value => {
-    // Don't remove ISO date month + 1, month 0 => January
     if (value instanceof Date) {
       setReturnType('date');
       return {
         day: pad(value.getDate()),
-        month: pad(value.getMonth() + 1),
+        month: pad(value.getMonth()),
         year: value.getFullYear(),
       };
     } else if (typeof value === 'object') {
@@ -81,8 +80,10 @@ const DateinputNew = ({
     } else if (isISODate(value)) {
       setReturnType('iso');
       const isoDate = new Date(value);
+      console.log(isoDate);
       return {
         day: pad(isoDate.getDate()),
+        // Month +1 to adjust for javascript date starting from 00
         month: pad(isoDate.getMonth() + 1),
         year: isoDate.getFullYear(),
       };
@@ -119,7 +120,14 @@ const DateinputNew = ({
       e.preventDefault();
     } else if (![8, 37, 38, 39, 40].includes(e.keyCode)) return true;
 
-    if (e.keyCode !== 8) e.preventDefault();
+    if (e.keyCode === BACKSPACE) {
+      if (e.target.value?.length === 0) {
+        e.preventDefault();
+        handlePreviousField(e.target.name, true);
+      }
+    } else {
+      e.preventDefault();
+    }
 
     switch (e.keyCode) {
       case ARROW_UP:
@@ -154,7 +162,8 @@ const DateinputNew = ({
       case 'dash':
         return `${_date.day}-${_date.month}-${_date.year}`;
       case 'iso':
-        return formatISO(new Date(_date.year, _date.month, _date.day));
+        // -1 to correct for javascript month starting from 00
+        return formatISO(new Date(_date.year, _date.month - 1, _date.day));
       default:
         throw new Error('Return type not found');
     }
@@ -172,13 +181,13 @@ const DateinputNew = ({
     onBlur({ name, value: returnValue });
   };
 
-  const handlePreviousField = name => {
+  const handlePreviousField = (name, noSelect) => {
     if (name === 'month') {
       dayRef.current.focus();
-      dayRef.current.select();
+      !noSelect && dayRef.current.select();
     } else if (name === 'year') {
       monthRef.current.focus();
-      monthRef.current.select();
+      !noSelect && monthRef.current.select();
     }
   };
 
@@ -249,7 +258,7 @@ const DateinputNew = ({
             placeholder="DD"
             maxLength={2}
             ref={dayRef}
-            onChange={handleFieldChange}
+            onChange={val => handleFieldChange(val, true)}
             onBlur={handleFieldBlur}
             value={date.day}
             disabled={disabled}
@@ -262,7 +271,7 @@ const DateinputNew = ({
             placeholder="MM"
             maxLength={2}
             ref={monthRef}
-            onChange={handleFieldChange}
+            onChange={val => handleFieldChange(val, true)}
             onBlur={handleFieldBlur}
             value={date.month}
             disabled={disabled}
@@ -296,6 +305,7 @@ const DateinputNew = ({
     </Container>
   );
 };
+
 const ErrorContainer = styled.div`
   height: 1.5rem;
   margin-top: 0.8rem;
@@ -417,7 +427,6 @@ DateinputNew.propTypes = {
   onFocus: func,
   /** Current value of the input element as { day: 'DD', month: 'MM', year: 'YYYY' } */
   value: oneOfType([object, string]),
-  validate: func,
   /** Adds extra props to the element */
   rest: object,
 };
