@@ -9,7 +9,6 @@ const DateinputNew = ({
   name,
   disabled,
   error,
-  touched,
   value,
   onChange,
   onBlur,
@@ -419,24 +418,19 @@ DateinputNew.defaultProps = {
   value: '',
   onBlur: () => {},
   onChange: () => {},
-  onFocus: () => {},
 };
 
 DateinputNew.propTypes = {
   /** Beeing able to use it in Styled Components */
   className: string,
-  /** name of input and label */
+  /** Name of input and label */
   name: string,
-  /** label above the input */
+  /** Label above the input */
   children: node,
-  /** type of input: email, text, ... */
+  /** Is the input field disabled */
   disabled: bool,
-  /** example value in the input */
+  /** Error for the input */
   error: string,
-  /** show calendar on focus */
-  isCalendarEnabled: bool,
-  /** object with inputname and boolean to check if touched */
-  touched: bool,
   /** Callback function that is fired when focusing any input field. */
   onChange: func,
   /** Callback function that is fired when changing any input field. */
@@ -445,9 +439,7 @@ DateinputNew.propTypes = {
   onFieldChange: func,
   /** Callback function that is fired when changing a single input field. */
   onFieldBlur: func,
-  /** Callback function that is fired when the component's value changes. */
-  onFocus: func,
-  /** Current value of the input element as { day: 'DD', month: 'MM', year: 'YYYY' } */
+  /** Current value of the input element */
   value: oneOfType([object, string]),
   /** Adds extra props to the element */
   rest: object,

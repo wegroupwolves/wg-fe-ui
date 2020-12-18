@@ -611,6 +611,19 @@ storiesOf('Low level blocks/Inputs', module)
           {text('Label', 'Date')}
         </StyledDateInputNew>
         <div>
+          <H1>Supported input date types</H1>
+          <P>
+            <UL>
+              <LI>- Javascript date object</LI>
+              <LI>
+                - Date object:{' '}
+                {JSON.stringify({ day: 3, month: 10, year: 2013 })}
+              </LI>
+              <LI>- ISO formats</LI>
+              <LI>- DD/MM/YYYY</LI>
+              <LI>- DD-MM-YYYY</LI>
+            </UL>
+          </P>
           <H1>Returned dates</H1>
           <P>
             The following dates are what is returned from the date component. On
