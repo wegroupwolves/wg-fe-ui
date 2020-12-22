@@ -398,6 +398,7 @@ storiesOf('Low level blocks/Inputs', module)
         })}
         isMulti={boolean('Multiple', false)}
         placeholder={text('Placeholder', 'Choose an option')}
+        withCheckmark={boolean('With checkmark', false)}
         data-test-id="random_data_id_example"
       >
         Selection

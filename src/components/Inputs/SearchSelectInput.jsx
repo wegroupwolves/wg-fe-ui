@@ -1,9 +1,10 @@
 import React, { forwardRef, useState, useEffect } from 'react';
 import styled, { css } from 'styled-components';
-import Select from 'react-select';
+import Select, { components } from 'react-select';
 import AsyncSelect from 'react-select/async';
 import { func, string, bool, object, node, any } from 'prop-types';
 import Error from './../Messages/Error';
+import CheckBox_v2 from '../v2/Checkboxes/CheckBox_v2';
 
 const SearchSelectInput = forwardRef(
   (
@@ -24,6 +25,7 @@ const SearchSelectInput = forwardRef(
       placeholder,
       isMulti,
       error,
+      withCheckmark,
       ...otherProps
     },
     ref,
@@ -53,6 +55,24 @@ const SearchSelectInput = forwardRef(
       if (value) setSelected(value);
     }, [value, options, initial, loading]);
 
+    const Option = ({ isSelected, value, ...rest }) => {
+      Option.propTypes = {
+        isSelected: bool,
+        value: any,
+      };
+
+      return (
+        <div>
+          <components.Option {...rest}>
+            <Flex>
+              <Checkbox checked={isSelected} onChange={() => null} />{' '}
+              <label>{value}</label>{' '}
+            </Flex>
+          </components.Option>{' '}
+        </div>
+      );
+    };
+
     return (
       <Container className={className}>
         <Label disabled={disabled} {...otherProps}>
@@ -71,6 +91,8 @@ const SearchSelectInput = forwardRef(
               isMulti={isMulti}
               closeMenuOnSelect={!isMulti}
               error={error ? true : false}
+              {...(withCheckmark && { components: { Option } })}
+              hideSelectedOptions={withCheckmark ? false : true}
               {...otherProps}
             />
           ) : (
@@ -88,6 +110,8 @@ const SearchSelectInput = forwardRef(
               value={isSelected}
               loadOptions={loadOptions}
               defaultOptions
+              {...(withCheckmark && { components: { Option } })}
+              hideSelectedOptions={withCheckmark ? false : true}
               {...otherProps}
             />
           )}
@@ -209,10 +233,17 @@ const styles = css`
         }
       }
     }
-    &__indicators {
-      ${({ isMulti }) => (isMulti ? 'display: none' : null)};
-    }
   }
+`;
+
+const Flex = styled.div`
+  display: flex;
+  align-items: center;
+  font-size: 1.5rem;
+`;
+
+const Checkbox = styled(CheckBox_v2)`
+  margin-right: 1rem;
 `;
 
 const Container = styled.div`
@@ -253,6 +284,7 @@ SearchSelectInput.defaultProps = {
   placeholder: 'Choose your option',
   initial: null,
   isMulti: false,
+  withCheckmark: false,
   otherProps: {},
   value: null,
 };
@@ -277,7 +309,9 @@ SearchSelectInput.propTypes = {
   loading: bool,
   /** name that sets selected on load */
   loadOptions: func,
-
+  /** If a checkmark should be showed if it is selected */
+  withCheckmark: bool,
+  /** Initial */
   initial: any,
   /** Message to show when options are empty */
   noOptionMessage: string,
