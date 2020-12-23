@@ -92,7 +92,7 @@ const SearchSelectInput = forwardRef(
               closeMenuOnSelect={!isMulti}
               error={error ? true : false}
               {...(withCheckmark && { components: { Option } })}
-              hideSelectedOptions={withCheckmark ? false : true}
+              {...(withCheckmark && { hideSelectedOptions: false })}
               {...otherProps}
             />
           ) : (
@@ -111,7 +111,7 @@ const SearchSelectInput = forwardRef(
               loadOptions={loadOptions}
               defaultOptions
               {...(withCheckmark && { components: { Option } })}
-              hideSelectedOptions={withCheckmark ? false : true}
+              {...(withCheckmark && { hideSelectedOptions: false })}
               {...otherProps}
             />
           )}
