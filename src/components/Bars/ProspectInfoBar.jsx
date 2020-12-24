@@ -6,9 +6,9 @@ import { element, node, func } from 'prop-types';
 import RoundedButton from '../Buttons/RoundedButton';
 import IconActionChevronRight from '../Icons/IconActionChevronRight';
 
-const ProspectInfoBar = ({ icon, children, onClick }) => {
+const ProspectInfoBar = ({ icon, children, onClick, ...rest }) => {
   return (
-    <Bar>
+    <Bar {...rest}>
       {icon ? <BarIcon>{icon}</BarIcon> : null}
 
       <BarContent>{children}</BarContent>
