@@ -50,6 +50,7 @@ const BarIcon = styled.div`
 `;
 
 const BarContent = styled.div`
+  width: 100%;
   display: grid;
   grid-template-columns: repeat(4, auto);
   row-gap: 1.5rem;
