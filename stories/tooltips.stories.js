@@ -11,6 +11,7 @@ storiesOf('Low level blocks/Tooltips', module)
     return (
       <Tooltip
         toggleIcon={text('Icon', '?')}
+        text={text('Tooltip text', '')}
         direction={select(
           'Direction',
           {
