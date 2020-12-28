@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { string, node, func, object } from 'prop-types';
 
 const Tooltip = ({
@@ -8,6 +8,7 @@ const Tooltip = ({
   children,
   onClick,
   direction,
+  text,
   ...otherProps
 }) => {
   const [isActive, setIsActive] = useState(false);
@@ -19,9 +20,14 @@ const Tooltip = ({
       onClick={onClick}
       {...otherProps}
     >
-      <TooltipToggle onMouseMove={() => setIsActive(true)}>
+      <TooltipToggle onMouseMove={() => setIsActive(true)} isActive={isActive}>
         {toggleIcon}
       </TooltipToggle>
+      {text && (
+        <TooltipText onMouseMove={() => setIsActive(true)} isActive={isActive}>
+          {text}
+        </TooltipText>
+      )}
 
       <TooltipContent active={isActive} direction={direction}>
         {children}
@@ -30,8 +36,18 @@ const Tooltip = ({
   );
 };
 
+const TooltipText = styled.p`
+  margin-left: 1rem;
+  font-family: ${({ theme }) => theme.font};
+  font-size: 14px;
+  transition: color 0.2s ease;
+  color: ${({ isActive, theme }) =>
+    isActive ? theme.brand.primary : '#8990a3'};
+`;
+
 const TooltipWrapper = styled.div`
   display: flex;
+  align-items: center;
   -webkit-box-pack: center;
   justify-content: center;
   position: relative;
@@ -54,10 +70,14 @@ const TooltipToggle = styled.a`
   line-height: 1.5rem;
   color: #8990a3;
 
-  &:hover {
-    color: ${({ theme }) => theme.brand.primary};
-    border: 1.5px solid ${({ theme }) => theme.brand.primary};
-  }
+  transition: color 0.2s ease;
+
+  ${({ isActive }) =>
+    isActive &&
+    css`
+      color: ${({ theme }) => theme.brand.primary};
+      border: 1.5px solid ${({ theme }) => theme.brand.primary};
+    `}
 `;
 
 const TooltipContent = styled.div`
@@ -115,6 +135,8 @@ Tooltip.propTypes = {
   direction: string,
   /** Extra props to be passed to the component. */
   otherProps: object,
+  /** Text for the tooltip */
+  text: string,
 };
 
 export default Tooltip;
