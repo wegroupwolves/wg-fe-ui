@@ -24,7 +24,7 @@ const AmountInput = ({
   }, [value]);
 
   const checkValue = value => {
-    const parsedValue = parseFloat(value) || undefined;
+    const parsedValue = parseFloat(value) || 0;
     if (parsedValue >= min && parsedValue <= max) {
       return parsedValue;
     } else {
@@ -41,9 +41,9 @@ const AmountInput = ({
   const handleChange = (value, isBlur = false) => {
     let roundedValue = value;
 
-    if (roundNumber) {
-      roundedValue = Math.round(roundedValue * 100) / 100;
-    }
+    if (typeof value === 'string')
+      roundedValue = Number(value.replace(',', '.'));
+    if (roundNumber) roundedValue = roundedValue.toFixed(0);
 
     if (!disabled) {
       if (isBlur) {
@@ -69,16 +69,16 @@ const AmountInput = ({
 
   const handlePlus = () => {
     // Check if number is integer or float
-    if (currentValue % 1 === 0) {
-      handleChange(currentValue ? currentValue + 1 : min + 1, true);
+    if (Math.abs(currentValue) % 1 === 0) {
+      handleChange(currentValue + 1, true);
     } else {
-      handleChange(currentValue ? Math.ceil(currentValue) : min + 1, true);
+      handleChange(Math.ceil(currentValue), true);
     }
   };
 
   const handleMinus = () => {
     // Check if number is integer or float
-    if (currentValue % 1 === 0) {
+    if (Math.abs(currentValue) % 1 === 0) {
       handleChange(currentValue - 1, true);
     } else {
       handleChange(Math.floor(currentValue), true);
