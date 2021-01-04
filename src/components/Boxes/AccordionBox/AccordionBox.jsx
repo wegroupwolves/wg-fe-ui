@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { node } from 'prop-types';
+import { node, func } from 'prop-types';
 
 import AccordionBoxContent from './AccordionBoxContent';
 import AccordionBoxHeader from './AccordionBoxHeader';
 
-const AccordionBox = ({ children, ...rest }) => {
+const AccordionBox = ({ children, onOpen, ...rest }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const elements = React.Children.toArray(children);
@@ -18,6 +18,7 @@ const AccordionBox = ({ children, ...rest }) => {
   const toggleOpenClose = e => {
     e.stopPropagation();
     setIsOpen(!isOpen);
+    onOpen(!isOpen);
   };
 
   return (
@@ -51,6 +52,7 @@ const StyledAccordionBox = styled.div`
 
 AccordionBox.propTypes = {
   children: node.isRequired,
+  onOpen: func,
 };
 
 AccordionBox.Header = AccordionBoxHeader;
