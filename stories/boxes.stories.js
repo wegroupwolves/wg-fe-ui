@@ -1,11 +1,6 @@
 import React, { useRef } from 'react';
 import { storiesOf } from '@storybook/react';
-import {
-  withKnobs,
-  boolean,
-  text,
-  select,
-} from '@storybook/addon-knobs';
+import { withKnobs, boolean, text, select } from '@storybook/addon-knobs';
 import { withInfo } from '@storybook/addon-info';
 import styled from 'styled-components';
 import UploadIcon from './../src/components/Icons/Upload';
@@ -47,7 +42,7 @@ storiesOf('Mid level blocks/Boxes', module)
   .add('AccordionBox', () => {
     return (
       <AccordionBoxContainer>
-        <AccordionBox>
+        <AccordionBox isOpen={boolean('Is open?', 'false')}>
           <AccordionBox.Header>
             <img
               src="https://via.placeholder.com/125x31?text=Logo"
@@ -227,12 +222,18 @@ storiesOf('Mid level blocks/Boxes', module)
 
   .add('CodeBox', () => {
     return (
-      <CodeBox copySuccessText={text('Text to be shown in toaster after copy', 'Copied to clipboard.')} canCopy={boolean('Can this be copied?', true)}>
+      <CodeBox
+        copySuccessText={text(
+          'Text to be shown in toaster after copy',
+          'Copied to clipboard.',
+        )}
+        canCopy={boolean('Can this be copied?', true)}
+      >
         {`<a href=”https://campaign.wegroup.be/t8529LDsXDWm” target=”_blank”>Click here</a>`}
       </CodeBox>
     );
   })
-  
+
   .add('NotificationListBox', () => {
     return (
       <NotificationWrapper>
@@ -245,7 +246,7 @@ storiesOf('Mid level blocks/Boxes', module)
           to={text('To', 'https://wegroup.be')}
           icon={<IconDocumentFilled color="#fff" />}
         >
-          {text('Content', 'Placeholder content.')} 
+          {text('Content', 'Placeholder content.')}
         </NotificationListBox>
       </NotificationWrapper>
     );

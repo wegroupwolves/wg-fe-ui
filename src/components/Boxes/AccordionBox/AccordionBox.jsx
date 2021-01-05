@@ -1,14 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import { node, func } from 'prop-types';
+import { node, func, bool } from 'prop-types';
 
 import AccordionBoxContent from './AccordionBoxContent';
 import AccordionBoxHeader from './AccordionBoxHeader';
 
-const AccordionBox = ({ children, onOpen, ...rest }) => {
-  const [isOpen, setIsOpen] = useState(false);
+const AccordionBox = ({ children, onOpen, isOpen: initialIsOpen, ...rest }) => {
+  const [isOpen, setIsOpen] = useState(initialIsOpen);
 
   const elements = React.Children.toArray(children);
+
+  useEffect(() => {
+    setIsOpen(initialIsOpen);
+  }, [initialIsOpen]);
 
   /**
    * To stop the AccordionBox from opening and closing on the click of a
@@ -50,9 +54,15 @@ const StyledAccordionBox = styled.div`
   }
 `;
 
+AccordionBox.defaultProps = {
+  onOpen: () => {},
+  isOpen: false,
+};
+
 AccordionBox.propTypes = {
   children: node.isRequired,
   onOpen: func,
+  isOpen: bool,
 };
 
 AccordionBox.Header = AccordionBoxHeader;
