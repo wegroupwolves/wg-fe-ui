@@ -70,18 +70,18 @@ const AmountInput = ({
   const handlePlus = () => {
     // Check if number is integer or float
     if (Math.abs(currentValue) % 1 === 0) {
-      handleChange(currentValue + 1, true);
+      handleChange(currentValue + 1);
     } else {
-      handleChange(Math.ceil(currentValue), true);
+      handleChange(Math.ceil(currentValue));
     }
   };
 
   const handleMinus = () => {
     // Check if number is integer or float
     if (Math.abs(currentValue) % 1 === 0) {
-      handleChange(currentValue - 1, true);
+      handleChange(currentValue - 1);
     } else {
-      handleChange(Math.floor(currentValue), true);
+      handleChange(Math.floor(currentValue));
     }
   };
 
