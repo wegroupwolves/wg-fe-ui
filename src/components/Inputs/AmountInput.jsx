@@ -50,7 +50,11 @@ const AmountInput = ({
       if (isBlur || allowChange) {
         const checkedValue = checkValue(roundedValue);
         setCurrentValue(checkedValue);
-        onBlur({ name, value: checkedValue });
+        if (allowChange) {
+          onChange({ name, value: checkedValue });
+        } else {
+          onBlur({ name, value: checkedValue });
+        }
       } else {
         setCurrentValue(value);
         onChange({ name, value });
