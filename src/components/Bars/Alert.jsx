@@ -64,6 +64,7 @@ const ErrorIcon = styled(IconActionClose)`
 `;
 
 const ContentWrapper = styled.div`
+  margin: auto 0;
   padding-top: 3px;
   font-family: ${({ theme }) => theme.font};
   font-size: 1.2rem;

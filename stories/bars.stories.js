@@ -227,9 +227,7 @@ storiesOf('Mid Level blocks/Bars', module)
         })}
       >
         Donec mi odio, faucibus at, scelerisque quis, convallis in, nisi. Nullam
-        accumsan lorem in dui. Aenean imperdiet. Vestibulum rutrum, mi nec
-        elementum vehicula, eros quam gravida nisl, id fringilla neque ante vel
-        mi. Curabitur blandit mollis lacus.
+        accumsan lorem in dui. Aenean imperdiet.
       </Alert>
     );
   })
