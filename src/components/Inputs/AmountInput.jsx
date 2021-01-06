@@ -15,6 +15,7 @@ const AmountInput = ({
   inputAppend,
   name,
   roundNumber = false,
+  allowChange = false,
   ...otherProps
 }) => {
   const [currentValue, setCurrentValue] = useState(value);
@@ -46,7 +47,7 @@ const AmountInput = ({
     if (roundNumber) roundedValue = roundedValue.toFixed(0);
 
     if (!disabled) {
-      if (isBlur) {
+      if (isBlur || allowChange) {
         const checkedValue = checkValue(roundedValue);
         setCurrentValue(checkedValue);
         onBlur({ name, value: checkedValue });
@@ -210,6 +211,8 @@ AmountInput.propTypes = {
   name: string,
   /** If it should round the number */
   roundNumber: bool,
+  /** If this component can change the value (useful for instant input feedback) */
+  allowChange: bool,
 };
 
 export default AmountInput;

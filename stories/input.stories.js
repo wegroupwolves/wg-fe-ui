@@ -449,7 +449,8 @@ storiesOf('Low level blocks/Inputs', module)
         max={number('Maximum value', 100)}
         inputAppend={text('Input append', '%')}
         disabled={boolean('Disabled?', false)}
-        roundNumber={boolean('Round numbers?', true)}
+        roundNumber={boolean('Round numbers?', false)}
+        allowChange={boolean('Allow change?', false)}
       ></AmountInput>
     );
   })
