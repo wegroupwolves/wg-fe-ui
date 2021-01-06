@@ -14,7 +14,7 @@ const AmountInput = ({
   onBlur,
   inputAppend,
   name,
-  roundNumber = true,
+  roundNumber = false,
   ...otherProps
 }) => {
   const [currentValue, setCurrentValue] = useState(value);
