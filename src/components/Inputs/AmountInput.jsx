@@ -93,11 +93,11 @@ const AmountInput = ({
   return (
     <Wrapper disabled={disabled} className={className} {...otherProps}>
       <InputControls>
-        <InputControl disabled={currentValue === max} onClick={handlePlus}>
+        <InputControl disabled={currentValue == max} onClick={handlePlus}>
           <IconActionDropDown size={14} />
         </InputControl>
         <InputControl
-          disabled={currentValue === min || currentValue === undefined}
+          disabled={currentValue == min || currentValue === undefined}
           onClick={handleMinus}
         >
           <IconActionDropDown size={14} />
