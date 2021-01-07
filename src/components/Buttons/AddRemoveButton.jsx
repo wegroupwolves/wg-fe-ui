@@ -1,13 +1,32 @@
 import React from 'react';
 import styled from 'styled-components';
 import { IconActionPlus, IconMinus } from '../../components/Icons/index';
-import { bool, func, string, object } from 'prop-types';
+import { bool, func, string, object, element } from 'prop-types';
 
-const AddRemoveButton = ({ added, onClick, className, ...otherProps }) => {
+const AddRemoveButton = ({
+  added,
+  onClick,
+  className,
+  customAdd: CustomAdd,
+  customRemove: CustomRemove,
+  disableClick,
+  ...otherProps
+}) => {
   return (
-    <Button className={className} onClick={onClick} {...otherProps}>
+    <Button
+      className={className}
+      onClick={onClick}
+      disableClick={disableClick}
+      {...otherProps}
+    >
       {!added ? (
-        <IconActionPlus className="plus" size={20} />
+        CustomAdd ? (
+          <CustomAdd />
+        ) : (
+          <IconActionPlus className="plus" size={20} />
+        )
+      ) : CustomRemove ? (
+        <CustomAdd />
       ) : (
         <IconMinus className="minus" size={20} />
       )}
@@ -59,9 +78,15 @@ AddRemoveButton.propTypes = {
   /** Set to true if the remove state should be shown. */
   added: bool.isRequired,
   /** onClick function to be executed when the button is clicked. */
-  onClick: func.isRequired,
+  onClick: func,
   /** Extra className to be added to the button. */
   className: string,
+  /** A custom add component */
+  customAdd: element,
+  /** A custom remove component */
+  customRemove: element,
+  /** Should click action be disabled */
+  disableClick: func,
   /** Extra props. */
   otherProps: object,
 };
