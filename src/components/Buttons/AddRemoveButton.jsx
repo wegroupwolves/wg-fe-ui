@@ -9,16 +9,10 @@ const AddRemoveButton = ({
   className,
   customAdd: CustomAdd,
   customRemove: CustomRemove,
-  disableClick,
   ...otherProps
 }) => {
   return (
-    <Button
-      className={className}
-      onClick={onClick}
-      disableClick={disableClick}
-      {...otherProps}
-    >
+    <Button className={className} onClick={onClick} {...otherProps}>
       {!added ? (
         CustomAdd ? (
           <CustomAdd />
@@ -44,7 +38,6 @@ const Button = styled.button`
   justify-content: center;
   align-items: center;
   border-radius: 5px;
-  cursor: pointer;
   transition: background-color 0.15s ease-in-out;
 
   svg.plus path {
@@ -85,8 +78,6 @@ AddRemoveButton.propTypes = {
   customAdd: element,
   /** A custom remove component */
   customRemove: element,
-  /** Should click action be disabled */
-  disableClick: func,
   /** Extra props. */
   otherProps: object,
 };
