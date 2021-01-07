@@ -20,7 +20,7 @@ const AddRemoveButton = ({
           <IconActionPlus className="plus" size={20} />
         )
       ) : CustomRemove ? (
-        <CustomAdd />
+        <CustomRemove />
       ) : (
         <IconMinus className="minus" size={20} />
       )}
