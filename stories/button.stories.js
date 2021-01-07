@@ -120,9 +120,11 @@ storiesOf('Low level blocks/Buttons', module)
 
   .add('AddRemoveButton', () => {
     const [isAdded, setIsAdded] = useState(false);
+
     return (
       <AddRemoveButton
         added={isAdded}
+        disableClick={boolean('Disable click', false)}
         onClick={() => {
           setIsAdded(!isAdded);
         }}
