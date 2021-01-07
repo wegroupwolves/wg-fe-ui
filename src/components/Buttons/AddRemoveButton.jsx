@@ -38,6 +38,7 @@ const Button = styled.button`
   justify-content: center;
   align-items: center;
   border-radius: 5px;
+  cursor: pointer;
   transition: background-color 0.15s ease-in-out;
 
   svg.plus path {
