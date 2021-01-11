@@ -431,6 +431,7 @@ const Slash = styled.span`
 `;
 
 const DateInput = styled.input`
+  background-color: transparent;
   outline: none;
   border: none;
   width: ${({ year }) => (year ? '5rem' : '3rem')};
