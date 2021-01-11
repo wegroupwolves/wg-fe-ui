@@ -16,6 +16,7 @@ const DateInputV4 = ({
   onFieldBlur,
   children,
   iso,
+  allowIncomplete,
   ...rest
 }) => {
   const [value, setValue] = useState(initialValue || passedValue);
@@ -194,16 +195,24 @@ const DateInputV4 = ({
     }
   };
 
+  const allDatePropsDefined = _date => {
+    return _date?.day && _date?.month && _date?.year?.length > 3;
+  };
+
   /** Callback with complete value */
   const handleChange = (_date, _returnType) => {
     const returnValue = getReturnDate(_date, _returnType);
-    onChange({ name, value: returnValue });
+    if (allowIncomplete || allDatePropsDefined(_date))
+      onChange({ name, value: returnValue });
+    else onChange({ name, value: undefined });
   };
 
   /** Callback with complete value */
   const handleBlur = (_date, _returnType) => {
     const returnValue = getReturnDate(_date, _returnType);
-    onBlur({ name, value: returnValue });
+    if (allowIncomplete || allDatePropsDefined(_date))
+      onBlur({ name, value: returnValue });
+    else onBlur({ name, value: undefined });
   };
 
   const handlePreviousField = (name, noSelect) => {
@@ -461,6 +470,8 @@ DateInputV4.propTypes = {
   initialValue: oneOfType([object, string]),
   /** Force return as ISO */
   iso: bool,
+  /** Allow incomplete dates to be returned to the onChange and onBlur */
+  allowIncomplete: bool,
   /** Adds extra props to the element */
   rest: object,
 };
