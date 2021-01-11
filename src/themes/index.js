@@ -12,4 +12,5 @@ export { default as darkGrey } from './darkGrey';
 export { default as sidefishBlue } from './sidefishBlue';
 
 export { default as hillewaereBlue } from './hillewaereBlue';
+export { default as immothekerOrange } from './immothekerOrange';
 export { default as elvas } from './elvas';
