@@ -196,11 +196,11 @@ const DateInputV4 = ({
   };
 
   const allDatePropsDefined = _date => {
-    return _date?.day && _date?.month && _date?.year?.length > 3;
+    return Boolean(_date?.day && _date?.month && _date?.year?.length > 3);
   };
 
   const isDateEmpty = _date => {
-    return _date?.day || _date?.month || _date?.year;
+    return !(_date?.day || _date?.month || _date?.year);
   };
 
   /** Callback with complete value */
@@ -210,14 +210,16 @@ const DateInputV4 = ({
       onChange({
         name,
         value: returnValue,
-        dateObj: date,
+        dateObj: _date,
+        isValid: allDatePropsDefined(_date),
         isEmpty: isDateEmpty(_date),
       });
     else
       onChange({
         name,
         value: undefined,
-        dateObj: date,
+        dateObj: _date,
+        isValid: allDatePropsDefined(_date),
         isEmpty: isDateEmpty(_date),
       });
   };
@@ -229,14 +231,16 @@ const DateInputV4 = ({
       onBlur({
         name,
         value: returnValue,
-        dateObj: date,
+        dateObj: _date,
+        isValid: allDatePropsDefined(_date),
         isEmpty: isDateEmpty(_date),
       });
     else
       onBlur({
         name,
         value: undefined,
-        dateObj: date,
+        dateObj: _date,
+        isValid: allDatePropsDefined(_date),
         isEmpty: isDateEmpty(_date),
       });
   };
