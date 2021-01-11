@@ -44,6 +44,7 @@ export {
   SearchInput,
   SearchSelectInput,
   DateInput,
+  DateInputV4,
   TimeInput,
   CommentBox,
   ToggleInput,
