@@ -413,6 +413,8 @@ DateInputV4.defaultProps = {
   value: '',
   onBlur: () => {},
   onChange: () => {},
+  onFieldChange: () => {},
+  onFieldBlur: () => {},
 };
 
 DateInputV4.propTypes = {
