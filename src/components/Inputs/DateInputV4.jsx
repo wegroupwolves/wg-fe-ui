@@ -118,7 +118,7 @@ const DateInputV4 = ({
   });
 
   useEffect(() => {
-    const dateObj = getDateObjFromValue(passedValue);
+    const dateObj = getDateObjFromValue(value);
     setDate(dateObj);
     setValue(passedValue);
   }, [passedValue]);
