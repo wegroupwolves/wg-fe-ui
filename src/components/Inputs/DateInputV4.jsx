@@ -200,7 +200,7 @@ const DateInputV4 = ({
   };
 
   const isDateEmpty = _date => {
-    return _date?.day || _date?.month || _date?.year?.length;
+    return _date?.day || _date?.month || _date?.year;
   };
 
   /** Callback with complete value */
