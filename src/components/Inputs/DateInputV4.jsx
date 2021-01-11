@@ -199,20 +199,46 @@ const DateInputV4 = ({
     return _date?.day && _date?.month && _date?.year?.length > 3;
   };
 
+  const isDateEmpty = _date => {
+    return _date?.day || _date?.month || _date?.year?.length;
+  };
+
   /** Callback with complete value */
   const handleChange = (_date, _returnType) => {
     const returnValue = getReturnDate(_date, _returnType);
     if (allowIncomplete || allDatePropsDefined(_date))
-      onChange({ name, value: returnValue });
-    else onChange({ name, value: undefined });
+      onChange({
+        name,
+        value: returnValue,
+        dateObj: date,
+        isEmpty: isDateEmpty(_date),
+      });
+    else
+      onChange({
+        name,
+        value: undefined,
+        dateObj: date,
+        isEmpty: isDateEmpty(_date),
+      });
   };
 
   /** Callback with complete value */
   const handleBlur = (_date, _returnType) => {
     const returnValue = getReturnDate(_date, _returnType);
     if (allowIncomplete || allDatePropsDefined(_date))
-      onBlur({ name, value: returnValue });
-    else onBlur({ name, value: undefined });
+      onBlur({
+        name,
+        value: returnValue,
+        dateObj: date,
+        isEmpty: isDateEmpty(_date),
+      });
+    else
+      onBlur({
+        name,
+        value: undefined,
+        dateObj: date,
+        isEmpty: isDateEmpty(_date),
+      });
   };
 
   const handlePreviousField = (name, noSelect) => {
