@@ -583,10 +583,12 @@ storiesOf('Low level blocks/Inputs', module)
           name="dateInput"
           error={text('Error', '')}
           disabled={boolean('Disabled', false)}
-          onChange={setReturnedOnChangeDate}
+          // onChange={setReturnedOnChangeDate}
           onBlur={setReturnedOnBlurDate}
           onFieldChange={setReturnedOnFieldChangeDate}
           onFieldBlur={setReturnedOnFieldBlurDate}
+          iso={boolean('Return as ISO', false)}
+          onChange={setReturnedOnChangeDate}
           value={select(
             'Date input',
             {

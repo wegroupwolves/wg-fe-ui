@@ -8,14 +8,17 @@ const DateInputV4 = ({
   name,
   disabled,
   error,
-  value,
+  value: passedValue,
+  initialValue,
   onChange,
   onBlur,
   onFieldChange,
   onFieldBlur,
   children,
+  iso,
   ...rest
 }) => {
+  const [value] = useState(initialValue || passedValue);
   const [returnType, setReturnType] = useState('iso');
   const [lastPressedKey, setLastPressedKey] = useState();
   const dayRef = useRef();
@@ -65,14 +68,14 @@ const DateInputV4 = ({
    */
   const init = value => {
     if (value instanceof Date) {
-      setReturnType('date');
+      setReturnType(iso ? 'iso' : 'date');
       return {
         day: pad(value.getDate()),
         month: pad(value.getMonth()),
         year: value.getFullYear(),
       };
     } else if (typeof value === 'object') {
-      setReturnType('object');
+      setReturnType(iso ? 'iso' : 'object');
       return {
         day: pad(value.day),
         month: pad(value.month),
@@ -92,7 +95,11 @@ const DateInputV4 = ({
         throw new Error('No valid seperators, use / or -');
       }
 
-      setReturnType(value.includes('/') ? 'slash' : 'dash');
+      if (iso) {
+        setReturnType('iso');
+      } else {
+        setReturnType(value.includes('/') ? 'slash' : 'dash');
+      }
       const values = value.split(value.includes('/') ? '/' : '-');
       return {
         day: pad(values[0] || ''),
@@ -113,7 +120,15 @@ const DateInputV4 = ({
   useEffect(() => {
     const dateObj = getDateObjFromValue(value);
     setDate(dateObj);
-  }, [value]);
+  }, [passedValue]);
+
+  useEffect(() => {
+    if (iso) {
+      setReturnType('iso');
+    } else {
+      init(value);
+    }
+  }, [iso]);
 
   const onKeyDown = e => {
     setLastPressedKey(e.keyCode);
@@ -438,6 +453,10 @@ DateInputV4.propTypes = {
   onFieldBlur: func,
   /** Current value of the input element */
   value: oneOfType([object, string]),
+  /** The initial value of the date, use onChange to get updated values */
+  initialValue: oneOfType([object, string]),
+  /** Force return as ISO */
+  iso: bool,
   /** Adds extra props to the element */
   rest: object,
 };
