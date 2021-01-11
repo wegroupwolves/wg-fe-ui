@@ -18,7 +18,7 @@ const DateInputV4 = ({
   iso,
   ...rest
 }) => {
-  const [value] = useState(initialValue || passedValue);
+  const [value, setValue] = useState(initialValue || passedValue);
   const [returnType, setReturnType] = useState('iso');
   const [lastPressedKey, setLastPressedKey] = useState();
   const dayRef = useRef();
@@ -120,6 +120,7 @@ const DateInputV4 = ({
   useEffect(() => {
     const dateObj = getDateObjFromValue(value);
     setDate(dateObj);
+    setValue(passedValue);
   }, [passedValue]);
 
   useEffect(() => {
