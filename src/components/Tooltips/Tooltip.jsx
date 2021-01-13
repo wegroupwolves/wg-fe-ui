@@ -84,9 +84,6 @@ const TooltipContent = styled.div`
   visibility: ${({ active }) => (active ? 'visible' : 'hidden')};
   z-index: 9;
   position: absolute;
-  left: ${({ direction }) =>
-    direction === 'left' ? '-260px' : direction === 'right' ? '280px' : '50%'};
-  bottom: 100%;
   opacity: ${({ active }) => (active ? '1' : '0')};
   margin-bottom: 1em;
   padding: 1em;
@@ -102,10 +99,25 @@ const TooltipContent = styled.div`
   line-height: 1.8rem;
   color: white;
 
+  ${({ direction }) =>
+    direction === 'bottom'
+      ? css`
+          top: 150%;
+          left: 50%;
+        `
+      : css`
+          bottom: 100%;
+          left: ${({ direction }) =>
+            direction === 'left'
+              ? '-260px'
+              : direction === 'right'
+              ? '280px'
+              : '50%'};
+        `};
+
   &::before {
     content: '';
     position: absolute;
-    top: 100%;
     left: ${({ direction }) =>
       direction === 'left' ? '95%' : direction === 'right' ? '5%' : '50%'};
     width: 0;
@@ -114,6 +126,17 @@ const TooltipContent = styled.div`
     border-top-color: #11141c;
     -webkit-transform: translate(-50%, 0);
     transform: translate(-50%, 0);
+
+    ${({ direction }) =>
+      direction === 'bottom'
+        ? css`
+            -webkit-transform: translate(50%, 0);
+            transform: rotate(180deg) translate(50%, 0);
+            bottom: 100%;
+          `
+        : css`
+            top: 100%;
+          `};
   }
 `;
 
