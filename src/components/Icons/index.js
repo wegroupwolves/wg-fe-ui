@@ -178,6 +178,7 @@ import IconCarGlassBreakage from './IconCarGlassBreakage';
 import IconCarCollision from './IconCarCollision';
 import IconResetFilled from './IconResetFilled';
 import IconPrintWhite from './IconPrintWhite';
+import IconCompare from './IconCompare';
 
 export {
   IconResetFilled,
@@ -359,4 +360,5 @@ export {
   IconCarCollision,
   IconCarGlassBreakage,
   IconPrintWhite,
+  IconCompare,
 };
