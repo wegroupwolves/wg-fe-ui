@@ -95,13 +95,13 @@ const AmountInput = ({
       <InputControls>
         <InputControl
           disabled={currentValue == max}
-          onClick={currentValue != max && handlePlus}
+          onClick={currentValue != max ? handlePlus : undefined}
         >
           <IconActionDropDown size={14} />
         </InputControl>
         <InputControl
           disabled={currentValue == min || currentValue === undefined}
-          onClick={currentValue != min && handleMinus}
+          onClick={currentValue != min ? handleMinus : undefined}
         >
           <IconActionDropDown size={14} />
         </InputControl>
@@ -201,9 +201,9 @@ AmountInput.propTypes = {
   /** Stops input from working in any way. */
   disabled: bool,
   /** Minimum value of the input. */
-  min: number,
+  min: number | string,
   /** Maximum value of input. */
-  max: number,
+  max: number | string,
   /** Extra className to be passed to component. */
   className: string,
   /** Editable string appended to the right of the input. */
