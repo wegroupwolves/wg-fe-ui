@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { IconActionPlus, IconMinus } from '../../components/Icons/index';
-import { bool, func, string, object, element } from 'prop-types';
+import { bool, func, string, object } from 'prop-types';
 
 const AddRemoveButton = ({
   added,
@@ -76,9 +76,9 @@ AddRemoveButton.propTypes = {
   /** Extra className to be added to the button. */
   className: string,
   /** A custom add component */
-  customAdd: element,
+  customAdd: func,
   /** A custom remove component */
-  customRemove: element,
+  customRemove: func,
   /** Extra props. */
   otherProps: object,
 };

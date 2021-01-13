@@ -16,6 +16,7 @@ const DateInputV4 = ({
   onFieldBlur,
   children,
   iso,
+  allowIncomplete,
   ...rest
 }) => {
   const [value, setValue] = useState(initialValue || passedValue);
@@ -194,16 +195,54 @@ const DateInputV4 = ({
     }
   };
 
+  const allDatePropsDefined = _date => {
+    return Boolean(_date?.day && _date?.month && _date?.year?.length > 3);
+  };
+
+  const isDateEmpty = _date => {
+    return !(_date?.day || _date?.month || _date?.year);
+  };
+
   /** Callback with complete value */
   const handleChange = (_date, _returnType) => {
     const returnValue = getReturnDate(_date, _returnType);
-    onChange({ name, value: returnValue });
+    if (allowIncomplete || allDatePropsDefined(_date))
+      onChange({
+        name,
+        value: returnValue,
+        dateObj: _date,
+        isValid: allDatePropsDefined(_date),
+        isEmpty: isDateEmpty(_date),
+      });
+    else
+      onChange({
+        name,
+        value: undefined,
+        dateObj: _date,
+        isValid: allDatePropsDefined(_date),
+        isEmpty: isDateEmpty(_date),
+      });
   };
 
   /** Callback with complete value */
   const handleBlur = (_date, _returnType) => {
     const returnValue = getReturnDate(_date, _returnType);
-    onBlur({ name, value: returnValue });
+    if (allowIncomplete || allDatePropsDefined(_date))
+      onBlur({
+        name,
+        value: returnValue,
+        dateObj: _date,
+        isValid: allDatePropsDefined(_date),
+        isEmpty: isDateEmpty(_date),
+      });
+    else
+      onBlur({
+        name,
+        value: undefined,
+        dateObj: _date,
+        isValid: allDatePropsDefined(_date),
+        isEmpty: isDateEmpty(_date),
+      });
   };
 
   const handlePreviousField = (name, noSelect) => {
@@ -392,6 +431,7 @@ const Slash = styled.span`
 `;
 
 const DateInput = styled.input`
+  background-color: transparent;
   outline: none;
   border: none;
   width: ${({ year }) => (year ? '5rem' : '3rem')};
@@ -461,6 +501,8 @@ DateInputV4.propTypes = {
   initialValue: oneOfType([object, string]),
   /** Force return as ISO */
   iso: bool,
+  /** Allow incomplete dates to be returned to the onChange and onBlur */
+  allowIncomplete: bool,
   /** Adds extra props to the element */
   rest: object,
 };
