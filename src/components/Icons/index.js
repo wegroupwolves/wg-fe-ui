@@ -177,6 +177,7 @@ import IconStar from './IconStar';
 import IconCarGlassBreakage from './IconCarGlassBreakage';
 import IconCarCollision from './IconCarCollision';
 import IconResetFilled from './IconResetFilled';
+import IconPrintWhite from './IconPrintWhite';
 
 export {
   IconResetFilled,
@@ -357,4 +358,5 @@ export {
   IconStar,
   IconCarCollision,
   IconCarGlassBreakage,
+  IconPrintWhite,
 };
