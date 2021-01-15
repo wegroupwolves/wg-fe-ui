@@ -68,5 +68,6 @@ export default (function() {
       guaranteeText: '#8990A3',
     },
     font: brandFont,
+    isImmo: true,
   };
 });
