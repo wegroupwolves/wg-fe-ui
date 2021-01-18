@@ -3,6 +3,14 @@
   "plugins": [
     "transform-object-rest-spread",
     "transform-react-jsx",
-    "@babel/plugin-proposal-optional-chaining"
+    "@babel/plugin-proposal-optional-chaining",
+    [
+      "babel-plugin-styled-components",
+      {
+        "ssr": false,
+        "displayName": true,
+        "fileName": false
+      }
+    ]
   ]
 }
