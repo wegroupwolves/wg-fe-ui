@@ -442,6 +442,8 @@ storiesOf('Low level blocks/Inputs', module)
   })
 
   .add('AmountInput', () => {
+    const testRef = useRef();
+    console.log(testRef);
     return (
       <AmountInput
         value={number('Input value', 1)}
@@ -451,6 +453,7 @@ storiesOf('Low level blocks/Inputs', module)
         disabled={boolean('Disabled?', false)}
         roundNumber={boolean('Round numbers?', false)}
         allowChange={boolean('Allow change?', false)}
+        ref={testRef}
       ></AmountInput>
     );
   })

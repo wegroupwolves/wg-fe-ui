@@ -124,6 +124,7 @@ const AmountInput = (
       </InputControls>
 
       <StyledInput
+        name={name}
         type="text"
         value={currentValue}
         min={min}
