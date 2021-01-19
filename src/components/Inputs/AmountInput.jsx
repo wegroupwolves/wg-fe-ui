@@ -42,13 +42,26 @@ const AmountInput = ({
   const handleChange = (value, isBlur = false) => {
     let roundedValue = value;
 
-    if (typeof value === 'string')
-      roundedValue = Number(value.replace(',', '.'));
-    if (roundNumber) roundedValue = roundedValue.toFixed(0);
+    if (
+      typeof value === 'string' &&
+      value !== '' &&
+      value !== '-' &&
+      value[value.length - 1] !== '.'
+    )
+      roundedValue = value.replace(',', '.');
+    if (roundNumber && value !== '' && value !== '-')
+      roundedValue = Number(roundedValue).toFixed(0);
 
     if (!disabled) {
       if (isBlur || allowChange) {
-        const checkedValue = checkValue(roundedValue);
+        let checkedValue = roundedValue;
+        if (
+          checkedValue !== '' &&
+          checkedValue !== '-' &&
+          checkedValue[checkedValue.length - 1] !== '.' &&
+          checkedValue[checkedValue.length - 1] !== ','
+        )
+          checkedValue = checkValue(roundedValue);
         setCurrentValue(checkedValue);
         if (allowChange) {
           onChange({ name, value: checkedValue });
@@ -113,7 +126,9 @@ const AmountInput = ({
         min={min}
         max={max}
         onChange={({ target: { value } }) => handleChange(value)}
-        onBlur={({ target: { value } }) => handleChange(value, true)}
+        onBlur={({ target: { value } }) =>
+          allowChange ? handleChange(Number(value)) : handleChange(value, true)
+        }
         disabled={disabled}
         onKeyDown={handleOnKeyDown}
       />
