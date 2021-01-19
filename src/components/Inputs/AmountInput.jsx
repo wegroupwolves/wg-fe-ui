@@ -13,6 +13,7 @@ const AmountInput = (
     className,
     onChange,
     onBlur,
+    onFocus,
     inputAppend,
     name,
     roundNumber = false,
@@ -66,7 +67,7 @@ const AmountInput = (
         )
           checkedValue = checkValue(roundedValue);
         setCurrentValue(checkedValue);
-        if (allowChange) {
+        if (allowChange && !isBlur) {
           onChange({ name, value: checkedValue });
         } else {
           onBlur({ name, value: checkedValue });
@@ -134,6 +135,7 @@ const AmountInput = (
           allowChange ? handleChange(Number(value)) : handleChange(value, true)
         }
         disabled={disabled}
+        onFocus={onFocus}
         onKeyDown={handleOnKeyDown}
         ref={ref}
       />
