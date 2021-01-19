@@ -1,23 +1,26 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, forwardRef } from 'react';
 import styled from 'styled-components';
 import { number, bool, string, object, func } from 'prop-types';
 
 import { IconActionDropDown } from '../../index';
 
-const AmountInput = ({
-  value,
-  disabled,
-  min,
-  max,
-  className,
-  onChange,
-  onBlur,
-  inputAppend,
-  name,
-  roundNumber = false,
-  allowChange = false,
-  ...otherProps
-}) => {
+const AmountInput = (
+  {
+    value,
+    disabled,
+    min,
+    max,
+    className,
+    onChange,
+    onBlur,
+    inputAppend,
+    name,
+    roundNumber = false,
+    allowChange = false,
+    ...otherProps
+  },
+  ref,
+) => {
   const [currentValue, setCurrentValue] = useState(value);
 
   useEffect(() => {
@@ -131,6 +134,7 @@ const AmountInput = ({
         }
         disabled={disabled}
         onKeyDown={handleOnKeyDown}
+        ref={ref}
       />
 
       {inputAppend ? <InputExtra>{inputAppend}</InputExtra> : ''}
@@ -237,4 +241,4 @@ AmountInput.propTypes = {
   allowChange: bool,
 };
 
-export default AmountInput;
+export default forwardRef(AmountInput);
