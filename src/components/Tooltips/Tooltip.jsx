@@ -99,21 +99,40 @@ const TooltipContent = styled.div`
   line-height: 1.8rem;
   color: white;
 
-  ${({ direction }) =>
-    direction === 'bottom'
-      ? css`
+  ${({ direction }) => {
+    switch (direction) {
+      case 'bottom':
+        return css`
           top: 150%;
           left: 50%;
-        `
-      : css`
+        `;
+      case 'bottomleft':
+        return css`
+          top: 150%;
+          left: -1300%;
+        `;
+      case 'bottomright':
+        return css`
+          top: 150%;
+          left: 1400%;
+        `;
+      case 'left':
+        return css`
           bottom: 100%;
-          left: ${({ direction }) =>
-            direction === 'left'
-              ? '-260px'
-              : direction === 'right'
-              ? '280px'
-              : '50%'};
-        `};
+          left: -1300%;
+        `;
+      case 'right':
+        return css`
+          bottom: 100%;
+          left: 1400%;
+        `;
+      default:
+        return css`
+          bottom: 100%;
+          left: 50%;
+        `;
+    }
+  }}
 
   &::before {
     content: '';
@@ -127,16 +146,45 @@ const TooltipContent = styled.div`
     -webkit-transform: translate(-50%, 0);
     transform: translate(-50%, 0);
 
-    ${({ direction }) =>
-      direction === 'bottom'
-        ? css`
+    ${({ direction }) => {
+      switch (direction) {
+        case 'bottom':
+          return css`
             -webkit-transform: translate(50%, 0);
             transform: rotate(180deg) translate(50%, 0);
             bottom: 100%;
-          `
-        : css`
+          `;
+        case 'bottomleft':
+          return css`
+            -webkit-transform: translate(50%, 0);
+            transform: rotate(180deg) translate(50%, 0);
+            bottom: 100%;
+            left: 95%;
+          `;
+        case 'bottomright':
+          return css`
+            -webkit-transform: translate(50%, 0);
+            transform: rotate(180deg) translate(50%, 0);
+            bottom: 100%;
+            left: 5%;
+          `;
+        case 'left':
+          return css`
             top: 100%;
-          `};
+            left: 95%;
+          `;
+        case 'right':
+          return css`
+            top: 100%;
+            left: 5%;
+          `;
+        default:
+          return css`
+            top: 100%;
+            left: 50%;
+          `;
+      }
+    }}
   }
 `;
 

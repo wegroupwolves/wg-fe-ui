@@ -19,6 +19,8 @@ storiesOf('Low level blocks/Tooltips', module)
             Left: 'left',
             Right: 'right',
             Bottom: 'bottom',
+            Bottomleft: 'bottomleft',
+            Bottomright: 'bottomright',
           },
           2,
         )}
