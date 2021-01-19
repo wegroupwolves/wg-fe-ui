@@ -131,9 +131,7 @@ const AmountInput = (
         min={min}
         max={max}
         onChange={({ target: { value } }) => handleChange(value)}
-        onBlur={({ target: { value } }) =>
-          allowChange ? handleChange(Number(value)) : handleChange(value, true)
-        }
+        onBlur={({ target: { value } }) => handleChange(value, true)}
         disabled={disabled}
         onFocus={onFocus}
         onKeyDown={handleOnKeyDown}
