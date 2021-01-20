@@ -196,7 +196,9 @@ const DateInputV4 = ({
   };
 
   const allDatePropsDefined = _date => {
-    return Boolean(_date?.day && _date?.month && _date?.year?.length > 3);
+    return Boolean(
+      _date?.day && _date?.month && String(_date?.year)?.length > 3,
+    );
   };
 
   const isDateEmpty = _date => {
