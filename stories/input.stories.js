@@ -592,28 +592,28 @@ storiesOf('Low level blocks/Inputs', module)
           iso={boolean('Return as ISO', false)}
           onChange={setReturnedOnChangeDate}
           allowIncomplete={boolean('Allow incompleted dates', false)}
-          value={select(
-            'Date input',
-            {
-              'ISO: 2013-03-10T00:00:00+01:00': String(
-                '2013-03-10T00:00:00+01:00',
-              ),
-              'ISO: 1997-07-16': '1997-07-16',
-              'Javascript Date object: 2013-03-10T02:00:00.000Z':
-                '2013-03-10T02:00:00.000Z',
-              'Date object: { day: 3, month: 10, year: 2013 }': {
-                day: 10,
-                month: 3,
-                year: 2013,
-              },
-              'Date string: 10/03/2013': '10/03/2013',
-              'Date string: 10-03-2013': '10-03-2013',
-              'Incomplete date string: 10-03': '10-03',
-              'Incomplete date string: 2020-10': '2020-10',
-              Empty: '',
-            },
-            '2013-03-10T00:00:00+01:00',
-          )}
+          // value={select(
+          //   'Date input',
+          //   {
+          //     'ISO: 2013-03-10T00:00:00+01:00': String(
+          //       '2013-03-10T00:00:00+01:00',
+          //     ),
+          //     'ISO: 1997-07-16': '1997-07-16',
+          //     'Javascript Date object: 2013-03-10T02:00:00.000Z':
+          //       '2013-03-10T02:00:00.000Z',
+          //     'Date object: { day: 3, month: 10, year: 2013 }': {
+          //       day: 10,
+          //       month: 3,
+          //       year: 2013,
+          //     },
+          //     'Date string: 10/03/2013': '10/03/2013',
+          //     'Date string: 10-03-2013': '10-03-2013',
+          //     'Incomplete date string: 10-03': '10-03',
+          //     'Incomplete date string: 2020-10': '2020-10',
+          //     Empty: '',
+          //   },
+          //   '2013-03-10T00:00:00+01:00',
+          // )}
           initialValue="2013-03-10T00:00:00+01:00"
         >
           {text('Label', 'Date')}
