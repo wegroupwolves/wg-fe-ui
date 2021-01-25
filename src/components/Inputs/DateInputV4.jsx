@@ -19,7 +19,7 @@ const DateInputV4 = ({
   allowIncomplete,
   ...rest
 }) => {
-  const [value, setValue] = useState(initialValue || passedValue);
+  const [value, setValue] = useState(passedValue || initialValue);
   const [returnType, setReturnType] = useState('iso');
   const [lastPressedKey, setLastPressedKey] = useState();
   const dayRef = useRef();
@@ -124,7 +124,7 @@ const DateInputV4 = ({
   }, [value]);
 
   useEffect(() => {
-    if (passedValue) setValue(passedValue);
+    setValue(passedValue);
   }, [passedValue]);
 
   useEffect(() => {
