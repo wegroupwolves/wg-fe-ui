@@ -107,8 +107,6 @@ const DateInputV4 = ({
         month: pad(values[1] || ''),
         year: values[2] || '',
       };
-    } else {
-      throw new Error('Wrong date input given, please try to use ISO.');
     }
   };
 
