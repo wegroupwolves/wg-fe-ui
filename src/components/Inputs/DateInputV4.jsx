@@ -2,6 +2,8 @@ import React, { useState, useRef, useEffect } from 'react';
 import { bool, string, object, func, node, oneOfType } from 'prop-types';
 import styled from 'styled-components';
 import { formatISO } from 'date-fns';
+import Checkmark from '../../assets/checkmark';
+import Errormark from '../../assets/errormark';
 
 const DateInputV4 = ({
   className,
@@ -17,6 +19,9 @@ const DateInputV4 = ({
   children,
   iso,
   allowIncomplete,
+  dataTestId,
+  touched,
+  withIcon,
   ...rest
 }) => {
   const [value, setValue] = useState(initialValue || passedValue);
@@ -326,10 +331,21 @@ const DateInputV4 = ({
   };
 
   return (
-    <Container className={className} name={name} {...rest}>
+    <Container
+      className={className}
+      name={name}
+      hasChildren={!!children}
+      {...rest}
+    >
       <StyledLabel disabled={disabled}>
         {children}
-        <Input disabled={disabled} error={error}>
+        <Input
+          disabled={disabled}
+          error={error}
+          touched={touched}
+          hasChildren={!!children}
+          withIcon={withIcon}
+        >
           <DateInput
             name="day"
             placeholder="DD"
@@ -341,6 +357,7 @@ const DateInputV4 = ({
             disabled={disabled}
             onKeyDown={onKeyDown}
             type="number"
+            data-test-id={`${dataTestId}_day`}
           />
           <Slash>/</Slash>
           <DateInput
@@ -354,6 +371,7 @@ const DateInputV4 = ({
             disabled={disabled}
             onKeyDown={onKeyDown}
             type="number"
+            data-test-id={`${dataTestId}_month`}
           />
           <Slash>/</Slash>
           <DateInput
@@ -368,7 +386,13 @@ const DateInputV4 = ({
             onKeyDown={onKeyDown}
             type="number"
             year
+            data-test-id={`${dataTestId}_year`}
           />
+          {withIcon && error && touched ? (
+            <StyledErrormark color="#F74040" />
+          ) : (
+            withIcon && touched && <StyledCheckmark color="#49C562" />
+          )}
         </Input>
       </StyledLabel>
 
@@ -382,6 +406,20 @@ const DateInputV4 = ({
     </Container>
   );
 };
+
+const StyledErrormark = styled(Errormark)`
+  position: absolute;
+  right: 1rem;
+  align-self: center;
+  transition: 0.2s;
+`;
+
+const StyledCheckmark = styled(Checkmark)`
+  position: absolute;
+  right: 1rem;
+  align-self: center;
+  transition: 0.2s;
+`;
 
 const ErrorContainer = styled.div`
   height: 1.5rem;
@@ -405,6 +443,7 @@ const ErrorMss = styled.p`
 `;
 
 const Input = styled.div`
+  position: relative;
   display: flex;
   align-items: center;
   grid-template-columns: repeat(3, 1fr);
@@ -412,13 +451,13 @@ const Input = styled.div`
   width: 100%;
   background-color: ${({ disabled }) => (disabled ? '#F0F1F3' : 'white')};
   padding-left: 1.2rem;
-  margin-top: 1.4rem;
+  margin-top: ${({ hasChildren }) => (hasChildren ? '1.4rem' : 0)};
   border: 1px solid;
   height: 4rem;
-  border-color: ${({ error, touched, theme }) =>
+  border-color: ${({ error, touched, theme, withIcon }) =>
     error
       ? theme.status.error
-      : touched && !error
+      : touched && withIcon && !error
       ? theme.status.succes
       : theme.ui.outline};
   border-radius: 3px;
@@ -464,7 +503,7 @@ const StyledLabel = styled.label`
 const Container = styled.div`
   font-family: ${({ theme }) => theme.font};
   width: 100%;
-  height: 9rem;
+  height: ${({ hasChildren }) => (hasChildren ? '9rem' : 'auto')};
 `;
 
 DateInputV4.defaultProps = {
@@ -504,6 +543,12 @@ DateInputV4.propTypes = {
   allowIncomplete: bool,
   /** Adds extra props to the element */
   rest: object,
+  /** Test id for data */
+  dataTestId: string,
+  /** Has field been touched */
+  touched: bool,
+  /** Should field include icons */
+  withIcon: bool,
 };
 
 export default DateInputV4;

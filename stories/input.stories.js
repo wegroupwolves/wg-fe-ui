@@ -615,6 +615,8 @@ storiesOf('Low level blocks/Inputs', module)
             '2013-03-10T00:00:00+01:00',
           )}
           initialValue="2013-03-10T00:00:00+01:00"
+          withIcon={boolean('With icon on touched?', false)}
+          touched={boolean('Touched', false)}
         >
           {text('Label', 'Date')}
         </StyledDateInputNew>
