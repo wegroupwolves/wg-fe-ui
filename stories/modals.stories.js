@@ -35,6 +35,9 @@ storiesOf('Low level blocks/Modals', module)
           small={boolean('Small modal?', false)}
           large={boolean('Larger modal?', false)}
           width={text('Custom width', '')}
+          canClose={boolean('Can modal be closed', true)}
+          showToast={boolean('Show toast on close?', false)}
+          toastText={text('Toast text', 'This modal cant be closed')}
         >
           <p>This is some content for the modal</p>
 
@@ -70,6 +73,7 @@ storiesOf('Low level blocks/Modals', module)
           visualSteps={boolean('Visual steps?', false)}
           onLabelClick={function noRefCheck() {}}
           pointerEnabled={boolean('Pointer enabled?', false)}
+          canClose={boolean('Can modal be closed', true)}
           steps={[
             {
               step: 0,
@@ -84,6 +88,8 @@ storiesOf('Low level blocks/Modals', module)
               label: 'Termination letter',
             },
           ]}
+          showToast={boolean('Show toast on close?', false)}
+          toastText={text('Toast text', 'This modal cant be closed')}
         >
           <ModalWithSteps.ModalContent key={0} step={0}>
             This is step 0

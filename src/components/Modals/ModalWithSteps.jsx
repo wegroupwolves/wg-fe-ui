@@ -1,8 +1,9 @@
-import React, { createContext, useContext } from 'react';
+import React, { createContext, useContext, useRef } from 'react';
 import { string, bool, node, func, array, number } from 'prop-types';
 import styled, { css } from 'styled-components';
 import Drawer from 'react-drag-drawer';
 import CloseIcon from '../Icons/IconActionClose';
+import cogoToast from 'cogo-toast';
 
 const StepModalContext = createContext();
 
@@ -32,14 +33,36 @@ const ModalWithSteps = ({
   visualSteps,
   title,
   stepText = 'Step',
+  showToast,
+  toastText,
+  toastHideTime,
+  ...otherProps
 }) => {
+  const isShowingToast = useRef(false);
+
+  const handleOnRequestClose = () => {
+    if (canClose) {
+      setShowModal(!showModal);
+    }
+
+    if (showToast && !isShowingToast.current) {
+      isShowingToast.current = true;
+      cogoToast.warn(toastText, { hideAfter: toastHideTime });
+      setTimeout(() => {
+        isShowingToast.current = false;
+      }, toastHideTime * 1000);
+    }
+  };
+
   return (
     <StepModalContext.Provider value={{ currentStep }}>
-      <StyledDrawer
-        open={showModal}
-        onRequestClose={canClose ? () => setShowModal(!showModal) : () => {}}
-      >
-        <ModalContainer className={className} small={small} large={large}>
+      <StyledDrawer open={showModal} onRequestClose={handleOnRequestClose}>
+        <ModalContainer
+          className={className}
+          small={small}
+          large={large}
+          {...otherProps}
+        >
           <ModalTitleBar visualSteps={visualSteps}>
             {visualSteps ? (
               <TopStepsWrapper>
@@ -358,11 +381,18 @@ ModalWithSteps.propTypes = {
   visualSteps: bool,
   /** Step text */
   stepText: string.isRequired,
+  /** If a toast should be shown when trying to close the modal */
+  showToast: bool,
+  /** Text for the toast if shown */
+  toastText: string,
+  /** Time for toast to hide in seconds*/
+  toastHideTime: number,
 };
 
 ModalWithSteps.defaultProps = {
   canClose: true,
   showModal: false,
+  toastHideTime: 5,
 };
 
 ModalWithSteps.ModalActions = StyledModalActions;
