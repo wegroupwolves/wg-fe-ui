@@ -1,9 +1,10 @@
-import React from 'react';
-import { string, bool, node, func } from 'prop-types';
+import React, { useRef } from 'react';
+import { string, bool, node, func, number } from 'prop-types';
 import styled from 'styled-components';
 import Drawer from 'react-drag-drawer';
 
 import CloseIcon from '../Icons/IconActionClose';
+import cogoToast from 'cogo-toast';
 
 const StyledModalActions = ({ children, position }) => {
   return <ModalActions position={position}>{children}</ModalActions>;
@@ -19,13 +20,31 @@ const Modal = ({
   large,
   className,
   width,
+  showToast,
+  toastText,
+  toastHideTime,
   ...otherProps
 }) => {
+  const isShowingToast = useRef(false);
+
+  const handleOnRequestClose = () => {
+    if (canClose) {
+      setShowModal(!showModal);
+    }
+
+    if (showToast && !isShowingToast.current) {
+      isShowingToast.current = true;
+      cogoToast.warn(toastText, {
+        hideAfter: toastHideTime,
+      });
+      setTimeout(() => {
+        isShowingToast.current = false;
+      }, toastHideTime * 1000);
+    }
+  };
+
   return (
-    <StyledDrawer
-      open={showModal}
-      onRequestClose={canClose ? () => setShowModal(!showModal) : ''}
-    >
+    <StyledDrawer open={showModal} onRequestClose={handleOnRequestClose}>
       <ModalContainer
         {...otherProps}
         className={className}
@@ -160,12 +179,19 @@ Modal.propTypes = {
   large: bool,
   /** Pass a custom width to modal */
   width: string,
+  /** If a toast should be shown when trying to close the modal */
+  showToast: bool,
+  /** Text for the toast if shown */
+  toastText: string,
+  /** Time for toast to hide in seconds*/
+  toastHideTime: number,
   className: string,
 };
 
 Modal.defaultProps = {
   canClose: true,
   showModal: false,
+  toastHideTime: 5,
 };
 
 Modal.ModalActions = StyledModalActions;
