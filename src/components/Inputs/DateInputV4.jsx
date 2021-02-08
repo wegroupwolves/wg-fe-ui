@@ -288,6 +288,8 @@ const DateInputV4 = ({
 
   /** Callback with single value */
   const handleFieldChange = ({ target: { name, value } }, move) => {
+    if (name === 'year' ? value?.length > 4 : value.length > 2) return;
+
     let moved = false;
     if (name === 'day') {
       if (isFalseNumber(name, value)) {
