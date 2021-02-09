@@ -23,6 +23,7 @@ const Modal = ({
   showToast,
   toastText,
   toastHideTime,
+  drawerProps,
   ...otherProps
 }) => {
   const isShowingToast = useRef(false);
@@ -44,7 +45,11 @@ const Modal = ({
   };
 
   return (
-    <StyledDrawer open={showModal} onRequestClose={handleOnRequestClose}>
+    <StyledDrawer
+      open={showModal}
+      onRequestClose={handleOnRequestClose}
+      {...drawerProps}
+    >
       <ModalContainer
         {...otherProps}
         className={className}
