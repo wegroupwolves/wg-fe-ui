@@ -36,6 +36,7 @@ const ModalWithSteps = ({
   showToast,
   toastText,
   toastHideTime,
+  onClose,
   ...otherProps
 }) => {
   const isShowingToast = useRef(false);
@@ -43,6 +44,7 @@ const ModalWithSteps = ({
   const handleOnRequestClose = () => {
     if (canClose) {
       setShowModal(!showModal);
+      onClose();
     }
 
     if (showToast && !isShowingToast.current) {
@@ -104,7 +106,12 @@ const ModalWithSteps = ({
               </ModalTitle>
             )}
             {canClose ? (
-              <ModalCloser onClick={() => setShowModal(!showModal)}>
+              <ModalCloser
+                onClick={() => {
+                  setShowModal(!showModal);
+                  onClose();
+                }}
+              >
                 <CloseIcon color="#505050" />
               </ModalCloser>
             ) : null}
@@ -387,6 +394,8 @@ ModalWithSteps.propTypes = {
   toastText: string,
   /** Time for toast to hide in seconds*/
   toastHideTime: number,
+  /** FUnction to execute if closed */
+  onClose: func,
 };
 
 ModalWithSteps.defaultProps = {
