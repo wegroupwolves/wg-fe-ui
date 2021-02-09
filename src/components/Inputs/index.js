@@ -5,6 +5,7 @@ import PhoneInput from './PhoneInput';
 import TextArea from './TextArea';
 import SearchInput from './SearchInput';
 import SearchSelectInput from './SearchSelectInput';
+import NumbersInputWithSymbol from './NumbersInputWithSymbol';
 import DateInput from './DateInput';
 import TimeInput from './TimeInput';
 import CommentBox from './CommentBox';
@@ -38,4 +39,5 @@ export {
   CardPicker,
   DropDown,
   DateInputV4,
+  NumbersInputWithSymbol,
 };

@@ -43,6 +43,7 @@ export {
   PhoneInput,
   SearchInput,
   SearchSelectInput,
+  NumbersInputWithSymbol,
   DateInput,
   DateInputV4,
   TimeInput,

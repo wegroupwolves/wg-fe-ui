@@ -26,6 +26,7 @@ import {
   TextArea,
   SearchInput,
   SearchSelectInput,
+  NumbersInputWithSymbol,
   DateInput,
   TimeInput,
   CommentBox,
@@ -203,6 +204,36 @@ storiesOf('Low level blocks/Inputs', module)
       >
         {text('Label', 'Email', 'Input options')}
       </StyledTextInput>
+    );
+  })
+
+  .add('NumbersInputWithSymbol', () => {
+    let error = text('Error', '', 'Input options');
+    let touched = boolean('Touched', false, 'Input options');
+    return (
+      <StyledNumbersInputWithSymbol
+        disabled={boolean('Disabled', false, 'Input options')}
+        name="emailadres"
+        type="number"
+        placeholder={text('Placeholder', 'example@wegroup.be', 'Input options')}
+        error={error}
+        touched={touched}
+        value={text('DefaultValue', '', 'Input options')}
+        symbol={
+          boolean('Show symbol', true, 'Symbol options')
+            ? select('Icon', IconsList, IconsKeys[0], 'Symbol options')
+            : ''
+        }
+        symbolSide={select(
+          'Symbol side',
+          { Right: 'right', Left: 'left' },
+          'right',
+          'Symbol options',
+        )}
+        symbolText={boolean('Show symbol as text', false, 'Symbol options')}
+      >
+        {text('Label', 'Email', 'Input options')}
+      </StyledNumbersInputWithSymbol>
     );
   })
 
@@ -717,6 +748,10 @@ const StyledMaskedInput = styled(MaskedInput)`
 `;
 
 const StyledTextInput = styled(TextInput)`
+  width: 27rem;
+`;
+
+const StyledNumbersInputWithSymbol = styled(NumbersInputWithSymbol)`
   width: 27rem;
 `;
 
