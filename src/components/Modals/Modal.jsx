@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import { string, bool, node, func, number } from 'prop-types';
+import { string, bool, node, func, number, object } from 'prop-types';
 import styled from 'styled-components';
 import Drawer from 'react-drag-drawer';
 
@@ -24,6 +24,7 @@ const Modal = ({
   toastText,
   toastHideTime,
   drawerProps,
+  onClose,
   ...otherProps
 }) => {
   const isShowingToast = useRef(false);
@@ -31,6 +32,7 @@ const Modal = ({
   const handleOnRequestClose = () => {
     if (canClose) {
       setShowModal(!showModal);
+      onClose();
     }
 
     if (showToast && !isShowingToast.current) {
@@ -58,7 +60,12 @@ const Modal = ({
         width={width}
       >
         {canClose ? (
-          <ModalCloser onClick={() => setShowModal(!showModal)}>
+          <ModalCloser
+            onClick={() => {
+              setShowModal(!showModal);
+              onClose();
+            }}
+          >
             <CloseIcon color="#505050" />
           </ModalCloser>
         ) : (
@@ -191,6 +198,9 @@ Modal.propTypes = {
   /** Time for toast to hide in seconds*/
   toastHideTime: number,
   className: string,
+  /** FUnction to execute if closed */
+  onClose: func,
+  drawerProps: object,
 };
 
 Modal.defaultProps = {

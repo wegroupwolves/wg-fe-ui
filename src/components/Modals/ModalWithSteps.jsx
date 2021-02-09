@@ -106,7 +106,12 @@ const ModalWithSteps = ({
               </ModalTitle>
             )}
             {canClose ? (
-              <ModalCloser onClick={() => setShowModal(!showModal)}>
+              <ModalCloser
+                onClick={() => {
+                  setShowModal(!showModal);
+                  onClose();
+                }}
+              >
                 <CloseIcon color="#505050" />
               </ModalCloser>
             ) : null}
