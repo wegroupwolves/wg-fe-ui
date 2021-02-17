@@ -103,7 +103,7 @@ const Type = styled.span`
   padding: 1.4rem;
   position: absolute;
   right: 0;
-  top: 2.5rem;
+  top: 1.5rem;
 `;
 
 const Container = styled.div`

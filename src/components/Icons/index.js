@@ -5,6 +5,7 @@ import IconTheftFilled from './IconTheftFilled';
 import IconOthersFilled from './IconOthersFilled';
 import IconTaxFilled from './IconTaxFilled';
 import IconLegalFilled from './IconLegalFilled';
+import IconNotificationBellFilled from './IconNotificationBellFilled';
 import IconFlightFilled from './IconFlightFilled';
 import IconConsumerFilled from './IconConsumerFilled';
 import IconMechanicalBreakdownFilled from './IconMechanicalBreakdownFilled';
@@ -361,4 +362,5 @@ export {
   IconCarGlassBreakage,
   IconPrintWhite,
   IconCompare,
+  IconNotificationBellFilled,
 };
