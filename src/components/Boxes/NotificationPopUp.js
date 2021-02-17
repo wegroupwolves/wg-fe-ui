@@ -19,7 +19,7 @@ const NotificationPopUp = ({
   onClick = () => {},
   className,
   hideDelay = 5,
-  otherProps
+  otherProps,
 }) => {
   const [show, setShow] = useState(true);
 
@@ -51,22 +51,14 @@ const NotificationPopUp = ({
     >
       {icon && (
         <IconContainer>
-          <IconCircle>
-            {icon}
-          </IconCircle>
+          <IconCircle>{icon}</IconCircle>
         </IconContainer>
       )}
       <HeaderContentContainer>
-        <Title>
-          {title}
-        </Title>
-        <Description>
-          {description}
-        </Description>
+        <Title>{title}</Title>
+        <Description>{description}</Description>
       </HeaderContentContainer>
-      <TimeLeft>
-        {time}
-      </TimeLeft>
+      <TimeLeft>{time}</TimeLeft>
     </Container>
   );
 };
@@ -98,12 +90,12 @@ const SlideOut = keyframes`
 
 const TimeLeft = styled.div`
   font-weight: 500;
-  font-size: 14px;
+  font-size: 1.4rem;
   margin-left: 2rem;
   text-align: right;
   height: 100%;
   flex-shrink: 0;
-  color: #8990A3;
+  color: #8990a3;
 `;
 
 const IconCircle = styled.div`
@@ -119,7 +111,9 @@ const IconCircle = styled.div`
   }
 `;
 
-const Container = styled(({showPopup, ...props}) => <LinkHandler {...props} />)`
+const Container = styled(({ showPopup, ...props }) => (
+  <LinkHandler {...props} />
+))`
   box-sizing: border-box;
   display: flex;
   width: 100%;
@@ -130,11 +124,11 @@ const Container = styled(({showPopup, ...props}) => <LinkHandler {...props} />)`
   flex: 1 1 100%;
   max-height: 20rem;
   background: white;
-  border: 0.5px solid #ECECEC;
+  border: 0.05rem solid #ececec;
   text-decoration: none;
   justify-content: space-between;
-  filter: drop-shadow(-4px 4px 12px rgba(0, 0, 0, 0.05));
-  border-radius: 5px;
+  filter: drop-shadow(-0.4rem 0.4rem 1.2rem rgba(0, 0, 0, 0.05));
+  border-radius: 0.5rem;
   opacity: 1;
   cursor: pointer;
   top: 0;
@@ -144,13 +138,15 @@ const Container = styled(({showPopup, ...props}) => <LinkHandler {...props} />)`
   transition: all 500ms ease;
   z-index: 10;
   animation: ${SlideIn} 500ms forwards ease;
-  ${({ showPopup }) => !showPopup && css`
-    animation: ${SlideOut} 500ms forwards ease;
-    z-index: 9;
-  `}
+  ${({ showPopup }) =>
+    !showPopup &&
+    css`
+      animation: ${SlideOut} 500ms forwards ease;
+      z-index: 9;
+    `}
 
   &:hover {
-    border: 1px solid ${({ theme }) => theme.brand.primary};
+    border: 0.1rem solid ${({ theme }) => theme.brand.primary};
   }
 `;
 
@@ -168,20 +164,19 @@ const IconContainer = styled.div`
   flex: 0 0 auto;
 `;
 
-
 const Title = styled.div`
   font-style: normal;
   font-weight: 500;
-  font-size: 16px;
-  color: #2D2D2D;
-  margin-bottom: 5px;
+  font-size: 1.6rem;
+  color: #2d2d2d;
+  margin-bottom: 0.5rem;
 `;
 
 const Description = styled.div`
   font-style: normal;
   font-weight: normal;
-  font-size: 14px;
-  color: #8990A3;
+  font-size: 1.4rem;
+  color: #8990a3;
 `;
 
 NotificationPopUp.propTypes = {
