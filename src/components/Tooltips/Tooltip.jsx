@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styled, { css } from 'styled-components';
-import { string, node, func, object } from 'prop-types';
+import { string, node, func, object, bool } from 'prop-types';
 
 const Tooltip = ({
   className,
@@ -9,27 +9,38 @@ const Tooltip = ({
   onClick,
   direction,
   text,
+  isActive: passedIsActive,
+  setIsActive: passedSetIsActive,
   ...otherProps
 }) => {
   const [isActive, setIsActive] = useState(false);
 
   return (
     <TooltipWrapper
-      onMouseLeave={() => setIsActive(false)}
+      onMouseLeave={() => passedSetIsActive(false) || setIsActive(false)}
       className={className}
       onClick={onClick}
       {...otherProps}
     >
-      <TooltipToggle onMouseMove={() => setIsActive(true)} isActive={isActive}>
+      <TooltipToggle
+        onMouseMove={() => passedSetIsActive(true) || setIsActive(true)}
+        isActive={(passedIsActive != null && passedIsActive) || isActive}
+      >
         {toggleIcon}
       </TooltipToggle>
       {text && (
-        <TooltipText onMouseMove={() => setIsActive(true)} isActive={isActive}>
+        <TooltipText
+          onMouseMove={() => passedSetIsActive(true) || setIsActive(true)}
+          isActive={(passedIsActive != null && passedIsActive) || isActive}
+        >
           {text}
         </TooltipText>
       )}
 
-      <TooltipContent active={isActive} direction={direction}>
+      <TooltipContent
+        active={(passedIsActive != null && passedIsActive) || isActive}
+        direction={direction}
+      >
         {children}
       </TooltipContent>
     </TooltipWrapper>
@@ -208,6 +219,10 @@ Tooltip.propTypes = {
   otherProps: object,
   /** Text for the tooltip */
   text: string,
+  /** Manually pass the isActive state for showing the tooltip */
+  isActive: bool,
+  /** Manually set the isActive state for showing the tooltip */
+  setIsActive: func,
 };
 
 export default Tooltip;
