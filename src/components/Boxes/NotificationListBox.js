@@ -16,10 +16,10 @@ const NotificationListBox = ({
   formattedTime,
   to,
   onClick = () => {},
-  tooltipText = "Mark notification as seen",
+  tooltipText = 'Mark notification as seen',
   markRead = () => {},
   className,
-  otherProps
+  otherProps,
 }) => {
   const [show, setShow] = useState(true);
 
@@ -34,7 +34,7 @@ const NotificationListBox = ({
   useEffect(() => {
     return () => {
       clearTimeout(hidePopUpFunctionTimer);
-    }
+    };
   }, []);
 
   return (
@@ -43,26 +43,16 @@ const NotificationListBox = ({
         <HeaderContainer>
           {icon && (
             <IconContainer>
-              <IconCircle seen={seen}>
-                {icon}
-              </IconCircle>
+              <IconCircle seen={seen}>{icon}</IconCircle>
             </IconContainer>
           )}
           <HeaderContentContainer>
-            <Title>
-              {title}
-            </Title>
-            <Description>
-              {description}
-            </Description>
+            <Title>{title}</Title>
+            <Description>{description}</Description>
           </HeaderContentContainer>
-          <TimeLeft title={formattedTime}>
-            {time}
-          </TimeLeft>
+          <TimeLeft title={formattedTime}>{time}</TimeLeft>
         </HeaderContainer>
-        <ContentContainer>
-          {children}
-        </ContentContainer>
+        <ContentContainer>{children}</ContentContainer>
       </NotificationBox>
       <MarkIconContainer>
         <MarkIcon onClick={markAsRead}>
@@ -85,22 +75,22 @@ const TooltipContainer = styled.div`
   bottom: calc(100% + 1rem);
   padding: 1.5rem;
   font-size: 1.4rem;
-  border-radius: 5px;
+  border-radius: 0.5rem;
   right: 0;
   cursor: default;
-  background-color: #11141C;
+  background-color: #11141c;
   visibility: hidden;
   opacity: 0;
   color: white;
-  transition: all .2s ease;
+  transition: all 0.2s ease;
 
   &::after {
     content: '';
     top: 100%;
-    right: 2px;
+    right: 0.2rem;
     width: 0;
     height: 0;
-    border: 7px solid transparent;
+    border: 0.7rem solid transparent;
     border-top-color: #11141c;
     transform: translate(-50%, 0);
     position: absolute;
@@ -109,24 +99,24 @@ const TooltipContainer = styled.div`
 
 const TimeLeft = styled.div`
   font-weight: 500;
-  font-size: 14px;
+  font-size: 1.4rem;
   text-align: right;
   margin-left: 2rem;
   flex-shrink: 0;
-  color: #8990A3;
+  color: #8990a3;
 `;
 
 const MarkIcon = styled.button`
   border-radius: 50%;
   width: 3rem;
   height: 3rem;
-  padding: 3px;
+  padding: 0.3rem;
   border: 0;
   display: flex;
   align-items: center;
   justify-content: center;
   background-color: ${({ theme }) => theme.brand.primary};
-  transition: all .2s ease;
+  transition: all 0.2s ease;
   cursor: pointer;
 
   & > svg {
@@ -153,7 +143,8 @@ const IconCircle = styled.div`
   padding: 0.5rem;
   width: 100%;
   height: 100%;
-  background-color: ${({ theme, seen }) => seen ? '#6d6d6d' : theme.brand.primary};
+  background-color: ${({ theme, seen }) =>
+    seen ? '#6d6d6d' : theme.brand.primary};
 
   & > svg {
     height: 100%;
@@ -171,7 +162,9 @@ const Container = styled.div`
   transition: all 500ms ease;
   max-height: 100rem;
   margin-bottom: 2rem;
-  ${({ show }) => !show && `
+  ${({ show }) =>
+    !show &&
+    `
     opacity: 0;
     margin-bottom: 0;
     max-height: 0;
@@ -180,7 +173,6 @@ const Container = styled.div`
     border-width: 0;
     border: none;
   `}
-
 `;
 
 const NotificationBox = styled(LinkHandler)`
@@ -190,14 +182,14 @@ const NotificationBox = styled(LinkHandler)`
   flex: 1 1 100%;
   overflow: hidden;
   background: white;
-  border: 0.5px solid #ECECEC;
-  border-radius: 5px;
+  border: 0.05rem solid #ececec;
+  border-radius: 0.5rem;
   cursor: pointer;
-  transition: all .2s ease;
-  filter: drop-shadow(-4px 4px 12px rgba(0, 0, 0, 0.05));
+  transition: all 0.2s ease;
+  filter: drop-shadow(-0.4rem 0.4rem 1.2rem rgba(0, 0, 0, 0.05));
 
   &:hover {
-    border: 1px solid ${({ theme }) => theme.brand.primary};
+    border: 0.1rem solid ${({ theme }) => theme.brand.primary};
   }
 `;
 
@@ -205,7 +197,7 @@ const HeaderContainer = styled.div`
   display: flex;
   padding: 2rem;
   min-height: 7.8rem;
-  border-bottom: 1px solid #ececec;
+  border-bottom: 0.1rem solid #ececec;
   align-items: center;
 `;
 
@@ -223,29 +215,28 @@ const IconContainer = styled.div`
   flex: 0 0 auto;
 `;
 
-
 const Title = styled.div`
   font-style: normal;
   font-weight: 500;
-  font-size: 16px;
-  color: #2D2D2D;
-  margin-bottom: 5px;
+  font-size: 1.6rem;
+  color: #2d2d2d;
+  margin-bottom: 0.5rem;
 `;
 
 const Description = styled.div`
   font-style: normal;
   font-weight: normal;
   line-height: 1.3;
-  font-size: 14px;
-  color: #8990A3;
+  font-size: 1.4rem;
+  color: #8990a3;
 `;
 
 const ContentContainer = styled.div`
   padding: 2rem;
   font-style: normal;
-  font-size: 16px;
+  font-size: 1.6rem;
   line-height: 1.4;
-  color: #8990A3;
+  color: #8990a3;
 `;
 
 const MarkIconContainer = styled.div`
