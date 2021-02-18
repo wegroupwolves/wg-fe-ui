@@ -27,6 +27,7 @@ const TextInput = forwardRef(
       name,
       type,
       disabled,
+      dataTestId,
       placeholder,
       onChange,
       setFieldTouched,
@@ -106,6 +107,7 @@ const TextInput = forwardRef(
             onChange={handleChange}
             onBlur={handleBlur}
             onFocus={handleFocus}
+            dataTestId={dataTestId}
             {...otherProps}
           />
           <ValidationIcons
@@ -211,6 +213,7 @@ TextInput.defaultProps = {
 };
 
 TextInput.propTypes = {
+  dataTestId: string,
   /** Beeing able to use it in Styled Components */
   className: string,
   /** label above the input */

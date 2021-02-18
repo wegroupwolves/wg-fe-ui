@@ -85,6 +85,7 @@ const PhoneInput = ({
           specialLabel=""
           disabled={disabled}
           autoFormat={false}
+          dataTestId={dataTestId}
           inputProps={{
             ...otherProps,
             name,

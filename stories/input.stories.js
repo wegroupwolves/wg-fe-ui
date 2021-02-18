@@ -474,7 +474,6 @@ storiesOf('Low level blocks/Inputs', module)
 
   .add('AmountInput', () => {
     const testRef = useRef();
-    console.log(testRef);
     return (
       <AmountInput
         value={number('Input value', 1)}

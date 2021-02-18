@@ -12,6 +12,7 @@ const SearchSelectInput = forwardRef(
       async,
       className,
       onSelected,
+      dataTestId,
       loading,
       loadOptions,
       options,
@@ -80,6 +81,7 @@ const SearchSelectInput = forwardRef(
           {!async ? (
             <Input
               ref={ref}
+              dataTestId={dataTestId}
               isDisabled={disabled}
               onChange={handleChange}
               name={name}
@@ -98,6 +100,7 @@ const SearchSelectInput = forwardRef(
           ) : (
             <AsyncInput
               ref={ref}
+              dataTestId={dataTestId}
               isDisabled={disabled}
               onChange={handleChange}
               placeholder={loading ? loadingMessage : placeholder}
@@ -290,6 +293,7 @@ SearchSelectInput.defaultProps = {
 };
 
 SearchSelectInput.propTypes = {
+  dataTestId: string,
   async: bool,
   /** Beeing able to use it in Styled Components */
   className: string,
