@@ -8,6 +8,7 @@ const AmountInput = (
   {
     value,
     disabled,
+    dataTestId,
     min,
     max,
     className,
@@ -125,6 +126,7 @@ const AmountInput = (
       </InputControls>
 
       <StyledInput
+        dataTestId={dataTestId}
         name={name}
         type="text"
         value={currentValue}
@@ -220,6 +222,7 @@ AmountInput.propTypes = {
   value: number,
   /** Stops input from working in any way. */
   disabled: bool,
+  dataTestId: string,
   /** Minimum value of the input. */
   min: number | string,
   /** Maximum value of input. */

@@ -14,6 +14,7 @@ const DropDown = ({
   name,
   onValueChange,
   children,
+  dataTestId,
   options,
   value,
   error,
@@ -100,6 +101,7 @@ const DropDown = ({
           onClick={handleInputClick}
           show={showMenu}
           disabled={disabled}
+          dataTestId={dataTestId}
         >
           {currentOption ? currentOption?.title : placeholder}
           <DropDownIcon>
@@ -228,6 +230,8 @@ const MenuOption = styled.div`
 `;
 
 DropDown.propTypes = {
+  // used to identify component for testing
+  dataTestId: string,
   /** Name of the input */
   name: string.isRequired,
   /** Function that passes back the complete chosen option object. */

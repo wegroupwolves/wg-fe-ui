@@ -28,6 +28,7 @@ const NumbersInputWithSymbol = forwardRef(
       name,
       type,
       disabled,
+      dataTestId,
       placeholder,
       onChange,
       setFieldTouched,
@@ -81,6 +82,7 @@ const NumbersInputWithSymbol = forwardRef(
             onChange={handleChange}
             onBlur={handleBlur}
             onFocus={handleFocus}
+            dataTestId={dataTestId}
             {...otherProps}
           />
           <ValidationIcons
@@ -175,6 +177,7 @@ NumbersInputWithSymbol.defaultProps = {
 };
 
 NumbersInputWithSymbol.propTypes = {
+  dataTestId: string,
   /** Beeing able to use it in Styled Components */
   className: string,
   /** label above the input */

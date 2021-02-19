@@ -12,6 +12,7 @@ const FeatureInput = forwardRef(
       checked,
       children,
       editable,
+      dataTestId,
       onChange,
       disabled,
       className,
@@ -53,6 +54,7 @@ const FeatureInput = forwardRef(
               name={name}
               id={name}
               disabled={disabled}
+              dataTestId={dataTestId}
               checked={isChecked}
               type="checkbox"
               onChange={e => handleChange(e)}

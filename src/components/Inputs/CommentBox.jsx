@@ -2,7 +2,7 @@ import React from 'react';
 import { string, node, int, func } from 'prop-types';
 import styled from 'styled-components';
 
-const CommentBox = ({ title, icon, children, editHandler, deleteHandler }) => {
+const CommentBox = ({ title, icon, children, editHandler, dataTestId, deleteHandler }) => {
   let IconToRender;
 
   if (icon !== '') {
@@ -10,7 +10,7 @@ const CommentBox = ({ title, icon, children, editHandler, deleteHandler }) => {
   }
 
   return (
-    <CommentBoxWrapper>
+    <CommentBoxWrapper dataTestId={dataTestId}>
       {IconToRender}
       <CommentBoxContent>
         <CommentBoxHeader>
@@ -108,6 +108,8 @@ const CommentBoxAction = styled.a`
 `;
 
 CommentBox.propTypes = {
+  // used to identify component for testing
+  dataTestId: string,
   /** Title displayed next to the actions. */
   title: string,
 

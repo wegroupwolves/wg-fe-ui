@@ -347,6 +347,7 @@ const DateInputV4 = ({
           touched={touched}
           hasChildren={!!children}
           withIcon={withIcon}
+          dataTestId={dataTestId}
         >
           <DateInput
             name="day"
