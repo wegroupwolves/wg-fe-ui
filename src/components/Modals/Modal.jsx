@@ -73,7 +73,7 @@ const Modal = ({
         )}
         {title ? <ModalTitleBar>{title}</ModalTitleBar> : ''}
 
-        <ModalContent title={title}>{children}</ModalContent>
+        <ModalContent modalTitle={title}>{children}</ModalContent>
       </ModalContainer>
     </StyledDrawer>
   );
@@ -120,7 +120,7 @@ const ModalTitleBar = styled.div`
 `;
 
 const ModalContent = styled.div`
-  padding: ${({ title }) => (title ? '30px' : '45px 30px 30px')};
+  padding: ${({ modalTitle }) => (modalTitle ? '30px' : '45px 30px 30px')};
 `;
 
 const ModalCloser = styled.a`
