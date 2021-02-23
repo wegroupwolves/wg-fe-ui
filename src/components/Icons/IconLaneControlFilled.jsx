@@ -10,7 +10,7 @@ const IconLaneControlFilled = ({ className, color, size }) => {
       height={size}
       viewBox="0 0 50 50"
     >
-      <title>LaneControl</title>
+      
       <path d="M7 6H3V16H7V6Z" fill={color} />
       <path d="M7 20H3V30H7V20Z" fill={color} />
       <path d="M7 34H3V44H7V34Z" fill={color} />

@@ -10,7 +10,7 @@ const IconScorchDamageFilled = ({ className, color, size }) => {
       height={size}
       viewBox="0 0 50 50"
     >
-      <title>scorch damage</title>
+      
       <path
         d="M26,8a3,3,0,0,1,3,3V28.59l.89.59a7,7,0,1,1-7.78,0l.89-.59V11a3,3,0,0,1,3-3m0-2a5,5,0,0,0-5,5V27.52a9,9,0,1,0,10,0V11a5,5,0,0,0-5-5Z"
         fill={color}

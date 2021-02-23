@@ -10,7 +10,7 @@ const IconReplacementFilled = ({ className, color, size }) => {
       height={size}
       viewBox="0 0 50 50"
     >
-      <title>Replacement</title>
+      
       <path
         d="M10 10V22C10 22.6 10.4 23 11 23H25C25.6 23 26 22.6 26 22V10C26 9.4 25.6 9 25 9H11C10.4 9 10 9.4 10 10ZM22 16H14C13.5 16 13 15.5 13 15C13 14.5 13.5 14 14 14H22C22.5 14 23 14.5 23 15C23 15.5 22.5 16 22 16Z"
         fill={color}

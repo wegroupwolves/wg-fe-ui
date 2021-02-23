@@ -10,7 +10,7 @@ const IconCertificateFilled = ({ className, color, size }) => {
       height={size}
       viewBox="0 0 50 50"
     >
-      <title>Certificate</title>
+      
       <path
         d="M25 27C28.866 27 32 23.866 32 20C32 16.134 28.866 13 25 13C21.134 13 18 16.134 18 20C18 23.866 21.134 27 25 27Z"
         fill={color}

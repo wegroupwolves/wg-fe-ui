@@ -10,7 +10,7 @@ const IconPersonalLiabilityFilled = ({ className, color, size }) => {
       height={size}
       viewBox="0 0 50 50"
     >
-      <title>personal liability</title>
+      
       <path d="M37,17a3,3,0,1,0-3-3A3,3,0,0,0,37,17Z" fill={color} />
       <path
         d="M35.48,30.87a3.44,3.44,0,0,1-.28.65L43,30.4V21a3,3,0,0,0-3-3H34a3,3,0,0,0-3,3v3.34l3.12,2.27A3.77,3.77,0,0,1,35.48,30.87Z"

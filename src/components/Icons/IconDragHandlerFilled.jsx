@@ -10,7 +10,7 @@ const IconDragHandlerFilled = ({ className, color, size }) => {
       height={size}
       viewBox="0 0 50 50"
     >
-      <title>IconDragHandlerFilled</title>
+      
       <path
         d="M15 24.25C15 26.3211 16.6789 28 18.75 28C20.8211 28 22.5 26.3211 22.5 24.25C22.5 22.1789 20.8211 20.5 18.75 20.5C16.6789 20.5 15 22.1789 15 24.25Z"
         fill={color}

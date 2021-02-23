@@ -10,7 +10,7 @@ const IconCloseFamily = ({ className, color, size }) => {
       height={size}
       viewBox="0 0 50 50"
     >
-      <title>IconCloseFamily</title>
+      
       <path
         d="M36.6 16C38.3 16 39.6 14.7 39.6 13C39.6 11.8 38.9 10.7 37.8 10.3C37.9 10 38 9.8 38 9.5C38 8.7 37.3 8 36.5 8C35.7 8 35 8.7 35 9.5C35 9.8 35.1 10.1 35.2 10.3C34.2 10.8 33.5 11.8 33.5 13C33.6 14.7 34.9 16 36.6 16Z"
         fill={color}

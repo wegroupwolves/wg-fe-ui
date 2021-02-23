@@ -10,7 +10,7 @@ const IconFamilyFilled = ({ className, color, size }) => {
       height={size}
       viewBox="0 0 50 50"
     >
-      <title>Family</title>
+      
       <path
         d="M31 33H38C39.3261 33 40.5979 33.5268 41.5355 34.4645C42.4732 35.4021 43 36.6739 43 38V44H26V38C26 36.6739 26.5268 35.4021 27.4645 34.4645C28.4021 33.5268 29.6739 33 31 33Z"
         fill={color}

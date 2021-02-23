@@ -10,7 +10,7 @@ const IconBoughtCarFilled = ({ className, color, size }) => {
       height={size}
       viewBox="0 0 50 50"
     >
-      <title>bought a car</title>
+      
       <path
         d="M30.28,27.71a1,1,0,0,1-1.41,0l-3.5-3.5a1,1,0,0,1,0-1.42,1,1,0,0,1,1.41,0l2.79,2.8L34,21.13A6,6,0,1,0,35.45,25a5.77,5.77,0,0,0-.38-2.08Z"
         fill={color}

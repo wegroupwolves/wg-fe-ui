@@ -10,7 +10,7 @@ const IconBaggageFilled = ({ className, color, size }) => {
       height={size}
       viewBox="0 0 50 50"
     >
-      <title>baggage</title>
+      
       <path
         d="M10,16h5a0,0,0,0,1,0,0V39a0,0,0,0,1,0,0H10a1,1,0,0,1-1-1V17A1,1,0,0,1,10,16Z"
         fill={color}

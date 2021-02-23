@@ -10,7 +10,7 @@ const IconMotor = ({ className, color, size }) => {
       height={size}
       viewBox="0 0 50 50"
     >
-      <title>IconMotor</title>
+      
       <path
         d="M33.2105 30.8421L31.7368 26.8589L34.8947 21.3684H26.0526L25 22.4211H20.7895V30.8421H33.2105Z"
         fill={color}

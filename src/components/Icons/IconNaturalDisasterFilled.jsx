@@ -10,7 +10,7 @@ const IconNaturalDisasterFilled = ({ className, color, size }) => {
       height={size}
       viewBox="0 0 50 50"
     >
-      <title>natural disaster+storm</title>
+      
       <path
         d="M24.25,34.42H15.58a.53.53,0,0,1-.4-.88L26.65,20.33a.53.53,0,0,1,.91.49l-2.38,8.73a.53.53,0,0,0,.51.67h8.67a.53.53,0,0,1,.39.89L22.53,44.2a.53.53,0,0,1-.88-.54l3.09-8.53A.52.52,0,0,0,24.25,34.42Z"
         fill={color}

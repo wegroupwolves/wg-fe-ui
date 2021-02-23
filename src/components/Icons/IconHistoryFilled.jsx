@@ -10,7 +10,7 @@ const IconHistoryFilled = ({ className, color, size }) => {
       height={size}
       viewBox="0 0 50 50"
     >
-      <title>history</title>
+      
       <path
         d="M29,28H24a2,2,0,0,1-2-2V21a2,2,0,0,1,4,0v3h3a2,2,0,0,1,0,4Z"
         fill={color}

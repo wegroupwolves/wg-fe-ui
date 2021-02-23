@@ -10,7 +10,7 @@ const IconStorageRoomFilled = ({ className, color, size }) => {
       height={size}
       viewBox="0 0 50 50"
     >
-      <title>Storage room</title>
+      
       <path
         fillRule="evenodd"
         clipRule="evenodd"
