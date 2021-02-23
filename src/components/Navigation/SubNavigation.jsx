@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
@@ -46,14 +46,17 @@ const StyledSubNavigation = styled.ul`
   }
 `;
 
-const SubNavigation = ({ className, children, ...otherProps }) => {
-  return (
-    <StyledSubNavigation className={className} {...otherProps}>
-      {children}
-    </StyledSubNavigation>
-  );
-};
+const SubNavigation = forwardRef(
+  ({ className, children, ...otherProps }, ref) => {
+    return (
+      <StyledSubNavigation ref={ref} className={className} {...otherProps}>
+        {children}
+      </StyledSubNavigation>
+    );
+  },
+);
 
+SubNavigation.displayName = 'SubNavigation';
 SubNavigation.Section = Section;
 SubNavigation.Section.displayName = 'SubNavigation.Section';
 SubNavigation.SubSection = SubSection;
