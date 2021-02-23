@@ -6,7 +6,7 @@ import cogoToast from 'cogo-toast';
 
 import { IconClipBoard } from '../Icons';
 
-const CodeBox = ({ children, canCopy, className, otherProps, copySuccessText }) => {
+const CodeBox = ({ children, canCopy, className, otherProps, copySuccessText, copyTitle }) => {
   const handleCopyClick = () => {
     copy(children);
     cogoToast.success(copySuccessText);
@@ -18,6 +18,7 @@ const CodeBox = ({ children, canCopy, className, otherProps, copySuccessText }) 
 
       {canCopy ? (
         <CopyButton
+          title={copyTitle}
           onClick={() => {
             handleCopyClick();
           }}
@@ -80,6 +81,7 @@ const CopyButton = styled.div`
 CodeBox.defaultProps = {
   canCopy: true,
   copySuccessText: 'Copied to clipboard.',
+  copyTitle: 'Copy to clipboard'
 };
 
 CodeBox.propTypes = {
@@ -91,6 +93,8 @@ CodeBox.propTypes = {
   copySuccessText: string,
   /** Extra classnames to pass to the element. */
   className: string,
+  /** Title attribute for the clipboard button. */
+  copyTitle: string,
   /** Extra props to pass to the element. */
   otherProps: object,
 };
