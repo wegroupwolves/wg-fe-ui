@@ -10,7 +10,7 @@ const IconShoppingCartFilled = ({ className, color, size }) => {
       height={size}
       viewBox="0 0 50 50"
     >
-      <title>IconShoppingCartFilled</title>
+      
       <path
         d="M20.5 45C22.433 45 24 43.433 24 41.5C24 39.567 22.433 38 20.5 38C18.567 38 17 39.567 17 41.5C17 43.433 18.567 45 20.5 45Z"
         fill={color}

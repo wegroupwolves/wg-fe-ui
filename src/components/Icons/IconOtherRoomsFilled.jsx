@@ -10,7 +10,7 @@ const IconOtherRoomsFilled = ({ className, color, size }) => {
       height={size}
       viewBox="0 0 50 50"
     >
-      <title>Other rooms</title>
+      
       <path
         d="M25 30.99C26.5629 30.99 27.83 29.7274 27.83 28.17C27.83 26.6126 26.5629 25.35 25 25.35C23.437 25.35 22.17 26.6126 22.17 28.17C22.17 29.7274 23.437 30.99 25 30.99Z"
         fill={color}

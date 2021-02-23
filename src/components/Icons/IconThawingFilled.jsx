@@ -10,7 +10,7 @@ const IconThawingFilled = ({ className, color, size }) => {
       height={size}
       viewBox="0 0 50 50"
     >
-      <title>thawing</title>
+      
       <path
         d="M23,37.18A5.66,5.66,0,0,1,17.5,43,5.66,5.66,0,0,1,12,37.18C12,34,16.12,27,17.5,27S23,34,23,37.18Z"
         fill={color}

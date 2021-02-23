@@ -10,7 +10,7 @@ const IconWitnessFilled = ({ className, color, size }) => {
       height={size}
       viewBox="0 0 50 50"
     >
-      <title>Witness</title>
+      
       <path
         d="M25 14C32.43 14 39.41 18.18 43.56 25C39.41 31.82 32.43 36 25 36C17.57 36 10.59 31.82 6.44 25C10.59 18.18 17.57 14 25 14ZM25 11C15.6 11 7.39 16.64 3 25C7.39 33.36 15.6 39 25 39C34.4 39 42.61 33.36 47 25C42.61 16.64 34.4 11 25 11Z"
         fill={color}

@@ -10,7 +10,7 @@ const IconOilFilled = ({ className, color, size }) => {
       height={size}
       viewBox="0 0 50 50"
     >
-      <title>oil (environmental)</title>
+      
       <path
         d="M30,13H23.72A2,2,0,0,0,20,14V32a2,2,0,0,0,3.73,1H30a1,1,0,0,0,1-1V14A1,1,0,0,0,30,13Z"
         fill={color}

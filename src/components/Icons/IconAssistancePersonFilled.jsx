@@ -10,7 +10,7 @@ const IconAssistancePersonFilled = ({ className, color, size }) => {
       height={size}
       viewBox="0 0 50 50"
     >
-      <title>assistance person</title>
+      
       <path d="M36.39,33.86a.05.05,0,0,1,0,0" fill={color} />
       <path d="M32.8,36.39a.05.05,0,0,1,0,0" fill={color} />
       <path

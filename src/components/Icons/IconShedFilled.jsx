@@ -10,7 +10,7 @@ const IconShedFilled = ({ className, color, size }) => {
       height={size}
       viewBox="0 0 50 50"
     >
-      <title>Shed</title>
+      
       <path
         d="M27.5 23H22.5C21.6716 23 21 23.6716 21 24.5C21 25.3284 21.6716 26 22.5 26H27.5C28.3284 26 29 25.3284 29 24.5C29 23.6716 28.3284 23 27.5 23Z"
         fill={color}

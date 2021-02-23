@@ -10,7 +10,7 @@ const IconStats = ({ className, color, size }) => {
       height={size}
       viewBox="0 0 50 50"
     >
-      <title>IconStats</title>
+      
       <path
         d="M38 15C39.6569 15 41 13.6569 41 12C41 10.3431 39.6569 9 38 9C36.3431 9 35 10.3431 35 12C35 13.6569 36.3431 15 38 15Z"
         fill={color}

@@ -10,7 +10,7 @@ const IconDryRotFilled = ({ className, color, size }) => {
       height={size}
       viewBox="0 0 50 50"
     >
-      <title>dry rot </title>
+      
       <path
         d="M15,8.5V19.78a.5.5,0,0,0,.17.37l3,2.65a.5.5,0,0,0,.51.09l2.1-.8a.48.48,0,0,1,.45.05l2,1.34a.5.5,0,0,0,.78-.41V8.5a.5.5,0,0,0-.5-.5h-8A.5.5,0,0,0,15,8.5Z"
         fill={color}

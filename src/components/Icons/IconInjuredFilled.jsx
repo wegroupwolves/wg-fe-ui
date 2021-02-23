@@ -10,7 +10,7 @@ const IconInjuredFilled = ({ className, color, size }) => {
       height={size}
       viewBox="0 0 50 50"
     >
-      <title>Injured</title>
+      
       <path
         d="M18.45 23L13.27 42H11C10.7348 42 10.4804 41.8946 10.2929 41.7071C10.1054 41.5196 10 41.2652 10 41V32C9.99573 29.7054 10.8681 27.4957 12.4387 25.8229C14.0094 24.15 16.1597 23.1402 18.45 23Z"
         fill={color}

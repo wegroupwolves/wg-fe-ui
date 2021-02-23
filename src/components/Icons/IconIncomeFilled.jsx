@@ -10,7 +10,7 @@ const IconIncomeFilled = ({ className, color, size }) => {
       height={size}
       viewBox="0 0 50 50"
     >
-      <title>income</title>
+      
       <path
         d="M35.89,20H14.11A6.75,6.75,0,0,1,10,24.2v4.61A6.75,6.75,0,0,1,14.11,33H35.89A6.75,6.75,0,0,1,40,28.8V24.2A6.75,6.75,0,0,1,35.89,20ZM25,30a4,4,0,1,1,4-4A4,4,0,0,1,25,30Z"
         fill={color}

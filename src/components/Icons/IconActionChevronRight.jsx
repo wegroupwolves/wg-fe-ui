@@ -11,7 +11,7 @@ const IconActionChevronRight = ({ className, color, size }) => {
       viewBox="0 0 50 50"
       fill="none"
     >
-      <title>Chevron right</title>
+      
       <path
         d="M18.5 14.5L31.5 27.5L18.5 40.5"
         stroke={color}

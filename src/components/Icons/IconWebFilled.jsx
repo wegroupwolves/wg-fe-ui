@@ -10,7 +10,7 @@ const IconWebFilled = ({ className, color, size }) => {
       height={size}
       viewBox="0 0 50 50"
     >
-      <title>IconWebFilled</title>
+      
       <path
         d="M27.12,28.43V22.89a1.05,1.05,0,1,0,0-2.1H22.88a1.05,1.05,0,1,0,0,2.1v5.54a8.43,8.43,0,0,0-6.38,8.15V44a1.06,1.06,0,0,0,1.06,1H32.44a1.06,1.06,0,0,0,1.06-1V36.58A8.43,8.43,0,0,0,27.12,28.43Z"
         fill={color}
