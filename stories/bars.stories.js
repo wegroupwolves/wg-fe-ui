@@ -171,27 +171,27 @@ storiesOf('Mid Level blocks/Bars', module)
     return (
       <div style={{ padding: '0px 40px', width: '100%' }}>
         <RiskObjectBar icon={select('Icon', IconsList, IconsKeys[0])}>
-          <RiskObjectBar.RiskObjectBarData
-            size="double"
-            label="Car"
-            data="BMW X1 (2015) (F45)"
-          />
+          <RiskObjectBar.RiskObjectBarDataWrapper>
+            <RiskObjectBar.RiskObjectBarData
+              label="Car"
+              data="BMW X1 (2015) (F45)"
+            />
 
-          <RiskObjectBar.RiskObjectBarData
-            label="License plate"
-            data="1UWJ768"
-          />
+            <RiskObjectBar.RiskObjectBarData
+              label="License plate"
+              data="1UWJ768"
+            />
 
-          <RiskObjectBar.RiskObjectBarData
-            label="First registration"
-            data="28/01/2020"
-          />
+            <RiskObjectBar.RiskObjectBarData
+              label="First registration"
+              data="28/01/2020"
+            />
 
-          <RiskObjectBar.RiskObjectBarData
-            label="Catalogue value"
-            data="€ 28.797,53"
-          />
-
+            <RiskObjectBar.RiskObjectBarData
+              label="Catalogue value"
+              data="€ 28.797,53"
+            />
+          </RiskObjectBar.RiskObjectBarDataWrapper>
           <QuickActionSubMenu otherProps={{}}>
             <QuickActionSubMenu.SubMenuItem
               label="View customer"
