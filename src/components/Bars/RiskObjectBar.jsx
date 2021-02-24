@@ -50,7 +50,8 @@ const RiskObjectBarData = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  flex: 1 0 auto;
+  flex: 1 1 0;
+  min-width: 10rem;
 
   .label {
     font-weight: normal;
@@ -71,6 +72,14 @@ const RiskObjectBarData = styled.div`
   }
 `;
 
+const RiskObjectBarDataWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 2rem;
+`;
+
 const RiskObjectBarContainer = styled.div`
   background-color: white;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
@@ -87,11 +96,11 @@ const RiskObjectBarContainer = styled.div`
   cursor: ${({ onClick }) => (onClick !== undefined ? 'pointer' : 'auto')};
 
   section {
-    flex: 1 0 auto;
+    flex: 1 1 auto;
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
 
     > div:not(:last-of-type) {
       margin-right: 50px;
@@ -126,7 +135,10 @@ RiskObjectBar.defaultProps = {
 };
 
 RiskObjectBar.RiskObjectBarData = RiskObjectBarDataGroup;
+RiskObjectBar.RiskObjectBarDataWrapper = RiskObjectBarDataWrapper;
 RiskObjectBar.RiskObjectBarData.displayName = 'RiskObjectBar.RiskObjectBarData';
+RiskObjectBar.RiskObjectBarDataWrapper.displayName =
+  'RiskObjectBar.RiskObjectBarDataWrapper';
 
 const RiskObjectBarIcon = styled.div``;
 
