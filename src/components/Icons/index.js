@@ -180,6 +180,7 @@ import IconCarCollision from './IconCarCollision';
 import IconResetFilled from './IconResetFilled';
 import IconPrintWhite from './IconPrintWhite';
 import IconCompare from './IconCompare';
+import IconClockFilled from './IconClockFilled';
 
 export {
   IconResetFilled,
@@ -363,4 +364,5 @@ export {
   IconPrintWhite,
   IconCompare,
   IconNotificationBellFilled,
+  IconClockFilled,
 };
