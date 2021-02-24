@@ -30,7 +30,7 @@ const IconClockFilled = ({ className, color, size }) => {
 
 IconClockFilled.defaultProps = {
   color: 'black',
-  size: 50,
+  size: 30,
 };
 
 IconClockFilled.propTypes = {
