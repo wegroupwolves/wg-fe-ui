@@ -5,6 +5,38 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v1.16.6]
+
+### 🐛Fixed
+
+- Wrapped SubNavigation in forwardRef
+- Fixed responsiveness for RiskObjectBar
+
+## [v1.16.5-alpha]
+
+### 🐛Fixed
+
+- Wrapped SubNavigation in forwardRef
+- Fixed responsiveness for RiskObjectBar
+
+## [v1.16.5]
+
+### 🐛Fixed
+
+- Added title support for the copy to clipboard button in CodeBox
+
+## [v1.16.4]
+
+### 🐛Fixed
+
+- Removed default SVG titles for all icons
+
+## [v1.16.3]
+
+### 🐛Fixed
+
+- Fixed the modal title being set in the DOM
+
 ## [v1.16.2]
 
 ### ✨ Added
