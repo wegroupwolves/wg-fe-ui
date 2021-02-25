@@ -17,20 +17,26 @@ const Tooltip = ({
 
   return (
     <TooltipWrapper
-      onMouseLeave={() => passedSetIsActive(false) || setIsActive(false)}
+      onMouseLeave={() =>
+        (passedSetIsActive && passedSetIsActive(false)) || setIsActive(false)
+      }
       className={className}
       onClick={onClick}
       {...otherProps}
     >
       <TooltipToggle
-        onMouseMove={() => passedSetIsActive(true) || setIsActive(true)}
+        onMouseMove={() =>
+          (passedSetIsActive && passedSetIsActive(true)) || setIsActive(true)
+        }
         isActive={(passedIsActive != null && passedIsActive) || isActive}
       >
         {toggleIcon}
       </TooltipToggle>
       {text && (
         <TooltipText
-          onMouseMove={() => passedSetIsActive(true) || setIsActive(true)}
+          onMouseMove={() =>
+            (passedSetIsActive && passedSetIsActive(true)) || setIsActive(true)
+          }
           isActive={(passedIsActive != null && passedIsActive) || isActive}
         >
           {text}
