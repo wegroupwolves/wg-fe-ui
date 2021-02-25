@@ -399,6 +399,7 @@ ModalWithSteps.propTypes = {
 };
 
 ModalWithSteps.defaultProps = {
+  onClose: () => {},
   canClose: true,
   showModal: false,
   toastHideTime: 5,
