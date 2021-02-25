@@ -1,9 +1,9 @@
 import React from 'react';
-import { node } from 'prop-types';
+import { node, string } from 'prop-types';
 import styled from 'styled-components';
 
-const DataBlock = ({ children }) => {
-  return <StyledDataBlock>{children}</StyledDataBlock>;
+const DataBlock = ({ children, className }) => {
+  return <StyledDataBlock className={className}>{children}</StyledDataBlock>;
 };
 
 const StyledDataBlock = styled.div`
@@ -15,6 +15,7 @@ const StyledDataBlock = styled.div`
 
 DataBlock.propTypes = {
   children: node.isRequired,
+  className: string,
 };
 
 export default DataBlock;
