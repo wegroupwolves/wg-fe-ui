@@ -204,6 +204,7 @@ Modal.propTypes = {
 };
 
 Modal.defaultProps = {
+  onClose: () => {},
   canClose: true,
   showModal: false,
   toastHideTime: 5,
