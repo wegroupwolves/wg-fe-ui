@@ -34,7 +34,7 @@ const ThemePicker = ({
     });
   }, [activeTheme]);
 
-  const handleInputClickOutside = (e) => {
+  const handleInputClickOutside = e => {
     if (disabled || isOpen) return;
     if (containerRef.current && !containerRef.current.contains(e.target)) {
       setIsOpen(false);
@@ -53,11 +53,11 @@ const ThemePicker = ({
   }, [currentTheme]);
 
   const handleOpenClose = () => {
-    if (disabled && !isOpen) return; 
+    if (disabled && !isOpen) return;
     setIsOpen(!isOpen);
   };
 
-  const handleInputKey = (e) => {
+  const handleInputKey = e => {
     if (!disabled) {
       if (e.keyCode === 32 || e.keyCode === 13) {
         e.preventDefault();
@@ -153,19 +153,23 @@ const ThemePickerInput = styled.div`
   width: 100%;
   height: 4.5rem;
   background: ${({ disabled }) => (disabled ? '#F0F1F3' : 'white')};
-  border: 1px solid ${({ disabled, error }) => (disabled ? '#F0F1F3' : error ? 'red' : '#e4e4e4')};
+  border: 1px solid
+    ${({ disabled, error }) =>
+      disabled ? '#F0F1F3' : error ? 'red' : '#e4e4e4'};
   border-radius: ${({ isOpen, opensUp }) =>
-    isOpen && opensUp ? '0 0 5px 5px' : isOpen  ? '5px 5px 0 0' : '5px'};
+    isOpen && opensUp ? '0 0 5px 5px' : isOpen ? '5px 5px 0 0' : '5px'};
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 0.6rem;
   cursor: ${({ disabled }) => (disabled ? 'not-allowed' : 'pointer')};
-  transition: border-radius .2s ease;
+  transition: border-radius 0.2s ease;
 
   &:focus {
     outline: 0;
-    border: 1px solid ${({ theme, disabled }) => !disabled ? theme.brand.primary : 'rgba(0,0,0,0)'};
+    border: 1px solid
+      ${({ theme, disabled }) =>
+        !disabled ? theme.brand.primary : 'rgba(0,0,0,0)'};
   }
 `;
 
@@ -189,8 +193,8 @@ const DropdownIcon = styled.div`
 const ThemePickerDropdown = styled.div`
   visibility: ${({ isOpen }) => (isOpen ? 'visible' : 'hidden')};
   position: absolute;
-  top: ${({ opensUp }) => opensUp ? 'auto' : '100%'};
-  bottom: ${({ opensUp }) => opensUp ? '100%' : 'auto'};
+  top: ${({ opensUp }) => (opensUp ? 'auto' : '100%')};
+  bottom: ${({ opensUp }) => (opensUp ? '100%' : 'auto')};
   left: 0;
   right: 0;
   height: 15rem;
@@ -200,8 +204,32 @@ const ThemePickerDropdown = styled.div`
   z-index: 9999;
   background-color: white;
   flex-flow: column;
-  border-radius: ${({ opensUp }) => opensUp ? '5px 5px 0 0' : '0 0 5px 5px'};
-  transition: all .2s ease;
+  border-radius: ${({ opensUp }) => (opensUp ? '5px 5px 0 0' : '0 0 5px 5px')};
+  transition: all 0.2s ease;
+
+  &::-webkit-scrollbar {
+    -webkit-appearance: none;
+  }
+
+  &::-webkit-scrollbar:vertical {
+    width: 12px;
+  }
+  &::-webkit-scrollbar:horizontal {
+    height: 8px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 8px;
+    border: 2px solid white; /* should match background, can't be transparent */
+    background-color: #c7c7c7;
+  }
+
+  &::-webkit-scrollbar-track-piece {
+    background: #f0f1f3;
+    border-radius: 5px;
+    width: 8px;
+    border: 2px solid white; /* should match background, can't be transparent */
+  }
 `;
 
 const DropdownItem = styled.div`
