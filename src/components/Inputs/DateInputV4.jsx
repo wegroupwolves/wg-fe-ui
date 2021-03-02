@@ -476,7 +476,7 @@ const DateInput = styled.input`
   background-color: transparent;
   outline: none;
   border: none;
-  width: ${({ year }) => (year ? '5rem' : '3rem')};
+  width: ${({ year }) => (year ? '5rem' : '3.3rem')};
   font-size: 1.5rem;
   text-align: center;
 
