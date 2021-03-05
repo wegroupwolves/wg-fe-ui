@@ -43,16 +43,16 @@ const CheckBoxContainerHeader = styled.div`
   margin-bottom: 7px;
 
   .title {
-    font-weight: bold;
+    font-weight: 500;
     font-size: 1.4rem;
-    line-height: 2rem;
+    line-height: 120%;
     color: ${({ theme }) => theme.typo.highlight};
   }
 `;
 
 const CheckBoxContainerToggler = styled.a`
   font-size: 1rem;
-  line-height: 1.6rem;
+  line-height: 120%;
   color: ${({ theme }) => theme.typo.selected};
   cursor: pointer;
 

@@ -136,15 +136,16 @@ const StyledSymbol = styled.div`
 
 const StyledLabel = styled.label`
   display: flex;
+  font-family: ${({ theme }) => theme.font};
   flex-direction: column;
   position: relative;
   width: 100%;
   font-size: 1.4rem;
   color: ${props => (props.disabled ? '#AEAEAE' : '#5B5550')};
-  line-height: 1rem;
+  line-height: 120%;
 
   .react-tel-input {
-    font-family: Roboto, sans-serif;
+    font-family: ${({ theme }) => theme.font};
     font-size: 15px;
     position: relative;
     width: 100%;
@@ -1018,7 +1019,7 @@ const StyledLabel = styled.label`
     border: 1px solid #cacaca;
     border-radius: 3px;
     font-size: 15px;
-    line-height: 15px;
+    line-height: 120%;
     margin-left: 6px;
     padding: 3px 8px 5px;
     outline: none;

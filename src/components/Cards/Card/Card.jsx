@@ -16,6 +16,7 @@ const Card = ({ children, onClick, className, ...otherProps }) => {
 
 const StyledCard = styled.div`
   width: 100%;
+  font-family: ${({ theme }) => theme.font};
   max-width: 100rem;
   background-color: white;
   border: 2px solid #f0f1f3;

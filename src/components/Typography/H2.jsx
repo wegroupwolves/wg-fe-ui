@@ -13,7 +13,7 @@ const H2 = ({ children, className, ...otherProps }) => {
 const StyledH2 = styled.h2`
   font-family: ${({ theme }) => theme.font};
   font-size: 2.1rem;
-  line-height: 130%;
+  line-height: 120%;
   color: #8990a3;
 
   > a {

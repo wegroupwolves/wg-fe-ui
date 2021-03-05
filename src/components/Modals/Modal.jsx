@@ -112,11 +112,10 @@ const ModalTitleBar = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  font-weight: bold;
+  font-weight: 500;
   font-size: 2.1rem;
-  line-height: 135%;
+  line-height: 120%;
   text-align: center;
-  letter-spacing: -0.03em;
 `;
 
 const ModalContent = styled.div`

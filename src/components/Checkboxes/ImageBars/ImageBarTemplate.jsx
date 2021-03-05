@@ -3,8 +3,7 @@ import styled, { css } from 'styled-components';
 const Text = styled.span`
   margin: 0 auto 0 0.2vw;
   font-size: 1.4rem;
-  line-height: 2rem;
-  letter-spacing: 0.1rem;
+  line-height: 120%;
   color: ${({ theme }) => theme.typo.highlight};
 `;
 const StyledInput = styled.input`

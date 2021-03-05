@@ -12,9 +12,9 @@ const H4 = ({ children, larger, className, ...otherProps }) => {
 
 const StyledH4 = styled.h4`
   font-family: ${({ theme }) => theme.font};
-  font-weight: bold;
+  font-weight: 500;
   font-size: ${({ larger }) => (larger ? '1.8rem' : '1.6rem')};
-  line-height: 130%;
+  line-height: 120%;
   color: ${({ theme }) => theme.typo.title};
 
   > a {

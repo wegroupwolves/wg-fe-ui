@@ -47,10 +47,10 @@ const BreadCrumbsContainer = styled.div`
 
 const BreadCrumb = styled(Link)`
   font-size: 1.4rem;
-  line-height: 2rem;
+  line-height: 120%;
   color: ${({ theme }) => theme.ui.highlight};
   margin: 0 5px;
-  font-weight: ${({ active }) => (active ? 'bold' : 'normal')};
+  font-weight: ${({ active }) => (active ? '500' : 'normal')};
   text-decoration: none;
   transition: color 0.15s ease-in-out;
   cursor: ${({ active }) => (active ? 'default' : 'pointer')};
@@ -71,7 +71,7 @@ const BreadCrumb = styled(Link)`
 
 const BreadCrumbSpacer = styled.p`
   font-size: 1.4rem;
-  line-height: 2rem;
+  line-height: 120%;
   color: ${({ theme }) => theme.ui.disabled};
   margin: 0 5px;
   text-decoration: none;

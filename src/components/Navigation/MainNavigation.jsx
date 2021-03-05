@@ -55,7 +55,7 @@ const Copy = styled.p`
   font-size: 1.4rem;
   margin-left: 2.5rem;
   color: ${({ theme }) => theme.ui.disabled};
-  line-height: 125%;
+  line-height: 120%;
 `;
 
 const SignOutContainer = styled.div`

@@ -13,7 +13,7 @@ const TextBold = ({ className, children, color, ...otherProps }) => {
 const P = styled.p`
   font-family: ${({ theme }) => theme.font};
   font-size: 1.6rem;
-  font-weight: bold;
+  font-weight: 500;
   line-height: 130%;
   color: ${({ color, theme }) => (color ? color : theme.typo.title)};
 `;

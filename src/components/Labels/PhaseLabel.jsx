@@ -3,7 +3,17 @@ import { string, object, node } from 'prop-types';
 import styled from 'styled-components';
 
 const PhaseLabel = ({ status, text, children, ...otherProps }) => {
-  const red = ['REJECTED', 'REJECTED_RSR', 'REJECTED_NS', 'CANCELLED', 'REFUSED', 'SUSPENDED', 'TERMINATED', 'error', 'red'];
+  const red = [
+    'REJECTED',
+    'REJECTED_RSR',
+    'REJECTED_NS',
+    'CANCELLED',
+    'REFUSED',
+    'SUSPENDED',
+    'TERMINATED',
+    'error',
+    'red',
+  ];
   const blue = ['PENDING', 'offer-send', 'blue'];
   const orange = ['warning', 'orange'];
   const yellow = ['SEND', 'contract-send', 'yellow'];
@@ -69,7 +79,7 @@ const PhaseLabelIndicator = styled.div`
 const PhaseLabelText = styled.div`
   font-family: ${({ theme }) => theme.font};
   font-size: 1.2rem;
-  line-height: 130%;
+  line-height: 120%;
   color: ${({ theme }) => theme.typo.title};
 `;
 

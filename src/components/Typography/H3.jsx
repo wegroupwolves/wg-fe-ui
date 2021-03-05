@@ -12,9 +12,9 @@ const H3 = ({ children, className, ...otherProps }) => {
 
 const StyledH3 = styled.h3`
   font-family: ${({ theme }) => theme.font};
-  font-weight: bold;
+  font-weight: 500;
   font-size: 2.1rem;
-  line-height: 2.7rem;
+  line-height: 120%;
   color: ${({ theme }) => theme.typo.text};
 
   > a {

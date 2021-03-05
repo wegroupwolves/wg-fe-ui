@@ -89,7 +89,7 @@ const Input = styled.input`
   color: ${({ theme }) => theme.ui.outline};
   border: ${({ border, theme }) =>
     border ? `1px solid ${theme.ui.disabled}` : 'none'};
-  line-height: 2rem;
+  line-height: 120%;
   padding: 0.3rem 1rem;
   background-color: transparent;
   flex: 1 0 auto;

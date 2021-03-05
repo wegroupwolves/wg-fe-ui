@@ -89,10 +89,9 @@ const Feature = styled.label`
 
   p {
     font-family: ${({ theme }) => theme.font};
-    font-weight: 500;
+    font-weight: 400;
     font-size: 1.4rem;
-    line-height: 130%;
-    letter-spacing: 1px;
+    line-height: 120%;
     color: ${({ theme, checked }) => (checked ? theme.brand.light : '#c2c5cf')};
     flex: 0 1 auto;
   }

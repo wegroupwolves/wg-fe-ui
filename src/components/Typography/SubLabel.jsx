@@ -14,7 +14,7 @@ const P = styled.p`
   font-family: ${({ theme }) => theme.font};
   font-size: 1.2rem;
   font-weight: normal;
-  line-height: 130%;
+  line-height: 120%;
   color: ${props => (props.color ? props.color : `1.2rem`)};
 `;
 

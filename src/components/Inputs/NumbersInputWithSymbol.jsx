@@ -122,7 +122,7 @@ const StyledLabel = styled.label`
   width: 100%;
   font-size: 1.4rem;
   color: ${props => (props.disabled ? '#AEAEAE' : '#5B5550')};
-  line-height: 1rem;
+  line-height: 120%;
   input {
     padding-right: 4.5rem;
     padding-left: 0.7rem;

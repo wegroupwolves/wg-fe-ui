@@ -62,7 +62,7 @@ const Download = styled.div`
     text-decoration: none;
     font-family: ${({ theme }) => theme.font};
     font-size: 1.4rem;
-    line-height: 130%;
+    line-height: 120%;
   }
 `;
 

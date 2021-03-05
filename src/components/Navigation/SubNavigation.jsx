@@ -34,11 +34,11 @@ SubSection.propTypes = {
 
 const StyledSubNavigation = styled.ul`
   font-size: 1.6rem;
-  line-height: 2rem;
+  line-height: 120%;
   font-family: ${({ theme }) => theme.font};
   li {
     color: ${({ theme }) => theme.typo.highlight};
-    line-height: 2rem;
+    line-height: 120%;
     text-align: right;
     margin-bottom: 1rem;
     padding-right: 0.78vw;

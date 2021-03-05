@@ -265,8 +265,7 @@ const ColorDrop = styled.div`
 const ColorName = styled.div`
   font-family: ${({ theme }) => theme.font};
   font-size: 1.6rem;
-  line-height: 2rem;
-  letter-spacing: 0.02em;
+  line-height: 120%;
   color: ${({ disabled }) => (disabled ? '#8990A3' : '#222')};
   flex: 1 0 auto;
   text-transform: capitalize;
@@ -275,8 +274,7 @@ const ColorName = styled.div`
 const Label = styled.label`
   font-family: ${({ theme }) => theme.font};
   font-size: 1.4rem;
-  line-height: 2rem;
-  letter-spacing: 0.01em;
+  line-height: 120%;
   color: #8990a3;
   margin-bottom: 0.8rem;
   display: block;

@@ -118,7 +118,7 @@ const Count = styled.div`
     display: block;
     white-space: nowrap;
     font-size: 1.5rem;
-    line-height: 1.3rem;
+    line-height: 120%;
     letter-spacing: 0.924996px;
     color: #dfdfdf;
   }
@@ -146,6 +146,7 @@ const StyledTextArea = styled.textarea`
   border-color: ${({ error, touched, theme, warning }) =>
     getBorderColor(error, touched, theme, warning)};
   border-radius: 0.3rem;
+  font-family: ${({ theme }) => theme.font};
   height: 4rem;
   font-size: 1.6rem;
   padding: 1rem;

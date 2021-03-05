@@ -129,7 +129,7 @@ const StyledLabel = styled.label`
   width: 100%;
   font-size: 1.4rem;
   color: ${props => (props.disabled ? '#AEAEAE' : '#5B5550')};
-  line-height: 1rem;
+  line-height: 120%;
 `;
 
 const StyledInput = styled.input`
@@ -140,6 +140,7 @@ const StyledInput = styled.input`
     getBorderColor(error, touched, theme, warning)};
   border-radius: 0.3rem;
   height: 4rem;
+  font-family: ${({ theme }) => theme.font};
   font-size: 1.6rem;
   padding-left: 0.7rem;
   margin-top: 1.4rem;

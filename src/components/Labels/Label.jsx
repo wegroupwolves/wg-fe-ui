@@ -18,7 +18,7 @@ const StyledLabel = styled.div`
 
   p {
     font-family: ${({ theme }) => theme.font};
-    font-weight: bold;
+    font-weight: 500;
     font-size: 1.4rem;
     text-align: center;
     color: #8990a3;

@@ -145,7 +145,7 @@ const PaginationButton = styled(Link)`
 
   .label {
     font-size: 1.4rem;
-    line-height: 1.7rem;
+    line-height: 120%;
     letter-spacing: 0.04em;
     color: ${({ theme }) => theme.typo.interactive};
     transition: 0.15s ease-in-out;
@@ -176,7 +176,7 @@ const PaginationPage = styled(Link)`
   border-radius: 5px;
   color: ${({ active, theme }) => (active ? 'white' : theme.typo.interactive)};
   font-size: 1.4rem;
-  line-height: 130%;
+  line-height: 120%;
   transition: color 0.15s ease-in-out;
   text-decoration: none;
 
@@ -199,7 +199,7 @@ const PaginationPageNoLink = styled.div`
   border-radius: 5px;
   color: ${({ active, theme }) => (active ? 'white' : theme.typo.interactive)};
   font-size: 1.4rem;
-  line-height: 130%;
+  line-height: 120%;
   transition: color 0.15s ease-in-out;
   text-decoration: none;
 `;
