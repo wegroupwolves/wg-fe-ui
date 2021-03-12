@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
 const Section = styled.li`
-  font-weight: 900;
+  font-weight: 500;
 `;
 
 const SubSection = styled.li`

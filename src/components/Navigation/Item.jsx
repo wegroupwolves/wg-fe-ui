@@ -57,7 +57,7 @@ const Container = styled.div`
   }
 
   &.active {
-    font-weight: 700;
+    font-weight: 500;
     background-color: #f7f7f7;
   }
 `;

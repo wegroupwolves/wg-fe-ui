@@ -42,7 +42,7 @@ const Terms = styled.a`
   font-size: 1.4rem;
   margin: 2rem 0 1rem 2.5rem;
   text-decoration: none;
-  font-weight: 700;
+  font-weight: 500;
   color: #525252;
 
   &:hover {
