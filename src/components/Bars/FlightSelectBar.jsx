@@ -34,7 +34,7 @@ const FlightData = styled.div`
     font-size: 1.6rem;
     line-height: 120%;
     color: #505050;
-    font-weight: 600;
+    font-weight: 500;
   }
 `;
 

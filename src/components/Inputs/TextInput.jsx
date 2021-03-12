@@ -187,7 +187,7 @@ const StyledSymbol = styled.div`
   justify-content: center;
   align-items: center;
   font-size: 1.8rem;
-  font-weight: bold;
+  font-weight: 500;
   color: ${({ theme }) => theme.typo.highlight};
 
   > svg {

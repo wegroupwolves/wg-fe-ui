@@ -68,7 +68,7 @@ const NavItem = styled.li`
   border-bottom: ${props => (props.active === true ? `3px solid` : 'none')};
   border-color: ${({ theme, active }) =>
     active === true ? theme.brand.primary : 'none'};
-  font-weight: ${props => (props.active === true ? `bold` : 'none')};
+  font-weight: ${props => (props.active === true ? `500` : 'none')};
   color: ${({ theme }) => theme.typo.highlight};
 `;
 

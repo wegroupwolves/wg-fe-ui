@@ -62,7 +62,7 @@ const RiskObjectBarData = styled.div`
 
   .data {
     color: #505050;
-    font-weight: bold;
+    font-weight: 500;
     font-size: 1.6rem;
     line-height: 120%;
   }

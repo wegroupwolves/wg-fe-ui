@@ -63,7 +63,7 @@ const SidebarHeader = styled.div`
   margin-bottom: 13px;
 
   .title {
-    font-weight: bold;
+    font-weight: 500;
     font-size: 1.6rem;
     line-height: 120%;
     color: ${({ theme }) => theme.typo.subTitle};

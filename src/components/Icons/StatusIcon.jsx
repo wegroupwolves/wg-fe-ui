@@ -34,7 +34,7 @@ const StyledStatusIcon = styled.div`
   align-items: center;
   border-radius: 9999px;
   font-family: ${({ theme }) => theme.font};
-  font-weight: bold;
+  font-weight: 500;
 
   border: 2px solid
     ${({ theme, type }) =>

@@ -6,7 +6,7 @@ import LoadingBar from './LoadingBar';
 const Status = styled.span`
   font-family: ${({ theme }) => theme.font};
   font-size: 14px;
-  font-weight: ${({ active }) => (active ? 'bold' : 'initial')};
+  font-weight: ${({ active }) => (active ? '500' : 'initial')};
   line-height: 120%;
   text-align: center;
   text-transform: capitalize;

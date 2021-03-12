@@ -50,7 +50,7 @@ const DefaultIcon = styled.div`
   color: ${({ type, theme }) => getTypeColor(type, theme)};
   font-family: 'Times New Roman', sans-serif;
   font-style: italic;
-  font-weight: bold;
+  font-weight: 500;
   font-size: 1.2rem;
   line-height: 120%;
   margin-right: 1rem;

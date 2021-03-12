@@ -250,7 +250,7 @@ const StepArrow = styled.div`
 const Title = styled.h2`
   color: black;
   font-size: 2rem;
-  font-weight: 600;
+  font-weight: 500;
   margin-right: 2rem;
 `;
 

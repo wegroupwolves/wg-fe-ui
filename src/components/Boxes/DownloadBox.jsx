@@ -67,7 +67,7 @@ const Download = styled.div`
 `;
 
 const FileName = styled.span`
-  font-weight: bold;
+  font-weight: 500;
   color: ${({ theme }) => theme.typo.text};
   margin-right: 1.5rem;
 `;
