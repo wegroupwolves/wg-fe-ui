@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { array } from 'prop-types';
 import styled from 'styled-components';
-import ChevronRight from '../Icons/IconActionChevronRight';
+import ChevronRight from '../Icons/IconBreadCrumbChevronRight';
 
 const BreadCrumbs = ({ urls }) => {
   return (
@@ -10,9 +10,9 @@ const BreadCrumbs = ({ urls }) => {
       {urls.length > 3 ? (
         <BreadCrumbsContainer>
           <BreadCrumb to={urls[0].url}> {urls[0].label} </BreadCrumb>
-          <ChevronRight size={15} />
+          <StyledChevronRight />
           <BreadCrumbSpacer>...</BreadCrumbSpacer>
-          <ChevronRight size={15} />
+          <StyledChevronRight />
           <BreadCrumb to={urls[urls.length - 1].url} active>
             {urls[urls.length - 1].label}
           </BreadCrumb>
@@ -28,7 +28,7 @@ const BreadCrumbs = ({ urls }) => {
                 >
                   {url.label}
                 </BreadCrumb>
-                {urls.length - 1 !== index ? <ChevronRight size={15} /> : ''}
+                {urls.length - 1 !== index ? <StyledChevronRight /> : ''}
               </>
             );
           })}
@@ -37,6 +37,8 @@ const BreadCrumbs = ({ urls }) => {
     </>
   );
 };
+
+const StyledChevronRight = () => <ChevronRight size={13} color="#8990a3" />;
 
 const BreadCrumbsContainer = styled.div`
   display: flex;
@@ -48,7 +50,8 @@ const BreadCrumbsContainer = styled.div`
 const BreadCrumb = styled(Link)`
   font-size: 1.4rem;
   line-height: 120%;
-  color: ${({ theme }) => theme.ui.highlight};
+  color: ${({ theme }) => theme.labels.guaranteeText};
+
   margin: 0 5px;
   font-weight: ${({ active }) => (active ? '500' : 'normal')};
   text-decoration: none;

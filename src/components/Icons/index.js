@@ -181,6 +181,8 @@ import IconResetFilled from './IconResetFilled';
 import IconPrintWhite from './IconPrintWhite';
 import IconCompare from './IconCompare';
 import IconClockFilled from './IconClockFilled';
+import IconArrow from './IconArrow';
+import IconBreadCrumbChevronRight from './IconBreadCrumbChevronRight';
 
 export {
   IconResetFilled,
@@ -365,4 +367,6 @@ export {
   IconCompare,
   IconNotificationBellFilled,
   IconClockFilled,
+  IconArrow,
+  IconBreadCrumbChevronRight,
 };

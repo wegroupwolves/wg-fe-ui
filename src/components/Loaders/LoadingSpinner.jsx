@@ -2,7 +2,7 @@ import React from 'react';
 import styled, { css } from 'styled-components';
 import { bool, string } from 'prop-types';
 
-const LoadingSpinner = ({ isAbsolute, className }) => {
+const LoadingSpinner = ({ isAbsolute, className, ...rest }) => {
   return (
     <Spinner
       id="loadingSpinner"
@@ -10,6 +10,7 @@ const LoadingSpinner = ({ isAbsolute, className }) => {
       viewBox="0 0 80 80"
       className={className}
       isAbsolute={isAbsolute}
+      {...rest}
     >
       <defs>
         <path id="a" d="M0 0h40v40H0z" />
