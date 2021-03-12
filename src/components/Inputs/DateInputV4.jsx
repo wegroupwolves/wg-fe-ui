@@ -454,7 +454,7 @@ const Input = styled.div`
   width: 100%;
   background-color: ${({ disabled }) => (disabled ? '#F0F1F3' : 'white')};
   padding-left: 1.2rem;
-  margin-top: ${({ hasChildren }) => (hasChildren ? '1.4rem' : 0)};
+  margin-top: ${({ hasChildren }) => (hasChildren ? '0.8rem' : 0)};
   border: 1px solid;
   height: 4rem;
   border-color: ${({ error, touched, theme, withIcon }) =>
@@ -462,7 +462,7 @@ const Input = styled.div`
       ? theme.status.error
       : touched && withIcon && !error
       ? theme.status.succes
-      : theme.ui.outline};
+      : '#e4e4e4'};
   border-radius: 3px;
 `;
 
@@ -499,7 +499,8 @@ const StyledLabel = styled.label`
   position: relative;
   width: 100%;
   font-size: 1.4rem;
-  color: ${props => (props.disabled ? '#AEAEAE' : '#5B5550')};
+  color: ${({ disabled, theme }) =>
+    disabled ? theme.ui.disabled : theme.labels.guaranteeText};
   line-height: 120%;
 `;
 

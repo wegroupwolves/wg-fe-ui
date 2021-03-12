@@ -39,7 +39,7 @@ const ToggleInput = ({
 
 const ToggleWrapper = styled.div`
   align-self: stretch;
-  padding: 2rem 0;
+  padding: 1.6rem 0;
   text-align: center;
   opacity: ${({ disabled }) => (disabled ? '0.65' : '1')};
   display: flex;

@@ -4,23 +4,27 @@ import PropTypes from 'prop-types';
 
 const Section = styled.li`
   font-weight: 500;
+  padding-right: 1.6rem;
 `;
 
 const SubSection = styled.li`
-  padding-right: 0.78vw;
+  font-weight: 400;
   border-right: 1px solid;
+  padding-right: 1.6rem;
   border-color: ${({ active, theme }) =>
     active ? theme.brand.primary : 'transparent'};
+  color: ${({ theme, active }) =>
+    active ? theme.typo.title : theme.labels.guaranteeText};
 `;
 
 const Item = styled.li`
   position: relative;
-  padding-right: 0 !important;
-  margin-bottom: 0 !important;
+  padding-right: 0;
+  margin-bottom: 0;
 `;
 
 const SectionContainer = styled.ul`
-  padding-left: 0.78vw;
+  padding-right: 0;
   font-family: ${({ theme }) => theme.font};
   overflow: ${({ active }) => (active ? 'auto' : 'hidden')};
   opacity: ${({ active }) => (active ? '1' : '0')};
@@ -37,11 +41,9 @@ const StyledSubNavigation = styled.ul`
   line-height: 120%;
   font-family: ${({ theme }) => theme.font};
   li {
-    color: ${({ theme }) => theme.typo.highlight};
     line-height: 120%;
     text-align: right;
     margin-bottom: 1rem;
-    padding-right: 0.78vw;
     cursor: pointer;
   }
 `;

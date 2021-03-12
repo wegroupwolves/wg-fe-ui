@@ -141,7 +141,8 @@ const StyledLabel = styled.label`
   position: relative;
   width: 100%;
   font-size: 1.4rem;
-  color: ${props => (props.disabled ? '#AEAEAE' : '#5B5550')};
+  color: ${({ disabled, theme }) =>
+    disabled ? theme.ui.disabled : theme.labels.guaranteeText};
   line-height: 120%;
 
   .react-tel-input {
@@ -149,7 +150,7 @@ const StyledLabel = styled.label`
     font-size: 15px;
     position: relative;
     width: 100%;
-    margin-top: 1.4rem;
+    margin-top: 0.8rem;
   }
   .react-tel-input :disabled {
     cursor: not-allowed;

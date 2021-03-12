@@ -127,7 +127,7 @@ const SearchSelectInput = forwardRef(
 
 const styles = css`
   width: 100%;
-  margin-top: 1.4rem;
+  margin-top: 0.8rem;
   margin-bottom: ${({ error }) => (error ? 0 : '2rem')};
 
   &:focus {
@@ -143,7 +143,7 @@ const styles = css`
           ? theme.status.error
           : touched & !error
           ? theme.status.succes
-          : theme.ui.outline};
+          : '#e4e4e4'};
       box-shadow: none;
       height: ${({ isMulti }) => (isMulti ? 'fit-content' : '4rem')};
 
@@ -263,8 +263,8 @@ const Label = styled.label`
   font-size: 1.4rem;
   transition: 0.2s;
   line-height: 1rem;
-  color: ${({ theme, disabled }) =>
-    disabled ? theme.ui.disabled : theme.typo.subTitle};
+  color: ${({ disabled, theme }) =>
+    disabled ? theme.ui.disabled : theme.labels.guaranteeText};
 `;
 
 const Input = styled(Select)`
