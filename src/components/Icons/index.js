@@ -183,6 +183,21 @@ import IconCompare from './IconCompare';
 import IconClockFilled from './IconClockFilled';
 import IconArrow from './IconArrow';
 import IconBreadCrumbChevronRight from './IconBreadCrumbChevronRight';
+import IconSpeedAssistance from './IconSpeedAssistance';
+import IconRearCrossTrafficWarning from './IconRearCrossTrafficWarning';
+import IconRearEmergencyBreaking from './IconRearEmergencyBreaking';
+import IconLaneCenteringAssist from './IconLaneCenteringAssist';
+import IconLaneDepartingWarning from './IconLaneDepartingWarning';
+import IconPedestrianDetection from './IconPedestrianDetection';
+import IconPerformance from './IconPerformance';
+import IconElectronicStabilityControl from './IconElectronicStabilityControl';
+import IconForwardCollisionWarning from './IconForwardCollisionWarning';
+import IconFrontEmergencyBraking from './IconFrontEmergencyBraking';
+import IconHighSpeedEmergencyBreaking from './IconHighSpeedEmergencyBreaking';
+import IconABS from './IconABS';
+import IconCityEmergencyBraking from './IconCityEmergencyBraking';
+import IconSafetySystems from './IconSafetySystems';
+import IconSafetySystemsPlus from './IconSafetySystemsPlus';
 
 export {
   IconResetFilled,
@@ -369,4 +384,19 @@ export {
   IconClockFilled,
   IconArrow,
   IconBreadCrumbChevronRight,
+  IconSpeedAssistance,
+  IconRearCrossTrafficWarning,
+  IconRearEmergencyBreaking,
+  IconLaneCenteringAssist,
+  IconLaneDepartingWarning,
+  IconPedestrianDetection,
+  IconPerformance,
+  IconElectronicStabilityControl,
+  IconForwardCollisionWarning,
+  IconFrontEmergencyBraking,
+  IconHighSpeedEmergencyBreaking,
+  IconABS,
+  IconCityEmergencyBraking,
+  IconSafetySystems,
+  IconSafetySystemsPlus,
 };
