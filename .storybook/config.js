@@ -4,6 +4,7 @@ import { orange } from './../src/themes';
 import ThemeProvider from '../src/components/ThemeProvider';
 import React from 'react';
 import CircularFont from '../src/assets/fonts/circular/circular';
+import GlobalStyle from '../src/GlobalStyle';
 
 // automatically import all files ending in *.stories.js
 const req = require.context('../stories', true, /\.stories\.js$/);
@@ -13,6 +14,7 @@ function loadStories() {
 
 addDecorator(story => (
   <ThemeProvider theme={orange()}>
+    <GlobalStyle />
     <CircularFont />
     {story()}
   </ThemeProvider>

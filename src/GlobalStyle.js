@@ -160,6 +160,7 @@ html {
   font-size: 62.5%;
   box-sizing: border-box;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   font-family: 'Circular', 'Helvetica', 'Myriad', 'Sans-Serif';
   touch-action: manipulation;
 
