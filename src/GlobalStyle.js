@@ -132,17 +132,35 @@ table {
   border-spacing: 0;
 }
 
+html {
+  box-sizing: border-box;
+  font-size: 62.5%;
+
+  @media screen and (max-width: 1240px) {
+    font-size: 55%;
+  }
+
+  @media screen and (max-width: 1024px) {
+    font-size: 50%;
+  }
+
+  /* 
+    1240px -> font-size: 55%;
+    1024px -> font-size: 50%;
+  */
+}
+
 *,
 *::before,
 *::after {
   box-sizing: inherit;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
 html {
   font-size: 62.5%;
   box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   font-family: 'Circular', 'Helvetica', 'Myriad', 'Sans-Serif';
   touch-action: manipulation;
 
