@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Fixed styling of inputs and font-weight issues
 - Fixed font weight problems
 - Added new icons for vehicle risk object
+- Added anti aliasing for font
 
 ## [v2.0.0-alpha.2]
 
