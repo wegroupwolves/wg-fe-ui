@@ -5,6 +5,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v2.0.0]
+
+- Implementation of new Circular font
+- Fixed styling of inputs and font-weight issues
+- Fixed font weight problems
+- Added new icons for vehicle risk object
+
 ## [v2.0.0-alpha.2]
 
 - Fixed styling of inputs and font-weight issues
