@@ -160,7 +160,7 @@ html {
   font-size: 62.5%;
   box-sizing: border-box;
   -webkit-font-smoothing: antialiased;
-  font-family: 'Lato', 'Helvetica', 'Myriad', 'Sans-Serif';
+  font-family: 'Circular', 'Helvetica', 'Myriad', 'Sans-Serif';
   touch-action: manipulation;
 
   @media screen and (max-width: 1240px) {
@@ -173,7 +173,7 @@ html {
 }
 
 body {
-  font-family: 'Lato', 'Helvetica', 'Myriad', 'Sans-Serif';
+  font-family: 'Circular', 'Helvetica', 'Myriad', 'Sans-Serif';
   font-size: 1.6rem;
   touch-action: manipulation;
 

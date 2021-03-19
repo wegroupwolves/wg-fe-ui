@@ -16,7 +16,7 @@ const TypeLabel = ({ text, type, className, ...otherProps }) => {
 const StyledLabel = styled.div`
   font-family: ${({ theme }) => theme.font};
   font-size: 1.4rem;
-  font-weight: bold;
+  font-weight: 500;
   padding: 3px 18px;
   border-radius: 5px;
   min-width: 93px;

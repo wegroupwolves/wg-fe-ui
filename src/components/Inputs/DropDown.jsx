@@ -38,8 +38,7 @@ const DropDown = ({
     setCurrentOption(result[0]);
   }, [currentValue]);
 
-
-  const handleInputClickOutside = (e) => {
+  const handleInputClickOutside = e => {
     if (disabled || showMenu) return;
     if (containerRef.current && !containerRef.current.contains(e.target)) {
       setShowMenu(false);
@@ -59,7 +58,7 @@ const DropDown = ({
     }
   };
 
-  const handleInputKey = (e) => {
+  const handleInputKey = e => {
     if (!disabled) {
       if (e.keyCode === 32 || e.keyCode === 13) {
         e.preventDefault();
@@ -89,7 +88,12 @@ const DropDown = ({
   };
 
   return (
-    <DropDownWrapper ref={containerRef} disabled={disabled} className={className} {...otherProps}>
+    <DropDownWrapper
+      ref={containerRef}
+      disabled={disabled}
+      className={className}
+      {...otherProps}
+    >
       <Label htmlFor={name}>{children}</Label>
       <StyledDropDown>
         <Input
@@ -147,8 +151,7 @@ const DropDownWrapper = styled.div`
 const Label = styled.label`
   font-family: ${({ theme }) => theme.font};
   font-size: 1.4rem;
-  line-height: 2rem;
-  letter-spacing: 0.01em;
+  line-height: 120%;
   color: #8990a3;
   margin-bottom: 0.8rem;
   display: block;
@@ -161,23 +164,24 @@ const StyledDropDown = styled.div`
 const Input = styled.div`
   width: 100%;
   height: 4.5rem;
-  border: 1px solid ${({ error }) => error ? 'red' : '#e4e4e4'};
+  border: 1px solid ${({ error }) => (error ? 'red' : '#e4e4e4')};
   background-color: ${({ disabled }) => (disabled ? '#E4E4E4' : 'white')};
   border-radius: ${({ show, opensUp }) =>
-    show && opensUp ? '0 0 5px 5px' : show  ? '5px 5px 0 0' : '5px'};
+    show && opensUp ? '0 0 5px 5px' : show ? '5px 5px 0 0' : '5px'};
   padding: 1.2rem 1.8rem;
   display: flex;
   align-items: center;
   cursor: ${({ disabled }) => (disabled ? 'not-allowed' : 'pointer')};
   font-family: ${({ theme }) => theme.font};
   font-size: 1.6rem;
-  line-height: 2rem;
-  letter-spacing: 0.02em;
+  line-height: 120%;
   color: #222;
-  transition: all .2s;
+  transition: all 0.2s;
   &:focus {
     outline: 0;
-    border: 1px solid ${({ theme, disabled }) => !disabled ? theme.brand.primary : 'rgba(0,0,0,0)'};
+    border: 1px solid
+      ${({ theme, disabled }) =>
+        !disabled ? theme.brand.primary : 'rgba(0,0,0,0)'};
   }
 `;
 
@@ -196,8 +200,8 @@ const Menu = styled.div`
   visibility: ${({ show }) => (show ? 'visible' : 'hidden')};
   position: absolute;
   left: 0;
-  top: ${({ opensUp }) => opensUp ? 'auto' : '100%'};
-  bottom: ${({ opensUp }) => opensUp ? '100%' : 'auto'};
+  top: ${({ opensUp }) => (opensUp ? 'auto' : '100%')};
+  bottom: ${({ opensUp }) => (opensUp ? '100%' : 'auto')};
   width: 100%;
   max-height: ${({ show }) => (show ? '30rem' : '0')};
   overflow-y: scroll;
@@ -205,8 +209,8 @@ const Menu = styled.div`
   background-color: white;
   border: 1px solid #e4e4e4;
   border-top: 0;
-  border-radius: ${({ opensUp }) => opensUp ? '5px 5px 0 0' : '0 0 5px 5px'};
-  transition: max-height .2s ease, visibility .2s ease;
+  border-radius: ${({ opensUp }) => (opensUp ? '5px 5px 0 0' : '0 0 5px 5px')};
+  transition: max-height 0.2s ease, visibility 0.2s ease;
 `;
 
 const MenuOption = styled.div`

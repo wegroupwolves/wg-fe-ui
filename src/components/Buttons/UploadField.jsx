@@ -104,7 +104,7 @@ const UploadField = forwardRef(
 const StyledButton = styled.label`
   font-family: ${({ theme }) => theme.font};
   font-size: 1.6rem;
-  line-height: 130%;
+  line-height: 120%;
   border-radius: 0.5rem;
   min-width: 14rem;
   width: ${({ fullwidth }) => (fullwidth ? '100%' : '52vw')};

@@ -6,7 +6,7 @@ export default function() {
   const brandDark = '#005599';
   const brandDarker = '#003366';
   const brandSecondary = '#A5C6D5';
-  const brandFont = `Lato, Helvetica, Myriad, Sans-Serif`;
+  const brandFont = `Circular, Helvetica, Myriad, Sans-Serif`;
   return {
     brand: {
       primary: brandPrimary,

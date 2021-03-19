@@ -30,7 +30,7 @@ const Body = ({
 const StyledBody = styled.p`
   font-family: ${({ theme }) => theme.font};
   font-style: ${({ italic }) => (italic ? 'italic' : 'normal')};
-  font-weight: ${({ bold }) => (bold ? 'bold' : 'normal')};
+  font-weight: ${({ bold }) => (bold ? '500' : 'normal')};
   color: ${({ theme, light }) => (light ? '#8990a3' : theme.font.text)};
   font-size: ${({ smaller, tiny }) =>
     smaller ? '1.4rem' : tiny ? '1.2rem' : '1.6rem'};

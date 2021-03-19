@@ -16,7 +16,7 @@ const StyledValue = styled.td`
   display: flex;
   align-items: center;
   width: 100%;
-  font-weight: 900;
+  font-weight: 500;
   justify-content: space-between;
 
   & span {

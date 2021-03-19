@@ -26,15 +26,15 @@ const FlightData = styled.div`
 
   .label {
     font-size: 1.4rem;
-    line-height: 2rem;
+    line-height: 120%;
     color: ${({ theme }) => theme.labels.defaultText};
   }
 
   .data {
     font-size: 1.6rem;
-    line-height: 1.9rem;
+    line-height: 120%;
     color: #505050;
-    font-weight: 600;
+    font-weight: 500;
   }
 `;
 

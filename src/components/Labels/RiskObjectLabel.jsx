@@ -21,10 +21,11 @@ const RiskObjectLabelWrapper = styled.div`
   display: flex;
   justify-content: flex-start;
   align-items: center;
+  font-family: ${({ theme }) => theme.font};
 `;
 
 const RiskObjectLabelIcon = styled.div`
-  margin-right: 3px;
+  margin-right: 0.3rem;
 
   svg {
     transform: scale(0.7);
@@ -44,9 +45,9 @@ const RiskObjectLabelBadge = styled.div`
   justify-content: center;
   align-items: center;
   background-color: ${({ theme }) => theme.brand.lightest};
-  font-weight: bold;
+  font-weight: 500;
   font-size: 14px;
-  line-height: 130%;
+  line-height: 120%;
 `;
 
 RiskObjectLabel.defaultProps = {

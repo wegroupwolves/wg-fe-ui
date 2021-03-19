@@ -208,8 +208,7 @@ const ContentHeader = styled.div`
 const Label = styled.div`
   font-family: ${({ theme }) => theme.font};
   font-size: 1.4rem;
-  line-height: 2rem;
-  letter-spacing: 0.01em;
+  line-height: 120%;
   color: #8990a3;
 `;
 
@@ -219,7 +218,7 @@ const InfoButton = styled.div`
   border-radius: 9999px;
   font-family: ${({ theme }) => theme.font};
   font-size: 1.2rem;
-  line-height: 1.5rem;
+  line-height: 120%;
   color: #8990a3;
   border: 2px solid #8990a3;
   display: flex;
@@ -274,8 +273,8 @@ const InputButton = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 24px;
-  line-height: 24px;
+  font-size: 2.4rem;
+  line-height: 120%;
   padding-bottom: 3px;
   cursor: ${({ disabled }) => (disabled ? 'not-allowed' : 'pointer')};
   border-right: ${({ minus }) => (minus ? '0' : null)};
@@ -301,9 +300,8 @@ const Input = styled.input`
   border: 2px solid #f0f1f3;
   text-align: center;
   font-family: ${({ theme }) => theme.font};
-  font-weight: 500;
   font-size: 1.8rem;
-  line-height: 1.8rem;
+  line-height: 120%;
   letter-spacing: 0.01em;
   color: #222;
 `;

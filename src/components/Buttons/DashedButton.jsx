@@ -62,9 +62,9 @@ const StyledDashedButton = styled.div`
 const Label = styled.div`
   margin-top: 1.6rem;
   font-family: ${({ theme }) => theme.font};
-  font-weight: 500;
+  font-weight: 400;
   font-size: 1.8rem;
-  line-height: 2.3rem;
+  line-height: 120%;
   text-align: center;
   letter-spacing: 0.01em;
   color: #222;

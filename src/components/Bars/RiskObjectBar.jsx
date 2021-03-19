@@ -56,15 +56,15 @@ const RiskObjectBarData = styled.div`
   .label {
     font-weight: normal;
     font-size: 1.4rem;
-    line-height: 2rem;
+    line-height: 120%;
     color: ${({ theme }) => theme.labels.defaultText};
   }
 
   .data {
     color: #505050;
-    font-weight: bold;
+    font-weight: 500;
     font-size: 1.6rem;
-    line-height: 1.9rem;
+    line-height: 120%;
   }
 
   &.double {

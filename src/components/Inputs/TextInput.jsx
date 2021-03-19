@@ -144,8 +144,9 @@ const StyledLabel = styled.label`
   position: relative;
   width: 100%;
   font-size: 1.4rem;
-  color: ${props => (props.disabled ? '#AEAEAE' : '#5B5550')};
-  line-height: 1rem;
+  color: ${({ disabled, theme }) =>
+    disabled ? theme.ui.disabled : theme.labels.guaranteeText};
+  line-height: 120%;
 `;
 
 const StyledInput = styled.input`
@@ -155,9 +156,10 @@ const StyledInput = styled.input`
   border-color: ${({ error, touched, theme, warning }) =>
     getBorderColor(error, touched, theme, warning)};
   border-radius: 0.3rem;
+  font-family: ${({ theme }) => theme.font};
   height: 4rem;
   font-size: 1.6rem;
-  margin-top: 1.4rem;
+  margin-top: 0.8rem;
   box-sizing: border-box;
   padding-right: ${({ symbolSide, symbol }) =>
     symbol !== '' && symbolSide === 'right' ? '4.7rem' : '0.7rem'};
@@ -186,7 +188,7 @@ const StyledSymbol = styled.div`
   justify-content: center;
   align-items: center;
   font-size: 1.8rem;
-  font-weight: bold;
+  font-weight: 500;
   color: ${({ theme }) => theme.typo.highlight};
 
   > svg {

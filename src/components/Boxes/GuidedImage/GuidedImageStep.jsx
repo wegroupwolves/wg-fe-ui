@@ -41,7 +41,7 @@ const StyledStep = styled.div`
   height: 2rem;
   background-color: ${({ theme }) => theme.brand.primary};
   border-radius: 9999px;
-  font-weight: bold;
+  font-weight: 500;
   font-size: 1.2rem;
   line-height: 1.5rem;
   color: white;

@@ -50,9 +50,9 @@ const DefaultIcon = styled.div`
   color: ${({ type, theme }) => getTypeColor(type, theme)};
   font-family: 'Times New Roman', sans-serif;
   font-style: italic;
-  font-weight: bold;
+  font-weight: 500;
   font-size: 1.2rem;
-  line-height: 1.4rem;
+  line-height: 120%;
   margin-right: 1rem;
 `;
 
@@ -68,7 +68,7 @@ const ContentWrapper = styled.div`
   padding-top: 3px;
   font-family: ${({ theme }) => theme.font};
   font-size: 1.2rem;
-  line-height: 1.5rem;
+  line-height: 120%;
   color: ${({ type, theme }) => getTextColor(type, theme)};
 
   h1,
@@ -82,7 +82,7 @@ const ContentWrapper = styled.div`
     font-style: normal;
     font-weight: normal;
     font-size: 1.2rem;
-    line-height: 1.5rem;
+    line-height: 120%;
     color: ${({ type, theme }) => getTextColor(type, theme)};
   }
 `;

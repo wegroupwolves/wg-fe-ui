@@ -22,7 +22,7 @@ const Container = styled.div`
   span {
     font-size: 1.2rem;
     margin-bottom: 0.53rem;
-    line-height: 1.6rem;
+    line-height: 120%;
   }
 `;
 

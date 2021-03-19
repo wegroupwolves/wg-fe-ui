@@ -63,9 +63,9 @@ const SidebarHeader = styled.div`
   margin-bottom: 13px;
 
   .title {
-    font-weight: bold;
+    font-weight: 500;
     font-size: 1.6rem;
-    line-height: 130%;
+    line-height: 120%;
     color: ${({ theme }) => theme.typo.subTitle};
   }
 `;
@@ -77,7 +77,7 @@ const SidebarContent = styled.div`
 const SidebarToggle = styled.a`
   margin-left: 2rem;
   font-size: 1rem;
-  line-height: 1.6rem;
+  line-height: 120%;
   text-transform: uppercase;
   color: ${({ theme }) => theme.brand.primary};
   cursor: pointer;

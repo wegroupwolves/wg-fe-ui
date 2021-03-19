@@ -86,7 +86,7 @@ const DropDownContainer = styled.div`
     padding: 0.7rem 1.5rem 0.7rem 0;
     margin-bottom: 0.5rem;
     font-size: 1.6rem;
-    font-weight: bold;
+    font-weight: 500;
 
     &:active {
       border: none;

@@ -15,7 +15,7 @@ const Td = styled.td`
   padding-bottom: 1.9rem;
   border-bottom: 1px solid #f0f1f3;
   font-size: 1.3rem;
-  line-height: 130%;
+  line-height: 120%;
   color: '#505050';
   vertical-align: middle;
 

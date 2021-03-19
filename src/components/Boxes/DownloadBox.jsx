@@ -62,12 +62,12 @@ const Download = styled.div`
     text-decoration: none;
     font-family: ${({ theme }) => theme.font};
     font-size: 1.4rem;
-    line-height: 130%;
+    line-height: 120%;
   }
 `;
 
 const FileName = styled.span`
-  font-weight: bold;
+  font-weight: 500;
   color: ${({ theme }) => theme.typo.text};
   margin-right: 1.5rem;
 `;

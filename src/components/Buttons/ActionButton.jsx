@@ -83,7 +83,7 @@ const TooltipContent = styled.div`
   font-family: ${({ theme }) => theme.font};
   transition: all 0.2s ease;
   font-size: 14px;
-  line-height: 1.8rem;
+  line-height: 120%;
   color: white;
 
   &::before {

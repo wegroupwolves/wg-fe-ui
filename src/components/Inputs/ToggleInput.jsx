@@ -39,7 +39,7 @@ const ToggleInput = ({
 
 const ToggleWrapper = styled.div`
   align-self: stretch;
-  padding: 2rem 0;
+  padding: 1.6rem 0;
   text-align: center;
   opacity: ${({ disabled }) => (disabled ? '0.65' : '1')};
   display: flex;
@@ -49,8 +49,7 @@ const ToggleWrapper = styled.div`
   label {
     font-family: ${({ theme }) => theme.font};
     font-size: 1.4rem;
-    font-weight: normal;
-    letter-spacing: 0.1px;
+    font-weight: 400;
     color: black;
   }
 

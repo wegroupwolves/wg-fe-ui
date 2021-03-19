@@ -13,8 +13,8 @@ const SubTitle = ({ className, children, color, ...otherProps }) => {
 const H2 = styled.h2`
   font-family: ${({ theme }) => theme.font};
   font-size: 1.6rem;
-  font-weight: 900;
-  line-height: 130%;
+  font-weight: 500;
+  line-height: 120%;
   color: ${({ color, theme }) => (color ? color : theme.typo.title)};
 `;
 

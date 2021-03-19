@@ -41,7 +41,7 @@ const StyledButton = styled.button`
       : level === 'active'
       ? theme.brand.secondary
       : theme.ui.interactive};
-  font-weight: 700;
+  font-weight: 500;
   font-size: 1.6rem;
   border-radius: 2.5rem;
   min-width: 12rem;

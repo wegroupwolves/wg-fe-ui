@@ -322,7 +322,7 @@ const Input = styled.div`
   background-color: white;
   padding-left: 1.2rem;
   height: 4rem;
-  margin-top: 1.4rem;
+  margin-top: 0.8rem;
   border: 0.1rem solid;
   border-color: ${({ error, touched, theme }) =>
     error
@@ -341,7 +341,8 @@ const StyledLabel = styled.label`
   position: relative;
   width: 100%;
   font-size: 1.4rem;
-  color: ${props => (props.disabled ? '#AEAEAE' : '#5B5550')};
+  color: ${({ disabled, theme }) =>
+    disabled ? theme.ui.disabled : theme.labels.guaranteeText};
 `;
 
 const StyledSingleInputTime = styled.input`

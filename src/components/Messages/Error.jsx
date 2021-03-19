@@ -42,7 +42,7 @@ export const getBorderColor = (error, touched, theme, warning) => {
     if (warning) return theme.status.warning;
     else if (touched) return theme.status.succes;
   }
-  return theme.ui.outline;
+  return '#e4e4e4';
 };
 
 export default Error;

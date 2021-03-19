@@ -67,7 +67,7 @@ const UrlBox = styled.div`
 
   font-family: ${({ theme }) => theme.font};
   font-size: 1.4rem;
-  line-height: 1.8rem;
+  line-height: 120%;
   color: #222;
 
   > svg {

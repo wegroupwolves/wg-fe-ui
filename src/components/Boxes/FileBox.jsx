@@ -31,7 +31,7 @@ const Box = styled.div`
     font-size: 15px;
   }
   .fileName {
-    font-weight: 900;
+    font-weight: 500;
     margin-right: 1vw;
     max-width: 10vw;
   }
