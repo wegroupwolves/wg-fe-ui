@@ -102,10 +102,10 @@ const NumbersInputWithSymbol = forwardRef(
 const Type = styled.span`
   border-left: 1px solid #ccc;
   color: #222;
-  padding: 1.4rem;
+  padding: 1.1rem;
   position: absolute;
   right: 0;
-  top: 1.5rem;
+  top: 2.5rem;
 `;
 
 const Container = styled.div`
@@ -208,5 +208,7 @@ NumbersInputWithSymbol.propTypes = {
   /** sets initial value */
   value: oneOfType([string, number]),
 };
+
+NumbersInputWithSymbol.displayName = 'NumbersInputWithSymbo';
 
 export default NumbersInputWithSymbol;
