@@ -66,7 +66,8 @@ const Container = styled.div`
   border: ${({ color }) => `solid ${color} 1px`};
   border-radius: 0.8rem;
 
-  width: 23rem;
+  width: 100%;
+  max-width: 23rem;
 `;
 
 const InnerContainer = styled.div`
@@ -75,7 +76,6 @@ const InnerContainer = styled.div`
 
   display: flex;
   align-items: center;
-  gap: 2.4rem;
 
   padding: 1.6rem;
 `;
@@ -85,6 +85,8 @@ const Label = styled(H4)`
   font-weight: 400;
 
   word-break: break-word;
+
+  margin-left: 2.4rem;
 `;
 
 const IconContainer = styled.div`
