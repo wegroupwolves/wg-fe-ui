@@ -71,6 +71,7 @@ export {
   NotificationPopUp,
   CodeBox,
   GuidedImage,
+  ProspectPreferenceBox,
 } from './components/Boxes';
 
 export {

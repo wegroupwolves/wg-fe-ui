@@ -198,6 +198,8 @@ import IconABS from './IconABS';
 import IconCityEmergencyBraking from './IconCityEmergencyBraking';
 import IconSafetySystems from './IconSafetySystems';
 import IconSafetySystemsPlus from './IconSafetySystemsPlus';
+import IconThumbsUp from './IconThumbsUp';
+import IconThumbsDown from './IconThumbsDown';
 
 export {
   IconResetFilled,
@@ -399,4 +401,6 @@ export {
   IconCityEmergencyBraking,
   IconSafetySystems,
   IconSafetySystemsPlus,
+  IconThumbsUp,
+  IconThumbsDown,
 };

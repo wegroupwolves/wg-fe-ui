@@ -20,6 +20,8 @@ import {
   CodeBox,
   GuidedImage,
   IconDocumentFilled,
+  ProspectPreferenceBox,
+  IconGuestsFilled,
 } from '../src';
 
 // OTHER ELEMENTS
@@ -265,6 +267,14 @@ storiesOf('Mid level blocks/Boxes', module)
       </NotificationWrapper>
     );
   })
+
+  .add('ProspectPreferenceBox', () => (
+    <ProspectPreferenceBox
+      label="Works at home"
+      value={true}
+      DisplayIcon={IconGuestsFilled}
+    />
+  ))
 
   .add('GuidedImage', () => {
     const stepsForGuidedImage = [
