@@ -65,6 +65,8 @@ const Container = styled.div`
 
   border: ${({ color }) => `solid ${color} 1px`};
   border-radius: 0.8rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.04), 0 0 2px rgba(0, 0, 0, 0.06),
+    0 0 1px rgba(0, 0, 0, 0.04);
 
   width: 100%;
   max-width: 23rem;
