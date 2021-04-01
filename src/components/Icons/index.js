@@ -200,6 +200,10 @@ import IconSafetySystems from './IconSafetySystems';
 import IconSafetySystemsPlus from './IconSafetySystemsPlus';
 import IconThumbsUp from './IconThumbsUp';
 import IconThumbsDown from './IconThumbsDown';
+import IconMeasurePlus from './IconMeasurePlus';
+import IconHousePlus from './IconHousePlus';
+import IconDistances from './IconDistances';
+import IconRooms from './IconRooms';
 
 export {
   IconResetFilled,
@@ -403,4 +407,8 @@ export {
   IconSafetySystemsPlus,
   IconThumbsUp,
   IconThumbsDown,
+  IconMeasurePlus,
+  IconHousePlus,
+  IconDistances,
+  IconRooms,
 };
