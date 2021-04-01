@@ -15,6 +15,7 @@ const SubSection = styled.li`
     active ? theme.brand.primary : 'transparent'};
   color: ${({ theme, active }) =>
     active ? theme.typo.title : theme.labels.guaranteeText};
+  transition: 0.2s;
 `;
 
 const Item = styled.li`
