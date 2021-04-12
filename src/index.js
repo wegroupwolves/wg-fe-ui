@@ -137,6 +137,7 @@ export { Modal, ModalWithSteps } from './components/Modals';
 
 // Export all icons
 export * from './components/Icons';
+export * from './components/LargeIcons';
 
 export { Section_v2 } from './components/v2/Section';
 
