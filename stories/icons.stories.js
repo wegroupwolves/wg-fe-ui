@@ -6,6 +6,7 @@ import { withInfo } from '@storybook/addon-info';
 import * as Icons from '../src/components/Icons';
 import { StatusIcon } from '../src/components/Icons';
 import * as LargeIcons from '../src/components/LargeIcons';
+import * as Illustrations from '../src/components/Illustrations';
 
 storiesOf('Foundation/Icons', module)
   .addDecorator(withKnobs)
@@ -45,8 +46,8 @@ storiesOf('Foundation/Icons', module)
     return (
       <Container>
         {/* Display all Icons from Icon folder */}
-        {Object.keys(LargeIcons).map((IconKey, key) => {
-          const Element = LargeIcons[IconKey];
+        {Object.keys(Illustrations).map((IconKey, key) => {
+          const Element = Illustrations[IconKey];
           return (
             <Item key={'Ilustration_' + key}>
               <Element />
@@ -55,8 +56,8 @@ storiesOf('Foundation/Icons', module)
           );
         })}
       </Container>
-    )
-  });
+    );
+  })
 
   .add('Large icons', () => {
     return (
@@ -72,7 +73,7 @@ storiesOf('Foundation/Icons', module)
           );
         })}
       </Container>
-    )
+    );
   });
 
 const Container = styled.section`
