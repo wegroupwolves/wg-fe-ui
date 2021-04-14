@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Premium = () => {
+const IllustrationPremium = () => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -42,4 +42,4 @@ const Premium = () => {
   );
 };
 
-export default Premium;
+export default IllustrationPremium;

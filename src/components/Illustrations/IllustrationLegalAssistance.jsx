@@ -1,6 +1,6 @@
 import React from 'react';
 
-const LegalAssistance = () => {
+const IllustrationLegalAssistance = () => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -57,4 +57,4 @@ const LegalAssistance = () => {
   );
 };
 
-export default LegalAssistance;
+export default IllustrationLegalAssistance;

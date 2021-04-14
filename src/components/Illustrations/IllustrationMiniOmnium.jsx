@@ -1,6 +1,6 @@
 import React from 'react';
 
-const MiniOmnium = () => {
+const IllustrationMiniOmnium = () => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -85,4 +85,4 @@ const MiniOmnium = () => {
   );
 };
 
-export default MiniOmnium;
+export default IllustrationMiniOmnium;

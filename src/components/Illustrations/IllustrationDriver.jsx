@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Driver = () => {
+const IllustrationDriver = () => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -53,4 +53,4 @@ const Driver = () => {
   );
 };
 
-export default Driver;
+export default IllustrationDriver;

@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Car = () => {
+const IllustrationCar = () => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -63,4 +63,4 @@ const Car = () => {
   );
 };
 
-export default Car;
+export default IllustrationCar;

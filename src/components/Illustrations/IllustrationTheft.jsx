@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Theft = () => {
+const IllustrationTheft = () => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -61,4 +61,4 @@ const Theft = () => {
   );
 };
 
-export default Theft;
+export default IllustrationTheft;
