@@ -41,6 +41,23 @@ storiesOf('Foundation/Icons', module)
     );
   })
 
+  .add('Illustrations', () => {
+    return (
+      <Container>
+        {/* Display all Icons from Icon folder */}
+        {Object.keys(LargeIcons).map((IconKey, key) => {
+          const Element = LargeIcons[IconKey];
+          return (
+            <Item key={'Ilustration_' + key}>
+              <Element />
+              <LargeText>{IconKey}</LargeText>
+            </Item>
+          );
+        })}
+      </Container>
+    )
+  });
+
   .add('Large icons', () => {
     return (
       <Container>
@@ -48,14 +65,14 @@ storiesOf('Foundation/Icons', module)
         {Object.keys(LargeIcons).map((IconKey, key) => {
           const Element = LargeIcons[IconKey];
           return (
-            <Item key={'Icon_' + key}>
+            <Item key={'LargeIcon_' + key}>
               <Element />
               <LargeText>{IconKey}</LargeText>
             </Item>
           );
         })}
       </Container>
-    );
+    )
   });
 
 const Container = styled.section`
