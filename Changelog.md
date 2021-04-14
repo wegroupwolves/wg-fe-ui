@@ -10,6 +10,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### ✨ Added
 
 - Added large icons
+- Prefixed icons with their respective name (LargeIcon or Illustration)
+
+### ♻️ Changed
+
+- Renamed the old large icons to illustrations
+
+## [v2.1.2]
+
+### ✨ Added
+
+- Added large icons
 
 ## [v2.1.1]
 
