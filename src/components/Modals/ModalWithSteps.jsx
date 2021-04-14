@@ -85,9 +85,9 @@ const ModalWithSteps = ({
                       isCurrentStep={currentStep === step}
                       isPreviousStep={currentStep - 1 === step}
                     >
-                      <div>
+                      <StepArrowLabelWrapper>
                         <StepArrowLabel>{label}</StepArrowLabel>
-                      </div>
+                      </StepArrowLabelWrapper>
                     </StepArrow>
                   ))}
                 </VisualStepsWrapper>
@@ -122,6 +122,10 @@ const ModalWithSteps = ({
     </StepModalContext.Provider>
   );
 };
+
+const StepArrowLabelWrapper = styled.div`
+  display: flex;
+`;
 
 const StepArrowLabel = styled.div`
   display: flex;
