@@ -1,6 +1,6 @@
 import React from 'react';
 
-const SwimmingPool = () => {
+const IllustrationSwimmingPool = () => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -32,4 +32,4 @@ const SwimmingPool = () => {
   );
 };
 
-export default SwimmingPool;
+export default IllustrationSwimmingPool;

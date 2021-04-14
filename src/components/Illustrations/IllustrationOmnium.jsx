@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Omnium = () => {
+const IllustrationOmnium = () => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -108,4 +108,4 @@ const Omnium = () => {
   );
 };
 
-export default Omnium;
+export default IllustrationOmnium;

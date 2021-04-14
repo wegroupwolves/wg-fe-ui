@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Building = () => {
+const IllustrationBuilding = () => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -90,4 +90,4 @@ const Building = () => {
   );
 };
 
-export default Building;
+export default IllustrationBuilding;

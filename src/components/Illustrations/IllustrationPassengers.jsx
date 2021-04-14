@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Passengers = () => {
+const IllustrationPassengers = () => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -41,4 +41,4 @@ const Passengers = () => {
   );
 };
 
-export default Passengers;
+export default IllustrationPassengers;
