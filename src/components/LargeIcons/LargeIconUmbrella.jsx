@@ -1,6 +1,19 @@
 import React from 'react';
+import { object, bool } from 'prop-types';
 
-const LargeIconUmbrella = () => {
+const LargeIconUmbrella = ({ activeTheme, inactiveTheme, active }) => {
+  const theme = active
+    ? {
+        primary: activeTheme[500],
+        secondary: activeTheme[200],
+        tertiary: activeTheme[50],
+      }
+    : {
+        primary: inactiveTheme[200],
+        secondary: inactiveTheme[100],
+        tertiary: inactiveTheme[50],
+      };
+
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,15 +23,15 @@ const LargeIconUmbrella = () => {
       viewBox="0 0 58 54"
     >
       <path
-        stroke="#FF8000"
+        stroke={theme.primary}
         strokeLinecap="round"
         strokeWidth="2"
         d="M29 24.203V46.93c0 1.75 1.05 5.25 5.25 5.25s5.25-3.5 5.25-5.25"
       ></path>
       <path
-        fill="#FC9"
+        fill={theme.secondary}
         fillRule="evenodd"
-        stroke="#FF8000"
+        stroke={theme.primary}
         strokeLinecap="round"
         strokeLinejoin="round"
         strokeWidth="2"
@@ -26,13 +39,19 @@ const LargeIconUmbrella = () => {
         clipRule="evenodd"
       ></path>
       <path
-        stroke="#FF8000"
+        stroke={theme.primary}
         strokeLinecap="round"
         strokeWidth="2"
         d="M31.592 3.96c5.704 6.505 6.741 24.84 6.741 24.84M26.408 3.96c-5.704 6.505-6.741 24.84-6.741 24.84M29 1v1.75"
       ></path>
     </svg>
   );
+};
+
+LargeIconUmbrella.propTypes = {
+  activeTheme: object,
+  inactiveTheme: object,
+  active: bool,
 };
 
 export default LargeIconUmbrella;

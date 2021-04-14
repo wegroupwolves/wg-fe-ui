@@ -1,6 +1,17 @@
 import React from 'react';
+import { object, bool } from 'prop-types';
 
-const LargeIconQuotes = () => {
+const LargeIconQuotes = ({ activeTheme, inactiveTheme, active }) => {
+  const theme = active
+    ? {
+        primary: activeTheme[500],
+        secondary: activeTheme[200],
+      }
+    : {
+        primary: inactiveTheme[200],
+        secondary: inactiveTheme[100],
+      };
+
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,22 +21,22 @@ const LargeIconQuotes = () => {
       viewBox="0 0 58 57"
     >
       <path
-        stroke="#C0C2C9"
+        stroke={theme.primary}
         strokeLinecap="round"
         strokeLinejoin="round"
         strokeWidth="2"
         d="M15.807 1H41.465V42.321H15.807z"
       ></path>
       <path
-        fill="#DBDDE1"
-        stroke="#C0C2C9"
+        fill={theme.secondary}
+        stroke={theme.primary}
         strokeLinecap="round"
         strokeLinejoin="round"
         strokeWidth="2"
         d="M9.727 14.977L1 18.613l6.545 20.364 2.182-.728V14.977zM49.727 55.703L57 34.612l-9.455-3.636V48.43h-13.09l-.728 2.182 16 5.09z"
       ></path>
       <path
-        stroke="#C0C2C9"
+        stroke={theme.primary}
         strokeLinecap="round"
         strokeLinejoin="round"
         strokeWidth="2"
@@ -33,6 +44,12 @@ const LargeIconQuotes = () => {
       ></path>
     </svg>
   );
+};
+
+LargeIconQuotes.propTypes = {
+  activeTheme: object,
+  inactiveTheme: object,
+  active: bool,
 };
 
 export default LargeIconQuotes;
