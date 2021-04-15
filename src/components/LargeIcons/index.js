@@ -4,6 +4,7 @@ import LargeIconFlags from './LargeIconFlags';
 import LargeIconProspect from './LargeIconProspect';
 import LargeIconQuotes from './LargeIconQuotes';
 import LargeIconUmbrella from './LargeIconUmbrella';
+import LargeIconInfo from './LargeIconInfo';
 
 export {
   LargeIconBullseye,
@@ -12,4 +13,5 @@ export {
   LargeIconProspect,
   LargeIconQuotes,
   LargeIconUmbrella,
+  LargeIconInfo,
 };
