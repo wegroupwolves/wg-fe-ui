@@ -146,7 +146,13 @@ const styles = css`
     &__control {
       border-radius: 0.5rem;
       min-height: 4.5rem;
-      border: 1px solid #c1c1c1;
+      border: 1px solid;
+      border-color: ${({ theme, error, touched }) =>
+        error
+          ? theme.status.error
+          : touched & !error
+          ? theme.status.succes
+          : '#c1c1c1'};
       position: relative;
 
       :hover {
