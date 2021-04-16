@@ -10,8 +10,11 @@ import * as Illustrations from '../src/components/Illustrations';
 
 const primaryTheme = {
   50: '#FFF2E5',
+  100: '#FFF6EE',
   200: '#FFCC99',
   500: '#FF8000',
+  600: '#CC6600',
+  700: '#994D00',
 };
 
 const grayScale = {
@@ -69,7 +72,7 @@ storiesOf('Foundation/Icons', module)
           const Element = Illustrations[IconKey];
           return (
             <Item key={'Ilustration_' + key}>
-              <Element />
+              <Element theme={{ primary: primaryTheme }} />
               <LargeText>{IconKey}</LargeText>
             </Item>
           );
