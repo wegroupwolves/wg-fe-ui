@@ -55,6 +55,7 @@ const BreadCrumb = styled(Link)`
 
   margin: 0 5px;
   font-weight: ${({ isActive }) => (isActive ? '500' : 'normal')};
+  pointer-events: ${({ isActive }) => isActive && 'none'};
   text-decoration: none;
   transition: color 0.15s ease-in-out;
   cursor: ${({ isActive }) => (isActive ? 'default' : 'pointer')};
