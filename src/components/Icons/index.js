@@ -204,8 +204,14 @@ import IconMeasurePlus from './IconMeasurePlus';
 import IconHousePlus from './IconHousePlus';
 import IconDistances from './IconDistances';
 import IconRooms from './IconRooms';
+import IconAppartment from './IconAppartment';
+import IconAttached from './IconAttached';
+import IconSemiDetached from './IconSemiDetached';
 
 export {
+  IconAttached,
+  IconSemiDetached,
+  IconAppartment,
   IconResetFilled,
   IconFireFilled,
   IconCarFilled,
