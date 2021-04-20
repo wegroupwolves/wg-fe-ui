@@ -207,8 +207,10 @@ import IconRooms from './IconRooms';
 import IconAppartment from './IconAppartment';
 import IconAttached from './IconAttached';
 import IconSemiDetached from './IconSemiDetached';
+import IconFullScreen from './IconFullScreen';
 
 export {
+  IconFullScreen,
   IconAttached,
   IconSemiDetached,
   IconAppartment,
