@@ -127,52 +127,29 @@ const SearchSelectInput = forwardRef(
 
 const styles = css`
   width: 100%;
-  justify-self: center;
-  position: relative;
   margin-top: 0.8rem;
   margin-bottom: ${({ error }) => (error ? 0 : '2rem')};
 
-  span {
-    border-color: ${({ theme, hasValue }) =>
-      hasValue ? theme.brand.primary : '#C1C1C1'};
-  }
-
   &:focus {
-    outline: ${({ theme }) => theme.brand.primary};
+    outline: none;
   }
 
   & .Select {
-    width: 100%;
     &__control {
-      border-radius: 0.5rem;
-      min-height: 4.5rem;
-      border: 1px solid;
+      border-radius: 0.3rem;
+      border: 0.1rem solid;
       border-color: ${({ theme, error, touched }) =>
         error
           ? theme.status.error
           : touched & !error
           ? theme.status.succes
-          : '#c1c1c1'};
-      position: relative;
+          : '#e4e4e4'};
+      box-shadow: none;
+      height: ${({ isMulti }) => (isMulti ? 'fit-content' : '4rem')};
 
-      :hover {
-        border-color: #c1c1c1;
+      &:hover {
+        border-color: ${({ theme }) => theme.ui.interactive};
       }
-
-      &--is-focused {
-        border-color: ${({ theme, hasValue }) =>
-          hasValue ? theme.brand.primary : '#C1C1C1'};
-        box-shadow: none;
-
-        :hover {
-          border-color: ${({ theme, hasValue }) =>
-            hasValue ? theme.brand.primary : '#C1C1C1'};
-        }
-      }
-    }
-
-    &__placeholder {
-      color: #c1c1c1;
     }
 
     &__control--menu-is-open {
@@ -189,12 +166,8 @@ const styles = css`
     }
 
     &__value-container {
-      padding: 0 1.2rem;
+      padding: 0.5em;
       font-size: 1.6rem;
-
-      @media screen and (max-width: 500px) {
-        font-size: 1.4rem;
-      }
     }
 
     &__single-value {
@@ -204,95 +177,41 @@ const styles = css`
     }
 
     &__menu {
-      font-size: 1.6rem;
-      box-shadow: none;
-      top: 3rem;
-      border: 1px solid #c1c1c1;
-      border-top: none;
-      border-radius: 0 0 0.5rem 0.5rem;
-      overflow: hidden;
-      position: absolute;
-      background: none;
-      padding-top: 0.8rem;
+      font-size: 1.8rem;
+      z-index: 999;
     }
 
     &__menu-list {
-      max-height: 16rem;
-      background-color: white;
-
-      &::-webkit-scrollbar {
-        -webkit-appearance: none;
-      }
-
-      &::-webkit-scrollbar-thumb {
-        border-radius: 8px;
-        border: 2px solid white; /* should match background, can't be transparent */
-        background-color: #c7c7c7;
-      }
-
-      &::-webkit-scrollbar-track-piece {
-        background: #f0f1f3;
-        border-radius: 5px;
-        width: 8px;
-        border: 2px solid white; /* should match background, can't be transparent */
-      }
-
-      &::-webkit-scrollbar:vertical {
-        width: 12px;
-      }
-      &::-webkit-scrollbar:horizontal {
-        height: 8px;
-      }
+      max-height: 13rem;
+      padding: 0;
     }
 
-    &__menu-notice--no-options,
-    &__menu-notice--loading {
-      min-height: 4.8rem;
-      display: flex;
-      align-items: center;
+    &__menu-notice--no-options {
+      text-align: left;
+      font-size: 1.2rem;
     }
 
     &__option {
-      background: white;
-      padding: 0.4rem 1.2rem;
-      min-height: 4.5rem;
-      display: flex;
-      align-items: center;
-      cursor: pointer;
-      border-bottom: 1px solid #f0f1f3;
+      font-size: 1.4rem;
+      color: ${({ theme }) => theme.ui.interactive};
+      padding: 1rem;
 
-      &:last-of-type {
-        border-bottom: none;
-      }
-
-      & .custom-option_primary-label {
-        color: ${({ theme }) => theme.typo.title};
-        font-size: 1.6rem;
-      }
-
-      & .custom-option_secondary-label {
-        font-size: 1.2rem;
-      }
-
-      &:hover {
-        background-color: ${({ theme }) => theme.labels.guarantee};
+      :hover {
+        cursor: pointer;
+        background-color: ${({ theme }) => theme.hover.secondary};
+        color: ${({ theme }) => theme.brand.secondary};
       }
 
       &--is-focused {
-        background-color: ${({ theme }) => theme.labels.guarantee};
+        color: ${({ theme }) => theme.brand.secondary};
+        background-color: ${({ theme }) => theme.hover.secondary};
       }
 
       &--is-selected {
+        color: ${({ theme }) => theme.brand.primary};
         background-color: white;
-        & .custom-option_primary-label {
-          color: ${({ theme }) => theme.brand.primary};
-        }
-        & .custom-option_secondary-label {
-          color: ${({ theme }) => theme.brand.secondary};
-        }
       }
     }
-
     &__multi-value {
       background: rgba(255, 128, 0, 0.05);
       border: 1px solid ${({ theme }) => theme.brand.primary};
@@ -334,7 +253,6 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  box-sizing: border-box;
   font-family: ${({ theme }) => theme.font};
   min-height: 9rem;
 `;
@@ -345,7 +263,8 @@ const Label = styled.label`
   font-size: 1.4rem;
   transition: 0.2s;
   line-height: 1rem;
-  color: ${({ disabled, theme }) => (disabled ? theme.ui.disabled : '#8990A3')};
+  color: ${({ disabled, theme }) =>
+    disabled ? theme.ui.disabled : theme.labels.guaranteeText};
 `;
 
 const Input = styled(Select)`
