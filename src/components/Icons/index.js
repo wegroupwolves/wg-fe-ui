@@ -160,6 +160,7 @@ import IconShoppingBasket from './IconShoppingBasket';
 import IconChevronDown from './IconChevronDown';
 import IconClipBoard from './IconClipBoard';
 import StatusIcon from './StatusIcon';
+import Icon from './Icon';
 import IconHyperLink from './IconHyperLink';
 import IconPopup from './IconPopup';
 import IconCustomLink from './IconCustomLink';
@@ -365,4 +366,5 @@ export {
   IconCompare,
   IconNotificationBellFilled,
   IconClockFilled,
+  Icon
 };

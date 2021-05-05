@@ -5,6 +5,7 @@ import { withKnobs, select } from '@storybook/addon-knobs';
 import { withInfo } from '@storybook/addon-info';
 import * as Icons from '../src/components/Icons';
 import { StatusIcon } from '../src/components/Icons';
+import { Icon } from '../src/components/Icons';
 
 storiesOf('Foundation/Icons', module)
   .addDecorator(withKnobs)
@@ -25,6 +26,10 @@ storiesOf('Foundation/Icons', module)
         })}
       </Container>
     );
+  })
+
+  .add('Icon', () => {
+    return <Icon type="home" />;
   })
 
   .add('StatusIcon', () => {
