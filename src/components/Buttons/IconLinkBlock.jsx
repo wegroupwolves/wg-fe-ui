@@ -52,10 +52,9 @@ const Label = styled.div`
   position: absolute;
   bottom: ${({ info }) => (info ? '4.6rem' : '1.6rem')};
   left: 1.6rem;
-  font-family: ${({ theme }) => theme.font};
-  font-weight: 600;
+  font-weight: 500;
   font-size: 1.8rem;
-  line-height: 135%;
+  line-height: 120%;
   color: #222;
   transition: color 0.15s ease-in-out;
 `;
@@ -67,11 +66,12 @@ const Info = styled.div`
   left: 1.6rem;
   color: #8990a3;
   font-size: 1.2rem;
-  line-height: 1.3rem;
+  line-height: 120%;
 `;
 
 const StyledIconLinkBlock = styled.div`
   position: relative;
+  font-family: ${({ theme }) => theme.font};
   width: 100%;
   padding-top: 100%;
   background-color: ${({ theme, active, disabled }) =>

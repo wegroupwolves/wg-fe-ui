@@ -84,7 +84,7 @@ const TooltipToggle = styled.a`
   align-items: center;
   font-family: ${({ theme }) => theme.font};
   font-size: 1.2rem;
-  line-height: 1.5rem;
+  line-height: 120%;
   color: #8990a3;
 
   transition: color 0.2s ease;
@@ -113,7 +113,7 @@ const TooltipContent = styled.div`
   font-family: ${({ theme }) => theme.font};
   transition: all 0.2s ease;
   font-size: 14px;
-  line-height: 1.8rem;
+  line-height: 120%;
   color: white;
 
   ${({ direction }) => {

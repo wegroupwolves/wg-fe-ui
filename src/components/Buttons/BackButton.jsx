@@ -34,7 +34,7 @@ const StyledButton = styled.button`
   height: 4rem;
   color: ${({ background, theme }) =>
     background ? '#FFFFFF' : theme.typo.highlight};
-  line-height: 20px;
+  line-height: 120%;
   border: 0;
   padding: 0 1.5rem;
   display: flex;

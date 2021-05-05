@@ -81,7 +81,7 @@ const Answer = styled.p`
   justify-content: center;
   align-items: center;
   font-size: 2.1rem;
-  font-weight: bold;
+  font-weight: 500;
   background-color: ${({ theme, disabled }) =>
     disabled ? theme.ui.disabled : theme.brand.primary};
   color: white;
@@ -110,7 +110,7 @@ const Question = styled.div`
   align-self: flex-start;
 
   & span {
-    font-weight: bold;
+    font-weight: 500;
   }
 `;
 

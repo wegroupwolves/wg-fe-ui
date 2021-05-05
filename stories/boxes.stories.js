@@ -20,6 +20,10 @@ import {
   CodeBox,
   GuidedImage,
   IconDocumentFilled,
+  ProspectPreferenceBox,
+  IconGuestsFilled,
+  IconPetsFilled,
+  IconFamilyFilled,
 } from '../src';
 
 // OTHER ELEMENTS
@@ -263,6 +267,33 @@ storiesOf('Mid level blocks/Boxes', module)
           icon={<IconDocumentFilled color="#fff" />}
         />
       </NotificationWrapper>
+    );
+  })
+
+  .add('ProspectPreferenceBox', () => {
+    // Icon selector
+    const ICONS = {
+      guests: IconGuestsFilled,
+      pet: IconPetsFilled,
+      family: IconFamilyFilled,
+    };
+    const iconSelector = select('DisplayIcon', Object.keys(ICONS), 'guests');
+
+    // Status selector
+    const STATUSES = {
+      true: true,
+      false: false,
+      null: null,
+    };
+    const statusSelector = select('value', Object.keys(STATUSES), 'true');
+
+    // Component
+    return (
+      <ProspectPreferenceBox
+        label={text('label', 'Works at home')}
+        value={STATUSES[statusSelector]}
+        DisplayIcon={ICONS[iconSelector]}
+      />
     );
   })
 

@@ -10,6 +10,7 @@ import CodeBox from './CodeBox';
 import NotificationListBox from './NotificationListBox';
 import NotificationPopUp from './NotificationPopUp';
 import GuidedImage from './GuidedImage/GuidedImage';
+import ProspectPreferenceBox from './ProspectPreferenceBox';
 
 export {
   QuestionBox,
@@ -24,4 +25,5 @@ export {
   LinkBox,
   CodeBox,
   GuidedImage,
+  ProspectPreferenceBox,
 };

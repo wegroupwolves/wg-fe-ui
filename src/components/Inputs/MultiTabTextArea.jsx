@@ -72,6 +72,7 @@ const MultiTabTextArea = ({
 
 const Container = styled.div`
   margin-bottom: 2.4rem;
+  font-family: ${({ theme }) => theme.font};
   width: 100%;
 `;
 
@@ -123,7 +124,7 @@ const ResetButton = styled.p`
 
 const Label = styled.label`
   font-size: 1.4rem;
-  line-height: 2rem;
+  line-height: 120%;
   color: #8990a3;
   margin-bottom: 0.8rem;
   display: block;

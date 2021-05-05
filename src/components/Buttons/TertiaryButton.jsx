@@ -19,7 +19,7 @@ const TertiaryButton = ({
 const StyledTertiaryButton = styled.button`
   font-family: ${({ theme }) => theme.font};
   font-size: 1.6rem;
-  line-height: 135%;
+  line-height: 120%;
   color: ${({ theme }) => theme.ui.disabled};
   cursor: ${({ disabled }) => (disabled ? '' : 'pointer')};
   transition: 0.15s ease-in-out;

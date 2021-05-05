@@ -118,7 +118,7 @@ const Count = styled.div`
     display: block;
     white-space: nowrap;
     font-size: 1.5rem;
-    line-height: 1.3rem;
+    line-height: 120%;
     letter-spacing: 0.924996px;
     color: #dfdfdf;
   }
@@ -130,8 +130,9 @@ const StyledLabel = styled.label`
   position: relative;
   width: 100%;
   font-size: 1.4rem;
-  margin-bottom: 0.7rem;
-  color: ${({ disabled }) => (disabled ? '#AEAEAE' : '#5B5550')};
+  margin-bottom: 0.8rem;
+  color: ${({ disabled, theme }) =>
+    disabled ? theme.ui.disabled : theme.labels.guaranteeText};
 `;
 
 const InputContainer = styled.div`
@@ -146,6 +147,7 @@ const StyledTextArea = styled.textarea`
   border-color: ${({ error, touched, theme, warning }) =>
     getBorderColor(error, touched, theme, warning)};
   border-radius: 0.3rem;
+  font-family: ${({ theme }) => theme.font};
   height: 4rem;
   font-size: 1.6rem;
   padding: 1rem;

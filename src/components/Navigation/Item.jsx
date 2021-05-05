@@ -37,7 +37,7 @@ const Container = styled.div`
   font-size: 1.4rem;
   height: 5rem;
   padding-left: 2.5rem;
-  font-weight: ${props => (props.isActive ? '700' : '400')};
+  font-weight: ${props => (props.isActive ? '500' : '400')};
   width: 100%;
   padding-right: 1rem;
   text-align: center;
@@ -57,7 +57,7 @@ const Container = styled.div`
   }
 
   &.active {
-    font-weight: 700;
+    font-weight: 500;
     background-color: #f7f7f7;
   }
 `;

@@ -226,7 +226,7 @@ const Title = styled.div`
 const Description = styled.div`
   font-style: normal;
   font-weight: normal;
-  line-height: 1.3;
+  line-height: 120%;
   font-size: 1.4rem;
   color: #8990a3;
 `;
@@ -235,7 +235,7 @@ const ContentContainer = styled.div`
   padding: 2rem;
   font-style: normal;
   font-size: 1.6rem;
-  line-height: 1.4;
+  line-height: 120%;
   color: #8990a3;
 `;
 

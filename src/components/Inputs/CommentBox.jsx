@@ -2,7 +2,14 @@ import React from 'react';
 import { string, node, int, func } from 'prop-types';
 import styled from 'styled-components';
 
-const CommentBox = ({ title, icon, children, editHandler, dataTestId, deleteHandler }) => {
+const CommentBox = ({
+  title,
+  icon,
+  children,
+  editHandler,
+  dataTestId,
+  deleteHandler,
+}) => {
   let IconToRender;
 
   if (icon !== '') {
@@ -50,7 +57,7 @@ const CommentBoxIcon = styled.div`
 const CommentBoxContent = styled.div`
   & p {
     font-size: 1.6rem;
-    line-height: 130%;
+    line-height: 120%;
     color: ${({ theme }) => theme.typo.text};
   }
 `;
@@ -63,7 +70,7 @@ const CommentBoxHeader = styled.div`
 
   .title {
     font-size: 1.4rem;
-    line-height: 2rem;
+    line-height: 120%;
     color: ${({ theme }) => theme.labels.defaultText};
   }
 `;
@@ -92,7 +99,7 @@ const CommentBoxActions = styled.div`
 const CommentBoxAction = styled.a`
   margin-right: 10px;
   font-size: 1.4rem;
-  line-height: 2rem;
+  line-height: 120%;
   color: ${({ theme }) => theme.labels.defaultText};
   cursor: pointer;
   transition: color 0.1s ease-in-out;

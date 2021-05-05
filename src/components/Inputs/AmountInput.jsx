@@ -155,6 +155,7 @@ const Wrapper = styled.div`
     0 4px 8px rgba(0, 0, 0, 0.04);
   overflow: hidden;
   opacity: ${({ disabled }) => (disabled ? '0.6' : '1')};
+  font-family: ${({ theme }) => theme.font};
 `;
 
 const InputControls = styled.div`
@@ -205,7 +206,7 @@ const InputExtra = styled.div`
   font-family: ${({ theme }) => theme.font};
   font-weight: 500;
   font-size: 1.4rem;
-  line-height: 1.8rem;
+  line-height: 120%;
   color: ${({ theme }) => theme.typo.text};
   display: flex;
   justify-content: center;

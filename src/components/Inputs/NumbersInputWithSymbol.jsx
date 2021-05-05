@@ -102,10 +102,10 @@ const NumbersInputWithSymbol = forwardRef(
 const Type = styled.span`
   border-left: 1px solid #ccc;
   color: #222;
-  padding: 1.4rem;
+  padding: 1.1rem;
   position: absolute;
   right: 0;
-  top: 1.5rem;
+  top: 2.5rem;
 `;
 
 const Container = styled.div`
@@ -121,8 +121,9 @@ const StyledLabel = styled.label`
   position: relative;
   width: 100%;
   font-size: 1.4rem;
-  color: ${props => (props.disabled ? '#AEAEAE' : '#5B5550')};
-  line-height: 1rem;
+  color: ${({ disabled, theme }) =>
+    disabled ? theme.ui.disabled : theme.labels.guaranteeText};
+  line-height: 120%;
   input {
     padding-right: 4.5rem;
     padding-left: 0.7rem;
@@ -149,7 +150,7 @@ const StyledInput = styled.input`
   border-radius: 0.3rem;
   height: 4rem;
   font-size: 1.6rem;
-  margin-top: 1.4rem;
+  margin-top: 0.8rem;
   box-sizing: border-box;
 
   &:focus {
@@ -207,5 +208,7 @@ NumbersInputWithSymbol.propTypes = {
   /** sets initial value */
   value: oneOfType([string, number]),
 };
+
+NumbersInputWithSymbol.displayName = 'NumbersInputWithSymbo';
 
 export default NumbersInputWithSymbol;

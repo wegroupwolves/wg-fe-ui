@@ -181,6 +181,33 @@ import IconResetFilled from './IconResetFilled';
 import IconPrintWhite from './IconPrintWhite';
 import IconCompare from './IconCompare';
 import IconClockFilled from './IconClockFilled';
+import IconArrow from './IconArrow';
+import IconBreadCrumbChevronRight from './IconBreadCrumbChevronRight';
+import IconSpeedAssistance from './IconSpeedAssistance';
+import IconRearCrossTrafficWarning from './IconRearCrossTrafficWarning';
+import IconRearEmergencyBreaking from './IconRearEmergencyBreaking';
+import IconLaneCenteringAssist from './IconLaneCenteringAssist';
+import IconLaneDepartingWarning from './IconLaneDepartingWarning';
+import IconPedestrianDetection from './IconPedestrianDetection';
+import IconPerformance from './IconPerformance';
+import IconElectronicStabilityControl from './IconElectronicStabilityControl';
+import IconForwardCollisionWarning from './IconForwardCollisionWarning';
+import IconFrontEmergencyBraking from './IconFrontEmergencyBraking';
+import IconHighSpeedEmergencyBreaking from './IconHighSpeedEmergencyBreaking';
+import IconABS from './IconABS';
+import IconCityEmergencyBraking from './IconCityEmergencyBraking';
+import IconSafetySystems from './IconSafetySystems';
+import IconSafetySystemsPlus from './IconSafetySystemsPlus';
+import IconThumbsUp from './IconThumbsUp';
+import IconThumbsDown from './IconThumbsDown';
+import IconMeasurePlus from './IconMeasurePlus';
+import IconHousePlus from './IconHousePlus';
+import IconDistances from './IconDistances';
+import IconRooms from './IconRooms';
+import IconAppartment from './IconAppartment';
+import IconAttached from './IconAttached';
+import IconSemiDetached from './IconSemiDetached';
+import IconFullscreen from './IconFullscreen';
 
 const Icon = ({ type }) => {
   switch (type) {
@@ -550,6 +577,60 @@ const Icon = ({ type }) => {
       return <IconCompare />;
     case 'clock':
       return <IconClockFilled />;
+    case 'arrow':
+      return <IconArrow />;
+    case 'bread-crumb-chevron-right':
+      return <IconBreadCrumbChevronRight />;
+    case 'speed-assistance':
+      return <IconSpeedAssistance />;
+    case 'rear-cross-traffic-warning':
+      return <IconRearCrossTrafficWarning />;
+    case 'rear-emergency-breaking':
+      return <IconRearEmergencyBreaking />;
+    case 'lane-centering-assist':
+      return <IconLaneCenteringAssist />;
+    case 'lane-depart-warning':
+      return <IconLaneDepartingWarning />;
+    case 'pedestrian-detection':
+      return <IconPedestrianDetection />;
+    case 'performance':
+      return <IconPerformance />;
+    case 'electronic-stability-control':
+      return <IconElectronicStabilityControl />;
+    case 'forward-collision-warning':
+      return <IconForwardCollisionWarning />;
+    case 'emergency-breaking':
+      return <IconFrontEmergencyBraking />;
+    case 'high-speed-emergency-breaking':
+      return <IconHighSpeedEmergencyBreaking />;
+    case 'abs':
+      return <IconABS />;
+    case 'city-emergency-braking':
+      return <IconCityEmergencyBraking />;
+    case 'safety-systems':
+      return <IconSafetySystems />;
+    case 'safety-systems-plus':
+      return <IconSafetySystemsPlus />;
+    case 'thumbs-up':
+      return <IconThumbsUp />;
+    case 'thumbs-down':
+      return <IconThumbsDown />;
+    case 'measure-plus':
+      return <IconMeasurePlus />;
+    case 'house-plus':
+      return <IconHousePlus />;
+    case 'distance':
+      return <IconDistances />;
+    case 'rooms':
+      return <IconRooms />;
+    case 'appartment':
+      return <IconAppartment />;
+    case 'attached':
+      return <IconAttached />;
+    case 'semi-detached':
+      return <IconSemiDetached />;
+    case 'full-screen':
+      return <IconFullscreen />;
     default:
       return <IconOthersFilled />;
   }

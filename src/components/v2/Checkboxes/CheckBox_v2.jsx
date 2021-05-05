@@ -88,7 +88,7 @@ const StyledBox = styled.div`
 const StyledLabel = styled.label`
   font-family: ${({ theme }) => theme.font};
   font-size: 1.4rem;
-  line-height: 1.8rem;
+  line-height: 120%;
   color: ${({ disabled, theme }) => (disabled ? theme.ui.disabled : '#0e0e0e')};
 
   display: flex;

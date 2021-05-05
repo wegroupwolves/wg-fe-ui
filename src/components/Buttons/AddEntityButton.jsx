@@ -42,7 +42,8 @@ const StyledButton = styled.button`
   .label {
     margin-top: 5px;
     font-size: 1.4rem;
-    line-height: 130%;
+    line-height: 120%;
+    font-family: ${({ theme }) => theme.font};
     color: ${({ theme }) => theme.typo.highlight};
     transition: 0.15s ease-in-out;
   }

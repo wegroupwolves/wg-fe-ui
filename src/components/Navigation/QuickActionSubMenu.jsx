@@ -103,7 +103,7 @@ const SubMenuItem = styled.a`
   width: 100%;
   cursor: pointer;
   font-size: 1.2rem;
-  line-height: 1.8rem;
+  line-height: 120%;
   transition: background-color 0.15s ease-in-out;
 
   &:hover {

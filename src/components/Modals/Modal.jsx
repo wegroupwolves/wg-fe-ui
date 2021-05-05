@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import { string, bool, node, func, number, object } from 'prop-types';
-import styled from 'styled-components';
+import styled, { createGlobalStyle } from 'styled-components';
 import Drawer from 'react-drag-drawer';
 
 import CloseIcon from '../Icons/IconActionClose';
@@ -47,37 +47,47 @@ const Modal = ({
   };
 
   return (
-    <StyledDrawer
-      open={showModal}
-      onRequestClose={handleOnRequestClose}
-      {...drawerProps}
-    >
-      <ModalContainer
-        {...otherProps}
-        className={className}
-        small={small}
-        large={large}
-        width={width}
+    <>
+      <GlobalStyle isModalOpen={showModal} />
+      <StyledDrawer
+        open={showModal}
+        onRequestClose={handleOnRequestClose}
+        {...drawerProps}
       >
-        {canClose ? (
-          <ModalCloser
-            onClick={() => {
-              setShowModal(!showModal);
-              onClose();
-            }}
-          >
-            <CloseIcon color="#505050" />
-          </ModalCloser>
-        ) : (
-          ''
-        )}
-        {title ? <ModalTitleBar>{title}</ModalTitleBar> : ''}
+        <ModalContainer
+          {...otherProps}
+          className={className}
+          small={small}
+          large={large}
+          width={width}
+        >
+          {canClose ? (
+            <ModalCloser
+              onClick={() => {
+                setShowModal(!showModal);
+                onClose();
+              }}
+            >
+              <CloseIcon color="#505050" />
+            </ModalCloser>
+          ) : (
+            ''
+          )}
+          {title ? <ModalTitleBar>{title}</ModalTitleBar> : ''}
 
-        <ModalContent modalTitle={title}>{children}</ModalContent>
-      </ModalContainer>
-    </StyledDrawer>
+          <ModalContent modalTitle={title}>{children}</ModalContent>
+        </ModalContainer>
+      </StyledDrawer>
+    </>
   );
 };
+
+const GlobalStyle = createGlobalStyle`
+   /* This will prevent scrolling in the background when the modal is open */
+   body {
+    overflow: ${({ isModalOpen }) => isModalOpen && 'hidden'};
+  }
+`;
 
 const StyledDrawer = styled(Drawer)`
   z-index: 9999999;
@@ -112,11 +122,10 @@ const ModalTitleBar = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  font-weight: bold;
+  font-weight: 500;
   font-size: 2.1rem;
-  line-height: 135%;
+  line-height: 120%;
   text-align: center;
-  letter-spacing: -0.03em;
 `;
 
 const ModalContent = styled.div`

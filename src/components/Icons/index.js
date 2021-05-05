@@ -182,8 +182,39 @@ import IconResetFilled from './IconResetFilled';
 import IconPrintWhite from './IconPrintWhite';
 import IconCompare from './IconCompare';
 import IconClockFilled from './IconClockFilled';
+import IconArrow from './IconArrow';
+import IconBreadCrumbChevronRight from './IconBreadCrumbChevronRight';
+import IconSpeedAssistance from './IconSpeedAssistance';
+import IconRearCrossTrafficWarning from './IconRearCrossTrafficWarning';
+import IconRearEmergencyBreaking from './IconRearEmergencyBreaking';
+import IconLaneCenteringAssist from './IconLaneCenteringAssist';
+import IconLaneDepartingWarning from './IconLaneDepartingWarning';
+import IconPedestrianDetection from './IconPedestrianDetection';
+import IconPerformance from './IconPerformance';
+import IconElectronicStabilityControl from './IconElectronicStabilityControl';
+import IconForwardCollisionWarning from './IconForwardCollisionWarning';
+import IconFrontEmergencyBraking from './IconFrontEmergencyBraking';
+import IconHighSpeedEmergencyBreaking from './IconHighSpeedEmergencyBreaking';
+import IconABS from './IconABS';
+import IconCityEmergencyBraking from './IconCityEmergencyBraking';
+import IconSafetySystems from './IconSafetySystems';
+import IconSafetySystemsPlus from './IconSafetySystemsPlus';
+import IconThumbsUp from './IconThumbsUp';
+import IconThumbsDown from './IconThumbsDown';
+import IconMeasurePlus from './IconMeasurePlus';
+import IconHousePlus from './IconHousePlus';
+import IconDistances from './IconDistances';
+import IconRooms from './IconRooms';
+import IconAppartment from './IconAppartment';
+import IconAttached from './IconAttached';
+import IconSemiDetached from './IconSemiDetached';
+import IconFullscreen from './IconFullscreen';
 
 export {
+  IconFullscreen,
+  IconAttached,
+  IconSemiDetached,
+  IconAppartment,
   IconResetFilled,
   IconFireFilled,
   IconCarFilled,
@@ -366,5 +397,28 @@ export {
   IconCompare,
   IconNotificationBellFilled,
   IconClockFilled,
-  Icon
+  Icon,
+  IconArrow,
+  IconBreadCrumbChevronRight,
+  IconSpeedAssistance,
+  IconRearCrossTrafficWarning,
+  IconRearEmergencyBreaking,
+  IconLaneCenteringAssist,
+  IconLaneDepartingWarning,
+  IconPedestrianDetection,
+  IconPerformance,
+  IconElectronicStabilityControl,
+  IconForwardCollisionWarning,
+  IconFrontEmergencyBraking,
+  IconHighSpeedEmergencyBreaking,
+  IconABS,
+  IconCityEmergencyBraking,
+  IconSafetySystems,
+  IconSafetySystemsPlus,
+  IconThumbsUp,
+  IconThumbsDown,
+  IconMeasurePlus,
+  IconHousePlus,
+  IconDistances,
+  IconRooms,
 };

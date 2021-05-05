@@ -12,7 +12,7 @@ const H1 = ({ children, className, ...otherProps }) => {
 
 const StyledH1 = styled.h1`
   font-family: ${({ theme }) => theme.font};
-  font-weight: bold;
+  font-weight: 500;
   font-size: 3.6rem;
   line-height: 130%;
   color: ${({ theme }) => theme.typo.title};

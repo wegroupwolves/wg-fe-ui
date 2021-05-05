@@ -24,7 +24,7 @@ const SwitcherButton = ({
 const StyledSwitcherButton = styled.div`
   padding: 1.8rem 2.4rem;
   font-family: ${({ theme }) => theme.font};
-  font-weight: ${({ active }) => (active ? '600' : '400')};
+  font-weight: ${({ active }) => (active ? '500' : '400')};
   font-size: 1.4rem;
   line-height: 1.4rem;
   color: ${({ theme, active }) => (active ? theme.brand.primary : '#d5d5d5')};

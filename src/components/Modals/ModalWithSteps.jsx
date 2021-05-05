@@ -85,9 +85,9 @@ const ModalWithSteps = ({
                       isCurrentStep={currentStep === step}
                       isPreviousStep={currentStep - 1 === step}
                     >
-                      <div>
+                      <StepArrowLabelWrapper>
                         <StepArrowLabel>{label}</StepArrowLabel>
-                      </div>
+                      </StepArrowLabelWrapper>
                     </StepArrow>
                   ))}
                 </VisualStepsWrapper>
@@ -122,6 +122,10 @@ const ModalWithSteps = ({
     </StepModalContext.Provider>
   );
 };
+
+const StepArrowLabelWrapper = styled.div`
+  display: flex;
+`;
 
 const StepArrowLabel = styled.div`
   display: flex;
@@ -250,7 +254,7 @@ const StepArrow = styled.div`
 const Title = styled.h2`
   color: black;
   font-size: 2rem;
-  font-weight: 600;
+  font-weight: 500;
   margin-right: 2rem;
 `;
 
@@ -286,7 +290,7 @@ const StepLabel = styled.p`
   color: black;
   text-transform: initial;
   margin-left: 1rem;
-  font-weight: bold;
+  font-weight: 500;
 `;
 
 const ModalTitleBar = styled.div`
@@ -304,9 +308,9 @@ const ModalTitle = styled.h1`
   display: flex;
   text-transform: uppercase;
   font-size: 1.6rem;
-  line-height: 135%;
+  line-height: 120%;
   text-align: left;
-  font-weight: 600;
+  font-weight: 500;
 `;
 
 const ModalCloser = styled.a`

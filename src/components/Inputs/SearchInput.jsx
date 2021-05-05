@@ -86,10 +86,10 @@ const StyledBox = styled.div`
 const Input = styled.input`
   font-family: ${({ theme }) => theme.font};
   font-size: 1.4rem;
-  color: ${({ theme }) => theme.ui.outline};
+  color: ${({ theme }) => theme.labels.guaranteeText};
   border: ${({ border, theme }) =>
     border ? `1px solid ${theme.ui.disabled}` : 'none'};
-  line-height: 2rem;
+  line-height: 120%;
   padding: 0.3rem 1rem;
   background-color: transparent;
   flex: 1 0 auto;

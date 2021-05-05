@@ -17,9 +17,9 @@ const Title = styled.h1`
   margin-bottom: 12px;
 
   font-family: ${({ theme }) => theme.font};
-  font-weight: bold;
+  font-weight: 500;
   font-size: 1.5rem;
-  line-height: 138%;
+  line-height: 120%;
 
   color: ${({ color }) => color};
 `;

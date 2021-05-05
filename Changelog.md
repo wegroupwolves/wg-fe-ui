@@ -5,6 +5,145 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v2.1.13]
+
+### ✨ Added
+
+- Added global style when a modal is open to disable a scroll on the body
+
+## [v2.1.12]
+
+### 🐛 Fixed
+
+- Reverted back-porting the new styling of the new TS SearchSelectInput as it broke in Broker platform
+
+## [v2.1.11]
+
+### ✨ Added
+
+- Added Fullscreen icon
+
+## [v2.1.10]
+
+### 🐛 Fixed
+
+- Disabled pointer events for active breadcrumb in Breadcrumbs
+
+## [v2.1.9]
+
+### ✨ Added
+
+- Added small icons that have to do with building type
+
+## [v2.1.8]
+
+### 🐛 Fixed
+
+- Added missing error state border
+
+## [v2.1.7]
+
+### 🐛 Fixed
+
+- Fixed bug with tsx file
+
+## [v2.1.6]
+
+### ✨ Added
+
+- Added more illustrations
+
+## [v2.1.5]
+
+### ✨ Added
+
+- Added large info icon
+
+## [v2.1.4]
+
+### 🐛 Fixed
+
+- Styling issues in ModalWithSteps StepArrow fixed
+
+## [v2.1.3]
+
+### ✨ Added
+
+- Added large icons
+- Prefixed icons with their respective name (LargeIcon or Illustration)
+
+### ♻️ Changed
+
+- Renamed the old large icons to illustrations
+
+## [v2.1.2]
+
+### ✨ Added
+
+- Added large icons
+
+## [v2.1.1]
+
+### ✨ Added
+
+- Added IconMeasurePlus, IconHousePlus, IconDistance, IconRooms
+
+### 🐛 Fixed
+
+- console errors in breadcrumbs
+
+## [v2.1.0]
+
+### ✨ Added
+
+- Added ProspectPreferenceBox that displays the prospect's preference with the option of true/false or not known
+- Added thumbs up icon
+- Added thumbs down icon
+
+## [v2.0.1]
+
+### 🐛 Fixed
+
+- Fixed NumberInputWithSymbol line going out of bounds
+
+## [v2.0.0]
+
+- Implementation of new Circular font
+- Fixed styling of inputs and font-weight issues
+- Fixed font weight problems
+- Added new icons for vehicle risk object
+- Added anti aliasing for font
+
+## [v2.0.0-alpha.2]
+
+- Fixed styling of inputs and font-weight issues
+
+## [v2.0.0-alpha.1]
+
+- Fixed font weight problems
+
+## [v2.0.0-alpha]
+
+- Implemented new Circluar font
+
+## [v1.16.13]
+
+### ✨ Added
+
+- New arrow icon
+
+## [v1.16.12]
+
+### ✨ Added
+
+- New BreadCrumb design
+
+## [v1.16.11]
+
+### 🐛Fixed
+
+- Added ability to pass extra props to some components
+
 ## [v1.16.10]
 
 ### 🐛Fixed

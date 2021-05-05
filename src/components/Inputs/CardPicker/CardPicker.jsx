@@ -81,9 +81,9 @@ const SelectedBox = styled.div`
   > p {
     margin-left: 1.2rem;
     font-family: ${({ theme }) => theme.font};
-    font-weight: 500;
+    font-weight: 400;
     font-size: 1.2rem;
-    line-height: 1.6rem;
+    line-height: 120%;
     color: white;
   }
 `;

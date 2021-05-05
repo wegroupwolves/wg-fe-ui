@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { array } from 'prop-types';
 import styled from 'styled-components';
-import ChevronRight from '../Icons/IconActionChevronRight';
+import ChevronRight from '../Icons/IconBreadCrumbChevronRight';
 
 const BreadCrumbs = ({ urls }) => {
   return (
@@ -10,9 +10,9 @@ const BreadCrumbs = ({ urls }) => {
       {urls.length > 3 ? (
         <BreadCrumbsContainer>
           <BreadCrumb to={urls[0].url}> {urls[0].label} </BreadCrumb>
-          <ChevronRight size={15} />
+          <StyledChevronRight />
           <BreadCrumbSpacer>...</BreadCrumbSpacer>
-          <ChevronRight size={15} />
+          <StyledChevronRight />
           <BreadCrumb to={urls[urls.length - 1].url} active>
             {urls[urls.length - 1].label}
           </BreadCrumb>
@@ -21,15 +21,16 @@ const BreadCrumbs = ({ urls }) => {
         <BreadCrumbsContainer>
           {urls.map((url, index) => {
             return (
-              <>
+              <React.Fragment key={index}>
                 <BreadCrumb
+                  key={index}
                   to={url.url}
-                  active={urls.length - 1 !== index ? false : true}
+                  isActive={urls.length - 1 !== index ? false : true}
                 >
                   {url.label}
                 </BreadCrumb>
-                {urls.length - 1 !== index ? <ChevronRight size={15} /> : ''}
-              </>
+                {urls.length - 1 !== index ? <StyledChevronRight /> : ''}
+              </React.Fragment>
             );
           })}
         </BreadCrumbsContainer>
@@ -37,6 +38,8 @@ const BreadCrumbs = ({ urls }) => {
     </>
   );
 };
+
+const StyledChevronRight = () => <ChevronRight size={13} color="#8990a3" />;
 
 const BreadCrumbsContainer = styled.div`
   display: flex;
@@ -47,13 +50,15 @@ const BreadCrumbsContainer = styled.div`
 
 const BreadCrumb = styled(Link)`
   font-size: 1.4rem;
-  line-height: 2rem;
-  color: ${({ theme }) => theme.ui.highlight};
+  line-height: 120%;
+  color: ${({ theme }) => theme.labels.guaranteeText};
+
   margin: 0 5px;
-  font-weight: ${({ active }) => (active ? 'bold' : 'normal')};
+  font-weight: ${({ isActive }) => (isActive ? '500' : 'normal')};
+  pointer-events: ${({ isActive }) => isActive && 'none'};
   text-decoration: none;
   transition: color 0.15s ease-in-out;
-  cursor: ${({ active }) => (active ? 'default' : 'pointer')};
+  cursor: ${({ isActive }) => (isActive ? 'default' : 'pointer')};
 
   &:first-of-type {
     margin-left: 0;
@@ -64,14 +69,14 @@ const BreadCrumb = styled(Link)`
   }
 
   &:hover {
-    color: ${({ theme, active }) =>
-      active ? theme.ui.highlight : theme.typo.title};
+    color: ${({ theme, isActive }) =>
+      isActive ? theme.ui.highlight : theme.typo.title};
   }
 `;
 
 const BreadCrumbSpacer = styled.p`
   font-size: 1.4rem;
-  line-height: 2rem;
+  line-height: 120%;
   color: ${({ theme }) => theme.ui.disabled};
   margin: 0 5px;
   text-decoration: none;
