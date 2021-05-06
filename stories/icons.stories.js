@@ -5,6 +5,7 @@ import { withKnobs, select } from '@storybook/addon-knobs';
 import { withInfo } from '@storybook/addon-info';
 import * as Icons from '../src/components/Icons';
 import { StatusIcon } from '../src/components/Icons';
+import { Icon } from '../src/components/Icons';
 import * as LargeIcons from '../src/components/LargeIcons';
 import * as Illustrations from '../src/components/Illustrations';
 
@@ -49,6 +50,10 @@ storiesOf('Foundation/Icons', module)
         })}
       </Container>
     );
+  })
+
+  .add('Icon', () => {
+    return <Icon type="home" />;
   })
 
   .add('StatusIcon', () => {
