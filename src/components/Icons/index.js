@@ -209,6 +209,7 @@ import IconAppartment from './IconAppartment';
 import IconAttached from './IconAttached';
 import IconSemiDetached from './IconSemiDetached';
 import IconFullscreen from './IconFullscreen';
+import IconSearch from './IconSearch';
 
 export {
   IconFullscreen,
@@ -421,4 +422,5 @@ export {
   IconHousePlus,
   IconDistances,
   IconRooms,
+  IconSearch,
 };
