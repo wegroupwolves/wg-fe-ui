@@ -210,6 +210,8 @@ import IconAttached from './IconAttached';
 import IconSemiDetached from './IconSemiDetached';
 import IconFullscreen from './IconFullscreen';
 import IconSearch from './IconSearch';
+import IconStarFilled from './IconStarFilled';
+import IconStarOutline from './IconStarOutline';
 
 export {
   IconFullscreen,
@@ -423,4 +425,6 @@ export {
   IconDistances,
   IconRooms,
   IconSearch,
+  IconStarFilled,
+  IconStarOutline,
 };
