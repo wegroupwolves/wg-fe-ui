@@ -212,6 +212,8 @@ import IconFullscreen from './IconFullscreen';
 import IconSearch from './IconSearch';
 import IconStarFilled from './IconStarFilled';
 import IconStarOutline from './IconStarOutline';
+import IconPencilEdit from './IconPencilEdit';
+import IconExpandScreen from './IconExpandScreen';
 
 export {
   IconFullscreen,
@@ -427,4 +429,6 @@ export {
   IconSearch,
   IconStarFilled,
   IconStarOutline,
+  IconPencilEdit,
+  IconExpandScreen,
 };
