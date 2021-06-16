@@ -53,6 +53,7 @@ const Modal = ({
         open={showModal}
         onRequestClose={handleOnRequestClose}
         {...drawerProps}
+        containerElementClass="ModalDrawerContainer"
       >
         <ModalContainer
           {...otherProps}
@@ -87,6 +88,10 @@ const GlobalStyle = createGlobalStyle`
    body {
     overflow: ${({ isModalOpen }) => isModalOpen && 'hidden'};
   }
+.ModalDrawerContainer {
+  /* important addd to overwrite package css */
+  overflow: hidden !important; /* stylelint-disable-line */
+}
 `;
 
 const StyledDrawer = styled(Drawer)`
