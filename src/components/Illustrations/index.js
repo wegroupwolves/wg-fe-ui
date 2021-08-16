@@ -24,7 +24,6 @@ import IllustrationPet from './IllustrationPet';
 import IllustrationPlant from './IllustrationPlant';
 import IllustrationSenior from './IllustrationSenior';
 import IllustrationSingleFamily from './IllustrationSingleFamily';
-import IconChevronLeftRounded from './IconChevronLeftRounded';
 
 export {
   IllustrationAssistance,
@@ -53,5 +52,4 @@ export {
   IllustrationPlant,
   IllustrationSenior,
   IllustrationSingleFamily,
-  IconChevronLeftRounded,
 };
