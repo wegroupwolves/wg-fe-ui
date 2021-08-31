@@ -215,6 +215,7 @@ import IconStarOutline from './IconStarOutline';
 import IconPencilEdit from './IconPencilEdit';
 import IconExpandScreen from './IconExpandScreen';
 import IconChevronLeftRounded from './IconChevronLeftRounded';
+import IconFuneral from './IconFuneral';
 
 export {
   IconFullscreen,
@@ -433,4 +434,5 @@ export {
   IconPencilEdit,
   IconExpandScreen,
   IconChevronLeftRounded,
+  IconFuneral,
 };
