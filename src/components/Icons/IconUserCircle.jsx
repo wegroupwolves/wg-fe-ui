@@ -9,6 +9,7 @@ const IconFullscreen = ({ className, color, backgroundColor }) => {
       width="40"
       height="41"
       fill="none"
+      viewBox="0 0 50 50"
     >
       <circle cx="20" cy="20.276" r="20" fill={backgroundColor}></circle>
       <path

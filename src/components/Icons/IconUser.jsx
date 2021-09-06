@@ -9,6 +9,7 @@ const IconFullscreen = ({ className, color }) => {
       width="40"
       height="41"
       fill="none"
+      viewBox="0 0 50 50"
     >
       <path
         fill={color}
