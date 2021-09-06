@@ -218,6 +218,8 @@ import IconChevronLeftRounded from './IconChevronLeftRounded';
 import IconFuneral from './IconFuneral';
 import IconSupport from './IconSupport';
 import IconWriting from './IconWriting';
+import IconUser from './IconUser';
+import IconUserCircle from './IconUserCircle';
 
 export {
   IconFullscreen,
@@ -439,4 +441,6 @@ export {
   IconFuneral,
   IconSupport,
   IconWriting,
+  IconUser,
+  IconUserCircle,
 };
