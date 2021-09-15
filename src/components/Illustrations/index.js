@@ -24,6 +24,7 @@ import IllustrationPet from './IllustrationPet';
 import IllustrationPlant from './IllustrationPlant';
 import IllustrationSenior from './IllustrationSenior';
 import IllustrationSingleFamily from './IllustrationSingleFamily';
+import IllustrationMoney from './IllustrationMoney';
 
 export {
   IllustrationAssistance,
@@ -52,4 +53,5 @@ export {
   IllustrationPlant,
   IllustrationSenior,
   IllustrationSingleFamily,
+  IllustrationMoney,
 };
