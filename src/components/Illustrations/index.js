@@ -43,6 +43,9 @@ export {
   IllustrationPremium,
   IllustrationSwimmingPool,
   IllustrationTheft,
+  IllustrationMoney,
+  IllustrationUmbrella,
+  IllustrationCare,
   IllustrationArt,
   IllustrationBicycle,
   IllustrationComputer,
@@ -55,7 +58,4 @@ export {
   IllustrationPlant,
   IllustrationSenior,
   IllustrationSingleFamily,
-  IllustrationMoney,
-  IllustrationUmbrella,
-  IllustrationCare,
 };
