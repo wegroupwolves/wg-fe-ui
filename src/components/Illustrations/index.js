@@ -25,6 +25,8 @@ import IllustrationPlant from './IllustrationPlant';
 import IllustrationSenior from './IllustrationSenior';
 import IllustrationSingleFamily from './IllustrationSingleFamily';
 import IllustrationMoney from './IllustrationMoney';
+import IllustrationUmbrella from './IllustrationUmbrella';
+import IllustrationCare from './IllustrationCare';
 
 export {
   IllustrationAssistance,
@@ -41,6 +43,9 @@ export {
   IllustrationPremium,
   IllustrationSwimmingPool,
   IllustrationTheft,
+  IllustrationMoney,
+  IllustrationUmbrella,
+  IllustrationCare,
   IllustrationArt,
   IllustrationBicycle,
   IllustrationComputer,
@@ -53,5 +58,4 @@ export {
   IllustrationPlant,
   IllustrationSenior,
   IllustrationSingleFamily,
-  IllustrationMoney,
 };
