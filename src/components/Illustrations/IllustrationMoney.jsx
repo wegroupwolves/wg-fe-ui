@@ -1,6 +1,6 @@
 import React from 'react';
 
-const IllustrationModalFamily = () => {
+const IllustrationMoney = () => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -116,4 +116,4 @@ const IllustrationModalFamily = () => {
   );
 };
 
-export default IllustrationModalFamily;
+export default IllustrationMoney;
