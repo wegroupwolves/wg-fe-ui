@@ -332,6 +332,15 @@ const DateInputV4 = ({
     handleBlur(changedDate, returnType);
   };
 
+  const handleOnPaste = (e, maxLength) => {
+    const pastedText = (e.clipboardData || window.clipboardData).getData(
+      'text',
+    );
+    // Avoids the ability to paste text with alphabetic characeters and/or longer than the given max length
+    if (!new RegExp(`^\\d{1,${maxLength}}$`).test(pastedText))
+      e.preventDefault();
+  };
+
   return (
     <Container
       className={className}
@@ -361,6 +370,7 @@ const DateInputV4 = ({
             onKeyDown={onKeyDown}
             type="number"
             data-test-id={`${dataTestId}_day`}
+            onPaste={e => handleOnPaste(e, 2)}
           />
           <Slash>/</Slash>
           <DateInput
@@ -375,6 +385,7 @@ const DateInputV4 = ({
             onKeyDown={onKeyDown}
             type="number"
             data-test-id={`${dataTestId}_month`}
+            onPaste={e => handleOnPaste(e, 2)}
           />
           <Slash>/</Slash>
           <DateInput
@@ -390,6 +401,7 @@ const DateInputV4 = ({
             type="number"
             year
             data-test-id={`${dataTestId}_year`}
+            onPaste={e => handleOnPaste(e, 4)}
           />
           {withIcon && error && touched ? (
             <StyledErrormark color="#F74040" />
