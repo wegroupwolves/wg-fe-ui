@@ -121,7 +121,11 @@ const Tab = ({
       width={width}
       {...rest}
     >
-      {children}
+      {typeof children === 'string' || typeof children === 'number' ? (
+        <p>{children}</p>
+      ) : (
+        { children }
+      )}
     </Item>
   );
 };
