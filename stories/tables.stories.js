@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { storiesOf } from '@storybook/react';
-import { withKnobs, text } from '@storybook/addon-knobs';
+import { withKnobs, text, boolean } from '@storybook/addon-knobs';
 import { withInfo } from '@storybook/addon-info';
 import styled from 'styled-components';
 
@@ -68,7 +68,7 @@ storiesOf('Mid level blocks/Tables', module)
   ))
   .add('OrderTable', () => (
     <StyledOrderTable>
-      <OrderTable.Head>
+      <OrderTable.Head orderEnabled={boolean('Order enabled', true)}>
         <OrderTable.HeaderCell width="20%">Name</OrderTable.HeaderCell>
         <OrderTable.HeaderCell width="15%">Date</OrderTable.HeaderCell>
         <OrderTable.HeaderCell width="20%">Insurer</OrderTable.HeaderCell>

@@ -11,6 +11,7 @@ const HeaderCell = ({
   onClick,
   active,
   order,
+  orderEnabled = true,
   ...otherProps
 }) => {
   return (
@@ -23,7 +24,7 @@ const HeaderCell = ({
       order={order}
       {...otherProps}
     >
-      <ThWrapper>
+      <ThWrapper orderEnabled={orderEnabled}>
         {children}
         <IconWrapper active={active} order={order}>
           <Icon color="#505050" />
@@ -46,7 +47,7 @@ const Th = styled.th`
 const ThWrapper = styled.div`
   display: flex;
   align-items: center;
-  cursor: pointer;
+  cursor: ${({ orderEnabled }) => (orderEnabled ? 'pointer' : 'auto')};
 `;
 
 const IconWrapper = styled.div`
@@ -85,6 +86,7 @@ HeaderCell.propTypes = {
   onClick: func,
   order: string,
   active: bool,
+  orderEnabled: bool,
 };
 
 export default HeaderCell;
