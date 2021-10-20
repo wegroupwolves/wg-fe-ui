@@ -28,6 +28,7 @@ const Head = ({ className, orderEnabled = true, children }) => {
             onClick: () => (orderEnabled ? clickHandler(index) : null),
             active: index === ActiveOrder && orderEnabled ? true : false,
             order: OrderDirection,
+            orderEnabled,
           });
         })}
       </tr>
