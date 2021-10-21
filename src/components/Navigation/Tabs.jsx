@@ -124,7 +124,7 @@ const Tab = ({
       {typeof children === 'string' || typeof children === 'number' ? (
         <p>{children}</p>
       ) : (
-        { children }
+        children
       )}
     </Item>
   );
