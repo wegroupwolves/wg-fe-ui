@@ -1,149 +1,151 @@
 import React, { useState, useEffect, forwardRef } from 'react';
 import styled from 'styled-components';
-import { number, bool, string, object, func } from 'prop-types';
+import { number, bool, string, object, func, oneOfType } from 'prop-types';
 
 import { IconActionDropDown } from '../../index';
 
-const AmountInput = (
-  {
-    value,
-    disabled,
-    dataTestId,
-    min,
-    max,
-    className,
-    onChange,
-    onBlur,
-    onFocus,
-    inputAppend,
-    name,
-    roundNumber = false,
-    allowChange = false,
-    ...otherProps
-  },
-  ref,
-) => {
-  const [currentValue, setCurrentValue] = useState(value);
+const AmountInput = forwardRef(
+  (
+    {
+      value,
+      disabled,
+      dataTestId,
+      min,
+      max,
+      className,
+      onChange,
+      onBlur,
+      onFocus,
+      inputAppend,
+      name,
+      roundNumber = false,
+      allowChange = false,
+      ...otherProps
+    },
+    ref,
+  ) => {
+    const [currentValue, setCurrentValue] = useState(value);
 
-  useEffect(() => {
-    setCurrentValue(value);
-  }, [value]);
+    useEffect(() => {
+      setCurrentValue(value);
+    }, [value]);
 
-  const checkValue = value => {
-    const parsedValue = parseFloat(value) || 0;
-    if (parsedValue >= min && parsedValue <= max) {
-      return parsedValue;
-    } else {
-      if (parsedValue === undefined) {
-        return min;
-      } else if (parsedValue < min) {
-        return min;
-      } else if (parsedValue > max) {
-        return max;
-      }
-    }
-  };
-
-  const handleChange = (value, isBlur = false) => {
-    let roundedValue = value;
-
-    if (
-      typeof value === 'string' &&
-      value !== '' &&
-      value !== '-' &&
-      value[value.length - 1] !== '.'
-    )
-      roundedValue = value.replace(',', '.');
-    if (roundNumber && value !== '' && value !== '-')
-      roundedValue = Number(roundedValue).toFixed(0);
-
-    if (!disabled) {
-      if (isBlur || allowChange) {
-        let checkedValue = roundedValue;
-        if (
-          checkedValue !== '' &&
-          checkedValue !== '-' &&
-          checkedValue[checkedValue.length - 1] !== '.' &&
-          checkedValue[checkedValue.length - 1] !== ','
-        )
-          checkedValue = checkValue(roundedValue);
-        setCurrentValue(checkedValue);
-        if (allowChange && !isBlur) {
-          onChange({ name, value: checkedValue });
-        } else {
-          onBlur({ name, value: checkedValue });
-        }
+    const checkValue = value => {
+      const parsedValue = parseFloat(value) || 0;
+      if (parsedValue >= min && parsedValue <= max) {
+        return parsedValue;
       } else {
-        setCurrentValue(value);
-        onChange({ name, value });
+        if (parsedValue === undefined) {
+          return min;
+        } else if (parsedValue < min) {
+          return min;
+        } else if (parsedValue > max) {
+          return max;
+        }
       }
-    }
-  };
+    };
 
-  const handleOnKeyDown = ({ keyCode }) => {
-    if (keyCode === 38) {
-      //Key: arrow up
-      handlePlus();
-    } else if (keyCode === 40) {
-      //Key: arrow down
-      handleMinus();
-    }
-  };
+    const handleChange = (value, isBlur = false) => {
+      let roundedValue = value;
 
-  const handlePlus = () => {
-    // Check if number is integer or float
-    if (Math.abs(currentValue) % 1 === 0) {
-      handleChange(currentValue + 1);
-    } else {
-      handleChange(Math.ceil(currentValue));
-    }
-  };
+      if (
+        typeof value === 'string' &&
+        value !== '' &&
+        value !== '-' &&
+        value[value.length - 1] !== '.'
+      )
+        roundedValue = value.replace(',', '.');
+      if (roundNumber && value !== '' && value !== '-')
+        roundedValue = Number(roundedValue).toFixed(0);
 
-  const handleMinus = () => {
-    // Check if number is integer or float
-    if (Math.abs(currentValue) % 1 === 0) {
-      handleChange(currentValue - 1);
-    } else {
-      handleChange(Math.floor(currentValue));
-    }
-  };
+      if (!disabled) {
+        if (isBlur || allowChange) {
+          let checkedValue = roundedValue;
+          if (
+            checkedValue !== '' &&
+            checkedValue !== '-' &&
+            checkedValue[checkedValue.length - 1] !== '.' &&
+            checkedValue[checkedValue.length - 1] !== ','
+          )
+            checkedValue = checkValue(roundedValue);
+          setCurrentValue(checkedValue);
+          if (allowChange && !isBlur) {
+            onChange({ name, value: checkedValue });
+          } else {
+            onBlur({ name, value: checkedValue });
+          }
+        } else {
+          setCurrentValue(value);
+          onChange({ name, value });
+        }
+      }
+    };
 
-  return (
-    <Wrapper disabled={disabled} className={className} {...otherProps}>
-      <InputControls>
-        <InputControl
-          disabled={currentValue == max}
-          onClick={currentValue != max ? handlePlus : undefined}
-        >
-          <IconActionDropDown size={14} />
-        </InputControl>
-        <InputControl
-          disabled={currentValue == min || currentValue === undefined}
-          onClick={currentValue != min ? handleMinus : undefined}
-        >
-          <IconActionDropDown size={14} />
-        </InputControl>
-      </InputControls>
+    const handleOnKeyDown = ({ keyCode }) => {
+      if (keyCode === 38) {
+        //Key: arrow up
+        handlePlus();
+      } else if (keyCode === 40) {
+        //Key: arrow down
+        handleMinus();
+      }
+    };
 
-      <StyledInput
-        dataTestId={dataTestId}
-        name={name}
-        type="text"
-        value={currentValue}
-        min={min}
-        max={max}
-        onChange={({ target: { value } }) => handleChange(value)}
-        onBlur={({ target: { value } }) => handleChange(value, true)}
-        disabled={disabled}
-        onFocus={onFocus}
-        onKeyDown={handleOnKeyDown}
-        ref={ref}
-      />
+    const handlePlus = () => {
+      // Check if number is integer or float
+      if (Math.abs(currentValue) % 1 === 0) {
+        handleChange(currentValue + 1);
+      } else {
+        handleChange(Math.ceil(currentValue));
+      }
+    };
 
-      {inputAppend ? <InputExtra>{inputAppend}</InputExtra> : ''}
-    </Wrapper>
-  );
-};
+    const handleMinus = () => {
+      // Check if number is integer or float
+      if (Math.abs(currentValue) % 1 === 0) {
+        handleChange(currentValue - 1);
+      } else {
+        handleChange(Math.floor(currentValue));
+      }
+    };
+
+    return (
+      <Wrapper disabled={disabled} className={className} {...otherProps}>
+        <InputControls>
+          <InputControl
+            disabled={currentValue == max}
+            onClick={currentValue != max ? handlePlus : undefined}
+          >
+            <IconActionDropDown size={14} />
+          </InputControl>
+          <InputControl
+            disabled={currentValue == min || currentValue === undefined}
+            onClick={currentValue != min ? handleMinus : undefined}
+          >
+            <IconActionDropDown size={14} />
+          </InputControl>
+        </InputControls>
+
+        <StyledInput
+          dataTestId={dataTestId}
+          name={name}
+          type="text"
+          value={currentValue}
+          min={min}
+          max={max}
+          onChange={({ target: { value } }) => handleChange(value)}
+          onBlur={({ target: { value } }) => handleChange(value, true)}
+          disabled={disabled}
+          onFocus={onFocus}
+          onKeyDown={handleOnKeyDown}
+          ref={ref}
+        />
+
+        {inputAppend ? <InputExtra>{inputAppend}</InputExtra> : ''}
+      </Wrapper>
+    );
+  },
+);
 
 const Wrapper = styled.div`
   width: 100%;
@@ -225,15 +227,17 @@ AmountInput.propTypes = {
   disabled: bool,
   dataTestId: string,
   /** Minimum value of the input. */
-  min: number | string,
+  min: oneOfType([number, string]),
   /** Maximum value of input. */
-  max: number | string,
+  max: oneOfType([number, string]),
   /** Extra className to be passed to component. */
   className: string,
   /** Editable string appended to the right of the input. */
   inputAppend: string,
   /** returns onChange event */
   onChange: func,
+  /** returns onFocus event */
+  onFocus: func,
   /** returns onBlur event */
   onBlur: func,
   /** Other props to be passed to the component. */
@@ -246,4 +250,6 @@ AmountInput.propTypes = {
   allowChange: bool,
 };
 
-export default forwardRef(AmountInput);
+AmountInput.displayName = 'AmountInput';
+
+export default AmountInput;
