@@ -220,6 +220,7 @@ import IconSupport from './IconSupport';
 import IconWriting from './IconWriting';
 import IconUser from './IconUser';
 import IconUserCircle from './IconUserCircle';
+import IconShrinkScreen from './IconShrinkScreen';
 
 export {
   IconFullscreen,
@@ -443,4 +444,5 @@ export {
   IconWriting,
   IconUser,
   IconUserCircle,
+  IconShrinkScreen,
 };
