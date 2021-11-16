@@ -221,6 +221,8 @@ import IconWriting from './IconWriting';
 import IconUser from './IconUser';
 import IconUserCircle from './IconUserCircle';
 import IconShrinkScreen from './IconShrinkScreen';
+import IconOriginConnection from './IconOriginConnection';
+import IconEmptyCircle from './IconEmptyCircle';
 
 export {
   IconFullscreen,
@@ -445,4 +447,6 @@ export {
   IconUser,
   IconUserCircle,
   IconShrinkScreen,
+  IconOriginConnection,
+  IconEmptyCircle,
 };
