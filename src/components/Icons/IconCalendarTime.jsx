@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { string, number } from 'prop-types';
 
-const SvgComponent = ({ className, color, size }) => {
+const IconCalendarTime = ({ className, color, size }) => {
   return (
     <svg
       width={size}
@@ -31,15 +31,15 @@ const SvgComponent = ({ className, color, size }) => {
   );
 };
 
-SvgComponent.defaultProps = {
+IconCalendarTime.defaultProps = {
   color: 'black',
   size: 30,
 };
 
-SvgComponent.propTypes = {
+IconCalendarTime.propTypes = {
   color: string,
   className: string,
   size: number,
 };
 
-export default SvgComponent;
+export default IconCalendarTime;
