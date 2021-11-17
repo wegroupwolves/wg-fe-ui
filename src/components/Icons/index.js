@@ -223,6 +223,8 @@ import IconUserCircle from './IconUserCircle';
 import IconShrinkScreen from './IconShrinkScreen';
 import IconOriginConnection from './IconOriginConnection';
 import IconEmptyCircle from './IconEmptyCircle';
+import IconCalendar from './IconCalendar';
+import IconCalendarTime from './IconCalendarTime';
 
 export {
   IconFullscreen,
@@ -449,4 +451,6 @@ export {
   IconShrinkScreen,
   IconOriginConnection,
   IconEmptyCircle,
+  IconCalendar,
+  IconCalendarTime,
 };
