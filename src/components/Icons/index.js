@@ -212,6 +212,7 @@ import IconFullscreen from './IconFullscreen';
 import IconSearch from './IconSearch';
 import IconStarFilled from './IconStarFilled';
 import IconStarOutline from './IconStarOutline';
+import IconStarHalfFilled from './IconStarHalfFilled';
 import IconPencilEdit from './IconPencilEdit';
 import IconExpandScreen from './IconExpandScreen';
 import IconChevronLeftRounded from './IconChevronLeftRounded';
@@ -440,6 +441,7 @@ export {
   IconSearch,
   IconStarFilled,
   IconStarOutline,
+  IconStarHalfFilled,
   IconPencilEdit,
   IconExpandScreen,
   IconChevronLeftRounded,
