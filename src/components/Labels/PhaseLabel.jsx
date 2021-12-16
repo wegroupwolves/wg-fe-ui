@@ -16,7 +16,7 @@ const PhaseLabel = ({ status, text, children, ...otherProps }) => {
   ];
   const blue = ['PENDING', 'offer-send', 'blue'];
   const orange = ['warning', 'orange'];
-  const yellow = ['SEND', 'contract-send', 'yellow'];
+  const yellow = ['SEND', 'contract-send', 'IN_PROGRESS', 'yellow'];
   const green = ['ACCEPTED', 'SIGNED', 'ACCEPTED', 'success', 'green'];
 
   let statusClassName = 'default';
