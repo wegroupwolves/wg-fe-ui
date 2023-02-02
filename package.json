@@ -74,7 +74,7 @@
     "react-phone-input-2": "^2.13.8",
     "react-router-dom": "^5.1.2",
     "react-select": "^3.0.8",
-    "storybook": "^5.3.18",
+    "storybook": "^6.5.16",
     "storybook-react-router": "^1.0.8",
     "styled-components": "^4.3.2"
   },
